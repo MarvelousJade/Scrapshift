@@ -10,7 +10,7 @@ using AssetScope;
 
 namespace Scrapshift.Editor
 {
-    public static class ContentBuilder
+    public static partial class ContentBuilder
     {
         public const string Root = "Assets/Scrapshift/Content";
         public const string ScenePath = Root + "/Scenes/Deck.unity";
@@ -21,7 +21,7 @@ namespace Scrapshift.Editor
         public static void Generate()
         {
             // Safe to invoke again: authored content is never overwritten by the generator.
-            if (File.Exists(ScenePath)) { Debug.Log("Scrapshift content already exists. Open Deck.unity to play; existing content preserved."); return; }
+            if (File.Exists(ScenePath)) { UpgradePresentation(); return; }
             foreach (var sub in new[] { "Meshes", "Materials", "Prefabs", "Definitions", "Scenes" }) Directory.CreateDirectory(Root + "/" + sub);
             AssetDatabase.Refresh();
             quad = Polygon("Quad", 4, 45, 1.41421356f);
@@ -93,7 +93,7 @@ namespace Scrapshift.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };
             AssetDatabase.SaveAssets();
-            Scan(); Debug.Log("Scrapshift content generated.");
+            UpgradePresentation(); Scan(); Debug.Log("Scrapshift content generated.");
         }
 
         static Color Hex(string hex) { ColorUtility.TryParseHtmlString(hex, out var c); return c; }
@@ -190,7 +190,7 @@ namespace Scrapshift.Editor
             Generate(); Scan(); Directory.CreateDirectory("Builds/Windows");
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = new[] { ScenePath }, locationPathName = "Builds/Windows/Scrapshift.exe", target = BuildTarget.StandaloneWindows64, options = BuildOptions.None });
             File.WriteAllText("artifacts/build.txt", $"Result: {report.summary.result}\nErrors: {report.summary.totalErrors}\nWarnings: {report.summary.totalWarnings}\nBytes: {report.summary.totalSize}\n");
-            if (report.summary.result != BuildResult.Succeeded) throw new Exception("Windows build failed.");
+            if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors != 0) throw new Exception("Windows build failed or logged errors; inspect artifacts/raw/build.log.");
         }
     }
 }
