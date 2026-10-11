@@ -10,6 +10,16 @@ namespace Scrapshift.Tests
 {
     public sealed class RulesTests
     {
+        [TestCase(1440, 900)]
+        [TestCase(1920, 1080)]
+        [TestCase(900, 900)]
+        public void ResizingPreservesEntireArenaAspect(int width, int height)
+        {
+            var rect = PresentationLayout.Viewport(width, height);
+            Assert.AreEqual(PresentationLayout.Aspect, width * rect.width / (height * rect.height), .0001f);
+            Assert.GreaterOrEqual(rect.x, 0); Assert.GreaterOrEqual(rect.y, 0);
+            Assert.LessOrEqual(rect.xMax, 1); Assert.LessOrEqual(rect.yMax, 1);
+        }
         [Test] public void FiveWavesRequireFiveMinutesAndFourIntermissions()
         {
             var r = new RunRules(); r.Start();

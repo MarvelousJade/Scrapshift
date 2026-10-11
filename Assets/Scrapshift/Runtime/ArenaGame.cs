@@ -27,6 +27,7 @@ namespace Scrapshift
         float elapsed, spawnClock, shootClock, orbitClock, pulseClock, invulnerable, pulseAge, shake;
         float smokeStart, screenshotAt;
         bool smoke, captured, muted, reducedMotion;
+        bool previewCapture;
         string smokePath;
         int peakEnemies, shotsFired, pulseHits, orbitHits;
         AudioSource audioSource;
@@ -46,6 +47,11 @@ namespace Scrapshift
             reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
             int index = Array.IndexOf(args, "--smoke"); smoke = index >= 0;
+            int preview = Array.IndexOf(args, "--preview-capture");
+            if (preview >= 0 && preview + 1 < args.Length)
+            {
+                previewCapture = true; smokePath = args[preview + 1]; Directory.CreateDirectory(smokePath);
+            }
             if (smoke)
             {
                 smokePath = index + 1 < args.Length ? args[index + 1] : Application.persistentDataPath;
@@ -65,6 +71,11 @@ namespace Scrapshift
 
         void Update()
         {
+            gameCamera.rect = PresentationLayout.Viewport(Screen.width, Screen.height);
+            if (previewCapture && Time.realtimeSinceStartup > 3)
+            {
+                ScreenCapture.CaptureScreenshot(Path.Combine(smokePath, "preview.png")); previewCapture = false;
+            }
             if (titleModel != null) titleModel.SetActive(Rules.Phase == RunPhase.Title);
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
             if (Input.GetKeyDown(KeyCode.Escape)) Rules.Pause();
@@ -366,10 +377,11 @@ namespace Scrapshift
                 ScreenCapture.CaptureScreenshot(Path.Combine(smokePath, "gameplay.png"));
             }
             if (t < 24) return;
-            bool passed = shotsFired > 0 && Rules.Kills > 0 && peakEnemies > 0 && captured && t > screenshotAt + 1;
+            bool passed = shotsFired > 0 && Rules.Kills > 0 && peakEnemies > 0 && captured && t > screenshotAt + 1
+                && File.Exists(Path.Combine(smokePath, "gameplay.png"));
             var report = new SmokeReport { status = passed ? "Passed" : "Failed", phase = Rules.Phase.ToString(), kills = Rules.Kills,
                 shots = shotsFired, peakEnemies = peakEnemies, upgrades = Rules.UpgradeCount, orbitHits = orbitHits, pulseHits = pulseHits,
-                elapsed = elapsed, health = Rules.Health, scope = "24-second rendered Windows runtime; scripted normal-speed movement; no invulnerability override. Not a full-run balance or manual-input test." };
+                elapsed = elapsed, health = Rules.Health, scope = "24-second Windows runtime; scripted normal-speed movement; no invulnerability override. Screenshot existence checked; pixel content requires separate visual validation. Not a full-run balance or manual-input test." };
             File.WriteAllText(Path.Combine(smokePath, "runtime-smoke.json"), JsonUtility.ToJson(report, true));
             Application.Quit(passed ? 0 : 1); enabled = false;
         }

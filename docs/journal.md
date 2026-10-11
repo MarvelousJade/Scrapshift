@@ -25,3 +25,11 @@ The user additionally requested real visual references and Brotato code research
 Added and ran 21 EditMode cases; all passed. Checks cover the five-wave timeline, stopped simulation during pause/upgrades, invalid/repeated selections, lethal damage precedence, restart reset, bounded movement, swept projectile collision, real serialized weapon references, shared material reverse references, complete scene configuration, prefab content and repeat-generation GUID preservation.
 
 Evidence: `artifacts/editmode.xml` and `artifacts/raw/tests.log`. This proves the specified checks, not complete gameplay balance or manual input quality. Windows build and rendered smoke follow separately.
+
+## 2026-10-10 - Player verification and real fixes
+
+The Windows build succeeded with zero reported build errors or warnings. A 24-second scripted run exercised attacks, enemy deaths, pickups, damage and an upgrade, but its claimed screenshot success was invalid. Batch mode saved no image; a hidden window saved a black image. Both failed visual verification. QA-002 records the defective check and the corrected evidence boundary.
+
+Code inspection also found that a resizable square window could crop world space while keeping the HUD fitted. Added a common aspect-ratio calculation and three regression cases. The resulting 24-case suite passed, and the player rebuilt without reported warnings/errors.
+
+Opened the player as an interactive preview. Title art and layout were inspected. Desktop automation verified Return starts the run, a D tap moves the bot, Escape pauses/resumes, a mouse click changes reduced-motion state, the 1 key installs orbit blades, and a mouse click installs the pulse core. Observed automatic combat, scrap collection, damage, an in-wave level-up and readable upgrade UI. These were assistant-operated checks, not claimed user playtests.
