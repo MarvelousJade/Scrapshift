@@ -51,13 +51,23 @@ for p in sorted((ROOT/'items/all').glob('*/*_data.tres')):
     items.append(dict(id=name,title=name.replace('_',' ').title(),tier=d.get('tier',0)+1,icon=media(d['icon']),value=d.get('value',20),effects=[dict(key=e['key'],value=e['value']) for e in effects]))
     if len(items)>=24: break
 
-audio={'Fire':'weapons/ranged/pistol/gun_pistol_shot_*.wav','Impact':'entities/units/unit/hurt_sounds/bullet_impact_body_flesh_*.wav','Kill':'entities/units/unit/hurt_sounds/punch_general_body_impact_*.wav','Critical':'entities/units/unit/crit_sounds/*.wav','Pickup':'items/materials/water_drop_drip_single_*.wav','LevelUp':'resources/sounds/level_up.wav','Install':'ui/sounds/buy.wav','WaveClear':'ui/sounds/end_wave.wav','Swing':'weapons/melee_sounds/whoosh_weapon_knife_swing_*.wav','Charge':'entities/birth/birth_begin_sound.wav','Hurt':'resources/sounds/zombie_voice_attack_grunt_01.wav'}
+audio={'Fire':'weapons/ranged/pistol/gun_pistol_shot_*.wav','Impact':'entities/units/unit/hurt_sounds/bullet_impact_body_flesh_*.wav','Kill':'entities/units/unit/hurt_sounds/punch_general_body_impact_*.wav','Critical':'entities/units/unit/crit_sounds/*.wav','Pickup':'items/materials/water_drop_drip_single_*.wav','LevelUp':'resources/sounds/level_up.wav','Install':'ui/sounds/buy.wav','WaveClear':'ui/sounds/end_wave.wav','Swing':'weapons/melee_sounds/whoosh_weapon_knife_swing_*.wav','Charge':'entities/birth/birth_begin_sound.wav','Hurt':'resources/sounds/zombie_voice_attack_grunt_01.wav','Reroll':'ui/sounds/diceroll.wav'}
 for cue,pattern in audio.items():
     for i,p in enumerate(sorted(ROOT.glob(pattern))): media(str(p.relative_to(ROOT)).replace('\\','/'),f'{cue}_{i+1:02}.wav')
 for name in ['smg','double_barrel_shotgun','laser_gun']:
     for i,p in enumerate(sorted((ROOT/'weapons/ranged'/name).glob('*.wav'))):media(str(p.relative_to(ROOT)).replace('\\','/'),f'{name}_{i+1:02}.wav')
 media('entities/birth/entity_birth.png','spawn_warning.png')
-data=dict(waves=waves,enemies=enemies,equipment=equipment,items=items)
+upgrades=[]
+for name in ['percent_damage','attack_speed','health','crit_chance','armor','hp_regeneration','harvesting','speed']:
+    folder=ROOT/'items/upgrades'/name
+    if not folder.exists():
+        folder=next(p.parent for p in (ROOT/'items/upgrades').glob('*/stat_'+name+'.tres'))
+    values=[];icon='';stat=''
+    for tier in range(1,5):
+        p=next((folder/str(tier)).glob('*_data.tres'));d=resource(str(p.relative_to(ROOT)).replace('\\','/'))
+        e=resource(d['effects'][0]);values.append(int(e['value']));stat=e['key'].replace('stat_','');icon=media(d['icon'])
+    upgrades.append(dict(stat=stat,icon=icon,values=values))
+data=dict(waves=waves,enemies=enemies,equipment=equipment,items=items,upgrades=upgrades)
 (OUT/'catalog.json').write_text(json.dumps(data,indent=2)+'\n')
 (PROJECT/'artifacts/reference-media-provenance.json').write_text(json.dumps({'origin':'User-supplied Brotato reference, third-party art/audio, imported for this local study build. No original-art claim or redistribution license inferred.','files':list({m['asset']:m for m in manifest}.values())},indent=2)+'\n')
 print(f'{len(enemies)} enemies, {len(equipment)} weapon tiers, {len(items)} items, {len(waves)} waves; {len(set(m["asset"] for m in manifest))} media files')

@@ -57,6 +57,8 @@ namespace Scrapshift
             {
                 previewCapture = true; smokePath = args[preview + 1]; Directory.CreateDirectory(smokePath);
             }
+            int reviewIndex=Array.IndexOf(args,"--reference-review");
+            if(reviewIndex>=0 && reviewIndex+1<args.Length) BeginReview(args[reviewIndex+1]);
             if (smoke)
             {
                 smokePath = index + 1 < args.Length ? args[index + 1] : Application.persistentDataPath;
@@ -97,7 +99,7 @@ namespace Scrapshift
                 if (Input.GetKeyDown(KeyCode.R)) RerollUpgrade();
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
-            if (Rules.Phase == RunPhase.Shop && Input.GetKeyDown(KeyCode.Return)) AdvanceWave();
+            if (Rules.Phase == RunPhase.Shop) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if(Input.GetKeyDown(KeyCode.R)) RerollUpgrade(); }
             if (Rules.Phase == RunPhase.Playing) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title)
                 player.transform.localScale = new Vector3(1 + Mathf.Sin(Time.time * 2) * .035f, 1 - Mathf.Sin(Time.time * 2) * .035f, 1);
@@ -109,6 +111,7 @@ namespace Scrapshift
                 audioPhase = Rules.Phase;
             }
             if (smoke) SmokeTick();
+            ReviewTick();
         }
 
         void Simulate(float dt)
@@ -116,7 +119,7 @@ namespace Scrapshift
             elapsed += dt; invulnerable = Mathf.Max(0, invulnerable - dt);
             Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
                 (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
-            if (smoke) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
+            if (smoke || review) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             float bob = !reducedMotion && movement.sqrMagnitude > .01f ? Mathf.Sin(elapsed * 22) * .045f : 0;
@@ -178,7 +181,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
-            ClearReferenceCombat();
+            ClearReferenceCombat(); floaters.Clear(); hitStop=hurtOverlay=0;
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();
             foreach (var s in shots) Destroy(s.obj); shots.Clear();
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();

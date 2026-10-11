@@ -53,6 +53,7 @@ namespace Scrapshift
             Text(960,813,440,27,$"LEVEL {Rules.Level}       XP {Rules.XP} / {Rules.NextLevel}",tiny);
             Frame(new Rect(960,851,440,20),panelColor,3);
             Box(new Rect(964,855,432*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),12),mint);
+            var boss=enemies.Find(e=>e.type.role=="Boss"&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,"PREDATOR",center);}
             DrawFeedback();
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
             else if (Rules.Phase == RunPhase.Shop) ShopUI();
@@ -82,7 +83,7 @@ namespace Scrapshift
             {
                 var o=Rules.Offers[i];float x=72+i*328;Frame(new Rect(x,266,308,338),TierColor(o.Tier),3);
                 Box(new Rect(x+5,271,298,328),panelColor);
-                Text(x+20,290,270,28,o.Rarity,tiny);Text(x+20,346,270,62,o.Title,heading);
+                Text(x+20,290,270,28,o.Rarity,tiny);DrawIcon(o.Image,new Rect(x+20,338,60,60)); Text(x+92,342,197,96,o.Title,center);
                 Text(x+20,440,268,75,o.Detail,body);
                 if(Button(new Rect(x+20,532,268,52),$"SELECT   [{i+1}]"))SelectUpgrade(i);
             }

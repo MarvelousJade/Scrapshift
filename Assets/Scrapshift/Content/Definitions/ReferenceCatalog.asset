@@ -3486,5 +3486,38 @@ MonoBehaviour:
       - key: stat_max_hp
         value: -3
       image: {fileID: 21300000, guid: 90533943028c11343a523572238bb865, type: 3}
+    upgrades:
+    - stat: percent_damage
+      icon: percent_dmg
+      values: 05000000080000000c00000010000000i
+      image: {fileID: 21300000, guid: a7404021adf4a4b4782f49253ebf856a, type: 3}
+    - stat: attack_speed
+      icon: attack_speed
+      values: 050000000a0000000f00000014000000i
+      image: {fileID: 21300000, guid: f72fd6cea894afb459600056b2384b55, type: 3}
+    - stat: max_hp
+      icon: health
+      values: 0300000006000000090000000c000000i
+      image: {fileID: 21300000, guid: b694e5dbd02faa345aef1ae8862e16ff, type: 3}
+    - stat: crit_chance
+      icon: crit_chance
+      values: 03000000050000000700000009000000i
+      image: {fileID: 21300000, guid: 84d6282ad49f0c34788fd8c6104b7602, type: 3}
+    - stat: armor
+      icon: flat_dmg_reduction
+      values: 01000000020000000300000004000000i
+      image: {fileID: 21300000, guid: a0f1f75b35bc4734aa1578e4bab74b5d, type: 3}
+    - stat: hp_regeneration
+      icon: health_regen
+      values: 02000000030000000400000005000000i
+      image: {fileID: 21300000, guid: c7d7608eed24bea4aa84b36f9787ebef, type: 3}
+    - stat: harvesting
+      icon: harvesting
+      values: 05000000080000000a0000000c000000i
+      image: {fileID: 21300000, guid: 72bedea914ac07b46b17caa55efacab1, type: 3}
+    - stat: speed
+      icon: speed
+      values: 0300000006000000090000000c000000i
+      image: {fileID: 21300000, guid: 30144b89e4544924fa5637e72ddfa3a3, type: 3}
   warning: {fileID: 21300000, guid: 11528b6369013f34689052b33a44b974, type: 3}
   spriteMaterial: {fileID: 2100000, guid: a1f6c12287b111041a4cce1fa537787f, type: 2}

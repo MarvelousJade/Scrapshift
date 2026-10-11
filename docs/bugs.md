@@ -62,3 +62,11 @@ First audio build failed compilation with CS0619: `AudioImporter.preloadAudioDat
 - First new Windows smoke run reached the shop with 25 kills and 18 shots, but returned Failed because Unity reported `Failed to capture screen shot` while launched hidden.
 - This is a failed visual verification run, not a successful screenshot. Gameplay counters alone are insufficient.
 - Next action: run the interactive preview with a rendered window and verify saved pixels before marking the runtime check passed.
+
+## REF-003 — Upgrade headings clipped and birth warnings lost their color
+
+- Actual rendered review, not a unit-test assertion, exposed two defects: 30-point multi-line headings exceeded a 62-pixel label, and the source warning texture was white because its source-engine tint was not encoded in the PNG.
+- Fix: use reference upgrade icons, give titles a 96-pixel centered region, and explicitly tint the SpriteRenderer red. Copy source upgrade-tier values instead of multiplying every stat linearly. Clear damage floaters on intermission so frozen combat numbers cannot overlap menus.
+- Evidence: independently inspected corrected `artifacts/reference-review/upgrade.png` and `combat.png`. Long HP Regeneration / Attack Speed labels fit; warning Xs are red. The tier regression verifies +16% tier-four damage and +9% tier-four critical chance.
+
+REF-002 resolution: the rendered player generated all three valid review images. The hidden run remains a recorded failure; it was not relabeled as a pass.
