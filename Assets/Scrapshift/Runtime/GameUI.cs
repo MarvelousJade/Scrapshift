@@ -5,7 +5,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         GUIStyle damageSmall, damageBig, cardTitle, center, icon;
-        readonly Color ink = new Color(.08f,.08f,.09f), paper = new Color(.96f,.96f,.94f), panelColor = new Color(.20f,.20f,.21f);
+        readonly Color ink = new Color(.025f,.024f,.022f), paper = new Color(.96f,.96f,.94f), panelColor = new Color(.09f,.085f,.075f,.96f);
         void EnsureStyles()
         {
             if (body != null) return;
@@ -31,28 +31,17 @@ namespace Scrapshift
         bool Button(Rect r, string label)
         {
             bool hover = r.Contains(Event.current.mousePosition);
-            Frame(r, hover ? paper : mint);
+            Frame(r, hover ? paper : new Color(.78f,.78f,.76f));
             return GUI.Button(r, label, button);
         }
         void OnGUI()
         {
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
-            Box(new Rect(0,0,1440,102), ink); Box(new Rect(0,800,1440,100), ink);
             if (Rules.Phase == RunPhase.Title) { TitleUI(); return; }
-            Text(32,15,400,32,"HEALTH",tiny);
-            Frame(new Rect(32,48,320,34), new Color(.35f,.21f,.23f), 3);
-            Box(new Rect(36,52,312*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), coral);
-            Text(32,46,320,35,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
-            Text(510,13,420,34,$"WAVE {Rules.Wave} / 20",center);
-            Text(645,44,160,53,$"{Mathf.CeilToInt(Rules.Remaining):00}s",number);
-            Text(1100,16,300,28,"MATERIALS",tiny);
-            Text(1100,43,300,50,$"{Rules.Scrap}    [+{Rules.Banked}]",number);
-            Text(32,815,650,30,$"WEAPONS {Rules.Inventory.Count} / 6    |    ITEMS {Rules.Items.Count}",body);
-            Text(32,854,800,25,"WASD / ARROWS  Move     ESC  Pause     M  Sound",tiny);
-            Text(960,813,440,27,$"LEVEL {Rules.Level}       XP {Rules.XP} / {Rules.NextLevel}",tiny);
-            Frame(new Rect(960,851,440,20),panelColor,3);
-            Box(new Rect(964,855,432*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),12),mint);
+            if (Rules.Phase == RunPhase.Shop) { ShopUI(); return; }
+            if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); return; }
+            DrawHud();
             var boss=enemies.Find(e=>e.type.role=="Boss"&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,"PREDATOR",center);}
             DrawFeedback();
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
@@ -60,7 +49,7 @@ namespace Scrapshift
             else if (Rules.Phase == RunPhase.Paused) PauseUI();
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
         }
-        void Overlay() => Box(new Rect(0,102,1440,698), new Color(.09f,.08f,.10f,.80f));
+        void Overlay() => Box(new Rect(0,0,1440,900), new Color(.055f,.05f,.045f,.78f));
         void TitleUI()
         {
             Text(40,28,1000,45,"SCRAPSHIFT    /    THE SALVAGE YARD",heading);
@@ -75,20 +64,54 @@ namespace Scrapshift
             Text(40,834,1300,40,"MOVE  /  COLLECT  /  UPGRADE  /  SURVIVE",center);
         }
         Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.76f,.43f,1) : tier==2 ? new Color(.40f,.66f,1) : paper;
+        void DrawHud()
+        {
+            Frame(new Rect(24,22,246,34), new Color(.22f,.18f,.17f), 4);
+            Box(new Rect(28,26,238*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), new Color(.83f,.07f,.05f));
+            Text(24,22,246,34,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
+            Frame(new Rect(24,64,246,27),new Color(.25f,.25f,.24f),3);
+            Box(new Rect(27,67,240*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),21),new Color(.2f,.8f,.18f));
+            Text(185,65,81,25,$"LV.{Rules.Level}",tiny);
+            DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
+            OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
+            if(Rules.Banked>0)OutlinedText(26,146,235,30,$"Stored  {Rules.Banked}",body);
+            OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",center);
+            var timer=new GUIStyle(number) { alignment=TextAnchor.MiddleCenter };
+            if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
+                OutlinedText(630,61,180,56,Mathf.CeilToInt(Rules.Remaining).ToString(),timer);
+            Text(1120,23,296,32,$"{Rules.Wave} / {RunRules.WaveCount}",tiny);
+            Text(28,864,900,26,"WASD / ARROWS  Move     ESC  Pause     M  Sound",tiny);
+        }
+
+        void OutlinedText(float x,float y,float w,float h,string label,GUIStyle style)
+        {
+            var outline=new GUIStyle(style); outline.normal.textColor=Color.black;
+            Text(x-2,y,w,h,label,outline);Text(x+2,y,w,h,label,outline);
+            Text(x,y-2,w,h,label,outline);Text(x,y+2,w,h,label,outline);
+            Text(x,y,w,h,label,style);
+        }
+
         void UpgradeUI()
         {
-            Overlay(); Text(72,135,1100,50,$"LEVEL UP!   {Rules.PendingLevels} reward(s) remaining",heading);
-            Text(72,192,1150,35,"Choose a stat upgrade, then visit the shop.",body);
+            Overlay(); DrawHud(); DrawStatsPanel();
+            OutlinedText(24,188,1062,64,"Level Up!",new GUIStyle(number) { alignment=TextAnchor.MiddleCenter });
+            Text(24,254,1062,32,$"Choose an upgrade  /  {Rules.PendingLevels} remaining",center);
             for(int i=0;i<Rules.Offers.Length;i++)
             {
-                var o=Rules.Offers[i];float x=72+i*328;Frame(new Rect(x,266,308,338),TierColor(o.Tier),3);
-                Box(new Rect(x+5,271,298,328),panelColor);
-                Text(x+20,290,270,28,o.Rarity,tiny);DrawIcon(o.Image,new Rect(x+20,338,60,60)); Text(x+92,342,197,96,o.Title,center);
-                Text(x+20,440,268,75,o.Detail,body);
-                if(Button(new Rect(x+20,532,268,52),$"SELECT   [{i+1}]"))SelectUpgrade(i);
+                var o=Rules.Offers[i];float x=24+i*268;
+                Frame(new Rect(x,320,252,300),ink,2);
+                Box(new Rect(x+3,323,246,4),TierColor(o.Tier));
+                Box(new Rect(x+14,340,66,70),new Color(.17f,.16f,.15f));
+                DrawIcon(o.Image,new Rect(x+20,346,54,58));
+                Text(x+92,342,144,58,ItemEntry.StatName(o.Stat),body);
+                Text(x+92,400,144,28,o.Rarity,tiny);
+                var gain=new GUIStyle(body);gain.normal.textColor=new Color(.38f,1,.25f);
+                Text(x+18,466,216,75,o.Detail,gain);
+                if(Button(new Rect(x+16,555,220,48),$"Choose  [{i+1}]"))SelectUpgrade(i);
             }
-            GUI.enabled=Rules.CanReroll;if(Button(new Rect(1036,660,308,54),$"REROLL   {Rules.RerollPrice}   [R]"))RerollUpgrade();GUI.enabled=true;
-            Text(72,669,900,45,$"MATERIALS {Rules.Scrap}    |    Upgrades don't spend materials. Rerolls do.",body);
+            GUI.enabled=Rules.CanReroll;
+            if(Button(new Rect(363,664,384,56),$"REROLL  - {Rules.RerollPrice}   [R]"))RerollUpgrade();
+            GUI.enabled=true;
         }
         void PauseUI()
         {

@@ -15,113 +15,133 @@ namespace Scrapshift
             GUI.DrawTextureWithTexCoords(target, sprite.texture, new Rect(source.x / sprite.texture.width,
                 source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height), true);
         }
-        void ShopUI()
+        void DrawStatsPanel()
         {
-            Box(new Rect(0,0,1440,900),new Color(.12f,.12f,.13f));
-            Text(40,25,650,54,$"SHOP  /  WAVE {Rules.Wave} CLEARED",heading);
-            Text(1060,30,340,45,$"MATERIALS   {Rules.Scrap}",heading);
-            Frame(new Rect(32,104,278,718),panelColor,3);
-            Text(54,127,244,40,"STATS",heading);
-            string[] names=
-            {
-                "max_hp","hp_regeneration","lifesteal","percent_damage","melee_damage","ranged_damage","attack_speed","crit_chance","armor","dodge","speed","range","harvesting"
-            };
+            Box(new Rect(1110,24,306,750),new Color(.065f,.06f,.05f,.93f));
+            Text(1130,43,266,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
+            Text(1133,96,250,30,$"Level {Rules.Level}",body);
+            string[] names={"max_hp","hp_regeneration","lifesteal","percent_damage","melee_damage","ranged_damage","attack_speed","crit_chance","armor","dodge","speed","range","harvesting"};
+            var right=new GUIStyle(body) { alignment=TextAnchor.MiddleRight };
             for(int i=0;i<names.Length;i++)
             {
                 float value=names[i]=="max_hp"?Rules.MaxHealth:Rules.Stat(names[i]);
-                Text(54,185+i*39,234,34,$"{ItemEntry.StatName("stat_"+names[i])}   {value:0}",tiny);
+                float y=143+i*35;
+                var entry=System.Array.Find(catalog.data.upgrades,u=>u.stat==names[i]);
+                if(entry!=null)DrawIcon(entry.image,new Rect(1125,y+2,24,25));
+                var label=new GUIStyle(body) { fontSize=18 };
+                label.normal.textColor=value<0?coral:value>0?new Color(.39f,1,.29f):paper;
+                Text(1157,y,198,32,ItemEntry.StatName(names[i]),label);
+                right.normal.textColor=label.normal.textColor;
+                Text(1351,y,45,32,value.ToString("0"),right);
             }
+            DrawWardrobePreview();
+        }
+
+        void DrawOfferDetail(ShopOffer offer,float x,float y,float width)
+        {
+            if(offer.weapon!=null)
+            {
+                var w=offer.weapon;
+                float damage=Mathf.Max(1,w.damage+Rules.Stat(w.melee?"melee_damage":"ranged_damage"))*Rules.DamageScale;
+                string detail=$"Damage: <color=#79FF62>{damage:0.#}</color>"+(w.pellets>1?$" x {w.pellets}":"")+
+                    $"\nCritical: x2 ({Mathf.Clamp01(Rules.CritChance+w.crit)*100:0}% chance)"+
+                    $"\nCooldown: {Mathf.Max(.035f,w.interval/Rules.FireRate):0.00}s"+
+                    $"\nKnockback: {w.knockback:0.#}"+
+                    $"\nRange: {Mathf.Max(.5f,w.range+Rules.Stat("range")/100):0.0}"+
+                    (w.piercing>0?$"\nPiercing: {w.piercing}":"");
+                var style=new GUIStyle(body) { fontSize=18,richText=true };
+                Text(x,y,width,218,detail,style);
+            }
+            else
+            {
+                for(int i=0;i<offer.item.effects.Length;i++)
+                {
+                    var effect=offer.item.effects[i]; var style=new GUIStyle(body) { fontSize=19 };
+                    style.normal.textColor=effect.value<0?coral:new Color(.39f,1,.29f);
+                    Text(x,y+i*57,width,56,ItemEntry.FormatStat(effect.key,effect.value),style);
+                }
+            }
+        }
+
+        void ShopUI()
+        {
+            Box(new Rect(0,0,1440,900),new Color(.19f,.175f,.15f,.97f));
+            OutlinedText(24,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
+            DrawIcon(catalog.scrapShapes[0],new Rect(558,34,34,40));
+            Text(604,26,170,58,Rules.Scrap.ToString(),number);
+            GUI.enabled=Rules.CanReroll;
+            if(Button(new Rect(804,27,282,56),$"REROLL - {Rules.RerollPrice}  [R]"))RerollUpgrade();
+            GUI.enabled=true;
+            DrawStatsPanel();
             for(int i=0;i<4;i++)
             {
-                float x=338+i*267;
-                var offer=Rules.Shop[i];
-                Frame(new Rect(x,106,249,344),offer==null?panelColor:TierColor(offer.Tier),3);
-                Box(new Rect(x+5,111,239,334),panelColor);
-                if(offer==null)
-                {
-                    Text(x+20,244,209,45,"SOLD",center);
-                    continue;
-                }
-                DrawIcon(offer.Image,new Rect(x+75,130,100,95));
-                Text(x+16,235,217,62,offer.Title,center);
-                Text(x+18,305,213,111,offer.Detail,tiny);
+                float x=24+i*268;var offer=Rules.Shop[i];
+                Frame(new Rect(x,124,252,432),ink,2);
+                if(offer==null){Text(x+14,292,224,45,"Sold",center);continue;}
+                Box(new Rect(x+3,127,246,4),TierColor(offer.Tier));
+                Box(new Rect(x+14,143,68,74),new Color(.17f,.16f,.15f));
+                DrawIcon(offer.Image,new Rect(x+18,148,60,64));
+                Text(x+93,141,145,76,offer.Title=="Smg"?"SMG":offer.Title,body);
+                Text(x+16,224,220,27,offer.weapon!=null?(offer.weapon.melee?"Melee":"Gun")+"  /  Tier "+offer.Tier:"Item",tiny);
+                DrawOfferDetail(offer,x+16,270,220);
                 GUI.enabled=Rules.CanBuy(i);
-                if(Button(new Rect(x,468,249,48),offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer.Value)?"SLOTS FULL":$"BUY   {Rules.Price(offer.Value)}"))
-                {
-                    Rules.Buy(i);
-                    SyncEquipment();
-                    sound.Play(SoundCue.Install);
-                }
+                string price=offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer.Value)?"Slots full":Rules.Price(offer.Value).ToString();
+                if(Button(new Rect(x+49,491,154,49),price))
+                {Rules.Buy(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
                 GUI.enabled=true;
-                if(Button(new Rect(x,525,249,37),offer.locked?"LOCKED":"LOCK"))
-                {
-                    Rules.ToggleLock(i);
-                    sound.Play(SoundCue.Reroll);
-                }
+                if(Button(new Rect(x+12,568,228,40),offer.locked?"Locked":"Lock"))
+                {Rules.ToggleLock(i);sound.Play(SoundCue.Reroll);}
             }
-            Text(338,587,830,40,$"WEAPONS ({Rules.Inventory.Count}/6)     Click a slot to combine or recycle",body);
+            Text(24,635,470,40,$"Items ({Rules.Items.Count})",heading);
+            Text(556,635,530,40,$"Weapons ({Rules.Inventory.Count}/6)",heading);
+            Box(new Rect(24,681,1062,2),new Color(.38f,.36f,.31f));
+            itemScroll=GUI.BeginScrollView(new Rect(24,698,510,155),itemScroll,new Rect(0,0,490,Mathf.Max(132,Mathf.Ceil(Rules.Items.Count/7f)*66)));
+            for(int i=0;i<Rules.Items.Count;i++)
+            {
+                float x=i%7*69,y=i/7*66;
+                Frame(new Rect(x,y,60,58),new Color(.24f,.23f,.20f),2);
+                DrawIcon(Rules.Items[i].image,new Rect(x+7,y+6,46,46));
+                GUI.Label(new Rect(x,y,60,58),new GUIContent("",Rules.Items[i].title+"\n"+Rules.Items[i].Detail));
+            }
+            GUI.EndScrollView();
             for(int i=0;i<6;i++)
             {
-                float x=338+i*123;
-                var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
-                Frame(new Rect(x,633,107,103),selectedWeapon==i?mint:w==null?panelColor:TierColor(w.tier),3);
-                Box(new Rect(x+5,638,97,93),panelColor);
+                float x=556+i*89;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
+                Frame(new Rect(x,700,82,80),selectedWeapon==i?paper:w==null?panelColor:TierColor(w.tier),2);
+                Box(new Rect(x+4,704,74,72),new Color(.19f,.18f,.16f));
                 if(w!=null)
                 {
-                    DrawIcon(w.image,new Rect(x+15,645,77,64));
-                    Text(x+8,707,90,23,$"TIER {w.tier}",tiny);
+                    DrawIcon(w.image,new Rect(x+8,712,66,47));
+                    Text(x+9,753,64,25,$"Tier {w.tier}",tiny);
                 }
-                if(GUI.Button(new Rect(x,633,107,103),GUIContent.none,GUIStyle.none))selectedWeapon=i;
+                if(GUI.Button(new Rect(x,700,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=selectedWeapon==i?-1:i;
             }
             if(selectedWeapon>=0&&selectedWeapon<Rules.Inventory.Count)
             {
                 var w=Rules.Inventory[selectedWeapon];
-                Text(338,749,650,38,w.title+"  |  "+w.Detail.Replace('\n',' '),tiny);
+                Text(556,786,530,30,w.title+" / Tier "+w.tier,tiny);
                 GUI.enabled=Rules.CanCombine(selectedWeapon);
-                if(Button(new Rect(1092,637,300,43),"COMBINE DUPLICATE"))
-                {
-                    Rules.Combine(selectedWeapon);
-                    SyncEquipment();
-                    sound.Play(SoundCue.Install);
-                }
+                if(Button(new Rect(556,824,257,43),"Combine duplicate"))
+                {Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
                 GUI.enabled=true;
-                if(selectedWeapon<Rules.Inventory.Count&&Button(new Rect(1092,693,300,43),$"RECYCLE  +{Mathf.Max(1,(int)(Rules.Price(Rules.Inventory[selectedWeapon].value)*.25f))}"))
-                {
-                    Rules.Recycle(selectedWeapon);
-                    selectedWeapon=-1;
-                    SyncEquipment();
-                    sound.Play(SoundCue.Install);
-                }
+                if(selectedWeapon>=0&&selectedWeapon<Rules.Inventory.Count&&Button(new Rect(828,824,257,43),$"Recycle (+{Mathf.Max(1,(int)(Rules.Price(Rules.Inventory[selectedWeapon].value)*.25f))})"))
+                {Rules.Recycle(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
             }
-            else DrawWardrobePreview();
-            Text(338,789,150,28,$"ITEMS ({Rules.Items.Count})",tiny);
-            itemScroll=GUI.BeginScrollView(new Rect(468,776,924,57),itemScroll,new Rect(0,0,Mathf.Max(900,Rules.Items.Count*52),40));
-            for(int i=0;i<Rules.Items.Count;i++)
-            {
-                DrawIcon(Rules.Items[i].image,new Rect(i*52,0,42,40));
-                GUI.Label(new Rect(i*52,0,42,40),new GUIContent("",Rules.Items[i].title+"\n"+Rules.Items[i].Detail));
-            }
-            GUI.EndScrollView();
-            GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(338,847,344,43),$"REROLL   {Rules.RerollPrice}   [R]"))
-            {
-                Rules.Reroll();
-                sound.Play(SoundCue.Reroll);
-            }
-            GUI.enabled=true;
-            if(Button(new Rect(1048,847,344,43),$"GO  /  WAVE {Rules.Wave+1}   [ENTER]"))AdvanceWave();
+            else Text(556,801,530,52,"Select a weapon to combine or recycle.",tiny);
+            if(Button(new Rect(1110,806,306,61),$"Go (Wave {Rules.Wave+1})")) {selectedWeapon=-1;AdvanceWave();}
+            Text(1130,867,266,24,"[ENTER]",center);
             if(!string.IsNullOrEmpty(GUI.tooltip))
             {
-                Frame(new Rect(716,616,360,145),ink);
-                Text(733,630,327,120,GUI.tooltip,body);
+                Frame(new Rect(30,469,335,172),ink);
+                Text(47,484,303,142,GUI.tooltip,body);
             }
         }
 
         void DrawWardrobePreview()
         {
-            Text(1130,590,260,25,"YOUR GEAR",tiny);
-            Vector2 origin = new Vector2(1250, 699);
-            const float scale = 82;
+            Text(1130,619,260,25,"YOUR GEAR",tiny);
+            Vector2 origin = new Vector2(1260, 712);
+            const float scale = 68;
             var worn = CharacterWardrobe.VisibleItems(Rules.Items);
             foreach (var item in worn) if (item.wearOrder < 10) DrawWornIcon(item, origin, scale);
             Sprite hero = playerAnimation.idleFrames[0];

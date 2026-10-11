@@ -21,7 +21,7 @@ namespace Scrapshift.Editor
         public static void Generate()
         {
             // Safe to invoke again: authored content is never overwritten by the generator.
-            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsureOriginalArt(); EnsureWardrobe(); return; }
+            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsureOriginalArt(); EnsureWardrobe(); EnsureCombatPresentation(); return; }
             foreach (var sub in new[] { "Meshes", "Materials", "Prefabs", "Definitions", "Scenes" }) Directory.CreateDirectory(Root + "/" + sub);
             AssetDatabase.Refresh();
             quad = Polygon("Quad", 4, 45, 1.41421356f);

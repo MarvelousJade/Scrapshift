@@ -109,6 +109,7 @@ namespace Scrapshift
         }
         void Spawn(EnemyEntry def,Vector2 pos)
         {
+            if(campaignCheck)campaignEnemyIds.Add(def.id);
             bool charge = def.role == "Charge" || def.role == "Boss";
             bool ranged = def.role == "Shooter" || def.role == "WanderShooter" || def.id == "slasher";
             var attack = charge || ranged ? new EnemyAttack(charge, def.cooldown, def.cooldown + UnityEngine.Random.Range(-.12f, .12f)) : null;
@@ -349,7 +350,7 @@ namespace Scrapshift
                         s.damage*=.5f;
                     }
                 }
-                if(s.life<=0)
+                if(s.life<=0||Mathf.Abs(s.pos.x)>10.6f||Mathf.Abs(s.pos.y)>5.25f)
                 {
                     Destroy(s.obj);shots.RemoveAt(i);
                 }

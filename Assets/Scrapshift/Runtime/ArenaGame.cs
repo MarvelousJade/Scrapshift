@@ -72,6 +72,10 @@ namespace Scrapshift
             }
             int artIndex = Array.IndexOf(args, "--art-review");
             if (artIndex >= 0 && artIndex + 1 < args.Length) BeginArtReview(args[artIndex + 1]);
+            int enemyIndex = Array.IndexOf(args, "--enemy-review");
+            if (enemyIndex >= 0 && enemyIndex + 1 < args.Length) BeginEnemyReview(args[enemyIndex + 1]);
+            int campaignIndex = Array.IndexOf(args, "--campaign-check");
+            if(campaignIndex>=0&&campaignIndex+1<args.Length)BeginCampaignCheck(args[campaignIndex+1]);
         }
 
         public void Begin()
@@ -107,7 +111,7 @@ namespace Scrapshift
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
             if (Rules.Phase == RunPhase.Shop) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if(Input.GetKeyDown(KeyCode.R)) RerollUpgrade(); }
-            if (Rules.Phase == RunPhase.Playing) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
                 titleModel.GetComponent<SpriteFrameAnimator>().Tick(Vector2.zero, Time.deltaTime, reducedMotion);
             if (Rules.Phase == RunPhase.Title) player.SetActive(false);
@@ -122,6 +126,8 @@ namespace Scrapshift
             wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
             ReviewTick();
             ArtReviewTick();
+            EnemyReviewTick();
+            CampaignCheckTick();
         }
 
         void Simulate(float dt)
@@ -129,8 +135,9 @@ namespace Scrapshift
             elapsed += dt; invulnerable = Mathf.Max(0, invulnerable - dt);
             Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
                 (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
-            if (smoke || review) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
+            if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
             if (artReview) movement = ArtReviewMovement();
+            if (enemyReview) movement = Vector2.zero;
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);
