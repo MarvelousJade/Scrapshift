@@ -6,10 +6,10 @@ namespace Scrapshift
 {
     public enum RunPhase
     {
-        Title,Playing,Upgrade,Shop,Paused,Won,Lost
+        Title,Playing,Upgrade,Shop,Paused,Won,Lost,Loot
     }
     // Scene-independent economy: catalog and RNG are injectable for reproducible tests.
-    public sealed class RunRules
+    public sealed partial class RunRules
     {
         public const int WaveCount=20;
         static readonly HashSet<string> shopItems = new HashSet<string>
@@ -124,6 +124,7 @@ namespace Scrapshift
             stats.Clear();
             Inventory.Clear();
             Items.Clear();
+            crates.Clear();CrateItem=null;regenElapsed=lifeStealCooldown=0;
             if(catalog!=null)Inventory.Add(catalog.Weapon("pistol",1));
             Phase=RunPhase.Playing;
             Wave=1;
@@ -137,6 +138,7 @@ namespace Scrapshift
         public void Tick(float seconds)
         {
             if(Phase!=RunPhase.Playing||seconds<=0)return;
+            TickSurvival(Math.Min(seconds,Remaining));
             Remaining=Math.Max(0,Remaining-seconds);
             if(Remaining>0)return;
             if(Wave==WaveCount)
@@ -149,12 +151,7 @@ namespace Scrapshift
             if(harvest>0)GainXP(harvest);
             if(harvest>0)Add("harvesting",Mathf.Ceil(harvest*.05f));
             rerolls=0;
-            if(PendingLevels>0)
-            {
-                Phase=RunPhase.Upgrade;
-                Draft();
-            }
-            else OpenShop();
+            OpenRewards();
         }
         public void Hurt(float amount)
         {
@@ -168,6 +165,7 @@ namespace Scrapshift
         public void Heal(float amount)
         {
             if(Phase==RunPhase.Playing&&amount>0)Health=Math.Min(MaxHealth,Health+amount);
+            if(Health>=MaxHealth)regenElapsed=0;
         }
         public void DefeatBoss()
         {
@@ -302,8 +300,7 @@ namespace Scrapshift
             }
             else
             {
-                Items.Add(s.item);
-                foreach(var e in s.item.effects)Add(e.key.Replace("stat_",""),e.value);
+                ApplyItem(s.item);
             }
             Health=Math.Min(Health,MaxHealth);
             Shop[i]=null;
@@ -343,6 +340,7 @@ namespace Scrapshift
             Wave++;
             Remaining=Durations[Wave-1];
             Health=MaxHealth;
+            regenElapsed=lifeStealCooldown=0;
             Phase=RunPhase.Playing;
             for(int i=0;i<4;i++)if(Shop[i]!=null&&!Shop[i].locked)Shop[i]=null;
         }
