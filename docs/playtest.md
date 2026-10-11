@@ -92,3 +92,8 @@ Fresh Windows evidence: artifacts/clean-appearance-review (three looks, three ou
 ## Live reference pass — next human checks
 
 At normal speed, compare traversal from center to each edge, a single pistol and a six-weapon loadout, enemy overlap/contact feel, and pickup readability. New geometry uses the source map dimensions and speed units. Automated reference samples and staged Unity runs do not establish twenty-wave balance or user acceptance.
+
+
+## Combat feel follow-up
+
+Compare one-pistol movement around first-wave groups: approach/graze from above and below, hit timing, brief enemy slowing after contact, and pistol knockback versus zero-force SMG. Check resistant chargers and boss contact at their lower-body centers. Shoot toward north/south map boundaries and try normal/reduced-motion feedback. Protection is now .2-.4s rather than .6s, so the combined balance must be tested normally. Runtime fixtures and the accelerated campaign do not establish ordinary difficulty.

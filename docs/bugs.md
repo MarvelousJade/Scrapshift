@@ -207,3 +207,13 @@ User-reported: player too large, first-wave enemies too small, thin leg edges an
 ## October 11 — world dimensions inconsistent with imported movement/range
 
 Observed mismatch: whole shallow arena visible at once in Unity, whereas the running reference has a taller map and clamped camera following. Root cause: source movement and ranges were converted at 100px/unit while a 23x11.4 floor and ad-hoc visual scales survived from the prototype. Centralized map/camera geometry, applied 20.48x15.36 bounds to movement/spawns/scatter and calibrated original sprites by reference dimensions. Normal-camera edge traversal and source-grounded regression checks cover the fix. Contact radii remain an explicit adaptation; this is not full collision parity.
+
+
+## October 11 - combat geometry and partial conversions
+
+Code-observed defects: bullets were still culled at the old y=5.25 map edge; one role-based radius conflated crowd spacing, target area and contact; pistol knockback imported at /10 was multiplied by3 instead of10; reverse-list projectile traversal could spend full piercing damage on the farther target first. The impact shape inherited a23px local offset which the concrete bullet/laser scene cancels; this was caught during source review before final verification. Runtime now uses separate measured radii and lower-body centers, map-based cleanup, corrected force and60Hz-equivalent damping, and earliest swept-circle entry. Regression and controlled runtime evidence are in CombatFeelTests and artifacts/combat-feel-review. No failing automated test was required to discover these code/source mismatches; do not invent one. Existing melee and rigid-body response approximations remain documented.
+
+
+### Rendering checks could pass without screenshots
+
+Actual validation failure during the combat pass: hidden player launches logged3/5/6 screenshot failures for combat, enemy and campaign fixtures, while their gameplay assertions returned Passed. The combat directory also contained older PNGs, so existence alone would have been misleading. Preserved counts in artifacts/combat-capture-recovery/hidden-results.json. Added shared CaptureVerification checks for a PNG signature, minimum bytes and modification time after run start; all three report formats now require capturesVerified. A regression rejects missing, invalid and stale captures. Reran with a rendering window; final reports and inspected images are the evidence, not the earlier hidden-run Passed fields.

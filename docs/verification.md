@@ -1,5 +1,21 @@
 # Verification record
 
+## Latest results - October 11 combat feel and capture verification
+
+Implementation `b2404ce`; capture-validation correction `f7adcbf`. Source/live comparison, adaptations and remaining gaps are in combat-feel-comparison.md. Original PNG artwork is unchanged.
+
+- **143/143 EditMode tests passed**, zero failed/skipped, 2.161 seconds. Eleven added cases cover collision profiles/offsets, knockback force and frame-rate equivalence, contact suppression/slowdown, damage-dependent protection, swept-hit ordering, map-edge projectile retention and rejection of missing/invalid/stale screenshots.
+- **Windows build succeeded**, zero reported errors/warnings, 144,172,980 reported bytes. **AssetScope: 217 assets, 1,398 usages, zero findings.** All **665** Assets/Packages/ProjectSettings files match isolated validation byte-for-byte, digest `3d13494ccbf2bf873a313c70f72115f3c63006bffa02b38c4bb1bd36a7542257`. Unsaved Editor state is outside this comparison. No Editor was closed.
+- **Controlled combat runtime passed**, all nine gameplay assertions plus fresh captures: near/far piercing damage 100/50,1.05426 units of actual enemy displacement over an explicit0.1s step, no contact at x=.40, contact at x=.35, contact slowdown, second-hit protection and enemy/player white flash. Protection for 1 HP lost out of 10 was .266667s. Three fresh PNGs verified; final knockback render inspected. Fixed enemies/HP/shots and stepped simulation make this integration/rendering evidence, not a playthrough.
+- **Enemy attack fixture passed**, fresh captures verified: spawn warnings, charge/ranged preparation, committed dash and hostile projectile;6 charge releases,1 ranged release,4 kills after supplied six-weapon loadout. Final combat capture inspected. Player health was restored by the fixture.
+- **Accelerated twenty-wave integration passed**, Won, 20 completed waves, 48 purchases, peak 107 enemies, 823 charge releases,1,069 ranged attacks and one boss phase change, with 16 enemy IDs observed (not all 18). All six fresh captures verified; wave20 inspected. The fixture uses supplied tier-two gear, invulnerability and scripted movement; 23.628 wall seconds is not normal completion time or a performance benchmark.
+- **Normal-speed scripted smoke exercised combat but failed survival:** Lost at 16.728 simulated seconds in wave 1,20 kills,14 shots, peak9 enemies,0 HP and no upgrades. Final fresh gameplay image inspected (8/10 HP at capture). Its legacy Passed field only indicates combat activity plus a screenshot; do not call it a first-wave clear. No health override was used. Ordinary human difficulty/contact-feel acceptance remains open.
+- **Actual validation defect corrected:** hidden launches produced 3/5/6 screenshot failures while gameplay-only reports said Passed. Prior PNGs in an output folder were not proof of a new render. CaptureVerification now rejects missing, invalid and stale images; final three fixture reports require capturesVerified=true. Evidence is retained in artifacts/combat-capture-recovery/hidden-results.json. Final player logs contain only the existing D3D12 info-queue diagnostic0x80004002 among case-insensitive Error/Exception/Failed matches, with no screenshot failures.
+- **Package verified:** 155 entries,49,639,685 bytes, CRC and every-file comparison passed. SHA-256 `e70f10c24006331a3b3156df38b04e13470a91f56d3bdc2eecbfcec8e312409f`.
+
+Reproduce with scripts/verify.ps1 and scripts/build.ps1 in the isolated project, then rendered player flags `--combat-feel-review`, `--enemy-review`, `--campaign-check` and `--smoke`, each followed by its output folder. Rendering needs a game window; a hidden launch is not a valid screenshot run. Raw logs remain under ignored artifacts/raw; current reports/images are in combat-feel-review, combat-enemy-review, combat-campaign and combat-smoke. Pre-existing unrelated settings and earlier untracked presentation evidence remain untouched.
+
+
 ## Latest results - October 11 live-reference world and scale comparison
 
 Implementation commit `04b5f37`. Compared short live first-wave samples and inspected the Godot 3 source backup; see live-reference-comparison.md for measured values and adaptation limits. No original PNG artwork changed.

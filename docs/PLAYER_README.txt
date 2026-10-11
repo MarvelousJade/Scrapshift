@@ -22,3 +22,5 @@ Original AI-generated sprites and a procedural salvage yard;
 user-supplied Brotato reference sound effects, plus original terminal cues.
 An engineering/portfolio study; not an official Brotato release.
 Full-run balance and player acceptance remain unverified.
+
+Combat update: distinct lower-body hitboxes, stronger pistol knockback, brief enemy slowing after contact, and clearer white impact flashes. Original artwork retained.

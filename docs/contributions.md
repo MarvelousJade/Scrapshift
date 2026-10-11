@@ -58,3 +58,8 @@ Leg correction: Shaoyu rejected the close-set straight legs and specified a wide
 ## Live reference calibration
 
 Shaoyu supplied and started the recovered Godot 3 project, then requested direct gameplay comparison while keeping Scrapshift art. Codex inspected the running reference and source, implemented shared world dimensions, follow camera, presentation scaling and weapon mounts, and ran automated/rendered checks. No new raster artwork was generated or copied in this pass. The short reference runs and staged Unity fixtures are not human balance/acceptance playtests.
+
+
+## Combat feel comparison
+
+Shaoyu requested movement/hitbox/knockback/feedback comparison and retention of original art. Codex inspected live reference combat and inherited source scene/script rules, implemented collision profiles, knockback/contact recovery, ordered projectile hits and original procedural feedback, then ran regression/rendered/integration checks and committed the changes. Automated fixtures supply enemies, gear or invulnerability as documented; ordinary human difficulty/feel acceptance is still open.

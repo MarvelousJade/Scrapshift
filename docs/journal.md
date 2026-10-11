@@ -145,3 +145,11 @@ Compared bare body alpha bounds and scene transforms in the supplied Brotato ref
 ## October 11 — running Godot reference and a consistent world scale
 
 Inspected the recovered Godot 3.6.2 reference in the running title/selection screens and Danger 0 first wave. Short observation runs ended in death; no successful playthrough is claimed. Compared source map/camera data, body and weapon texture bounds, attachment slots and spawn placement with our existing Unity rendering. Found that movement/range used 100 reference pixels per unit but the arena and visual sizes used unrelated dimensions. Added the reference-sized tall arena, bounded follow camera, per-enemy/weapon scale calibration and count-specific weapon mounts. Original PNGs are unchanged. Documentation separates exact measurements from pickup/pivot/UI adaptations. See live-reference-comparison.md and verification.md.
+
+
+## October 11 - combat collision, push and hit feedback
+
+Compared a live stationary Danger 0 pistol sample and the Godot enemy/unit/player/projectile scenes. The source separates physical spacing, incoming hits and outgoing contact; our shared radius did not. Corrected all enemy profiles and lower-body offsets, fixed the knockback import/runtime conversion and damping, added source-style slowdown after contact, adjusted protection timing, and resolved projectiles in travel order across the full restored map. Added original procedural impact stars/player flashes and removed global hit-stop. See combat-feel-comparison.md for exact evidence, adaptations and test scope. No artwork was replaced.
+
+
+Combat verification concluded with 143/143 tests, clean Windows build, zero AssetScope findings, controlled combat and attack fixtures, and scripted 20-wave integration. Hidden screenshot failures exposed a validation bug; a second implementation commit requires fresh PNG evidence. Final visible renders passed. The normal-speed scripted smoke died in wave 1 at 16.728 seconds and remains a failed survival check, despite its legacy activity-based Passed field. See verification.md for exact metrics and package hash.

@@ -197,3 +197,11 @@ Tradeoff: explicit offsets suit this small catalog, while a larger roster may ju
 ## Diagnosing a unit-system mismatch
 
 A useful example from the live-reference pass: correct-looking individual sprites still produced the wrong game feel because source movement and weapon ranges used 100 pixels per Unity unit, while arena dimensions and image sizes were chosen independently. Comparing the running game with its source revealed the mismatch. Shared world geometry, measured sprite dimensions and a bounded follow camera address traversal, scale and spawn density together. Automated tests check map edges and camera bounds; staged gameplay checks actual rendering with one and six weapons. See live-reference-comparison.md for facts and limits. Codex implemented and verified this work under user direction; reproduce the reasoning before presenting it as personal engineering experience.
+
+
+## Debugging combat feel through separate contracts
+
+Use combat-feel-comparison.md as the evidence trail. A single enemy radius had been reused for crowd spacing, bullet hits and outgoing contact, despite the reference defining separate shapes. Knockback also crossed an inconsistent conversion boundary (/10 in import, then *3 at runtime). Explicit profiles and force rules made both problems testable. Travel-ordered swept collisions protect piercing damage order regardless of enemy-list order; an actual runtime fixture verifies100 damage to the near target and50 to the far one. Frame-rate comparisons check push at20/30/60/120Hz. Explain why this does not prove human feel or exact Godot physics parity. Codex authored/verified these changes under user direction; rehearse and reproduce the reasoning before making personal implementation claims.
+
+
+A second concrete debugging story: hidden Unity runs completed simulation but could not capture screenshots. Existing checks counted capture requests and reported Passed. Comparing log failures, file timestamps and old art in a stale screenshot exposed the false rendering claim. Fresh-file/signature checks and a missing/invalid/stale regression now separate gameplay assertions from rendering evidence. The final reruns passed; normal-speed scripted survival still failed and is reported separately.
