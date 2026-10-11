@@ -17,3 +17,7 @@ User: supplied the local Brotato reference and directly identified weak characte
 ## Audio and tool-use feedback
 
 The user explicitly criticized the sound and confirmed the request meant sound effects/audio, then asked whether the finished companion tool could be used in the game. Assistant authored and integrated the new sound bank/mixer, updated AssetScope to 0.3.0, ran the integration and mixer-output checks, and documented the importer API issue. The user's comments are direct product feedback; they do not establish a completed five-wave playtest or approval of the new mix.
+
+## Reference reconstruction
+
+User: required analysis before implementation, close reference spawning/enemy types, separate items/weapons/upgrades, matching UI/audio/death feedback, and authorized using supplied media. Assistant: parsed reference resources read-only, implemented Unity systems, selected/copied media with hashes, wrote deterministic economy/scheduling tests and performed rendered review. Supplied sprites/audio are Brotato assets, not assistant or candidate art. Source inspection does not establish official open-source provenance. The original procedural scavenger remains a separate asset. The latest 20-wave version has not yet received a complete user playtest or acceptance.

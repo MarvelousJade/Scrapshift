@@ -1,209 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="30" result="Passed" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.6613525">
-  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.661353" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="35" result="Passed" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.8781404">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="65" result="Passed" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.878140" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1074" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.647570" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1078" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.864719" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="38000" />
+        <property name="_PID" value="40772" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1075" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.646869" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1079" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.864204" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1076" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.646633" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1080" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.863995" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestFixture" id="1039" name="AudioIntegrationTests" fullname="Scrapshift.Tests.AudioIntegrationTests" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:45Z" duration="0.342163" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1039" name="AudioIntegrationTests" fullname="Scrapshift.Tests.AudioIntegrationTests" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.430130" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1042" name="AssetScopeNavigatesAnActualSoundReferenceToItsBank" fullname="Scrapshift.Tests.AudioIntegrationTests.AssetScopeNavigatesAnActualSoundReferenceToItsBank" methodname="AssetScopeNavigatesAnActualSoundReferenceToItsBank" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="1003894965" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:45Z" duration="0.309538" asserts="0">
+            <test-case id="1042" name="AssetScopeNavigatesAnActualSoundReferenceToItsBank" fullname="Scrapshift.Tests.AudioIntegrationTests.AssetScopeNavigatesAnActualSoundReferenceToItsBank" methodname="AssetScopeNavigatesAnActualSoundReferenceToItsBank" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="176576005" result="Passed" start-time="2026-10-11 02:44:06Z" end-time="2026-10-11 02:44:07Z" duration="0.390490" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1040" name="EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" fullname="Scrapshift.Tests.AudioIntegrationTests.EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" methodname="EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="831926653" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:45Z" duration="0.007808" asserts="0">
+            <test-case id="1040" name="EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" fullname="Scrapshift.Tests.AudioIntegrationTests.EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" methodname="EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="2019181367" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.010931" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1041" name="VariantSelectionNeverImmediatelyRepeats" fullname="Scrapshift.Tests.AudioIntegrationTests.VariantSelectionNeverImmediatelyRepeats" methodname="VariantSelectionNeverImmediatelyRepeats" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="23149030" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:45Z" duration="0.009239" asserts="0">
+            <test-case id="1041" name="VariantSelectionNeverImmediatelyRepeats" fullname="Scrapshift.Tests.AudioIntegrationTests.VariantSelectionNeverImmediatelyRepeats" methodname="VariantSelectionNeverImmediatelyRepeats" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="1839594298" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.009187" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1067" name="ContentTests" fullname="Scrapshift.Tests.ContentTests" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.282558" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1043" name="ContentTests" fullname="Scrapshift.Tests.ContentTests" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.390343" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1068" name="ActualGameContentPassesAssetScope" fullname="Scrapshift.Tests.ContentTests.ActualGameContentPassesAssetScope" methodname="ActualGameContentPassesAssetScope" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1605827713" result="Passed" start-time="2026-10-11 01:34:45Z" end-time="2026-10-11 01:34:46Z" duration="0.151459" asserts="0">
+            <test-case id="1044" name="ActualGameContentPassesAssetScope" fullname="Scrapshift.Tests.ContentTests.ActualGameContentPassesAssetScope" methodname="ActualGameContentPassesAssetScope" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1747397696" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.226241" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1073" name="EveryRenderedPrefabPartHasMeshAndSupportedMaterial" fullname="Scrapshift.Tests.ContentTests.EveryRenderedPrefabPartHasMeshAndSupportedMaterial" methodname="EveryRenderedPrefabPartHasMeshAndSupportedMaterial" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="60857213" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.004832" asserts="0">
+            <test-case id="1049" name="EveryRenderedPrefabPartHasMeshAndSupportedMaterial" fullname="Scrapshift.Tests.ContentTests.EveryRenderedPrefabPartHasMeshAndSupportedMaterial" methodname="EveryRenderedPrefabPartHasMeshAndSupportedMaterial" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1245203555" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.005654" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1072" name="RepeatedGenerationPreservesAuthoredAssetGuids" fullname="Scrapshift.Tests.ContentTests.RepeatedGenerationPreservesAuthoredAssetGuids" methodname="RepeatedGenerationPreservesAuthoredAssetGuids" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="651378927" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.003775" asserts="0">
+            <test-case id="1048" name="RepeatedGenerationPreservesAuthoredAssetGuids" fullname="Scrapshift.Tests.ContentTests.RepeatedGenerationPreservesAuthoredAssetGuids" methodname="RepeatedGenerationPreservesAuthoredAssetGuids" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1810339974" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.005408" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1071" name="SceneContainsACompleteGameConfiguration" fullname="Scrapshift.Tests.ContentTests.SceneContainsACompleteGameConfiguration" methodname="SceneContainsACompleteGameConfiguration" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="456863738" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.031671" asserts="0">
+            <test-case id="1047" name="SceneContainsACompleteGameConfiguration" fullname="Scrapshift.Tests.ContentTests.SceneContainsACompleteGameConfiguration" methodname="SceneContainsACompleteGameConfiguration" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="662519689" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.036447" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1069" name="SharedMaterialHasMultipleRealPrefabReferencers" fullname="Scrapshift.Tests.ContentTests.SharedMaterialHasMultipleRealPrefabReferencers" methodname="SharedMaterialHasMultipleRealPrefabReferencers" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1033877165" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.048383" asserts="0">
+            <test-case id="1045" name="SharedMaterialHasMultipleRealPrefabReferencers" fullname="Scrapshift.Tests.ContentTests.SharedMaterialHasMultipleRealPrefabReferencers" methodname="SharedMaterialHasMultipleRealPrefabReferencers" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1230416693" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.067861" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1070" name="WeaponsRetainSerializedEffectAndMaterialDependencies" fullname="Scrapshift.Tests.ContentTests.WeaponsRetainSerializedEffectAndMaterialDependencies" methodname="WeaponsRetainSerializedEffectAndMaterialDependencies" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1058931435" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.005243" asserts="0">
+            <test-case id="1046" name="WeaponsRetainSerializedEffectAndMaterialDependencies" fullname="Scrapshift.Tests.ContentTests.WeaponsRetainSerializedEffectAndMaterialDependencies" methodname="WeaponsRetainSerializedEffectAndMaterialDependencies" classname="Scrapshift.Tests.ContentTests" runstate="Runnable" seed="1260887304" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.007109" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1043" name="RulesTests" fullname="Scrapshift.Tests.RulesTests" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.020308" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1050" name="ReferenceRulesTests" fullname="Scrapshift.Tests.ReferenceRulesTests" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.041791" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1046" name="DisplayedDamageTierMatchesAppliedGain" fullname="Scrapshift.Tests.RulesTests.DisplayedDamageTierMatchesAppliedGain" methodname="DisplayedDamageTierMatchesAppliedGain" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="2039946325" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.003743" asserts="0">
+            <test-case id="1063" name="BankedMaterialsDoubleFutureDropsWithoutBeingImmediatelySpendable" fullname="Scrapshift.Tests.ReferenceRulesTests.BankedMaterialsDoubleFutureDropsWithoutBeingImmediatelySpendable" methodname="BankedMaterialsDoubleFutureDropsWithoutBeingImmediatelySpendable" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1785634975" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.004513" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1045" name="DraftDoesNotOfferAnAlreadyUnlockedWeapon" fullname="Scrapshift.Tests.RulesTests.DraftDoesNotOfferAnAlreadyUnlockedWeapon" methodname="DraftDoesNotOfferAnAlreadyUnlockedWeapon" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1385562698" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000707" asserts="0">
+            <test-case id="1066" name="BossCanOnlyEndFinalWave" fullname="Scrapshift.Tests.ReferenceRulesTests.BossCanOnlyEndFinalWave" methodname="BossCanOnlyEndFinalWave" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="655583293" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.002289" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1051" name="FiveWavesRequireFiveMinutesAndFourIntermissions" fullname="Scrapshift.Tests.RulesTests.FiveWavesRequireFiveMinutesAndFourIntermissions" methodname="FiveWavesRequireFiveMinutesAndFourIntermissions" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1254056255" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000405" asserts="0">
+            <test-case id="1059" name="CombiningDuplicateCatalogReferencesConsumesExactlyTwoSlots" fullname="Scrapshift.Tests.ReferenceRulesTests.CombiningDuplicateCatalogReferencesConsumesExactlyTwoSlots" methodname="CombiningDuplicateCatalogReferencesConsumesExactlyTwoSlots" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="129000380" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.002088" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1055" name="InvalidOrRepeatedChoicesCannotGrantUpgrades" fullname="Scrapshift.Tests.RulesTests.InvalidOrRepeatedChoicesCannotGrantUpgrades" methodname="InvalidOrRepeatedChoicesCannotGrantUpgrades" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1176370589" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000194" asserts="0">
+            <test-case id="1054" name="EarlyShopsGuaranteeTwoWeapons" fullname="Scrapshift.Tests.ReferenceRulesTests.EarlyShopsGuaranteeTwoWeapons" methodname="EarlyShopsGuaranteeTwoWeapons" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="844725314" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.001714" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1056" name="LethalDamageCannotBecomeAWinOnSameTick" fullname="Scrapshift.Tests.RulesTests.LethalDamageCannotBecomeAWinOnSameTick" methodname="LethalDamageCannotBecomeAWinOnSameTick" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1943089872" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000688" asserts="0">
+            <test-case id="1071" name="EveryWaveSchedulerIsStableAcrossFrameSizes" fullname="Scrapshift.Tests.ReferenceRulesTests.EveryWaveSchedulerIsStableAcrossFrameSizes" methodname="EveryWaveSchedulerIsStableAcrossFrameSizes" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="173463826" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.002710" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-suite type="ParameterizedMethod" id="1063" name="MovementStaysInsideVisibleArena" fullname="Scrapshift.Tests.RulesTests.MovementStaysInsideVisibleArena" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.001846" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-case id="1070" name="FirstWaveEmitsFourOrFiveAliensAtOneThenFourSeconds" fullname="Scrapshift.Tests.ReferenceRulesTests.FirstWaveEmitsFourOrFiveAliensAtOneThenFourSeconds" methodname="FirstWaveEmitsFourOrFiveAliensAtOneThenFourSeconds" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="635636239" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="FullInventoryRejectsNonMatchingWeaponButCombinesMatchingTier" fullname="Scrapshift.Tests.ReferenceRulesTests.FullInventoryRejectsNonMatchingWeaponButCombinesMatchingTier" methodname="FullInventoryRejectsNonMatchingWeaponButCombinesMatchingTier" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="536864172" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.003758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="ItemAppliesEveryPositiveAndNegativeEffect" fullname="Scrapshift.Tests.ReferenceRulesTests.ItemAppliesEveryPositiveAndNegativeEffect" methodname="ItemAppliesEveryPositiveAndNegativeEffect" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="856378964" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.002203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="LethalDamageCannotBecomeWinAndRestartClearsInventoryEconomy" fullname="Scrapshift.Tests.ReferenceRulesTests.LethalDamageCannotBecomeWinAndRestartClearsInventoryEconomy" methodname="LethalDamageCannotBecomeWinAndRestartClearsInventoryEconomy" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1640489603" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="LockedOfferSurvivesRerollAndNextShop" fullname="Scrapshift.Tests.ReferenceRulesTests.LockedOfferSurvivesRerollAndNextShop" methodname="LockedOfferSurvivesRerollAndNextShop" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1412102893" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1068" name="NegativeInputsCannotReverseTimeOrGrantMaterials" fullname="Scrapshift.Tests.ReferenceRulesTests.NegativeInputsCannotReverseTimeOrGrantMaterials" methodname="NegativeInputsCannotReverseTimeOrGrantMaterials" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1850842183" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000272" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="PauseAndMenusRejectCombatMutation" fullname="Scrapshift.Tests.ReferenceRulesTests.PauseAndMenusRejectCombatMutation" methodname="PauseAndMenusRejectCombatMutation" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1893174716" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="PurchasingConsumesCurrencyOnceAndRemovesOffer" fullname="Scrapshift.Tests.ReferenceRulesTests.PurchasingConsumesCurrencyOnceAndRemovesOffer" methodname="PurchasingConsumesCurrencyOnceAndRemovesOffer" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="913310738" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="RecycleUsesWavePriceAndCannotRepeatInvalidSlot" fullname="Scrapshift.Tests.ReferenceRulesTests.RecycleUsesWavePriceAndCannotRepeatInvalidSlot" methodname="RecycleUsesWavePriceAndCannotRepeatInvalidSlot" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="2104381821" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="ReferenceMediaAndAllScheduledUnitIdsResolve" fullname="Scrapshift.Tests.ReferenceRulesTests.ReferenceMediaAndAllScheduledUnitIdsResolve" methodname="ReferenceMediaAndAllScheduledUnitIdsResolve" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="768739209" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.001405" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="RerollCostsEscalateAndCannotOverspend" fullname="Scrapshift.Tests.ReferenceRulesTests.RerollCostsEscalateAndCannotOverspend" methodname="RerollCostsEscalateAndCannotOverspend" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1893482063" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1076" name="ResizePreservesArena" fullname="Scrapshift.Tests.ReferenceRulesTests.ResizePreservesArena" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.002126" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1060" name="MovementStaysInsideVisibleArena(50,20,10.5f,5.1f)" fullname="Scrapshift.Tests.RulesTests.MovementStaysInsideVisibleArena(50,20,10.5f,5.1f)" methodname="MovementStaysInsideVisibleArena" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="2141902736" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000884" asserts="0">
+              <test-case id="1073" name="ResizePreservesArena(1440,900)" fullname="Scrapshift.Tests.ReferenceRulesTests.ResizePreservesArena(1440,900)" methodname="ResizePreservesArena" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1684338026" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.001171" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1061" name="MovementStaysInsideVisibleArena(-50,-20,-10.5f,-5.1f)" fullname="Scrapshift.Tests.RulesTests.MovementStaysInsideVisibleArena(-50,-20,-10.5f,-5.1f)" methodname="MovementStaysInsideVisibleArena" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1227704791" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000075" asserts="0">
+              <test-case id="1074" name="ResizePreservesArena(1920,1080)" fullname="Scrapshift.Tests.ReferenceRulesTests.ResizePreservesArena(1920,1080)" methodname="ResizePreservesArena" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="606589096" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000105" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1062" name="MovementStaysInsideVisibleArena(3,2,3,2)" fullname="Scrapshift.Tests.RulesTests.MovementStaysInsideVisibleArena(3,2,3,2)" methodname="MovementStaysInsideVisibleArena" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1559354602" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000053" asserts="0">
+              <test-case id="1075" name="ResizePreservesArena(900,900)" fullname="Scrapshift.Tests.ReferenceRulesTests.ResizePreservesArena(900,900)" methodname="ResizePreservesArena" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1143790084" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000086" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-case id="1059" name="NegativeInputsCannotHealOrReverseTime" fullname="Scrapshift.Tests.RulesTests.NegativeInputsCannotHealOrReverseTime" methodname="NegativeInputsCannotHealOrReverseTime" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1159746722" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000188" asserts="0">
+            <test-case id="1072" name="SpawnChanceZeroAndFiniteRepeatsAreRespected" fullname="Scrapshift.Tests.ReferenceRulesTests.SpawnChanceZeroAndFiniteRepeatsAreRespected" methodname="SpawnChanceZeroAndFiniteRepeatsAreRespected" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="774331950" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000335" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1054" name="OnlyWaveIntermissionAdvancesWave" fullname="Scrapshift.Tests.RulesTests.OnlyWaveIntermissionAdvancesWave" methodname="OnlyWaveIntermissionAdvancesWave" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1104849813" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000244" asserts="0">
+            <test-case id="1053" name="StatDraftHasFourDistinctChoicesAndAppliesDisplayedAmount" fullname="Scrapshift.Tests.ReferenceRulesTests.StatDraftHasFourDistinctChoicesAndAppliesDisplayedAmount" methodname="StatDraftHasFourDistinctChoicesAndAppliesDisplayedAmount" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="2124890318" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.002895" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1052" name="PauseStopsTimeDamageAndCollection" fullname="Scrapshift.Tests.RulesTests.PauseStopsTimeDamageAndCollection" methodname="PauseStopsTimeDamageAndCollection" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="218915356" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000252" asserts="0">
+            <test-case id="1077" name="SweptProjectileCannotTunnel" fullname="Scrapshift.Tests.ReferenceRulesTests.SweptProjectileCannotTunnel" methodname="SweptProjectileCannotTunnel" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1870354053" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000928" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1057" name="RepairCapsAtNewMaximum" fullname="Scrapshift.Tests.RulesTests.RepairCapsAtNewMaximum" methodname="RepairCapsAtNewMaximum" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1893620004" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000151" asserts="0">
+            <test-case id="1060" name="TierFourDoesNotCombine" fullname="Scrapshift.Tests.ReferenceRulesTests.TierFourDoesNotCombine" methodname="TierFourDoesNotCombine" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="369294412" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000491" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1044" name="RerollIsLimitedToOnePerDraftAndOffersAreUnique" fullname="Scrapshift.Tests.RulesTests.RerollIsLimitedToOnePerDraftAndOffersAreUnique" methodname="RerollIsLimitedToOnePerDraftAndOffersAreUnique" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1446284204" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.002502" asserts="0">
+            <test-case id="1051" name="TwentyWavesUseReferenceDurationsAndShopDoesNotAdvanceTime" fullname="Scrapshift.Tests.ReferenceRulesTests.TwentyWavesUseReferenceDurationsAndShopDoesNotAdvanceTime" methodname="TwentyWavesUseReferenceDurationsAndShopDoesNotAdvanceTime" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1629795788" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000628" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-suite type="ParameterizedMethod" id="1050" name="ResizingPreservesEntireArenaAspect" fullname="Scrapshift.Tests.RulesTests.ResizingPreservesEntireArenaAspect" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.001296" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1047" name="ResizingPreservesEntireArenaAspect(1440,900)" fullname="Scrapshift.Tests.RulesTests.ResizingPreservesEntireArenaAspect(1440,900)" methodname="ResizingPreservesEntireArenaAspect" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="573678787" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000685" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1048" name="ResizingPreservesEntireArenaAspect(1920,1080)" fullname="Scrapshift.Tests.RulesTests.ResizingPreservesEntireArenaAspect(1920,1080)" methodname="ResizingPreservesEntireArenaAspect" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="145025654" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000056" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1049" name="ResizingPreservesEntireArenaAspect(900,900)" fullname="Scrapshift.Tests.RulesTests.ResizingPreservesEntireArenaAspect(900,900)" methodname="ResizingPreservesEntireArenaAspect" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1133364144" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000050" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-            </test-suite>
-            <test-case id="1058" name="RestartClearsAllProgression" fullname="Scrapshift.Tests.RulesTests.RestartClearsAllProgression" methodname="RestartClearsAllProgression" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="461364097" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000330" asserts="0">
+            <test-case id="1067" name="UpgradeTiersUseReferenceValues" fullname="Scrapshift.Tests.ReferenceRulesTests.UpgradeTiersUseReferenceValues" methodname="UpgradeTiersUseReferenceValues" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="1889059902" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000273" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1066" name="StationaryProjectileDistanceIsFinite" fullname="Scrapshift.Tests.RulesTests.StationaryProjectileDistanceIsFinite" methodname="StationaryProjectileDistanceIsFinite" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="109570102" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000364" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1065" name="SweptProjectileDoesNotHitBeyondSegment" fullname="Scrapshift.Tests.RulesTests.SweptProjectileDoesNotHitBeyondSegment" methodname="SweptProjectileDoesNotHitBeyondSegment" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="1011224995" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000190" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1064" name="SweptProjectileHitsBetweenEndpoints" fullname="Scrapshift.Tests.RulesTests.SweptProjectileHitsBetweenEndpoints" methodname="SweptProjectileHitsBetweenEndpoints" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="57337434" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000263" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1053" name="UpgradePreservesUnspentScrapAndWaveTime" fullname="Scrapshift.Tests.RulesTests.UpgradePreservesUnspentScrapAndWaveTime" methodname="UpgradePreservesUnspentScrapAndWaveTime" classname="Scrapshift.Tests.RulesTests" runstate="Runnable" seed="576587973" result="Passed" start-time="2026-10-11 01:34:46Z" end-time="2026-10-11 01:34:46Z" duration="0.000225" asserts="0">
+            <test-case id="1052" name="XpQueuesMultipleRewardsWithoutInterruptingCombat" fullname="Scrapshift.Tests.ReferenceRulesTests.XpQueuesMultipleRewardsWithoutInterruptingCombat" methodname="XpQueuesMultipleRewardsWithoutInterruptingCombat" classname="Scrapshift.Tests.ReferenceRulesTests" runstate="Runnable" seed="449220000" result="Passed" start-time="2026-10-11 02:44:07Z" end-time="2026-10-11 02:44:07Z" duration="0.000643" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />

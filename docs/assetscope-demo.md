@@ -23,3 +23,7 @@ The companion tool's own 66-test result is recorded in its repository. That is s
 The package inspects supported saved prefab/scene components, ScriptableObjects and Materials, including missing scripts/references. It does not discover runtime-only loads, inspect unsaved scene changes, establish that zero-referenced assets are safe to delete, or prove gameplay correctness. Source navigation selects the owning object/component; automatic Inspector field highlighting is not implemented.
 
 Use the companion project's isolated broken fixtures to demonstrate findings. Do not damage the playable game or present deliberate test fixtures as discovered production incidents.
+
+## Reference catalog walkthrough
+
+For the latest build, select `Content/Definitions/ReferenceCatalog.asset` in AssetScope. It contains real Sprite references for enemies, items and upgrade stats, and AudioClip arrays for each equipped weapon family. Trace SMG or shotgun sound clips back to their equipment entries; trace the catalog to Deck.unity. The prior sound-bank and shared-material navigation examples still apply. `reference-media-provenance.json` documents the supplied file origins separately from Unity dependency analysis.

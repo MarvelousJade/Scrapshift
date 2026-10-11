@@ -1,5 +1,25 @@
 # Verification record
 
+## Current reference reconstruction — October 10, 2026
+
+- **35/35 EditMode tests pass**, with zero failed/skipped. Covers all 20 scheduled wave durations, frame-size-independent group counts, reward queuing, shop costs, lock persistence, atomic purchases, full inventory, duplicate combinations, recycling, every included item effect, reference upgrade tiers, boss completion, imported media, and AssetScope navigation.
+- Windows build **Succeeded, zero reported errors/warnings**, using Unity 6000.6.5f1. Source and selected evidence are tracked; binary output is under `Builds/Windows`.
+- AssetScope 0.3.0: **183 content assets, 1,388 serialized reference usages, zero findings**. Saved scenes and properties inspected, cache disabled. This validates serialized references in its documented scope, not all runtime behavior.
+- Normal first-wave smoke: **Passed**, 23 kills, 18 shots, peak 10 enemies, 11 HP remaining, reached Shop. Scripted movement with no health/invulnerability override. Independently inspected the actual `artifacts/reference-smoke/gameplay.png`; no runtime exception reported. This is a first-wave check, not a complete normal run.
+- Rendered showcase: combat, four-offer shop and four-choice upgrades captured and inspected. The fixture starts at wave 9 with six tier-two weapons, supplies currency and restores health; it is explicitly not a balance test. Initial white warning/clipped heading defects were corrected. See `artifacts/reference-review/`.
+- Audio: **15/15 cues emitted nonzero mixer output**, mute suppression passed, two peak simultaneous voices, sampled peak about **0.173**. `artifacts/reference-audio/audio-runtime.json`. This does not establish subjective listening quality or certify continuous peak behavior under a dense fight.
+
+### Reproduce the new evidence
+
+Use `./scripts/verify.ps1` and `./scripts/build.ps1`. Launch the player visibly for screenshot checks; hidden windows on this host can fail to render a capture. Optional flags: `--smoke <folder>` for the normal first wave; `--reference-review <folder>` for staged combat/shop/upgrades; add `--review-interactive` to stop the staged fixture in the shop for input inspection; `--audio-check <folder>` for isolated mixer checks. Run audio checks without another instance of this game.
+
+### Current limitations
+
+No complete 20-wave human playthrough, user acceptance, performance benchmark, controller/rebinding or non-Windows verification. Only base difficulty is recreated; roster, arena geometry, contact/ranged details and one boss are bounded adaptations. No claim of complete Brotato parity. Imported art/audio are third-party reference assets, with source hashes in the manifest. See `docs/reference-rebuild.md` for exclusions.
+
+The older records below document earlier versions. Their five-wave, three-weapon, all-original-audio and lower test-count descriptions are superseded by this section.
+
+
 Verified October 10, 2026 (America/Toronto), Unity 6000.6.5f1, Windows on this machine. This is a portfolio prototype baseline, not a shipped production certification.
 
 ## Original v1 results (historical)
@@ -67,3 +87,15 @@ Final v2 runtime check: a visible 24-second scripted run completed with 28 kills
 - **36 generated samples / 15 cue types** pass numerical peak/RMS/end-point checks. Source generation is reproducible with `scripts/generate_audio.py`; no reference WAV was copied.
 - Actual runtime audio check passed: all 15 isolated cues produced nonzero sampled Unity mixer output; mute suppressed playback. Sampled peak was 0.201. This is not a claim to have listened, a continuous mix clipping test, or a busy-wave benchmark. See `artifacts/audio/audio-runtime.json` and the offline listening sampler.
 - The audio-enabled 24-second scripted gameplay check passed with 28 kills, 67 shots, peak ten enemies and 100 health. It collected scrap but reached no upgrade in this run. No exception/error was found in the player log. Its screenshot was independently opened and verified as real game rendering; upgrade/reward audio was covered by the separate isolated cue check.
+
+### Actual shop input check
+
+Assistant-operated Computer Use on the rendered final Windows player, using the opt-in staged shop fixture:
+
+- Coffee purchase: materials 536 -> 489; attack speed 5 -> 15; damage 0 -> -2; item count 0 -> 1.
+- Matching tier-two SMG at six slots: materials 489 -> 406; the existing SMG became tier three; inventory stayed at six.
+- Keyboard R: materials 406 -> 397; reroll price 9 -> 12; the locked tier-three shotgun persisted while other offers changed.
+- Selected and recycled the tier-two pistol: materials 397 -> 409; inventory 6 -> 5; previously blocked shotgun purchase became available.
+- Enter started wave 10 at 60 seconds and restored health to 23/23 with the modified loadout.
+
+This verifies actual GUI input in a staged run, not a full human balance playthrough. The staged windows were closed after inspection.

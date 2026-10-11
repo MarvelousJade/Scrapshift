@@ -71,3 +71,7 @@ Analyzed the user-supplied reference before changing runtime. Added a provenance
 ## Reference reconstruction — visual correction milestone
 
 Rendered screenshots caught a white birth warning and clipped upgrade titles. Corrected the explicit tint and layout, imported the eight actual stat icons/tier tables, and added a final-boss completion test. Separated the original hidden-window failure from subsequent rendered evidence. Refined crowd separation and cleared frozen combat text at intermission. Added an opt-in, clearly labeled review fixture for combat, shop and upgrade rendering; it grants equipment/currency/health and does not count as a normal playthrough. Source tests now pass 35 cases. Further measured runtime results are recorded in verification.
+
+## Final input and output evidence
+
+Actual mouse/keyboard shop check verified the displayed Coffee tradeoff, purchase-at-capacity combination, paid R reroll with a preserved lock, recycling refund and Enter transition. Recorded exact observed values in verification. Normal first-wave smoke passed separately without health overrides, and isolated audio emitted all 15 cues with mute suppression. AssetScope inspected 183 assets and 1,388 serialized reference usages with zero findings. Full-run balance and the user's subjective assessment remain open.

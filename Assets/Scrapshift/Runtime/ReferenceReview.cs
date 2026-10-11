@@ -71,6 +71,11 @@ namespace Scrapshift
             if(reviewStep==2&&t>12)
             {
                 ScreenCapture.CaptureScreenshot(Path.Combine(reviewPath,"shop.png"));reviewStep++;
+                if(Array.IndexOf(Environment.GetCommandLineArgs(),"--review-interactive")>=0)
+                {
+                    review=false;
+                    return;
+                }
             }
             if(reviewStep==3&&t>14)
             {

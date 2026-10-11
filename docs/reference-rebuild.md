@@ -21,3 +21,19 @@ Do not claim full commercial-game parity: DLC, multiplayer, all characters/items
 ## Interview framing
 
 The engineering problem is translating data-driven encounter composition and a multi-stage economy into testable Unity rules while preserving readable feedback. Record actual failures and fixes, not fictional debugging stories. Shaoyu directed requirements and reference feedback; Codex performs this implementation and automated verification. Supplied Brotato art/audio remain third-party work.
+
+## Implemented behavior map and explicit adaptations
+
+The base-difficulty filter yields 18 entries: baby alien, chaser, charger, horned charger, helmet alien, bruiser, horned bruiser, fin alien, spitter, junkie, spawner, pursuer, buffer, looter, evil mob, tree, slasher and Predator. Higher-difficulty eggs/healers/tentacles described in the research inventory are not active in this build's difficulty-0 schedules.
+
+| Reference evidence | Unity implementation |
+| --- | --- |
+| Timed groups, conditional buckets, counts/chances and repeat intervals | Imported schedule plus chronological seeded SpawnDirector |
+| One-second birth X, overlap relocation | Red sprite warning; hidden enemy until birth; relocate/restart when player overlaps |
+| Chasers/chargers/shooters/support | Separate role branches with charge preparation, range spacing, hostile projectiles, buffing and pursuit |
+| Spawner death | Three warned junkies, matching the referenced spawner scene |
+| Entity death animation | Immediate removal from active list; separate corpse shrinks/spins/darkens over 0.5s, removed at 1s |
+| Items/weapons/upgrades | Separate currency/XP, queued four-choice stat rewards, four-offer shop, six slots, combine/recycle/lock/reroll |
+| Tier gains and catalog media | Source upgrade values/icons and weapon tier stats; selected source sprites/audio with file hashes |
+
+This is a close bounded reconstruction, not exact parity. Spawn placement uses the existing compact arena, simplified safe-position retries and separation. Contact radii are approximated. There is one adapted Predator charge/radial-projectile boss rather than both complete source boss state machines. Enemy loot crates, all difficulty modifiers, weapon set bonuses, full source stat scaling and character effects are absent. The included stat-only items apply every displayed effect. Visual/audio fidelity and schedule fidelity are separate from a claim of identical combat balance.

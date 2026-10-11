@@ -1,57 +1,34 @@
 # Architecture and tradeoffs
 
-## Runtime flow
+## Runtime
 
-`ArenaGame.Update` reads input, dispatches state-specific actions, and advances combat only while `RunRules.Phase` is Playing. Paused, Upgrade and end screens leave world simulation stopped. The code does not change global `Time.timeScale`, so UI and inspection remain responsive.
+`ArenaGame` coordinates input and scene objects. Combat advances only in Playing; Upgrade, Shop, Paused and terminal screens stop simulation without changing global Time.timeScale. `RunRules` owns currency, XP, queued levels, inventory, stat effects, shop offers and wave transitions. Its RNG and catalog are injectable.
 
-`RunRules` owns wave time, health, scrap thresholds, unlocks and stat modifiers. It has no scene-object references and takes explicit time increments. `WeaponDefinition` and `EnemyDefinition` are serialized ScriptableObjects. `ArenaGame` connects these to instantiated prefabs, distance queries, audio and UI.
+`SpawnDirector` consumes each wave's scheduled groups. It processes elapsed integer seconds in chronological order, preserving RNG order across frame rates. Conditional buckets choose one group. Unit counts use integer random counts multiplied by spawn chance, with a fractional Bernoulli remainder. `ReferenceCombat` places groups, queues births at 0.05-second spacing and shows a one-second warning. Player overlap relocates and restarts a warning. A 100-enemy cap bounds active entities.
 
-## Important invariants
+Enemy roles implement chase, charge, keep-distance shooting, wandering shooting, buffing, pursuing, loot movement, static trees and death spawning. A single adapted boss combines charge/projectile patterns. Dead enemies leave active collision immediately, then a separate corpse list shrinks/spins/darkens their sprites. Lightweight separation reduces crowd stacking.
 
-- One hit consumes a rivet projectile.
-- Swept segment distance checks the projectile's movement between frames, avoiding endpoint-only misses for fast bullets.
-- Orbit damage uses a cooldown rather than damaging every frame a target overlaps.
-- A pulse applies damage once at activation; its expanding ring is feedback, not repeated damage.
-- Contact invulnerability limits successive hits from overlapping drones.
-- Only a completed wave's intermission advances the wave counter. An in-wave level-up resumes its remaining time.
-- A choice is accepted only in Upgrade state, preventing repeated installation from a second UI event.
-- End states ignore time and damage; restarting resets the run modifiers.
+Each of six equipped slots owns a cooldown and a visible weapon. Ranged attacks sweep their travel segment, track already-hit enemies for piercing and use source pellet/timing/tier data. Melee attacks sweep a short segment on cooldown. Shared stats modify damage, cadence, criticals, armor, dodge, life steal, regeneration, movement, range and harvesting. The bounded catalog does not implement weapon-set bonuses or all source scaling formulas.
 
-## Unity asset flow
+## State invariants
 
-Scene -> ArenaGame -> weapon/enemy definitions -> effect/enemy prefabs -> meshes/materials -> shader.
+- XP never consumes spending currency. Leveling during combat never pauses the wave.
+- Only queued rewards produce upgrade cards. Only GO from Shop advances a wave.
+- Purchases atomically spend currency and remove their offer. Failed purchases leave state unchanged.
+- Six weapon slots maximum. Matching equal tiers can combine; tier four cannot combine further.
+- Locked offers retain their identity through rerolls and across waves.
+- Menu/end states reject combat mutation. Restart clears the entire run.
+- A dead enemy cannot take another hit or inflict contact damage through its corpse.
+- Defeating the final boss can end wave 20 early; otherwise surviving its timer wins.
 
-Some references are direct scene-to-prefab links (player, scrap and sparks). These relationships are deliberately ordinary serialized references, useful to both Unity and AssetScope. Weapon data does not depend on the Editor package.
+## Assets and authoring
 
-`Scrapshift.Editor` references `AssetScope.Editor`; `Scrapshift.Runtime` does not. The embedded package's assemblies target Editor only, so the asset browser does not become a player runtime dependency.
+Scene -> ArenaGame -> ReferenceCatalog -> wave/enemy/equipment/item/upgrade records -> Sprite/AudioClip/Material assets. Existing player/effect prefabs still refer to meshes/materials. GameAudio refers to SoundBank, with 16 bounded voices and four reserved important voices; weapon slots can supply their own reference sound variants.
 
-## Why native mesh art?
+`scripts/analyze_reference.py` inventories the supplied Godot resources without executing them. `scripts/import_reference.py` copies selected media, records hashes and generates JSON. Versioned Editor migration imports sprites/audio and assigns actual Unity object references to the catalog. Re-running migration preserves GUIDs. Edit the saved catalog for ordinary authoring; changing source JSON alone does not overwrite an existing migrated catalog.
 
-Mesh geometry keeps the content small, editable and free of an external sprite pipeline. Shared materials enforce a consistent palette and create a useful reverse-reference example. The art can later be replaced behind the prefabs. The current style is intentionally geometric, not a substitute for a production character-art pipeline.
+AssetScope 0.3.0 remains Editor-only. Full scans inspect saved scenes and serialized properties with cache disabled. Integration tests follow actual audio references to the owning asset.
 
-## Why these simple implementations?
+## Tradeoffs and limits
 
-| Choice | Benefit | Cost / future trigger |
-| --- | --- | --- |
-| Distance queries and lists | Easy to inspect at a small entity count | Work grows with active shots and enemies; profile before raising caps |
-| Instantiate/Destroy with caps | Fewer lifecycle assumptions for the first version | Pool short-lived objects if profiler evidence shows allocation or destruction spikes |
-| IMGUI runtime menus | A compact implementation with clear keyboard shortcuts | UI Toolkit/uGUI is a better next step for richer navigation, accessibility and localization |
-| Legacy keyboard input | Few dependencies for this keyboard-only prototype | Use action-based input for rebinding, controller support and input testing |
-| Embedded AssetScope snapshot | Repeatable integration while the other project changes | Explicitly update and retest later; it is not a live link |
-| Five fixed waves | Clear short completion target | Less variety than the reference game; needs real player balance feedback |
-
-No frame-rate, memory-allocation or scalability claim has been measured. Caps are protective limits, not performance benchmarks.
-
-## Known technical debt
-
-`ArenaGame` is a relatively large coordinator. A sensible next split is combat entities, presentation/audio and runtime verification, preserving the tested run rules. Presentation and combat feedback now live in partial-class files; they still share the coordinator state. Upgrade offers are randomized after an introductory draft and some weapon lookup order is positional. This is manageable for three weapons but would warrant named data references and validation before expanding the roster. Enemies now include a telegraphed charger and a knockback-resistant brute; crowd separation is still absent.
-
-## Safe content authoring
-
-The generator is a first-run scaffold: it preserves an existing scene instead of overwriting authored work. Change the saved definitions/prefabs to tune the game after generation. Changing generator constants alone does not silently rebuild existing content. Git tracks `.meta` files to preserve asset GUIDs.
-
-## Audio and Editor integration update
-
-`ArenaGame` dispatches semantic SoundCue events to a separate GameAudio component. The SoundBank ScriptableObject owns gains, variant arrays, cooldowns and pitch range. PCM imports are preloaded for short low-latency effects. Playback uses 16 bounded AudioSources with reserved important-cue slots, immediate mute, short ducking and per-cue cooldowns. A separate opt-in AudioCheck component tests actual sampled mixer output.
-
-The scene references GameSounds -> AudioClip variants; AssetScope 0.3.0 indexes those serialized arrays and can navigate to their owner. The package remains Editor-only. Runtime playback has no AssetScope or UnityEditor dependency.
+IMGUI minimizes implementation size but needs a future navigation/accessibility pass. Distance queries and separation are quadratic at these bounds; pooling/spatial indexing should follow profiler evidence. Instantiation remains capped rather than pooled. World geometry, target-spacing details and the final boss are adaptations, so imported schedule values do not imply full behavioral/balance parity. Presentation fixtures explicitly grant equipment/currency/health and cannot establish normal-run difficulty.

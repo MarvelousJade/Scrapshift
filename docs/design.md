@@ -1,31 +1,27 @@
-# Purpose, scope and art direction
+# Purpose and scope
 
-## User need
+Build a Unity portfolio game that gives AssetScope real authoring problems: a scene refers to a catalog, the catalog owns sprites and audio, and multiple weapons share media/materials. The user selected a Brotato-style game and later explicitly expanded the brief from a tiny survival loop to a close reference study of spawning, progression and presentation.
 
-Build a small but polished Unity game for the Unity Editor software developer application, complementing the AssetScope tool already under development. The player should understand the objective and controls immediately, finish a run in five minutes of active gameplay, and make a few meaningful upgrade choices.
+## Current playable loop
 
-## Why this genre
+A run contains the reference's 20 base Crash Zone wave durations. Wave 1 lasts 20 seconds; later waves lengthen to 60, with 90 seconds for the finale. Timed groups choose an area, queue births and display red warning Xs before enemies appear. Enemy health/damage grow with wave number. Movement, melee/ranged attacks, knockback, hit flashes, damage numbers and shrinking/spinning corpses communicate combat.
 
-The player controls movement while weapons attack automatically. That makes the first playable loop achievable without complex animation, maps or a large content pipeline. Enemy prefabs, shared materials and ScriptableObject weapon/enemy definitions also create understandable asset relationships for AssetScope demonstrations.
+Collected materials grant spendable currency and XP independently. Crossing an XP threshold queues a level reward without pausing combat. At wave end, choose one of four stat upgrades per queued level, then enter a separate four-offer shop. Buy items with positive/negative stat effects, equip up to six weapons, combine duplicates, recycle, pay to reroll and lock individual offers. Health resets for the next wave. Uncollected materials are banked and double later pickups until the bank is consumed.
 
-## Explicit boundaries
+## Content boundaries
 
-One arena; three enemy types; three weapons; five waves; a small upgrade menu; keyboard and mouse menus; local Windows build. No multiplayer, accounts, procedural world, meta-progression, commercial launch or promise of perfect balance. Sound uses an original layered PCM effects bank. No outside sprite pack is required.
+Six weapon families (pistol, SMG, shotgun, laser gun, knife, spear), four tiers each, 24 simple stat items and eight level-up stats. 18 reference enemy entries cover the base schedule plus spawned junkies/slashers and one adapted Predator finale. No higher-difficulty roster, DLC, alternate bosses, curses, multiplayer, meta-progression or full-game parity claim. The arena keeps the existing 21-by-10.2 playable bounds rather than reproducing the reference's tilemap dimensions. Weapon class bonuses and every special item interaction are not present.
 
-## Art plan
+Original mesh scavenger/yard art remains. Selected enemy, equipment, item and upgrade sprites and 12 effect-cue families now use user-supplied Brotato media. Remaining terminal/legacy effect cues use the prior original sound bank. Every copied file has source/hash provenance. This is an engineering study with third-party media, not an original-art claim.
 
-Original code-native mesh artwork, saved as real Unity assets. A cream scavenger with amber goggles and a coral scarf faces coral chasers, green horned chargers and purple spiked brutes. Dark outlines, visible feet, faces and subdued shadows make the cast readable against an olive salvage yard. An outlined pistol tracks its target. Muzzle sparks, white hit flashes, knockback, floating damage numbers, double-damage critical hits, brief critical hit-stop, death bursts and a damage border communicate combat events. Reduced motion disables bob, camera shake, floating-text drift and hit-stop.
+## Engineering choices
 
-Upgrade cards show rarity, numeric gains and current damage/attack-speed/critical stats. The opening draft teaches weapon, speed and sustain choices. Later drafts draw three unique kinds from seven possibilities, excluding already-unlocked weapons. Common/rare/epic stat tiers scale benefits; one free reroll is available each draft. This deliberately stops short of reproducing Brotato's full shop economy.
+- Pure run rules and an injectable seeded spawn director make economy and timing reproducible.
+- A serialized ReferenceCatalog preserves real Sprite, AudioClip and Material dependencies for AssetScope.
+- Bounded lists and swept collision keep the prototype inspectable. They are not evidence of measured production performance.
+- IMGUI and keyboard input remain appropriate for this local study; controller navigation, rebinding and accessibility need a later UI/input pass.
+- Keep the finished AssetScope 0.3.0 package embedded at its tested snapshot. Runtime code does not depend on Editor assemblies.
 
-## Architecture decisions
+## Acceptance
 
-- Separate run rules from the scene: wave transitions, health, upgrade selection and pause behavior can be tested without rendering or input.
-- ScriptableObjects contain reusable enemy/weapon definitions, with explicit prefab/material references for authoring and AssetScope.
-- A bounded arena and simple distance checks avoid a physics dependency for this small top-down combat loop. This is a scope decision, not a claim that physics is generally undesirable.
-- Snapshot AssetScope as an embedded Editor-only package. Current package: 0.3.0 from `b7aac0df08a31f7ae951792c34e440163ef42d34`, explicitly upgraded and integration-tested after the user reported it finished.
-- Use the legacy Input API for this limited keyboard prototype; migration to action-based Input System bindings is a follow-up for rebinding or controller support.
-
-## Acceptance targets
-
-Playable title/run/upgrade/pause/end loop; inspectable serialized content; no missing-script findings in normal game content; meaningful rules and integration tests; an actual Windows build; a rendered gameplay inspection; precise limits in the final verification record.
+Build and test the rules, inspect actual rendered combat/shop/upgrades, sample real mixer output and document real defects. Keep scripted fixture results distinct from normal play and human balance feedback. The earlier five-wave/three-weapon scope is historical and superseded by the explicit reference-expansion request.

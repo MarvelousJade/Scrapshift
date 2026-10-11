@@ -17,3 +17,7 @@ Read the supplied Brotato export's `singletons/sound_manager_parent.gd` and `sou
 The generator checks RMS/peak and zero-ended samples; numerical checks do not prove pleasing sound. `artifacts/audio/sound-sampler.wav` is an offline sequence of the new sounds, not a gameplay recording. `--audio-check <folder>` plays every cue through the actual Unity mixer, samples nonzero output and checks mute suppression. It is not a continuous clipping measurement or a substitute for listening on headphones and speakers.
 
 Game tests check complete playable cue assets, non-repeating selection and actual AssetScope navigation to a bank entry. Runtime and build results are recorded in verification.md. Full busy-wave mixing, device variety and the user's preference remain listening tasks.
+
+## Supplied reference audio revision
+
+The user's later request explicitly permitted use of the supplied game's sounds. Current playback uses reference files for Fire, Impact, Kill, Critical, Pickup, LevelUp, Install, WaveClear, Swing, Charge, Hurt and Reroll. SMG, shotgun and laser use their own equipment sound arrays. Win/Lose and the unused legacy pulse cue retain original clips. Earlier original-audio descriptions are historical. The bounded mixer, cooldowns, non-repeating variants, volume, mute and priority ducking remain in use. The provenance manifest identifies each copied WAV and its hash. Numerical output checks are not a claim that the user likes the mix.

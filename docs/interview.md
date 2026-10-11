@@ -102,3 +102,17 @@ The game now embeds AssetScope 0.3.0. It scans 72 actual game assets and 1,202 r
 ## Why change the audio architecture?
 
 The user reported that the original sound was poor. Four sine tones did not distinguish enough gameplay events. The revision separates authored cue data from playback, uses multiple original variants, and limits concurrent sounds while reserving voices for important feedback. Explain the distinction between numerical/sample-playback verification and subjective listening; the latter still needs personal evaluation. AUDIO-006 records the actual Unity importer API failure and fix.
+
+## Reference rebuild — current interview examples
+
+These replace the earlier five-wave/three-weapon scope descriptions above.
+
+**Why did the project grow?** The user specifically rejected the simple enemy and upgrade model and asked for a source-informed reconstruction. The response was to analyze wave resources and behavior scripts first, commit the study, then implement the encounter schedule and separate XP/reward/shop states. The bounded catalog keeps the expansion explainable: six weapon families, 24 items, eight stat upgrades, base difficulty only.
+
+**What was a difficult bug?** REF-001: the initial scheduler's shared random sequence depended on frame size because it processed all missed repeats of each group together. Processing chronological seconds fixed the ordering. The regression compares all 20 waves at 60 Hz against a single large step with the same seed. Explain why seeded randomness alone does not ensure determinism.
+
+**How did you test beyond unit tests?** State tests verify atomic purchases, six-slot limits, duplicate combinations, paid rerolls and preserved locks. Actual player captures caught clipped upgrade titles and white birth warnings that the rules tests could not catch. A hidden-window capture failed and was explicitly rejected. The rendered fixture grants health/equipment for coverage and is not evidence of a fair normal run.
+
+**How did you avoid misleading portfolio claims?** Record the supplied reference paths/hashes, distinguish third-party sprites/audio from original work, and explain that Codex implemented/tested the revision under Shaoyu's direction. Describe personal code understanding and hands-on changes only after actually doing them. No fabricated production incident, performance improvement or user approval.
+
+**How does AssetScope help here?** Inspect ReferenceCatalog, follow an enemy sprite or weapon audio reference, and navigate back to the serialized record that uses it. This demonstrates the completed tool against the real game catalog. Use the latest scan totals in verification rather than the older 72-asset baseline.

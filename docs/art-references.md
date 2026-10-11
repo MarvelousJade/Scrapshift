@@ -25,3 +25,7 @@ This is a cohesive small geometric style, not hand-painted production art. It ca
 The user supplied `E:/UnityProjects/Brotato`. Inspected `entities/units/player/potato.png`: a simple light organic silhouette with a dark outline, designed to stay readable at gameplay scale. Studied the local upgrade layout and hit feedback in conjunction with this visual. The folder includes a GDRE export, so it is not represented as an official open-source art/code package.
 
 Translated these principles into original code-native cream/goggle/scarf scavenger art, angry coral chasers, horned green chargers and a spiked cyclops brute. The UI uses dark chunky frames, cream typography, clear rarity accents and explicit stat gains. No local-reference PNGs, scene files or scripts were imported. Original mint robot/deck notes above describe the superseded first baseline.
+
+## Current imported-media revision
+
+The later reference-expansion request supersedes the all-original-creature approach above. Current enemies, warning Xs, weapon icons, item icons and stat-upgrade icons use selected supplied Brotato sprites. Their origin and hashes are recorded in `artifacts/reference-media-provenance.json`; these are not original portfolio art. The existing mesh scavenger/yard stays in place. Death behavior was reimplemented in Unity from the inspected timing: remove gameplay immediately, spin/shrink/darken over half a second, dispose the corpse around one second. Motion can be reduced in Pause.
