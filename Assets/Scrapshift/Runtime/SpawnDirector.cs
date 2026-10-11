@@ -40,24 +40,23 @@ namespace Scrapshift
             })
             ;
         }
-        public void Tick(float dt,Action<SpawnGroup,UnitEntry,int> emit)
+        public void Tick(float dt,Action<SpawnGroup,UnitEntry,int> emit,Action<SpawnGroup> beginGroup=null)
         {
             if(dt<=0)return;time+=dt;int whole=(int)Math.Floor(time+.0001);while(processed<whole)
             {
                 processed++;foreach(var s in states)if(s.left>0&&processed>=s.next)
                 {
-                    if(!s.checkedChance)
-                    {
-                        s.checkedChance=true;if(random.NextDouble()>=s.group.chance)
-                        {
-                            s.left=0;continue;
-                        }
-                    }
-                    foreach(var u in s.group.units)
+                    bool first=!s.checkedChance;
+                    bool spawn=!first||random.NextDouble()<s.group.chance;
+                    if(spawn)beginGroup?.Invoke(s.group);
+                    if(spawn)foreach(var u in s.group.units)
                     {
                         float n=random.Next(u.min,u.max+1)*u.chance;int count=(int)n;if(random.NextDouble()<n-count)count++;if(count>0)emit(s.group,u,count);
                     }
-                    s.left--;s.next=processed+s.interval;s.interval=Math.Max(s.group.minimum,s.interval-s.group.reduce);
+                    s.left--;
+                    // First repeat keeps the original interval; later repeats reduce before scheduling.
+                    if(!first)s.interval=Math.Max(s.group.minimum,s.interval-s.group.reduce);
+                    s.next+=s.interval;s.checkedChance=true;
                 }
             }
         }

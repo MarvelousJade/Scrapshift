@@ -318,7 +318,7 @@ namespace Scrapshift.Tests
                 int a=0,b=0;var d1=new SpawnDirector(wave,20);var d2=new SpawnDirector(wave,20);for(int i=0;i<(int)wave.duration*60;i++)d1.Tick(1f/60,(g,u,n)=>a+=n);d2.Tick(wave.duration,(g,u,n)=>b+=n);Assert.Greater(a,0);Assert.AreEqual(a,b,"schedule/RNG must be independent of frame sizes");
             }
         }
-        [Test] public void SpawnChanceZeroAndFiniteRepeatsAreRespected()
+        [Test] public void InitialChanceMissDoesNotCancelScheduledRepeats()
         {
             var wave=new WaveEntry
             {
@@ -336,7 +336,7 @@ namespace Scrapshift.Tests
                     },
                     new SpawnGroup
                     {
-                        start=1,repeats=99,interval=1,minimum=1,chance=0,units=new[]
+                        start=1,repeats=2,interval=1,minimum=1,chance=0,units=new[]
                         {
                             new UnitEntry
                             {
@@ -346,7 +346,7 @@ namespace Scrapshift.Tests
                     }
                 }
             };
-            int count=0;new SpawnDirector(wave,1).Tick(100,(g,u,n)=>count+=n);Assert.AreEqual(6,count);
+            int count=0;new SpawnDirector(wave,1).Tick(100,(g,u,n)=>count+=n);Assert.AreEqual(206,count);
         }
         [TestCase(1440,900)][TestCase(1920,1080)][TestCase(900,900)]public void ResizePreservesArena(int w,int h)
         {

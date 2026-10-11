@@ -12,6 +12,9 @@ namespace Scrapshift
     public sealed class RunRules
     {
         public const int WaveCount=20;
+        static readonly HashSet<string> shopItems = new HashSet<string>
+        { "coffee", "beanie", "glasses", "helmet", "leather_vest", "bat", "fertilizer", "cake" };
+        public static bool IsShopItem(string id) => shopItems.Contains(id);
         public static readonly int[] Durations=
         {
             20,25,30,35,40,45,50,55,60,60,60,60,60,60,60,60,60,60,60,90
@@ -250,7 +253,7 @@ namespace Scrapshift
                 }
                 else
                 {
-                    var pool=catalog.data.items.Where(w=>w.tier<=tier).ToArray();
+                    var pool=catalog.data.items.Where(w=>w.tier<=tier&&IsShopItem(w.id)).ToArray();
                     Shop[i]=new ShopOffer
                     {
                         item=pool[random.Next(pool.Length)]

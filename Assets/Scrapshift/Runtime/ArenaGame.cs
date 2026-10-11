@@ -13,8 +13,8 @@ namespace Scrapshift
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj, marker; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; }
-        sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
+        sealed class Enemy { public GameObject obj, marker; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash; }
+        sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
@@ -137,7 +137,7 @@ namespace Scrapshift
             player.transform.localScale = Vector3.one;
             player.transform.rotation = Quaternion.identity;
             player.SetActive(invulnerable <= 0 || (int)(invulnerable * 16) % 2 == 0);
-            director.Tick(dt, QueueGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);
+            director.Tick(dt, QueueGroup, BeginSpawnGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
             UpdateWeapons(dt);
             UpdatePickups(dt);
