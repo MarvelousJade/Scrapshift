@@ -50,3 +50,6 @@ User specified body-only enemies, an armless player with tiny feet and spring ca
 ## Modular character and clean style
 
 Shaoyu requested a shared body with swappable eyes/hair/beard, item embellishments and tiny pointed legs, then selected the clean style and requested removal of player panel lines. Codex compared the supplied appearance resource/priority code, generated/edited original atlases, implemented the resolver and cosmetic selector, added regression tests and rendered fixtures, fixed atlas defects, and documented/committed the work. The user approved the visual direction; no complete manual gameplay acceptance is implied.
+
+
+Leg correction: Shaoyu rejected the close-set straight legs and specified a wider outward curve. Codex regenerated only the leg sprite, shared world/shop spacing constants, adjusted the existing motion checks, and inspected a rendered stance/movement fixture.

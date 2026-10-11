@@ -12,7 +12,7 @@ R: paid reroll. Six equipped weapons maximum.
 Eight item types, six weapon families, up to six floating weapons.
 Gun / Precise / Primitive set bonuses count duplicates, regardless of tier.
 Title LOOK buttons choose Rookie, Veteran or Punk (cosmetic; same stats).
-The player has a smooth shell, swappable facial details and tiny pointed legs.
+The player has a smooth shell, swappable facial details and widely spaced, outward-curved tiny legs.
 Clean items alter visible features; enemies spring without arms or legs.
 Watch enemy windups: amber direction cues precede charges and ranged shots.
 Survive twenty waves. The pause menu includes volume and reduced motion.

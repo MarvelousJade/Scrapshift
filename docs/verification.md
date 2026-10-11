@@ -1,5 +1,12 @@
 # Verification record
 
+## Latest results - October 11 outward-curved leg correction
+
+127/127 tests passed (2.017s); Windows build succeeded, zero errors/warnings, 144,148,516 reported bytes. AssetScope: 213 assets, 1395 usages, zero findings. All 631 input files match isolated validation. Inspected standing, left/right walking and title/shop images from artifacts/wide-leg-review; the fixture passed. Only the existing D3D12 info-queue diagnostic appeared in the player log. This is visual verification, not a new combat/balance run.
+
+The new player-leg-v1 sprite is mirrored and spaced at +/-0.31. Seven original PNGs are active. Code/art commit bd9f92f. Package: 49,575,500 bytes, 155 entries, CRC and every-file comparison passed; SHA-256 `2093aec6407ee668eadd1440acfd69a3ca84aefc69e0b1c084b8f8cd44a71416`.
+
+
 ## Latest results - October 11 clean modular appearance
 
 - **127/127 EditMode tests passed**, zero failed/skipped, 1.831s. Seven added tests cover priority/duplicate precedence, item override/restoration, same-count replacement, preset refresh/mirroring, cosmetic/stat separation, leg motion and alpha borders. Initial failures are retained and explained in modular-appearance.md.

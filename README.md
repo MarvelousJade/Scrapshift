@@ -1,6 +1,6 @@
 # Scrapshift
 
-A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Six active original AI-generated sheets provide clean player parts, wearable details, body-only enemies, weapons, pickups and UI icons. Three cosmetic looks share a smooth shell, swappable eyes/hair/beard and tiny pointed legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
+A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Seven active original AI-generated sheets provide clean player parts, wearable details, body-only enemies, weapons, pickups and UI icons. Three cosmetic looks share a smooth shell, swappable eyes/hair/beard and widely spaced, outward-curved tiny legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
 
 ## Why this exists
 

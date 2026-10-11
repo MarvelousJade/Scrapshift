@@ -41,3 +41,12 @@ Built-in imagegen produced/edited raster assets. Unity sprite import slices pres
 ## Final evidence
 
 127/127 tests; build errors/warnings 0; AssetScope 211 assets, 1395 usages, 0 findings. All 625 input files match isolated validation. Appearance, enemy gallery and combat art fixtures completed; selected screenshots inspected. See verification.md for exact limits/package hash.
+
+
+## Leg silhouette correction
+
+User rejected the narrow straight leg arrangement and clarified that the distance between the legs should be wider, with an outward curve like the reference. Reinspected supplied player/legs.png and leg_l/leg_r scenes. New original player-leg-v1 is one clean ivory curved appendage, mirrored for the opposite side. The body and facial sprites are unchanged.
+
+Leg centers move from +/-0.13 to +/-0.31 world units (0.26 to 0.62 total separation), with the attachment raised from -0.62 to -0.52 so the wider legs join the curved lower body. Leg height is 0.22; lateral walking travel is reduced from 0.08 to 0.035 and rotation from 28 degrees plus a fixed tilt to 12 degrees around the new curved silhouette. World and shop share these dimensions; the shop explicitly mirrors the left sprite. Existing reduced-motion, facing, loop and atlas-boundary checks were updated for the new stance.
+
+Built-in imagegen supplied the new leg PNG, using our player parts for style and the provided source legs only as silhouette reference. Exact prompt: wide-leg-prompt.txt. PNG SHA-256: ec9cdb2b9733259bbb25439d0c427d5d6c5b564e7151013fa42cdf834c595c84

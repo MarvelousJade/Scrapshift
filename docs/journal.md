@@ -130,3 +130,8 @@ Initial 119 tests passed, but rendered review revealed sprite clipping from the 
 Compared supplied appearance resource, display-priority and player composition code first (audit commit 69aa925). Replaced baked-in character identity with a shared shell, swappable eyes/hair/beard, tiny pointed legs and 24 separate wearable details. User compared a clean preview and explicitly selected removal of weathering across items/enemies and all player shell/leg panel lines. Implemented clean art and appearance composition in 2aac926.
 
 Initial 126/127 test runs exposed wing/glasses atlas cuts; alpha inspection also rejected an enemy draft with a translucent backdrop. Final import uses measured per-cell transparent separators, verified by border regression. Final 127/127 tests, clean build, AssetScope 211 assets/1395 usages/zero findings, and 625 byte-equal validation inputs. Rendered three looks/outfits, all 18 enemies and staged six-weapon combat; exact evidence/limits in verification.md. Preserved the open Editor and unrelated PackageManagerSettings.asset.
+
+
+## October 11 - wider outward-curved legs
+
+User clarified the desired leg spacing/curve after rejecting the first pointy-leg arrangement. Compared supplied legs.png and mirrored leg scenes. Generated one curved original leg, mirrored left/right, increased separation from .26 to .62, raised attachment to meet the lower body corners, and reduced walk swing. Kept shell/faces/items/enemies intact. Build and all 127 tests pass; appearance fixture standing/right/left/shop passed and screenshots inspected. New asset prompt and hash are documented in modular-appearance.md and wide-leg-prompt.txt.
