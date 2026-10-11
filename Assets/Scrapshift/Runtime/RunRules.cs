@@ -27,6 +27,11 @@ namespace Scrapshift
         public bool PulseUnlocked { get; private set; }
         public bool WaveUpgrade { get; private set; }
         public int NextLevel => 7 + Level * 5;
+        readonly System.Random random;
+        public UpgradeOffer[] Offers { get; private set; } = new UpgradeOffer[0];
+        public bool CanReroll { get; private set; }
+        public float CritChance { get; private set; } = .1f;
+        public RunRules(int seed = -1) { random = seed < 0 ? new System.Random() : new System.Random(seed); }
 
         public void Start()
         {
@@ -34,6 +39,7 @@ namespace Scrapshift
             MaxHealth = Health = 100; Kills = Scrap = UpgradeCount = 0; Level = 1;
             DamageScale = FireRate = 1; MoveSpeed = 5; PickupRadius = 1.3f;
             OrbitUnlocked = PulseUnlocked = WaveUpgrade = false;
+            CritChance = .1f; Offers = new UpgradeOffer[0]; CanReroll = false;
         }
         public void Tick(float seconds)
         {
@@ -42,6 +48,7 @@ namespace Scrapshift
             if (Remaining > 0) return;
             if (Wave == WaveCount) { Phase = RunPhase.Won; return; }
             Phase = RunPhase.Upgrade; WaveUpgrade = true;
+            Draft();
         }
         public void Hurt(float amount)
         {
@@ -57,24 +64,45 @@ namespace Scrapshift
             if (Scrap >= NextLevel)
             {
                 Scrap -= NextLevel; Level++; Phase = RunPhase.Upgrade; WaveUpgrade = false;
+                Draft();
             }
         }
         public void Choose(int choice)
         {
             if (Phase != RunPhase.Upgrade || choice < 0 || choice > 2) return;
-            // Every third draft introduces a new weapon; other drafts offer clear tradeoffs.
-            if (choice == 0)
+            var offer = Offers[choice]; int tier = offer.Tier;
+            switch (offer.Kind)
             {
-                if (!OrbitUnlocked) OrbitUnlocked = true;
-                else if (!PulseUnlocked) PulseUnlocked = true;
-                else DamageScale += .25f;
+                case UpgradeKind.Orbit: OrbitUnlocked = true; break;
+                case UpgradeKind.Pulse: PulseUnlocked = true; break;
+                case UpgradeKind.Damage: DamageScale += .15f * tier; break;
+                case UpgradeKind.Speed: FireRate += .18f * tier; MoveSpeed += .25f; break;
+                case UpgradeKind.Repair: MaxHealth += 15 * tier; Health = Math.Min(MaxHealth, Health + 40); PickupRadius += .3f; break;
+                case UpgradeKind.Critical: CritChance = Math.Min(.75f, CritChance + .08f * tier); break;
+                case UpgradeKind.Magnet: PickupRadius += .65f * tier; MoveSpeed += .35f; break;
             }
-            else if (choice == 1) { FireRate += .18f; MoveSpeed += .25f; }
-            else { MaxHealth += 15; Health = Math.Min(MaxHealth, Health + 40); PickupRadius += .3f; }
             UpgradeCount++;
             if (WaveUpgrade) { Wave++; Remaining = WaveSeconds; Health = Math.Min(MaxHealth, Health + 15); }
             WaveUpgrade = false; Phase = RunPhase.Playing;
         }
+        void Draft(bool reroll = false)
+        {
+            CanReroll = !reroll;
+            // First choice teaches weapons, speed and sustain; subsequent drafts vary.
+            if (UpgradeCount == 0 && !reroll)
+            { Offers = new[] { new UpgradeOffer(UpgradeKind.Orbit, 1), new UpgradeOffer(UpgradeKind.Speed, 1), new UpgradeOffer(UpgradeKind.Repair, 1) }; return; }
+            var pool = new System.Collections.Generic.List<UpgradeKind> { UpgradeKind.Damage, UpgradeKind.Speed, UpgradeKind.Repair, UpgradeKind.Critical, UpgradeKind.Magnet };
+            if (!OrbitUnlocked) pool.Add(UpgradeKind.Orbit);
+            if (!PulseUnlocked) pool.Add(UpgradeKind.Pulse);
+            Offers = new UpgradeOffer[3];
+            for (int i = 0; i < 3; i++)
+            {
+                int index = random.Next(pool.Count); var kind = pool[index]; pool.RemoveAt(index);
+                int roll = random.Next(100); int tier = roll < 12 ? 3 : roll < 45 ? 2 : 1;
+                Offers[i] = new UpgradeOffer(kind, kind == UpgradeKind.Orbit || kind == UpgradeKind.Pulse ? 1 : tier);
+            }
+        }
+        public void Reroll() { if (Phase == RunPhase.Upgrade && CanReroll) Draft(true); }
         public void Pause()
         {
             if (Phase == RunPhase.Playing) Phase = RunPhase.Paused;

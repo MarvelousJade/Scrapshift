@@ -10,6 +10,40 @@ namespace Scrapshift.Tests
 {
     public sealed class RulesTests
     {
+        [Test] public void RerollIsLimitedToOnePerDraftAndOffersAreUnique()
+        {
+            var r = new RunRules(23); r.Start(); r.Collect(12);
+            r.Reroll(); var offers = r.Offers; r.Reroll();
+            Assert.AreSame(offers, r.Offers); Assert.IsFalse(r.CanReroll);
+            Assert.AreEqual(3, offers.Select(o => o.Kind).Distinct().Count());
+            r.Choose(0); r.Tick(60); Assert.IsTrue(r.CanReroll);
+        }
+        [Test] public void DraftDoesNotOfferAnAlreadyUnlockedWeapon()
+        {
+            var r = new RunRules(7); r.Start(); r.Collect(12); r.Choose(0);
+            for (int i=0;i<30;i++)
+            {
+                r.Collect(r.NextLevel); r.Reroll();
+                Assert.IsFalse(r.Offers.Any(o => o.Kind == UpgradeKind.Orbit));
+                r.Choose(0);
+            }
+        }
+        [Test] public void DisplayedDamageTierMatchesAppliedGain()
+        {
+            var r = new RunRules(42); r.Start(); bool checkedDamage = false;
+            for (int i=0;i<30;i++)
+            {
+                r.Collect(r.NextLevel); r.Reroll();
+                int index = System.Array.FindIndex(r.Offers, o => o.Kind == UpgradeKind.Damage);
+                if (index >= 0)
+                {
+                    float before = r.DamageScale; int tier = r.Offers[index].Tier; r.Choose(index);
+                    Assert.AreEqual(before + .15f * tier, r.DamageScale, .0001f); checkedDamage = true;
+                }
+                else r.Choose(0);
+            }
+            Assert.IsTrue(checkedDamage);
+        }
         [TestCase(1440, 900)]
         [TestCase(1920, 1080)]
         [TestCase(900, 900)]

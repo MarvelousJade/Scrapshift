@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Scrapshift
 {
-    public sealed class ArenaGame : MonoBehaviour
+    public sealed partial class ArenaGame : MonoBehaviour
     {
         public GameObject playerPrefab, scrapPrefab, sparkPrefab;
         public WeaponDefinition[] weapons;
@@ -13,7 +13,7 @@ namespace Scrapshift
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj; public EnemyDefinition type; public float hp, age, flash; public Vector2 pos; }
+        sealed class Enemy { public GameObject obj; public EnemyDefinition type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage; }
         sealed class Pickup { public GameObject obj; public Vector2 pos; public int value; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
@@ -40,7 +40,8 @@ namespace Scrapshift
             Application.targetFrameRate = 120;
             audioSource = gameObject.AddComponent<AudioSource>(); audioSource.volume = .22f;
             fireSound = Tone(730, .055f); hitSound = Tone(130, .10f); collectSound = Tone(1250, .045f); upgradeSound = Tone(520, .24f);
-            player = Instantiate(playerPrefab); player.name = "Repair bot";
+            player = Instantiate(playerPrefab); player.name = "Scavenger";
+            gun = Instantiate(weapons[0].effectPrefab); gun.name = "Visible rivet pistol"; gun.transform.localScale = new Vector3(1.7f, 2.7f, 1);
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
             muted = PlayerPrefs.GetInt("muted", 0) != 0;
@@ -65,6 +66,7 @@ namespace Scrapshift
             ClearCombat(); Rules.Start(); playerPos = Vector2.zero;
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
+            floaters.Clear(); hitStop = hurtOverlay = 0;
             player.transform.position = Vector3.zero; player.transform.localScale = Vector3.one;
             foreach (var o in orbits) o.SetActive(false); pulse.SetActive(false);
         }
@@ -85,9 +87,10 @@ namespace Scrapshift
                 if (Input.GetKeyDown(KeyCode.Alpha1)) SelectUpgrade(0);
                 if (Input.GetKeyDown(KeyCode.Alpha2)) SelectUpgrade(1);
                 if (Input.GetKeyDown(KeyCode.Alpha3)) SelectUpgrade(2);
+                if (Input.GetKeyDown(KeyCode.R)) Rules.Reroll();
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
-            if (Rules.Phase == RunPhase.Playing) Simulate(Mathf.Min(Time.deltaTime, .05f));
+            if (Rules.Phase == RunPhase.Playing) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title)
                 player.transform.localScale = new Vector3(1 + Mathf.Sin(Time.time * 2) * .035f, 1 - Mathf.Sin(Time.time * 2) * .035f, 1);
             if (smoke) SmokeTick();
@@ -113,6 +116,9 @@ namespace Scrapshift
                 float d = (e.pos - playerPos).sqrMagnitude;
                 if (d < distance) { distance = d; nearest = e; }
             }
+            if (nearest != null) gunDirection = (nearest.pos - playerPos).normalized;
+            gun.transform.position = new Vector3(playerPos.x + gunDirection.x * (.6f - recoil), playerPos.y + gunDirection.y * (.6f - recoil), -2);
+            gun.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(gunDirection.y, gunDirection.x) * Mathf.Rad2Deg);
             if (nearest != null && shootClock <= 0)
             {
                 var direction = (nearest.pos - playerPos).normalized;
@@ -120,6 +126,7 @@ namespace Scrapshift
                 obj.transform.position = new Vector3(playerPos.x, playerPos.y, -2);
                 obj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                 shots.Add(new Shot { obj = obj, pos = playerPos, velocity = direction * 15, life = 1.4f, damage = weapons[0].damage * Rules.DamageScale });
+                recoil = .14f; Burst(playerPos + direction * .85f, 3, amber);
                 shootClock = weapons[0].interval / Rules.FireRate; shotsFired++; Play(fireSound, .28f);
             }
             UpdateEnemies(dt);
@@ -140,7 +147,7 @@ namespace Scrapshift
             bool vertical = UnityEngine.Random.value > .5f; float side = UnityEngine.Random.value > .5f ? 1 : -1;
             Vector2 pos = vertical ? new Vector2(side * 11.1f, UnityEngine.Random.Range(-5.2f, 5.2f)) : new Vector2(UnityEngine.Random.Range(-10.5f, 10.5f), side * 5.7f);
             var obj = Instantiate(def.prefab); obj.transform.position = new Vector3(pos.x, pos.y, -.5f);
-            enemies.Add(new Enemy { obj = obj, type = def, hp = def.health * (1 + .12f * (Rules.Wave - 1)), pos = pos });
+            enemies.Add(new Enemy { obj = obj, type = def, hp = def.health * (1 + .12f * (Rules.Wave - 1)), pos = pos, renderers = obj.GetComponentsInChildren<Renderer>() });
             peakEnemies = Mathf.Max(peakEnemies, enemies.Count);
         }
         void UpdateEnemies(float dt)
@@ -149,15 +156,31 @@ namespace Scrapshift
             {
                 e.age += dt; e.flash = Mathf.Max(0, e.flash - dt);
                 // A short spawn telegraph prevents immediate invisible edge damage.
-                if (e.age > .6f) e.pos += (playerPos - e.pos).normalized * (e.type.speed * dt);
+                if (e.age > .6f)
+                {
+                    var toward = (playerPos - e.pos).normalized;
+                    float speed = e.type.speed;
+                    if (e.type == enemyTypes[1])
+                    {
+                        e.action += dt;
+                        if (e.action < 1.5f) e.charge = toward;
+                        else if (e.action < 2.05f) { speed = 0; Flash(e, .65f); }
+                        else if (e.action < 2.5f) { toward = e.charge; speed = 6; }
+                        else e.action = 0;
+                    }
+                    e.pos += (toward * speed + e.knockback) * dt;
+                    e.knockback = Vector2.Lerp(e.knockback, Vector2.zero, 10 * dt);
+                    e.pos = new Vector2(Mathf.Clamp(e.pos.x, -11.2f, 11.2f), Mathf.Clamp(e.pos.y, -5.6f, 5.6f));
+                }
+                if (!(e.type == enemyTypes[1] && e.action >= 1.5f && e.action < 2.05f)) Flash(e, e.flash > 0 ? 1 : 0);
                 e.obj.transform.position = new Vector3(e.pos.x, e.pos.y, -.5f);
                 float scale = e.age < .6f ? Mathf.Lerp(.1f, 1, e.age / .6f) : 1;
                 float squash = !reducedMotion ? Mathf.Sin(e.age * 12) * .035f : 0;
                 e.obj.transform.localScale = new Vector3(scale + squash + e.flash, scale - squash + e.flash, 1);
                 if (e.age > .6f && invulnerable <= 0 && RunRules.Touches(e.pos, playerPos, e.type.radius + .30f))
                 {
-                    Rules.Hurt(12); invulnerable = .9f; shake = .10f; Play(hitSound, 1);
-                    Burst(playerPos, 8); e.pos += (e.pos - playerPos).normalized * 1.0f;
+                    Rules.Hurt(12); hurtOverlay = .45f; FloatText(playerPos, "-12", coral, true); hitStop = reducedMotion ? 0 : .045f; invulnerable = .9f; shake = .10f; Play(hitSound, 1);
+                    Burst(playerPos, 12, coral); e.pos += (e.pos - playerPos).normalized * 1.0f;
                 }
             }
         }
@@ -204,9 +227,17 @@ namespace Scrapshift
         }
         void Damage(int index, float damage)
         {
-            var e = enemies[index]; e.hp -= damage; e.flash = .13f;
+            var e = enemies[index];
+            bool critical = UnityEngine.Random.value < Rules.CritChance;
+            if (critical) damage *= 2;
+            e.hp -= damage; e.flash = .10f;
+            e.knockback = (e.pos - playerPos).normalized * (e.type == enemyTypes[2] ? 1.4f : 4.5f);
+            Flash(e, 1); FloatText(e.pos, Mathf.CeilToInt(damage).ToString() + (critical ? "!" : ""), critical ? amber : Color.white, critical);
+            Burst(e.pos, critical ? 10 : 5, critical ? amber : e.type.color);
+            Play(hitSound, critical ? .36f : .14f);
+            if (critical) { hitStop = reducedMotion ? 0 : .028f; shake = .045f; }
             if (e.hp > 0) return;
-            Rules.Kill(); Burst(e.pos, 4);
+            Rules.Kill(); Burst(e.pos, 12, e.type.color);
             if (pickups.Count < 180)
             {
                 var obj = Instantiate(scrapPrefab); obj.transform.position = new Vector3(e.pos.x, e.pos.y, -1.5f);
@@ -228,12 +259,15 @@ namespace Scrapshift
                 }
             }
         }
-        void Burst(Vector2 pos, int count)
+        void Burst(Vector2 pos, int count, Color tint)
         {
             for (int i = 0; i < count && sparks.Count < 200; i++)
             {
                 var obj = Instantiate(sparkPrefab); obj.transform.position = new Vector3(pos.x, pos.y, -3);
-                float life = UnityEngine.Random.Range(.15f, .4f);
+                var renderer = obj.GetComponentInChildren<Renderer>();
+                var block = new MaterialPropertyBlock(); block.SetColor("_Color", tint); renderer.SetPropertyBlock(block);
+                obj.transform.rotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360));
+                float life = UnityEngine.Random.Range(.20f, .48f);
                 sparks.Add(new Spark { obj = obj, pos = pos, velocity = UnityEngine.Random.insideUnitCircle * 5, life = life, max = life });
             }
         }
@@ -242,7 +276,7 @@ namespace Scrapshift
             for (int i = sparks.Count - 1; i >= 0; i--)
             {
                 var s = sparks[i]; s.life -= dt; s.pos += s.velocity * dt;
-                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max);
+                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * 2.4f;
                 if (s.life <= 0) { Destroy(s.obj); sparks.RemoveAt(i); }
             }
         }
@@ -253,7 +287,7 @@ namespace Scrapshift
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();
             foreach (var s in sparks) Destroy(s.obj); sparks.Clear();
         }
-        void SelectUpgrade(int choice) { Rules.Choose(choice); invulnerable = 1; player.SetActive(true); Play(upgradeSound, .5f); }
+        void SelectUpgrade(int choice) { Rules.Choose(choice); FloatText(playerPos, "UPGRADED!", mint, true); Burst(playerPos, 24, mint); invulnerable = 1; player.SetActive(true); Play(upgradeSound, .5f); }
         void ToggleSound() { muted = !muted; PlayerPrefs.SetInt("muted", muted ? 1 : 0); }
         void Play(AudioClip clip, float volume) { if (!muted && audioSource != null) audioSource.PlayOneShot(clip, volume); }
         static AudioClip Tone(float frequency, float duration)
@@ -261,105 +295,6 @@ namespace Scrapshift
             const int rate = 22050; var samples = new float[(int)(rate * duration)];
             for (int i = 0; i < samples.Length; i++) { float t = (float)i / rate; samples[i] = Mathf.Sin(2 * Mathf.PI * frequency * t * (1 - t * 1.2f)) * Mathf.Sin(Mathf.PI * i / samples.Length) * .3f; }
             var clip = AudioClip.Create("Synth " + frequency, samples.Length, 1, rate, false); clip.SetData(samples, 0); return clip;
-        }
-
-        void EnsureStyles()
-        {
-            if (body != null) return;
-            body = Style(20, Color.white); tiny = Style(13, new Color(.57f, .66f, .73f));
-            heading = Style(28, Color.white, FontStyle.Bold); title = Style(76, Color.white, FontStyle.Bold);
-            number = Style(48, mint, FontStyle.Bold);
-            button = Style(18, mint, FontStyle.Bold); button.alignment = TextAnchor.MiddleCenter;
-        }
-        static GUIStyle Style(int size, Color color, FontStyle weight = FontStyle.Normal)
-        {
-            return new GUIStyle(GUI.skin.label) { fontSize = size, fontStyle = weight, normal = { textColor = color }, wordWrap = true };
-        }
-        static void Box(Rect rect, Color color) { var old = GUI.color; GUI.color = color; GUI.DrawTexture(rect, Texture2D.whiteTexture); GUI.color = old; }
-        void Text(float x, float y, float w, float h, string text, GUIStyle style) => GUI.Label(new Rect(x, y, w, h), text, style);
-        bool Button(Rect r, string label)
-        {
-            bool hover = r.Contains(Event.current.mousePosition);
-            Box(r, hover ? new Color(.15f, .29f, .28f) : new Color(.10f, .18f, .20f));
-            Box(new Rect(r.x, r.y, 3, r.height), mint);
-            return GUI.Button(r, label, button);
-        }
-        void OnGUI()
-        {
-            EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
-            GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440 * scale) / 2, (Screen.height - 900 * scale) / 2), Quaternion.identity, Vector3.one * scale);
-            Box(new Rect(0, 0, 1440, 112), new Color(.025f, .045f, .065f, .96f));
-            Text(42, 23, 300, 34, "SCRAPSHIFT", heading); Text(44, 67, 350, 24, "SALVAGE DIVISION  /  DECK 07", tiny);
-            if (Rules.Phase != RunPhase.Title)
-            {
-                Text(500, 22, 200, 24, "HULL INTEGRITY", tiny);
-                Box(new Rect(500, 55, 280, 12), new Color(.18f, .23f, .27f));
-                Box(new Rect(500, 55, 280 * Rules.Health / Rules.MaxHealth, 12), Rules.Health > 30 ? mint : coral);
-                Text(500, 76, 280, 25, $"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}     LEVEL {Rules.Level:00}", tiny);
-                Text(890, 23, 200, 24, $"WAVE {Rules.Wave:00} / 05", tiny);
-                Text(885, 46, 160, 60, $"{Mathf.CeilToInt(Rules.Remaining):00}", number);
-                Text(1160, 23, 240, 24, "DRONES SCRAPPED", tiny); Text(1155, 46, 200, 60, Rules.Kills.ToString("000"), number);
-            }
-            Box(new Rect(0, 805, 1440, 95), new Color(.025f, .045f, .065f, .96f));
-            Text(44, 824, 720, 25, "WASD / ARROWS   MOVE       ESC   PAUSE       M   SOUND", tiny);
-            Text(44, 853, 820, 25, "RIVET GUN" + (Rules.OrbitUnlocked ? "   +   ORBIT BLADES" : "") + (Rules.PulseUnlocked ? "   +   PULSE CORE" : ""), body);
-            Text(1070, 824, 325, 25, "RECOVER SCRAP TO UPGRADE", tiny);
-            Box(new Rect(1070, 860, 320, 6), new Color(.18f, .23f, .27f));
-            Box(new Rect(1070, 860, 320 * Mathf.Clamp01((float)Rules.Scrap / Rules.NextLevel), 6), amber);
-            if (Rules.Phase == RunPhase.Title) TitleUI();
-            else if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
-            else if (Rules.Phase == RunPhase.Paused) PauseUI();
-            else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
-            if (smoke) Text(44, 118, 1000, 25, "AUTOMATED RUNTIME SMOKE  /  scripted movement", tiny);
-        }
-        void Panel(float x, float y, float w, float h)
-        {
-            Box(new Rect(0, 112, 1440, 693), new Color(.015f, .03f, .045f, .65f));
-            Box(new Rect(x, y, w, h), new Color(.035f, .065f, .09f, .98f));
-            Box(new Rect(x, y, w, 3), mint);
-        }
-        void TitleUI()
-        {
-            Panel(110, 190, 770, 485);
-            Text(155, 226, 680, 30, "ONE BOT. ONE SHIFT. A LOT OF SCRAP.", tiny);
-            Text(148, 275, 690, 95, "SCRAPSHIFT", title);
-            Text(155, 387, 630, 88, "The ship is overrun. Keep moving, salvage fallen drones, and turn spare parts into firepower.", body);
-            Text(155, 487, 640, 48, "Survive five 60-second waves. Your weapons fire automatically.", tiny);
-            if (Button(new Rect(155, 560, 315, 62), "START SHIFT   [ENTER]")) Begin();
-            Text(505, 568, 300, 45, "WASD / ARROWS TO MOVE\nCOLLECT THE GOLD SCRAP", tiny);
-        }
-        void UpgradeUI()
-        {
-            Panel(145, 220, 1150, 460);
-            Text(190, 249, 950, 40, Rules.WaveUpgrade ? "SECTOR CLEAR. REFIT YOUR BOT." : "SALVAGE SECURED. CHOOSE AN UPGRADE.", heading);
-            Text(190, 300, 950, 30, Rules.WaveUpgrade ? "The next wave brings stronger drones. Repair +15 after your choice." : "Simulation paused. Choose one upgrade, then get back to work.", tiny);
-            string first = !Rules.OrbitUnlocked ? "ORBIT BLADES" : !Rules.PulseUnlocked ? "PULSE CORE" : "HOT RIVETS";
-            string detail = !Rules.OrbitUnlocked ? "Two blades orbit your bot. Cut through nearby drones." : !Rules.PulseUnlocked ? "A periodic shockwave damages every drone nearby." : "Increase all weapon damage by 25 percentage points.";
-            string[] names = { first, "OVERCLOCK", "FIELD REPAIR" };
-            string[] details = { detail, "+18% base firing rate.\n+0.25 movement speed.", "+15 maximum hull. Repair 40.\nIncrease scrap pickup range." };
-            for (int i = 0; i < 3; i++)
-            {
-                float x = 190 + i * 355; Box(new Rect(x, 353, 330, 210), new Color(.065f, .105f, .14f));
-                Text(x + 20, 374, 290, 45, names[i], body); Text(x + 20, 431, 290, 100, details[i], body);
-                if (Button(new Rect(x, 582, 330, 55), $"INSTALL  [{i + 1}]")) SelectUpgrade(i);
-            }
-        }
-        void PauseUI()
-        {
-            Panel(465, 220, 510, 440); Text(510, 265, 430, 55, "SHIFT PAUSED", heading);
-            if (Button(new Rect(510, 350, 420, 55), "RESUME   [ESC]")) Rules.Pause();
-            if (Button(new Rect(510, 425, 420, 55), muted ? "SOUND: OFF" : "SOUND: ON")) ToggleSound();
-            if (Button(new Rect(510, 500, 420, 55), reducedMotion ? "REDUCED MOTION: ON" : "REDUCED MOTION: OFF"))
-            { reducedMotion = !reducedMotion; PlayerPrefs.SetInt("reducedMotion", reducedMotion ? 1 : 0); }
-            Text(510, 580, 420, 35, "Your wave timer is stopped.", tiny);
-        }
-        void EndUI()
-        {
-            Panel(365, 225, 710, 440); bool won = Rules.Phase == RunPhase.Won;
-            Text(410, 265, 630, 60, won ? "SHIFT COMPLETE" : "BOT OFFLINE", heading);
-            Text(410, 342, 620, 100, won ? "Deck secured. Your little repair bot made it through the entire shift." : "Too many dents. Keep moving and collect scrap early to unlock another weapon.", body);
-            Text(410, 456, 620, 50, $"{Rules.Kills} DRONES SCRAPPED    /    {Rules.UpgradeCount} UPGRADES", tiny);
-            if (Button(new Rect(410, 544, 620, 62), "ANOTHER SHIFT   [ENTER]")) Begin();
         }
 
         [Serializable] sealed class SmokeReport
