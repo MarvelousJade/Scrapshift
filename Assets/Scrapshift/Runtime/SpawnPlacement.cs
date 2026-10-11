@@ -10,16 +10,16 @@ namespace Scrapshift
         static Vector2 InRect(System.Random random, Vector2 center, Vector2 half) => center +
             new Vector2(Range(random, -half.x, half.x), Range(random, -half.y, half.y));
 
-        // Retain formation/edge constraints even when the requested clearance is impossible.
+        // entity_spawner.gd: retry and relax by five source pixels down to 25.
         static Vector2 Safe(Func<Vector2> sample, Vector2 player, float distance)
         {
-            Vector2 best = sample(); float bestDistance = (best - player).sqrMagnitude;
-            for (int i = 0; i < 128 && bestDistance < distance * distance; i++)
+            Vector2 candidate = sample();
+            while ((candidate-player).sqrMagnitude < distance*distance)
             {
-                Vector2 candidate = sample(); float d = (candidate - player).sqrMagnitude;
-                if (d > bestDistance) { best = candidate; bestDistance = d; }
+                candidate = sample(); distance = Mathf.Max(.25f, distance-.05f);
+                if(distance <= .25f) break;
             }
-            return best;
+            return candidate;
         }
 
         public static Vector2 Anchor(SpawnGroup group, Vector2 player, System.Random random)
@@ -31,7 +31,7 @@ namespace Scrapshift
 
         public static Vector2 Position(SpawnGroup group, UnitEntry unit, Vector2 anchor, Vector2 player, System.Random random)
         {
-            float inset = Mathf.Clamp(group.inset, 0, Bounds.y - .1f);
+            float inset = group.edge ? .64f : Mathf.Clamp(group.inset, 0, Bounds.y - .1f);
             Vector2 half = Bounds - Vector2.one * inset;
             Func<Vector2> sample = () =>
             {
@@ -48,8 +48,9 @@ namespace Scrapshift
                     return p;
                 }
                 if (group.area < 0) return InRect(random, Vector2.zero, half);
-                Vector2 point = InRect(random, anchor, Vector2.one * group.area * .5f);
-                return new Vector2(Mathf.Clamp(point.x, -half.x, half.x), Mathf.Clamp(point.y, -half.y, half.y));
+                Vector2 margin = Bounds - Vector2.one * (.64f + group.area * .5f);
+                Vector2 center = new Vector2(Mathf.Clamp(anchor.x,-margin.x,margin.x),Mathf.Clamp(anchor.y,-margin.y,margin.y));
+                return InRect(random, center, Vector2.one * group.area * .5f);
             };
             return Safe(sample, player, 3 + Mathf.Max(0, unit.distance));
         }

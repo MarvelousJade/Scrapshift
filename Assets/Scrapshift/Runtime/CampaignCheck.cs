@@ -20,7 +20,7 @@ namespace Scrapshift
         [Serializable] sealed class CampaignReport
         {
             public string status,scope,phase;
-            public int completedWaves,purchases,peakEnemies,charges,rangedAttacks;
+            public int completedWaves,purchases,peakEnemies,charges,rangedAttacks,bossPhaseChanges;
             public float wallSeconds;
             public string[] enemyIds;
             public WaveCheck[] waves;
@@ -46,11 +46,11 @@ namespace Scrapshift
             if(campaignFinished)
             {
                 if(Time.realtimeSinceStartup-campaignFinishAt<1)return;
-                bool passed=Rules.Phase==RunPhase.Won&&campaignCompleted==20&&peakEnemies<=100&&campaignPurchases>0;
+                bool passed=Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0;
                 var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),
                     scope="Accelerated Windows integration fixture: eight 50ms simulation steps per rendered frame, seeded spawn placement, scripted movement, supplied six tier-2 weapons, invulnerability and mute. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Not normal-run balance, performance benchmarking or a human playthrough.",
                     completedWaves=campaignCompleted,purchases=campaignPurchases,peakEnemies=peakEnemies,
-                    charges=chargeReleases,rangedAttacks=rangedReleases,wallSeconds=Time.realtimeSinceStartup-campaignStart,
+                    charges=chargeReleases,rangedAttacks=rangedReleases,bossPhaseChanges=bossMutations,wallSeconds=Time.realtimeSinceStartup-campaignStart,
                     enemyIds=campaignEnemyIds.OrderBy(x=>x).ToArray(),waves=campaignWaves.ToArray() };
                 File.WriteAllText(Path.Combine(campaignPath,"campaign-check.json"),JsonUtility.ToJson(report,true));
                 Application.Quit(passed?0:1);enabled=false;return;

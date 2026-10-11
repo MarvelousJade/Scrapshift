@@ -9,9 +9,9 @@ namespace Scrapshift.Tests
 {
     public sealed class EnemyCombatTests
     {
-        [Test] public void ChargeLocksDirectionAndHasDodgeablePreparationAndRecovery()
+        [Test] public void ChargeLocksDirectionAndReturnsToMovementWithoutInventedRecovery()
         {
-            var attack = new EnemyAttack(true, 1, 0);
+            var attack = new EnemyAttack(EnemyBehavior.For("bruiser"),()=>0);
             Assert.IsFalse(attack.Step(.01f, Vector2.right, true));
             Assert.AreEqual(AttackPhase.Windup, attack.Phase);
             Assert.IsFalse(attack.Step(.39f, Vector2.up, true));
@@ -19,21 +19,20 @@ namespace Scrapshift.Tests
             Assert.AreEqual(Vector2.right, attack.Direction);
             Assert.AreEqual(AttackPhase.Active, attack.Phase);
             Assert.IsFalse(attack.Step(.75f, Vector2.up, true));
-            Assert.AreEqual(AttackPhase.Recovery, attack.Phase);
-            attack.Step(.18f, Vector2.up, true);
+            
             Assert.AreEqual(AttackPhase.Approach, attack.Phase);
         }
 
         [Test] public void ShooterWarnsBeforeSingleReleaseAndCannotChargeOutOfRange()
         {
-            var attack = new EnemyAttack(false, 2, 0);
+            var attack = new EnemyAttack(EnemyBehavior.For("spitter"),()=>0);
             attack.Step(3, Vector2.right, false);
             Assert.AreEqual(AttackPhase.Approach, attack.Phase);
             attack.Step(.01f, Vector2.left, true);
             Assert.IsFalse(attack.Step(.79f, Vector2.right, true));
             Assert.IsFalse(attack.Step(0, Vector2.right, true));
             Assert.IsTrue(attack.Step(.01f, Vector2.right, true));
-            Assert.AreEqual(Vector2.left, attack.Direction);
+            Assert.AreEqual(Vector2.right, attack.Direction);
             Assert.IsFalse(attack.Step(.01f, Vector2.right, true));
         }
 
@@ -57,8 +56,8 @@ namespace Scrapshift.Tests
             {
                 Vector2 player = new Vector2(9, 3);
                 var pos = SpawnPlacement.Position(group,unit,Vector2.zero,player,random);
-                Assert.IsTrue(Mathf.Abs(Mathf.Abs(pos.x)-10)<.001f || Mathf.Abs(Mathf.Abs(pos.y)-4.7f)<.001f);
-                Assert.GreaterOrEqual(Vector2.Distance(pos,player),5);
+                Assert.IsTrue(Mathf.Abs(Mathf.Abs(pos.x)-9.56f)<.001f || Mathf.Abs(Mathf.Abs(pos.y)-4.26f)<.001f);
+                Assert.Greater(Vector2.Distance(pos,player),.25f);
             }
         }
 
@@ -72,9 +71,9 @@ namespace Scrapshift.Tests
                 var pos=SpawnPlacement.Position(group,new UnitEntry(),anchor,Vector2.zero,random);
                 Assert.LessOrEqual(Mathf.Abs(pos.x-anchor.x),1.001f);
                 Assert.LessOrEqual(Mathf.Abs(pos.y-anchor.y),1.001f);
-                Assert.GreaterOrEqual(pos.magnitude,3);
+                Assert.Greater(pos.magnitude,.25f);
             }
-            // Impossible safe distance is a bounded best-effort search, preserving the actual region.
+            // Impossible safe distance progressively relaxes, preserving the actual region.
             var constrained=SpawnPlacement.Position(group,new UnitEntry { distance=100 },anchor,anchor,random);
             Assert.LessOrEqual(Mathf.Abs(constrained.x-anchor.x),1.001f);
         }

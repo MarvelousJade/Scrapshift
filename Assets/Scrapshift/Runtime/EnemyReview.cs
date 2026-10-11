@@ -10,12 +10,12 @@ namespace Scrapshift
         string enemyReviewPath;
         float enemyReviewStart;
         int enemyReviewStep;
-        bool enemyWarnSeen, chargeWindupSeen, rangedWindupSeen, recoverySeen, hostileSeen;
+        bool enemyWarnSeen, chargeWindupSeen, rangedWindupSeen, dashSeen, hostileSeen;
 
         [Serializable] sealed class EnemyReviewReport
         {
             public string status, scope;
-            public bool warning, chargeWindup, rangedWindup, recovery, hostileProjectile;
+            public bool warning, chargeWindup, rangedWindup, dash, hostileProjectile;
             public int charges, rangedAttacks, kills;
         }
 
@@ -45,7 +45,7 @@ namespace Scrapshift
                     bool winding = enemy.attack.Phase == AttackPhase.Windup;
                     chargeWindupSeen |= winding && enemy.type.role == "Charge";
                     rangedWindupSeen |= winding && enemy.type.role == "Shooter";
-                    recoverySeen |= enemy.attack.Phase == AttackPhase.Recovery;
+                    dashSeen |= enemy.attack.Phase == AttackPhase.Active;
                 }
             }
             hostileSeen |= shots.Exists(s => s.hostile);
@@ -66,11 +66,11 @@ namespace Scrapshift
             if (enemyReviewStep == 5 && t > 9)
             { ScreenCapture.CaptureScreenshot(Path.Combine(enemyReviewPath,"combat.png")); enemyReviewStep++; }
             if (t < 12) return;
-            bool passed = enemyWarnSeen && chargeWindupSeen && rangedWindupSeen && recoverySeen && hostileSeen &&
+            bool passed = enemyWarnSeen && chargeWindupSeen && rangedWindupSeen && dashSeen && hostileSeen &&
                 chargeReleases > 0 && rangedReleases > 0 && Rules.Kills > 0 && enemyReviewStep == 6;
             var report = new EnemyReviewReport { status=passed?"Passed":"Failed",
                 scope="Staged attack fixture: fixed enemies, initially unarmed stationary player, restored health, supplied six-weapon loadout after seven seconds. No balance/manual-input claim.",
-                warning=enemyWarnSeen,chargeWindup=chargeWindupSeen,rangedWindup=rangedWindupSeen,recovery=recoverySeen,
+                warning=enemyWarnSeen,chargeWindup=chargeWindupSeen,rangedWindup=rangedWindupSeen,dash=dashSeen,
                 hostileProjectile=hostileSeen,charges=chargeReleases,rangedAttacks=rangedReleases,kills=Rules.Kills };
             File.WriteAllText(Path.Combine(enemyReviewPath,"enemy-review.json"),JsonUtility.ToJson(report,true));
             Application.Quit(passed?0:1); enabled=false;
