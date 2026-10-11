@@ -1,12 +1,18 @@
 """Package the Windows player and verify every archived file against this build."""
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import shutil
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-build = ROOT / "Builds/Windows"
+parser = argparse.ArgumentParser()
+parser.add_argument("--build", default="Builds/Windows", help="Player folder relative to the repository")
+args = parser.parse_args()
+build = (ROOT / args.build).resolve()
+if not build.is_relative_to(ROOT / "Builds"):
+    raise SystemExit("Player folder must be inside Builds.")
 archive = ROOT / "Builds/Scrapshift-Windows.zip"
 if not (build / "Scrapshift.exe").is_file():
     raise SystemExit("Build the player first.")
@@ -23,6 +29,7 @@ with zipfile.ZipFile(archive) as bundle:
             raise SystemExit(f"Archive differs from build: {file}")
 report = {
     "archive": archive.relative_to(ROOT).as_posix(),
+    "sourceBuild": build.relative_to(ROOT).as_posix(),
     "bytes": archive.stat().st_size,
     "sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
     "entries": len(files),

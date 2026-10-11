@@ -77,8 +77,8 @@ namespace Scrapshift
             Text(404,243,450,66,item.title,heading);
             Text(404,315,450,36,item.tier==4?"LEGENDARY":item.tier==3?"RARE":item.tier==2?"UNCOMMON":"COMMON",tiny);
             DrawOfferDetail(new ShopOffer {item=item},256,418,586);
-            if(Button(new Rect(212,688,330,64),"TAKE   [ENTER]"))ResolveCrate(true);
-            if(Button(new Rect(570,688,330,64),$"RECYCLE +{Rules.CrateRecycleValue}   [X]"))ResolveCrate(false);
+            if(Button(new Rect(212,688,330,64),"Take"))ResolveCrate(true);
+            if(Button(new Rect(570,688,330,64),$"Recycle +{Rules.CrateRecycleValue}"))ResolveCrate(false);
             Text(190,785,735,54,$"Free item or materials. Levels follow crates, then the shop.\nMaterials: {Rules.Scrap}",center);
             DrawSetTooltip();
         }

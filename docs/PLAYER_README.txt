@@ -11,15 +11,15 @@ Shop: buy items/weapons, lock offers, combine matching weapons, recycle.
 R: paid reroll. Six equipped weapons maximum.
 Eight item types, six weapon families, up to six floating weapons.
 Gun / Precise / Primitive set bonuses count duplicates, regardless of tier.
-Start -> choose Rookie, Veteran or Punk (cosmetic; same stats) -> starting weapon -> Start Run.
+Start -> choose Rookie, Veteran or Punk (cosmetic; same stats) -> starting weapon -> Danger 0.
 New runs enter with a 1.2-second parachute landing before the wave timer starts.
 Options: turn Reduced Motion off to see the full descent and squash animation.
-The player has a smooth shell, swappable facial details and widely spaced, outward-curved tiny legs.
+The player has a smooth shell, swappable facial details and widely spaced, rounded silver boat-shaped tiny legs.
 Reference-sized arena with soft curved earth edges, small ground details, a following camera and flat oval shadows.
 Floating weapons rest toward your facing direction; rear slots sit behind the body.
 Clean items alter visible features; enemies spring without arms or legs.
 Watch enemy windups: amber direction cues precede charges and ranged shots.
-Survive twenty waves. The pause menu includes volume and reduced motion.
+Survive twenty waves. The pause menu shows weapons, item effects, stats and the wave timeline. Audio and reduced motion are in Options.
 The ending shows the attacker/result, then stats and gear. Restart keeps your starting selection; New Run returns to selection.
 
 Original AI-generated sprites and a procedural salvage yard;

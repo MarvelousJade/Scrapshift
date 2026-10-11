@@ -53,7 +53,7 @@ namespace Scrapshift.Tests
             Assert.AreEqual(3,animator.looks.Select(l=>l.layers.Single(a=>a.slot=="eyes").image).Distinct().Count());
             Assert.AreEqual("player-parts_00",animator.bodyView.sprite.name);
             Assert.AreEqual("player-leg_00",animator.footSprite.name);
-            Assert.Less(animator.footSprite.bounds.size.x,animator.footSprite.bounds.size.y,"Leg must be a vertical tapered piece, not a wide shoe.");
+            Assert.Greater(animator.footSprite.bounds.size.x,animator.footSprite.bounds.size.y,"Rounded boat limb must be wider than it is tall.");
         }
         [Test] public void CosmeticResolutionDoesNotChangeInventoryOrStats()
         {
@@ -74,7 +74,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void ModularAtlasSpritesHaveTransparentBorders()
         {
-            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v2"})
+            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v3"})
             {
                 string path=ContentBuilder.ArtRoot+"/"+sheet+".png";
                 var source=new Texture2D(2,2);

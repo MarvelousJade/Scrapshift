@@ -17,7 +17,7 @@ namespace Scrapshift
 
         void StartSelectedRun()
         {
-            Begin();Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon(startingWeapons[startingWeapon],1));SyncEquipment();
+            pauseOptions=false;Begin();Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon(startingWeapons[startingWeapon],1));SyncEquipment();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             gameCamera.transform.position=Vector3.back*20;PoseArrival(0);
@@ -28,7 +28,8 @@ namespace Scrapshift
             player.SetActive(true);playerAnimation.Tick(Vector2.zero,0,true);
             player.transform.position=(Vector3)(playerPos+offset)+Vector3.back;
             var scale=reducedMotion?Vector2.one:ArrivalMotion.BodyScale(time);
-            player.transform.localScale=new Vector3(scale.x,scale.y,1)*ActorPresentation.PlayerScale;
+            player.transform.localScale=Vector3.one*ActorPresentation.PlayerScale;
+            playerAnimation.BodyRoot.localScale=new Vector3(scale.x,scale.y,1);
             playerShadow.Place(playerPos,ActorPresentation.PlayerScale,Mathf.InverseLerp(.95f,1.1f,time)*.392157f);
             UpdateEquipment(0);
             foreach(var view in equipmentViews)if(view!=null)view.transform.position+=(Vector3)offset;
@@ -58,11 +59,10 @@ namespace Scrapshift
         static void RoundedBox(Rect r,Color color,float radius=12) => GUI.DrawTexture(r,Texture2D.whiteTexture,ScaleMode.StretchToFill,true,0,color,0,radius);
         bool MenuButton(Rect r,string label,bool selected=false)
         {
-            bool hover=r.Contains(Event.current.mousePosition);
-            RoundedBox(new Rect(r.x+3,r.y+5,r.width,r.height),new Color(0,0,0,.45f));
-            RoundedBox(r,selected?paper:ink);
-            RoundedBox(new Rect(r.x+3,r.y+3,r.width-6,r.height-6),hover?new Color(.27f,.25f,.21f):panelColor,9);
-            return GUI.Button(r,label,center);
+            bool lit=selected||r.Contains(Event.current.mousePosition);
+            RoundedBox(r,lit?paper:panelColor,9);
+            var labelStyle=new GUIStyle(center){fontSize=27};labelStyle.normal.textColor=lit?ink:paper;
+            return GUI.Button(r,label,labelStyle);
         }
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false)
         {
@@ -81,7 +81,7 @@ namespace Scrapshift
         }
         void SelectionUI()
         {
-            Overlay();
+            MenuBackdrop();
             if(menuPage==4)
             {
                 Text(420,100,600,75,"Options",new GUIStyle(title){fontSize=58,alignment=TextAnchor.MiddleCenter});
@@ -91,74 +91,96 @@ namespace Scrapshift
                 float volume=GUI.HorizontalSlider(new Rect(490,543,460,30),sound.Volume,0,1);if(Mathf.Abs(volume-sound.Volume)>.001f)sound.SetVolume(volume);
                 if(MenuButton(new Rect(50,805,235,55),"Back"))menuPage=0;return;
             }
-            Text(200,40,1040,85,menuPage==1?"Character Selection":menuPage==2?"Weapon Selection":"Run Setup",new GUIStyle(title){fontSize=56,alignment=TextAnchor.MiddleCenter});
-            float cardX=menuPage==1?500:310;
-            RoundedBox(new Rect(cardX,160,440,410),panelColor);
-            Text(cardX+20,182,400,45,playerAnimation.Look?.name??"Scavenger",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
-            Portrait(new Vector2(cardX+220,345),140,playerAnimation.Look);
-            Text(cardX+30,467,380,80,"10 Max HP\nCosmetic look · same starting stats",center);
-            if(menuPage>=2)
-            {
-                var w=catalog.Weapon(startingWeapons[startingWeapon],1);
-                RoundedBox(new Rect(790,160,380,410),panelColor);Text(815,182,330,50,w.id=="smg"?"SMG":w.title,new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
-                DrawIcon(w.image,new Rect(890,259,180,125));Text(825,419,310,120,w.Detail,center);
-            }
+            OutlinedText(250,48,940,78,menuPage==1?"Character Selection":menuPage==2?"Weapon Selection":"Difficulty Selection",new GUIStyle(title){fontSize=49,alignment=TextAnchor.MiddleCenter});
+            if(MenuButton(new Rect(24,24,178,44),"Back"))menuPage--;
+            float left=menuPage==1?335:menuPage==3?80:230;
+            float cardWidth=menuPage==3?530:570;
+            RoundedBox(new Rect(left,155,cardWidth,420),new Color(.16f,.15f,.13f,.82f));
+            Text(left+20,165,cardWidth-40,58,playerAnimation.Look?.name??"Scavenger",new GUIStyle(heading){fontSize=40,alignment=TextAnchor.MiddleCenter});
+            Frame(new Rect(left+20,245,204,245),new Color(.32f,.29f,.25f));
+            Portrait(new Vector2(left+122,368),100,playerAnimation.Look);
+            DrawStatIcon("max_hp",new Rect(left+246,327,25,25));
+            Text(left+282,324,260,35,"10 Max HP",body);
+            Text(left+248,369,298,100,"Same starting stats\nChoose your appearance",tiny);
             if(menuPage==1)
             {
-                var looks=playerAnimation.looks;float first=720-looks.Length*53;
-                for(int i=0;i<looks.Length;i++){Rect r=new Rect(first+i*106,620,94,100);if(MenuButton(r,"",playerAnimation.lookIndex==i)){ChangeLook(i-playerAnimation.lookIndex);}Portrait(r.center+Vector2.up*3,61,looks[i]);}
-            }
-            else if(menuPage==2)
-            {
-                for(int i=0;i<startingWeapons.Length;i++){Rect r=new Rect(390+i*110,620,98,100);if(MenuButton(r,"",i==startingWeapon))startingWeapon=i;DrawIcon(catalog.Weapon(startingWeapons[i],1).image,new Rect(r.x+10,r.y+15,78,70));}
+                RoundedBox(new Rect(935,155,230,420),panelColor);
+                Text(955,184,190,40,"Run options",heading);
+                Text(957,265,185,150,"Single player\n20 waves\nThe salvage yard",body);
+                var looks=playerAnimation.looks;float first=720-looks.Length*42;
+                for(int i=0;i<looks.Length;i++)
+                {
+                    Rect r=new Rect(first+i*84,642,74,78);
+                    if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)ChangeLook(i-playerAnimation.lookIndex);
+                    if(MenuButton(r,"",playerAnimation.lookIndex==i)){ChangeLook(i-playerAnimation.lookIndex);ConfirmMenu();}
+                    Portrait(r.center,46,looks[i]);
+                }
             }
             else
             {
-                RoundedBox(new Rect(390,610,660,120),panelColor);Text(415,625,610,40,"Standard · 20 Waves",heading);Text(415,677,610,35,"Auto aim and fire · WASD / arrows to move",body);
+                var w=catalog.Weapon(startingWeapons[startingWeapon],1);
+                float wx=menuPage==3?630:822;
+                RoundedBox(new Rect(wx,155,330,420),panelColor);
+                Text(wx+20,174,290,47,w.id=="smg"?"SMG":w.title,heading);
+                DrawIcon(w.image,new Rect(wx+20,246,86,83));
+                Text(wx+123,252,185,75,WeaponSets.For(w)?.Name??"Weapon",body);
+                DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290);
+                if(menuPage==2)
+                {
+                    for(int i=0;i<startingWeapons.Length;i++)
+                    {
+                        Rect r=new Rect(468+i*84,642,74,78);
+                        if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)startingWeapon=i;
+                        if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
+                        DrawIcon(catalog.Weapon(startingWeapons[i],1).image,new Rect(r.x+9,r.y+9,56,60));
+                    }
+                }
+                else
+                {
+                    RoundedBox(new Rect(980,155,370,420),panelColor);
+                    Text(1000,183,330,45,"Danger 0",heading);
+                    Text(1000,270,330,110,"No modifiers\n20 waves",body);
+                    if(MenuButton(new Rect(678,633,84,84),"0",true))StartSelectedRun();
+                    Text(460,724,520,36,"Standard enemies � 20 waves",center);
+                }
             }
-            if(MenuButton(new Rect(50,805,235,55),"Back"))menuPage--;
-            if(MenuButton(new Rect(1080,805,310,55),menuPage==3?"Start Run  [Enter]":"Continue  [Enter]"))ConfirmMenu();
         }
         void ReferenceTitleUI()
         {
             if(menuPage!=0){SelectionUI();return;}
-            // Background uses our own enemies as a subdued illustrated crowd.
-            var old=GUI.color;GUI.color=new Color(.4f,.36f,.29f,.62f);
-            for(int i=0;i<7;i++)DrawIcon(catalog.data.enemies[i].image,new Rect(550+i%4*220,430+i/4*170,235,240));GUI.color=old;
+            Box(new Rect(0,0,1440,900),new Color(.25f,.24f,.22f));
+            var old=GUI.color;GUI.color=new Color(.65f,.6f,.53f,.28f);
+            for(int i=0;i<20;i++)DrawIcon(catalog.data.enemies[i%catalog.data.enemies.Length].image,new Rect((i%5)*320-90+(i/5%2)*65,(i/5)*260-55,240,235));
+            GUI.color=old;
             var brand=new GUIStyle(title){fontSize=142,alignment=TextAnchor.MiddleCenter};
             OutlinedText(125,72,1190,175,"SCRAPSHIFT",brand);
             Text(300,245,840,42,"THE SALVAGE YARD",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
-            Portrait(new Vector2(820,526+Mathf.Sin(Time.unscaledTime*3)*3),275,playerAnimation.Look);
-            if(MenuButton(new Rect(145,453,345,72),"Start  [Enter]"))menuPage=1;
-            if(MenuButton(new Rect(145,545,345,72),"Options"))menuPage=4;
-            if(MenuButton(new Rect(145,637,345,72),"Quit"))Application.Quit();
-            Text(50,841,1000,32,"WASD / ARROWS  Move      ESC  Pause      M  Sound",tiny);
+            Portrait(new Vector2(780,575+Mathf.Sin(Time.unscaledTime*3)*3),275,playerAnimation.Look);
+            if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
+            if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;
+            if(MenuButton(new Rect(30,705,200,58),"Quit"))Application.Quit();
         }
         void ReferenceEndUI()
         {
-            Overlay();bool won=Rules.Phase==RunPhase.Won;
-            Text(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
+            if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
+            if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
+            else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger 0",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
             if(!endSummary)
             {
-                if(won){Portrait(new Vector2(720,417),160,playerAnimation.Look,true);Text(460,574,520,45,"20 waves survived",center);}
+                if(won){Portrait(new Vector2(720,417),160,playerAnimation.Look,true);Text(460,625,520,45,"20 waves survived",center);}
                 else
                 {
-                    Text(400,295,640,48,lastAttacker==null?"The shift is over":"Killed by: "+lastAttacker.id.Replace('_',' '),center);
-                    if(lastAttacker!=null)DrawIcon(lastAttacker.image,new Rect(630,377,180,180));
+                    Text(400,282,640,82,lastAttacker==null?"The shift is over":"Killed by:\n"+System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(lastAttacker.id.Replace('_',' ')),new GUIStyle(center){fontSize=27});
+                    if(lastAttacker!=null){Frame(new Rect(655,385,130,135),new Color(.28f,.28f,.28f));DrawIcon(lastAttacker.image,new Rect(667,397,106,111));}
                 }
-                if(MenuButton(new Rect(470,668,500,70),"Ok  [Enter]"))endSummary=true;return;
+                if(MenuButton(new Rect(495,550,450,57),"Ok"))endSummary=true;return;
             }
-            RoundedBox(new Rect(55,260,345,450),panelColor);Text(80,280,300,48,"Stats",heading);
-            string[] labels={"Wave","Level","Defeated","Upgrades","Max HP","Damage","Attack speed","Armor"};
-            string[] values={Rules.Wave+" / 20",Rules.Level.ToString(),Rules.Kills.ToString(),Rules.UpgradeCount.ToString(),Rules.MaxHealth.ToString("0"),Rules.Stat("percent_damage")+"%",Rules.Stat("attack_speed")+"%",Rules.Stat("armor").ToString("0")};
-            for(int i=0;i<labels.Length;i++){Text(80,340+i*42,210,37,labels[i],body);Text(281,340+i*42,95,37,values[i],new GUIStyle(body){alignment=TextAnchor.MiddleRight});}
-            RoundedBox(new Rect(427,260,958,450),panelColor);Text(453,280,900,45,$"Weapons ({Rules.Inventory.Count}/6)",heading);
-            for(int i=0;i<Rules.Inventory.Count;i++){var w=Rules.Inventory[i];Rect r=new Rect(457+i*111,345,96,86);Frame(r,TierColor(w.tier),2);Box(new Rect(r.x+3,r.y+3,90,80),panelColor);DrawIcon(w.image,new Rect(r.x+10,r.y+10,76,66));}
-            Text(453,461,900,45,$"Items ({Rules.Items.Count})",heading);
-            summaryScroll=GUI.BeginScrollView(new Rect(453,520,904,163),summaryScroll,new Rect(0,0,875,Mathf.Max(135,Mathf.Ceil(Rules.Items.Count/12f)*66)));
-            for(int i=0;i<Rules.Items.Count;i++){Rect r=new Rect(i%12*72,i/12*66,62,58);RoundedBox(r,new Color(.22f,.21f,.18f),5);DrawIcon(Rules.Items[i].image,new Rect(r.x+7,r.y+4,48,48));}GUI.EndScrollView();
-            for(int i=1;i<=20;i++){Rect r=new Rect(85+(i-1)*65,735,54,37);RoundedBox(r,i<=Rules.Wave?new Color(.45f,.48f,.32f):panelColor,5);Text(r.x,r.y,r.width,r.height,i.ToString(),center);}
-            if(MenuButton(new Rect(130,812,340,60),"Restart  [Enter]"))StartSelectedRun();
+            DrawStatsPanel(true);
+            DrawRunInventory(new Rect(390,104,990,680));
+            Text(1090,123,260,45,"Progress",heading);
+            Text(1090,188,260,80,$"Level {Rules.Level}\n{Rules.Kills} enemies defeated",body);
+            DrawInventoryTooltip();
+            if(MenuButton(new Rect(130,812,340,60),"Restart"))StartSelectedRun();
             if(MenuButton(new Rect(550,812,340,60),"New Run"))ReturnToSelection(1);
             if(MenuButton(new Rect(970,812,340,60),"Main Menu"))ReturnToSelection(0);
         }

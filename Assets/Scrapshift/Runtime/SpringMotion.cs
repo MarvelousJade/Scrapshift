@@ -5,7 +5,7 @@ namespace Scrapshift
     public static class SpringMotion
     {
         public const float IdlePeriod=1, WalkPeriod=.6f;
-        public const float LegSpread=.31f, LegY=-.52f, LegHeight=.22f, LegWidth=1.45f;
+        public const float LegSpread=.31f, LegY=-.52f, LegHeight=.16f, LegWidth=1;
         // Recreates the source's pose landmarks; smooth interpolation is a Unity adaptation.
         public static Vector3 Pose(float time,bool moving,bool reducedMotion=false)
         {

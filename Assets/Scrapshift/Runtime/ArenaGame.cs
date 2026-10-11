@@ -119,7 +119,7 @@ namespace Scrapshift
             if (titleModel != null) titleModel.SetActive(false);
             gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)) { if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else Rules.Pause(); }
+            if (Input.GetKeyDown(KeyCode.Escape)) { if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else Rules.Pause(); }
             if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {

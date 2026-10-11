@@ -226,3 +226,12 @@ Source-observed: idle weapon directions fanned radially and all weapon sprite pi
 Actual validation defect: source synchronization restored an older Deck.unity while YardPresentationV1.txt remained. A subsequent build rendered straight rails and no parachute, even though the fixture reported successful arrival pose/flow checks. A fresh screenshot proved that valid PNGs and numeric animation state did not guarantee the intended asset was present. Migration now checks saved scene objects/references, the EditMode suite checks the authored scene, and runtime checks require authoredScenePresent and canopyInstantiated. Existing generation setup repaired the scene before the new regression executed; no failing test run is claimed. Final verification uses the repaired scene, matching source/validation bytes and inspected runtime images.
 
 Two fixture-only presentation issues were also corrected: saved reduced motion suppressed the tested movement; frozen birth age made the staged enemy look tiny. Production scale was not altered to hide a fixture setup error.
+
+
+## October 11 - incomplete stat icons and animation counted as free time
+
+The stat sidebar resolved images through eight upgrade definitions, but displayed thirteen stats. Five had no icon source. A complete stat presentation lookup now covers all sixteen reference primary rows with existing art plus eight original code glyphs. Serialized completeness is tested independently of the offered upgrades.
+
+Source inspection also found that shooting animation suspends the reference cooldown. Unity counted down both simultaneously and used one recoil shape for all guns, producing a cadence/feel mismatch. WeaponMotion now separates those intervals and covers frame-boundary overshoot, family timings and attack-speed scaling. No failing old test is invented: this was a source-comparison discovery.
+
+Visual verification found the new common Ok button overlapped the victory caption after moving it to match the loss dialog. Moved the victory caption below the button and rerendered. A fixture edit briefly declared four unused local variables instead of including the new UI-phase booleans in its pass condition; build warnings exposed it. Corrected the conjunctions and produced a zero-warning build.

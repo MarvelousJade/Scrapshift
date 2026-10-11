@@ -11,11 +11,11 @@ namespace Scrapshift
         float presentationStart;
         int presentationStage;
         DateTime presentationUtc;
-        readonly string[] presentationCaptures={"title","character-selection","weapon-selection","run-setup","landing-descent","landing-canopy-collapse","landing-touchdown","six-weapons-right","six-weapons-left","arena-edge","run-lost","run-summary","run-won"};
+        readonly string[] presentationCaptures={"title","character-selection","weapon-selection","run-setup","landing-descent","landing-canopy-collapse","landing-touchdown","six-weapons-right","six-weapons-left","arena-edge","run-lost","run-summary","run-won","pause-inventory","upgrade","shop","options","item-found"};
         [Serializable] sealed class PresentationReport
         {
             public string status,scope;
-            public bool capturesVerified,authoredScenePresent,canopyInstantiated,selectedWeaponStarted,landingHeldTimer,landingFinished,restartReset,returnToTitle,twentyWaveWin;
+            public bool capturesVerified,authoredScenePresent,canopyInstantiated,selectedWeaponStarted,landingHeldTimer,landingFinished,restartReset,returnToTitle,twentyWaveWin,inventoryScreen,upgradeScreen,shopScreen,lootScreen;
         }
         PresentationReport presentationReport;
         void BeginPresentationReview(string folder)
@@ -55,10 +55,19 @@ namespace Scrapshift
                     TickArrival(ArrivalMotion.Duration);
                     for(int i=1;i<=20;i++){Rules.Tick(Rules.Remaining);while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);if(Rules.Phase==RunPhase.Shop)Rules.NextWave();}
                     presentationReport.twentyWaveWin=Rules.Phase==RunPhase.Won;break;
+                case 13:
+                    StartSelectedRun();TickArrival(ArrivalMotion.Duration);
+                    foreach(string id in new[]{"smg","double_barrel_shotgun","laser_gun","knife","spear"})Rules.Inventory.Add(catalog.Weapon(id,1));
+                    foreach(string id in new[]{"beanie","glasses","leather_vest"})Rules.Items.Add(Array.Find(catalog.data.items,i=>i.id==id));
+                    SyncEquipment();Rules.Pause();presentationReport.inventoryScreen=Rules.Phase==RunPhase.Paused;break;
+                case 14:Rules.Pause();Rules.Collect(30);Rules.Tick(Rules.Remaining);presentationReport.upgradeScreen=Rules.Phase==RunPhase.Upgrade;break;
+                case 15:while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);presentationReport.shopScreen=Rules.Phase==RunPhase.Shop;break;
+                case 16:ReturnToSelection(0);menuPage=4;break;
+                case 17:StartSelectedRun();TickArrival(ArrivalMotion.Duration);Rules.CollectConsumable(ConsumableKind.Crate);Rules.Tick(Rules.Remaining);presentationReport.lootScreen=Rules.Phase==RunPhase.Loot;break;
                 default:
                     ReturnToSelection(0);presentationReport.returnToTitle=Rules.Phase==RunPhase.Title&&!Arriving&&!endSummary;
                     presentationReport.capturesVerified=CaptureVerification.Fresh(presentationPath,presentationUtc,presentationCaptures);
-                    bool passed=presentationReport.capturesVerified&&presentationReport.authoredScenePresent&&presentationReport.canopyInstantiated&&presentationReport.selectedWeaponStarted&&presentationReport.landingHeldTimer&&presentationReport.landingFinished&&presentationReport.restartReset&&presentationReport.returnToTitle&&presentationReport.twentyWaveWin;
+                    bool passed=presentationReport.capturesVerified&&presentationReport.authoredScenePresent&&presentationReport.canopyInstantiated&&presentationReport.selectedWeaponStarted&&presentationReport.landingHeldTimer&&presentationReport.landingFinished&&presentationReport.restartReset&&presentationReport.returnToTitle&&presentationReport.twentyWaveWin&&presentationReport.inventoryScreen&&presentationReport.upgradeScreen&&presentationReport.shopScreen&&presentationReport.lootScreen;
                     presentationReport.status=passed?"Passed":"Failed";File.WriteAllText(Path.Combine(presentationPath,"presentation.json"),JsonUtility.ToJson(presentationReport,true));
                     Application.Quit(passed?0:1);enabled=false;return;
             }

@@ -96,6 +96,7 @@ namespace Scrapshift
     {
         public CatalogData data;
         public Sprite warning;
+        public Sprite[] extraStatIcons;
         public Sprite[] scrapShapes, muzzleFrames;
         public Sprite repairPickup, shadow;
         public Material spriteMaterial;

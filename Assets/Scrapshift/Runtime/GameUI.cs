@@ -30,9 +30,7 @@ namespace Scrapshift
         }
         bool Button(Rect r, string label)
         {
-            bool hover = r.Contains(Event.current.mousePosition);
-            Frame(r, hover ? paper : new Color(.78f,.78f,.76f));
-            return GUI.Button(r, label, button);
+            return MenuButton(r,label);
         }
         void OnGUI()
         {
@@ -73,17 +71,15 @@ namespace Scrapshift
             Text(24,22,246,34,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
             Frame(new Rect(24,64,246,27),new Color(.25f,.25f,.24f),3);
             Box(new Rect(27,67,240*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),21),new Color(.2f,.8f,.18f));
-            Text(185,65,81,25,$"LV.{Rules.Level}",tiny);
+            Text(179,62,87,29,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
             DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
             OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
             if(Rules.Banked>0)OutlinedText(26,146,235,30,$"Stored  {Rules.Banked}",body);
             if(Rules.PendingCrates>0)OutlinedText(26,180,260,30,$"Item crates  {Rules.PendingCrates}",body);
-            OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",center);
-            var timer=new GUIStyle(number) { alignment=TextAnchor.MiddleCenter };
+            OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",new GUIStyle(center){fontSize=32});
+            var timer=new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter };
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
                 OutlinedText(630,61,180,56,Mathf.CeilToInt(Rules.Remaining).ToString(),timer);
-            Text(1120,23,296,32,$"{Rules.Wave} / {RunRules.WaveCount}",tiny);
-            Text(28,864,900,26,"WASD / ARROWS  Move     ESC  Pause     M  Sound",tiny);
         }
 
         void OutlinedText(float x,float y,float w,float h,string label,GUIStyle style)
@@ -97,7 +93,7 @@ namespace Scrapshift
         void UpgradeUI()
         {
             Overlay(); DrawHud(); DrawStatsPanel();
-            OutlinedText(24,188,1062,64,"Level Up!",new GUIStyle(number) { alignment=TextAnchor.MiddleCenter });
+            OutlinedText(24,188,1062,64,"Level Up!",new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter });
             Text(24,254,1062,32,$"Choose an upgrade  /  {Rules.PendingLevels} remaining",center);
             for(int i=0;i<Rules.Offers.Length;i++)
             {
@@ -110,25 +106,37 @@ namespace Scrapshift
                 Text(x+92,400,144,28,o.Rarity,tiny);
                 var gain=new GUIStyle(body);gain.normal.textColor=new Color(.38f,1,.25f);
                 Text(x+18,466,216,75,o.Detail,gain);
-                if(Button(new Rect(x+16,555,220,48),$"Choose  [{i+1}]"))SelectUpgrade(i);
+                if(Button(new Rect(x+16,555,220,48),"Choose"))SelectUpgrade(i);
             }
             GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(363,664,384,56),$"REROLL  - {Rules.RerollPrice}   [R]"))RerollUpgrade();
+            if(Button(new Rect(363,664,384,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
             GUI.enabled=true;
             DrawSetTooltip();
         }
+        bool pauseOptions;
         void PauseUI()
         {
-            Overlay(); Frame(new Rect(445,200,550,505),panelColor);
-            Text(480,242,480,50,"TAKE A BREATHER",heading);
-            if (Button(new Rect(480,327,480,62),"RESUME   [ESC]")) Rules.Pause();
-            if (Button(new Rect(480,412,480,62),muted ? "SOUND: OFF" : "SOUND: ON")) ToggleSound();
-            if (Button(new Rect(480,497,480,62),reducedMotion ? "REDUCED MOTION: ON" : "REDUCED MOTION: OFF"))
-            { reducedMotion=!reducedMotion; PlayerPrefs.SetInt("reducedMotion", reducedMotion ? 1 : 0); }
-            Text(480,582,480,30,$"EFFECTS VOLUME  {sound.Volume*100:0}%",tiny);
-            float volume=GUI.HorizontalSlider(new Rect(484,624,470,24),sound.Volume,0,1);
-            if (Mathf.Abs(volume-sound.Volume) > .001f) sound.SetVolume(volume);
-            Text(480,657,480,28,"Your wave timer is stopped.",tiny);
+            Overlay();
+            if(pauseOptions)
+            {
+                Text(480,160,480,70,"Options",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
+                if(Button(new Rect(480,290,480,62),muted?"Sound: Off":"Sound: On"))ToggleSound();
+                if(Button(new Rect(480,375,480,62),reducedMotion?"Reduced motion: On":"Reduced motion: Off"))
+                {reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);}
+                Text(480,478,480,35,$"Effects volume  {sound.Volume*100:0}%",center);
+                float volume=GUI.HorizontalSlider(new Rect(484,540,470,24),sound.Volume,0,1);
+                if(Mathf.Abs(volume-sound.Volume)>.001f)sound.SetVolume(volume);
+                if(Button(new Rect(480,620,480,62),"Back"))pauseOptions=false;
+                return;
+            }
+            DrawStatsPanel();
+            if(Button(new Rect(30,270,265,62),"Resume"))Rules.Pause();
+            if(Button(new Rect(30,352,265,62),"Restart"))StartSelectedRun();
+            if(Button(new Rect(30,434,265,62),"Options"))pauseOptions=true;
+            if(Button(new Rect(30,516,265,62),"Main Menu"))ReturnToSelection(0);
+            DrawRunInventory(new Rect(335,150,720,490));
+            DrawWaveTimeline(665);
+            DrawInventoryTooltip();DrawSetTooltip();
         }
         void EndUI() => ReferenceEndUI();
     }

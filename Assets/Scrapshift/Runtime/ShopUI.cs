@@ -15,27 +15,28 @@ namespace Scrapshift
             GUI.DrawTextureWithTexCoords(target, sprite.texture, new Rect(source.x / sprite.texture.width,
                 source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height), true);
         }
-        void DrawStatsPanel()
+        void DrawStatsPanel(bool summary=false)
         {
-            Box(new Rect(1110,24,306,750),new Color(.065f,.06f,.05f,.93f));
+            var previousMatrix=GUI.matrix;
+            if(summary)GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(-1050,80,0));
+            Box(new Rect(1110,24,306,summary?680:770),new Color(.065f,.06f,.05f,.93f));
             Text(1130,43,266,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
             Text(1133,90,250,30,$"Level {Rules.Level}",body);
-            string[] names={"max_hp","hp_regeneration","lifesteal","percent_damage","melee_damage","ranged_damage","attack_speed","crit_chance","armor","dodge","speed","range","harvesting"};
+            var names=StatPresentation.Keys;
             var right=new GUIStyle(body) { alignment=TextAnchor.MiddleRight };
             for(int i=0;i<names.Length;i++)
             {
                 float value=names[i]=="max_hp"?Rules.MaxHealth:Rules.Stat(names[i]);
-                float y=130+i*28;
-                var entry=System.Array.Find(catalog.data.upgrades,u=>u.stat==names[i]);
-                if(entry!=null)DrawIcon(entry.image,new Rect(1125,y+2,24,25));
+                float y=122+i*25;
+                DrawStatIcon(names[i],new Rect(1125,y+2,24,24));
                 var label=new GUIStyle(body) { fontSize=18 };
                 label.normal.textColor=value<0?coral:value>0?new Color(.39f,1,.29f):paper;
                 Text(1157,y,198,32,ItemEntry.StatName(names[i]),label);
                 right.normal.textColor=label.normal.textColor;
-                Text(1351,y,45,32,value.ToString("0"),right);
+                Text(1351,y,49,32,value.ToString("0")+StatPresentation.Unit(names[i]),right);
             }
-            DrawWeaponSets();
-            DrawWardrobePreview();
+            if(!summary){DrawWeaponSets();DrawWardrobePreview();}
+            GUI.matrix=previousMatrix;
         }
 
         void DrawOfferDetail(ShopOffer offer,float x,float y,float width)
@@ -46,7 +47,7 @@ namespace Scrapshift
                 float damage=Mathf.Max(1,w.damage+Rules.Stat(w.melee?"melee_damage":"ranged_damage"))*Rules.DamageScale;
                 string detail=$"Damage: <color=#79FF62>{damage:0.#}</color>"+(w.pellets>1?$" x {w.pellets}":"")+
                     $"\nCritical: x2 ({Mathf.Clamp01(Rules.CritChance+w.crit)*100:0}% chance)"+
-                    $"\nCooldown: {Mathf.Max(.035f,w.interval/Rules.FireRate):0.00}s"+
+                    $"\nCooldown: {Mathf.Max(.035f,w.interval/Rules.FireRate)+WeaponMotion.Duration(w,Rules.FireRate):0.00}s"+
                     $"\nKnockback: {w.knockback:0.#}"+
                     $"\nRange: {Rules.WeaponRange(w):0.0}"+
                     (w.piercing>0?$"\nPiercing: {w.piercing}":"");
@@ -71,7 +72,7 @@ namespace Scrapshift
             DrawIcon(catalog.scrapShapes[0],new Rect(558,34,34,40));
             Text(604,26,170,58,Rules.Scrap.ToString(),number);
             GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(804,27,282,56),$"REROLL - {Rules.RerollPrice}  [R]"))RerollUpgrade();
+            if(Button(new Rect(804,27,282,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
             GUI.enabled=true;
             DrawStatsPanel();
             for(int i=0;i<4;i++)
@@ -131,7 +132,6 @@ namespace Scrapshift
             }
             else Text(556,801,530,52,"Select a weapon to combine or recycle.",tiny);
             if(Button(new Rect(1110,806,306,61),$"Go (Wave {Rules.Wave+1})")) {selectedWeapon=-1;AdvanceWave();}
-            Text(1130,867,266,24,"[ENTER]",center);
             if(!string.IsNullOrEmpty(GUI.tooltip))
             {
                 Frame(new Rect(30,469,335,172),ink);
@@ -144,10 +144,10 @@ namespace Scrapshift
         void DrawWeaponSets()
         {
             hoveredSet=null;
-            Text(1130,508,266,28,"Weapon sets",new GUIStyle(body) {fontSize=20,fontStyle=FontStyle.Bold});
+            Text(1130,531,266,28,"Weapon sets",new GUIStyle(body) {fontSize=20,fontStyle=FontStyle.Bold});
             for(int i=0;i<WeaponSets.All.Count;i++)
             {
-                var set=WeaponSets.All[i];int count=Rules.SetCount(set);float y=540+i*35;
+                var set=WeaponSets.All[i];int count=Rules.SetCount(set);float y=566+i*32;
                 var label=new GUIStyle(tiny);label.normal.textColor=count>=2?new Color(.39f,1,.29f):tiny.normal.textColor;
                 Text(1130,y,127,32,$"{set.Name} {count}/6",label);
                 var effect=new GUIStyle(label) {fontSize=15};
@@ -173,8 +173,8 @@ namespace Scrapshift
 
         void DrawWardrobePreview()
         {
-            Text(1130,654,260,25,"YOUR GEAR",tiny);
-            Vector2 origin = new Vector2(1260, 712);
+            Text(1130,675,260,25,"YOUR GEAR",tiny);
+            Vector2 origin = new Vector2(1260, 735);
             const float scale = 60;
             var worn = AppearanceResolver.Resolve(playerAnimation.Look,Rules.Items);
             foreach (var layer in worn) if (layer.order < 10) DrawAppearance(layer, origin, scale);

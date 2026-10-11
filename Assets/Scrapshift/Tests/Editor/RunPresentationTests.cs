@@ -55,7 +55,7 @@ namespace Scrapshift.Tests
                 var size=animator.leftFoot.transform.localScale;
                 for(int i=0;i<100;i++)animator.Tick(Vector2.left,.1f,false);
                 Assert.AreEqual(size,animator.leftFoot.transform.localScale);
-                Assert.That(size.x/size.y,Is.EqualTo(1.45f).Within(.001));
+                Assert.That(size.x/size.y,Is.EqualTo(SpringMotion.LegWidth).Within(.001));
                 Assert.That(size.y*animator.leftFoot.sprite.bounds.size.y,Is.EqualTo(SpringMotion.LegHeight).Within(.001));
             }
             finally{Object.DestroyImmediate(obj);}

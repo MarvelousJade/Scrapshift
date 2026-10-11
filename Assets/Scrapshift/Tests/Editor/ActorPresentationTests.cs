@@ -14,7 +14,7 @@ namespace Scrapshift.Tests
             float pw=player.bodyView.sprite.bounds.size.x*ActorPresentation.PlayerScale;
             var baby=Catalog.Enemy("baby_alien");float ew=baby.image.bounds.size.x*ActorPresentation.EnemyScale(baby);
             Assert.That(ew/pw,Is.InRange(1.1f,1.4f));
-            Assert.That(AssetDatabase.GetAssetPath(player.footSprite),Does.EndWith("player-leg-v2.png"));
+            Assert.That(AssetDatabase.GetAssetPath(player.footSprite),Does.EndWith("player-leg-v3.png"));
         }
         [Test] public void GroundOvalStaysFlatDuringSquashRotationAndCleansUpWithActor()
         {
@@ -36,6 +36,11 @@ namespace Scrapshift.Tests
             }
             finally {Object.DestroyImmediate(actor);}
             Assert.IsTrue(view==null,"Actor destruction must not leave an orphan shadow.");
+        }
+        [Test] public void EveryDisplayedStatHasAnAssignedBuildAsset()
+        {
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+            foreach(string key in StatPresentation.Keys)Assert.IsNotNull(StatPresentation.Icon(catalog,key),key);
         }
     }
 }

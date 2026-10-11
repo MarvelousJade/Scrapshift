@@ -212,3 +212,10 @@ A second concrete debugging story: hidden Unity runs completed simulation but co
 Study the stale-scene incident in yard-and-run-presentation.md. A migration marker described work that had happened earlier, but synchronization had replaced the actual scene. The runtime fixture checked animation state and fresh screenshots, yet initially missed the absent canopy. Inspection caught it; the fix checked the real serialized references, guarded migration skipping with those checks and verified the instantiated object at runtime. Discuss the difference between a completed-step marker and evidence that the current output is correct.
 
 The visual comparison also illustrates scope control: source-grounded mounts/timings, original art, a small supported selection catalog, and explicit adaptations such as a timer held during arrival. Do not describe this as a full reproduction of Brotato or a completed human playthrough. Shaoyu directed the changes; Codex implemented, debugged and verified them. Reproduce and understand the example before claiming personal debugging ownership.
+
+
+## Separating presentation data from gameplay offers
+
+The stat display reused the upgrade-offer list as its icon registry. That worked for eight upgradeable stats but left other visible stats blank. A complete presentation lookup now gives every visible primary stat a serialized icon, while upgrade drafting remains a separate concern. Explain how the AssetScope scan and asset-completeness test cover references without claiming safe deletion or runtime completeness.
+
+Weapon recoil supplied a second example: matching the numerical cooldown alone did not match cadence because the reference suspends cooldown during its shooting tween. The fix accounts for animation duration, attack-speed scaling and frame-boundary overshoot, with tests plus rendered six-weapon combat. Codex performed implementation; study and reproduce the reasoning before presenting it as personal debugging work.

@@ -261,3 +261,19 @@ This verifies actual GUI input in a staged run, not a full human balance playthr
 - Package: **49,663,363 bytes / 155 entries**, CRC and every archived file comparison passed. SHA-256 `2f75b573d237b31dbbd79f0e8e33010e4e8c64bb2c3218f597596c23bd5244b7`.
 
 Earlier current-pass screenshots showing the old rails/missing canopy were rejected and replaced after repairing the migration guard. Pure state checks alone had passed; the final report adds authoredScenePresent and canopyInstantiated. The saved-scene regression passed after the existing content-generation setup repaired the input, so no red-test claim is made.
+
+
+## October 11 - UI and motion final verification
+
+- 155/155 EditMode tests pass; 2.3526384 seconds. Covers original regressions plus recoil families, cooldown boundary consumption, attack-speed scaling and complete serialized stat icons.
+- Windows build succeeded, zero errors/warnings, 144,614,388 bytes. Current player: Builds/UIRefresh/Scrapshift.exe. The older Builds/Windows player was left untouched at its wave-three upgrade screen.
+- AssetScope: 234 assets, 2049 serialized usages, 0 findings; saved scene/property inspection. No runtime reference completeness or safe-deletion claim.
+- Source and isolated validation match byte for byte across 720 Assets/Packages/ProjectSettings files, digest 768bc66bf27f5e12c0b09f266e6728f77c75b06d7e9a104a19433115901ed8c3. Unsaved Editor state is excluded.
+- Eighteen presentation captures verified fresh; all saved-scene/canopy, start/landing/restart/menu/win and pause/upgrade/shop/loot assertions passed. Inspected title, selections, HUD, both inventories, upgrades, shop, rewards, loss, victory, descent/collapse/touchdown and map edge. The last render confirms victory caption no longer overlaps Ok.
+- Four normal-camera movement/combat captures; final scripted run produced 34 shots, peak 11 enemies, player travel maxima 10.24/7.68 and camera maxima 2.59/4.23. Supplies six weapons/three items and restores health; not a balance or survival test. PNG signatures/decoding and timestamps recorded in capture-inventory.json.
+- Player logs have no managed exception or screenshot failure. D3D12 debug-info-interface and missing legacy XInput messages fall back to working rendering/input; these are not counted as game failures.
+- Package: 49,883,780 bytes, 155 entries, SHA256 59be0f5d86ff64b98c46106bd65b4a2862bfc8538e9941818cc8098e7d716f42. CRC check and every archived byte verified against Builds/UIRefresh.
+
+See ui-and-motion-comparison.md for reference sources, art provenance and remaining parity differences; artifacts/ui-motion-review/comparison.html pairs local reference captures with the final Unity screenshots. Reference images stay in ignored artifacts/raw.
+
+Actual input check on the refreshed 1152x720 Windows player: clicked Start, Punk, Laser Gun and Danger 0; confirmed the selected character/weapon in gameplay, then Escape opened the new pause inventory at wave 1 with 14 seconds and 8/10 HP. Left this test run paused. The older wave-three upgrade player is untouched. This brief stationary check verifies input flow, not survival or balance.
