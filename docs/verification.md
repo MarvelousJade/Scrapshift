@@ -1,5 +1,16 @@
 # Verification record
 
+## Latest results - October 11 proportions, outlines and shadows
+
+129/129 EditMode tests passed (2.221s), including actor-size, leg-version and shadow ownership regressions. Initial run: 128/129, Editor disable lifecycle failure; retained in artifacts/scale-shadow-review/initial-editmode.xml and explained in modular-appearance.md. One retry encountered Unity's project-open guard after the build; no process was killed, and the later run passed.
+
+Windows build succeeded with zero reported errors/warnings, 144,157,956 bytes. AssetScope: 216 assets, 1398 usages, zero findings. All 647 Assets/Packages/ProjectSettings input files match isolated validation, digest `ef4a1b4b0c813b0b88faff7da3e1c2d560c7b0e73b640f4020b0d1223ed1d978`. Code/art commit `0c58968`. Unity-generated metadata contains its usual trailing spaces; source changes were reviewed separately.
+
+Inspected artifacts/scale-shadow-review/gameplay-scale.png and outline-and-shadow.png: actual player/basic-enemy renderers, neutral width ratio 1.187, normal camera 7.5 and detail camera 2.8. Staged art combat also passed (33 shots, five material shapes, six weapons, five visible item attachments; recoil, muzzle flash and both movement directions observed). Inspected walk-right.png. The art fixture supplies equipment and restores health; it is not normal-run balance evidence. Player logs retain only the known D3D12 info-queue diagnostic among Error/Exception/Failed matches. The main Editor was not closed by this work.
+
+Package: 49,633,564 bytes, 155 entries, CRC and every-file comparison passed. SHA-256 `2e84e742407c686fa34d1be8d812ed3ac1efd6b3f74034c2049443c336f8ed5e`. Hitboxes are unchanged; larger enemy-silhouette contact feel still needs user playtesting.
+
+
 ## Latest results - October 11 outward-curved leg correction
 
 127/127 tests passed (2.017s); Windows build succeeded, zero errors/warnings, 144,148,516 reported bytes. AssetScope: 213 assets, 1395 usages, zero findings. All 631 input files match isolated validation. Inspected standing, left/right walking and title/shop images from artifacts/wide-leg-review; the fixture passed. Only the existing D3D12 info-queue diagnostic appeared in the player log. This is visual verification, not a new combat/balance run.

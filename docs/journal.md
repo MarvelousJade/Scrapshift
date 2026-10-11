@@ -135,3 +135,8 @@ Initial 126/127 test runs exposed wing/glasses atlas cuts; alpha inspection also
 ## October 11 - wider outward-curved legs
 
 User clarified the desired leg spacing/curve after rejecting the first pointy-leg arrangement. Compared supplied legs.png and mirrored leg scenes. Generated one curved original leg, mirrored left/right, increased separation from .26 to .62, raised attachment to meet the lower body corners, and reduced walk swing. Kept shell/faces/items/enemies intact. Build and all 127 tests pass; appearance fixture standing/right/left/shop passed and screenshots inspected. New asset prompt and hash are documented in modular-appearance.md and wide-leg-prompt.txt.
+
+
+## October 11 - outlines, proportions and shadows
+
+Compared bare body alpha bounds and scene transforms in the supplied Brotato reference, then implemented a smaller gameplay player, larger first-wave enemy, bolder curved-leg sprite and owned world-space oval shadows. Visual scaling is separated from collision rules. Commit 0c58968 includes the new serialized dependencies and rendering fixture. Initial shadow lifecycle regression failed in EditMode (128/129); ExecuteAlways fixed callback delivery and the final suite passed 129/129. Build and AssetScope checks pass; staged scale and combat images were inspected. Exact results and scope limits are in verification.md; prompt/provenance is in outlined-leg-prompt.txt and modular-appearance.md. No full-run balance or manual acceptance claim.

@@ -58,3 +58,6 @@ The player root remains at the simulation position. Its child body receives `Spr
 ## Modular appearance composition
 
 PlayerLook and AppearanceLayer serialize cosmetic presets into the player prefab; ItemEntry.appearance holds a dedicated wearable sprite, slot, priority, offset, scale and drawing order. AppearanceResolver composes base layers plus unique acquired items. CharacterWardrobe pools SpriteRenderers under the spring body and refreshes when look/item identity changes, including same-count replacement. ShopUI uses the same resolver. Body and face squash together; pointed legs are siblings with alternating translation/rotation. Gameplay stats and six weapon mounts remain separate. AppearanceBuilder is a versioned editor migration preserving the prefab GUID/root identity; AssetScope can inspect the resulting serialized sprite dependencies.
+
+
+ActorPresentation separates world visual scale from combat radii. GroundShadow owns a world-space circle renderer; actor activation and destruction control its lifetime while explicit ground anchors prevent inherited squash/rotation. ReferenceCatalog serializes the mesh/material for build and AssetScope dependency inspection. The v2 curved leg is shared by world/title/shop.

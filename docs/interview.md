@@ -185,3 +185,10 @@ Problem: a character's eyes and equipment were baked into one image; inventory i
 Concrete bug example: the old wardrobe used item count as its refresh condition. A same-count replacement would keep stale art. The cache now compares item identity/order and preset identity; a regression replaces a hat without changing count and verifies the displayed sprite. Sprite border tests also caught two actual atlas cuts (126/127 initial passes); measured transparent separators resolved them. A generated enemy draft with a translucent backdrop was rejected after alpha inspection.
 
 Tradeoff: explicit offsets suit this small catalog, while a larger roster may justify standardized authoring canvases and an appearance editor. Cosmetic variants currently have no character-specific passives. Use this as a documented project example; Codex authored the implementation/checks, and candidate explanation or manual validation should be described truthfully.
+
+
+## Visual scaling and transform ownership
+
+**How was a visual complaint investigated?** Compare actual reference sprite bounds and scene transforms before guessing scale. The first-wave enemy had an extra .72 multiplier, giving roughly half the player's width. A separate presentation policy makes the new player/enemy ratio explicit while leaving collision balance for a deliberate follow-up.
+
+**Why were shadows separate objects?** A child renderer inherits the actor's squash and rotation. A world-space oval can follow the ground position without distorting. An owner component handles activation and deletion; serialized mesh/material dependencies remain visible to AssetScope. A new test first failed for an Editor-created owner's disable lifecycle; enabling Editor lifecycle callbacks fixed that case. Tests and staged screenshots support these implementation claims, not player acceptance or full-run balance. Codex authored this work under the user's direction.

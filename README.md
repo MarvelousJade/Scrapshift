@@ -52,3 +52,6 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 The latest measured results are in the verification record. A scripted presentation fixture is explicitly separate from a normal run and from the user's own playtest.
 
 Latest appearance design and reference comparison: [modular appearance](docs/modular-appearance.md).
+
+
+Latest visual pass: bolder curved-leg outlines, a 15% smaller gameplay player, larger basic enemies and simple oval ground shadows that stay flat during spring animation. Details and source comparison: [modular appearance](docs/modular-appearance.md); validation: [verification](docs/verification.md).
