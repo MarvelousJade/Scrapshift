@@ -5,6 +5,7 @@ namespace Scrapshift
     public static class SpringMotion
     {
         public const float IdlePeriod=1, WalkPeriod=.6f;
+        public const float LegSpread=.31f, LegY=-.52f, LegHeight=.22f;
         // Recreates the source's pose landmarks; smooth interpolation is a Unity adaptation.
         public static Vector3 Pose(float time,bool moving,bool reducedMotion=false)
         {
@@ -23,11 +24,11 @@ namespace Scrapshift
         }
         public static Vector2 Foot(float time,int side,bool moving,bool reducedMotion=false)
         {
-            if(!moving || reducedMotion)return new Vector2(side*.13f,0);
+            if(!moving || reducedMotion)return new Vector2(side*LegSpread,0);
             float stride=Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*side;
-            return new Vector2(side*.13f+stride*.08f,Mathf.Max(0,stride)*.055f);
+            return new Vector2(side*LegSpread+stride*.035f,Mathf.Max(0,stride)*.035f);
         }
         public static float LegAngle(float time,int side,bool moving,bool reducedMotion=false)
-            => side*12 + (moving && !reducedMotion ? Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*side*28 : 0);
+            => moving && !reducedMotion ? Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*side*12 : 0;
     }
 }

@@ -50,7 +50,7 @@ namespace Scrapshift
             if(foot==null)return;
             Vector2 offset=SpringMotion.Foot(clock,side,moving,reducedMotion);
             float facing=FacingLeft?-1:1;
-            foot.transform.localPosition=new Vector3(offset.x*facing,-.62f+offset.y,.01f);
+            foot.transform.localPosition=new Vector3(offset.x*facing,SpringMotion.LegY+offset.y,.01f);
             foot.transform.localRotation=Quaternion.Euler(0,0,SpringMotion.LegAngle(clock,side,moving,reducedMotion)*facing);
             foot.flipX=(side<0)^FacingLeft;
         }

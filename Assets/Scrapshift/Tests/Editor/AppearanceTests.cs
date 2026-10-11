@@ -52,7 +52,7 @@ namespace Scrapshift.Tests
             Assert.AreEqual(3,animator.looks.Length);
             Assert.AreEqual(3,animator.looks.Select(l=>l.layers.Single(a=>a.slot=="eyes").image).Distinct().Count());
             Assert.AreEqual("player-parts_00",animator.bodyView.sprite.name);
-            Assert.AreEqual("player-parts_01",animator.footSprite.name);
+            Assert.AreEqual("player-leg_00",animator.footSprite.name);
             Assert.Less(animator.footSprite.bounds.size.x,animator.footSprite.bounds.size.y,"Leg must be a vertical tapered piece, not a wide shoe.");
         }
         [Test] public void CosmeticResolutionDoesNotChangeInventoryOrStats()
@@ -69,12 +69,12 @@ namespace Scrapshift.Tests
             {
                 Assert.AreEqual(-SpringMotion.LegAngle(t,-1,true),SpringMotion.LegAngle(t,1,true),.001f);
                 Assert.AreEqual(SpringMotion.LegAngle(t,1,true),SpringMotion.LegAngle(t+.6f,1,true),.001f);
-                Assert.AreEqual(12,SpringMotion.LegAngle(t,1,true,true));
+                Assert.AreEqual(0,SpringMotion.LegAngle(t,1,true,true));
             }
         }
         [Test] public void ModularAtlasSpritesHaveTransparentBorders()
         {
-            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2"})
+            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v1"})
             {
                 string path=ContentBuilder.ArtRoot+"/"+sheet+".png";
                 var source=new Texture2D(2,2);

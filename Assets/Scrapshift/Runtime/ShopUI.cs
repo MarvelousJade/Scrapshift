@@ -182,10 +182,10 @@ namespace Scrapshift
             if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
             {
                 var leg=playerAnimation.footSprite;
-                Vector2 legSize=leg.bounds.size*(.18f/leg.bounds.size.y)*scale;
-                Vector2 center=origin+new Vector2(side*.13f,.62f)*scale;
+                Vector2 legSize=leg.bounds.size*(SpringMotion.LegHeight/leg.bounds.size.y)*scale;
+                Vector2 center=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
                 Matrix4x4 before=GUI.matrix;
-                GUIUtility.RotateAroundPivot(-side*12,center);
+                if(side<0)GUIUtility.ScaleAroundPivot(new Vector2(-1,1),center);
                 DrawIcon(leg,new Rect(center-legSize*.5f,legSize));
                 GUI.matrix=before;
             }
