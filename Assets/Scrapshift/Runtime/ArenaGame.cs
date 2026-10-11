@@ -7,13 +7,13 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame : MonoBehaviour
     {
-        public GameObject playerPrefab, scrapPrefab, sparkPrefab;
+        public GameObject playerPrefab, scrapPrefab, sparkPrefab, gunPrefab;
         public WeaponDefinition[] weapons;
         public EnemyDefinition[] enemyTypes;
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj; public EnemyDefinition type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; }
+        sealed class Enemy { public GameObject obj, marker; public EnemyDefinition type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage; }
         sealed class Pickup { public GameObject obj; public Vector2 pos; public int value; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
@@ -41,7 +41,7 @@ namespace Scrapshift
             audioSource = gameObject.AddComponent<AudioSource>(); audioSource.volume = .22f;
             fireSound = Tone(730, .055f); hitSound = Tone(130, .10f); collectSound = Tone(1250, .045f); upgradeSound = Tone(520, .24f);
             player = Instantiate(playerPrefab); player.name = "Scavenger";
-            gun = Instantiate(weapons[0].effectPrefab); gun.name = "Visible rivet pistol"; gun.transform.localScale = new Vector3(1.7f, 2.7f, 1);
+            gun = Instantiate(gunPrefab); gun.name = "Visible rivet pistol";
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
             muted = PlayerPrefs.GetInt("muted", 0) != 0;
@@ -79,6 +79,7 @@ namespace Scrapshift
                 ScreenCapture.CaptureScreenshot(Path.Combine(smokePath, "preview.png")); previewCapture = false;
             }
             if (titleModel != null) titleModel.SetActive(Rules.Phase == RunPhase.Title);
+            gun.SetActive(Rules.Phase != RunPhase.Title);
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
             if (Input.GetKeyDown(KeyCode.Escape)) Rules.Pause();
             if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) Begin();
@@ -147,7 +148,9 @@ namespace Scrapshift
             bool vertical = UnityEngine.Random.value > .5f; float side = UnityEngine.Random.value > .5f ? 1 : -1;
             Vector2 pos = vertical ? new Vector2(side * 11.1f, UnityEngine.Random.Range(-5.2f, 5.2f)) : new Vector2(UnityEngine.Random.Range(-10.5f, 10.5f), side * 5.7f);
             var obj = Instantiate(def.prefab); obj.transform.position = new Vector3(pos.x, pos.y, -.5f);
-            enemies.Add(new Enemy { obj = obj, type = def, hp = def.health * (1 + .12f * (Rules.Wave - 1)), pos = pos, renderers = obj.GetComponentsInChildren<Renderer>() });
+            var marker = Instantiate(weapons[2].effectPrefab); marker.transform.position = new Vector3(pos.x, pos.y, -3);
+            var tint = new MaterialPropertyBlock(); tint.SetColor("_Color", coral); marker.GetComponentInChildren<Renderer>().SetPropertyBlock(tint);
+            enemies.Add(new Enemy { obj = obj, marker = marker, type = def, hp = def.health * (1 + .12f * (Rules.Wave - 1)), pos = pos, renderers = obj.GetComponentsInChildren<Renderer>() });
             peakEnemies = Mathf.Max(peakEnemies, enemies.Count);
         }
         void UpdateEnemies(float dt)
@@ -155,6 +158,11 @@ namespace Scrapshift
             foreach (var e in enemies)
             {
                 e.age += dt; e.flash = Mathf.Max(0, e.flash - dt);
+                if (e.marker != null)
+                {
+                    e.marker.transform.localScale = Vector3.one * (1.5f - e.age);
+                    if (e.age >= .6f) { Destroy(e.marker); e.marker = null; }
+                }
                 // A short spawn telegraph prevents immediate invisible edge damage.
                 if (e.age > .6f)
                 {
@@ -243,7 +251,7 @@ namespace Scrapshift
                 var obj = Instantiate(scrapPrefab); obj.transform.position = new Vector3(e.pos.x, e.pos.y, -1.5f);
                 pickups.Add(new Pickup { obj = obj, pos = e.pos, value = e.type.scrap });
             }
-            Destroy(e.obj); enemies.RemoveAt(index);
+            if (e.marker != null) Destroy(e.marker); Destroy(e.obj); enemies.RemoveAt(index);
         }
         void UpdatePickups(float dt)
         {
@@ -282,7 +290,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
-            foreach (var e in enemies) Destroy(e.obj); enemies.Clear();
+            foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();
             foreach (var s in shots) Destroy(s.obj); shots.Clear();
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();
             foreach (var s in sparks) Destroy(s.obj); sparks.Clear();

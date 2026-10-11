@@ -151,7 +151,7 @@ namespace Scrapshift.Tests
         {
             var scene = EditorSceneManager.OpenScene(ContentBuilder.ScenePath);
             var game = scene.GetRootGameObjects().SelectMany(o => o.GetComponentsInChildren<ArenaGame>()).Single();
-            Assert.NotNull(game.playerPrefab); Assert.NotNull(game.gameCamera); Assert.NotNull(game.scrapPrefab);
+            Assert.NotNull(game.playerPrefab); Assert.NotNull(game.gameCamera); Assert.NotNull(game.scrapPrefab); Assert.NotNull(game.gunPrefab);
             Assert.AreEqual(3, game.weapons.Length); Assert.AreEqual(3, game.enemyTypes.Length);
             foreach (var e in game.enemyTypes) { Assert.NotNull(e.prefab); Assert.Greater(e.health, 0); }
         }

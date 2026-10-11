@@ -7,6 +7,26 @@ namespace Scrapshift.Editor
 {
     public static partial class ContentBuilder
     {
+        static void EnsureWeaponArt()
+        {
+            string path = Root + "/Prefabs/RivetPistol.prefab";
+            if (File.Exists(path)) return;
+            foreach (var guid in AssetDatabase.FindAssets("t:Material", new[] { Root }))
+            { var m = AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GUIDToAssetPath(guid)); materials[m.name] = m; }
+            quad = AssetDatabase.LoadAssetAtPath<Mesh>(Root + "/Meshes/Quad.asset");
+            var root = new GameObject("Rivet pistol");
+            Shape(root, "Grip outline", quad, "Ink", -.12f, -.15f, .02f, .23f, .36f, -12);
+            Shape(root, "Grip", quad, "CoralShade", -.12f, -.15f, .01f, .13f, .27f, -12);
+            Shape(root, "Barrel outline", quad, "Ink", .02f, 0, 0, .66f, .30f);
+            Shape(root, "Barrel", quad, "Amber", .02f, .015f, -.01f, .56f, .19f);
+            Shape(root, "Muzzle", quad, "Ink", .31f, 0, -.02f, .13f, .23f);
+            Shape(root, "Barrel glint", quad, "White", -.025f, .065f, -.03f, .34f, .035f);
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, path); Object.DestroyImmediate(root);
+            var scene = EditorSceneManager.OpenScene(ScenePath);
+            foreach (var obj in scene.GetRootGameObjects())
+            { var game = obj.GetComponent<ArenaGame>(); if (game != null) { game.gunPrefab = prefab; EditorUtility.SetDirty(game); } }
+            EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+        }
         // Explicit versioned migration: update our generated art in place, preserving dependency GUIDs.
         static void UpgradePresentation()
         {

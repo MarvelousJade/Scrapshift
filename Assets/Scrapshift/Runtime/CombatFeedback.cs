@@ -38,12 +38,13 @@ namespace Scrapshift
             foreach (var f in floaters)
             {
                 var p = gameCamera.WorldToViewportPoint(f.pos);
-                float x = p.x * 1440 - 60, y = (1 - p.y) * 900 - 35;
+                float width = f.text.Length > 5 ? 260 : 120;
+                float x = p.x * 1440 - width / 2, y = (1 - p.y) * 900 - 35;
                 var style = f.big ? damageBig : damageSmall;
                 var c = f.color; c.a = Mathf.Clamp01((.72f - f.age) * 5);
                 style.normal.textColor = new Color(.1f,.08f,.1f,c.a);
-                Text(x + 2, y + 2, 120, 45, f.text, style);
-                style.normal.textColor = c; Text(x, y, 120, 45, f.text, style);
+                Text(x + 2, y + 2, width, 45, f.text, style);
+                style.normal.textColor = c; Text(x, y, width, 45, f.text, style);
             }
             if (hurtOverlay > 0)
             {
