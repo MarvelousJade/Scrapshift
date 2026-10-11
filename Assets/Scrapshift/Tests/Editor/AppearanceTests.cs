@@ -74,7 +74,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void ModularAtlasSpritesHaveTransparentBorders()
         {
-            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v1"})
+            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v2"})
             {
                 string path=ContentBuilder.ArtRoot+"/"+sheet+".png";
                 var source=new Texture2D(2,2);

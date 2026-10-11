@@ -13,7 +13,7 @@ namespace Scrapshift
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj, marker; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
+        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
@@ -24,6 +24,7 @@ namespace Scrapshift
         readonly GameObject[] orbits = new GameObject[2];
         GameObject player, pulse;
         SpriteFrameAnimator playerAnimation;
+        GroundShadow playerShadow;
         CharacterWardrobe wardrobe;
         CharacterWardrobe titleWardrobe;
         Vector2 playerPos;
@@ -47,7 +48,7 @@ namespace Scrapshift
             playerAnimation = player.GetComponent<SpriteFrameAnimator>();
             wardrobe = player.AddComponent<CharacterWardrobe>();
             if(titleModel!=null)titleWardrobe=titleModel.AddComponent<CharacterWardrobe>();
-            AddGroundShadow(player, .8f, -.55f);
+            playerShadow = AddGroundShadow(player, .9f, -.58f);
             gun = Instantiate(gunPrefab); gun.name = "Visible rivet pistol";
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
@@ -82,6 +83,8 @@ namespace Scrapshift
             if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
             int galleryIndex=Array.IndexOf(args,"--spring-gallery");
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
+            int scaleIndex=Array.IndexOf(args,"--scale-review");
+            if(scaleIndex>=0&&scaleIndex+1<args.Length)BeginScaleReview(args[scaleIndex+1]);
             int appearanceIndex=Array.IndexOf(args,"--appearance-review");
             if(appearanceIndex>=0&&appearanceIndex+1<args.Length)BeginAppearanceReview(args[appearanceIndex+1]);
         }
@@ -93,7 +96,8 @@ namespace Scrapshift
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
             floaters.Clear(); hitStop = hurtOverlay = 0;
-            player.transform.position = Vector3.zero; player.transform.localScale = Vector3.one;
+            player.transform.position = Vector3.zero; player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
+            playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             foreach (var o in orbits) o.SetActive(false); pulse.SetActive(false);
         }
 
@@ -122,7 +126,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
             {
                 titleModel.GetComponent<SpriteFrameAnimator>().Tick(Vector2.zero, Time.deltaTime, reducedMotion);
@@ -145,6 +149,7 @@ namespace Scrapshift
             LootReviewTick();
             SpringGalleryTick();
             AppearanceReviewTick();
+            ScaleReviewTick();
         }
 
         void Simulate(float dt)
@@ -159,7 +164,8 @@ namespace Scrapshift
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);
-            player.transform.localScale = Vector3.one;
+            player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
+            playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
             player.SetActive(invulnerable <= 0 || (int)(invulnerable * 16) % 2 == 0);
             director.Tick(dt, QueueGroup, BeginSpawnGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);

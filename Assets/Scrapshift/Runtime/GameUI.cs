@@ -39,6 +39,12 @@ namespace Scrapshift
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
             if(appearanceReview&&appearanceStage>=2&&appearanceStage<6){AppearanceReviewUI();return;}
+            if(scaleReview)
+            {
+                Text(25,20,1390,50,"PROPORTIONS / BOLD LEGS / ROUND SHADOWS",heading);
+                Text(25,800,1390,70,"Player (left) + first-wave enemy (right) / staged rendering, no AI or combat",center);
+                return;
+            }
             if (Rules.Phase == RunPhase.Title) { TitleUI(); return; }
             if (Rules.Phase == RunPhase.Loot) { LootUI(); return; }
             if (Rules.Phase == RunPhase.Shop) { ShopUI(); return; }

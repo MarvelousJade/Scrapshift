@@ -44,13 +44,11 @@ namespace Scrapshift
             r.sortingOrder=order;
             return obj;
         }
-        void AddGroundShadow(GameObject actor, float width, float y)
+        GroundShadow AddGroundShadow(GameObject actor, float width, float y)
         {
-            var shadow = SpriteObject("Ground shadow", catalog.shadow, Vector2.zero, 1);
-            shadow.transform.SetParent(actor.transform, false);
-            shadow.transform.localPosition = new Vector3(0, y, .1f);
-            shadow.transform.localScale = new Vector3(width, .18f, 1);
-            shadow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
+            var shadow = actor.AddComponent<GroundShadow>();
+            shadow.Initialize(catalog.shadowMesh, catalog.shadowMaterial, width, y);
+            return shadow;
         }
         void StartWave()
         {
@@ -114,9 +112,9 @@ namespace Scrapshift
             if(campaignCheck)campaignEnemyIds.Add(def.id);
             var behavior = EnemyBehavior.For(def.id);
             var attack = MakeAttack(behavior);
-            var obj=SpriteObject(def.id,def.image,pos);AddGroundShadow(obj, .7f, -def.image.bounds.extents.y + .08f);obj.SetActive(false);var marker=SpriteObject("Spawn warning",catalog.warning,pos,2);marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
+            var obj=SpriteObject(def.id,def.image,pos);var shadow=AddGroundShadow(obj, def.image.bounds.size.x * .9f, -def.image.bounds.extents.y + .05f);obj.SetActive(false);var marker=SpriteObject("Spawn warning",catalog.warning,pos,2);marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
             {
-                obj=obj,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
+                obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
             })
             ;peakEnemies=Mathf.Max(peakEnemies,enemies.Count);
         }
@@ -248,7 +246,7 @@ namespace Scrapshift
             bool dashing = e.attack != null && e.attack.Phase == AttackPhase.Active && e.behavior.charge;
             var sprite = e.obj.GetComponent<SpriteRenderer>();
             if (Mathf.Abs(velocity.x) > .05f) sprite.flipX = velocity.x < 0;
-            float scale = RadiusScale(e.type) * (1+e.evolution*.2f);
+            float scale = ActorPresentation.EnemyScale(e.type) * (1+e.evolution*.2f);
             var spring=SpringMotion.Pose(e.activeAge*(e.type.id=="baby_alien"?1:.8f),velocity.sqrMagnitude>.01f,reducedMotion||e.type.role=="Tree");
             float anticipation = reducedMotion || !winding ? 0 : e.attack.Progress * .16f;
             float emerge = reducedMotion ? 1 : Mathf.Lerp(.45f, 1, Mathf.Clamp01(e.activeAge / .16f));
@@ -256,6 +254,7 @@ namespace Scrapshift
             e.obj.transform.localScale = new Vector3(scale * (spring.x + anticipation) * emerge,
                 scale * (spring.y - anticipation) * emerge, 1);
             e.obj.transform.rotation = Quaternion.Euler(0, 0, reducedMotion ? 0 : dashing ? -Mathf.Sign(velocity.x) * 12 : 0);
+            e.shadow.Place(e.pos, scale * emerge);
             e.supportFlash = Mathf.Max(0, e.supportFlash - dt);
             sprite.color = winding ? Color.Lerp(Color.white, new Color(1, .35f, .2f), e.attack.Progress) :
                 e.boosted || e.supportFlash > 0 ? new Color(.85f, .55f, 1) : Color.white;
@@ -412,7 +411,7 @@ namespace Scrapshift
         {
             for(int i=corpses.Count-1;i>=0;i--)
             {
-                var e=corpses[i];e.deathAge+=dt;float t=Mathf.Clamp01(e.deathAge/.5f);e.pos+=e.knockback*dt;e.knockback=Vector2.Lerp(e.knockback,Vector2.zero,dt*8);e.obj.transform.position=e.pos;e.obj.transform.localScale=Vector3.one*RadiusScale(e.type)*Mathf.Max(.00001f,1-t);e.obj.transform.rotation=Quaternion.Euler(0,0,reducedMotion?0:t*360);e.obj.GetComponent<SpriteRenderer>().color=Color.Lerp(Color.white,new Color(.349f,.349f,.349f),t);if(e.deathAge>=1)
+                var e=corpses[i];e.deathAge+=dt;float t=Mathf.Clamp01(e.deathAge/.5f);e.pos+=e.knockback*dt;e.knockback=Vector2.Lerp(e.knockback,Vector2.zero,dt*8);e.obj.transform.position=e.pos;e.shadow.Place(e.pos,ActorPresentation.EnemyScale(e.type)*(1+e.evolution*.2f)*(1-t),.392157f*(1-t));e.obj.transform.localScale=Vector3.one*ActorPresentation.EnemyScale(e.type)*(1+e.evolution*.2f)*Mathf.Max(.00001f,1-t);e.obj.transform.rotation=Quaternion.Euler(0,0,reducedMotion?0:t*360);e.obj.GetComponent<SpriteRenderer>().color=Color.Lerp(Color.white,new Color(.349f,.349f,.349f),t);if(e.deathAge>=1)
                 {
                     Destroy(e.obj);corpses.RemoveAt(i);
                 }

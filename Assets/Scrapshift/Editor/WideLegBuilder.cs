@@ -10,9 +10,19 @@ namespace Scrapshift.Editor
     {
         static void EnsureWideLegs()
         {
-            if(File.Exists(Root+"/WideLegsV1.txt"))return;
+            if(File.Exists(Root+"/ActorPresentationV2.txt"))return;
             AssetDatabase.Refresh();
-            var sprite=ImportSheet("player-leg",new[]{new Rect(0,0,1254,1254)},333)[0];
+            var sprite=ImportSheet("player-leg",new[]{new Rect(0,0,1254,1254)},333,version:2)[0];
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(Root+"/Definitions/ReferenceCatalog.asset");
+            catalog.shadowMesh=AssetDatabase.LoadAssetAtPath<Mesh>(Root+"/Meshes/Circle.asset");
+            string materialPath=Root+"/Materials/GroundShadow.mat";
+            var material=AssetDatabase.LoadAssetAtPath<Material>(materialPath);
+            if(material==null)
+            {
+                material=new Material(Shader.Find("Scrapshift/GroundShadow")){name="GroundShadow"};
+                AssetDatabase.CreateAsset(material,materialPath);
+            }
+            catalog.shadowMaterial=material;EditorUtility.SetDirty(catalog);
             string path=Root+"/Prefabs/ScavengerAnimated.prefab";
             var root=PrefabUtility.LoadPrefabContents(path);
             var animator=root.GetComponent<SpriteFrameAnimator>();animator.footSprite=sprite;
@@ -26,7 +36,7 @@ namespace Scrapshift.Editor
             game.titleModel=(GameObject)PrefabUtility.InstantiatePrefab(game.playerPrefab);
             game.titleModel.name="Animated title scavenger";game.titleModel.transform.position=new Vector3(6,.2f,-1);game.titleModel.transform.localScale=Vector3.one*3.8f;
             EditorUtility.SetDirty(game);EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
-            File.WriteAllText(Root+"/WideLegsV1.txt","Outward-curved mirrored leg sprite; wider .62-unit stance, .22-unit legs at lower body corners; shared world/shop layout.\n");
+            File.WriteAllText(Root+"/ActorPresentationV2.txt","Bold outlined curved legs; .85 player scale; 1.4 baby-alien visual scale; serialized circle mesh and transparent material for independent flat shadows.\n");
             AssetDatabase.Refresh();
         }
     }
