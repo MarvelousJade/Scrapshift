@@ -9,20 +9,21 @@ namespace Scrapshift
         bool enemyReview;
         string enemyReviewPath;
         float enemyReviewStart;
+        DateTime enemyReviewStartedUtc;
         int enemyReviewStep;
         bool enemyWarnSeen, chargeWindupSeen, rangedWindupSeen, dashSeen, hostileSeen;
 
         [Serializable] sealed class EnemyReviewReport
         {
             public string status, scope;
-            public bool warning, chargeWindup, rangedWindup, dash, hostileProjectile;
+            public bool capturesVerified, warning, chargeWindup, rangedWindup, dash, hostileProjectile;
             public int charges, rangedAttacks, kills;
         }
 
         void BeginEnemyReview(string folder)
         {
             enemyReview = true; enemyReviewPath = folder; Directory.CreateDirectory(folder);
-            enemyReviewStart = Time.realtimeSinceStartup;
+            enemyReviewStart = Time.realtimeSinceStartup; enemyReviewStartedUtc=DateTime.UtcNow;
             Begin(); ClearCombat(); Rules.Inventory.Clear(); SyncEquipment();
             director = new SpawnDirector(new WaveEntry { groups = Array.Empty<SpawnGroup>() }, 1);
             Spawn(catalog.Enemy("charger"), new Vector2(5, 0));
@@ -66,11 +67,12 @@ namespace Scrapshift
             if (enemyReviewStep == 5 && t > 9)
             { ScreenCapture.CaptureScreenshot(Path.Combine(enemyReviewPath,"combat.png")); enemyReviewStep++; }
             if (t < 12) return;
-            bool passed = enemyWarnSeen && chargeWindupSeen && rangedWindupSeen && dashSeen && hostileSeen &&
+            bool captures=CaptureVerification.Fresh(enemyReviewPath,enemyReviewStartedUtc,"warnings","charge","ranged","projectiles","combat");
+            bool passed = captures && enemyWarnSeen && chargeWindupSeen && rangedWindupSeen && dashSeen && hostileSeen &&
                 chargeReleases > 0 && rangedReleases > 0 && Rules.Kills > 0 && enemyReviewStep == 6;
             var report = new EnemyReviewReport { status=passed?"Passed":"Failed",
                 scope="Staged attack fixture: fixed enemies, initially unarmed stationary player, restored health, supplied six-weapon loadout after seven seconds. No balance/manual-input claim.",
-                warning=enemyWarnSeen,chargeWindup=chargeWindupSeen,rangedWindup=rangedWindupSeen,dash=dashSeen,
+                capturesVerified=captures,warning=enemyWarnSeen,chargeWindup=chargeWindupSeen,rangedWindup=rangedWindupSeen,dash=dashSeen,
                 hostileProjectile=hostileSeen,charges=chargeReleases,rangedAttacks=rangedReleases,kills=Rules.Kills };
             File.WriteAllText(Path.Combine(enemyReviewPath,"enemy-review.json"),JsonUtility.ToJson(report,true));
             Application.Quit(passed?0:1); enabled=false;

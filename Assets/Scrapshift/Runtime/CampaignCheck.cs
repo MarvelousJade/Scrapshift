@@ -11,6 +11,7 @@ namespace Scrapshift
         bool campaignCheck, campaignFinished;
         string campaignPath;
         float campaignStart, campaignFinishAt;
+        DateTime campaignStartedUtc;
         int campaignCompleted, campaignPurchases;
         readonly HashSet<string> campaignEnemyIds = new HashSet<string>();
         readonly List<WaveCheck> campaignWaves = new List<WaveCheck>();
@@ -20,6 +21,7 @@ namespace Scrapshift
         [Serializable] sealed class CampaignReport
         {
             public string status,scope,phase;
+            public bool capturesVerified;
             public int completedWaves,purchases,peakEnemies,charges,rangedAttacks,bossPhaseChanges;
             public float wallSeconds;
             public string[] enemyIds;
@@ -29,7 +31,7 @@ namespace Scrapshift
         void BeginCampaignCheck(string folder)
         {
             campaignCheck=true;campaignPath=folder;Directory.CreateDirectory(folder);
-            campaignStart=Time.realtimeSinceStartup;
+            campaignStart=Time.realtimeSinceStartup;campaignStartedUtc=DateTime.UtcNow;
             UnityEngine.Random.InitState(771);
             placementRandom=new System.Random(771);
             Begin();
@@ -46,8 +48,9 @@ namespace Scrapshift
             if(campaignFinished)
             {
                 if(Time.realtimeSinceStartup-campaignFinishAt<1)return;
-                bool passed=Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0;
-                var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),
+                bool captures=CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","wave-05","wave-10","wave-15","wave-20","end");
+                bool passed=captures&&Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0;
+                var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),capturesVerified=captures,
                     scope="Accelerated Windows integration fixture: eight 50ms simulation steps per rendered frame, seeded spawn placement, scripted movement, supplied six tier-2 weapons, invulnerability and mute. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Not normal-run balance, performance benchmarking or a human playthrough.",
                     completedWaves=campaignCompleted,purchases=campaignPurchases,peakEnemies=peakEnemies,
                     charges=chargeReleases,rangedAttacks=rangedReleases,bossPhaseChanges=bossMutations,wallSeconds=Time.realtimeSinceStartup-campaignStart,

@@ -75,5 +75,26 @@ namespace Scrapshift.Tests
             Assert.IsFalse(CombatGeometry.ProjectileOutside(new Vector2(0,-7.5f)));
             Assert.IsTrue(CombatGeometry.ProjectileOutside(new Vector2(0,9)));
         }
+
+        [Test] public void RenderingEvidenceRejectsMissingInvalidAndStaleFiles()
+        {
+            string folder = System.IO.Path.Combine(System.IO.Path.GetTempPath(),"ScrapshiftCapture-"+System.Guid.NewGuid());
+            string file = System.IO.Path.Combine(folder,"frame.png");
+            System.IO.Directory.CreateDirectory(folder);
+            var started = System.DateTime.UtcNow.AddMinutes(-1);
+            try
+            {
+                Assert.IsFalse(CaptureVerification.Fresh(folder,started,"frame"));
+                System.IO.File.WriteAllText(file,"This is not a screenshot.");
+                Assert.IsFalse(CaptureVerification.Fresh(folder,started,"frame"));
+                var catalog = AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+                System.IO.File.Copy(AssetDatabase.GetAssetPath(catalog.Enemy("baby_alien").image),file,true);
+                System.IO.File.SetLastWriteTimeUtc(file,started.AddSeconds(-1));
+                Assert.IsFalse(CaptureVerification.Fresh(folder,started,"frame"));
+                System.IO.File.SetLastWriteTimeUtc(file,System.DateTime.UtcNow);
+                Assert.IsTrue(CaptureVerification.Fresh(folder,started,"frame"));
+            }
+            finally { System.IO.File.Delete(file); System.IO.Directory.Delete(folder); }
+        }
     }
 }

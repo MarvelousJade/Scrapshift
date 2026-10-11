@@ -10,11 +10,12 @@ namespace Scrapshift
         string combatFeelPath;
         float combatFeelStart;
         int combatFeelStage;
+        DateTime combatFeelStartedUtc;
         Enemy feelNear, feelFar;
         [Serializable] sealed class CombatFeelReport
         {
             public string status, scope;
-            public bool northShotSurvived, nearestFirst, whiteFlash, pushDisplaced,
+            public bool capturesVerified, northShotSurvived, nearestFirst, whiteFlash, pushDisplaced,
                 outsideContactSafe, insideContactHurt, contactSlow, secondHitBlocked, playerWhiteFlash;
             public float nearDamage, farDamage, pushDistance, invulnerabilitySeconds;
         }
@@ -29,7 +30,7 @@ namespace Scrapshift
         void BeginCombatFeelReview(string folder)
         {
             combatFeelReview = true; combatFeelPath = folder; Directory.CreateDirectory(folder);
-            combatFeelStart = Time.realtimeSinceStartup;
+            combatFeelStart = Time.realtimeSinceStartup;combatFeelStartedUtc=DateTime.UtcNow;
             Begin(); ClearCombat(); Rules.Inventory.Clear(); SyncEquipment(); sound.SetMuted(true);
             playerPos = new Vector2(0,6.5f); player.transform.position = playerPos;
             player.SetActive(true); playerAnimation.Tick(Vector2.zero,0,false); playerShadow.Place(playerPos,ActorPresentation.PlayerScale);
@@ -80,7 +81,8 @@ namespace Scrapshift
             }
             else if (combatFeelStage == 3 && t > 2.8f)
             {
-                bool passed=feelReport.northShotSurvived&&feelReport.nearestFirst&&feelReport.whiteFlash&&feelReport.pushDisplaced
+                feelReport.capturesVerified=CaptureVerification.Fresh(combatFeelPath,combatFeelStartedUtc,"piercing-impact","knockback","player-hit");
+                bool passed=feelReport.capturesVerified&&feelReport.northShotSurvived&&feelReport.nearestFirst&&feelReport.whiteFlash&&feelReport.pushDisplaced
                     &&feelReport.outsideContactSafe&&feelReport.insideContactHurt&&feelReport.contactSlow&&feelReport.secondHitBlocked&&feelReport.playerWhiteFlash;
                 feelReport.status=passed?"Passed":"Failed";
                 File.WriteAllText(Path.Combine(combatFeelPath,"combat-feel.json"),JsonUtility.ToJson(feelReport,true));
