@@ -158,3 +158,13 @@ These replace the earlier five-wave/three-weapon scope descriptions above.
 **What did verification teach you?** One new test failed because advancing the wave also earned a Harvesting level and +1 HP. The test was corrected to isolate the combine delta. The actual rendered fixture then showed two spears giving +3 Max HP and combining them lowering HP from 30 to 27. Explain the difference between a faulty test assumption and a demonstrated game defect.
 
 **How do you make a rule understandable?** Show weapon membership, equipped count, current effect and all five thresholds together. Inactive sets explicitly say they need two weapons. Unit tests verify the arithmetic; rendered inspection checks readability. These are Codex-authored changes directed by the user; personally trace and play them before using this example in an interview.
+
+## Loot-loop example — state ordering and honest evidence
+
+**How did you prioritize missing features?** The comparison found a missing everyday decision: pursue a loot enemy, collect its crate, then keep the item or recycle it. That changes the run more directly than adding many catalog entries. Survival formulas also changed how existing builds behaved, so those were corrected in the same iteration.
+
+**What integration problem did you solve?** A crate collected during end-of-wave cleanup must enter the queue before choosing the next state. Clearing pickups or opening the shop first loses that ordering. Trace `FinishWavePickups`, `Tick`, `OpenRewards` and `ResolveCrate`: collect, resolve crates, resolve levels, then shop. The targeted fixture leaves a crate offscreen to exercise the cleanup path.
+
+**How did you validate it?** 116 rule/integration tests, a real rendered take/recycle fixture and a current twenty-wave accelerated run. Distinguish those from balance: the separate normal-speed smoke died in wave one. Its old Passed label only measured combat/capture coverage; reporting the actual loss is more accurate than claiming a successful run.
+
+**What remains?** Character/starter selection, broader stats/items, weapon-specific behavior and normal-run balancing. The crate pool is intentionally small. These are assistant-authored changes directed by the user, not personally handwritten production incidents; personally trace and play the implementation before discussing it as experience.

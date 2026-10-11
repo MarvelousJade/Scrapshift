@@ -43,3 +43,9 @@ SpawnPlacement owns bounded safe sampling without losing group/edge geometry; Sp
 ## Equipped weapon sets
 
 `WeaponSets` is the shared membership/threshold definition used by shop preferences, UI and `RunRules`. `RunRules.Stat` combines permanent values with the current inventory contribution; `Add` changes only permanent values. Scanning at most six equipped slots avoids a mutable bonus cache and invalidation bookkeeping. `WeaponRange` is shared by combat targeting/projectile reach and UI descriptions, including the source's half-strength Range scaling for melee. Buy/combine/recycle clamp current HP after a Primitive count reduction.
+
+## Loot and survival sequencing
+
+`ReferenceLoot` owns base-difficulty per-enemy drop profiles; `cratesSpawned` resets at each wave and increments on spawn, not pickup. `LootRules` keeps pending crates separate from levels. One selected item remains stable until take/recycle resolves it; the same `ApplyItem` function serves shop purchases and crate rewards. `FinishWavePickups` collects harmless consumables while Playing before `Tick` opens Loot, Upgrade or Shop. Materials retain their separate bank. Crates use runtime line geometry with the existing material; repair/material sprites are unchanged.
+
+`SurvivalRules` advances regeneration and shared life-steal clocks only during Playing. Timed whole-HP regeneration resets at full health; life steal is limited globally across all weapons. The new Loot enum value is appended to preserve existing phase values. UI keyboard handling resolves crates after the shop-input branch so one Enter press cannot also start the next wave.

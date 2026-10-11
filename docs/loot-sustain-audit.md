@@ -21,4 +21,20 @@ Compared the current `344d3f5` implementation with the supplied local `E:/UnityP
 
 Implementation boundaries: crate rewards use our existing eight-item offered pool with the existing lower-tier fallback where a tier has no items. No character-specific loot modifiers, cursed/extra crates, legendary reward catalog or endless scaling is claimed. A small procedural salvage-box outline will distinguish crates while reusing the existing original sprites and palette; no art/audio asset replacement.
 
-Validation and actual outcomes will be appended after implementation.
+## Implemented and measured
+
+`ReferenceLoot` records profiles for all 18 supported enemies. The audit also found that `junkie_stats.tres` and `evil_mob/evil_mob.tres` prohibit consumable drops; the previous generic probability path ignored that. Spitters use 0.03 consumable / 0.1 crate chance, chasers/fins 0.02 / 0.03, bruisers/horned bruisers/pursuers/slashers 0.03 / 0.03; other supported regular enemies use 0.01 / 0.01.
+
+`LootRules` queues crates, generates one item when opening each, prevents shop/reroll actions in the loot phase, and applies the same item effects as buying. The new screen shows the item, tradeoffs, rarity, remaining count, materials, stats, wardrobe and weapon sets. Enter takes, X recycles. A successful normal wave collects remaining harmless consumables before selecting its reward phase; banked materials remain separate. Crates never disappear because the material pickup limit was reached. Loss and restart cannot claim old rewards.
+
+`SurvivalRules` owns the regeneration accumulator and shared life-steal cooldown. Pause freezes both; full health clears regeneration progress and the next wave resets both clocks. Full-health consumables remain on the ground unless directly touched or already attracted; missing health enables their attraction. Existing original repair and material sprites remain, and crates use an added procedural salvage-box outline.
+
+**116/116 tests passed** (18 added cases), Windows build succeeded with zero warnings/errors, AssetScope scanned 198 assets / 1,337 usages with zero findings. All 581 validation input files match the checkout. The rendered loot fixture verified a looter's guaranteed crate, +3 HP, offscreen crate cleanup, crates before upgrades, item effects, recycling and reaching the shop. Ground, reward and post-crate upgrade screenshots were independently inspected.
+
+The current accelerated campaign reached Won after all 20 waves: 54 purchases, peak 80 enemies, 765 charge releases, 700 ranged releases and one boss phase change. It uses supplied equipment and invulnerability. A separate normal-speed smoke exercised combat but **died at 15.30 simulated seconds with 17 kills and no upgrade**. Its legacy report says Passed for combat/capture coverage only; it did not pass a wave-clear or balance criterion. No human acceptance is claimed.
+
+Incremental commits: `fbf98c3` comparison, `264c6f7` rules/tests, `b257eea` runtime/UI/fixture. Verification and interview documentation are committed separately. Original `Assets/Scrapshift/Content` files are unchanged from `344d3f5`.
+
+## Next priorities
+
+Character/starter selection and passives, more supported upgrade stats/items, and a weapon-by-weapon audit remain. Crate rarity uses the reduced eight-item pool and lower-tier fallback; a full legendary reward catalog is absent. Current source-like rules do not establish normal-run balance in our smaller arena. Difficulty/elite schedules, more bosses, endless, co-op and special item effects remain outside this revision.

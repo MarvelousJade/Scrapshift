@@ -37,3 +37,7 @@ October 11 parity pass: Shaoyu authorized closer enemy/spawn/upgrade behavior af
 ## Weapon-set pass
 
 User: requested source comparison, bonuses for our weapons, visible UI, continued documentation and incremental commits. Codex: inspected local reference scripts/resources, implemented the three sets and UI, authored tests/fixture, corrected the test's Harvesting/HP assumption, ran Unity CLI checks in an isolated copy and inspected rendered evidence. Existing original art/content remained unchanged. No user acceptance, manual hover verification or new full normal playthrough is recorded.
+
+## Loot and survival pass
+
+User requested comparison and implementation of the biggest remaining gameplay gaps, keeping original art and incremental documentation/commits. Codex prioritized loot/survival after reading supplied source, implemented rules and UI with a procedural crate indicator, authored eighteen tests and a staged runtime fixture, ran Unity CLI validation and inspected rendered evidence. Codex also retained/documented the normal smoke's first-wave loss. No new art/audio assets were generated or replaced, and no user playtest/acceptance is recorded.

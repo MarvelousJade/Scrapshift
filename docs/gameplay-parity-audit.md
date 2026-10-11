@@ -36,11 +36,13 @@ The corrections above are implemented. Existing synthetic campaign checks use an
 
 The original art, compact arena, Unity collision/separation model, feedback effects and variable-step combat loop remain. Random draws use Unity/System.Random rather than Godot's generator, so the same seed is not a cross-engine replay guarantee. The 20-wave source schedule is retained, but these differences affect encounter feel.
 
-The selected scope remains six weapon families, eight offered items and eight upgrade stats. Additional weapon sets and their special modifiers, character passives/selection, all upgrade types, crate rewards, other bosses, higher difficulties and endless mode are absent. Shop probabilities operate on that smaller catalog. Reference audio is unchanged. Slasher's retained entry is not in the base-difficulty campaign schedule, so the campaign does not validate its runtime hit window. This is closer source-based behavior, not complete game equivalence.
+The selected scope remains six weapon families, eight offered items and eight upgrade stats. Additional weapon sets and their special modifiers, character passives/selection, all upgrade types, a full crate reward catalog, other bosses, higher difficulties and endless mode are absent. Shop probabilities operate on that smaller catalog. Reference audio is unchanged. Slasher's retained entry is not in the base-difficulty campaign schedule, so the campaign does not validate its runtime hit window. This is closer source-based behavior, not complete game equivalence.
 
 User's open Editor was preserved. A separate Unity project compiled and ran automated tests/builds; the Windows player supplied rendered evidence. The initial sandboxed CLI attempt could not initialize host licensing; retrying the same isolated copy with host permission succeeded. No user's Editor process was terminated.
 
 The subsequent weapon-set pass implements Gun, Precise and Primitive for every included weapon, with count/bonus/threshold UI. See `weapon-sets.md` and the latest verification section.
+
+The subsequent loot/survival pass adds crate drops and queued take-or-recycle rewards, consumable cleanup, timed regeneration and the life-steal cooldown. See `loot-sustain-audit.md` for the prioritized remaining gaps and latest measured results.
 
 ## Validation outcome (before the weapon-set pass)
 

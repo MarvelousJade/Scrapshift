@@ -64,3 +64,12 @@ Personal checks still to do (not recorded as completed):
 - Buy a permanent stat item while its matching set is active, then remove the set; only the temporary bonus should disappear.
 
 Automated rules and staged rendering passed. These hands-on checks remain a user playtest checklist, not recorded manual results.
+
+## Loot and healing — manual acceptance still needed
+
+- Pursue a loot alien and break trees. Identify the brown strapped crate separately from green materials and the existing repair pickup.
+- At full HP, pass near a repair/crate without touching it; then take damage and verify nearby consumables attract. Direct contact can collect at full HP.
+- Leave a crate on the ground until wave end. Verify its item choice appears before levels, with the proper stats/tradeoffs.
+- Test Enter/mouse Take and X/mouse Recycle, including two queued crates. One key press must not skip the shop or start the next wave. Confirm worn item appearance after taking.
+- Choose regeneration and observe timed whole-HP ticks. Pause must stop the timer.
+- Play the first wave normally and assess difficulty. The latest scripted movement smoke died before clearing it; the invulnerable twenty-wave fixture does not settle balance.

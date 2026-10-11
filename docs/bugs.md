@@ -168,3 +168,19 @@ Integration hazard found during implementation: `Add` formerly read `Stat` befor
 ## SET-002 — A test confused level HP with a combine bonus
 
 The first set suite passed 97/98. A test captured baseline Max HP before advancing a wave; positive Harvesting then earned a level and its automatic +1 HP. Its expected post-combine value was stale. Capture Max HP immediately before combining and assert the exact 3-HP loss instead. Final suite: 98/98. Independently rendered combine evidence shows 30 to 27 HP; the subsequent earned level produces 28. This was a test-assumption failure, not a product fix.
+
+## LOOT-001 — Generic healing drops removed enemy rewards
+
+Source comparison found that every successful consumable drop became a repair pickup. Trees never offered crate decisions, loot aliens lacked their guaranteed crate, and the generic path could drop consumables from spawned junkies despite their source prohibition. Explicit per-enemy profiles now perform separate consumable and crate rolls, apply luck and dilution by crates spawned, and honor guarantees/exclusions. Tests cover probability boundaries; the rendered fixture kills a looter through the actual damage/drop path and verifies its crate.
+
+## LOOT-002 — Wave cleanup would discard queued rewards
+
+When integrating crates, the previous transition cleared all pickups after selecting the next phase. Collecting crates after that point would either fail the Playing guard or leave the already-chosen Upgrade/Shop phase out of sync. Cleanup now collects harmless consumables before `RunRules.Tick` chooses the reward phase, then processes crates before levels. The fixture leaves a crate far from the player and verifies it appears in the two-crate queue at wave end. This was an integration hazard identified before final validation, not a claimed user incident.
+
+## HEAL-001 — Continuous regeneration and unlimited life steal changed build strength
+
+The old runtime healed `regen / 5` HP each second and allowed every successful hit to steal HP. Source uses discrete one-HP ticks with a nonlinear interval and a shared 0.1-second life-steal cooldown. New tests verify exact intervals, no early fractional healing, reset at full HP and pause semantics. Existing content/art is unchanged.
+
+## VERIFY-002 — A runtime smoke pass does not mean a wave was survived
+
+The latest normal-speed smoke reported Passed but ended Lost after 15.30 simulated seconds (17 kills, no upgrade). Inspection confirmed that its existing pass condition only requires shots, kills, enemies and screenshot output. Retained the raw report and explicitly classified it as combat coverage with a failed wave clear in verification. This result is not evidence of acceptable balance and was not overwritten by repeated attempts.
