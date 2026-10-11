@@ -29,7 +29,8 @@ namespace Scrapshift
             bool crate=kind!=ConsumableKind.Fruit;
             if(crate)cratesSpawned++;
             var obj=crate?CrateObject(position,kind==ConsumableKind.LegendaryCrate):SpriteObject("Repair capsule",catalog.repairPickup,position,3);
-            if(!crate)obj.transform.localScale=Vector3.one*.34f;
+            if(!crate)obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(catalog.repairPickup,.48f);
+            else obj.transform.localScale=Vector3.one*(.85f/.64f);
             pickups.Add(new Pickup {obj=obj,fruit=true,consumable=kind,
                 motion=new ScrapMotion {position=position,velocity=UnityEngine.Random.insideUnitCircle*3.2f,
                     verticalSpeed=3,height=.06f,angle=crate?0:UnityEngine.Random.Range(0,360),spin=crate?0:90}});

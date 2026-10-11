@@ -56,7 +56,7 @@ namespace Scrapshift.Tests
             {
                 Vector2 player = new Vector2(9, 3);
                 var pos = SpawnPlacement.Position(group,unit,Vector2.zero,player,random);
-                Assert.IsTrue(Mathf.Abs(Mathf.Abs(pos.x)-9.56f)<.001f || Mathf.Abs(Mathf.Abs(pos.y)-4.26f)<.001f);
+                Assert.IsTrue(Mathf.Abs(Mathf.Abs(pos.x)-9.60f)<.001f || Mathf.Abs(Mathf.Abs(pos.y)-7.04f)<.001f);
                 Assert.Greater(Vector2.Distance(pos,player),.25f);
             }
         }

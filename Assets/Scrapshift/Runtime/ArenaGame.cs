@@ -83,6 +83,8 @@ namespace Scrapshift
             if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
             int galleryIndex=Array.IndexOf(args,"--spring-gallery");
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
+            int worldIndex=Array.IndexOf(args,"--world-review");
+            if(worldIndex>=0&&worldIndex+1<args.Length)BeginWorldReview(args[worldIndex+1]);
             int scaleIndex=Array.IndexOf(args,"--scale-review");
             if(scaleIndex>=0&&scaleIndex+1<args.Length)BeginScaleReview(args[scaleIndex+1]);
             int appearanceIndex=Array.IndexOf(args,"--appearance-review");
@@ -92,6 +94,7 @@ namespace Scrapshift
         public void Begin()
         {
             sound.StopAll(); sound.Play(SoundCue.Install);
+            gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
             ClearCombat(); Rules.Start(); StartWave(); playerPos = Vector2.zero;
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
@@ -127,6 +130,8 @@ namespace Scrapshift
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
             if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
+            if (Rules.Phase != RunPhase.Playing && Rules.Phase != RunPhase.Paused)
+            { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
             {
                 titleModel.GetComponent<SpriteFrameAnimator>().Tick(Vector2.zero, Time.deltaTime, reducedMotion);
@@ -150,6 +155,7 @@ namespace Scrapshift
             SpringGalleryTick();
             AppearanceReviewTick();
             ScaleReviewTick();
+            WorldReviewTick();
         }
 
         void Simulate(float dt)
@@ -159,6 +165,7 @@ namespace Scrapshift
             Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
                 (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
             if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
+            if(worldReview) movement=WorldReviewMovement();
             if (artReview) movement = ArtReviewMovement();
             if (enemyReview || lootReview) movement = Vector2.zero;
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
@@ -174,7 +181,8 @@ namespace Scrapshift
             UpdatePickups(dt);
             UpdateSparks(dt); UpdateCorpses(dt);
             shake = Mathf.Max(0, shake - dt * 2);
-            gameCamera.transform.position = new Vector3(reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake, reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake, -20);
+            Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos, PresentationLayout.Aspect);
+            gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt)FinishWavePickups();
             float healthBefore=Rules.Health;Rules.Tick(dt);
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);

@@ -14,7 +14,7 @@ namespace Scrapshift
         {
             springGallery=true;springGalleryPath=folder;Directory.CreateDirectory(folder);
             springGalleryStart=Time.realtimeSinceStartup;reducedMotion=false;Begin();
-            Rules.Inventory.Clear();SyncEquipment();player.SetActive(false);
+            gameCamera.orthographicSize=7.5f;Rules.Inventory.Clear();SyncEquipment();player.SetActive(false);
             string[] ids={"baby_alien","bruiser","buffer","charger","chaser","evil_mob","fin_alien","helmet_alien","horned_bruiser","horned_charger","junkie","looter","predator","pursuer","slasher","spawner","spitter","tree"};
             for(int i=0;i<ids.Length;i++)
             {

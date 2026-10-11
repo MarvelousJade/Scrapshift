@@ -64,7 +64,7 @@ namespace Scrapshift
         }
         void AdvanceWave()
         {
-            if(Rules.Phase!=RunPhase.Shop)return;Rules.NextWave();playerPos=Vector2.zero;StartWave();sound.Play(SoundCue.Install);
+            if(Rules.Phase!=RunPhase.Shop)return;Rules.NextWave();gameCamera.orthographicSize=ArenaGeometry.CameraHalfHeight;playerPos=Vector2.zero;StartWave();sound.Play(SoundCue.Install);
         }
         void SyncEquipment()
         {
@@ -75,7 +75,7 @@ namespace Scrapshift
                 equipmentViews[i] = i < Rules.Inventory.Count ? SpriteObject(Rules.Inventory[i].title, Rules.Inventory[i].image, playerPos, 12) : null;
                 swings[i] = 0;
                 if (equipmentViews[i] == null) continue;
-                equipmentViews[i].transform.localScale = Vector3.one * .8f;
+                equipmentViews[i].transform.localScale = Vector3.one * ActorPresentation.WeaponScale(Rules.Inventory[i]);
                 if (Rules.Inventory[i].melee) continue;
                 var flash = SpriteObject("Muzzle flash", catalog.muzzleFrames[0], Vector2.zero, 14);
                 flash.transform.SetParent(equipmentViews[i].transform, false);
@@ -93,7 +93,7 @@ namespace Scrapshift
         {
             Vector2 p=Vector2.zero;for(int i=0;i<150;i++)
             {
-                p=new Vector2(UnityEngine.Random.Range(-10.2f,10.2f),UnityEngine.Random.Range(-4.9f,4.9f));if(Vector2.Distance(p,away)>=Mathf.Max(.25f,distance-i*.03f))break;
+                p=new Vector2(UnityEngine.Random.Range(-ArenaGeometry.HalfSize.x,ArenaGeometry.HalfSize.x),UnityEngine.Random.Range(-ArenaGeometry.HalfSize.y,ArenaGeometry.HalfSize.y));if(Vector2.Distance(p,away)>=Mathf.Max(.25f,distance-i*.03f))break;
             }
             return p;
         }
@@ -306,11 +306,11 @@ namespace Scrapshift
                         distance=d;nearest=e;
                     }
                 }
-                float a=i*Mathf.PI*2/Mathf.Max(1,Rules.Inventory.Count);Vector2 mount=playerPos+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*.72f;Vector2 direction=nearest!=null?(nearest.pos-mount).normalized:new Vector2(Mathf.Cos(a),Mathf.Sin(a));var view=equipmentViews[i];if(view!=null)
+                float a=i*Mathf.PI*2/Mathf.Max(1,Rules.Inventory.Count);Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);Vector2 direction=nearest!=null?(nearest.pos-mount).normalized:new Vector2(Mathf.Cos(a),Mathf.Sin(a));var view=equipmentViews[i];if(view!=null)
                 {
                     float age = .18f - swings[i];
                     float kick = SpriteFrameAnimator.Recoil(age);
-                    float offset = w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .05f : .17f);
+                    float offset = .24f + (w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .05f : .17f));
                     view.transform.position = new Vector3(mount.x + direction.x * offset, mount.y + direction.y * offset, -2);
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                     view.transform.rotation = Quaternion.Euler(0, 0, angle + (w.melee || reducedMotion ? 0 : kick * 7));
@@ -400,7 +400,7 @@ namespace Scrapshift
                 int shape = UnityEngine.Random.Range(0, catalog.scrapShapes.Length);
                 var obj = SpriteObject(fruit ? "Repair capsule" : "Scrap shape " + shape,
                     fruit ? catalog.repairPickup : catalog.scrapShapes[shape], p, 3);
-                obj.transform.localScale = Vector3.one * (fruit ? .34f : UnityEngine.Random.Range(.24f, .34f));
+                obj.transform.localScale = Vector3.one * ActorPresentation.SpriteLengthScale(obj.GetComponent<SpriteRenderer>().sprite, UnityEngine.Random.Range(.28f, .36f));
                 pickups.Add(new Pickup { obj = obj, value = amount, fruit = fruit,
                     motion = new ScrapMotion { position = p, velocity = UnityEngine.Random.insideUnitCircle * 3.2f,
                         verticalSpeed = UnityEngine.Random.Range(2.5f, 4f), height = .06f,

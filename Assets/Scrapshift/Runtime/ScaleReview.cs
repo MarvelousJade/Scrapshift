@@ -36,7 +36,7 @@ namespace Scrapshift
                 float pw=playerAnimation.bodyView.sprite.bounds.size.x*ActorPresentation.PlayerScale;
                 var baby=catalog.Enemy("baby_alien");float ew=baby.image.bounds.size.x*ActorPresentation.EnemyScale(baby);
                 bool passed=scaleStage==4&&ew/pw>1.1f&&ew/pw<1.4f;
-                File.WriteAllText(Path.Combine(scalePath,"report.txt"),$"Status: {(passed?"Passed":"Failed")}\nStaged player/basic-enemy presentation, no AI/combat. Camera 7.5 for gameplay-scale, 2.8 for detail.\nNeutral sprite widths: player {pw:F3}, baby {ew:F3}; ratio {ew/pw:F3}.\n");
+                File.WriteAllText(Path.Combine(scalePath,"report.txt"),$"Status: {(passed?"Passed":"Failed")}\nStaged player/basic-enemy presentation, no AI/combat. Camera 5.4 for gameplay-scale, 2.8 for detail.\nNeutral sprite widths: player {pw:F3}, baby {ew:F3}; ratio {ew/pw:F3}.\n");
                 Application.Quit(passed?0:1);enabled=false;
             }
         }

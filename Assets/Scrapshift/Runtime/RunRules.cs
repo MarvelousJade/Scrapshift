@@ -349,7 +349,7 @@ namespace Scrapshift
             if(Phase==RunPhase.Playing)Phase=RunPhase.Paused;
             else if(Phase==RunPhase.Paused)Phase=RunPhase.Playing;
         }
-        public static Vector2 ClampPosition(Vector2 p)=>new Vector2(Mathf.Clamp(p.x,-10.5f,10.5f),Mathf.Clamp(p.y,-5.1f,5.1f));
+        public static Vector2 ClampPosition(Vector2 p)=>ArenaGeometry.Clamp(p);
         public static bool Touches(Vector2 a,Vector2 b,float r)=>(a-b).sqrMagnitude<=r*r;
     }
 }

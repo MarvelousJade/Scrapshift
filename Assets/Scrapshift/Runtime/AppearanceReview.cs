@@ -29,7 +29,7 @@ namespace Scrapshift
             {ScreenCapture.CaptureScreenshot(Path.Combine(appearancePath,"title-veteran.png"));appearanceStage=1;}
             if(appearanceStage==1&&t>3)
             {
-                Begin();Rules.Inventory.Clear();SyncEquipment();player.SetActive(false);
+                Begin();gameCamera.orthographicSize=7.5f;Rules.Inventory.Clear();SyncEquipment();player.SetActive(false);
                 for(int i=0;i<6;i++)
                 {
                     var model=Instantiate(playerPrefab);model.name="Appearance example "+i;
