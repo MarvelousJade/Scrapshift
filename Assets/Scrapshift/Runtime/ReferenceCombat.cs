@@ -15,6 +15,8 @@ namespace Scrapshift
         readonly GameObject[] equipmentViews=new GameObject[6];
         readonly SpriteRenderer[] muzzleViews = new SpriteRenderer[6];
         readonly float[] weaponClocks=new float[6],swings=new float[6];
+        readonly Enemy[] weaponTargets=new Enemy[6];
+        readonly Vector2[] weaponDirections=new Vector2[6];
         SpawnDirector director;
         System.Random placementRandom = new System.Random();
         Vector2 groupAnchor;
@@ -77,7 +79,7 @@ namespace Scrapshift
                 if (equipmentViews[i] != null) Destroy(equipmentViews[i]);
                 muzzleViews[i] = null;
                 equipmentViews[i] = i < Rules.Inventory.Count ? SpriteObject(Rules.Inventory[i].title, Rules.Inventory[i].image, playerPos, 12) : null;
-                swings[i] = 0;
+                swings[i] = 0;weaponTargets[i]=null;weaponDirections[i]=Vector2.right;
                 if (equipmentViews[i] == null) continue;
                 equipmentViews[i].transform.localScale = Vector3.one * ActorPresentation.WeaponScale(Rules.Inventory[i]);
                 if (Rules.Inventory[i].melee) continue;
@@ -306,21 +308,28 @@ namespace Scrapshift
         {
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                var w=Rules.Inventory[i];weaponClocks[i]-=dt;swings[i]=Mathf.Max(0,swings[i]-dt);float range=Rules.WeaponRange(w);Enemy nearest=null;float distance=range*range;foreach(var e in enemies)
+                var w=Rules.Inventory[i];WeaponMotion.Step(w,dt,ref swings[i],ref weaponClocks[i]);float range=Rules.WeaponRange(w);Enemy nearest=null;float distance=range*range;foreach(var e in enemies)
                 {
                     if(e.marker!=null)continue;float d=(e.pos-playerPos).sqrMagnitude;if(d<distance)
                     {
                         distance=d;nearest=e;
                     }
                 }
-                Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);Vector2 direction=nearest!=null?(nearest.pos-mount).normalized:ActorPresentation.RestDirection(playerAnimation.FacingLeft);var view=equipmentViews[i];if(view!=null)
+                Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);
+                bool shooting=swings[i]>0;
+                var aim=shooting?weaponTargets[i]:nearest;
+                Vector2 direction=aim!=null&&enemies.Contains(aim)?(aim.pos-mount).normalized:shooting?weaponDirections[i]:ActorPresentation.RestDirection(playerAnimation.FacingLeft);
+                weaponDirections[i]=direction;
+                bool fire=!shooting&&nearest!=null&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
+                if(fire){weaponClocks[i]=Mathf.Max(.035f,w.interval/Rules.FireRate);swings[i]=WeaponMotion.Duration(w,Rules.FireRate);weaponTargets[i]=nearest;}
+                var view=equipmentViews[i];if(view!=null)
                 {
-                    float age = .18f - swings[i];
-                    float kick = SpriteFrameAnimator.Recoil(age);
-                    float offset = ActorPresentation.WeaponPivot(w.id) + (w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .05f : .17f));
+                    float age = WeaponMotion.Duration(w,Rules.FireRate) - swings[i];
+                    float kick = WeaponMotion.Recoil(w.id,age,Rules.FireRate);
+                    float offset = ActorPresentation.WeaponPivot(w.id) + (w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .2f : 1));
                     view.transform.position = new Vector3(mount.x + direction.x * offset, mount.y + direction.y * offset, -2);
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    view.transform.rotation = Quaternion.Euler(0, 0, angle + (w.melee || reducedMotion ? 0 : kick * 7));
+                    view.transform.rotation = Quaternion.Euler(0, 0, angle);
                     view.GetComponent<SpriteRenderer>().flipY = direction.x < 0;
                     view.GetComponent<SpriteRenderer>().sortingOrder=ActorPresentation.WeaponOrder(Rules.Inventory.Count,i);
                     if (muzzleViews[i] != null)
@@ -329,7 +338,7 @@ namespace Scrapshift
                         muzzleViews[i].sprite = catalog.muzzleFrames[Mathf.Clamp((int)(age / .022f), 0, 2)];
                     }
                 }
-                if(nearest==null||weaponClocks[i]>0)continue;weaponClocks[i]=Mathf.Max(.035f,w.interval/Rules.FireRate);swings[i]=.18f;float damage=Mathf.Max(1,w.damage+Rules.Stat(w.melee?"melee_damage":"ranged_damage"))*Rules.DamageScale;
+                if(!fire)continue;float damage=Mathf.Max(1,w.damage+Rules.Stat(w.melee?"melee_damage":"ranged_damage"))*Rules.DamageScale;
                 if(w.melee)
                 {
                     Vector2 end=playerPos+direction*range;for(int j=enemies.Count-1;j>=0;j--)if(enemies[j].marker==null&&SegmentDistance(HurtCenter(enemies[j]),playerPos,end)<HurtRadius(enemies[j])+.45f)
