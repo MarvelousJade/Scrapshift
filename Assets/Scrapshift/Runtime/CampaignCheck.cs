@@ -69,6 +69,7 @@ namespace Scrapshift
                     campaignCompleted=Rules.Wave;
                     campaignWaves.Add(new WaveCheck { wave=Rules.Wave,kills=Rules.Kills,shots=shotsFired,simulatedSeconds=elapsed });
                 }
+                while(Rules.Phase==RunPhase.Loot)Rules.ResolveCrate(true);
                 while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);
                 if(Rules.Phase==RunPhase.Shop)
                 {

@@ -39,6 +39,7 @@ namespace Scrapshift
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
             if (Rules.Phase == RunPhase.Title) { TitleUI(); return; }
+            if (Rules.Phase == RunPhase.Loot) { LootUI(); return; }
             if (Rules.Phase == RunPhase.Shop) { ShopUI(); return; }
             if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); return; }
             DrawHud();
@@ -75,6 +76,7 @@ namespace Scrapshift
             DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
             OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
             if(Rules.Banked>0)OutlinedText(26,146,235,30,$"Stored  {Rules.Banked}",body);
+            if(Rules.PendingCrates>0)OutlinedText(26,180,260,30,$"Item crates  {Rules.PendingCrates}",body);
             OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",center);
             var timer=new GUIStyle(number) { alignment=TextAnchor.MiddleCenter };
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)

@@ -55,7 +55,7 @@ namespace Scrapshift
         void StartWave()
         {
             director=new SpawnDirector(catalog.data.waves[Rules.Wave-1],UnityEngine.Random.Range(1,int.MaxValue));
-            births.Clear();
+            births.Clear();cratesSpawned=0;
             Array.Clear(weaponClocks,0,6);
             SyncEquipment();
             if(Rules.Wave==20)births.Push(new Birth
@@ -381,7 +381,7 @@ namespace Scrapshift
             {
                 damage*=2;hitStop=reducedMotion?0:.025f;shake=.035f;
             }
-            damage=Mathf.Max(1,damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));e.hp-=damage;e.flash=.08f;e.knockback=(e.pos-playerPos).normalized*3*knockback*(1-Mathf.Clamp01(e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance));Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.Stat("lifesteal")>0&&UnityEngine.Random.value<Rules.Stat("lifesteal")/100)Rules.Heal(1);if(e.hp>0)return;Rules.Kill();if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;corpses.Add(e);enemies.RemoveAt(index);Drop(e.pos,e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,false);if(e.type.role=="Tree"||UnityEngine.Random.value<e.type.dropChance)Drop(e.pos,0,true);if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
+            damage=Mathf.Max(1,damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));e.hp-=damage;e.flash=.08f;e.knockback=(e.pos-playerPos).normalized*3*knockback*(1-Mathf.Clamp01(e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance));Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0)return;Rules.Kill();if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;corpses.Add(e);enemies.RemoveAt(index);Drop(e.pos,e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,false);DropConsumable(e.pos,ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value));if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
@@ -389,7 +389,8 @@ namespace Scrapshift
         }
         void Drop(Vector2 p,int value,bool fruit)
         {
-            int[] values = fruit ? (pickups.Count < 240 ? new[] { 0 } : Array.Empty<int>()) : ScrapMotion.SplitValue(value, 240 - pickups.Count);
+            if(fruit){DropConsumable(p,ConsumableKind.Fruit);return;}
+            int[] values = ScrapMotion.SplitValue(value, 240 - pickups.FindAll(pickup=>!pickup.fruit).Count);
             if (values.Length == 0)
             {
                 if (!fruit && value > 0) Rules.BankMaterials(value);

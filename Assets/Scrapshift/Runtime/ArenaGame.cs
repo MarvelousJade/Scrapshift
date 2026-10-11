@@ -15,7 +15,7 @@ namespace Scrapshift
         public RunRules Rules { get; } = new RunRules();
         sealed class Enemy { public GameObject obj, marker; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
-        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; }
+        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
@@ -76,6 +76,8 @@ namespace Scrapshift
             if (enemyIndex >= 0 && enemyIndex + 1 < args.Length) BeginEnemyReview(args[enemyIndex + 1]);
             int campaignIndex = Array.IndexOf(args, "--campaign-check");
             if(campaignIndex>=0&&campaignIndex+1<args.Length)BeginCampaignCheck(args[campaignIndex+1]);
+            int lootIndex=Array.IndexOf(args,"--loot-review");
+            if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
         }
 
         public void Begin()
@@ -111,6 +113,9 @@ namespace Scrapshift
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
             if (Rules.Phase == RunPhase.Shop) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if(Input.GetKeyDown(KeyCode.R)) RerollUpgrade(); }
+            // Process after Shop input so taking the final crate cannot also start a wave.
+            if(Rules.Phase==RunPhase.Loot)
+            { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
             if (Rules.Phase == RunPhase.Playing && !campaignCheck) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
                 titleModel.GetComponent<SpriteFrameAnimator>().Tick(Vector2.zero, Time.deltaTime, reducedMotion);
@@ -128,16 +133,18 @@ namespace Scrapshift
             ArtReviewTick();
             EnemyReviewTick();
             CampaignCheckTick();
+            LootReviewTick();
         }
 
         void Simulate(float dt)
         {
+            var before=Rules.Phase;
             elapsed += dt; invulnerable = Mathf.Max(0, invulnerable - dt);
             Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
                 (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
             if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
             if (artReview) movement = ArtReviewMovement();
-            if (enemyReview) movement = Vector2.zero;
+            if (enemyReview || lootReview) movement = Vector2.zero;
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);
@@ -149,11 +156,12 @@ namespace Scrapshift
             UpdateWeapons(dt); UpdateSlashes(dt);
             UpdatePickups(dt);
             UpdateSparks(dt); UpdateCorpses(dt);
-            if (Rules.Stat("hp_regeneration") > 0) Rules.Heal(dt * Rules.Stat("hp_regeneration") / 5);
             shake = Mathf.Max(0, shake - dt * 2);
             gameCamera.transform.position = new Vector3(reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake, reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake, -20);
-            var before = Rules.Phase; Rules.Tick(dt);
-            if (Rules.Phase != before && (Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { foreach(var p in pickups) if(!p.fruit) Rules.BankMaterials(p.value); ClearCombat(); sound.Play(SoundCue.WaveClear); }
+            if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt)FinishWavePickups();
+            float healthBefore=Rules.Health;Rules.Tick(dt);
+            if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
+            if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); }
             if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) player.SetActive(true);
         }
 
@@ -167,13 +175,13 @@ namespace Scrapshift
             for (int i = pickups.Count - 1; i >= 0; i--)
             {
                 var p = pickups[i];
-                p.motion.Step(dt, playerPos, Rules.PickupRadius, reducedMotion);
+                p.motion.Step(dt, playerPos, p.fruit && Rules.Health>=Rules.MaxHealth ? -1 : Rules.PickupRadius, reducedMotion);
                 Vector2 position = p.motion.position;
                 p.obj.transform.position = new Vector3(position.x, position.y + p.motion.height, -1.5f);
                 p.obj.transform.rotation = Quaternion.Euler(0, 0, p.motion.angle);
                 if (p.motion.age > .16f && RunRules.Touches(position, playerPos, .3f))
                 {
-                    int levelBefore=Rules.Level; if(p.fruit) Rules.Heal(3); else Rules.Collect(p.value); if(Rules.Level>levelBefore){sound.Play(SoundCue.LevelUp);FloatText(playerPos,"LEVEL UP!",mint,true);} sound.Play(SoundCue.Pickup, position); Destroy(p.obj); pickups.RemoveAt(i);
+                    CollectPickup(p);Destroy(p.obj);pickups.RemoveAt(i);
                     if (Rules.Phase == RunPhase.Upgrade) { sound.Play(SoundCue.LevelUp); break; }
                 }
             }

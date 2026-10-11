@@ -28,7 +28,7 @@ namespace Scrapshift
             for(int i=0;i<8;i++)
             {
                 Rules.Tick(Rules.Remaining);
-                while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);
+                while(Rules.Phase==RunPhase.Loot)Rules.ResolveCrate(true);while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);
                 Rules.NextWave();
             }
             Rules.Inventory.Clear();
@@ -50,7 +50,7 @@ namespace Scrapshift
             }
             if(reviewStep==1&&t>10)
             {
-                Rules.Collect(500);Rules.Tick(Rules.Remaining);ClearCombat();while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);Rules.Shop[0]=new ShopOffer
+                Rules.Collect(500);Rules.Tick(Rules.Remaining);ClearCombat();while(Rules.Phase==RunPhase.Loot)Rules.ResolveCrate(true);while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);Rules.Shop[0]=new ShopOffer
                 {
                     weapon=catalog.Weapon("smg",2)
                 };
