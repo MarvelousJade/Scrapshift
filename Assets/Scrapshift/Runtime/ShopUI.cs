@@ -93,6 +93,7 @@ namespace Scrapshift
                     sound.Play(SoundCue.Install);
                 }
             }
+            else DrawWardrobePreview();
             Text(338,789,150,28,$"ITEMS ({Rules.Items.Count})",tiny);
             itemScroll=GUI.BeginScrollView(new Rect(468,776,924,57),itemScroll,new Rect(0,0,Mathf.Max(900,Rules.Items.Count*52),40));
             for(int i=0;i<Rules.Items.Count;i++)
@@ -114,6 +115,26 @@ namespace Scrapshift
                 Frame(new Rect(716,616,360,145),ink);
                 Text(733,630,327,120,GUI.tooltip,body);
             }
+        }
+
+        void DrawWardrobePreview()
+        {
+            Text(1130,590,260,25,"YOUR GEAR",tiny);
+            Vector2 origin = new Vector2(1250, 699);
+            const float scale = 82;
+            var worn = CharacterWardrobe.VisibleItems(Rules.Items);
+            foreach (var item in worn) if (item.wearOrder < 10) DrawWornIcon(item, origin, scale);
+            Sprite hero = playerAnimation.idleFrames[0];
+            Vector2 size = hero.rect.size / hero.pixelsPerUnit * scale;
+            DrawIcon(hero, new Rect(origin - size * .5f, size));
+            foreach (var item in worn) if (item.wearOrder >= 10) DrawWornIcon(item, origin, scale);
+        }
+
+        void DrawWornIcon(ItemEntry item, Vector2 origin, float scale)
+        {
+            Vector2 size = item.image.rect.size / item.image.pixelsPerUnit * item.wearScale * scale;
+            Vector2 center = origin + new Vector2(item.wearOffset.x, -item.wearOffset.y) * scale;
+            DrawIcon(item.image, new Rect(center - size * .5f, size));
         }
     }
 }

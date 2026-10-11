@@ -49,6 +49,10 @@ namespace Scrapshift
         public int tier,value;
         public StatEffect[] effects;
         public Sprite image;
+        public string wearSlot;
+        public Vector2 wearOffset;
+        public float wearScale = .2f;
+        public int wearOrder = 11;
         public string Detail
         {
             get

@@ -22,7 +22,7 @@ namespace Scrapshift.Editor
         }
 
         // Rectangles use source-image coordinates (top left). Slicing never rewrites PNG pixels.
-        static Sprite[] ImportSheet(string file, Rect[] regions, float ppu, bool trim = true, bool gunPivot = false)
+        static Sprite[] ImportSheet(string file, Rect[] regions, float ppu, bool trim = true, bool gunPivot = false, Vector2? framePivot = null)
         {
             string path = ArtRoot + "/" + file + "-v1.png";
             var source = new Texture2D(2, 2);
@@ -44,7 +44,7 @@ namespace Scrapshift.Editor
                 }
                 meta[i] = new SpriteMetaData { name = file + "_" + i.ToString("D2"), rect = r,
                     alignment = (int)SpriteAlignment.Custom,
-                    pivot = new Vector2(.5f, gunPivot && i < 4 ? .69f : .5f) };
+                    pivot = framePivot ?? new Vector2(.5f, gunPivot && i < 4 ? .69f : .5f) };
             }
             UnityEngine.Object.DestroyImmediate(source);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
@@ -67,9 +67,10 @@ namespace Scrapshift.Editor
 
         static void EnsureOriginalArt()
         {
-            if (File.Exists(Root + "/OriginalArtV2.txt")) return;
+            if (File.Exists(Root + "/OriginalArtV4.txt")) return;
             AssetDatabase.Refresh();
             var hero = ImportSheet("hero", Grid(4, 0, 512, 1024), 320, false);
+            var walk = ImportSheet("hero-walk", Grid(3, 0, 512, 1024), 372, false, framePivot: new Vector2(.5f, .57f));
             var enemyRects = new Rect[18];
             int[][] edges = { new[] { 0, 265, 525, 780, 1075, 1290, 1536 },
                 new[] { 0, 265, 515, 790, 1070, 1280, 1536 },
@@ -98,7 +99,7 @@ namespace Scrapshift.Editor
             foreach (var item in catalog.data.items) item.image = items[Array.IndexOf(itemIds, item.id)];
             string[] statIds = { "percent_damage", "attack_speed", "max_hp", "crit_chance", "armor", "hp_regeneration", "harvesting", "speed" };
             foreach (var u in catalog.data.upgrades) u.image = stats[Array.IndexOf(statIds, u.stat)];
-            catalog.scrapShapes = gear.Skip(6).Take(6).ToArray();
+            catalog.scrapShapes = new[] { gear[6], gear[7], gear[8], gear[10], gear[11] };
             catalog.repairPickup = gear[12];
             catalog.muzzleFrames = gear.Skip(13).Take(3).ToArray();
             catalog.warning = gear[16];
@@ -109,7 +110,8 @@ namespace Scrapshift.Editor
             var renderer = root.AddComponent<SpriteRenderer>();
             renderer.sprite = hero[0]; renderer.sharedMaterial = catalog.spriteMaterial; renderer.sortingOrder = 10;
             var animation = root.AddComponent<SpriteFrameAnimator>();
-            animation.idleFrames = hero.Take(4).ToArray(); animation.moveFrames = hero.Skip(4).ToArray();
+            animation.idleFrames = hero.Take(4).ToArray(); animation.moveFrames = walk;
+            animation.walkFramesPerSecond = 7;
             var prefab = PrefabUtility.SaveAsPrefabAsset(root, Root + "/Prefabs/ScavengerAnimated.prefab");
             UnityEngine.Object.DestroyImmediate(root);
             var scene = EditorSceneManager.OpenScene(ScenePath);
@@ -123,7 +125,7 @@ namespace Scrapshift.Editor
             EditorUtility.SetDirty(game);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
-            File.WriteAllText(Root + "/OriginalArtV2.txt", "Original sheets with corrected weapon boundary; serialized sprites; reference audio retained.\n");
+            File.WriteAllText(Root + "/OriginalArtV4.txt", "Six original sheets; six walking poses at 7 fps; five scrap shapes, battery excluded to distinguish health.\n");
             AssetDatabase.Refresh();
         }
     }

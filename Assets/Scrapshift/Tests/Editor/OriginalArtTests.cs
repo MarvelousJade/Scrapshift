@@ -12,7 +12,7 @@ namespace Scrapshift.Tests
         {
             var dependencies = AssetDatabase.GetDependencies(ContentBuilder.ScenePath, true);
             Assert.IsFalse(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".png")));
-            Assert.AreEqual(5, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
+            Assert.AreEqual(6, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
             Assert.IsTrue(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".wav")), "Retain requested reference audio.");
         }
 
@@ -34,6 +34,18 @@ namespace Scrapshift.Tests
                 Assert.IsFalse(animator.FacingLeft); Assert.AreEqual(0, animator.Frame);
             }
             finally { Object.DestroyImmediate(obj); }
+        }
+
+        [Test] public void WalkUsesSixDistinctPosesAtTheAuthoredSlowerCadence()
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ContentBuilder.Root + "/Prefabs/ScavengerAnimated.prefab");
+            var animator = prefab.GetComponent<SpriteFrameAnimator>();
+            Assert.AreEqual(6, animator.moveFrames.Distinct().Count());
+            Assert.AreEqual(7, animator.walkFramesPerSecond);
+            for (int i = 0; i < 6; i++)
+                Assert.AreEqual(i, SpriteFrameAnimator.FrameAt((i + .5f) / 7, true, animator.moveFrames.Length, animator.walkFramesPerSecond));
+            Assert.AreEqual(0, SpriteFrameAnimator.FrameAt(6.1f / 7, true, animator.moveFrames.Length, animator.walkFramesPerSecond));
+            Assert.Less(animator.idleFrames[0].bounds.size.y / animator.moveFrames[0].bounds.size.y, 1.2f);
         }
 
         [TestCase(1, 240)] [TestCase(19, 240)] [TestCase(19, 1)] [TestCase(19, 3)]
@@ -71,7 +83,9 @@ namespace Scrapshift.Tests
         [Test] public void ImportedFramesAndPickupVariantsAreDistinctSerializedSubassets()
         {
             var catalog = AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root + "/Definitions/ReferenceCatalog.asset");
-            Assert.AreEqual(6, catalog.scrapShapes.Distinct().Count());
+            Assert.AreEqual(5, catalog.scrapShapes.Distinct().Count());
+            Assert.IsFalse(catalog.scrapShapes.Any(s => s.name == "equipment_09"), "Battery plus sign ambiguously suggests healing.");
+            Assert.AreEqual("equipment_12", catalog.repairPickup.name);
             Assert.AreEqual(3, catalog.muzzleFrames.Distinct().Count());
             foreach (var sprite in catalog.scrapShapes.Concat(catalog.muzzleFrames))
             {
@@ -79,6 +93,23 @@ namespace Scrapshift.Tests
                 Assert.Less(sprite.rect.width, sprite.texture.width / 2);
                 Assert.Less(sprite.rect.height, sprite.texture.height / 2);
             }
+        }
+
+        [Test] public void EveryPurchasableItemHasAnAppearanceAndLatestSlotWinsWithoutRemovingInventory()
+        {
+            var catalog = AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root + "/Definitions/ReferenceCatalog.asset");
+            foreach (var item in catalog.data.items)
+            {
+                Assert.IsNotEmpty(item.wearSlot, item.id);
+                Assert.Greater(item.wearScale, 0, item.id);
+            }
+            var hat = catalog.data.items.Single(i => i.id == "beanie");
+            var helmet = catalog.data.items.Single(i => i.id == "helmet");
+            var coffee = catalog.data.items.Single(i => i.id == "coffee");
+            var inventory = new[] { hat, coffee, helmet };
+            var visible = CharacterWardrobe.VisibleItems(inventory);
+            CollectionAssert.AreEquivalent(new[] { coffee, helmet }, visible);
+            Assert.AreEqual(3, inventory.Length, "Cosmetic conflicts must not remove owned items.");
         }
     }
 }

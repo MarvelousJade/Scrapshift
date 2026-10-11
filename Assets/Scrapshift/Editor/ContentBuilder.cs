@@ -21,7 +21,7 @@ namespace Scrapshift.Editor
         public static void Generate()
         {
             // Safe to invoke again: authored content is never overwritten by the generator.
-            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsureOriginalArt(); return; }
+            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsureOriginalArt(); EnsureWardrobe(); return; }
             foreach (var sub in new[] { "Meshes", "Materials", "Prefabs", "Definitions", "Scenes" }) Directory.CreateDirectory(Root + "/" + sub);
             AssetDatabase.Refresh();
             quad = Polygon("Quad", 4, 45, 1.41421356f);
@@ -93,7 +93,7 @@ namespace Scrapshift.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };
             AssetDatabase.SaveAssets();
-            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsureOriginalArt(); Scan(); Debug.Log("Scrapshift content generated.");
+            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsureOriginalArt(); EnsureWardrobe(); Scan(); Debug.Log("Scrapshift content generated.");
         }
 
         static Color Hex(string hex) { ColorUtility.TryParseHtmlString(hex, out var c); return c; }

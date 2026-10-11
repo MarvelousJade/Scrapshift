@@ -13,13 +13,14 @@ namespace Scrapshift
         int artCapture;
         readonly HashSet<int> idleSeen = new HashSet<int>(), walkSeen = new HashSet<int>();
         readonly HashSet<string> shapesSeen = new HashSet<string>();
-        bool leftSeen, rightSeen, flashSeen, recoilSeen, scatterSeen, settledSeen, magnetSeen;
+        bool leftSeen, rightSeen, flashSeen, recoilSeen, scatterSeen, settledSeen, magnetSeen, outfitAdded, outfitShop;
         int artStep;
 
         [Serializable] sealed class ArtReport
         {
             public string status, scope;
             public int idleFrames, walkFrames, scrapShapes, shots;
+            public int visibleItemAttachments, equippedWeapons;
             public bool leftFacing, rightFacing, muzzleFlash, recoil, scatter, settled, magnet;
         }
 
@@ -35,7 +36,7 @@ namespace Scrapshift
             for (int i = 0; i < 24; i++)
             {
                 Drop(new Vector2(-3 + i % 6 * 1.2f, -2 + i / 6), 1, false);
-                pickups[pickups.Count - 1].obj.GetComponent<SpriteRenderer>().sprite = catalog.scrapShapes[i % 6];
+                pickups[pickups.Count - 1].obj.GetComponent<SpriteRenderer>().sprite = catalog.scrapShapes[i % catalog.scrapShapes.Length];
             }
         }
 
@@ -54,7 +55,24 @@ namespace Scrapshift
             if (!artReview) return;
             float t = Time.realtimeSinceStartup - artStart;
             Rules.Heal(100); // Staged art fixture only; never normal gameplay.
-            gameCamera.orthographicSize = t < 10 ? 3.8f : 7.5f;
+            gameCamera.orthographicSize = 3.8f;
+            gameCamera.transform.position = new Vector3(playerPos.x, playerPos.y, -20);
+            if (t > 10 && !outfitAdded)
+            {
+                outfitAdded = true;
+                foreach (string id in new[] { "helmet", "glasses", "leather_vest", "coffee", "blood_leech" })
+                    Rules.Items.Add(Array.Find(catalog.data.items, i => i.id == id));
+                Rules.Inventory.Clear();
+                foreach (string id in new[] { "pistol", "smg", "double_barrel_shotgun", "laser_gun", "knife", "spear" })
+                    Rules.Inventory.Add(catalog.Weapon(id, 2));
+                SyncEquipment();
+            }
+            if (t > 13 && !outfitShop)
+            {
+                outfitShop = true;
+                Rules.Tick(Rules.Remaining); ClearCombat();
+                while (Rules.Phase == RunPhase.Upgrade) Rules.Choose(0);
+            }
             if (playerAnimation.Moving)
             {
                 walkSeen.Add(playerAnimation.Frame);
@@ -79,14 +97,22 @@ namespace Scrapshift
                 artCaptureAt = t + 1f / 12;
             }
             float[] times = { 2.8f, 3.7f, 5.7f, 12 };
-            string[] names = { "idle.png", "walk-right.png", "walk-left.png", "combat.png" };
+            string[] names = { "idle.png", "walk-right.png", "walk-left.png", "outfit.png" };
             if (artStep < times.Length && t >= times[artStep])
                 ScreenCapture.CaptureScreenshot(Path.Combine(artPath, names[artStep++]));
+            if (artStep == 4 && t > 14)
+            {
+                ScreenCapture.CaptureScreenshot(Path.Combine(artPath, "outfit-shop.png"));
+                artStep++;
+            }
             if (t < 16) return;
-            bool passed = idleSeen.Count == 4 && walkSeen.Count == 4 && shapesSeen.Count == 6
-                && leftSeen && rightSeen && flashSeen && recoilSeen && scatterSeen && settledSeen && magnetSeen;
+            bool passed = idleSeen.Count == 4 && walkSeen.Count == 6 && shapesSeen.Count == 5
+                && leftSeen && rightSeen && flashSeen && recoilSeen && scatterSeen && settledSeen && magnetSeen
+                && wardrobe.VisibleCount == 5 && Rules.Inventory.Count == 6
+                && File.Exists(Path.Combine(artPath, "outfit-shop.png"));
             var report = new ArtReport { status = passed ? "Passed" : "Failed",
-                scope = "Staged Windows art fixture: supplied SMG, 24 drops spanning six shapes, scripted idle/right/left movement, restored health, temporary camera close-up, reduced motion disabled only for this process. Counts observed states, not perceptual quality or balance. Screenshots inspected separately.",
+                scope = "Staged Windows art fixture: supplied equipment, 24 drops spanning five shapes, six-weapon/five-item outfit, scripted idle/right/left movement, restored health, following close-up camera, reduced motion disabled only for this process. Outfit injected for visual coverage, not a purchase test. Screenshots inspected separately.",
+                visibleItemAttachments = wardrobe.VisibleCount, equippedWeapons = Rules.Inventory.Count,
                 idleFrames = idleSeen.Count, walkFrames = walkSeen.Count, scrapShapes = shapesSeen.Count, shots = shotsFired,
                 leftFacing = leftSeen, rightFacing = rightSeen, muzzleFlash = flashSeen, recoil = recoilSeen,
                 scatter = scatterSeen, settled = settledSeen, magnet = magnetSeen };

@@ -24,6 +24,7 @@ namespace Scrapshift
         readonly GameObject[] orbits = new GameObject[2];
         GameObject player, pulse;
         SpriteFrameAnimator playerAnimation;
+        CharacterWardrobe wardrobe;
         Vector2 playerPos;
         float elapsed, spawnClock, shootClock, orbitClock, pulseClock, invulnerable, pulseAge, shake;
         float smokeStart, screenshotAt;
@@ -43,6 +44,7 @@ namespace Scrapshift
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
             playerAnimation = player.GetComponent<SpriteFrameAnimator>();
+            wardrobe = player.AddComponent<CharacterWardrobe>();
             AddGroundShadow(player, .8f, -.55f);
             gun = Instantiate(gunPrefab); gun.name = "Visible rivet pistol";
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
@@ -117,6 +119,7 @@ namespace Scrapshift
                 audioPhase = Rules.Phase;
             }
             if (smoke) SmokeTick();
+            wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
             ReviewTick();
             ArtReviewTick();
         }
