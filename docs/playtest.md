@@ -73,3 +73,12 @@ Automated rules and staged rendering passed. These hands-on checks remain a user
 - Test Enter/mouse Take and X/mouse Recycle, including two queued crates. One key press must not skip the shop or start the next wave. Confirm worn item appearance after taking.
 - Choose regeneration and observe timed whole-HP ticks. Pause must stop the timer.
 - Play the first wave normally and assess difficulty. The latest scripted movement smoke died before clearing it; the invulnerable twenty-wave fixture does not settle balance.
+
+## Spring movement acceptance
+
+- Idle, then move horizontally and vertically: idle should breathe slowly, movement spring faster, and feet remain tiny. Up/down intentionally reuses the same body.
+- Stop after moving left; facing must stay left. Pause should freeze the spring. Reduced motion should disable squash/bounce.
+- Inspect enemies for no hands/legs and complete horns/nozzles. Check the red horned charger and blue spitter for slicing artifacts.
+- Equip several items and six weapons: items should follow the body and weapons float independently. Confirm the body looks handless even when weapon handles overlap it.
+
+Automated timing and rendered checks passed; the user's subjective motion/visual acceptance remains open.

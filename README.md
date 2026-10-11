@@ -1,6 +1,6 @@
 # Scrapshift
 
-A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Six original AI-generated art sheets supply the animated scavenger, enemies, weapons, pickups and UI icons. The supplied reference sound effects remain.
+A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Five active original AI-generated sheets supply the armless scavenger, body-only enemies, weapons, pickups and UI icons. A slow idle spring and faster movement spring animate one player body with tiny separate feet. The supplied reference sound effects remain.
 
 ## Why this exists
 
@@ -37,6 +37,7 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 - [Remaining gaps, loot and survival comparison](docs/loot-sustain-audit.md)
 - [Weapon-set comparison and implementation](docs/weapon-sets.md)
 - [Latest gameplay parity audit and remaining differences](docs/gameplay-parity-audit.md)
+- [Body-only sprite and spring-animation comparison](docs/spring-animation.md)
 - [Generated art, animation and pickup design](docs/original-art.md)
 - [Development journal](docs/journal.md)
 - [Observed bugs and fixes](docs/bugs.md)

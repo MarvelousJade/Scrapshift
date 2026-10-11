@@ -1,5 +1,11 @@
 # Original art and animation pass — October 11, 2026
 
+## Current spring revision
+
+The user replaced the multi-frame gait direction with a simpler body-only design. The active set is now five sheets: `hero-spring-v1.png`, `enemies-v2.png`, and the existing equipment/items/stats sheets. All eighteen enemy bodies have no hands or legs; the player has no arms/hands and uses one small separate foot sprite twice. Slow idle and faster walking squash/stretch are code-driven. Worn items follow the body and weapons float independently. See `spring-animation.md` and `spring-art-provenance.json` for source comparison, generation briefs, slicing corrections and verification.
+
+The remaining sections below describe the previous frame-animation iteration; their four/six-frame claims and decorative-arm description are historical.
+
 ## Reference study and decision
 
 Reviewed all twelve user-supplied screenshots in `E:/UnityProjects/Brotato/References`. The strongest gameplay references are `Brotato_o9JlhVG5Sb.png` (green drops, varied silhouettes and orientations, red spawn marks) and `Brotato_RCniq1VEZX.png` (separate floating weapons, short yellow firing cues, dark character outlines). `Brotato_j2seABbqdB.png` and `Brotato_1I4vrFxXQE.png` guide readable shop/upgrade icons. Screenshots establish appearance, not animation timing; timing below is our own design.

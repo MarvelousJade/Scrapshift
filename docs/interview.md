@@ -168,3 +168,11 @@ These replace the earlier five-wave/three-weapon scope descriptions above.
 **How did you validate it?** 116 rule/integration tests, a real rendered take/recycle fixture and a current twenty-wave accelerated run. Distinguish those from balance: the separate normal-speed smoke died in wave one. Its old Passed label only measured combat/capture coverage; reporting the actual loss is more accurate than claiming a successful run.
 
 **What remains?** Character/starter selection, broader stats/items, weapon-specific behavior and normal-run balancing. The crate pool is intentionally small. These are assistant-authored changes directed by the user, not personally handwritten production incidents; personally trace and play the implementation before discussing it as experience.
+
+## Simplifying animation after user feedback
+
+**Why simplify the art?** The user wanted springy body movement rather than visible limb cycles. Inspecting the reference showed separate body/feet sprites animated with position and scale. One body plus tiny foot instances removes inconsistent generated stride poses, keeps equipment independent and makes tuning straightforward.
+
+**What did visual review catch that tests missed?** The first gallery showed a clipped enemy nose and a fragment on its neighbor. The imported grid was valid data but wrong for those pixels. Per-sprite alpha bounds corrected it; a border test then caught remaining tree contamination in another sprite. Explain both the visual observation and the actual failed regression before the final 120/120 pass.
+
+**What remains subjective?** Tests establish timing, bounds and state behavior; they do not establish that the spring feels right. The user still needs to play it. Codex generated/implemented these changes under the user's direction; describe that contribution accurately.

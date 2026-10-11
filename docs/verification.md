@@ -1,6 +1,18 @@
 # Verification record
 
-## Latest — October 11 loot and survival loop
+## Latest — October 11 body-only spring animation
+
+- **120/120 EditMode tests passed**, zero failed/skipped, 1.158s test duration. Source pose landmarks, slower idle/faster walk, bounded alternating feet, pause, reduced motion, serialized body/foot references and sprite-border integrity are covered. Old six-frame assertions were replaced with the new requirement. The added border check caught one real atlas defect before passing; `artifacts/raw/spring-border-first-tests.xml` retains the ignored failed report.
+- **Windows build succeeded, zero errors/warnings**, Unity 6000.6.5f1, 131,521,308 reported bytes. Validation ran in the isolated copy without closing the user's Editor. **595 files match byte-for-byte**; `artifacts/validation-copy.json`. Only the generated catalog/prefab/scene, atlas metadata and migration marker were brought back from that copy; unsaved Editor state is outside validation.
+- **AssetScope: 201 assets, 1,355 usages, zero findings**, saved scenes/properties inspected, cache disabled. Five PNG sheets are active scene dependencies; older art remains for history. All eighteen enemy entries reference the new body-only sheet; player body/feet and wardrobe references are serialized. Weapons, pickup art and supplied audio are unchanged.
+- **Final art fixture passed:** one shared body sprite for idle/walk, measured horizontal spring ranges 0.15 / 0.30, both facings, five wearable attachments, six floating weapons, 37 shots; muzzle/recoil, five scrap shapes, scatter/settle/magnet observed. `artifacts/spring-art-final/art-review.json`. This grants equipment/items/health and uses scripted movement with a close-up camera. Frame counts no longer claim the visual quality of a gait.
+- **All-enemy gallery inspected:** `artifacts/spring-gallery-final/` uses eighteen actual enemy renderers at fixed positions and the real presentation function; no AI combat or balance is exercised. Compared the initial clipped gallery with corrected silhouettes. Player idle/walk/outfit and final shop preview were also visually inspected; no user acceptance is claimed.
+- Both final player logs contain only the known D3D12 info-queue diagnostic among Error/Exception/Failed matches; rendering completes. Raw logs stay ignored. The new atlas-border failure was corrected; neither its report nor the earlier clipped screenshots are called final passes.
+- **Package verified:** 155 entries, 48,301,015 bytes, CRC passed and every file matched the Windows folder. SHA-256 `c6b4a1a5a5450e229d01197b02e4738af42dcd1db5b0aabf05ae351e1ac404b2`.
+
+Reproduce with `scripts/build.ps1` (runs the versioned migration), `scripts/verify.ps1`, then `--art-review <folder>` and `--spring-gallery <folder>` on the rendered Windows player. Reduced-motion behavior was unit-tested, not manually accepted. Smooth interpolation/enemy cadence and simple feet are adaptations; no rear-view gait is supplied. The earlier twenty-wave fixture and first-wave smoke loss belong to the prior gameplay build, not a new balance claim. Pre-existing `ProjectSettings/PackageManagerSettings.asset` remains uncommitted.
+
+## Previous — October 11 loot and survival loop
 
 - **116/116 EditMode tests passed**, zero failed/skipped, 1.050s test duration; `artifacts/editmode.xml`. Eighteen added cases cover source drop probabilities, luck/dilution/guarantees, take/recycle ordering and effects, restart/loss, regeneration timing, pause, full-health reset, life-steal cooldown and attraction. Both test runs passed.
 - **Windows build succeeded, zero errors/warnings**, Unity 6000.6.5f1, 137,850,956 reported bytes. All **581 files** in Assets, Packages and ProjectSettings match the isolated validation project byte-for-byte; `artifacts/validation-copy.json`. The user's Editor was not closed; unsaved state is not covered.

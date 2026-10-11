@@ -11,6 +11,7 @@ Shop: buy items/weapons, lock offers, combine matching weapons, recycle.
 R: paid reroll. Six equipped weapons maximum.
 Eight item types, six weapon families, up to six floating weapons.
 Gun / Precise / Primitive set bonuses count duplicates, regardless of tier.
+The armless player has tiny feet; enemies spring without arms or legs.
 Watch enemy windups: amber direction cues precede charges and ranged shots.
 Survive twenty waves. The pause menu includes volume and reduced motion.
 

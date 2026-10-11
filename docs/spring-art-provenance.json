@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-11",
+  "tool": "built-in image_gen image edit",
+  "transparent_background": true,
+  "note": "Condensed generation briefs; original tool calls are in the chat. Generated PNG pixels preserved. Unity sprite rectangles and transforms perform slicing/animation, not bitmap repainting.",
+  "assets": [
+    {
+      "input": "enemies-v1.png",
+      "output": "enemies-v2.png",
+      "brief": "Edit all eighteen original mechanical salvage enemies into compact bodies with no arms, hands, legs, feet, wheels or tracks. Preserve archetype order and colors, eyes, horns, antennae and shell fins. Six-column three-row transparent atlas. The tree keeps one solid trunk; spawning-orb nodules attach directly to the body. No text, backdrop or shadow.",
+      "sha256": "b54874b3bb6c0a4aca675ed1bdf86d3ba525c3338317c37eb85be50762d55ba4"
+    },
+    {
+      "input": "hero-v1.png",
+      "output": "hero-spring-v1.png",
+      "brief": "Preserve the ivory oval scavenger, charcoal faceplate, mint eyes, ochre headset and scuffs. Remove shoulders, arms, hands, hips, long legs and large boots. Two separate parts on alpha: one neutral capsule body, and one tiny charcoal/ochre shoe without an ankle. Reuse the foot for both sides; animate body and feet in code.",
+      "sha256": "e4989f16e2dca758d02ebb06168f4063aeb383db99bccac186aea0136c514cfa"
+    }
+  ]
+}

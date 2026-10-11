@@ -41,3 +41,7 @@ User: requested source comparison, bonuses for our weapons, visible UI, continue
 ## Loot and survival pass
 
 User requested comparison and implementation of the biggest remaining gameplay gaps, keeping original art and incremental documentation/commits. Codex prioritized loot/survival after reading supplied source, implemented rules and UI with a procedural crate indicator, authored eighteen tests and a staged runtime fixture, ran Unity CLI validation and inspected rendered evidence. Codex also retained/documented the normal smoke's first-wave loss. No new art/audio assets were generated or replaced, and no user playtest/acceptance is recorded.
+
+## Spring animation and simplified anatomy
+
+User specified body-only enemies, an armless player with tiny feet and spring cadence, and requested actual reference sprites. Codex inspected/displayed local Brotato sprites and animation resources, edited the existing original art using built-in imagegen, integrated the body/feet hierarchy, inspected runtime output, fixed atlas clipping and documented the real regression failure. Two PNG edits are AI-generated; source pixels were not manually painted. User acceptance of the new motion is not yet recorded.
