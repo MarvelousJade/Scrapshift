@@ -139,7 +139,7 @@ These replace the earlier five-wave/three-weapon scope descriptions above.
 **What tradeoff did you make?** Explicit attack states and locked direction make a windup readable and dodgeable. Shooter aim lock, a short recovery, and visible direction lines are deliberate adaptations for the compact arena, not claims of exact commercial-game parity. Twenty schedules remain, while eight offered items keep the shop easier to understand.
 
 
-## Source-parity revision — current answers supersede earlier adaptations
+## Source-parity revision â€” current answers supersede earlier adaptations
 
 **How did you decide what to change?** Compare the supplied source's scene nodes and runtime methods with the Unity behavior, write a discrepancy table, then implement and test the differences. A visual resemblance or passing tests against our previous implementation did not establish parity. See `gameplay-parity-audit.md`.
 
@@ -147,6 +147,14 @@ These replace the earlier five-wave/three-weapon scope descriptions above.
 
 **What did tests catch or prove?** Exact XP and rarity boundaries, charge direction commitment and cooldown, paid non-repeating upgrade choices, separate spawn lane order, the 119/120 backlog boundary, and locked-price persistence. A separate accelerated Windows campaign verifies all twenty intermissions and the boss phase transition. The fixture is invulnerable and automatically shops; it does not prove fairness or fun.
 
-**What remains a tradeoff?** Keeping original art, a compact arena and a reduced catalog makes a manageable portfolio project, but also means this is not an exact Brotato clone. Character passives, weapon-set bonuses, all stats/items and endless mode are absent. The source-based rules are documented separately from our adaptations.
+**What remains a tradeoff?** Keeping original art, a compact arena and a reduced catalog makes a manageable portfolio project, but also means this is not an exact Brotato clone. Character passives, additional weapon sets, all stats/items and endless mode are absent; Gun, Precise and Primitive were added in the next pass. The source-based rules are documented separately from our adaptations.
 
 **Who did what?** Shaoyu requested the direction, supplied the reference, retained original art, requested incremental commits/documentation and opened the project in Unity. Codex performed source comparison, implementation and automated validation in this pass. Before interviewing, personally trace these code paths and play the project; do not claim these were personally handwritten changes or production incidents.
+
+## Weapon-set discussion example
+
+**Why derive the bonus instead of storing it?** The loadout has at most six slots, so recalculating its contribution keeps one source of truth and avoids stale bonuses after buying, combining or recycling. Permanent item/level stats remain separate. A higher-tier weapon still counts once; two duplicates count twice. The active threshold is a total, not a sum of all earlier thresholds.
+
+**What did verification teach you?** One new test failed because advancing the wave also earned a Harvesting level and +1 HP. The test was corrected to isolate the combine delta. The actual rendered fixture then showed two spears giving +3 Max HP and combining them lowering HP from 30 to 27. Explain the difference between a faulty test assumption and a demonstrated game defect.
+
+**How do you make a rule understandable?** Show weapon membership, equipped count, current effect and all five thresholds together. Inactive sets explicitly say they need two weapons. Unit tests verify the arithmetic; rendered inspection checks readability. These are Codex-authored changes directed by the user; personally trace and play them before using this example in an interview.

@@ -39,3 +39,7 @@ IMGUI minimizes implementation size but needs a future navigation/accessibility 
 
 
 SpawnPlacement owns bounded safe sampling without losing group/edge geometry; SpawnDirector invokes a group-start callback once before all unit types in an occurrence. EnemyAttack separates approach, committed windup, active attack and recovery. Runtime presentation consumes that state for tint, squash and direction cues; reduced motion suppresses squash/tilt while retaining essential cues. EnemyReview and CampaignCheck are explicit command-line-only fixtures. CampaignCheck supplies invulnerability/equipment and accelerates actual simulation; it cannot validate normal balance. Ordinary shops filter the retained serialized item catalog down to eight allowed ids.
+
+## Equipped weapon sets
+
+`WeaponSets` is the shared membership/threshold definition used by shop preferences, UI and `RunRules`. `RunRules.Stat` combines permanent values with the current inventory contribution; `Add` changes only permanent values. Scanning at most six equipped slots avoids a mutable bonus cache and invalidation bookkeeping. `WeaponRange` is shared by combat targeting/projectile reach and UI descriptions, including the source's half-strength Range scaling for melee. Buy/combine/recycle clamp current HP after a Primitive count reduction.

@@ -55,3 +55,12 @@ Personal checks still to do (not recorded as completed):
 - Reroll an upgrade: four different stats should replace the previous four. Check level 5's guaranteed uncommon tier.
 - Lock a shop offer, advance a wave, and verify its displayed purchase price is unchanged. First two shops should contain two weapons, including locked weapons.
 - Play without fixture overrides through later waves and Predator's half-health/45-second mutation. Record deaths, loadout, purchases and fairness/readability issues before claiming the 20-wave balance is good.
+
+## Weapon-set manual checks still to perform
+
+- Hover each set row and a weapon's membership label; verify all five thresholds and the current highlight at different window sizes.
+- Equip duplicates and different tiers; each slot should count once. Two Guns give +10 Range, two Knives +3% Critical Chance, two Spears +3 Max HP.
+- Combine/recycle and verify counts and stats change immediately. Buying a matching tier at six slots should upgrade that slot without reducing its set count.
+- Buy a permanent stat item while its matching set is active, then remove the set; only the temporary bonus should disappear.
+
+Automated rules and staged rendering passed. These hands-on checks remain a user playtest checklist, not recorded manual results.

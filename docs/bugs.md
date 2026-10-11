@@ -124,7 +124,7 @@ First audio build failed compilation with CS0619: `AudioImporter.preloadAudioDat
 REF-002 resolution: the rendered player generated all three valid review images. The hidden run remains a recorded failure; it was not relabeled as a pass.
 
 
-## COMBAT-001 — Spawn groups lost their spatial and timing contract
+## COMBAT-001 â€” Spawn groups lost their spatial and timing contract
 
 **Found by comparing code with the supplied reference:** safe-position retries could replace a clustered/edge position with an unrelated arena-wide position, and clustered units ignored extra player distance. The callback created separate anchors for different unit types in the same group. Queue length 100 silently discarded additional births. An initial chance miss incorrectly canceled all future repeats; interval reduction was applied one repeat late, and scheduling from rounded check time accumulated drift.
 
@@ -132,31 +132,39 @@ REF-002 resolution: the rendered player generated all three valid review images.
 
 **Evidence:** explicit 1,4,7,9,10-second accelerating-schedule test, failed-initial-chance repeat test, 250 edge placements and 100 clustered samples, plus all-wave frame-size stability. These were source-comparison defects, not claimed prior human reproductions.
 
-## COMBAT-002 — Ranged hits ignored weapon-specific knockback
+## COMBAT-002 â€” Ranged hits ignored weapon-specific knockback
 
 **Found by code inspection:** melee passed the weapon's knockback into Damage, but ranged Shot did not store it and always used Damage's default of 1. This made SMG crowd control stronger than its displayed zero knockback and erased differences between weapon families.
 
 **Fix:** carry knockback in each ranged Shot and pass it to Damage. The shop displays the same value used by the runtime. Runtime combat fixtures exercise ranged damage; no pre-fix human comparison is claimed.
 
-## UI-007 — Shop background leaked the combat HUD
+## UI-007 â€” Shop background leaked the combat HUD
 
 **Observed:** the first captured redesigned shop showed faint health/XP text and wave/timer labels behind its header. Its translucent background drew after the combat HUD.
 
 **Fix:** route Shop and Upgrade before the combat HUD in OnGUI; Upgrade draws its own compact HUD once. Hide the zero countdown during reward screens. Inspect the replacement screenshots after rebuilding.
 
 
-## PARITY-001 — Correct-looking attacks used the wrong timing and targeting
+## PARITY-001 â€” Correct-looking attacks used the wrong timing and targeting
 
 Source inspection found an invented 0.18-second charge recovery, shooter aim locked at preparation, ranged enemies frozen while shooting, and shared projectile values that ignored scene overrides. Per-enemy profiles now distinguish movement, preparation, animation tail, range, dash length, spread and projectile stats. Charges retain their committed direction; ranged aim follows the player until release. The regression tests use source timing boundaries. Earlier COMBAT-001/iteration claims about safest-candidate placement and intentional ranged aim locking are historical and superseded by this parity pass.
 
-## PARITY-002 — Spawn queue and cap changed encounters
+## PARITY-002 â€” Spawn queue and cap changed encounters
 
 The old FIFO shared queue delayed trees/bosses behind enemies, sped up at the wrong backlog threshold, and capped warnings/trees/bosses together on every birth. Source uses LIFO lanes, a 0.05-second cadence, two normal spawns at 120 queued entries, and group-boundary culling of active regular enemies. The new queue test checks exact order and both sides of the 119/120 boundary. Safe placement now relaxes clearance by 5 source pixels per retry instead of searching for the farthest candidate.
 
-## PARITY-003 — Flat scene parsing mixed boss states
+## PARITY-003 â€” Flat scene parsing mixed boss states
 
 The old importer combined properties from every scene node, allowing phase-two attack settings to overwrite Predator's root charge. Explicit node-based profiles now separate these attacks. The runtime phase switch occurs at <=50% HP or 45 elapsed active seconds, checked each second. The campaign reports observed boss phase changes; this is an actual integration path, not just a profile assertion.
 
-## PARITY-004 — Progression and shop rules diverged from the reference
+## PARITY-004 â€” Progression and shop rules diverged from the reference
 
 Starting at level 1 skipped the 16-XP threshold; automatic +1 Max HP per level was absent; rarity used unrelated independent rolls; upgrade rerolls repeated previous stats; negative harvest was discarded. These now follow the inspected rules. The first two shops previously could offer more than two weapons; locks preserved the object but let its price rise with the next wave. Offers now retain the wave used for pricing. Boundary and transaction tests cover these defects. Base HP is deliberately corrected from 20 to the source default 10; this is a balance change requiring user playtesting, not a measured improvement in difficulty.
+
+## SET-001 â€” Temporary bonuses could contaminate permanent stats
+
+Integration hazard found during implementation: `Add` formerly read `Stat` before storing a new value. Once `Stat` includes equipped-set effects, using that total would permanently bake those effects into an item or level reward. Separate `PermanentStat` from the derived total and mutate only the former. Regression tests apply permanent effects while a set is active, then remove the set and verify only the permanent values remain. This was caught during implementation, not reported as an observed user incident.
+
+## SET-002 â€” A test confused level HP with a combine bonus
+
+The first set suite passed 97/98. A test captured baseline Max HP before advancing a wave; positive Harvesting then earned a level and its automatic +1 HP. Its expected post-combine value was stale. Capture Max HP immediately before combining and assert the exact 3-HP loss instead. Final suite: 98/98. Independently rendered combine evidence shows 30 to 27 HP; the subsequent earned level produces 28. This was a test-assumption failure, not a product fix.

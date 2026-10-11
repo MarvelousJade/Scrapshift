@@ -17,6 +17,7 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Ass
 - Collect materials for both spending and XP. Levels queue until the wave ends.
 - 1–4 or mouse: choose a stat reward. R: paid reroll.
 - Shop: buy items/weapons, lock offers, select weapon slots to combine or recycle. Six slots maximum; buying a matching tier at capacity combines it.
+- Weapon sets: duplicates count; tiers count equally. Gun adds Range, Precise adds Critical Chance, Primitive adds Max HP. Hover the set rows for all thresholds.
 - Enter or GO: start the next wave. Enter also starts/restarts a run.
 
 Run `Builds/Windows/Scrapshift.exe`; keep its entire Windows folder together. Archive: `Builds/Scrapshift-Windows.zip`.
@@ -25,13 +26,14 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 
 ## Scope
 
-20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; eight offered stat-tradeoff items (24 retained catalog entries); eight upgrade stats using reference tier values. Predator now switches from charging to random projectile bursts at half health or 45 seconds and carries its rotating projectile arm. Higher difficulties, alternate bosses, all characters/items, weapon-set stat bonuses, endless mode, DLC and full balance parity are not implemented. The reference culling threshold is 100 active regular enemies at group boundaries; pending births, trees and bosses are separate. The arena and collision model remain adapted to this presentation.
+20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; eight offered stat-tradeoff items (24 retained catalog entries); eight upgrade stats using reference tier values. Predator now switches from charging to random projectile bursts at half health or 45 seconds and carries its rotating projectile arm. Higher difficulties, alternate bosses, all characters/items, additional weapon sets, endless mode, DLC and full balance parity are not implemented. The reference culling threshold is 100 active regular enemies at group boundaries; pending births, trees and bosses are separate. The arena and collision model remain adapted to this presentation.
 
 ## Interview evidence
 
 - [Purpose and scope](docs/design.md)
 - [Reference analysis](docs/reference-rebuild.md)
 - [Enemy, spawn and UI comparison](docs/enemy-spawn-iteration.md)
+- [Weapon-set comparison and implementation](docs/weapon-sets.md)
 - [Latest gameplay parity audit and remaining differences](docs/gameplay-parity-audit.md)
 - [Generated art, animation and pickup design](docs/original-art.md)
 - [Development journal](docs/journal.md)

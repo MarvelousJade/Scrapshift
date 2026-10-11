@@ -33,3 +33,7 @@ Current enemy/spawn/UI pass: Shaoyu requested comparison with the Brotato refere
 
 
 October 11 parity pass: Shaoyu authorized closer enemy/spawn/upgrade behavior after source comparison, retaining original art, and suggested Unity command-line use while the Editor was open. Codex authored the audit, code, regression tests, incremental commits and validation reports. Tests/builds used an isolated project copy to preserve the user's open Editor. Actual user playtesting/acceptance of this revision is still unrecorded.
+
+## Weapon-set pass
+
+User: requested source comparison, bonuses for our weapons, visible UI, continued documentation and incremental commits. Codex: inspected local reference scripts/resources, implemented the three sets and UI, authored tests/fixture, corrected the test's Harvesting/HP assumption, ran Unity CLI checks in an isolated copy and inspected rendered evidence. Existing original art/content remained unchanged. No user acceptance, manual hover verification or new full normal playthrough is recorded.

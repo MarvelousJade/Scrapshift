@@ -26,7 +26,7 @@ The corrections above are implemented. Existing synthetic campaign checks use an
 ## Implemented details and additional findings
 
 - Base health now uses the reference's unmodified 10 HP; no reference character passive is assumed. Level 0 and first threshold 16 are intentional source values. Each earned level adds 1 Max HP before its separate upgrade choice.
-- The first two shops offer two weapons and two items, counting locked weapons. Later shops retain the one-weapon guarantee through wave 5 and 35% random weapon chance. Owned-weapon and shared-set preferences use the source's declining early-wave bonuses; these preferences do not implement weapon-set stat bonuses.
+- The first two shops offer two weapons and two items, counting locked weapons. Later shops retain the one-weapon guarantee through wave 5 and 35% random weapon chance. Owned-weapon and shared-set preferences use the source's declining early-wave bonuses; the later weapon-set pass adds stat bonuses separately (see `weapon-sets.md`).
 - Newly rolled shop offers record their wave. A locked offer keeps that price on later waves. Current and previous offers are excluded when the reduced pool allows it. Missing high-tier item pools fall back to a lower tier, an explicit small-catalog adaptation.
 - Slasher now creates one stationary, delayed slash near the player: 0.48s warning, damage window through 0.60s, removal at 0.63s. It replaces the incorrect three-bullet fan. The changing hit rectangle is approximated using the source animation keyframes and our player radius; it is not pixel-identical collision geometry.
 - Evil mobs target and collect unclaimed materials, evolve at 10/20, slow down per stage, and return the stage-scaled collected value. Their attraction motion and visual evolution remain original approximations. Predator's nine projectiles extend at 1 unit/s to the source radii on one rotating arm.
@@ -36,10 +36,12 @@ The corrections above are implemented. Existing synthetic campaign checks use an
 
 The original art, compact arena, Unity collision/separation model, feedback effects and variable-step combat loop remain. Random draws use Unity/System.Random rather than Godot's generator, so the same seed is not a cross-engine replay guarantee. The 20-wave source schedule is retained, but these differences affect encounter feel.
 
-The selected scope remains six weapon families, eight offered items and eight upgrade stats. Full weapon-set stat bonuses, character passives/selection, all upgrade types, crate rewards, other bosses, higher difficulties and endless mode are absent. Shop probabilities operate on that smaller catalog. Reference audio is unchanged. Slasher's retained entry is not in the base-difficulty campaign schedule, so the campaign does not validate its runtime hit window. This is closer source-based behavior, not complete game equivalence.
+The selected scope remains six weapon families, eight offered items and eight upgrade stats. Additional weapon sets and their special modifiers, character passives/selection, all upgrade types, crate rewards, other bosses, higher difficulties and endless mode are absent. Shop probabilities operate on that smaller catalog. Reference audio is unchanged. Slasher's retained entry is not in the base-difficulty campaign schedule, so the campaign does not validate its runtime hit window. This is closer source-based behavior, not complete game equivalence.
 
 User's open Editor was preserved. A separate Unity project compiled and ran automated tests/builds; the Windows player supplied rendered evidence. The initial sandboxed CLI attempt could not initialize host licensing; retrying the same isolated copy with host permission succeeded. No user's Editor process was terminated.
 
-## Validation outcome
+The subsequent weapon-set pass implements Gun, Precise and Primitive for every included weapon, with count/bonus/threshold UI. See `weapon-sets.md` and the latest verification section.
+
+## Validation outcome (before the weapon-set pass)
 
 83 EditMode tests passed. The final Windows build succeeded with zero errors/warnings, and AssetScope found no issues among 198 assets / 1,337 reference usages. The final automated campaign completed all 20 waves and observed the boss transition. Normal-speed first-wave smoke reached the shop with 1 HP; it warrants personal difficulty testing. See `verification.md` and its linked artifact paths for exact counters, fixture overrides, screenshots and archive digest.
