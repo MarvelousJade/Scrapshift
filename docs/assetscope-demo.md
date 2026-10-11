@@ -1,25 +1,25 @@
-# AssetScope demonstration
+# AssetScope in Scrapshift
 
-## Setup
+Embedded version: **0.3.0**, copied from companion commit `b7aac0df08a31f7ae951792c34e440163ef42d34`. The companion project was not modified. This supersedes the original 0.1.0 snapshot.
 
-Open Scrapshift in Unity 6000.6.5f1. AssetScope is included as a local embedded Editor-only package, independently of the other active AssetScope project. Use **Window > AssetScope > Asset Search & Validation**.
+## Use it in this game
 
-Set the folder to `Assets/Scrapshift/Content`, then select **Scan folder**.
+1. Open Scrapshift in Unity 6000.6.5f1.
+2. Open **Window > AssetScope > Asset Search & Validation**.
+3. Set Folder to `Assets/Scrapshift/Content`. Expand scan options, enable **Inspect serialized properties** and **Inspect saved scenes**, then **Scan folder**.
+4. Search `GameSounds t:SoundBank`, select the bank, and inspect its serialized reference locations. A `variants` array entry targets `Fire_01.wav`. Click **Open source** to select the bank owning that reference; the message includes the array/property path.
+5. Select `Deck.unity` and locate the ArenaGame `soundBank` reference. Source navigation selects its owning game component in the saved scene. Keep the Inspector unlocked so it follows selection.
+6. Search `Ink t:Material` for shared prefab impact, or `RivetGun t:WeaponDefinition` for a weapon -> effect prefab -> mesh/material dependency chain. Enable transitive dependencies when useful.
+7. Export the scan, or use **Scrapshift > Export AssetScope Scan** for the game's saved-scene/property validation preset.
 
-## Three useful workflows
+## Verified integration
 
-1. **Shared material impact:** Search `Ink t:Material`. Its reverse references include the scavenger and enemy prefabs. Explain that changing a shared material affects multiple creature designs.
-2. **Weapon content chain:** Search `RivetGun t:WeaponDefinition`. Inspect the effect prefab and accent-material references. Select the referenced prefab and follow it to the shared mesh/material. The current snapshot shows direct dependencies, not the richer future field-level workflow.
-3. **Pre-handoff validation:** Run **Scrapshift > Export AssetScope Scan**. Read `artifacts/assetscope-report.json`. The verified normal game content contains 35 scanned assets and no missing-script findings. The scene is indexed for dependencies, not opened by this version's missing-script validator.
+30 game EditMode tests pass. A game-specific test scans actual content, locates the Fire_01 sound reference, calls source navigation, and verifies Unity selects the GameSounds bank. It also verifies the scene's soundBank property is present in the analysis. The build-time scan completed on 72 assets with 1,202 serialized reference usages and zero findings.
 
-## Important interpretation
+The companion tool's own 66-test result is recorded in its repository. That is separate from the 30 game tests run here; the complete companion UI suite was not rerun in this host.
 
-A clean missing-script scan does not prove that every serialized reference is valid, an asset is unused, gameplay is correct, or deletion is safe. The game's integration tests separately check expected weapon/prefab/material assignments. Keep these claims distinct in an interview.
+## Interpretation and limits
 
-## Demonstrating a failure safely
+The package inspects supported saved prefab/scene components, ScriptableObjects and Materials, including missing scripts/references. It does not discover runtime-only loads, inspect unsaved scene changes, establish that zero-referenced assets are safe to delete, or prove gameplay correctness. Source navigation selects the owning object/component; automatic Inspector field highlighting is not implemented.
 
-Use AssetScope's own isolated demo fixtures in its companion project, or a separate disposable test folder. Do not damage Scrapshift's playable content to manufacture a bug story. A deliberately broken fixture is a test fixture, not a discovered production incident.
-
-## Updating the tool
-
-The snapshot came from AssetScope commit `b3f060e9874bb7cb94235de532ad9f219c422c9c`. To upgrade: inspect the new package, replace the embedded package in a dedicated commit, run Scrapshift's content integration tests and the new tool's relevant tests, inspect the UI, and update this guide to its actual supported scope. Do not run two copies with the same package name in one Unity project.
+Use the companion project's isolated broken fixtures to demonstrate findings. Do not damage the playable game or present deliberate test fixtures as discovered production incidents.

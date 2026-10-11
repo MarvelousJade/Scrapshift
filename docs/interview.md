@@ -94,3 +94,11 @@ This is currently a directed portfolio project, not evidence of a professional t
 The user explicitly said the original art, UI and upgrade presentation were poor and that the combat lacked effects. The revision used the supplied local reference to identify specific missing signals: character silhouettes, hit confirmation, threat telegraphs and readable stat choices. It then replaced the presentation, expanded feedback, added randomized tiers/rerolls, and rechecked the build and actual screens. This demonstrates iteration from concrete critique; user approval of the redesign is still pending.
 
 The latest suite has 27 tests. DEV-004 is an additional real debugging example: native Unity object construction during deserialization, caught by scene tests despite a nominally successful build. Explain both the lifecycle fix and the stricter build gate. See journal and verification for the newest evidence; earlier examples above describe the first baseline.
+
+## How did you use your Editor tool in a real project?
+
+The game now embeds AssetScope 0.3.0. It scans 72 actual game assets and 1,202 reference usages with saved-scene/property analysis enabled. A regression test locates the Fire_01 audio clip reference in the sound bank, navigates to its source and verifies the selected bank. This links creator tooling to an actual authoring task: find which sound-bank entry uses a clip and go to the owning asset to change it. It is stronger evidence than only showing synthetic demo assets, but remains a small project, not a large-project benchmark.
+
+## Why change the audio architecture?
+
+The user reported that the original sound was poor. Four sine tones did not distinguish enough gameplay events. The revision separates authored cue data from playback, uses multiple original variants, and limits concurrent sounds while reserving voices for important feedback. Explain the distinction between numerical/sample-playback verification and subjective listening; the latter still needs personal evaluation. AUDIO-006 records the actual Unity importer API failure and fix.

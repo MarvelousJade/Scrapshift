@@ -29,7 +29,8 @@ To verify or rebuild, run `./scripts/verify.ps1` and `./scripts/build.ps1` with 
 - [Art and animation references](docs/art-references.md)
 - [Brotato combat/source research](docs/combat-references.md)
 - [AssetScope demo guide](docs/assetscope-demo.md)
+- [Sound design and listening sampler](docs/audio-design.md)
 - [Verified results and limitations](docs/verification.md)
 - [Your first hands-on playtest](docs/playtest.md)
 
-Current baseline: 27 EditMode cases passed; 35 content assets scanned with zero prefab missing-script findings; Windows build succeeded with zero reported build warnings/errors. Actual title/combat/pause/upgrade/wave-transition presentation and controls were inspected. Full-run balance and the user's own playtest remain open.
+Current baseline: 30 EditMode cases passed; AssetScope 0.3.0 scanned 72 content assets and 1,202 serialized references with zero findings; Windows build succeeded with zero reported build warnings/errors. Actual title/combat/pause/upgrade/wave-transition presentation and controls were inspected. Full-run balance and the user's own playtest remain open.

@@ -38,11 +38,11 @@ At 1440x900, title copy and start button fit without overlap; the robot silhouet
 
 - A complete five-wave human playtest and final-wave balance have not been verified. The rules suite covers all wave transitions, but that is different from surviving the full game.
 - No controller/rebinding, save progression, localization, screen-reader navigation, performance benchmark or non-Windows player validation.
-- Sound is implemented with synthesized tones; subjective audio quality has not been independently assessed.
+- Sound now uses an original layered PCM effects bank. Subjective audio quality still needs a user listening check.
 - Default-size rendering was inspected. Other aspect ratios have three mathematical regression cases, not a full manual display matrix.
 - The smoke screenshot check now requires file existence, but rejecting black/incorrect images still requires the separate visual check. This boundary is explicit.
 - Tests check swept collision and progression, but are not exhaustive coverage of every runtime weapon/enemy interaction.
-- AssetScope is the embedded 0.1.0 snapshot, not the concurrently developed newer version.
+- AssetScope is now the embedded 0.3.0 snapshot, integration-tested on the game content; see the latest results below.
 
 ## Evidence provenance
 
@@ -58,3 +58,12 @@ Raw logs and rejected runs are local under ignored `artifacts/raw/`. XML/JSON su
 - Full-run balance, subjective sound quality and user acceptance remain unverified. No automatic test can certify that the redesign is fun or attractive.
 
 Final v2 runtime check: a visible 24-second scripted run completed with 28 kills, 65 shots, peak 10 enemies, one upgrade, one orbit hit and 100 health. No exception/error was found in its player log. Independently opened `artifacts/smoke-v2/gameplay.png` and verified actual rendered pixels: outlined pistol and creatures, coral particle debris, orange 24! critical damage and white ordinary damage text, spawn ring and HUD. This run's visual evidence is valid, unlike the rejected original hidden captures. It does not exercise the later-wave charger/brute balance or pulse weapon.
+
+## Audio and AssetScope 0.3.0 revision
+
+- **30/30 game tests pass**, including the real sound-bank reference navigation integration.
+- **72 assets / 1,202 serialized reference usages / zero findings**, with saved-scene and property inspection enabled. Embedded tool source: `b7aac0df08a31f7ae951792c34e440163ef42d34`.
+- Windows build **Succeeded, zero errors and warnings**. Updated build/archive hashes are in `artifacts/build-hashes.json`.
+- **36 generated samples / 15 cue types** pass numerical peak/RMS/end-point checks. Source generation is reproducible with `scripts/generate_audio.py`; no reference WAV was copied.
+- Actual runtime audio check passed: all 15 isolated cues produced nonzero sampled Unity mixer output; mute suppressed playback. Sampled peak was 0.201. This is not a claim to have listened, a continuous mix clipping test, or a busy-wave benchmark. See `artifacts/audio/audio-runtime.json` and the offline listening sampler.
+- The audio-enabled 24-second scripted gameplay check passed with 28 kills, 67 shots, peak ten enemies and 100 health. It collected scrap but reached no upgrade in this run. No exception/error was found in the player log. Its screenshot was independently opened and verified as real game rendering; upgrade/reward audio was covered by the separate isolated cue check.

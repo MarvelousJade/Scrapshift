@@ -10,7 +10,7 @@ The player controls movement while weapons attack automatically. That makes the 
 
 ## Explicit boundaries
 
-One arena; three enemy types; three weapons; five waves; a small upgrade menu; keyboard and mouse menus; local Windows build. No multiplayer, accounts, procedural world, meta-progression, commercial launch or promise of perfect balance. Initial sound is synthesized. No outside sprite pack is required.
+One arena; three enemy types; three weapons; five waves; a small upgrade menu; keyboard and mouse menus; local Windows build. No multiplayer, accounts, procedural world, meta-progression, commercial launch or promise of perfect balance. Sound uses an original layered PCM effects bank. No outside sprite pack is required.
 
 ## Art plan
 
@@ -23,7 +23,7 @@ Upgrade cards show rarity, numeric gains and current damage/attack-speed/critica
 - Separate run rules from the scene: wave transitions, health, upgrade selection and pause behavior can be tested without rendering or input.
 - ScriptableObjects contain reusable enemy/weapon definitions, with explicit prefab/material references for authoring and AssetScope.
 - A bounded arena and simple distance checks avoid a physics dependency for this small top-down combat loop. This is a scope decision, not a claim that physics is generally undesirable.
-- Snapshot AssetScope as an embedded Editor-only package. Source baseline: `b3f060e9874bb7cb94235de532ad9f219c422c9c`. The other chat is independently expanding it; changes are not silently pulled into this game.
+- Snapshot AssetScope as an embedded Editor-only package. Current package: 0.3.0 from `b7aac0df08a31f7ae951792c34e440163ef42d34`, explicitly upgraded and integration-tested after the user reported it finished.
 - Use the legacy Input API for this limited keyboard prototype; migration to action-based Input System bindings is a follow-up for rebinding or controller support.
 
 ## Acceptance targets

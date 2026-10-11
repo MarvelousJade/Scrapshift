@@ -13,3 +13,7 @@ Pending first user playtest. Record date, what was played/inspected, a concrete 
 ## Presentation v2
 
 User: supplied the local Brotato reference and directly identified weak character/enemy design, UI, upgrades and missing combat feedback. Assistant: inspected the supplied material, authored new mesh art and Unity code, introduced randomized upgrade rules and regression checks, investigated DEV-004, and performed automated/desktop validation. User playtest and acceptance of the revised art are not yet recorded.
+
+## Audio and tool-use feedback
+
+The user explicitly criticized the sound and confirmed the request meant sound effects/audio, then asked whether the finished companion tool could be used in the game. Assistant authored and integrated the new sound bank/mixer, updated AssetScope to 0.3.0, ran the integration and mixer-output checks, and documented the importer API issue. The user's comments are direct product feedback; they do not establish a completed five-wave playtest or approval of the new mix.

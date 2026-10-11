@@ -53,3 +53,13 @@ The first validation found DEV-004: MaterialPropertyBlock creation in a MonoBeha
 Art and behavior were committed as separate actual milestones. Final pistol/spawn-marker polish, interactive verification and packaging follow those commits.
 
 Final v2 delivery: 27 tests passed; 35 assets scanned with no prefab missing scripts; Windows build zero reported errors/warnings. Visible scripted combat passed and the generated screenshot was independently inspected as real game content. Updated Windows ZIP and hashes. Kept full-run balance and subjective audio evaluation open. Saved before-fix evidence for the lifecycle issue and actual upgrade-card screenshots; no personal user playtest is claimed.
+
+## 2026-10-10 - Reference-informed sound bank and current AssetScope integration
+
+User clarified that the next critique was sound design. Replaced four synthesized runtime beeps with 36 authored PCM variants across 15 cues and a bounded mixer. Added dedicated damage, critical, death, blade, pulse, charger, reroll and reward sounds; cooldowns, non-repeating variants, stereo placement, pickup chains, reserved notification voices, ducking, and saved volume. Kept character art unchanged after explaining that its red strip is a scarf.
+
+The user also asked whether the finished tool could be used in this project. Read the companion chat and current package; upgraded the embedded AssetScope copy from 0.1.0 to 0.3.0 at b7aac0df08a31f7ae951792c34e440163ef42d34. Enabled saved-scene/property inspection in the game scan. Verified 72 assets, 1,202 reference usages, no findings, and a real sound-bank source-navigation test. All 30 game tests passed. The original tool project was not changed.
+
+Compilation caught AUDIO-006, a Unity 6 importer API move. Corrected it and retained the failed log. Audio source assets and tool upgrade were committed as separate milestones before the final integration/evidence commits.
+
+Final audio validation: all 15 cue categories produced sampled Unity mixer output and mute suppressed playback. The 24-second gameplay check completed with 28 kills, 67 shots and no logged error; this particular run did not reach an upgrade. Generated listening sampler and refreshed Windows ZIP. Subjective listening approval is still pending.

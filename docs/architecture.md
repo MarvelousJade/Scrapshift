@@ -49,3 +49,9 @@ No frame-rate, memory-allocation or scalability claim has been measured. Caps ar
 ## Safe content authoring
 
 The generator is a first-run scaffold: it preserves an existing scene instead of overwriting authored work. Change the saved definitions/prefabs to tune the game after generation. Changing generator constants alone does not silently rebuild existing content. Git tracks `.meta` files to preserve asset GUIDs.
+
+## Audio and Editor integration update
+
+`ArenaGame` dispatches semantic SoundCue events to a separate GameAudio component. The SoundBank ScriptableObject owns gains, variant arrays, cooldowns and pitch range. PCM imports are preloaded for short low-latency effects. Playback uses 16 bounded AudioSources with reserved important-cue slots, immediate mute, short ducking and per-cue cooldowns. A separate opt-in AudioCheck component tests actual sampled mixer output.
+
+The scene references GameSounds -> AudioClip variants; AssetScope 0.3.0 indexes those serialized arrays and can navigate to their owner. The package remains Editor-only. Runtime playback has no AssetScope or UnityEditor dependency.
