@@ -30,7 +30,8 @@ namespace Scrapshift
                 foreach (var item in selected)
                 {
                     var obj = new GameObject("Worn " + item.title);
-                    obj.transform.SetParent(transform, false);
+                    var animation=GetComponent<SpriteFrameAnimator>();
+                    obj.transform.SetParent(animation!=null?animation.BodyRoot:transform, false);
                     var view = obj.AddComponent<SpriteRenderer>();
                     view.sprite = item.image; view.sharedMaterial = material; view.sortingOrder = item.wearOrder;
                     obj.transform.localScale = Vector3.one * item.wearScale;

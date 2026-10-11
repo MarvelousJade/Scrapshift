@@ -78,6 +78,8 @@ namespace Scrapshift
             if(campaignIndex>=0&&campaignIndex+1<args.Length)BeginCampaignCheck(args[campaignIndex+1]);
             int lootIndex=Array.IndexOf(args,"--loot-review");
             if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
+            int galleryIndex=Array.IndexOf(args,"--spring-gallery");
+            if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
         }
 
         public void Begin()
@@ -116,7 +118,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
                 titleModel.GetComponent<SpriteFrameAnimator>().Tick(Vector2.zero, Time.deltaTime, reducedMotion);
             if (Rules.Phase == RunPhase.Title) player.SetActive(false);
@@ -134,6 +136,7 @@ namespace Scrapshift
             EnemyReviewTick();
             CampaignCheckTick();
             LootReviewTick();
+            SpringGalleryTick();
         }
 
         void Simulate(float dt)

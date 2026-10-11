@@ -8,11 +8,32 @@ namespace Scrapshift.Tests
 {
     public sealed class OriginalArtTests
     {
+        [Test] public void EnemySpriteRectanglesKeepTransparentBordersAroundWholeBodies()
+        {
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+            var texture=new Texture2D(2,2);
+            try
+            {
+                texture.LoadImage(System.IO.File.ReadAllBytes(AssetDatabase.GetAssetPath(catalog.data.enemies[0].image)));
+                foreach(var enemy in catalog.data.enemies)
+                {
+                    Rect r=enemy.image.rect;
+                    for(int x=(int)r.x;x<(int)r.xMax;x++)
+                    {Assert.Less(texture.GetPixel(x,(int)r.y).a,.12f,enemy.id+" bottom cut");Assert.Less(texture.GetPixel(x,(int)r.yMax-1).a,.12f,enemy.id+" top cut");}
+                    for(int y=(int)r.y;y<(int)r.yMax;y++)
+                    {Assert.Less(texture.GetPixel((int)r.x,y).a,.12f,enemy.id+" left cut");Assert.Less(texture.GetPixel((int)r.xMax-1,y).a,.12f,enemy.id+" right cut");}
+                }
+            }
+            finally {Object.DestroyImmediate(texture);}
+        }
         [Test] public void SceneUsesOriginalSheetsAndNoHistoricalReferenceSprites()
         {
             var dependencies = AssetDatabase.GetDependencies(ContentBuilder.ScenePath, true);
             Assert.IsFalse(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".png")));
-            Assert.AreEqual(6, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
+            Assert.AreEqual(5, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
+            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("hero-spring-v1.png")));
+            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("enemies-v2.png")));
+            Assert.IsFalse(dependencies.Any(p=>p.Contains("hero-walk")));
             Assert.IsTrue(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".wav")), "Retain requested reference audio.");
         }
 
@@ -27,26 +48,26 @@ namespace Scrapshift.Tests
                 Assert.IsTrue(animator.FacingLeft); Assert.IsTrue(animator.Moving);
                 animator.Tick(Vector2.zero, .01f, false);
                 Assert.AreEqual(0, animator.Frame); Assert.IsTrue(animator.FacingLeft);
-                var before = obj.GetComponent<SpriteRenderer>().sprite;
+                var before = animator.CurrentSprite;
+                var pose=animator.SpringPose;
                 animator.Tick(Vector2.zero, 0, false);
-                Assert.AreSame(before, obj.GetComponent<SpriteRenderer>().sprite, "A paused simulation must hold its frame.");
+                Assert.AreSame(before, animator.CurrentSprite, "A paused simulation must hold its frame.");
+                Assert.AreEqual(pose,animator.SpringPose,"Pause freezes the spring too.");
                 animator.Tick(Vector2.right, .01f, false);
                 Assert.IsFalse(animator.FacingLeft); Assert.AreEqual(0, animator.Frame);
             }
             finally { Object.DestroyImmediate(obj); }
         }
 
-        [Test] public void WalkUsesSixDistinctPosesAtTheAuthoredSlowerCadence()
+        [Test] public void SpringCharacterUsesOneBodyAndTwoTinyFootInstances()
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ContentBuilder.Root + "/Prefabs/ScavengerAnimated.prefab");
             var animator = prefab.GetComponent<SpriteFrameAnimator>();
-            Assert.AreEqual(6, animator.moveFrames.Distinct().Count());
-            Assert.IsTrue(animator.moveFrames.All(s => AssetDatabase.GetAssetPath(s).EndsWith("hero-walk-v2.png")));
-            Assert.AreEqual(7, animator.walkFramesPerSecond);
-            for (int i = 0; i < 6; i++)
-                Assert.AreEqual(i, SpriteFrameAnimator.FrameAt((i + .5f) / 7, true, animator.moveFrames.Length, animator.walkFramesPerSecond));
-            Assert.AreEqual(0, SpriteFrameAnimator.FrameAt(6.1f / 7, true, animator.moveFrames.Length, animator.walkFramesPerSecond));
-            Assert.Less(animator.idleFrames[0].bounds.size.y / animator.moveFrames[0].bounds.size.y, 1.2f);
+            Assert.AreEqual(1,animator.moveFrames.Length);Assert.AreSame(animator.idleFrames[0],animator.moveFrames[0]);
+            Assert.IsTrue(AssetDatabase.GetAssetPath(animator.bodyView.sprite).EndsWith("hero-spring-v1.png"));
+            Assert.AreSame(animator.leftFoot.sprite,animator.rightFoot.sprite);
+            Assert.Less(animator.leftFoot.sprite.bounds.size.y*animator.leftFoot.transform.localScale.y,animator.bodyView.sprite.bounds.size.y*.2f);
+            Assert.AreNotSame(animator.bodyView.transform,animator.leftFoot.transform.parent,"Feet must stay outside body squash.");
         }
 
         [TestCase(1, 240)] [TestCase(19, 240)] [TestCase(19, 1)] [TestCase(19, 3)]

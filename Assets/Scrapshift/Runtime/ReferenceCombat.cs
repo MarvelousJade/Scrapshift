@@ -249,13 +249,13 @@ namespace Scrapshift
             var sprite = e.obj.GetComponent<SpriteRenderer>();
             if (Mathf.Abs(velocity.x) > .05f) sprite.flipX = velocity.x < 0;
             float scale = RadiusScale(e.type) * (1+e.evolution*.2f);
-            float bob = reducedMotion || velocity.sqrMagnitude < .01f ? 0 : Mathf.Sin(e.activeAge * (e.type.id == "baby_alien" ? 18 : 11)) * .045f;
+            var spring=SpringMotion.Pose(e.activeAge*(e.type.id=="baby_alien"?1:.8f),velocity.sqrMagnitude>.01f,reducedMotion||e.type.role=="Tree");
             float anticipation = reducedMotion || !winding ? 0 : e.attack.Progress * .16f;
             float emerge = reducedMotion ? 1 : Mathf.Lerp(.45f, 1, Mathf.Clamp01(e.activeAge / .16f));
-            e.obj.transform.position = new Vector3(e.pos.x, e.pos.y, -1);
-            e.obj.transform.localScale = new Vector3(scale * (1 + bob + anticipation) * emerge,
-                scale * (1 - bob - anticipation) * emerge, 1);
-            e.obj.transform.rotation = Quaternion.Euler(0, 0, reducedMotion ? 0 : dashing ? -Mathf.Sign(velocity.x) * 12 : bob * 45);
+            e.obj.transform.position = new Vector3(e.pos.x, e.pos.y+spring.z*scale, -1);
+            e.obj.transform.localScale = new Vector3(scale * (spring.x + anticipation) * emerge,
+                scale * (spring.y - anticipation) * emerge, 1);
+            e.obj.transform.rotation = Quaternion.Euler(0, 0, reducedMotion ? 0 : dashing ? -Mathf.Sign(velocity.x) * 12 : 0);
             e.supportFlash = Mathf.Max(0, e.supportFlash - dt);
             sprite.color = winding ? Color.Lerp(Color.white, new Color(1, .35f, .2f), e.attack.Progress) :
                 e.boosted || e.supportFlash > 0 ? new Color(.85f, .55f, 1) : Color.white;

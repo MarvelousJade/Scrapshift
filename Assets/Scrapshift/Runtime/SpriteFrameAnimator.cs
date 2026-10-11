@@ -6,6 +6,12 @@ namespace Scrapshift
     public sealed class SpriteFrameAnimator : MonoBehaviour
     {
         public Sprite[] idleFrames, moveFrames;
+        public SpriteRenderer bodyView;
+        public SpriteRenderer leftFoot, rightFoot;
+        public Sprite footSprite;
+        public Transform BodyRoot=>bodyView!=null?bodyView.transform:transform;
+        public Sprite CurrentSprite=>bodyView!=null?bodyView.sprite:view!=null?view.sprite:null;
+        public Vector3 SpringPose {get;private set;}=new Vector3(1,1,0);
         [Range(3, 12)] public float walkFramesPerSecond = 7;
         SpriteRenderer view;
         float clock;
@@ -21,10 +27,27 @@ namespace Scrapshift
             if (next != moving) { clock = 0; moving = next; }
             clock += Mathf.Max(0, dt);
             if (Mathf.Abs(movement.x) > .05f) FacingLeft = movement.x < 0;
+            if(bodyView!=null)
+            {
+                Frame=0;SpringPose=SpringMotion.Pose(clock,moving,reducedMotion);
+                bodyView.flipX=FacingLeft;
+                bodyView.transform.localScale=new Vector3(SpringPose.x,SpringPose.y,1);
+                bodyView.transform.localPosition=new Vector3(0,SpringPose.z,0);
+                PoseFoot(leftFoot,-1,reducedMotion);PoseFoot(rightFoot,1,reducedMotion);
+                return;
+            }
             Frame = FrameAt(clock, moving, moveFrames.Length, walkFramesPerSecond);
             var frames = moving ? moveFrames : idleFrames;
             if (frames != null && frames.Length > 0) view.sprite = frames[Frame % frames.Length];
             view.flipX = FacingLeft;
+        }
+
+        void PoseFoot(SpriteRenderer foot,int side,bool reducedMotion)
+        {
+            if(foot==null)return;
+            Vector2 offset=SpringMotion.Foot(clock,side,moving,reducedMotion);
+            foot.transform.localPosition=new Vector3(offset.x*(FacingLeft?-1:1),-.64f+offset.y,.01f);
+            foot.flipX=FacingLeft;
         }
 
         public static int FrameAt(float time, bool moving, int walkCount = 6, float walkFps = 7)

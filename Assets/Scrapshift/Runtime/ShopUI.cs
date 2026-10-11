@@ -179,6 +179,8 @@ namespace Scrapshift
             var worn = CharacterWardrobe.VisibleItems(Rules.Items);
             foreach (var item in worn) if (item.wearOrder < 10) DrawWornIcon(item, origin, scale);
             Sprite hero = playerAnimation.idleFrames[0];
+            if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
+                DrawIcon(playerAnimation.footSprite,new Rect(origin.x+side*8-8,origin.y+34,16,10));
             Vector2 size = hero.rect.size / hero.pixelsPerUnit * scale;
             DrawIcon(hero, new Rect(origin - size * .5f, size));
             foreach (var item in worn) if (item.wearOrder >= 10) DrawWornIcon(item, origin, scale);

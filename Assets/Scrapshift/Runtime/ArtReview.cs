@@ -15,6 +15,7 @@ namespace Scrapshift
         readonly HashSet<string> shapesSeen = new HashSet<string>();
         bool leftSeen, rightSeen, flashSeen, recoilSeen, scatterSeen, settledSeen, magnetSeen, outfitAdded, outfitShop;
         int artStep;
+        float idleScaleMin=10,idleScaleMax,walkScaleMin=10,walkScaleMax;
 
         [Serializable] sealed class ArtReport
         {
@@ -22,6 +23,7 @@ namespace Scrapshift
             public int idleFrames, walkFrames, scrapShapes, shots;
             public int visibleItemAttachments, equippedWeapons;
             public bool leftFacing, rightFacing, muzzleFlash, recoil, scatter, settled, magnet;
+            public float idleSpringRange,walkSpringRange;
         }
 
         void BeginArtReview(string folder)
@@ -76,9 +78,10 @@ namespace Scrapshift
             if (playerAnimation.Moving)
             {
                 walkSeen.Add(playerAnimation.Frame);
+                walkScaleMin=Mathf.Min(walkScaleMin,playerAnimation.SpringPose.x);walkScaleMax=Mathf.Max(walkScaleMax,playerAnimation.SpringPose.x);
                 leftSeen |= playerAnimation.FacingLeft; rightSeen |= !playerAnimation.FacingLeft;
             }
-            else idleSeen.Add(playerAnimation.Frame);
+            else {idleSeen.Add(playerAnimation.Frame);idleScaleMin=Mathf.Min(idleScaleMin,playerAnimation.SpringPose.x);idleScaleMax=Mathf.Max(idleScaleMax,playerAnimation.SpringPose.x);}
             for (int i = 0; i < muzzleViews.Length; i++)
             {
                 flashSeen |= muzzleViews[i] != null && muzzleViews[i].enabled;
@@ -106,14 +109,14 @@ namespace Scrapshift
                 artStep++;
             }
             if (t < 16) return;
-            bool passed = idleSeen.Count == 4 && walkSeen.Count == 6 && shapesSeen.Count == 5
+            bool passed = idleSeen.Count == 1 && walkSeen.Count == 1 && idleScaleMax-idleScaleMin>.12f && walkScaleMax-walkScaleMin>.25f && shapesSeen.Count == 5
                 && leftSeen && rightSeen && flashSeen && recoilSeen && scatterSeen && settledSeen && magnetSeen
                 && wardrobe.VisibleCount == 5 && Rules.Inventory.Count == 6
                 && File.Exists(Path.Combine(artPath, "outfit-shop.png"));
             var report = new ArtReport { status = passed ? "Passed" : "Failed",
                 scope = "Staged Windows art fixture: supplied equipment, 24 drops spanning five shapes, six-weapon/five-item outfit, scripted idle/right/left movement, restored health, following close-up camera, reduced motion disabled only for this process. Outfit injected for visual coverage, not a purchase test. Screenshots inspected separately.",
                 visibleItemAttachments = wardrobe.VisibleCount, equippedWeapons = Rules.Inventory.Count,
-                idleFrames = idleSeen.Count, walkFrames = walkSeen.Count, scrapShapes = shapesSeen.Count, shots = shotsFired,
+                idleFrames = idleSeen.Count, walkFrames = walkSeen.Count, idleSpringRange=idleScaleMax-idleScaleMin,walkSpringRange=walkScaleMax-walkScaleMin,scrapShapes = shapesSeen.Count, shots = shotsFired,
                 leftFacing = leftSeen, rightFacing = rightSeen, muzzleFlash = flashSeen, recoil = recoilSeen,
                 scatter = scatterSeen, settled = settledSeen, magnet = magnetSeen };
             File.WriteAllText(Path.Combine(artPath, "art-review.json"), JsonUtility.ToJson(report, true));
