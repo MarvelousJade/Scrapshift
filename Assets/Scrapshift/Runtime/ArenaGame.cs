@@ -14,7 +14,7 @@ namespace Scrapshift
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
         sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
-        sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
+        sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce; public bool hostile; public EnemyEntry attacker; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
@@ -83,6 +83,8 @@ namespace Scrapshift
             if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
             int galleryIndex=Array.IndexOf(args,"--spring-gallery");
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
+            int presentationIndex=Array.IndexOf(args,"--presentation-review");
+            if(presentationIndex>=0&&presentationIndex+1<args.Length)BeginPresentationReview(args[presentationIndex+1]);
             int feelIndex=Array.IndexOf(args,"--combat-feel-review");
             if(feelIndex>=0&&feelIndex+1<args.Length)BeginCombatFeelReview(args[feelIndex+1]);
             int worldIndex=Array.IndexOf(args,"--world-review");
@@ -95,6 +97,7 @@ namespace Scrapshift
 
         public void Begin()
         {
+            if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
             gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
             ClearCombat(); Rules.Start(); StartWave(); playerPos = Vector2.zero;
@@ -113,11 +116,11 @@ namespace Scrapshift
             {
                 ScreenCapture.CaptureScreenshot(Path.Combine(smokePath, "preview.png")); previewCapture = false;
             }
-            if (titleModel != null) titleModel.SetActive(Rules.Phase == RunPhase.Title);
-            gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused);
+            if (titleModel != null) titleModel.SetActive(false);
+            gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)) Rules.Pause();
-            if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) Begin();
+            if (Input.GetKeyDown(KeyCode.Escape)) { if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else Rules.Pause(); }
+            if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1)) SelectUpgrade(0);
@@ -131,8 +134,8 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); Simulate(dt); }
-            if (Rules.Phase != RunPhase.Playing && Rules.Phase != RunPhase.Paused)
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview) { float dt = Mathf.Min(Time.deltaTime, .05f); if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
+            if (Rules.Phase != RunPhase.Playing && Rules.Phase != RunPhase.Paused && Rules.Phase != RunPhase.Won && Rules.Phase != RunPhase.Lost)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
             {
@@ -160,6 +163,7 @@ namespace Scrapshift
             ScaleReviewTick();
             WorldReviewTick();
             CombatFeelReviewTick();
+            PresentationReviewTick();
         }
 
         void Simulate(float dt)

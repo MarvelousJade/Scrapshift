@@ -58,22 +58,7 @@ namespace Scrapshift
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
         }
         void Overlay() => Box(new Rect(0,0,1440,900), new Color(.055f,.05f,.045f,.78f));
-        void TitleUI()
-        {
-            Text(40,28,1000,45,"SCRAPSHIFT    /    THE SALVAGE YARD",heading);
-            Frame(new Rect(100,185,770,515),panelColor);
-            Text(140,224,680,35,"SMALL SCAVENGER. BIG TROUBLE.",tiny);
-            Text(133,270,720,105,"SCRAPSHIFT",title);
-            Text(140,388,650,95,"The yard is crawling. Grab your rivet gun, collect the scrap, and turn a bad shift into a great build.",body);
-            Text(140,501,650,58,"20 waves. 6 weapon slots. Build your own loadout.\nYour weapons aim and fire automatically.",tiny);
-            if (Button(new Rect(140,590,355,66),"LET'S GO!   [ENTER]")) Begin();
-            Text(532,598,300,55,"WASD / ARROWS\nto move",body);
-            Text(957,630,350,38,playerAnimation.Look?.name.ToUpperInvariant()??"SCAVENGER",center);
-            if(Button(new Rect(957,682,160,42),"< LOOK"))ChangeLook(-1);
-            if(Button(new Rect(1135,682,160,42),"LOOK >"))ChangeLook(1);
-            Text(957,734,338,38,"Appearance only - same starting stats",tiny);
-            Text(40,834,1300,40,"MOVE  /  COLLECT  /  UPGRADE  /  SURVIVE",center);
-        }
+        void TitleUI() => ReferenceTitleUI();
         void ChangeLook(int direction)
         {
             var looks=playerAnimation.looks;if(looks==null||looks.Length==0)return;
@@ -145,13 +130,6 @@ namespace Scrapshift
             if (Mathf.Abs(volume-sound.Volume) > .001f) sound.SetVolume(volume);
             Text(480,657,480,28,"Your wave timer is stopped.",tiny);
         }
-        void EndUI()
-        {
-            Overlay(); Frame(new Rect(355,220,730,435),panelColor); bool won=Rules.Phase==RunPhase.Won;
-            Text(400,260,650,60,won ? "SHIFT COMPLETE!" : "END OF THE SHIFT",heading);
-            Text(400,346,640,85,won ? "Yard secured. One tiny scavenger, a whole lot of firepower." : "Keep moving, grab the scrap, and watch for the red spawn warnings.",body);
-            Text(400,461,640,40,$"{Rules.Kills} DEFEATED     /     {Rules.UpgradeCount} UPGRADES",tiny);
-            if (Button(new Rect(400,546,640,65),"ONE MORE RUN   [ENTER]")) Begin();
-        }
+        void EndUI() => ReferenceEndUI();
     }
 }

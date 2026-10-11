@@ -185,7 +185,7 @@ namespace Scrapshift
                 Vector2 legSize=leg.bounds.size*(SpringMotion.LegHeight/leg.bounds.size.y)*scale;
                 Vector2 center=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
                 Matrix4x4 before=GUI.matrix;
-                if(side<0)GUIUtility.ScaleAroundPivot(new Vector2(-1,1),center);
+                GUIUtility.ScaleAroundPivot(new Vector2(side<0?-SpringMotion.LegWidth:SpringMotion.LegWidth,1),center);
                 DrawIcon(leg,new Rect(center-legSize*.5f,legSize));
                 GUI.matrix=before;
             }

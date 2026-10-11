@@ -231,7 +231,7 @@ namespace Scrapshift
                 if(role=="Boss") UpdateBossArm(e,dt);
                 if (role != "Tree" && invulnerable <= 0 && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                 {
-                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1));
+                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1),e.type);
                     e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, e.speed);
                     if (role == "Pursuer") e.action = 0;
                 }
@@ -280,13 +280,13 @@ namespace Scrapshift
                 }
             }
         }
-        void HurtPlayer(float amount)
+        void HurtPlayer(float amount,EnemyEntry attacker=null)
         {
             if(invulnerable>0)return;float before=Rules.Health;Rules.Hurt(amount);float actual=before-Rules.Health;if(actual<=0)
             {
                 FloatText(playerPos,"DODGE",mint,false);invulnerable=CombatGeometry.Invulnerability(0,Rules.MaxHealth);return;
             }
-            hurtOverlay=.35f;FloatText(playerPos,$"-{Mathf.CeilToInt(actual)}",coral,true);playerFlash=CombatGeometry.FlashDuration;invulnerable=CombatGeometry.Invulnerability(actual,Rules.MaxHealth);Shake(.05f);ImpactBurst(playerPos,Vector2.up,false,true);sound.Play(SoundCue.Hurt);Burst(playerPos,8,coral);
+            lastAttacker=attacker;hurtOverlay=.35f;FloatText(playerPos,$"-{Mathf.CeilToInt(actual)}",coral,true);playerFlash=CombatGeometry.FlashDuration;invulnerable=CombatGeometry.Invulnerability(actual,Rules.MaxHealth);Shake(.05f);ImpactBurst(playerPos,Vector2.up,false,true);sound.Play(SoundCue.Hurt);Burst(playerPos,8,coral);
         }
         void EnemyBullet(Enemy e,Vector2 direction)
         {
@@ -300,7 +300,7 @@ namespace Scrapshift
             core.sortingOrder = 14; core.positionCount = 2;
             core.SetPosition(0, new Vector3(-.025f, 0, -.01f)); core.SetPosition(1, new Vector3(.025f, 0, -.01f));
             shots.Add(new Shot { obj = obj, pos = e.pos, velocity = direction.normalized * e.behavior.projectileSpeed, life = 30,
-                damage = ProjectileDamage(e), hostile = true });
+                damage = ProjectileDamage(e), hostile = true, attacker=e.type });
         }
         void UpdateEquipment(float dt)
         {
@@ -313,15 +313,16 @@ namespace Scrapshift
                         distance=d;nearest=e;
                     }
                 }
-                float a=i*Mathf.PI*2/Mathf.Max(1,Rules.Inventory.Count);Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);Vector2 direction=nearest!=null?(nearest.pos-mount).normalized:new Vector2(Mathf.Cos(a),Mathf.Sin(a));var view=equipmentViews[i];if(view!=null)
+                Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);Vector2 direction=nearest!=null?(nearest.pos-mount).normalized:ActorPresentation.RestDirection(playerAnimation.FacingLeft);var view=equipmentViews[i];if(view!=null)
                 {
                     float age = .18f - swings[i];
                     float kick = SpriteFrameAnimator.Recoil(age);
-                    float offset = .24f + (w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .05f : .17f));
+                    float offset = ActorPresentation.WeaponPivot(w.id) + (w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .05f : .17f));
                     view.transform.position = new Vector3(mount.x + direction.x * offset, mount.y + direction.y * offset, -2);
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                     view.transform.rotation = Quaternion.Euler(0, 0, angle + (w.melee || reducedMotion ? 0 : kick * 7));
                     view.GetComponent<SpriteRenderer>().flipY = direction.x < 0;
+                    view.GetComponent<SpriteRenderer>().sortingOrder=ActorPresentation.WeaponOrder(Rules.Inventory.Count,i);
                     if (muzzleViews[i] != null)
                     {
                         muzzleViews[i].enabled = age < .066f;
@@ -363,7 +364,7 @@ namespace Scrapshift
                 if (s.hostile)
                 {
                     if (SegmentDistance(PlayerHurtCenter, old, s.pos) <= CombatGeometry.PlayerHurtRadius + CombatGeometry.HostileRadius)
-                    { HurtPlayer(s.damage); s.life = 0; }
+                    { HurtPlayer(s.damage,s.attacker); s.life = 0; }
                 }
                 else
                 {

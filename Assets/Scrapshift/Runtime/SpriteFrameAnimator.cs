@@ -48,6 +48,8 @@ namespace Scrapshift
         void PoseFoot(SpriteRenderer foot,int side,bool reducedMotion)
         {
             if(foot==null)return;
+            float size=SpringMotion.LegHeight/foot.sprite.bounds.size.y;
+            foot.transform.localScale=new Vector3(size*SpringMotion.LegWidth,size,1);
             Vector2 offset=SpringMotion.Foot(clock,side,moving,reducedMotion);
             float facing=FacingLeft?-1:1;
             foot.transform.localPosition=new Vector3(offset.x*facing,SpringMotion.LegY+offset.y,.01f);

@@ -119,6 +119,7 @@ namespace Scrapshift
             stats[name]=PermanentStat(name)+value;
             Health=Math.Min(Health,MaxHealth);
         }
+        public void ReturnToTitle() { Phase=RunPhase.Title; }
         public void Start()
         {
             stats.Clear();

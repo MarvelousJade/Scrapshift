@@ -44,6 +44,10 @@ namespace Scrapshift
             new[]{new Vector2(.35f,-.35f),new Vector2(-.35f,-.35f),new Vector2(-.55f,.20f),new Vector2(.55f,.20f),new Vector2(0,.55f)},
             new[]{new Vector2(.35f,-.45f),new Vector2(-.35f,-.45f),new Vector2(-.60f,0),new Vector2(.60f,0),new Vector2(-.35f,.45f),new Vector2(.35f,.45f)}
         };
+        // The loaded reference resolves Sprite/Attach at zero; individual sprites offset from that pivot.
+        public static float WeaponPivot(string id) => id=="spear"?.48f:id=="knife"?.32f:.24f;
+        public static Vector2 RestDirection(bool facingLeft) => facingLeft?Vector2.left:Vector2.right;
+        public static int WeaponOrder(int count,int index) => WeaponMount(count,index).y>0?8:12;
         public static Vector2 WeaponMount(int count,int index) => mounts[Mathf.Clamp(count,1,6)-1][index];
     }
 }
