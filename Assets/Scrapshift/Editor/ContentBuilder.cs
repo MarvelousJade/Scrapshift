@@ -21,7 +21,7 @@ namespace Scrapshift.Editor
         public static void Generate()
         {
             // Safe to invoke again: authored content is never overwritten by the generator.
-            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); return; }
+            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); return; }
             foreach (var sub in new[] { "Meshes", "Materials", "Prefabs", "Definitions", "Scenes" }) Directory.CreateDirectory(Root + "/" + sub);
             AssetDatabase.Refresh();
             quad = Polygon("Quad", 4, 45, 1.41421356f);
@@ -93,7 +93,7 @@ namespace Scrapshift.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };
             AssetDatabase.SaveAssets();
-            UpgradePresentation(); EnsureWeaponArt(); Scan(); Debug.Log("Scrapshift content generated.");
+            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); Scan(); Debug.Log("Scrapshift content generated.");
         }
 
         static Color Hex(string hex) { ColorUtility.TryParseHtmlString(hex, out var c); return c; }
@@ -179,10 +179,10 @@ namespace Scrapshift.Editor
         [MenuItem("Scrapshift/Export AssetScope Scan")]
         public static void Scan()
         {
-            var session = ScanSession.Create(Root); while (session.State == ScanState.Running) session.Step();
+            var session = ScanSession.Create(Root, new ScanOptions { inspectSavedScenes = true, inspectProperties = true, useCache = false }); while (session.State == ScanState.Running) session.Step();
             Directory.CreateDirectory("artifacts"); File.WriteAllText("artifacts/assetscope-report.json", JsonUtility.ToJson(ScanReport.From(session), true));
             if (session.State != ScanState.Complete || session.Total == 0 || session.Findings.Count != 0) throw new Exception("Game content failed AssetScope validation.");
-            Debug.Log($"AssetScope scanned {session.Total} game assets: zero missing-script findings.");
+            Debug.Log($"AssetScope scanned {session.Total} game assets: zero validation findings.");
         }
         [MenuItem("Scrapshift/Build Windows Player")]
         public static void Build()

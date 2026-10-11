@@ -92,7 +92,7 @@ namespace Scrapshift
             }
             Text(120,653,760,66,$"DMG {Rules.DamageScale*100:0}%     SPEED {Rules.FireRate*100:0}%     CRIT {Rules.CritChance*100:0}%\n" + (Rules.WaveUpgrade ? "Next wave: +15 HP after your choice." : "Wave timer is paused while you choose."),tiny);
             if (Rules.CanReroll)
-            { if (Button(new Rect(984,657,334,52),"REROLL FREE   [R]")) Rules.Reroll(); }
+            { if (Button(new Rect(984,657,334,52),"REROLL FREE   [R]")) RerollUpgrade(); }
             else Text(984,670,334,40,"REROLL USED",center);
         }
         void PauseUI()
@@ -103,7 +103,10 @@ namespace Scrapshift
             if (Button(new Rect(480,412,480,62),muted ? "SOUND: OFF" : "SOUND: ON")) ToggleSound();
             if (Button(new Rect(480,497,480,62),reducedMotion ? "REDUCED MOTION: ON" : "REDUCED MOTION: OFF"))
             { reducedMotion=!reducedMotion; PlayerPrefs.SetInt("reducedMotion", reducedMotion ? 1 : 0); }
-            Text(480,605,480,38,"Your wave timer is stopped.",center);
+            Text(480,582,480,30,$"EFFECTS VOLUME  {sound.Volume*100:0}%",tiny);
+            float volume=GUI.HorizontalSlider(new Rect(484,624,470,24),sound.Volume,0,1);
+            if (Mathf.Abs(volume-sound.Volume) > .001f) sound.SetVolume(volume);
+            Text(480,657,480,28,"Your wave timer is stopped.",tiny);
         }
         void EndUI()
         {

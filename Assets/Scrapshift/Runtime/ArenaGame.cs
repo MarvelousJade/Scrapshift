@@ -30,23 +30,27 @@ namespace Scrapshift
         bool previewCapture;
         string smokePath;
         int peakEnemies, shotsFired, pulseHits, orbitHits;
-        AudioSource audioSource;
-        AudioClip fireSound, hitSound, collectSound, upgradeSound;
+        public SoundBank soundBank;
+        GameAudio sound;
+        RunPhase audioPhase = RunPhase.Title;
         GUIStyle tiny, body, heading, title, button, number;
         readonly Color mint = new Color(.48f, 1, .77f), amber = new Color(1, .76f, .36f), coral = new Color(1, .40f, .38f);
 
         void Start()
         {
             Application.targetFrameRate = 120;
-            audioSource = gameObject.AddComponent<AudioSource>(); audioSource.volume = .22f;
-            fireSound = Tone(730, .055f); hitSound = Tone(130, .10f); collectSound = Tone(1250, .045f); upgradeSound = Tone(520, .24f);
+
             player = Instantiate(playerPrefab); player.name = "Scavenger";
             gun = Instantiate(gunPrefab); gun.name = "Visible rivet pistol";
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
             muted = PlayerPrefs.GetInt("muted", 0) != 0;
+            sound = gameObject.AddComponent<GameAudio>(); sound.Initialize(soundBank, muted);
             reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
+            int audioCheck = Array.IndexOf(args, "--audio-check");
+            if (audioCheck >= 0 && audioCheck + 1 < args.Length)
+                gameObject.AddComponent<AudioCheck>().Begin(sound, args[audioCheck + 1]);
             int index = Array.IndexOf(args, "--smoke"); smoke = index >= 0;
             int preview = Array.IndexOf(args, "--preview-capture");
             if (preview >= 0 && preview + 1 < args.Length)
@@ -63,6 +67,7 @@ namespace Scrapshift
 
         public void Begin()
         {
+            sound.StopAll(); sound.Play(SoundCue.Install);
             ClearCombat(); Rules.Start(); playerPos = Vector2.zero;
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
@@ -88,12 +93,19 @@ namespace Scrapshift
                 if (Input.GetKeyDown(KeyCode.Alpha1)) SelectUpgrade(0);
                 if (Input.GetKeyDown(KeyCode.Alpha2)) SelectUpgrade(1);
                 if (Input.GetKeyDown(KeyCode.Alpha3)) SelectUpgrade(2);
-                if (Input.GetKeyDown(KeyCode.R)) Rules.Reroll();
+                if (Input.GetKeyDown(KeyCode.R)) RerollUpgrade();
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
             if (Rules.Phase == RunPhase.Playing) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
             if (Rules.Phase == RunPhase.Title)
                 player.transform.localScale = new Vector3(1 + Mathf.Sin(Time.time * 2) * .035f, 1 - Mathf.Sin(Time.time * 2) * .035f, 1);
+            if (audioPhase != Rules.Phase)
+            {
+                if (Rules.Phase != RunPhase.Playing) sound.StopCombat();
+                if (Rules.Phase == RunPhase.Won) sound.Play(SoundCue.Win);
+                if (Rules.Phase == RunPhase.Lost) sound.Play(SoundCue.Lose);
+                audioPhase = Rules.Phase;
+            }
             if (smoke) SmokeTick();
         }
 
@@ -128,7 +140,7 @@ namespace Scrapshift
                 obj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                 shots.Add(new Shot { obj = obj, pos = playerPos, velocity = direction * 15, life = 1.4f, damage = weapons[0].damage * Rules.DamageScale });
                 recoil = .14f; Burst(playerPos + direction * .85f, 3, amber);
-                shootClock = weapons[0].interval / Rules.FireRate; shotsFired++; Play(fireSound, .28f);
+                shootClock = weapons[0].interval / Rules.FireRate; shotsFired++; sound.Play(SoundCue.Fire, playerPos);
             }
             UpdateEnemies(dt);
             UpdateWeapons(dt);
@@ -137,7 +149,7 @@ namespace Scrapshift
             shake = Mathf.Max(0, shake - dt * 2);
             gameCamera.transform.position = new Vector3(reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake, reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake, -20);
             var before = Rules.Phase; Rules.Tick(dt);
-            if (Rules.Phase != before && Rules.Phase == RunPhase.Upgrade) { ClearCombat(); Play(upgradeSound, .8f); }
+            if (Rules.Phase != before && Rules.Phase == RunPhase.Upgrade) { ClearCombat(); sound.Play(SoundCue.WaveClear); }
             if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) player.SetActive(true);
         }
 
@@ -170,6 +182,7 @@ namespace Scrapshift
                     float speed = e.type.speed;
                     if (e.type == enemyTypes[1])
                     {
+                        if (e.action < 1.5f && e.action + dt >= 1.5f) sound.Play(SoundCue.Charge, e.pos);
                         e.action += dt;
                         if (e.action < 1.5f) e.charge = toward;
                         else if (e.action < 2.05f) { speed = 0; Flash(e, .65f); }
@@ -187,7 +200,7 @@ namespace Scrapshift
                 e.obj.transform.localScale = new Vector3(scale + squash + e.flash, scale - squash + e.flash, 1);
                 if (e.age > .6f && invulnerable <= 0 && RunRules.Touches(e.pos, playerPos, e.type.radius + .30f))
                 {
-                    Rules.Hurt(12); hurtOverlay = .45f; FloatText(playerPos, "-12", coral, true); hitStop = reducedMotion ? 0 : .045f; invulnerable = .9f; shake = .10f; Play(hitSound, 1);
+                    Rules.Hurt(12); hurtOverlay = .45f; FloatText(playerPos, "-12", coral, true); hitStop = reducedMotion ? 0 : .045f; invulnerable = .9f; shake = .10f; sound.Play(SoundCue.Hurt);
                     Burst(playerPos, 12, coral); e.pos += (e.pos - playerPos).normalized * 1.0f;
                 }
             }
@@ -214,7 +227,7 @@ namespace Scrapshift
                 orbits[i].transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
                 if (Rules.OrbitUnlocked && orbitClock <= 0)
                     for (int j = enemies.Count - 1; j >= 0; j--)
-                        if (RunRules.Touches(p, enemies[j].pos, enemies[j].type.radius + .5f)) { Damage(j, weapons[1].damage * Rules.DamageScale); orbitHits++; }
+                        if (RunRules.Touches(p, enemies[j].pos, enemies[j].type.radius + .5f)) { Damage(j, weapons[1].damage * Rules.DamageScale); orbitHits++; sound.Play(SoundCue.Swing, p); }
             }
             if (orbitClock <= 0) orbitClock = weapons[1].interval / Rules.FireRate;
             if (Rules.PulseUnlocked && pulseClock <= 0)
@@ -223,7 +236,7 @@ namespace Scrapshift
                 pulse.transform.position = new Vector3(playerPos.x, playerPos.y, -1.8f); pulse.SetActive(true);
                 for (int j = enemies.Count - 1; j >= 0; j--)
                     if (RunRules.Touches(playerPos, enemies[j].pos, weapons[2].range)) { Damage(j, weapons[2].damage * Rules.DamageScale); pulseHits++; }
-                Play(upgradeSound, .12f);
+                sound.Play(SoundCue.Pulse, playerPos);
             }
             if (pulseAge > 0) { pulseAge -= dt; pulse.transform.localScale = Vector3.one * (1 - pulseAge / .45f) * weapons[2].range * 2; }
             else pulse.SetActive(false);
@@ -242,7 +255,7 @@ namespace Scrapshift
             e.knockback = (e.pos - playerPos).normalized * (e.type == enemyTypes[2] ? 1.4f : 4.5f);
             Flash(e, 1); FloatText(e.pos, Mathf.CeilToInt(damage).ToString() + (critical ? "!" : ""), critical ? amber : Color.white, critical);
             Burst(e.pos, critical ? 10 : 5, critical ? amber : e.type.color);
-            Play(hitSound, critical ? .36f : .14f);
+            sound.Play(critical ? SoundCue.Critical : e.hp <= 0 ? SoundCue.Kill : SoundCue.Impact, e.pos);
             if (critical) { hitStop = reducedMotion ? 0 : .028f; shake = .045f; }
             if (e.hp > 0) return;
             Rules.Kill(); Burst(e.pos, 12, e.type.color);
@@ -262,8 +275,8 @@ namespace Scrapshift
                 p.obj.transform.position = new Vector3(p.pos.x, p.pos.y, -1.5f);
                 if (RunRules.Touches(p.pos, playerPos, .4f))
                 {
-                    Rules.Collect(p.value); Play(collectSound, .22f); Destroy(p.obj); pickups.RemoveAt(i);
-                    if (Rules.Phase == RunPhase.Upgrade) { Play(upgradeSound, .65f); break; }
+                    Rules.Collect(p.value); sound.Play(SoundCue.Pickup, p.pos); Destroy(p.obj); pickups.RemoveAt(i);
+                    if (Rules.Phase == RunPhase.Upgrade) { sound.Play(SoundCue.LevelUp); break; }
                 }
             }
         }
@@ -295,15 +308,9 @@ namespace Scrapshift
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();
             foreach (var s in sparks) Destroy(s.obj); sparks.Clear();
         }
-        void SelectUpgrade(int choice) { Rules.Choose(choice); FloatText(playerPos, "UPGRADED!", mint, true); Burst(playerPos, 24, mint); invulnerable = 1; player.SetActive(true); Play(upgradeSound, .5f); }
-        void ToggleSound() { muted = !muted; PlayerPrefs.SetInt("muted", muted ? 1 : 0); }
-        void Play(AudioClip clip, float volume) { if (!muted && audioSource != null) audioSource.PlayOneShot(clip, volume); }
-        static AudioClip Tone(float frequency, float duration)
-        {
-            const int rate = 22050; var samples = new float[(int)(rate * duration)];
-            for (int i = 0; i < samples.Length; i++) { float t = (float)i / rate; samples[i] = Mathf.Sin(2 * Mathf.PI * frequency * t * (1 - t * 1.2f)) * Mathf.Sin(Mathf.PI * i / samples.Length) * .3f; }
-            var clip = AudioClip.Create("Synth " + frequency, samples.Length, 1, rate, false); clip.SetData(samples, 0); return clip;
-        }
+        void SelectUpgrade(int choice) { Rules.Choose(choice); FloatText(playerPos, "UPGRADED!", mint, true); Burst(playerPos, 24, mint); invulnerable = 1; player.SetActive(true); sound.Play(SoundCue.Install); }
+        void ToggleSound() { muted = !muted; sound.SetMuted(muted); PlayerPrefs.SetInt("muted", muted ? 1 : 0); }
+        void RerollUpgrade() { if (Rules.CanReroll) { Rules.Reroll(); sound.Play(SoundCue.Reroll); } }
 
         [Serializable] sealed class SmokeReport
         {
@@ -327,11 +334,6 @@ namespace Scrapshift
                 elapsed = elapsed, health = Rules.Health, scope = "24-second Windows runtime; scripted normal-speed movement; no invulnerability override. Screenshot existence checked; pixel content requires separate visual validation. Not a full-run balance or manual-input test." };
             File.WriteAllText(Path.Combine(smokePath, "runtime-smoke.json"), JsonUtility.ToJson(report, true));
             Application.Quit(passed ? 0 : 1); enabled = false;
-        }
-        void OnDestroy()
-        {
-            if (fireSound != null) Destroy(fireSound); if (hitSound != null) Destroy(hitSound);
-            if (collectSound != null) Destroy(collectSound); if (upgradeSound != null) Destroy(upgradeSound);
         }
     }
 }
