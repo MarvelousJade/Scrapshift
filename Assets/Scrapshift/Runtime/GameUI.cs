@@ -5,7 +5,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         GUIStyle damageSmall, damageBig, cardTitle, center, icon;
-        readonly Color ink = new Color(.15f,.13f,.16f), paper = new Color(1,.94f,.79f), panelColor = new Color(.23f,.24f,.22f);
+        readonly Color ink = new Color(.08f,.08f,.09f), paper = new Color(.96f,.96f,.94f), panelColor = new Color(.20f,.20f,.21f);
         void EnsureStyles()
         {
             if (body != null) return;
@@ -31,7 +31,7 @@ namespace Scrapshift
         bool Button(Rect r, string label)
         {
             bool hover = r.Contains(Event.current.mousePosition);
-            Frame(r, hover ? paper : amber);
+            Frame(r, hover ? paper : mint);
             return GUI.Button(r, label, button);
         }
         void OnGUI()
@@ -44,17 +44,18 @@ namespace Scrapshift
             Frame(new Rect(32,48,320,34), new Color(.35f,.21f,.23f), 3);
             Box(new Rect(36,52,312*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), coral);
             Text(32,46,320,35,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
-            Text(510,13,420,34,$"WAVE {Rules.Wave} / 5",center);
+            Text(510,13,420,34,$"WAVE {Rules.Wave} / 20",center);
             Text(645,44,160,53,$"{Mathf.CeilToInt(Rules.Remaining):00}s",number);
-            Text(1100,16,300,28,"CREATURES DEFEATED",tiny);
-            Text(1100,43,300,50,$"{Rules.Kills:000}",number);
-            Text(32,815,650,30,"RIVET" + (Rules.OrbitUnlocked ? "    /    ORBIT" : "") + (Rules.PulseUnlocked ? "    /    PULSE" : ""),body);
+            Text(1100,16,300,28,"MATERIALS",tiny);
+            Text(1100,43,300,50,$"{Rules.Scrap}    [+{Rules.Banked}]",number);
+            Text(32,815,650,30,$"WEAPONS {Rules.Inventory.Count} / 6    |    ITEMS {Rules.Items.Count}",body);
             Text(32,854,800,25,"WASD / ARROWS  Move     ESC  Pause     M  Sound",tiny);
-            Text(960,813,440,27,$"LEVEL {Rules.Level}       SCRAP {Rules.Scrap} / {Rules.NextLevel}",tiny);
+            Text(960,813,440,27,$"LEVEL {Rules.Level}       XP {Rules.XP} / {Rules.NextLevel}",tiny);
             Frame(new Rect(960,851,440,20),panelColor,3);
-            Box(new Rect(964,855,432*Mathf.Clamp01((float)Rules.Scrap/Rules.NextLevel),12),mint);
+            Box(new Rect(964,855,432*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),12),mint);
             DrawFeedback();
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
+            else if (Rules.Phase == RunPhase.Shop) ShopUI();
             else if (Rules.Phase == RunPhase.Paused) PauseUI();
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
         }
@@ -66,34 +67,27 @@ namespace Scrapshift
             Text(140,224,680,35,"SMALL SCAVENGER. BIG TROUBLE.",tiny);
             Text(133,270,720,105,"SCRAPSHIFT",title);
             Text(140,388,650,95,"The yard is crawling. Grab your rivet gun, collect the scrap, and turn a bad shift into a great build.",body);
-            Text(140,501,650,58,"5 waves. 3 weapons. One very determined scavenger.\nYour weapons aim and fire automatically.",tiny);
+            Text(140,501,650,58,"20 waves. 6 weapon slots. Build your own loadout.\nYour weapons aim and fire automatically.",tiny);
             if (Button(new Rect(140,590,355,66),"LET'S GO!   [ENTER]")) Begin();
             Text(532,598,300,55,"WASD / ARROWS\nto move",body);
             Text(957,639,350,50,"THE SCAVENGER",center);
             Text(40,834,1300,40,"MOVE  /  COLLECT  /  UPGRADE  /  SURVIVE",center);
         }
-        Color OfferColor(UpgradeOffer offer) => offer.Rarity == "NEW WEAPON" ? amber : offer.Tier == 3 ? new Color(.76f,.59f,.95f) : offer.Tier == 2 ? new Color(.46f,.75f,1) : mint;
+        Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.76f,.43f,1) : tier==2 ? new Color(.40f,.66f,1) : paper;
         void UpgradeUI()
         {
-            Overlay();
-            Text(120,133,1000,50,Rules.WaveUpgrade ? "WAVE CLEARED!" : "LEVEL UP!",heading);
-            Text(120,187,1160,32,"Pick one. Make your next wave a little unfair.",body);
-            for (int i=0;i<Rules.Offers.Length;i++)
+            Overlay(); Text(72,135,1100,50,$"LEVEL UP!   {Rules.PendingLevels} reward(s) remaining",heading);
+            Text(72,192,1150,35,"Choose a stat upgrade, then visit the shop.",body);
+            for(int i=0;i<Rules.Offers.Length;i++)
             {
-                var offer = Rules.Offers[i]; float x=120+i*408; Color color=OfferColor(offer);
-                Frame(new Rect(x,246,382,386),panelColor);
-                Box(new Rect(x+4,250,374,9),color);
-                Text(x+24,276,330,28,offer.Rarity,tiny);
-                Frame(new Rect(x+24,319,80,80),color,3);
-                var old=icon.normal.textColor; icon.normal.textColor=ink; Text(x+24,312,80,90,offer.Icon,icon); icon.normal.textColor=old;
-                Text(x+123,327,240,82,offer.Title,cardTitle);
-                Text(x+24,430,334,125,offer.Detail,body);
-                if (Button(new Rect(x+24,560,334,51),$"TAKE   [{i+1}]")) SelectUpgrade(i);
+                var o=Rules.Offers[i];float x=72+i*328;Frame(new Rect(x,266,308,338),TierColor(o.Tier),3);
+                Box(new Rect(x+5,271,298,328),panelColor);
+                Text(x+20,290,270,28,o.Rarity,tiny);Text(x+20,346,270,62,o.Title,heading);
+                Text(x+20,440,268,75,o.Detail,body);
+                if(Button(new Rect(x+20,532,268,52),$"SELECT   [{i+1}]"))SelectUpgrade(i);
             }
-            Text(120,653,760,66,$"DMG {Rules.DamageScale*100:0}%     SPEED {Rules.FireRate*100:0}%     CRIT {Rules.CritChance*100:0}%\n" + (Rules.WaveUpgrade ? "Next wave: +15 HP after your choice." : "Wave timer is paused while you choose."),tiny);
-            if (Rules.CanReroll)
-            { if (Button(new Rect(984,657,334,52),"REROLL FREE   [R]")) RerollUpgrade(); }
-            else Text(984,670,334,40,"REROLL USED",center);
+            GUI.enabled=Rules.CanReroll;if(Button(new Rect(1036,660,308,54),$"REROLL   {Rules.RerollPrice}   [R]"))RerollUpgrade();GUI.enabled=true;
+            Text(72,669,900,45,$"MATERIALS {Rules.Scrap}    |    Upgrades don't spend materials. Rerolls do.",body);
         }
         void PauseUI()
         {
@@ -112,7 +106,7 @@ namespace Scrapshift
         {
             Overlay(); Frame(new Rect(355,220,730,435),panelColor); bool won=Rules.Phase==RunPhase.Won;
             Text(400,260,650,60,won ? "SHIFT COMPLETE!" : "END OF THE SHIFT",heading);
-            Text(400,346,640,85,won ? "Yard secured. One tiny scavenger, a whole lot of firepower." : "Keep moving, grab the scrap, and watch for the green charger's windup.",body);
+            Text(400,346,640,85,won ? "Yard secured. One tiny scavenger, a whole lot of firepower." : "Keep moving, grab the scrap, and watch for the red spawn warnings.",body);
             Text(400,461,640,40,$"{Rules.Kills} DEFEATED     /     {Rules.UpgradeCount} UPGRADES",tiny);
             if (Button(new Rect(400,546,640,65),"ONE MORE RUN   [ENTER]")) Begin();
         }

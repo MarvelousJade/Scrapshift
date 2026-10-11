@@ -1,0 +1,25 @@
+using System;
+using UnityEngine;
+namespace Scrapshift {
+[Serializable] public sealed class UnitEntry { public string id; public int min,max; public float chance,distance; }
+[Serializable] public sealed class SpawnGroup { public float start,interval,reduce,minimum,chance,area,inset; public int repeats,bucket; public bool edge; public UnitEntry[] units; }
+[Serializable] public sealed class WaveEntry { public float duration; public int cap; public SpawnGroup[] groups; }
+[Serializable] public sealed class EnemyEntry { public string id,role,sprite; public float health,growth,speed,speedRandom,damage,damageGrowth,armor,armorGrowth,resistance,cooldown,range,chargeSpeed,dropChance; public int value; public Sprite image; }
+[Serializable] public sealed class Equipment {
+ public string id,title,icon; public int tier,value,pellets,piercing; public bool melee; public float damage,interval,range,spread,crit,knockback; public Sprite image; public AudioClip[] sounds;
+ public string Detail=>$"{damage:0} damage | {interval:0.00}s\n{range:0.0} range"+(pellets>1?$" | {pellets} shots":"")+(melee?"\nMelee":"\nRanged"); }
+[Serializable] public sealed class StatEffect { public string key; public float value; }
+[Serializable] public sealed class ItemEntry {
+ public string id,title,icon; public int tier,value; public StatEffect[] effects; public Sprite image;
+ public string Detail {get {string s="";foreach(var e in effects)s+=$"{e.value:+0;-0;0} {StatName(e.key)}\n";return s.TrimEnd();}}
+ public static string StatName(string key)=>key.Replace("stat_","").Replace("percent_damage","% damage").Replace("attack_speed","% attack speed").Replace("crit_chance","% critical chance").Replace('_',' '); }
+[Serializable] public sealed class CatalogData {public WaveEntry[] waves;public EnemyEntry[] enemies;public Equipment[] equipment;public ItemEntry[] items;}
+public sealed class ReferenceCatalog:ScriptableObject {
+ public CatalogData data;public Sprite warning;public Material spriteMaterial;
+ public Equipment Weapon(string id,int tier)=>Array.Find(data.equipment,w=>w.id==id&&w.tier==tier);
+ public EnemyEntry Enemy(string id)=>Array.Find(data.enemies,e=>e.id==id); }
+public sealed class ShopOffer {
+ public Equipment weapon;public ItemEntry item;public bool locked;
+ public int Value=>weapon!=null?weapon.value:item.value;public int Tier=>weapon!=null?weapon.tier:item.tier;
+ public string Title=>weapon!=null?weapon.title:item.title;public string Detail=>weapon!=null?weapon.Detail:item.Detail;public Sprite Image=>weapon!=null?weapon.image:item.image; }
+}

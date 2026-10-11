@@ -1,0 +1,3490 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c66ce33f7c6ab4abd0847690d470be, type: 3}
+  m_Name: ReferenceCatalog
+  m_EditorClassIdentifier: Scrapshift.Runtime::Scrapshift.ReferenceCatalog
+  data:
+    waves:
+    - duration: 20
+      cap: 100
+      groups:
+      - start: 1
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: baby_alien
+          min: 4
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 25
+      cap: 100
+      groups:
+      - start: 1
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: chaser
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 4
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 30
+      cap: 100
+      groups:
+      - start: 1
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 5
+          max: 6
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 7
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: chaser
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 35
+      cap: 100
+      groups:
+      - start: 1
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 4
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: baby_alien
+          min: 6
+          max: 7
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 7
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 40
+      cap: 100
+      groups:
+      - start: 1
+        interval: 4
+        reduce: 0
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 8
+          max: 8
+          chance: 1
+          distance: 0
+      - start: 3
+        interval: 5
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: chaser
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 6
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 45
+      cap: 100
+      groups:
+      - start: 1
+        interval: 5
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: charger
+          min: 4
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 3
+        interval: 3
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: chaser
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 5
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: baby_alien
+          min: 5
+          max: 6
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 50
+      cap: 100
+      groups:
+      - start: 1
+        interval: 2
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 6
+          max: 7
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: charger
+          min: 6
+          max: 6
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 55
+      cap: 100
+      groups:
+      - start: 1
+        interval: 8
+        reduce: 1
+        minimum: 6
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: bruiser
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 2
+        interval: 3
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 5
+        interval: 6
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: baby_alien
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 2
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: 4
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: chaser
+          min: 6
+          max: 7
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: charger
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 22
+        interval: 8
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: bruiser
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 2
+        reduce: 0
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 8
+          max: 9
+          chance: 1
+          distance: 0
+      - start: 5
+        interval: 8
+        reduce: 1
+        minimum: 5
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: bruiser
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 20
+        interval: 5
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: charger
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 3
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: chaser
+          min: 4
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: pursuer
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 3
+        interval: 6
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: 4
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: baby_alien
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 5
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: charger
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: spitter
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 2
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 10
+        bucket: 0
+        edge: 1
+        units:
+        - id: chaser
+          min: 10
+          max: 10
+          chance: 1
+          distance: 0
+      - start: 5
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 2.5
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: pursuer
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 15
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: bruiser
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 3
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: charger
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 3
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 4
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 8
+          max: 8
+          chance: 1
+          distance: 0
+      - start: 4
+        interval: 8
+        reduce: 1
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 8
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 4
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 5
+        reduce: 1
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: bruiser
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+        - id: horned_bruiser
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 8
+        reduce: 1
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spawner
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 2
+        interval: 5
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 15
+        interval: 5
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 6
+          max: 6
+          chance: 1
+          distance: 0
+      - start: 40
+        interval: 10
+        reduce: 1
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: bruiser
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 22
+        interval: 6
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: junkie
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 5
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: 5
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: baby_alien
+          min: 8
+          max: 8
+          chance: 1
+          distance: 0
+        - id: spawner
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 2
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 6
+          max: 6
+          chance: 1
+          distance: 0
+      - start: 8
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 12
+        interval: 5
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 20
+        interval: 5
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: fin_alien
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 35
+        interval: 6
+        reduce: 1
+        minimum: 5
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: junkie
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 4
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 5
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: buffer
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+        - id: helmet_alien
+          min: 10
+          max: 10
+          chance: 1
+          distance: 0
+      - start: 5
+        interval: 5
+        reduce: 1
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 20
+        interval: 3
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: 4.5
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: fin_alien
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 32
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 4.5
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: horned_bruiser
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+        - id: bruiser
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: pursuer
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 4
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: pursuer
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 4
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: buffer
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 7
+        interval: 8
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: spawner
+          min: 1
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 5
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: 3
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: fin_alien
+          min: 4
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 15
+        interval: 5
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 3
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 40
+        interval: 5
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 4
+          max: 4
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 3
+        reduce: 1
+        minimum: 2
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 10
+        bucket: 0
+        edge: 0
+        units:
+        - id: horned_charger
+          min: 6
+          max: 6
+          chance: 1
+          distance: 0
+        - id: buffer
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 4
+        interval: 10
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: helmet_alien
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 20
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: spitter
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 24
+        interval: 3
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: spawner
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 3
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 2
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 1
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 35
+        bucket: 0
+        edge: 1
+        units:
+        - id: horned_charger
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 60
+      cap: 100
+      groups:
+      - start: 1
+        interval: 1
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 6
+          max: 6
+          chance: 1
+          distance: 0
+      - start: 4
+        interval: 1
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: helmet_alien
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: buffer
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 15
+        interval: 5
+        reduce: 1
+        minimum: 4
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: horned_bruiser
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 25
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: 2
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: pursuer
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 32
+        interval: 5
+        reduce: 1
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: helmet_alien
+          min: 2
+          max: 2
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 5
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: horned_charger
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    - duration: 90
+      cap: 100
+      groups:
+      - start: 1
+        interval: 0
+        reduce: 0
+        minimum: 0
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units: []
+      - start: 1
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 5
+        bucket: 0
+        edge: 1
+        units:
+        - id: baby_alien
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 5
+        bucket: 0
+        edge: 1
+        units:
+        - id: helmet_alien
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 15
+        interval: 3
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 5
+        bucket: 0
+        edge: 1
+        units:
+        - id: helmet_alien
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 20
+        interval: 1
+        reduce: 0
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 5
+        bucket: 0
+        edge: 1
+        units:
+        - id: fin_alien
+          min: 5
+          max: 5
+          chance: 1
+          distance: 0
+      - start: 20
+        interval: 1
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 5
+        bucket: 0
+        edge: 0
+        units:
+        - id: horned_bruiser
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 30
+        interval: 6
+        reduce: 1
+        minimum: 3
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 1
+        units:
+        - id: spawner
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+        - id: buffer
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+        - id: helmet_alien
+          min: 3
+          max: 3
+          chance: 1
+          distance: 0
+        - id: horned_bruiser
+          min: 1
+          max: 1
+          chance: 1
+          distance: 0
+      - start: 10
+        interval: 10
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 999
+        bucket: 0
+        edge: 0
+        units:
+        - id: tree
+          min: 1
+          max: 2
+          chance: 0.33
+          distance: 0
+      - start: 25
+        interval: 15
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 3
+        bucket: 0
+        edge: 0
+        units:
+        - id: looter
+          min: 1
+          max: 1
+          chance: 0.1
+          distance: 0
+      - start: 10
+        interval: 0
+        reduce: 0
+        minimum: 1
+        chance: 1
+        area: -0.01
+        inset: 0
+        repeats: 0
+        bucket: 0
+        edge: 1
+        units:
+        - id: evil_mob
+          min: 1
+          max: 1
+          chance: 0.03
+          distance: 0
+    enemies:
+    - id: baby_alien
+      role: Chase
+      sprite: baby_alien
+      health: 3
+      growth: 2
+      speed: 2.5
+      speedRandom: 0.5
+      damage: 1
+      damageGrowth: 0.6
+      armor: 0
+      armorGrowth: 0
+      resistance: 0
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 1
+      image: {fileID: 21300000, guid: bfa84ceeedd29d144a948d84e6722d91, type: 3}
+    - id: bruiser
+      role: Charge
+      sprite: bruiser
+      health: 20
+      growth: 11
+      speed: 3
+      speedRandom: 0
+      damage: 2
+      damageGrowth: 0.85
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.9
+      cooldown: 1
+      range: 5
+      chargeSpeed: 7
+      dropChance: 0.03
+      value: 3
+      image: {fileID: 21300000, guid: bf2c4df2f4149af4a9f2dc789096db37, type: 3}
+    - id: buffer
+      role: Buffer
+      sprite: buffer
+      health: 20
+      growth: 3
+      speed: 1.5
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 0.6
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.95
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 2
+      image: {fileID: 21300000, guid: 0596dd397e7203548990cd1fce63255a, type: 3}
+    - id: charger
+      role: Charge
+      sprite: charger
+      health: 4
+      growth: 2.5
+      speed: 4
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 0.85
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.8
+      cooldown: 0.6666667
+      range: 3
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 1
+      image: {fileID: 21300000, guid: 6b89a3c0d00935c4e94cc46df6be608c, type: 3}
+    - id: chaser
+      role: Chase
+      sprite: chaser
+      health: 1
+      growth: 1
+      speed: 3.8
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 0.6
+      armor: 0
+      armorGrowth: 0
+      resistance: 0
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.02
+      value: 1
+      image: {fileID: 21300000, guid: b7cbea533a978364b99016d286abca3e, type: 3}
+    - id: evil_mob
+      role: Looter
+      sprite: baby_alien
+      health: 5
+      growth: 30
+      speed: 3.5
+      speedRandom: 0.5
+      damage: 1
+      damageGrowth: 0.85
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.5
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 1
+      value: 8
+      image: {fileID: 21300000, guid: bfa84ceeedd29d144a948d84e6722d91, type: 3}
+    - id: fin_alien
+      role: Chase
+      sprite: fin_alien
+      health: 12
+      growth: 2
+      speed: 4
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 1
+      armor: 0
+      armorGrowth: 0
+      resistance: 0
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.02
+      value: 1
+      image: {fileID: 21300000, guid: bfcc828bf07782f4c96a59039c4205f4, type: 3}
+    - id: helmet_alien
+      role: Chase
+      sprite: helmet_alien
+      health: 8
+      growth: 4
+      speed: 2.5
+      speedRandom: 0.25
+      damage: 1
+      damageGrowth: 1
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.5
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 1
+      image: {fileID: 21300000, guid: f9933e7f1d2eedd4c9214dd516ace1ff, type: 3}
+    - id: horned_bruiser
+      role: Charge
+      sprite: horned_bruiser
+      health: 30
+      growth: 22
+      speed: 3
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 1.15
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.9
+      cooldown: 1
+      range: 5
+      chargeSpeed: 7
+      dropChance: 0.03
+      value: 3
+      image: {fileID: 21300000, guid: f9fa4fc78b860f64aa7678b5b0ab0d94, type: 3}
+    - id: horned_charger
+      role: Charge
+      sprite: horned_charger
+      health: 12
+      growth: 5
+      speed: 4.25
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 1.1
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.8
+      cooldown: 0.6666667
+      range: 3
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 1
+      image: {fileID: 21300000, guid: b2f2983fab0afb442b60361358e5d9d5, type: 3}
+    - id: junkie
+      role: WanderShooter
+      sprite: junkie
+      health: 5
+      growth: 5
+      speed: 3.5
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 1
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.5
+      cooldown: 2
+      range: 9999.99
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 1
+      image: {fileID: 21300000, guid: b214a89b9cbc35a4f8bc611ce8b1ea49, type: 3}
+    - id: looter
+      role: Looter
+      sprite: looter
+      health: 5
+      growth: 30
+      speed: 3.5
+      speedRandom: 0.5
+      damage: 1
+      damageGrowth: 0.85
+      armor: 0
+      armorGrowth: 0
+      resistance: 0
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 1
+      value: 8
+      image: {fileID: 21300000, guid: 8199663d9c4426a438d7f19bb12c6fd1, type: 3}
+    - id: predator
+      role: Boss
+      sprite: predator
+      health: 15000
+      growth: 750
+      speed: 3
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 1.5
+      armor: 0
+      armorGrowth: 0
+      resistance: 1
+      cooldown: 1.5
+      range: 20
+      chargeSpeed: 7.5
+      dropChance: 1
+      value: 10
+      image: {fileID: 21300000, guid: da15163272c85e244b88774d64ebc1e5, type: 3}
+    - id: pursuer
+      role: Pursuer
+      sprite: pursuer
+      health: 10
+      growth: 24
+      speed: 1.5
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 1.2
+      armor: 0
+      armorGrowth: 0
+      resistance: 0
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.03
+      value: 3
+      image: {fileID: 21300000, guid: 6ff7ed2a75c83fb4195f51a4c83576d6, type: 3}
+    - id: slasher
+      role: Chase
+      sprite: slasher
+      health: 50
+      growth: 25
+      speed: 2.75
+      speedRandom: 0.25
+      damage: 1
+      damageGrowth: 1.15
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.9
+      cooldown: 1.25
+      range: 5
+      chargeSpeed: 5
+      dropChance: 0.03
+      value: 5
+      image: {fileID: 21300000, guid: a3172c92bd2d4764482d49033536ae2d, type: 3}
+    - id: spawner
+      role: Spawner
+      sprite: spawner
+      health: 10
+      growth: 1
+      speed: 1.2
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 0.85
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.7
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.01
+      value: 1
+      image: {fileID: 21300000, guid: 62e40171826c20845a113ae6a03d62ed, type: 3}
+    - id: spitter
+      role: Shooter
+      sprite: spitter
+      health: 8
+      growth: 1
+      speed: 2
+      speedRandom: 0
+      damage: 1
+      damageGrowth: 0.6
+      armor: 0
+      armorGrowth: 0
+      resistance: 0.95
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 0.03
+      value: 1
+      image: {fileID: 21300000, guid: 49f4784c9660ad545813293f901109f8, type: 3}
+    - id: tree
+      role: Tree
+      sprite: tree
+      health: 10
+      growth: 5
+      speed: 0
+      speedRandom: 0
+      damage: 0
+      damageGrowth: 1
+      armor: 0
+      armorGrowth: 0
+      resistance: 1
+      cooldown: 2
+      range: 7
+      chargeSpeed: 5
+      dropChance: 1
+      value: 3
+      image: {fileID: 21300000, guid: e146849ca0e66e44e9ef916bbbb62d60, type: 3}
+    equipment:
+    - id: pistol
+      title: Pistol
+      icon: pistol_icon
+      tier: 1
+      value: 10
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 12
+      interval: 1
+      range: 4
+      spread: 0
+      crit: 0.1
+      knockback: 1.5
+      image: {fileID: 21300000, guid: f548441e77501f845ae1b2148ca8fc18, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 9074042b166d54745ab03974f29bd9d2, type: 3}
+      - {fileID: 8300000, guid: 4ab08cde6c0e0c648ae812270e4d318a, type: 3}
+      - {fileID: 8300000, guid: 4bcda43fd65e0314ca3cb2eeb61f83f4, type: 3}
+      - {fileID: 8300000, guid: d056c05ef0260484eb5a87e0930ea08b, type: 3}
+      - {fileID: 8300000, guid: da4ee1237152a2f4fbb599ea8b4799cc, type: 3}
+    - id: pistol
+      title: Pistol
+      icon: pistol_icon
+      tier: 2
+      value: 22
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 20
+      interval: 0.9166667
+      range: 4
+      spread: 0
+      crit: 0.15
+      knockback: 1.5
+      image: {fileID: 21300000, guid: f548441e77501f845ae1b2148ca8fc18, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 9074042b166d54745ab03974f29bd9d2, type: 3}
+      - {fileID: 8300000, guid: 4ab08cde6c0e0c648ae812270e4d318a, type: 3}
+      - {fileID: 8300000, guid: 4bcda43fd65e0314ca3cb2eeb61f83f4, type: 3}
+      - {fileID: 8300000, guid: d056c05ef0260484eb5a87e0930ea08b, type: 3}
+      - {fileID: 8300000, guid: da4ee1237152a2f4fbb599ea8b4799cc, type: 3}
+    - id: pistol
+      title: Pistol
+      icon: pistol_icon
+      tier: 3
+      value: 45
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 30
+      interval: 0.8333333
+      range: 4
+      spread: 0
+      crit: 0.2
+      knockback: 1.5
+      image: {fileID: 21300000, guid: f548441e77501f845ae1b2148ca8fc18, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 9074042b166d54745ab03974f29bd9d2, type: 3}
+      - {fileID: 8300000, guid: 4ab08cde6c0e0c648ae812270e4d318a, type: 3}
+      - {fileID: 8300000, guid: 4bcda43fd65e0314ca3cb2eeb61f83f4, type: 3}
+      - {fileID: 8300000, guid: d056c05ef0260484eb5a87e0930ea08b, type: 3}
+      - {fileID: 8300000, guid: da4ee1237152a2f4fbb599ea8b4799cc, type: 3}
+    - id: pistol
+      title: Pistol
+      icon: pistol_icon
+      tier: 4
+      value: 91
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 50
+      interval: 0.6666667
+      range: 4
+      spread: 0
+      crit: 0.25
+      knockback: 1.5
+      image: {fileID: 21300000, guid: f548441e77501f845ae1b2148ca8fc18, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 9074042b166d54745ab03974f29bd9d2, type: 3}
+      - {fileID: 8300000, guid: 4ab08cde6c0e0c648ae812270e4d318a, type: 3}
+      - {fileID: 8300000, guid: 4bcda43fd65e0314ca3cb2eeb61f83f4, type: 3}
+      - {fileID: 8300000, guid: d056c05ef0260484eb5a87e0930ea08b, type: 3}
+      - {fileID: 8300000, guid: da4ee1237152a2f4fbb599ea8b4799cc, type: 3}
+    - id: smg
+      title: Smg
+      icon: smg_icon
+      tier: 1
+      value: 20
+      pellets: 1
+      piercing: 0
+      melee: 0
+      damage: 3
+      interval: 0.06666667
+      range: 4
+      spread: 0
+      crit: 0.01
+      knockback: 0
+      image: {fileID: 21300000, guid: 74cf3049ac63b6d42b206f2af29022fa, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 64c453462654434489439e68ba2babaa, type: 3}
+      - {fileID: 8300000, guid: 8bc313179e65fb84ba1671eca5b3bd68, type: 3}
+      - {fileID: 8300000, guid: f3000842fcf54784b961c168c58577b7, type: 3}
+      - {fileID: 8300000, guid: becf30a7cf33bd24c920e3256a21d763, type: 3}
+      - {fileID: 8300000, guid: 7dbe271e3bf94c64386f16a203501fdd, type: 3}
+      - {fileID: 8300000, guid: ff9555f4aa257f04d9c7e07a45696d2c, type: 3}
+      - {fileID: 8300000, guid: f8e7137bccc4b1d4aba538767733ef82, type: 3}
+      - {fileID: 8300000, guid: f8960a48adaf19648923d018c627aae6, type: 3}
+      - {fileID: 8300000, guid: 8478828d55e297341a8a1dff64a17f06, type: 3}
+    - id: smg
+      title: Smg
+      icon: smg_icon
+      tier: 2
+      value: 39
+      pellets: 1
+      piercing: 0
+      melee: 0
+      damage: 4
+      interval: 0.06666667
+      range: 4
+      spread: 0
+      crit: 0.01
+      knockback: 0
+      image: {fileID: 21300000, guid: 74cf3049ac63b6d42b206f2af29022fa, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 64c453462654434489439e68ba2babaa, type: 3}
+      - {fileID: 8300000, guid: 8bc313179e65fb84ba1671eca5b3bd68, type: 3}
+      - {fileID: 8300000, guid: f3000842fcf54784b961c168c58577b7, type: 3}
+      - {fileID: 8300000, guid: becf30a7cf33bd24c920e3256a21d763, type: 3}
+      - {fileID: 8300000, guid: 7dbe271e3bf94c64386f16a203501fdd, type: 3}
+      - {fileID: 8300000, guid: ff9555f4aa257f04d9c7e07a45696d2c, type: 3}
+      - {fileID: 8300000, guid: f8e7137bccc4b1d4aba538767733ef82, type: 3}
+      - {fileID: 8300000, guid: f8960a48adaf19648923d018c627aae6, type: 3}
+      - {fileID: 8300000, guid: 8478828d55e297341a8a1dff64a17f06, type: 3}
+    - id: smg
+      title: Smg
+      icon: smg_icon
+      tier: 3
+      value: 74
+      pellets: 1
+      piercing: 0
+      melee: 0
+      damage: 5
+      interval: 0.06666667
+      range: 4
+      spread: 0
+      crit: 0.01
+      knockback: 0
+      image: {fileID: 21300000, guid: 74cf3049ac63b6d42b206f2af29022fa, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 64c453462654434489439e68ba2babaa, type: 3}
+      - {fileID: 8300000, guid: 8bc313179e65fb84ba1671eca5b3bd68, type: 3}
+      - {fileID: 8300000, guid: f3000842fcf54784b961c168c58577b7, type: 3}
+      - {fileID: 8300000, guid: becf30a7cf33bd24c920e3256a21d763, type: 3}
+      - {fileID: 8300000, guid: 7dbe271e3bf94c64386f16a203501fdd, type: 3}
+      - {fileID: 8300000, guid: ff9555f4aa257f04d9c7e07a45696d2c, type: 3}
+      - {fileID: 8300000, guid: f8e7137bccc4b1d4aba538767733ef82, type: 3}
+      - {fileID: 8300000, guid: f8960a48adaf19648923d018c627aae6, type: 3}
+      - {fileID: 8300000, guid: 8478828d55e297341a8a1dff64a17f06, type: 3}
+    - id: smg
+      title: Smg
+      icon: smg_icon
+      tier: 4
+      value: 149
+      pellets: 1
+      piercing: 0
+      melee: 0
+      damage: 8
+      interval: 0.05
+      range: 4
+      spread: 0
+      crit: 0.01
+      knockback: 0
+      image: {fileID: 21300000, guid: 74cf3049ac63b6d42b206f2af29022fa, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 64c453462654434489439e68ba2babaa, type: 3}
+      - {fileID: 8300000, guid: 8bc313179e65fb84ba1671eca5b3bd68, type: 3}
+      - {fileID: 8300000, guid: f3000842fcf54784b961c168c58577b7, type: 3}
+      - {fileID: 8300000, guid: becf30a7cf33bd24c920e3256a21d763, type: 3}
+      - {fileID: 8300000, guid: 7dbe271e3bf94c64386f16a203501fdd, type: 3}
+      - {fileID: 8300000, guid: ff9555f4aa257f04d9c7e07a45696d2c, type: 3}
+      - {fileID: 8300000, guid: f8e7137bccc4b1d4aba538767733ef82, type: 3}
+      - {fileID: 8300000, guid: f8960a48adaf19648923d018c627aae6, type: 3}
+      - {fileID: 8300000, guid: 8478828d55e297341a8a1dff64a17f06, type: 3}
+    - id: double_barrel_shotgun
+      title: Double Barrel Shotgun
+      icon: double_barrel_shotgun_icon
+      tier: 1
+      value: 20
+      pellets: 4
+      piercing: 2
+      melee: 0
+      damage: 3
+      interval: 1.1666666
+      range: 3.5
+      spread: 0.5
+      crit: 0.03
+      knockback: 0.8
+      image: {fileID: 21300000, guid: f7e2aea30589e9248b7e9a441f3dc00e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 41b5e97e6bc964840b0f8455075d445e, type: 3}
+      - {fileID: 8300000, guid: f23669a41351dca488f2808907f19a2a, type: 3}
+      - {fileID: 8300000, guid: fef280c6d997865449d6db6122ea35f9, type: 3}
+      - {fileID: 8300000, guid: 1d661b5b2628c3449988cb0ff2e2b590, type: 3}
+    - id: double_barrel_shotgun
+      title: Double Barrel Shotgun
+      icon: double_barrel_shotgun_icon
+      tier: 2
+      value: 39
+      pellets: 4
+      piercing: 2
+      melee: 0
+      damage: 6
+      interval: 1.0833334
+      range: 3.5
+      spread: 0.5
+      crit: 0.03
+      knockback: 0.8
+      image: {fileID: 21300000, guid: f7e2aea30589e9248b7e9a441f3dc00e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 41b5e97e6bc964840b0f8455075d445e, type: 3}
+      - {fileID: 8300000, guid: f23669a41351dca488f2808907f19a2a, type: 3}
+      - {fileID: 8300000, guid: fef280c6d997865449d6db6122ea35f9, type: 3}
+      - {fileID: 8300000, guid: 1d661b5b2628c3449988cb0ff2e2b590, type: 3}
+    - id: double_barrel_shotgun
+      title: Double Barrel Shotgun
+      icon: double_barrel_shotgun_icon
+      tier: 3
+      value: 74
+      pellets: 4
+      piercing: 2
+      melee: 0
+      damage: 9
+      interval: 1
+      range: 3.5
+      spread: 0.5
+      crit: 0.03
+      knockback: 0.8
+      image: {fileID: 21300000, guid: f7e2aea30589e9248b7e9a441f3dc00e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 41b5e97e6bc964840b0f8455075d445e, type: 3}
+      - {fileID: 8300000, guid: f23669a41351dca488f2808907f19a2a, type: 3}
+      - {fileID: 8300000, guid: fef280c6d997865449d6db6122ea35f9, type: 3}
+      - {fileID: 8300000, guid: 1d661b5b2628c3449988cb0ff2e2b590, type: 3}
+    - id: double_barrel_shotgun
+      title: Double Barrel Shotgun
+      icon: double_barrel_shotgun_icon
+      tier: 4
+      value: 149
+      pellets: 6
+      piercing: 3
+      melee: 0
+      damage: 9
+      interval: 1
+      range: 3.5
+      spread: 0.5
+      crit: 0.03
+      knockback: 0.8
+      image: {fileID: 21300000, guid: f7e2aea30589e9248b7e9a441f3dc00e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 41b5e97e6bc964840b0f8455075d445e, type: 3}
+      - {fileID: 8300000, guid: f23669a41351dca488f2808907f19a2a, type: 3}
+      - {fileID: 8300000, guid: fef280c6d997865449d6db6122ea35f9, type: 3}
+      - {fileID: 8300000, guid: 1d661b5b2628c3449988cb0ff2e2b590, type: 3}
+    - id: laser_gun
+      title: Laser Gun
+      icon: laser_gun_icon
+      tier: 1
+      value: 15
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 40
+      interval: 1.5833334
+      range: 5
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 15d1098f1b1e71f4ea09f7d07894321a, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: e60f431faee80bc4c9032d686cef79d4, type: 3}
+      - {fileID: 8300000, guid: 8da814e38378f98458118b2a54298bb9, type: 3}
+    - id: laser_gun
+      title: Laser Gun
+      icon: laser_gun_icon
+      tier: 2
+      value: 31
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 55
+      interval: 1.5
+      range: 5
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 15d1098f1b1e71f4ea09f7d07894321a, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: e60f431faee80bc4c9032d686cef79d4, type: 3}
+      - {fileID: 8300000, guid: 8da814e38378f98458118b2a54298bb9, type: 3}
+    - id: laser_gun
+      title: Laser Gun
+      icon: laser_gun_icon
+      tier: 3
+      value: 61
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 70
+      interval: 1.4166666
+      range: 5
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 15d1098f1b1e71f4ea09f7d07894321a, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: e60f431faee80bc4c9032d686cef79d4, type: 3}
+      - {fileID: 8300000, guid: 8da814e38378f98458118b2a54298bb9, type: 3}
+    - id: laser_gun
+      title: Laser Gun
+      icon: laser_gun_icon
+      tier: 4
+      value: 122
+      pellets: 1
+      piercing: 1
+      melee: 0
+      damage: 100
+      interval: 1.25
+      range: 5
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 15d1098f1b1e71f4ea09f7d07894321a, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: e60f431faee80bc4c9032d686cef79d4, type: 3}
+      - {fileID: 8300000, guid: 8da814e38378f98458118b2a54298bb9, type: 3}
+    - id: knife
+      title: Knife
+      icon: knife_icon
+      tier: 1
+      value: 10
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 9
+      interval: 0.41666666
+      range: 1.5
+      spread: 0
+      crit: 0.2
+      knockback: 0.2
+      image: {fileID: 21300000, guid: c8048a603f8ebfb4eaa5282f427dea7b, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: knife
+      title: Knife
+      icon: knife_icon
+      tier: 2
+      value: 22
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 13
+      interval: 0.35
+      range: 1.5
+      spread: 0
+      crit: 0.3
+      knockback: 0.2
+      image: {fileID: 21300000, guid: c8048a603f8ebfb4eaa5282f427dea7b, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: knife
+      title: Knife
+      icon: knife_icon
+      tier: 3
+      value: 45
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 18
+      interval: 0.28333333
+      range: 1.5
+      spread: 0
+      crit: 0.4
+      knockback: 0.2
+      image: {fileID: 21300000, guid: c8048a603f8ebfb4eaa5282f427dea7b, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: knife
+      title: Knife
+      icon: knife_icon
+      tier: 4
+      value: 91
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 25
+      interval: 0.2
+      range: 1.5
+      spread: 0
+      crit: 0.5
+      knockback: 0.2
+      image: {fileID: 21300000, guid: c8048a603f8ebfb4eaa5282f427dea7b, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: spear
+      title: Spear
+      icon: spear_icon
+      tier: 1
+      value: 20
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 15
+      interval: 0.75
+      range: 3.5
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 35b6f5c9531dda440b10e5cfd007aa3e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: spear
+      title: Spear
+      icon: spear_icon
+      tier: 2
+      value: 39
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 25
+      interval: 0.6
+      range: 3.75
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 35b6f5c9531dda440b10e5cfd007aa3e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: spear
+      title: Spear
+      icon: spear_icon
+      tier: 3
+      value: 74
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 40
+      interval: 0.45
+      range: 4
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 35b6f5c9531dda440b10e5cfd007aa3e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    - id: spear
+      title: Spear
+      icon: spear_icon
+      tier: 4
+      value: 149
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 60
+      interval: 0.3
+      range: 5
+      spread: 0
+      crit: 0.03
+      knockback: 0
+      image: {fileID: 21300000, guid: 35b6f5c9531dda440b10e5cfd007aa3e, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 38bc73af2d9135f4488234faeef533ca, type: 3}
+      - {fileID: 8300000, guid: c7ea7de397a284346a9bea385346af9d, type: 3}
+      - {fileID: 8300000, guid: 8bf03281c762e4941899927757419f50, type: 3}
+    items:
+    - id: bat
+      title: Bat
+      icon: bat_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_lifesteal
+        value: 2
+      - key: stat_harvesting
+        value: -2
+      image: {fileID: 21300000, guid: bf8aa69ef3109cc40b9a53c81691731c, type: 3}
+    - id: beanie
+      title: Beanie
+      icon: beanie_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_speed
+        value: 4
+      - key: stat_range
+        value: -6
+      image: {fileID: 21300000, guid: 76f567dea9c3da54fbe29822972c4c7e, type: 3}
+    - id: blindfold
+      title: Blindfold
+      icon: blindfold_icon
+      tier: 2
+      value: 45
+      effects:
+      - key: stat_crit_chance
+        value: 5
+      - key: stat_dodge
+        value: 5
+      - key: stat_range
+        value: -15
+      image: {fileID: 21300000, guid: 3ff6f8a57d10283448829fe8c848bb5e, type: 3}
+    - id: blood_leech
+      title: Blood Leech
+      icon: blood_leech_icon
+      tier: 2
+      value: 45
+      effects:
+      - key: stat_lifesteal
+        value: 2
+      - key: stat_hp_regeneration
+        value: 2
+      - key: stat_harvesting
+        value: -3
+      image: {fileID: 21300000, guid: 2cf160e5c0da77a4690e6f437337a77e, type: 3}
+    - id: broken_mouth
+      title: Broken Mouth
+      icon: broken_mouth_icon
+      tier: 1
+      value: 25
+      effects:
+      - key: stat_max_hp
+        value: 5
+      - key: stat_hp_regeneration
+        value: -1
+      image: {fileID: 21300000, guid: e5fe3d097c802944ebe9581ce7a5685e, type: 3}
+    - id: cake
+      title: Cake
+      icon: cake_icon
+      tier: 1
+      value: 15
+      effects:
+      - key: stat_max_hp
+        value: 3
+      - key: stat_percent_damage
+        value: -1
+      image: {fileID: 21300000, guid: 233edfb048a4bb54e96e138346482fbf, type: 3}
+    - id: claw_tree
+      title: Claw Tree
+      icon: claw_tree_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_melee_damage
+        value: 1
+      - key: stat_crit_chance
+        value: 3
+      - key: stat_max_hp
+        value: -1
+      image: {fileID: 21300000, guid: ab6f5c61141c6f04babb99f09944143c, type: 3}
+    - id: coffee
+      title: Coffee
+      icon: coffee_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_attack_speed
+        value: 10
+      - key: stat_percent_damage
+        value: -2
+      image: {fileID: 21300000, guid: 0aea326dcaed3ea4ea41bc6bbb9bf036, type: 3}
+    - id: cyclops_worm
+      title: Cyclops Worm
+      icon: cyclops_worm_icon
+      tier: 2
+      value: 45
+      effects:
+      - key: stat_percent_damage
+        value: 12
+      - key: stat_range
+        value: -12
+      image: {fileID: 21300000, guid: 5cbcbf6e31337bf48b935cded1630aca, type: 3}
+    - id: decomposing_flesh
+      title: Decomposing Flesh
+      icon: decomposing_flesh_icon
+      tier: 2
+      value: 30
+      effects:
+      - key: stat_lifesteal
+        value: 1
+      - key: stat_max_hp
+        value: -1
+      image: {fileID: 21300000, guid: c43d0b5950fec11468ad8f4a4006e087, type: 3}
+    - id: defective_steroids
+      title: Defective Steroids
+      icon: defective_steroids_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_max_hp
+        value: 2
+      - key: stat_melee_damage
+        value: 2
+      - key: stat_attack_speed
+        value: -3
+      image: {fileID: 21300000, guid: 957216f03ca4f9d41bbabf0acb6c6289, type: 3}
+    - id: fertilizer
+      title: Fertilizer
+      icon: fertilizer_icon
+      tier: 1
+      value: 15
+      effects:
+      - key: stat_harvesting
+        value: 8
+      - key: stat_melee_damage
+        value: -1
+      image: {fileID: 21300000, guid: ef889c6921ad0c04181777905ca6be85, type: 3}
+    - id: fresh_meat
+      title: Fresh Meat
+      icon: icon
+      tier: 1
+      value: 25
+      effects:
+      - key: stat_lifesteal
+        value: 2
+      - key: stat_hp_regeneration
+        value: -1
+      image: {fileID: 21300000, guid: d16688c2298627941bb4367038f9c72e, type: 3}
+    - id: gambling_token
+      title: Gambling Token
+      icon: gambling_token_icon
+      tier: 2
+      value: 50
+      effects:
+      - key: stat_dodge
+        value: 8
+      - key: stat_armor
+        value: -1
+      image: {fileID: 21300000, guid: b8dcdc922eacf3c43ab760e3b201ed27, type: 3}
+    - id: glasses
+      title: Glasses
+      icon: glasses_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_range
+        value: 20
+      image: {fileID: 21300000, guid: bb067c14ea4612644a7c95b349480184, type: 3}
+    - id: goat_skull
+      title: Goat Skull
+      icon: goat_skull_icon
+      tier: 1
+      value: 25
+      effects:
+      - key: stat_melee_damage
+        value: 3
+      - key: stat_crit_chance
+        value: -2
+      image: {fileID: 21300000, guid: 4994597b41171ec418f0011f8f25419a, type: 3}
+    - id: gummy_berserker
+      title: Gummy Berserker
+      icon: gummy_berserker_icon
+      tier: 1
+      value: 25
+      effects:
+      - key: stat_attack_speed
+        value: 5
+      - key: stat_range
+        value: 25
+      - key: stat_armor
+        value: -1
+      image: {fileID: 21300000, guid: 0fb57738d21a89b469a447e8fb5c0475, type: 3}
+    - id: head_injury
+      title: Head Injury
+      icon: head_injury_icon
+      tier: 1
+      value: 25
+      effects:
+      - key: stat_percent_damage
+        value: 6
+      - key: stat_range
+        value: -8
+      image: {fileID: 21300000, guid: 106c7ae9817deb143a87c79a59307d84, type: 3}
+    - id: hedgehog
+      title: Hedgehog
+      icon: hedgehog_icon
+      tier: 1
+      value: 30
+      effects:
+      - key: stat_melee_damage
+        value: 2
+      - key: stat_ranged_damage
+        value: 1
+      - key: stat_hp_regeneration
+        value: -1
+      image: {fileID: 21300000, guid: bb0cf4c7c379e7c4db3e204ccb131012, type: 3}
+    - id: helmet
+      title: Helmet
+      icon: helmet_icon
+      tier: 1
+      value: 15
+      effects:
+      - key: stat_armor
+        value: 1
+      - key: stat_speed
+        value: -2
+      image: {fileID: 21300000, guid: 962d6f65e36b1a14085cd109aaa74627, type: 3}
+    - id: injection
+      title: Injection
+      icon: injection_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_percent_damage
+        value: 7
+      - key: stat_max_hp
+        value: -2
+      image: {fileID: 21300000, guid: e63ed11638320c8419af9325aede5549, type: 3}
+    - id: insanity
+      title: Insanity
+      icon: insanity_icon
+      tier: 1
+      value: 20
+      effects:
+      - key: stat_crit_chance
+        value: 6
+      - key: stat_percent_damage
+        value: -3
+      image: {fileID: 21300000, guid: 74f0b98ff924ef141a5fa0d5ef13d646, type: 3}
+    - id: jelly
+      title: Jelly
+      icon: jelly_icon
+      tier: 1
+      value: 15
+      effects:
+      - key: stat_max_hp
+        value: 1
+      image: {fileID: 21300000, guid: 7e3d0c695785ee64cb3871734829373d, type: 3}
+    - id: leather_vest
+      title: Leather Vest
+      icon: leather_vest_icon
+      tier: 2
+      value: 45
+      effects:
+      - key: stat_armor
+        value: 2
+      - key: stat_dodge
+        value: 6
+      - key: stat_max_hp
+        value: -3
+      image: {fileID: 21300000, guid: 90533943028c11343a523572238bb865, type: 3}
+  warning: {fileID: 21300000, guid: 11528b6369013f34689052b33a44b974, type: 3}
+  spriteMaterial: {fileID: 2100000, guid: a1f6c12287b111041a4cce1fa537787f, type: 2}

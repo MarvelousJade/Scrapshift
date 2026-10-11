@@ -63,3 +63,7 @@ The user also asked whether the finished tool could be used in this project. Rea
 Compilation caught AUDIO-006, a Unity 6 importer API move. Corrected it and retained the failed log. Audio source assets and tool upgrade were committed as separate milestones before the final integration/evidence commits.
 
 Final audio validation: all 15 cue categories produced sampled Unity mixer output and mute suppressed playback. The 24-second gameplay check completed with 28 kills, 67 shots and no logged error; this particular run did not reach an upgrade. Generated listening sampler and refreshed Windows ZIP. Subjective listening approval is still pending.
+
+## Crash Zone reconstruction — systems milestone
+
+Analyzed the user-supplied reference before changing runtime. Added a provenance-tracked catalog with 20 wave schedules, 18 base-difficulty enemy entries, 24 equipment tier entries (six families), and 24 stat items. Replaced interrupted combat leveling with queued rewards and a separate shop. Added six concurrent weapons, duplicate combinations, recycling, paid rerolls, persistent locks, enemy projectiles, charge tells and visual corpses. Integrated sprites/audio as serialized catalog dependencies visible to AssetScope. First build succeeded with zero warnings/errors; 33 EditMode tests passed. Initial hidden-window screenshot failed and remains a separate verification issue. Assistant implementation; Shaoyu provided design direction and reference assets.

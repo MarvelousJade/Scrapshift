@@ -39,7 +39,7 @@ namespace Scrapshift
             int selected = Mathf.Abs(roll % (count - 1));
             return previous < 0 ? Mathf.Abs(roll % count) : selected >= previous ? selected + 1 : selected;
         }
-        public void Play(SoundCue cue, Vector2 position = default)
+        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null)
         {
             if (Bank == null || Muted || Volume <= 0) return;
             var entry = Bank.Find(cue); int key = (int)cue; float now = Time.unscaledTime;
@@ -55,9 +55,10 @@ namespace Scrapshift
                 index = min;
                 for (int i=min+1;i<max;i++) if (started[i] < started[index]) index = i;
             }
-            int variant = VariantIndex(entry.variants.Length, previous[key], Random.Range(0, 100000));
+            var clips = overrideClips != null && overrideClips.Length > 0 ? overrideClips : entry.variants;
+            int variant = VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
             previous[key] = variant; last[key] = now;
-            var voice = voices[index]; voice.Stop(); voice.clip = entry.variants[variant];
+            var voice = voices[index]; voice.Stop(); voice.clip = clips[variant];
             voice.pitch = 1 + Random.Range(-entry.pitchVariation, entry.pitchVariation);
             if (cue == SoundCue.Pickup)
             {

@@ -1,0 +1,4335 @@
+{
+  "waves": [
+    {
+      "duration": 20,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 4,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 25,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 4,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 30,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 5,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 7,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 35,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 4,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 6,
+              "max": 7,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 7,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 40,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 4,
+          "reduce": 0,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 8,
+              "max": 8,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 3,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 6,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 45,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "charger",
+              "min": 4,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 3,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 5,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 50,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 2,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 6,
+              "max": 7,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "charger",
+              "min": 6,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 55,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 8,
+          "reduce": 1,
+          "minimum": 6,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "bruiser",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 5,
+          "repeats": 999,
+          "interval": 6,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 2,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 4.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 6,
+              "max": 7,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "charger",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 22,
+          "repeats": 999,
+          "interval": 8,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "bruiser",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 2,
+          "reduce": 0,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 8,
+              "max": 9,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 5,
+          "repeats": 999,
+          "interval": 8,
+          "reduce": 1,
+          "minimum": 5,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "bruiser",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 20,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "charger",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 4,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "pursuer",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 3,
+          "repeats": 999,
+          "interval": 6,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 4.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 5,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "charger",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 10,
+          "interval": 2,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "chaser",
+              "min": 10,
+              "max": 10,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 5,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 2.5,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "pursuer",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 15,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "bruiser",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "charger",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 4,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 8,
+              "max": 8,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 4,
+          "repeats": 999,
+          "interval": 8,
+          "reduce": 1,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 8,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 4,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "bruiser",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "horned_bruiser",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 8,
+          "reduce": 1,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spawner",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 15,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 6,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 40,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 1,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "bruiser",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 22,
+          "repeats": 999,
+          "interval": 6,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "junkie",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": 5.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 8,
+              "max": 8,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "spawner",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 6,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 8,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 12,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 20,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "fin_alien",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 35,
+          "repeats": 999,
+          "interval": 6,
+          "reduce": 1,
+          "minimum": 5,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "junkie",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 4,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 5.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "buffer",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "helmet_alien",
+              "min": 10,
+              "max": 10,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 5,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 20,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 4.5,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "fin_alien",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 32,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 4.5,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "horned_bruiser",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "bruiser",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "pursuer",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 4,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "pursuer",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 4,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "buffer",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 7,
+          "repeats": 999,
+          "interval": 8,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spawner",
+              "min": 1,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 3.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "fin_alien",
+              "min": 4,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 15,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 3,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 40,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 4,
+              "max": 4,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 10,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 2,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "horned_charger",
+              "min": 6,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "buffer",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 4,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 20,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spitter",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 24,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spawner",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 2,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 1,
+          "repeats": 35,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "horned_charger",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 60,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 999,
+          "interval": 1,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 6,
+              "max": 6,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 4,
+          "repeats": 999,
+          "interval": 1,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "buffer",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 15,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 4,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "horned_bruiser",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": 2.0,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "pursuer",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 32,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 1,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 2,
+              "max": 2,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 5,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "horned_charger",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 90,
+      "cap": 100,
+      "groups": [
+        {
+          "start": 1,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 0,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": []
+        },
+        {
+          "start": 1,
+          "repeats": 5,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "baby_alien",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 5,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 15,
+          "repeats": 5,
+          "interval": 3,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "helmet_alien",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 20,
+          "repeats": 5,
+          "interval": 1,
+          "reduce": 0,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "fin_alien",
+              "min": 5,
+              "max": 5,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 20,
+          "repeats": 5,
+          "interval": 1,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "horned_bruiser",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 30,
+          "repeats": 999,
+          "interval": 6,
+          "reduce": 1,
+          "minimum": 3,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "spawner",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "buffer",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "helmet_alien",
+              "min": 3,
+              "max": 3,
+              "chance": 1.0,
+              "distance": 0.0
+            },
+            {
+              "id": "horned_bruiser",
+              "min": 1,
+              "max": 1,
+              "chance": 1.0,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 999,
+          "interval": 10,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "tree",
+              "min": 1,
+              "max": 2,
+              "chance": 0.33,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 25,
+          "repeats": 3,
+          "interval": 15,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": false,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "looter",
+              "min": 1,
+              "max": 1,
+              "chance": 0.1,
+              "distance": 0.0
+            }
+          ]
+        },
+        {
+          "start": 10,
+          "repeats": 0,
+          "interval": 0,
+          "reduce": 0,
+          "minimum": 1,
+          "chance": 1.0,
+          "area": -0.01,
+          "edge": true,
+          "inset": 0.0,
+          "bucket": 0,
+          "units": [
+            {
+              "id": "evil_mob",
+              "min": 1,
+              "max": 1,
+              "chance": 0.03,
+              "distance": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "baby_alien",
+      "role": "Chase",
+      "sprite": "baby_alien",
+      "health": 3,
+      "growth": 2.0,
+      "speed": 2.5,
+      "speedRandom": 0.5,
+      "damage": 1,
+      "damageGrowth": 0.6,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.0,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "bruiser",
+      "role": "Charge",
+      "sprite": "bruiser",
+      "health": 20,
+      "growth": 11.0,
+      "speed": 3.0,
+      "speedRandom": 0.0,
+      "damage": 2,
+      "damageGrowth": 0.85,
+      "value": 3,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.9,
+      "cooldown": 1.0,
+      "range": 5.0,
+      "chargeSpeed": 7.0,
+      "dropChance": 0.03
+    },
+    {
+      "id": "buffer",
+      "role": "Buffer",
+      "sprite": "buffer",
+      "health": 20,
+      "growth": 3.0,
+      "speed": 1.5,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 0.6,
+      "value": 2,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.95,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "charger",
+      "role": "Charge",
+      "sprite": "charger",
+      "health": 4,
+      "growth": 2.5,
+      "speed": 4.0,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 0.85,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.8,
+      "cooldown": 0.6666666666666666,
+      "range": 3.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "chaser",
+      "role": "Chase",
+      "sprite": "chaser",
+      "health": 1,
+      "growth": 1.0,
+      "speed": 3.8,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 0.6,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.0,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.02
+    },
+    {
+      "id": "evil_mob",
+      "role": "Looter",
+      "sprite": "baby_alien",
+      "health": 5,
+      "growth": 30.0,
+      "speed": 3.5,
+      "speedRandom": 0.5,
+      "damage": 1,
+      "damageGrowth": 0.85,
+      "value": 8,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.5,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 1.0
+    },
+    {
+      "id": "fin_alien",
+      "role": "Chase",
+      "sprite": "fin_alien",
+      "health": 12,
+      "growth": 2.0,
+      "speed": 4.0,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 1.0,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.0,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.02
+    },
+    {
+      "id": "helmet_alien",
+      "role": "Chase",
+      "sprite": "helmet_alien",
+      "health": 8,
+      "growth": 4.0,
+      "speed": 2.5,
+      "speedRandom": 0.25,
+      "damage": 1,
+      "damageGrowth": 1.0,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.5,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "horned_bruiser",
+      "role": "Charge",
+      "sprite": "horned_bruiser",
+      "health": 30,
+      "growth": 22.0,
+      "speed": 3.0,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 1.15,
+      "value": 3,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.9,
+      "cooldown": 1.0,
+      "range": 5.0,
+      "chargeSpeed": 7.0,
+      "dropChance": 0.03
+    },
+    {
+      "id": "horned_charger",
+      "role": "Charge",
+      "sprite": "horned_charger",
+      "health": 12,
+      "growth": 5.0,
+      "speed": 4.25,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 1.1,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.8,
+      "cooldown": 0.6666666666666666,
+      "range": 3.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "junkie",
+      "role": "WanderShooter",
+      "sprite": "junkie",
+      "health": 5,
+      "growth": 5.0,
+      "speed": 3.5,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 1.0,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.5,
+      "cooldown": 2.0,
+      "range": 9999.99,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "looter",
+      "role": "Looter",
+      "sprite": "looter",
+      "health": 5,
+      "growth": 30.0,
+      "speed": 3.5,
+      "speedRandom": 0.5,
+      "damage": 1,
+      "damageGrowth": 0.85,
+      "value": 8,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.0,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 1.0
+    },
+    {
+      "id": "predator",
+      "role": "Boss",
+      "sprite": "predator",
+      "health": 15000,
+      "growth": 750.0,
+      "speed": 3.0,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 1.5,
+      "value": 10,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 1.0,
+      "cooldown": 1.5,
+      "range": 20.0,
+      "chargeSpeed": 7.5,
+      "dropChance": 1.0
+    },
+    {
+      "id": "pursuer",
+      "role": "Pursuer",
+      "sprite": "pursuer",
+      "health": 10,
+      "growth": 24.0,
+      "speed": 1.5,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 1.2,
+      "value": 3,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.0,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.03
+    },
+    {
+      "id": "slasher",
+      "role": "Chase",
+      "sprite": "slasher",
+      "health": 50,
+      "growth": 25.0,
+      "speed": 2.75,
+      "speedRandom": 0.25,
+      "damage": 1,
+      "damageGrowth": 1.15,
+      "value": 5,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.9,
+      "cooldown": 1.25,
+      "range": 5.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.03
+    },
+    {
+      "id": "spawner",
+      "role": "Spawner",
+      "sprite": "spawner",
+      "health": 10,
+      "growth": 1.0,
+      "speed": 1.2,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 0.85,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.7,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.01
+    },
+    {
+      "id": "spitter",
+      "role": "Shooter",
+      "sprite": "spitter",
+      "health": 8,
+      "growth": 1.0,
+      "speed": 2.0,
+      "speedRandom": 0.0,
+      "damage": 1,
+      "damageGrowth": 0.6,
+      "value": 1,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 0.95,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 0.03
+    },
+    {
+      "id": "tree",
+      "role": "Tree",
+      "sprite": "tree",
+      "health": 10,
+      "growth": 5.0,
+      "speed": 0.0,
+      "speedRandom": 0.0,
+      "damage": 0,
+      "damageGrowth": 1.0,
+      "value": 3,
+      "armor": 0,
+      "armorGrowth": 0.0,
+      "resistance": 1.0,
+      "cooldown": 2.0,
+      "range": 7.0,
+      "chargeSpeed": 5.0,
+      "dropChance": 1.0
+    }
+  ],
+  "equipment": [
+    {
+      "id": "pistol",
+      "tier": 1,
+      "title": "Pistol",
+      "icon": "pistol_icon",
+      "value": 10,
+      "melee": false,
+      "damage": 12,
+      "interval": 1.0,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.1,
+      "knockback": 1.5
+    },
+    {
+      "id": "pistol",
+      "tier": 2,
+      "title": "Pistol",
+      "icon": "pistol_icon",
+      "value": 22,
+      "melee": false,
+      "damage": 20,
+      "interval": 0.9166666666666666,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.15,
+      "knockback": 1.5
+    },
+    {
+      "id": "pistol",
+      "tier": 3,
+      "title": "Pistol",
+      "icon": "pistol_icon",
+      "value": 45,
+      "melee": false,
+      "damage": 30,
+      "interval": 0.8333333333333334,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.2,
+      "knockback": 1.5
+    },
+    {
+      "id": "pistol",
+      "tier": 4,
+      "title": "Pistol",
+      "icon": "pistol_icon",
+      "value": 91,
+      "melee": false,
+      "damage": 50,
+      "interval": 0.6666666666666666,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.25,
+      "knockback": 1.5
+    },
+    {
+      "id": "smg",
+      "tier": 1,
+      "title": "Smg",
+      "icon": "smg_icon",
+      "value": 20,
+      "melee": false,
+      "damage": 3,
+      "interval": 0.06666666666666667,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "knockback": 0.0
+    },
+    {
+      "id": "smg",
+      "tier": 2,
+      "title": "Smg",
+      "icon": "smg_icon",
+      "value": 39,
+      "melee": false,
+      "damage": 4,
+      "interval": 0.06666666666666667,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "knockback": 0.0
+    },
+    {
+      "id": "smg",
+      "tier": 3,
+      "title": "Smg",
+      "icon": "smg_icon",
+      "value": 74,
+      "melee": false,
+      "damage": 5,
+      "interval": 0.06666666666666667,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "knockback": 0.0
+    },
+    {
+      "id": "smg",
+      "tier": 4,
+      "title": "Smg",
+      "icon": "smg_icon",
+      "value": 149,
+      "melee": false,
+      "damage": 8,
+      "interval": 0.05,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "knockback": 0.0
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 1,
+      "title": "Double Barrel Shotgun",
+      "icon": "double_barrel_shotgun_icon",
+      "value": 20,
+      "melee": false,
+      "damage": 3,
+      "interval": 1.1666666666666667,
+      "range": 3.5,
+      "pellets": 4,
+      "piercing": 2,
+      "spread": 0.5,
+      "crit": 0.03,
+      "knockback": 0.8
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 2,
+      "title": "Double Barrel Shotgun",
+      "icon": "double_barrel_shotgun_icon",
+      "value": 39,
+      "melee": false,
+      "damage": 6,
+      "interval": 1.0833333333333333,
+      "range": 3.5,
+      "pellets": 4,
+      "piercing": 2,
+      "spread": 0.5,
+      "crit": 0.03,
+      "knockback": 0.8
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 3,
+      "title": "Double Barrel Shotgun",
+      "icon": "double_barrel_shotgun_icon",
+      "value": 74,
+      "melee": false,
+      "damage": 9,
+      "interval": 1.0,
+      "range": 3.5,
+      "pellets": 4,
+      "piercing": 2,
+      "spread": 0.5,
+      "crit": 0.03,
+      "knockback": 0.8
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 4,
+      "title": "Double Barrel Shotgun",
+      "icon": "double_barrel_shotgun_icon",
+      "value": 149,
+      "melee": false,
+      "damage": 9,
+      "interval": 1.0,
+      "range": 3.5,
+      "pellets": 6,
+      "piercing": 3,
+      "spread": 0.5,
+      "crit": 0.03,
+      "knockback": 0.8
+    },
+    {
+      "id": "laser_gun",
+      "tier": 1,
+      "title": "Laser Gun",
+      "icon": "laser_gun_icon",
+      "value": 15,
+      "melee": false,
+      "damage": 40,
+      "interval": 1.5833333333333333,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "laser_gun",
+      "tier": 2,
+      "title": "Laser Gun",
+      "icon": "laser_gun_icon",
+      "value": 31,
+      "melee": false,
+      "damage": 55,
+      "interval": 1.5,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "laser_gun",
+      "tier": 3,
+      "title": "Laser Gun",
+      "icon": "laser_gun_icon",
+      "value": 61,
+      "melee": false,
+      "damage": 70,
+      "interval": 1.4166666666666667,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "laser_gun",
+      "tier": 4,
+      "title": "Laser Gun",
+      "icon": "laser_gun_icon",
+      "value": 122,
+      "melee": false,
+      "damage": 100,
+      "interval": 1.25,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "knife",
+      "tier": 1,
+      "title": "Knife",
+      "icon": "knife_icon",
+      "value": 10,
+      "melee": true,
+      "damage": 9,
+      "interval": 0.4166666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.2,
+      "knockback": 0.2
+    },
+    {
+      "id": "knife",
+      "tier": 2,
+      "title": "Knife",
+      "icon": "knife_icon",
+      "value": 22,
+      "melee": true,
+      "damage": 13,
+      "interval": 0.35,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.3,
+      "knockback": 0.2
+    },
+    {
+      "id": "knife",
+      "tier": 3,
+      "title": "Knife",
+      "icon": "knife_icon",
+      "value": 45,
+      "melee": true,
+      "damage": 18,
+      "interval": 0.2833333333333333,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.4,
+      "knockback": 0.2
+    },
+    {
+      "id": "knife",
+      "tier": 4,
+      "title": "Knife",
+      "icon": "knife_icon",
+      "value": 91,
+      "melee": true,
+      "damage": 25,
+      "interval": 0.2,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.5,
+      "knockback": 0.2
+    },
+    {
+      "id": "spear",
+      "tier": 1,
+      "title": "Spear",
+      "icon": "spear_icon",
+      "value": 20,
+      "melee": true,
+      "damage": 15,
+      "interval": 0.75,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "spear",
+      "tier": 2,
+      "title": "Spear",
+      "icon": "spear_icon",
+      "value": 39,
+      "melee": true,
+      "damage": 25,
+      "interval": 0.6,
+      "range": 3.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "spear",
+      "tier": 3,
+      "title": "Spear",
+      "icon": "spear_icon",
+      "value": 74,
+      "melee": true,
+      "damage": 40,
+      "interval": 0.45,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "knockback": 0.0
+    },
+    {
+      "id": "spear",
+      "tier": 4,
+      "title": "Spear",
+      "icon": "spear_icon",
+      "value": 149,
+      "melee": true,
+      "damage": 60,
+      "interval": 0.3,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "knockback": 0.0
+    }
+  ],
+  "items": [
+    {
+      "id": "bat",
+      "title": "Bat",
+      "tier": 1,
+      "icon": "bat_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 2
+        },
+        {
+          "key": "stat_harvesting",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "beanie",
+      "title": "Beanie",
+      "tier": 1,
+      "icon": "beanie_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_speed",
+          "value": 4
+        },
+        {
+          "key": "stat_range",
+          "value": -6
+        }
+      ]
+    },
+    {
+      "id": "blindfold",
+      "title": "Blindfold",
+      "tier": 2,
+      "icon": "blindfold_icon",
+      "value": 45,
+      "effects": [
+        {
+          "key": "stat_crit_chance",
+          "value": 5
+        },
+        {
+          "key": "stat_dodge",
+          "value": 5
+        },
+        {
+          "key": "stat_range",
+          "value": -15
+        }
+      ]
+    },
+    {
+      "id": "blood_leech",
+      "title": "Blood Leech",
+      "tier": 2,
+      "icon": "blood_leech_icon",
+      "value": 45,
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 2
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2
+        },
+        {
+          "key": "stat_harvesting",
+          "value": -3
+        }
+      ]
+    },
+    {
+      "id": "broken_mouth",
+      "title": "Broken Mouth",
+      "tier": 1,
+      "icon": "broken_mouth_icon",
+      "value": 25,
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 5
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "cake",
+      "title": "Cake",
+      "tier": 1,
+      "icon": "cake_icon",
+      "value": 15,
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "claw_tree",
+      "title": "Claw Tree",
+      "tier": 1,
+      "icon": "claw_tree_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 1
+        },
+        {
+          "key": "stat_crit_chance",
+          "value": 3
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "coffee",
+      "title": "Coffee",
+      "tier": 1,
+      "icon": "coffee_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 10
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "cyclops_worm",
+      "title": "Cyclops Worm",
+      "tier": 2,
+      "icon": "cyclops_worm_icon",
+      "value": 45,
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 12
+        },
+        {
+          "key": "stat_range",
+          "value": -12
+        }
+      ]
+    },
+    {
+      "id": "decomposing_flesh",
+      "title": "Decomposing Flesh",
+      "tier": 2,
+      "icon": "decomposing_flesh_icon",
+      "value": 30,
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "defective_steroids",
+      "title": "Defective Steroids",
+      "tier": 1,
+      "icon": "defective_steroids_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 2
+        },
+        {
+          "key": "stat_melee_damage",
+          "value": 2
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": -3
+        }
+      ]
+    },
+    {
+      "id": "fertilizer",
+      "title": "Fertilizer",
+      "tier": 1,
+      "icon": "fertilizer_icon",
+      "value": 15,
+      "effects": [
+        {
+          "key": "stat_harvesting",
+          "value": 8
+        },
+        {
+          "key": "stat_melee_damage",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "fresh_meat",
+      "title": "Fresh Meat",
+      "tier": 1,
+      "icon": "icon",
+      "value": 25,
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 2
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "gambling_token",
+      "title": "Gambling Token",
+      "tier": 2,
+      "icon": "gambling_token_icon",
+      "value": 50,
+      "effects": [
+        {
+          "key": "stat_dodge",
+          "value": 8
+        },
+        {
+          "key": "stat_armor",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "glasses",
+      "title": "Glasses",
+      "tier": 1,
+      "icon": "glasses_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "goat_skull",
+      "title": "Goat Skull",
+      "tier": 1,
+      "icon": "goat_skull_icon",
+      "value": 25,
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 3
+        },
+        {
+          "key": "stat_crit_chance",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "gummy_berserker",
+      "title": "Gummy Berserker",
+      "tier": 1,
+      "icon": "gummy_berserker_icon",
+      "value": 25,
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 5
+        },
+        {
+          "key": "stat_range",
+          "value": 25
+        },
+        {
+          "key": "stat_armor",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "head_injury",
+      "title": "Head Injury",
+      "tier": 1,
+      "icon": "head_injury_icon",
+      "value": 25,
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 6
+        },
+        {
+          "key": "stat_range",
+          "value": -8
+        }
+      ]
+    },
+    {
+      "id": "hedgehog",
+      "title": "Hedgehog",
+      "tier": 1,
+      "icon": "hedgehog_icon",
+      "value": 30,
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 2
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": 1
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "helmet",
+      "title": "Helmet",
+      "tier": 1,
+      "icon": "helmet_icon",
+      "value": 15,
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": 1
+        },
+        {
+          "key": "stat_speed",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "injection",
+      "title": "Injection",
+      "tier": 1,
+      "icon": "injection_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 7
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "insanity",
+      "title": "Insanity",
+      "tier": 1,
+      "icon": "insanity_icon",
+      "value": 20,
+      "effects": [
+        {
+          "key": "stat_crit_chance",
+          "value": 6
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -3
+        }
+      ]
+    },
+    {
+      "id": "jelly",
+      "title": "Jelly",
+      "tier": 1,
+      "icon": "jelly_icon",
+      "value": 15,
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "leather_vest",
+      "title": "Leather Vest",
+      "tier": 2,
+      "icon": "leather_vest_icon",
+      "value": 45,
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": 2
+        },
+        {
+          "key": "stat_dodge",
+          "value": 6
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -3
+        }
+      ]
+    }
+  ]
+}

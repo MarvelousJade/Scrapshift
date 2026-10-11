@@ -50,3 +50,15 @@ Observed during desktop play after selecting Field Lunch: UPGRADED! used the sam
 ## AUDIO-006 - Audio preload setting moved in Unity 6
 
 First audio build failed compilation with CS0619: `AudioImporter.preloadAudioData` is obsolete and moved to per-platform sample settings. Changed the importer to set `defaultSampleSettings.preloadAudioData` with PCM/decompress-on-load settings. Subsequent build succeeded with zero errors/warnings. Original compiler output is retained in `artifacts/raw/audio-import-api-failure.log`. Assistant-observed and fixed; not claimed as the candidate's personal debugging work.
+
+## REF-001 — Spawn randomness depended on frame size
+
+- Found during review of the initial group scheduler: catching up all repeats of one group before another changes shared RNG call order on a long frame.
+- Fix: process elapsed integer seconds chronologically and then groups in stable order, using a double accumulator. A test compares every wave at 60 Hz against one large tick with the same seed.
+- Validation: all 20 schedules produce exactly equal counts; included in the 33 passing EditMode tests.
+
+## REF-002 — Hidden player could not capture its frame
+
+- First new Windows smoke run reached the shop with 25 kills and 18 shots, but returned Failed because Unity reported `Failed to capture screen shot` while launched hidden.
+- This is a failed visual verification run, not a successful screenshot. Gameplay counters alone are insufficient.
+- Next action: run the interactive preview with a rendered window and verify saved pixels before marking the runtime check passed.
