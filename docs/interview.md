@@ -128,3 +128,12 @@ These replace the earlier five-wave/three-weapon scope descriptions above.
 **How did you avoid misleading portfolio claims?** Record the supplied reference paths/hashes, distinguish third-party sprites/audio from original work, and explain that Codex implemented/tested the revision under Shaoyu's direction. Describe personal code understanding and hands-on changes only after actually doing them. No fabricated production incident, performance improvement or user approval.
 
 **How does AssetScope help here?** Inspect ReferenceCatalog, follow an enemy sprite or weapon audio reference, and navigate back to the serialized record that uses it. This demonstrates the completed tool against the real game catalog. Use the latest scan totals in verification rather than the older 72-asset baseline.
+
+
+### Enemy and spawn iteration
+
+**How did you use a reference without guessing?** The team compared the supplied Godot scheduling/placement code and attack animation timings with the Unity implementation, then wrote an evidence-to-change document before editing. The user retained twenty waves and asked for fewer items and a closer UI. Assistant-generated implementation and automated checks are identified in contributions; this is not a claim of personally handwritten code.
+
+**A concrete bug example:** a safety retry moved a tightly grouped enemy anywhere in the arena. That met a distance check but violated the formation's purpose. The fix keeps the group's square or edge constraint during every retry and chooses the safest candidate within it when full clearance is impossible. Tests cover both ordinary and impossible requests; visual review covers what those placements look like.
+
+**What tradeoff did you make?** Explicit attack states and locked direction make a windup readable and dodgeable. Shooter aim lock, a short recovery, and visible direction lines are deliberate adaptations for the compact arena, not claims of exact commercial-game parity. Twenty schedules remain, while eight offered items keep the shop easier to understand.

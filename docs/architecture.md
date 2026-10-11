@@ -36,3 +36,6 @@ AssetScope 0.3.0 remains Editor-only. Full scans inspect saved scenes and serial
 ## Tradeoffs and limits
 
 IMGUI minimizes implementation size but needs a future navigation/accessibility pass. Distance queries and separation are quadratic at these bounds; pooling/spatial indexing should follow profiler evidence. Instantiation remains capped rather than pooled. World geometry, target-spacing details and the final boss are adaptations, so imported schedule values do not imply full behavioral/balance parity. Presentation fixtures explicitly grant equipment/currency/health and cannot establish normal-run difficulty.
+
+
+SpawnPlacement owns bounded safe sampling without losing group/edge geometry; SpawnDirector invokes a group-start callback once before all unit types in an occurrence. EnemyAttack separates approach, committed windup, active attack and recovery. Runtime presentation consumes that state for tint, squash and direction cues; reduced motion suppresses squash/tilt while retaining essential cues. EnemyReview and CampaignCheck are explicit command-line-only fixtures. CampaignCheck supplies invulnerability/equipment and accelerates actual simulation; it cannot validate normal balance. Ordinary shops filter the retained serialized item catalog down to eight allowed ids.

@@ -27,3 +27,6 @@ The user explicitly criticized the sound and confirmed the request meant sound e
 ## Reference reconstruction
 
 User: required analysis before implementation, close reference spawning/enemy types, separate items/weapons/upgrades, matching UI/audio/death feedback, and authorized using supplied media. Assistant: parsed reference resources read-only, implemented Unity systems, selected/copied media with hashes, wrote deterministic economy/scheduling tests and performed rendered review. Supplied sprites/audio are Brotato assets, not assistant or candidate art. Source inspection does not establish official open-source provenance. The original procedural scavenger remains a separate asset. The latest 20-wave version has not yet received a complete user playtest or acceptance.
+
+
+Current enemy/spawn/UI pass: Shaoyu requested comparison with the Brotato reference, closer combat and UI, a smaller item pool, and ultimately twenty waves after briefly suggesting five. Codex inspected supplied source/screenshots, implemented schedule/placement and attack-state changes, revised the interface, authored tests/fixtures, and ran the recorded checks. No fresh user acceptance or human twenty-wave playthrough is implied.

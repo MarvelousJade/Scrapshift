@@ -87,3 +87,12 @@ Rendered screenshots caught a white birth warning and clipped upgrade titles. Co
 ## Final input and output evidence
 
 Actual mouse/keyboard shop check verified the displayed Coffee tradeoff, purchase-at-capacity combination, paid R reroll with a preserved lock, recycling refund and Enter transition. Recorded exact observed values in verification. Normal first-wave smoke passed separately without health overrides, and isolated audio emitted all 15 cues with mute suppression. AssetScope inspected 183 assets and 1,388 serialized reference usages with zero findings. Full-run balance and the user's subjective assessment remain open.
+
+
+## Enemy spawning and UI reference pass
+
+The user asked for better enemies/spawning/combat and a closer interface, briefly narrowed to five waves, then chose twenty again. Retained the twenty-wave schedule and reduced ordinary shop items to eight. Committed the supplied-reference comparison before implementation, then spawn/attack-state fixes separately from UI and evidence.
+
+Source comparison found formation-breaking retries, dropped queued births, repeat scheduling differences and discarded ranged knockback. Added bounded formation-preserving placement and independently testable attack states. Actual UI captures exposed faint combat HUD bleed-through behind the shop; corrected draw routing and recaptured. Initial player-launch argument quoting failed before the fixture started; corrected path quoting, then all final player fixtures completed.
+
+Measured closeout: 53/53 tests; Windows build zero warnings/errors; AssetScope 198 assets, 1,337 usages, zero findings. Normal first wave reached Shop. Staged enemy and UI fixtures passed. Accelerated invulnerable integration traversed all twenty waves to Won and made 44 affordable shop purchases. It does not prove a normal human can finish the game or approve its feel. Audio assets and deferred upward walking art remain unchanged.

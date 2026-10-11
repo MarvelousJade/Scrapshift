@@ -1,6 +1,22 @@
 # Verification record
 
-## Latest original-art iteration — October 11, 2026
+## Latest enemy, spawn and UI pass
+
+- **53/53 EditMode tests passed**, zero failed/skipped. Six new cases cover locked attack direction, windup/recovery/release timing, accelerated repeat intervals, bounded edge/cluster clearance, and the retained twenty-wave progression with an eight-item shop pool. Existing all-wave frame-size stability, economy, art and AssetScope tests remain green.
+- Windows build **Succeeded, zero errors/warnings**, Unity 6000.6.5f1; `artifacts/build.txt`.
+- AssetScope: **198 assets, 1,337 serialized usages, zero findings**, saved scenes/properties inspected and cache disabled. Runtime-created direction lines/projectiles are outside serialized dependency discovery; their material comes from the catalog.
+- `artifacts/enemy-review/enemy-review.json`: **Passed**; spawn warning, charge/ranged preparation, recovery and hostile bullets observed; six charge releases, one ranged release, three kills. Fixed enemies, restored health, initially unarmed player and later injected equipment; not normal balance. Inspected charge, ranged and projectile screenshots.
+- `artifacts/combat-ui/review.json`: **Passed**, 154 shots, 47 kills and 35 melee hits; actual combat, shop and upgrade screenshots inspected. Staged wave-nine showcase with supplied equipment/currency and restored health. The new shop no longer leaks the combat HUD; stat effects and calculated weapon values fit the cards.
+- `artifacts/combat-smoke/runtime-smoke.json`: **Passed**, normal first wave reached Shop with 25 kills, 18 shots, peak eleven enemies and six HP remaining. Scripted normal-speed movement, no health override. Actual gameplay screenshot inspected.
+- `artifacts/campaign-check/campaign-check.json`: **Passed**, twenty waves reached Won, 44 affordable purchases, peak 63 enemies, 568 charge releases, 468 ranged releases and sixteen distinct enemy ids observed. Five sampled wave images and final win capture saved; late-wave images inspected. This accelerates actual simulation with invulnerability, a supplied six-weapon loadout and mute. It validates integration through the finale, **not normal-run balance, human completion or a performance benchmark**. Cumulative shots/kills/times are explicitly per-wave snapshots in the report.
+- No Exception/Error/Failed match in the four final runtime logs. Supplied audio assets unchanged; isolated audio/mixer validation was not rerun in this pass.
+- Package checksum/CRC and comparison against every current Windows-build file are recorded in `artifacts/package.json`.
+
+Reproduce with `scripts/verify.ps1`, `scripts/build.ps1`, then visible player flags `--enemy-review <folder>`, `--reference-review <folder>`, `--smoke <folder>` and `--campaign-check <folder>`. The fixtures do not alter stored user preferences. `scripts/package.py` rebuilds and verifies the ZIP.
+
+Remaining limits: no complete normal twenty-wave human playthrough or user acceptance of this combat/UI revision. The compact arena, aim-locked shooter windup, direction cues, 0.18-second recovery and adapted final boss are intentional departures; exact Brotato parity is not claimed. Eight item types are offered; all 24 historical catalog records retain their sprite/wardrobe mappings. Upward player movement still uses front-facing art as previously deferred by the user. Older results below are historical.
+
+## Previous original-art iteration — October 11, 2026
 
 - **47/47 EditMode tests passed**, zero failed/skipped. New coverage includes six-pose timing, stable facing across idle transitions, reward conservation at the pickup cap, scatter/settle/magnet behavior, wearable-slot selection, exclusion of the misleading battery, and serialized atlas references.
 - Windows build **Succeeded, zero reported warnings/errors**, Unity 6000.6.5f1. `artifacts/build.txt`.

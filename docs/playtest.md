@@ -8,11 +8,11 @@ Launch the Windows build, read the start screen and try WASD/arrow keys. Verify 
 
 ## One run
 
-- Collect gold scrap instead of only waiting for enemies.
-- Unlock orbit blades, then pulse core, and describe when each helps.
+- Collect green materials instead of only waiting for enemies; red/ivory repair capsules restore health.
+- Acquire ranged and melee weapons from the shop; compare their range, attack rate and knockback.
 - Try one fire-rate/speed upgrade and one repair upgrade.
 - Pause during a busy moment. Toggle sound and reduced motion.
-- Observe the wave-clear reset and choose the next upgrade.
+- Observe the wave-clear reset, choose queued stat upgrades, then use the separate shop.
 - Play to a win or loss; restart and check that the previous upgrades are gone.
 
 ## Record useful feedback
@@ -38,3 +38,8 @@ Earlier five-wave checklist entries are historical. For this version:
 3. Lock an offer, reroll with R and verify it remains. Select a weapon slot to combine a matching duplicate or recycle it. Check the six-slot rule.
 4. Start the next wave with Enter. Listen for distinct pistol/SMG/shotgun/melee sounds after acquiring them. Pause to adjust volume or reduced motion.
 5. Record the first unfair spawn, unreadable enemy, bad sound, confusing shop action or dominant build, including wave, weapon tiers and HP. Full-run difficulty and subjective sound remain user-feedback tasks, not established results.
+
+
+## Enemy and UI follow-up
+
+Compare the small chasing drones, charge warning/dash/recovery, and ranged warning/projectile colors. Sidestep after a direction cue appears; record any enemy that seems to turn after committing. Check that clustered red Xs stay coherent and never activate on the player without a fresh warning. Compare normal/reduced-motion cues. In the right-stats shop, buy one of the eight available item types and verify both displayed tradeoffs and the wardrobe preview. Record wave/loadout/position for confusing encounters. The automated twenty-wave fixture used invulnerability, so a normal human run remains useful evidence.

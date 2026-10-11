@@ -1,5 +1,7 @@
 # Crash Zone reference study and implementation contract
 
+Current enemy/spawn/UI changes are recorded in `enemy-spawn-iteration.md`: twenty schedules remain, ordinary shops offer eight items, and original generated sprites replace the historical imported sprites described below. Preserved lower sections document the prior reconstruction scope.
+
 Source: user-supplied `E:/UnityProjects/Brotato`, an extracted Godot project. This is reference evidence, not a claim that Brotato's source is officially open source. `scripts/analyze_reference.py` produces the auditable inventory in `artifacts/reference-analysis.json`. Analysis precedes implementation in Git.
 
 ## Findings

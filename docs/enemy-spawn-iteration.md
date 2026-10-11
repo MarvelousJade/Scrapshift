@@ -18,3 +18,12 @@ Preserve the imported twenty-wave schedule and six weapon families. Offer eight 
 Repair schedule and placement discrepancies; add charge preparation/locked direction/recovery, ranged windup, visible role size/facing/motion differences, spawn emergence and distinct hostile bullets. Keep generated original sprites and supplied reference audio. Rebuild HUD/shop/upgrade presentation around the screenshot hierarchy.
 
 This remains an adaptation in a smaller arena, not full Brotato parity. Complete boss mutations, thief evolution, extra difficulty enemies, crates, all stat systems and characters remain outside this pass. Automated fixtures are staged and cannot establish subjective combat quality or human balance acceptance.
+
+
+## Implemented and checked
+
+The imported twenty waves remain. Eight items are offered in ordinary rolls, while historical catalog media stays traceable. The UI now follows the reference's four-card/right-stats arrangement, with green/red item effects, calculated weapon details, compact HUD and a wardrobe preview. The floor palette is muted so warning and attack colors stand out.
+
+`SpawnPlacement` preserves a group's square or edge constraints and honors additional unit clearance where feasible; impossible requests use the safest bounded sample within that region. `EnemyAttack` drives committed preparation, active movement/fire, and recovery. Small grunts, heavier bruisers/spawners and the boss have distinct sizes; facing and body motion respond to movement. Buffers hold their distance. Hostile bullets have coral rims and bright centers and are removed at arena bounds. Ranged shots now carry their weapon's knockback.
+
+Verification: 53 passing tests, clean build, AssetScope 198 assets/1,337 usages/zero findings, inspected UI/enemy captures and a normal first-wave smoke. An accelerated invulnerable fixture progressed through all twenty waves and won, making 44 real affordable purchases; this is integration evidence rather than normal balance acceptance. See `verification.md` for exact scope and reports.

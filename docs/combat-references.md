@@ -1,5 +1,7 @@
 # Brotato gameplay and code research
 
+Historical initial research. The current twenty-wave implementation and supplied-source comparison supersede the five-wave/orbit/pulse decisions below; see `reference-rebuild.md` and `enemy-spawn-iteration.md`.
+
 Research date: October 10, 2026. An official public release of the full Brotato source was not verified. Public community mod code was inspected; it is not described as the complete original implementation. Scrapshift does not vendor or translate that code.
 
 ## Sources actually inspected

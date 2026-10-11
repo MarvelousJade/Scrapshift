@@ -25,12 +25,13 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 
 ## Scope
 
-20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; 24 stat-tradeoff items; eight upgrade stats using reference tier values. The single Predator boss adapts the reference's charge/projectile roles. Higher difficulties, alternate boss mutations, all characters/items, DLC and full balance parity are not implemented. Normal combat uses a 100-enemy cap and a compact arena adapted to the existing presentation.
+20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; eight offered stat-tradeoff items (24 retained catalog entries); eight upgrade stats using reference tier values. The single Predator boss adapts the reference's charge/projectile roles. Higher difficulties, alternate boss mutations, all characters/items, DLC and full balance parity are not implemented. Normal combat uses a 100-enemy cap and a compact arena adapted to the existing presentation.
 
 ## Interview evidence
 
 - [Purpose and scope](docs/design.md)
 - [Reference analysis](docs/reference-rebuild.md)
+- [Enemy, spawn and UI comparison](docs/enemy-spawn-iteration.md)
 - [Generated art, animation and pickup design](docs/original-art.md)
 - [Development journal](docs/journal.md)
 - [Observed bugs and fixes](docs/bugs.md)
