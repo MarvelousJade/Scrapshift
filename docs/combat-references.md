@@ -29,3 +29,9 @@ No six-weapon inventory, rarity tiers, shop rerolls, character roster, elaborate
 ## Interview discussion
 
 Explain one observed reference mechanic, why it fits this project's scope, how it was implemented differently in Unity, and what evidence validates the result. Say "I studied community mod code" if asked about source research; do not say "I obtained the original source" or claim the mod's fixes as bugs personally fixed in Scrapshift.
+
+## User-supplied local implementation reference
+
+Read `E:/UnityProjects/Brotato/entities/units/unit/unit.gd`, `entities/units/movement_behaviors/stay_in_range_from_player_movement_behavior.gd`, and `ui/menus/ingame/upgrades_ui_player_container.gd`. Observed separate damage/crit/knockback/flash handling, a range-based movement behavior, and tier-colored offers with reroll state. These are observations of the supplied extracted project, not a claim to have found an official public source release.
+
+Our independent Unity adaptation uses bounded floating text, shader property-block flashes, capped particles, seven upgrade kinds, three unique offers and one free reroll. Enemy scope is chaser, telegraphed charger and slow knockback-resistant brute; range-keeping enemies were studied but not added. No Godot implementation was copied.

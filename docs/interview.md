@@ -88,3 +88,9 @@ This is currently a directed portfolio project, not evidence of a professional t
 3. In Unity, inspect a weapon definition and trace its effect prefab/material in AssetScope.
 4. Show one rule test and the real bug log, explaining what each proves and does not prove.
 5. End with one specific improvement based on your own playtest.
+
+## How did you respond to negative feedback?
+
+The user explicitly said the original art, UI and upgrade presentation were poor and that the combat lacked effects. The revision used the supplied local reference to identify specific missing signals: character silhouettes, hit confirmation, threat telegraphs and readable stat choices. It then replaced the presentation, expanded feedback, added randomized tiers/rerolls, and rechecked the build and actual screens. This demonstrates iteration from concrete critique; user approval of the redesign is still pending.
+
+The latest suite has 27 tests. DEV-004 is an additional real debugging example: native Unity object construction during deserialization, caught by scene tests despite a nominally successful build. Explain both the lifecycle fix and the stricter build gate. See journal and verification for the newest evidence; earlier examples above describe the first baseline.

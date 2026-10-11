@@ -9,3 +9,7 @@ Add the user's actual hands-on observations and edits below as they occur. A sug
 ## Hands-on record
 
 Pending first user playtest. Record date, what was played/inspected, a concrete issue, the user's reasoning, and the resulting change.
+
+## Presentation v2
+
+User: supplied the local Brotato reference and directly identified weak character/enemy design, UI, upgrades and missing combat feedback. Assistant: inspected the supplied material, authored new mesh art and Unity code, introduced randomized upgrade rules and regression checks, investigated DEV-004, and performed automated/desktop validation. User playtest and acceptance of the revised art are not yet recorded.

@@ -44,7 +44,7 @@ No frame-rate, memory-allocation or scalability claim has been measured. Caps ar
 
 ## Known technical debt
 
-`ArenaGame` is a relatively large coordinator. A sensible next split is combat entities, presentation/audio and runtime verification, preserving the tested run rules. Upgrade options are fixed and some weapon lookup order is positional. This is manageable for three weapons but would warrant named data references and validation before expanding the roster. The simple enemy chase behavior does not include crowd separation.
+`ArenaGame` is a relatively large coordinator. A sensible next split is combat entities, presentation/audio and runtime verification, preserving the tested run rules. Presentation and combat feedback now live in partial-class files; they still share the coordinator state. Upgrade offers are randomized after an introductory draft and some weapon lookup order is positional. This is manageable for three weapons but would warrant named data references and validation before expanding the roster. Enemies now include a telegraphed charger and a knockback-resistant brute; crowd separation is still absent.
 
 ## Safe content authoring
 

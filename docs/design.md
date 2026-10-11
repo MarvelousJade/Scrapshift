@@ -14,7 +14,9 @@ One arena; three enemy types; three weapons; five waves; a small upgrade menu; k
 
 ## Art plan
 
-Original code-native mesh artwork, saved as real Unity assets. A mint repair robot contrasts with coral, amber and purple hostile robots against a navy deck. Layered shapes provide readable silhouettes, visor faces, armor highlights, shadows and weapon accents. Movement bob, particles, pulses and small camera impulses supply motion. Art uses an orthographic camera and unlit materials; it does not require a separate modeling or painting application.
+Original code-native mesh artwork, saved as real Unity assets. A cream scavenger with amber goggles and a coral scarf faces coral chasers, green horned chargers and purple spiked brutes. Dark outlines, visible feet, faces and subdued shadows make the cast readable against an olive salvage yard. An outlined pistol tracks its target. Muzzle sparks, white hit flashes, knockback, floating damage numbers, double-damage critical hits, brief critical hit-stop, death bursts and a damage border communicate combat events. Reduced motion disables bob, camera shake, floating-text drift and hit-stop.
+
+Upgrade cards show rarity, numeric gains and current damage/attack-speed/critical stats. The opening draft teaches weapon, speed and sustain choices. Later drafts draw three unique kinds from seven possibilities, excluding already-unlocked weapons. Common/rare/epic stat tiers scale benefits; one free reroll is available each draft. This deliberately stops short of reproducing Brotato's full shop economy.
 
 ## Architecture decisions
 

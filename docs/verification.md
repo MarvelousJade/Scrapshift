@@ -2,7 +2,7 @@
 
 Verified October 10, 2026 (America/Toronto), Unity 6000.6.5f1, Windows on this machine. This is a portfolio prototype baseline, not a shipped production certification.
 
-## Results
+## Original v1 results (historical)
 
 | Layer | Actual result | Evidence / limits |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ An optional `--smoke <absolute-output-folder>` flag drives 24 seconds of scripte
 
 `--preview-capture <absolute-output-folder>` saves one title screenshot shortly after launch and leaves the game interactive. It does not drive player input.
 
-## Visual observations
+## Original v1 visual observations (superseded)
 
 At 1440x900, title copy and start button fit without overlap; the robot silhouette is readable; the dark deck stays behind mint projectiles, coral enemies and gold scrap. HUD labels remain legible, upgrade descriptions fit their cards, and keyboard shortcuts are visible. The current simple style is intentionally geometric. Initial title overlay dims the showcase bot more than the gameplay art; that is a potential art iteration, not a missing texture.
 
@@ -47,3 +47,14 @@ At 1440x900, title copy and start button fit without overlap; the robot silhouet
 ## Evidence provenance
 
 Raw logs and rejected runs are local under ignored `artifacts/raw/`. XML/JSON summaries and selected real screenshots are committed. `docs/contributions.md` records who performed which kind of work. Never claim an unperformed personal test, production incident or user-study outcome.
+
+## Presentation v2 verification
+
+- 27 EditMode tests pass, including unique randomized offers, the one-reroll limit, exclusion of unlocked weapons and tier-to-damage agreement. Content tests include the serialized pistol reference.
+- Windows build succeeds with zero reported errors/warnings. AssetScope scans 35 content assets with no missing-script findings. The extra assets are the version marker and pistol prefab; existing prefab/material GUIDs are preserved by in-place art migration.
+- Real desktop inspection: new title/character art; gameplay enemies, projectile feedback and damage numbers; large readable upgrade cards; R changes offers and shows REROLL USED; key 1 selects the displayed Field Lunch and changes health from 64/100 to 104/115. A later draft visibly offered Rare Scavenger (+1.30 pickup range), Epic Heavy Rounds (+45% damage), and Pulse Core.
+- Screenshots under `artifacts/preview-v2/` are assistant-captured from the actual player. The upgrade screenshots precede the final pistol/spawn-marker polish; those changes do not alter the cards.
+- The desktop check also revealed UPGRADED! wrapping in a damage-number-sized rectangle. Widened the rectangle only for longer labels before final packaging.
+- Full-run balance, subjective sound quality and user acceptance remain unverified. No automatic test can certify that the redesign is fun or attractive.
+
+Final v2 runtime check: a visible 24-second scripted run completed with 28 kills, 65 shots, peak 10 enemies, one upgrade, one orbit hit and 100 health. No exception/error was found in its player log. Independently opened `artifacts/smoke-v2/gameplay.png` and verified actual rendered pixels: outlined pistol and creatures, coral particle debris, orange 24! critical damage and white ordinary damage text, spawn ring and HUD. This run's visual evidence is valid, unlike the rejected original hidden captures. It does not exercise the later-wave charger/brute balance or pulse weapon.

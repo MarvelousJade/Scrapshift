@@ -41,3 +41,15 @@ The first wave completed at 90 kills. Choosing Field Repair changed hull from 52
 Prepared a Windows ZIP and recorded executable/archive SHA-256 hashes. Added architecture/tradeoffs, source research, AssetScope walkthrough, verified-results matrix, a personal playtest worksheet and common interview questions. Kept invalid screenshot evidence in ignored raw artifacts; committed selected real interactive screenshots. No public repository push, release publication or external upload was performed.
 
 Incremental history reflects real milestones: foundation -> combat/content -> tests -> observed fixes -> documentation/evidence. No backdated commits, fabricated debugging incidents or synthetic claim of a human-authored history.
+
+## 2026-10-10 - Responding to the art and game-feel critique
+
+The user rejected the placeholder character/enemy art, UI, upgrades and weak effects, and supplied `E:/UnityProjects/Brotato` as a local reference. Inspected its potato sprite, unit hit/knockback/flash processing, range-keeping movement behavior, and upgrade-container tier/reroll wiring. The directory contains a GDRE export; this is user-provided reference material, not evidence of an official open-source release. No source or art was copied into Scrapshift.
+
+Replaced the navy robot presentation with original outlined scavenger/creature mesh prefabs and an olive yard. Added a visible pistol, charger windup/dash, brute knockback resistance, hit flashes, floating damage, crits, hit-stop, directional knockback, colored muzzle/hit/death bursts and damage-border feedback. Rebuilt the HUD and menu hierarchy with larger type, chunky frames and rarity-coded upgrade cards. Separated presentation and feedback into partial-class files; this improves file organization but is not an architectural decoupling claim.
+
+The first validation found DEV-004: MaterialPropertyBlock creation in a MonoBehaviour field initializer logged a native-construction error during scene loading. The test suite rejected it even though BuildPipeline called the build successful. Lazy runtime initialization fixes the lifecycle violation; the build gate now also rejects nonzero reported errors. After the fix, 27 tests passed and the build reported zero errors/warnings. Retained the rejected test XML and build log under ignored raw artifacts.
+
+Art and behavior were committed as separate actual milestones. Final pistol/spawn-marker polish, interactive verification and packaging follow those commits.
+
+Final v2 delivery: 27 tests passed; 35 assets scanned with no prefab missing scripts; Windows build zero reported errors/warnings. Visible scripted combat passed and the generated screenshot was independently inspected as real game content. Updated Windows ZIP and hashes. Kept full-run balance and subjective audio evaluation open. Saved before-fix evidence for the lifecycle issue and actual upgrade-card screenshots; no personal user playtest is claimed.

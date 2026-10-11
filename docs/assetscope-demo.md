@@ -8,9 +8,9 @@ Set the folder to `Assets/Scrapshift/Content`, then select **Scan folder**.
 
 ## Three useful workflows
 
-1. **Shared material impact:** Search `Ink t:Material`. Its reverse references include the repair bot and enemy prefabs. Explain that changing a shared material affects multiple robot designs.
+1. **Shared material impact:** Search `Ink t:Material`. Its reverse references include the scavenger and enemy prefabs. Explain that changing a shared material affects multiple creature designs.
 2. **Weapon content chain:** Search `RivetGun t:WeaponDefinition`. Inspect the effect prefab and accent-material references. Select the referenced prefab and follow it to the shared mesh/material. The current snapshot shows direct dependencies, not the richer future field-level workflow.
-3. **Pre-handoff validation:** Run **Scrapshift > Export AssetScope Scan**. Read `artifacts/assetscope-report.json`. The verified normal game content contains 33 scanned assets and no missing-script findings. The scene is indexed for dependencies, not opened by this version's missing-script validator.
+3. **Pre-handoff validation:** Run **Scrapshift > Export AssetScope Scan**. Read `artifacts/assetscope-report.json`. The verified normal game content contains 35 scanned assets and no missing-script findings. The scene is indexed for dependencies, not opened by this version's missing-script validator.
 
 ## Important interpretation
 
