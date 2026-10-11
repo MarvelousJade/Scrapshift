@@ -21,17 +21,18 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Ass
 
 Run `Builds/Windows/Scrapshift.exe`; keep its entire Windows folder together. Archive: `Builds/Scrapshift-Windows.zip`.
 
-Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor closed. Binaries/raw logs are ignored; source, Unity metadata, test reports and selected visual evidence are tracked.
+Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor closed. If it is open, copy `Assets`, `Packages`, `ProjectSettings` and `scripts` to a separate validation project and run those scripts there. Do not start a second Editor on the same project folder. The October 11 checks used `E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity`; compare source hashes before attributing its results to this checkout. Binaries/raw logs are ignored; source, Unity metadata, test reports and selected visual evidence are tracked.
 
 ## Scope
 
-20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; eight offered stat-tradeoff items (24 retained catalog entries); eight upgrade stats using reference tier values. The single Predator boss adapts the reference's charge/projectile roles. Higher difficulties, alternate boss mutations, all characters/items, DLC and full balance parity are not implemented. Normal combat uses a 100-enemy cap and a compact arena adapted to the existing presentation.
+20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; eight offered stat-tradeoff items (24 retained catalog entries); eight upgrade stats using reference tier values. Predator now switches from charging to random projectile bursts at half health or 45 seconds and carries its rotating projectile arm. Higher difficulties, alternate bosses, all characters/items, weapon-set stat bonuses, endless mode, DLC and full balance parity are not implemented. The reference culling threshold is 100 active regular enemies at group boundaries; pending births, trees and bosses are separate. The arena and collision model remain adapted to this presentation.
 
 ## Interview evidence
 
 - [Purpose and scope](docs/design.md)
 - [Reference analysis](docs/reference-rebuild.md)
 - [Enemy, spawn and UI comparison](docs/enemy-spawn-iteration.md)
+- [Latest gameplay parity audit and remaining differences](docs/gameplay-parity-audit.md)
 - [Generated art, animation and pickup design](docs/original-art.md)
 - [Development journal](docs/journal.md)
 - [Observed bugs and fixes](docs/bugs.md)

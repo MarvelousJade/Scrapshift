@@ -96,3 +96,10 @@ The user asked for better enemies/spawning/combat and a closer interface, briefl
 Source comparison found formation-breaking retries, dropped queued births, repeat scheduling differences and discarded ranged knockback. Added bounded formation-preserving placement and independently testable attack states. Actual UI captures exposed faint combat HUD bleed-through behind the shop; corrected draw routing and recaptured. Initial player-launch argument quoting failed before the fixture started; corrected path quoting, then all final player fixtures completed.
 
 Measured closeout: 53/53 tests; Windows build zero warnings/errors; AssetScope 198 assets, 1,337 usages, zero findings. Normal first wave reached Shop. Staged enemy and UI fixtures passed. Accelerated invulnerable integration traversed all twenty waves to Won and made 44 affordable shop purchases. It does not prove a normal human can finish the game or approve its feel. Audio assets and deferred upward walking art remain unchanged.
+
+
+## October 11 — Source parity, rather than assuming resemblance proves correctness
+
+Compared the supplied scene nodes, movement/attack scripts, spawner, XP and item service before editing; committed the audit first (`e1d9bdf`). Corrected progression (`eaaece9`), enemy behavior/spawn queues (`3770d0b`), and shop selection/pricing (`c927682`) in separate increments. The source revealed bugs in our previous intentional adaptations, including locked ranged aim and extra recovery, so those earlier design notes are explicitly superseded. Original art/media files were retained.
+
+The user opened the project in Unity during the task. Validation ran in a separate copy instead of closing their Editor or trying to batch-open the same project. The first restricted launch could not access host licensing; the host-permitted launch succeeded. Validation scope and measured final results are recorded in `verification.md`, with source-comparison defects in `bugs.md`. No complete human playthrough or subjective sound review is implied.

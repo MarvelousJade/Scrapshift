@@ -43,3 +43,15 @@ Earlier five-wave checklist entries are historical. For this version:
 ## Enemy and UI follow-up
 
 Compare the small chasing drones, charge warning/dash/recovery, and ranged warning/projectile colors. Sidestep after a direction cue appears; record any enemy that seems to turn after committing. Check that clustered red Xs stay coherent and never activate on the player without a fresh warning. Compare normal/reduced-motion cues. In the right-stats shop, buy one of the eight available item types and verify both displayed tradeoffs and the wardrobe preview. Record wave/loadout/position for confusing encounters. The automated twenty-wave fixture used invulnerability, so a normal human run remains useful evidence.
+
+
+## After the October 11 source-parity changes
+
+Personal checks still to do (not recorded as completed):
+
+- Start with 10 HP, level 0. Collect 16 XP: level 1, +1 Max HP, and a queued reward at wave end.
+- Observe a charger: direction commits during preparation; normal movement resumes immediately after its dash. Strafe during a spitter's preparation: its shot aims at your release-time position.
+- Compare looter/bruiser wandering, spawner movement around the player, and the pursuer's one-second speed steps.
+- Reroll an upgrade: four different stats should replace the previous four. Check level 5's guaranteed uncommon tier.
+- Lock a shop offer, advance a wave, and verify its displayed purchase price is unchanged. First two shops should contain two weapons, including locked weapons.
+- Play without fixture overrides through later waves and Predator's half-health/45-second mutation. Record deaths, loadout, purchases and fairness/readability issues before claiming the 20-wave balance is good.

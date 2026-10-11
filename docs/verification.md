@@ -1,6 +1,20 @@
 # Verification record
 
-## Latest enemy, spawn and UI pass
+## Latest — October 11 gameplay parity correction
+
+- **83/83 EditMode tests passed**, zero failed/skipped, 1.019s reported test duration. `artifacts/editmode.xml`. Tests now assert source-based XP/rarity boundaries, milestone rewards, charge and shooter timing, queue ordering/119–120 threshold, negative harvest, non-repeating upgrades and locked prices.
+- **Windows build succeeded, zero errors/warnings**, Unity 6000.6.5f1, 137,838,668 reported build bytes. Tests/build ran in `E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity` while the user's Editor remained open. `scripts/verify_validation_copy.py` confirmed all **565 files** in Assets, Packages and ProjectSettings matched this checkout byte-for-byte; `artifacts/validation-copy.json`. Unsaved Editor state is outside this check.
+- **AssetScope: 198 assets, 1,337 usages, zero findings**, saved scenes/properties included, cache disabled. All `Assets/Scrapshift/Content` files remain unchanged from pre-pass commit `f185c85`; original sprites and existing audio are retained.
+- **Final 20-wave integration passed:** Won, 20 completed waves, 48 affordable purchases, peak 63 enemies including births, 718 charge releases, 518 ranged releases, one observed Predator phase change. Report/screenshots: `artifacts/parity-campaign-final/`. This fixture uses scripted movement, six supplied tier-two weapons and invulnerability. Its 23.13-second wall time is accelerated test execution, not game completion time or a performance benchmark. The source-equivalent active-enemy culling threshold may temporarily be exceeded between group events.
+- **Normal-speed first-wave smoke passed:** reached Shop, 24 kills, 18 shots, one chosen upgrade, peak 11 enemies, 1 HP remaining. `artifacts/parity-smoke/runtime-smoke.json`. No health override; it is scripted movement, not a user playtest. Independently inspected the saved gameplay image. Ending with 1 HP does not establish comfortable difficulty.
+- **Combat presentation fixture passed:** warning, charge windup, dash, ranged windup and hostile projectile observed; five charges, two ranged releases and three kills. `artifacts/parity-enemies/`. Captured before the final shop-only corrections; combat code is unchanged. Charge/projectile images independently inspected.
+- **Final rendered UI fixture passed:** gameplay, shop and upgrade captures; 135 shots, 39 kills, 25 melee hits. Independently inspected `artifacts/parity-ui-final/shop.png` and `upgrade.png`: original icons, readable multi-line titles, corrected COMMON/UNCOMMON/RARE labels and effect text. This staged fixture supplies equipment, health and currency.
+- No Error/Exception/Failed match in the four player logs for combat, final campaign, normal smoke and final UI. Raw logs remain under ignored `artifacts/raw/`.
+- **Package verified:** 155 entries, 51,757,988 bytes; CRC check and every archived file matched the Windows build. SHA-256 `a76dca7a8782e652155fed877f696015ff40df0c0619ef9752e33228312f4bc6`; `artifacts/package.json`.
+
+Limits: a reduced catalog, compact arena, different physics/RNG, missing set bonuses/characters/crates/endless, and approximate material attraction/slash geometry remain. Slasher is not scheduled in the base campaign and its actual runtime hit window was not exercised by these fixtures. No complete normal human run, subjective sound review or user acceptance is claimed. The user-created `ProjectSettings/PackageManagerSettings.asset` was left outside our commits.
+
+## Previous enemy, spawn and UI pass
 
 - **53/53 EditMode tests passed**, zero failed/skipped. Six new cases cover locked attack direction, windup/recovery/release timing, accelerated repeat intervals, bounded edge/cluster clearance, and the retained twenty-wave progression with an eight-item shop pool. Existing all-wave frame-size stability, economy, art and AssetScope tests remain green.
 - Windows build **Succeeded, zero errors/warnings**, Unity 6000.6.5f1; `artifacts/build.txt`.

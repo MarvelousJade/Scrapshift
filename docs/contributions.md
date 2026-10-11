@@ -30,3 +30,6 @@ User: required analysis before implementation, close reference spawning/enemy ty
 
 
 Current enemy/spawn/UI pass: Shaoyu requested comparison with the Brotato reference, closer combat and UI, a smaller item pool, and ultimately twenty waves after briefly suggesting five. Codex inspected supplied source/screenshots, implemented schedule/placement and attack-state changes, revised the interface, authored tests/fixtures, and ran the recorded checks. No fresh user acceptance or human twenty-wave playthrough is implied.
+
+
+October 11 parity pass: Shaoyu authorized closer enemy/spawn/upgrade behavior after source comparison, retaining original art, and suggested Unity command-line use while the Editor was open. Codex authored the audit, code, regression tests, incremental commits and validation reports. Tests/builds used an isolated project copy to preserve the user's open Editor. Actual user playtesting/acceptance of this revision is still unrecorded.
