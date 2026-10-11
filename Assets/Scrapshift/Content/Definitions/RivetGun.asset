@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a037908bfe52b488541cae38fb28d2, type: 3}
+  m_Name: RivetGun
+  m_EditorClassIdentifier: Scrapshift.Runtime::Scrapshift.WeaponDefinition
+  title: Rivet gun
+  description: Automatic bolts target the nearest drone.
+  kind: 0
+  damage: 12
+  interval: 0.35
+  range: 10
+  effectPrefab: {fileID: 8553360827052714838, guid: 415fdde202941bb479afe80e52dbad16, type: 3}
+  accent: {fileID: 2100000, guid: ab539bc7ee90f274bb78b9a12942d64f, type: 2}

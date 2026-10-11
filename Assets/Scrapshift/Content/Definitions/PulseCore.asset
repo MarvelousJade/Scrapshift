@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a037908bfe52b488541cae38fb28d2, type: 3}
+  m_Name: PulseCore
+  m_EditorClassIdentifier: Scrapshift.Runtime::Scrapshift.WeaponDefinition
+  title: Pulse core
+  description: A periodic shockwave clears nearby drones.
+  kind: 2
+  damage: 28
+  interval: 3
+  range: 2.8
+  effectPrefab: {fileID: 2086186848488402275, guid: fc5dfbd4f98c78145a301cc2d60b7db8, type: 3}
+  accent: {fileID: 2100000, guid: 8b671b3778a13a949abeba64fd03c79e, type: 2}
