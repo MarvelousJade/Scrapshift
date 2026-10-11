@@ -45,3 +45,8 @@ User requested comparison and implementation of the biggest remaining gameplay g
 ## Spring animation and simplified anatomy
 
 User specified body-only enemies, an armless player with tiny feet and spring cadence, and requested actual reference sprites. Codex inspected/displayed local Brotato sprites and animation resources, edited the existing original art using built-in imagegen, integrated the body/feet hierarchy, inspected runtime output, fixed atlas clipping and documented the real regression failure. Two PNG edits are AI-generated; source pixels were not manually painted. User acceptance of the new motion is not yet recorded.
+
+
+## Modular character and clean style
+
+Shaoyu requested a shared body with swappable eyes/hair/beard, item embellishments and tiny pointed legs, then selected the clean style and requested removal of player panel lines. Codex compared the supplied appearance resource/priority code, generated/edited original atlases, implemented the resolver and cosmetic selector, added regression tests and rendered fixtures, fixed atlas defects, and documented/committed the work. The user approved the visual direction; no complete manual gameplay acceptance is implied.

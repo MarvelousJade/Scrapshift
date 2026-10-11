@@ -53,3 +53,8 @@ SpawnPlacement owns bounded safe sampling without losing group/edge geometry; Sp
 ## Spring-body visual hierarchy
 
 The player root remains at the simulation position. Its child body receives `SpringMotion` scale and vertical offset, and worn items parent to that body. Two tiny foot renderers remain siblings so body squash does not enlarge them. Weapon mounts are independent. Horizontal facing mirrors sprites/offsets while the same simple poses serve all directions. Enemy presentation samples the same spring landmarks with adapted cadence; gameplay positions/collision are not driven by the visible bounce. The versioned import migration preserves the player prefab identity and uses explicit enemy sprite rectangles.
+
+
+## Modular appearance composition
+
+PlayerLook and AppearanceLayer serialize cosmetic presets into the player prefab; ItemEntry.appearance holds a dedicated wearable sprite, slot, priority, offset, scale and drawing order. AppearanceResolver composes base layers plus unique acquired items. CharacterWardrobe pools SpriteRenderers under the spring body and refreshes when look/item identity changes, including same-count replacement. ShopUI uses the same resolver. Body and face squash together; pointed legs are siblings with alternating translation/rotation. Gameplay stats and six weapon mounts remain separate. AppearanceBuilder is a versioned editor migration preserving the prefab GUID/root identity; AssetScope can inspect the resulting serialized sprite dependencies.

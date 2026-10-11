@@ -123,3 +123,10 @@ Both Unity test runs passed 116 cases; the final build reported zero errors/warn
 User asked for no enemy hands/legs, no player hands, tiny feet and a slower idle/faster movement spring, and asked to see Brotato's sprites. Inspected and displayed actual supplied body/foot/enemy PNGs plus source animation resources. Committed the comparison as `e634814`, then edited two original atlases with built-in imagegen. Implemented a child-body spring and separate tiny feet, with wardrobe following the body and weapons independent.
 
 Initial 119 tests passed, but rendered review revealed sprite clipping from the atlas grid. Added a border regression; its first run caught adjacent tree pixels in the spitter region (119/120). Corrected source rectangles and reran: 120/120, clean Windows build, final enemy/player/outfit captures and AssetScope zero findings. Committed implementation as `7f2219b`. Earlier bitmaps remain, and final documentation records source-inspired motion separately from exact parity and user acceptance.
+
+
+## October 11 - modular player and clean visual direction
+
+Compared supplied appearance resource, display-priority and player composition code first (audit commit 69aa925). Replaced baked-in character identity with a shared shell, swappable eyes/hair/beard, tiny pointed legs and 24 separate wearable details. User compared a clean preview and explicitly selected removal of weathering across items/enemies and all player shell/leg panel lines. Implemented clean art and appearance composition in 2aac926.
+
+Initial 126/127 test runs exposed wing/glasses atlas cuts; alpha inspection also rejected an enemy draft with a translucent backdrop. Final import uses measured per-cell transparent separators, verified by border regression. Final 127/127 tests, clean build, AssetScope 211 assets/1395 usages/zero findings, and 625 byte-equal validation inputs. Rendered three looks/outfits, all 18 enemies and staged six-weapon combat; exact evidence/limits in verification.md. Preserved the open Editor and unrelated PackageManagerSettings.asset.

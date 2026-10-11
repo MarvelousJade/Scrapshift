@@ -190,3 +190,10 @@ The latest normal-speed smoke reported Passed but ended Lost after 15.30 simulat
 Observed in the actual Windows enemy gallery: the horned charger's nose stopped at a vertical edge, and its tip appeared beside the golden junkie. Uniform 256-pixel columns cut across generated bodies that did not strictly follow the requested grid. Measured connected alpha bounds and authored per-sprite import rectangles instead of editing the PNG pixels.
 
 The added transparent-border regression then failed on the spitter's top border (alpha 0.235 versus the 0.12 threshold): padding picked up the adjacent tree. A shared transparent column at x1280 separates the two final import regions. Final suite 120/120 and the corrected gallery both pass. Initial gallery: `artifacts/spring-gallery/`; corrected gallery: `artifacts/spring-gallery-final/`; failed test XML is retained under ignored raw artifacts. This was an observed visual defect and subsequent test failure, not a fabricated interview example.
+
+
+## ART-005 - Same-count wardrobe replacements and generated atlas boundaries
+
+Observed code defect: wardrobe invalidation compared only inventory count. New identity/order/preset comparisons refresh same-count replacements; covered defaults restore through the shared resolver. Regression coverage is in AppearanceTests.
+
+Actual validation failures: first modular pass 126/127 (wing cut, alpha .172549), second 126/127 (glasses cut, alpha .207843). Evidence: ignored artifacts/raw/appearance-first-tests.xml and appearance-second-tests.xml. Final atlas imports use per-cell measured transparent separators and border assertions on all six sheets. An enemy spacing draft also had no fully transparent background pixels and was rejected before import. See docs/modular-appearance.md for reproduction and generation provenance.

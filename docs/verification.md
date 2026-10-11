@@ -1,5 +1,19 @@
 # Verification record
 
+## Latest results - October 11 clean modular appearance
+
+- **127/127 EditMode tests passed**, zero failed/skipped, 1.831s. Seven added tests cover priority/duplicate precedence, item override/restoration, same-count replacement, preset refresh/mirroring, cosmetic/stat separation, leg motion and alpha borders. Initial failures are retained and explained in modular-appearance.md.
+- **Windows build succeeded**, zero errors/warnings, Unity 6000.6.5f1, 137,856,260 reported bytes. **625 input files match** the isolated copy byte-for-byte; digest `63c7288d54f61ef11968a568ec8025ec948fa197b48815adec3e24168c88a74f`. The user's Editor remained open; unsaved state is outside this comparison.
+- **AssetScope: 211 assets, 1,395 usages, zero findings** for saved content. Six clean original PNG dependencies; historical textured/reference sprites are not active scene PNGs. This verifies serialized inspection coverage, not arbitrary runtime completeness.
+- **Appearance rendering passed**: three shared-body looks, three supplied outfits, left/right spring motion, title LOOK selection and shop composition. World/resolver agreement and face mirroring are true. Inspected final looks-and-items, title-veteran and shop-layers captures in artifacts/clean-appearance-review.
+- **All 18 enemy renderers inspected** in artifacts/clean-enemy-gallery; fixed grid, presentation animation only. Not an AI/balance test.
+- **Staged combat art fixture passed**: 39 shots, five scrap shapes, six weapons, five visible item layers, left/right movement, muzzle flashes, recoil, scatter, settling and magnet attraction. One body sprite per state, idle spring range .15 and walk range .30. Inspected outfit screenshot; artifacts/clean-art-review/art-review.json. This fixture supplies equipment/items and heals the player.
+- Player logs retain the known D3D12 info-queue startup diagnostic `0x80004002`; no other Error/Exception/Failed matches. All players exited successfully. No new twenty-wave balance run or manual input acceptance is claimed.
+- **Package verified**: 155 entries, 49,356,996 bytes, CRC passed and every archived file matches the build. SHA-256 `00b933ff2982e92eda8d16801024fdc2d9b6c283030ca5ab8aa17ca977ee339b`.
+
+Reproduce: scripts/build.ps1 then scripts/verify.ps1 in the isolated project; compare with scripts/verify_validation_copy.py. Player flags: --appearance-review, --spring-gallery, --art-review, each followed by an output folder. Generation prompts and final asset hashes are in docs/clean-art-prompts.json, clean-art-repair-prompts.json and clean-atlas-regions.json. The pre-existing PackageManagerSettings.asset remains uncommitted.
+
+
 ## Latest — October 11 body-only spring animation
 
 - **120/120 EditMode tests passed**, zero failed/skipped, 1.158s test duration. Source pose landmarks, slower idle/faster walk, bounded alternating feet, pause, reduced motion, serialized body/foot references and sprite-border integrity are covered. Old six-frame assertions were replaced with the new requirement. The added border check caught one real atlas defect before passing; `artifacts/raw/spring-border-first-tests.xml` retains the ignored failed report.

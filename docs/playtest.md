@@ -82,3 +82,8 @@ Automated rules and staged rendering passed. These hands-on checks remain a user
 - Equip several items and six weapons: items should follow the body and weapons float independently. Confirm the body looks handless even when weapon handles overlap it.
 
 Automated timing and rendered checks passed; the user's subjective motion/visual acceptance remains open.
+
+
+## Clean modular appearance review
+
+Fresh Windows evidence: artifacts/clean-appearance-review (three looks, three outfits, facing, title selector and shop), clean-enemy-gallery (18 fixed renderers), clean-art-review (staged combat). These are scripted visual/integration checks, not a human twenty-wave run. Check LOOK buttons manually, readability at normal zoom, hats during movement and preferred face/hair proportions. Full-run balance remains unverified.

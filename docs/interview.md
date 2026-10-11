@@ -176,3 +176,12 @@ These replace the earlier five-wave/three-weapon scope descriptions above.
 **What did visual review catch that tests missed?** The first gallery showed a clipped enemy nose and a fragment on its neighbor. The imported grid was valid data but wrong for those pixels. Per-sprite alpha bounds corrected it; a border test then caught remaining tree contamination in another sprite. Explain both the visual observation and the actual failed regression before the final 120/120 pass.
 
 **What remains subjective?** Tests establish timing, bounds and state behavior; they do not establish that the spring feels right. The user still needs to play it. Codex generated/implemented these changes under the user's direction; describe that contribution accurately.
+
+
+## Modular appearance example: separation of data and presentation
+
+Problem: a character's eyes and equipment were baked into one image; inventory icons pasted onto it could not cleanly change identity. Decision: use one blank body with data-driven eye, mouth, hair and item layers, following the inspected source's slot/priority model. Three cosmetic looks demonstrate reuse while keeping stats separate. Both runtime and shop share the resolver to avoid inconsistent previews.
+
+Concrete bug example: the old wardrobe used item count as its refresh condition. A same-count replacement would keep stale art. The cache now compares item identity/order and preset identity; a regression replaces a hat without changing count and verifies the displayed sprite. Sprite border tests also caught two actual atlas cuts (126/127 initial passes); measured transparent separators resolved them. A generated enemy draft with a translucent backdrop was rejected after alpha inspection.
+
+Tradeoff: explicit offsets suit this small catalog, while a larger roster may justify standardized authoring canvases and an appearance editor. Cosmetic variants currently have no character-specific passives. Use this as a documented project example; Codex authored the implementation/checks, and candidate explanation or manual validation should be described truthfully.

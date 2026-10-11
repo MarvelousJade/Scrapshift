@@ -43,3 +43,8 @@ Weapons float independently of the decorative arms. All 24 retained catalog item
 The green battery carried a plus sign that suggested healing. It was removed from the active material pool at the user's request. Five shapes remain: washer, nut, bent fragment, triangular shard and square chip. Only the red/ivory repair capsule heals. The unused battery art remains in the source sheet for provenance.
 
 The user chose to move on after the backward-walk report without confirming which direction caused it. The mixed horizontal foot orientation has been corrected; upward movement still reuses front-facing art. A dedicated rear-view cycle is a known presentation limitation, not claimed complete.
+
+
+## Current clean modular art - October 11
+
+Supersedes the weathered spring sheets above. User selected clean surfaces after seeing a smooth preview and requested removal of all player body/leg panel seams. Active: player-parts-v2, wearables-v2, enemies-v5, items-v2, equipment-v2, stats-v2. Six original generated atlases retain bold outlines and meaningful item/enemy construction detail, with no gray rust/scuff texture. Player shell and pointed leg are intentionally unmarked. Twenty-four dedicated wearables are separate from twenty-four item icons. Three cosmetic presets share the same body. See modular-appearance.md, clean-atlas-regions.json (hashes/rectangles), and clean-art-prompts.json plus clean-art-repair-prompts.json. Built-in imagegen performed raster edits; Unity imports/animates the parts. No source PNG pixels were manually altered.

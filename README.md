@@ -1,6 +1,6 @@
 # Scrapshift
 
-A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Five active original AI-generated sheets supply the armless scavenger, body-only enemies, weapons, pickups and UI icons. A slow idle spring and faster movement spring animate one player body with tiny separate feet. The supplied reference sound effects remain.
+A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Six active original AI-generated sheets provide clean player parts, wearable details, body-only enemies, weapons, pickups and UI icons. Three cosmetic looks share a smooth shell, swappable eyes/hair/beard and tiny pointed legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
 
 ## Why this exists
 
@@ -12,6 +12,7 @@ The user requested close reference analysis before implementation. See [the sour
 
 Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Assets/Scrapshift/Content/Scenes/Deck.unity`. **Scrapshift > Generate Game Content** applies versioned content migrations while preserving existing asset GUIDs.
 
+- Title LOOK buttons: choose Rookie, Veteran or Punk (appearance only; identical starting stats).
 - WASD / arrows: move. Weapons attack automatically.
 - Escape: pause/resume. M: mute. Pause menu: volume and reduced motion.
 - Collect materials for both spending and XP. Levels queue until the wave ends.
@@ -49,3 +50,5 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 - [Hands-on playtest](docs/playtest.md)
 
 The latest measured results are in the verification record. A scripted presentation fixture is explicitly separate from a normal run and from the user's own playtest.
+
+Latest appearance design and reference comparison: [modular appearance](docs/modular-appearance.md).
