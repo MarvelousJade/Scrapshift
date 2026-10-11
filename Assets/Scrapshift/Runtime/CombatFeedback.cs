@@ -10,7 +10,48 @@ namespace Scrapshift
         MaterialPropertyBlock flashBlock;
         GameObject gun;
         Vector2 gunDirection = Vector2.right;
-        float recoil, hitStop, hurtOverlay;
+        float recoil, hurtOverlay, playerFlash, shakeTime;
+        readonly List<SpriteRenderer> playerFlashViews = new List<SpriteRenderer>();
+        void Shake(float amount)
+        {
+            shake = Mathf.Max(shake, amount); shakeTime = .1f;
+        }
+        sealed class Impact { public GameObject obj; public float age, size; }
+        readonly List<Impact> impacts = new List<Impact>();
+        void ImpactBurst(Vector2 position, Vector2 direction, bool critical, bool playerHit = false)
+        {
+            if (impacts.Count >= 80) return;
+            var obj = new GameObject("Impact star"); obj.transform.position = new Vector3(position.x, position.y, -3);
+            obj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            foreach (bool outline in new[] { true, false })
+            {
+                var line = MakeLine(outline ? "Impact outline" : "Impact light", obj.transform,
+                    outline ? new Color(.12f,.09f,.13f) : critical ? amber : Color.white, outline ? .09f : .035f, true);
+                line.sortingOrder = outline ? 20 : 21; line.positionCount = 16;
+                for (int i = 0; i < 16; i++)
+                {
+                    float angle = i * Mathf.PI / 8, radius = i % 2 == 0 ? (i % 4 == 0 ? 1 : .65f) : .24f;
+                    line.SetPosition(i, new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0));
+                }
+            }
+            float size = playerHit ? .5f : critical ? .4f : .25f;
+            obj.transform.localScale = Vector3.one * size;
+            impacts.Add(new Impact { obj = obj, size = size });
+        }
+        void UpdatePlayerFlash(float dt)
+        {
+            playerFlash = Mathf.Max(0, playerFlash - dt);
+            if (flashBlock == null) flashBlock = new MaterialPropertyBlock();
+            flashBlock.Clear(); flashBlock.SetFloat("_Flash", playerFlash > 0 ? 1 : 0);
+            player.GetComponentsInChildren(true, playerFlashViews);
+            foreach (var renderer in playerFlashViews) renderer.SetPropertyBlock(flashBlock);
+        }
+        void ClearImpacts()
+        {
+            foreach (var impact in impacts) Destroy(impact.obj);
+            impacts.Clear(); playerFlash = 0; shake = shakeTime = 0;
+            if (player != null) UpdatePlayerFlash(0);
+        }
         void Flash(Enemy e, float amount)
         {
             if (flashBlock == null) flashBlock = new MaterialPropertyBlock();
@@ -24,8 +65,16 @@ namespace Scrapshift
         }
         void UpdateFeedback(float dt)
         {
-            recoil = Mathf.Max(0, recoil - dt * 1.8f); hitStop = Mathf.Max(0, hitStop - dt);
+            recoil = Mathf.Max(0, recoil - dt * 1.8f);
             hurtOverlay = Mathf.Max(0, hurtOverlay - dt);
+            for (int i = impacts.Count - 1; i >= 0; i--)
+            {
+                var impact = impacts[i]; impact.age += dt;
+                // Three 50ms phases, matching the reference effect's short lifetime.
+                float factor = reducedMotion ? 1 : impact.age < .05f ? 1 : impact.age < .1f ? .7f : .35f;
+                impact.obj.transform.localScale = Vector3.one * impact.size * factor;
+                if (impact.age >= .15f) { Destroy(impact.obj); impacts.RemoveAt(i); }
+            }
             for (int i = floaters.Count - 1; i >= 0; i--)
             {
                 var f = floaters[i]; f.age += dt; if (!reducedMotion) f.pos += Vector2.up * dt * 1.2f;

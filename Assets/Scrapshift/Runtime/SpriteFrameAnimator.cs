@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scrapshift
 {
-    // Driven by the simulation so pause and hit-stop also pause the animation.
+    // Driven by the simulation so pause also pauses the animation.
     public sealed class SpriteFrameAnimator : MonoBehaviour
     {
         public Sprite[] idleFrames, moveFrames;

@@ -13,7 +13,7 @@ namespace Scrapshift
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
+        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
@@ -83,6 +83,8 @@ namespace Scrapshift
             if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
             int galleryIndex=Array.IndexOf(args,"--spring-gallery");
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
+            int feelIndex=Array.IndexOf(args,"--combat-feel-review");
+            if(feelIndex>=0&&feelIndex+1<args.Length)BeginCombatFeelReview(args[feelIndex+1]);
             int worldIndex=Array.IndexOf(args,"--world-review");
             if(worldIndex>=0&&worldIndex+1<args.Length)BeginWorldReview(args[worldIndex+1]);
             int scaleIndex=Array.IndexOf(args,"--scale-review");
@@ -98,7 +100,7 @@ namespace Scrapshift
             ClearCombat(); Rules.Start(); StartWave(); playerPos = Vector2.zero;
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
-            floaters.Clear(); hitStop = hurtOverlay = 0;
+            floaters.Clear(); hurtOverlay = 0;
             player.transform.position = Vector3.zero; player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             foreach (var o in orbits) o.SetActive(false); pulse.SetActive(false);
@@ -129,7 +131,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); Simulate(dt); }
             if (Rules.Phase != RunPhase.Playing && Rules.Phase != RunPhase.Paused)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -147,6 +149,7 @@ namespace Scrapshift
             }
             if (smoke) SmokeTick();
             wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
+            UpdatePlayerFlash(Rules.Phase == RunPhase.Playing ? Mathf.Min(Time.deltaTime, .05f) : 0);
             ReviewTick();
             ArtReviewTick();
             EnemyReviewTick();
@@ -156,6 +159,7 @@ namespace Scrapshift
             AppearanceReviewTick();
             ScaleReviewTick();
             WorldReviewTick();
+            CombatFeelReviewTick();
         }
 
         void Simulate(float dt)
@@ -180,7 +184,8 @@ namespace Scrapshift
             UpdateWeapons(dt); UpdateSlashes(dt);
             UpdatePickups(dt);
             UpdateSparks(dt); UpdateCorpses(dt);
-            shake = Mathf.Max(0, shake - dt * 2);
+            shakeTime = Mathf.Max(0, shakeTime - dt);
+            if (shakeTime <= 0) shake = 0;
             Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos, PresentationLayout.Aspect);
             gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt)FinishWavePickups();
@@ -234,7 +239,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
-            ClearReferenceCombat(); floaters.Clear(); hitStop=hurtOverlay=0;
+            ClearReferenceCombat(); ClearImpacts(); floaters.Clear(); hurtOverlay=0;
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();
             foreach (var s in shots) Destroy(s.obj); shots.Clear();
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();
