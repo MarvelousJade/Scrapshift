@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6456606814053282234}
   - component: {fileID: 8657694691435434613}
   m_Layer: 0
-  m_Name: Tiny left foot
+  m_Name: Tiny left leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,9 +25,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933458943537688453}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13, y: -0.64, z: 0.01}
-  m_LocalScale: {x: 0.6115108, y: 0.6115108, z: 0.6115108}
+  m_LocalRotation: {x: 0, y: 0, z: -0.104528464, w: 0.9945219}
+  m_LocalPosition: {x: -0.13, y: -0.62, z: 0.01}
+  m_LocalScale: {x: 0.25398305, y: 0.25398305, z: 0.25398305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 512226484201517636}
@@ -81,9 +81,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 9
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4007054166547180346, guid: a61b00415fbaa0547943b2dfccb97ac2, type: 3}
+  m_Sprite: {fileID: -6804496055582756276, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.472, y: 0.278}
@@ -140,13 +140,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Scrapshift.Runtime::Scrapshift.SpriteFrameAnimator
   idleFrames:
-  - {fileID: 54929205548495813, guid: a61b00415fbaa0547943b2dfccb97ac2, type: 3}
+  - {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
   moveFrames:
-  - {fileID: 54929205548495813, guid: a61b00415fbaa0547943b2dfccb97ac2, type: 3}
+  - {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
   bodyView: {fileID: 6284040281050162556}
   leftFoot: {fileID: 8657694691435434613}
   rightFoot: {fileID: 8689862729474225105}
-  footSprite: {fileID: -4007054166547180346, guid: a61b00415fbaa0547943b2dfccb97ac2, type: 3}
+  footSprite: {fileID: -6804496055582756276, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+  looks:
+  - name: Rookie
+    layers:
+    - id: friendly
+      slot: eyes
+      image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.1}
+      scale: 0.55499995
+      priority: 0
+      order: 13
+    - id: smile
+      slot: mouth
+      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.2}
+      scale: 0.50721854
+      priority: 0
+      order: 14
+  - name: Veteran
+    layers:
+    - id: sleepy
+      slot: eyes
+      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.55844724
+      priority: 0
+      order: 13
+    - id: beard
+      slot: mouth
+      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.24}
+      scale: 0.57994384
+      priority: 0
+      order: 14
+    - id: swept-hair
+      slot: head
+      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: -0.02, y: 0.48}
+      scale: 0.6347507
+      priority: 0
+      order: 12
+  - name: Punk
+    layers:
+    - id: stern
+      slot: eyes
+      image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.12}
+      scale: 0.57733744
+      priority: 0
+      order: 13
+    - id: smile
+      slot: mouth
+      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.2}
+      scale: 0.48516557
+      priority: 0
+      order: 14
+    - id: mohawk
+      slot: head
+      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.67}
+      scale: 0.49595743
+      priority: 0
+      order: 12
+  lookIndex: 0
   walkFramesPerSecond: 7
 --- !u!1 &1915980537753211436
 GameObject:
@@ -159,7 +223,7 @@ GameObject:
   - component: {fileID: 2287830959335318357}
   - component: {fileID: 8689862729474225105}
   m_Layer: 0
-  m_Name: Tiny right foot
+  m_Name: Tiny right leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,9 +237,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915980537753211436}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: -0.64, z: 0.01}
-  m_LocalScale: {x: 0.6115108, y: 0.6115108, z: 0.6115108}
+  m_LocalRotation: {x: 0, y: 0, z: 0.104528464, w: 0.9945219}
+  m_LocalPosition: {x: 0.13, y: -0.62, z: 0.01}
+  m_LocalScale: {x: 0.25398305, y: 0.25398305, z: 0.25398305}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 512226484201517636}
@@ -229,7 +293,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 9
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4007054166547180346, guid: a61b00415fbaa0547943b2dfccb97ac2, type: 3}
+  m_Sprite: {fileID: -6804496055582756276, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -266,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 8015059579001911210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321,7 +385,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 54929205548495813, guid: a61b00415fbaa0547943b2dfccb97ac2, type: 3}
+  m_Sprite: {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

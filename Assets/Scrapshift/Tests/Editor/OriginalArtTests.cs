@@ -30,9 +30,11 @@ namespace Scrapshift.Tests
         {
             var dependencies = AssetDatabase.GetDependencies(ContentBuilder.ScenePath, true);
             Assert.IsFalse(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".png")));
-            Assert.AreEqual(5, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
-            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("hero-spring-v1.png")));
-            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("enemies-v2.png")));
+            Assert.AreEqual(6, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
+            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("player-parts-v2.png")));
+            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("wearables-v2.png")));
+            Assert.IsFalse(dependencies.Any(p=>p.EndsWith("hero-spring-v1.png")));
+            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("enemies-v5.png")));
             Assert.IsFalse(dependencies.Any(p=>p.Contains("hero-walk")));
             Assert.IsTrue(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".wav")), "Retain requested reference audio.");
         }
@@ -64,7 +66,7 @@ namespace Scrapshift.Tests
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ContentBuilder.Root + "/Prefabs/ScavengerAnimated.prefab");
             var animator = prefab.GetComponent<SpriteFrameAnimator>();
             Assert.AreEqual(1,animator.moveFrames.Length);Assert.AreSame(animator.idleFrames[0],animator.moveFrames[0]);
-            Assert.IsTrue(AssetDatabase.GetAssetPath(animator.bodyView.sprite).EndsWith("hero-spring-v1.png"));
+            Assert.IsTrue(AssetDatabase.GetAssetPath(animator.bodyView.sprite).EndsWith("player-parts-v2.png"));
             Assert.AreSame(animator.leftFoot.sprite,animator.rightFoot.sprite);
             Assert.Less(animator.leftFoot.sprite.bounds.size.y*animator.leftFoot.transform.localScale.y,animator.bodyView.sprite.bounds.size.y*.2f);
             Assert.AreNotSame(animator.bodyView.transform,animator.leftFoot.transform.parent,"Feet must stay outside body squash.");
@@ -124,6 +126,8 @@ namespace Scrapshift.Tests
             {
                 Assert.IsNotEmpty(item.wearSlot, item.id);
                 Assert.Greater(item.wearScale, 0, item.id);
+                Assert.NotNull(item.appearance?.image,item.id);
+                Assert.AreNotSame(item.image,item.appearance.image,"Wearable must be separate from its shop icon.");
             }
             var hat = catalog.data.items.Single(i => i.id == "beanie");
             var helmet = catalog.data.items.Single(i => i.id == "helmet");

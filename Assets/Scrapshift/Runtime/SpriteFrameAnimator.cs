@@ -9,6 +9,9 @@ namespace Scrapshift
         public SpriteRenderer bodyView;
         public SpriteRenderer leftFoot, rightFoot;
         public Sprite footSprite;
+        public PlayerLook[] looks;
+        public int lookIndex;
+        public PlayerLook Look => looks != null && looks.Length > 0 ? looks[Mathf.Clamp(lookIndex, 0, looks.Length - 1)] : null;
         public Transform BodyRoot=>bodyView!=null?bodyView.transform:transform;
         public Sprite CurrentSprite=>bodyView!=null?bodyView.sprite:view!=null?view.sprite:null;
         public Vector3 SpringPose {get;private set;}=new Vector3(1,1,0);
@@ -46,8 +49,10 @@ namespace Scrapshift
         {
             if(foot==null)return;
             Vector2 offset=SpringMotion.Foot(clock,side,moving,reducedMotion);
-            foot.transform.localPosition=new Vector3(offset.x*(FacingLeft?-1:1),-.64f+offset.y,.01f);
-            foot.flipX=FacingLeft;
+            float facing=FacingLeft?-1:1;
+            foot.transform.localPosition=new Vector3(offset.x*facing,-.62f+offset.y,.01f);
+            foot.transform.localRotation=Quaternion.Euler(0,0,SpringMotion.LegAngle(clock,side,moving,reducedMotion)*facing);
+            foot.flipX=(side<0)^FacingLeft;
         }
 
         public static int FrameAt(float time, bool moving, int walkCount = 6, float walkFps = 7)

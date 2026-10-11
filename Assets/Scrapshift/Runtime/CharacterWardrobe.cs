@@ -6,42 +6,57 @@ namespace Scrapshift
     public sealed class CharacterWardrobe : MonoBehaviour
     {
         readonly List<SpriteRenderer> views = new List<SpriteRenderer>();
-        readonly List<ItemEntry> selected = new List<ItemEntry>();
-        int lastCount = -1;
-        public int VisibleCount => selected.Count;
+        readonly List<ItemEntry> cachedItems = new List<ItemEntry>();
+        List<AppearanceLayer> selected = new List<AppearanceLayer>();
+        PlayerLook cachedLook;
+        Material cachedMaterial;
+        bool initialized;
+        public int VisibleCount { get; private set; }
+        public IReadOnlyList<AppearanceLayer> Layers => selected;
 
         public static List<ItemEntry> VisibleItems(IReadOnlyList<ItemEntry> items)
         {
+            var layers = AppearanceResolver.Resolve(null, items);
             var result = new List<ItemEntry>();
-            var slots = new HashSet<string>();
-            for (int i = items.Count - 1; i >= 0; i--)
-                if (!string.IsNullOrEmpty(items[i].wearSlot) && slots.Add(items[i].wearSlot))
-                    result.Add(items[i]);
-            result.Sort((a, b) => a.wearOrder.CompareTo(b.wearOrder));
+            var seen = new HashSet<string>();
+            foreach (var item in items)
+                if (item != null && seen.Add(item.id) && layers.Contains(item.appearance)) result.Add(item);
             return result;
         }
 
         public void Sync(IReadOnlyList<ItemEntry> items, Material material, bool facingLeft)
         {
-            if (lastCount != items.Count)
+            var animation = GetComponent<SpriteFrameAnimator>();
+            var look = animation != null ? animation.Look : null;
+            bool changed = !initialized || cachedLook != look || cachedMaterial != material || cachedItems.Count != items.Count;
+            if (!changed) for (int i = 0; i < items.Count; i++) if (cachedItems[i] != items[i]) { changed = true; break; }
+            if (changed)
             {
-                foreach (var view in views) if (view != null) Destroy(view.gameObject);
-                views.Clear(); selected.Clear(); selected.AddRange(VisibleItems(items));
-                foreach (var item in selected)
+                selected = AppearanceResolver.Resolve(look, items);
+                // Reuse renderer objects so switching presets does not leave a frame of old features.
+                while (views.Count < selected.Count)
                 {
-                    var obj = new GameObject("Worn " + item.title);
-                    var animation=GetComponent<SpriteFrameAnimator>();
-                    obj.transform.SetParent(animation!=null?animation.BodyRoot:transform, false);
-                    var view = obj.AddComponent<SpriteRenderer>();
-                    view.sprite = item.image; view.sharedMaterial = material; view.sortingOrder = item.wearOrder;
-                    obj.transform.localScale = Vector3.one * item.wearScale;
-                    views.Add(view);
+                    var obj = new GameObject("Appearance layer");
+                    obj.transform.SetParent(animation != null ? animation.BodyRoot : transform, false);
+                    views.Add(obj.AddComponent<SpriteRenderer>());
                 }
-                lastCount = items.Count;
+                VisibleCount = 0;
+                for (int i = 0; i < views.Count; i++)
+                {
+                    var view = views[i]; view.enabled = i < selected.Count;
+                    if (!view.enabled) continue;
+                    var layer = selected[i];
+                    view.name = "Appearance " + layer.id;
+                    view.sprite = layer.image; view.sharedMaterial = material; view.sortingOrder = layer.order;
+                    view.transform.localScale = Vector3.one * layer.scale;
+                    foreach (var item in items) if (item.appearance == layer) { VisibleCount++; break; }
+                }
+                cachedItems.Clear(); foreach (var item in items) cachedItems.Add(item);
+                cachedLook = look; cachedMaterial = material; initialized = true;
             }
-            for (int i = 0; i < views.Count; i++)
+            for (int i = 0; i < selected.Count; i++)
             {
-                Vector2 offset = selected[i].wearOffset;
+                var offset = selected[i].offset;
                 views[i].transform.localPosition = new Vector3(offset.x * (facingLeft ? -1 : 1), offset.y, -.02f);
                 views[i].flipX = facingLeft;
             }

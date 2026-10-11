@@ -176,21 +176,29 @@ namespace Scrapshift
             Text(1130,654,260,25,"YOUR GEAR",tiny);
             Vector2 origin = new Vector2(1260, 712);
             const float scale = 60;
-            var worn = CharacterWardrobe.VisibleItems(Rules.Items);
-            foreach (var item in worn) if (item.wearOrder < 10) DrawWornIcon(item, origin, scale);
+            var worn = AppearanceResolver.Resolve(playerAnimation.Look,Rules.Items);
+            foreach (var layer in worn) if (layer.order < 10) DrawAppearance(layer, origin, scale);
             Sprite hero = playerAnimation.idleFrames[0];
             if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
-                DrawIcon(playerAnimation.footSprite,new Rect(origin.x+side*8-8,origin.y+34,16,10));
+            {
+                var leg=playerAnimation.footSprite;
+                Vector2 legSize=leg.bounds.size*(.18f/leg.bounds.size.y)*scale;
+                Vector2 center=origin+new Vector2(side*.13f,.62f)*scale;
+                Matrix4x4 before=GUI.matrix;
+                GUIUtility.RotateAroundPivot(-side*12,center);
+                DrawIcon(leg,new Rect(center-legSize*.5f,legSize));
+                GUI.matrix=before;
+            }
             Vector2 size = hero.rect.size / hero.pixelsPerUnit * scale;
             DrawIcon(hero, new Rect(origin - size * .5f, size));
-            foreach (var item in worn) if (item.wearOrder >= 10) DrawWornIcon(item, origin, scale);
+            foreach (var layer in worn) if (layer.order >= 10) DrawAppearance(layer, origin, scale);
         }
 
-        void DrawWornIcon(ItemEntry item, Vector2 origin, float scale)
+        void DrawAppearance(AppearanceLayer layer, Vector2 origin, float scale)
         {
-            Vector2 size = item.image.rect.size / item.image.pixelsPerUnit * item.wearScale * scale;
-            Vector2 center = origin + new Vector2(item.wearOffset.x, -item.wearOffset.y) * scale;
-            DrawIcon(item.image, new Rect(center - size * .5f, size));
+            Vector2 size = layer.image.rect.size / layer.image.pixelsPerUnit * layer.scale * scale;
+            Vector2 center = origin + new Vector2(layer.offset.x, -layer.offset.y) * scale;
+            DrawIcon(layer.image, new Rect(center - size * .5f, size));
         }
     }
 }

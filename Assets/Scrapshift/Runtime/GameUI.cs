@@ -38,6 +38,7 @@ namespace Scrapshift
         {
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
+            if(appearanceReview&&appearanceStage>=2&&appearanceStage<6){AppearanceReviewUI();return;}
             if (Rules.Phase == RunPhase.Title) { TitleUI(); return; }
             if (Rules.Phase == RunPhase.Loot) { LootUI(); return; }
             if (Rules.Phase == RunPhase.Shop) { ShopUI(); return; }
@@ -61,8 +62,17 @@ namespace Scrapshift
             Text(140,501,650,58,"20 waves. 6 weapon slots. Build your own loadout.\nYour weapons aim and fire automatically.",tiny);
             if (Button(new Rect(140,590,355,66),"LET'S GO!   [ENTER]")) Begin();
             Text(532,598,300,55,"WASD / ARROWS\nto move",body);
-            Text(957,639,350,50,"THE SCAVENGER",center);
+            Text(957,630,350,38,playerAnimation.Look?.name.ToUpperInvariant()??"SCAVENGER",center);
+            if(Button(new Rect(957,682,160,42),"< LOOK"))ChangeLook(-1);
+            if(Button(new Rect(1135,682,160,42),"LOOK >"))ChangeLook(1);
+            Text(957,734,338,38,"Appearance only - same starting stats",tiny);
             Text(40,834,1300,40,"MOVE  /  COLLECT  /  UPGRADE  /  SURVIVE",center);
+        }
+        void ChangeLook(int direction)
+        {
+            var looks=playerAnimation.looks;if(looks==null||looks.Length==0)return;
+            playerAnimation.lookIndex=(playerAnimation.lookIndex+direction+looks.Length)%looks.Length;
+            if(titleModel!=null)titleModel.GetComponent<SpriteFrameAnimator>().lookIndex=playerAnimation.lookIndex;
         }
         Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.76f,.43f,1) : tier==2 ? new Color(.40f,.66f,1) : paper;
         void DrawHud()

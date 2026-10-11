@@ -27,5 +27,7 @@ namespace Scrapshift
             float stride=Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*side;
             return new Vector2(side*.13f+stride*.08f,Mathf.Max(0,stride)*.055f);
         }
+        public static float LegAngle(float time,int side,bool moving,bool reducedMotion=false)
+            => side*12 + (moving && !reducedMotion ? Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*side*28 : 0);
     }
 }

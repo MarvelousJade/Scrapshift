@@ -62,7 +62,7 @@ namespace Scrapshift
             if (t > 10 && !outfitAdded)
             {
                 outfitAdded = true;
-                foreach (string id in new[] { "helmet", "glasses", "leather_vest", "coffee", "blood_leech" })
+                foreach (string id in new[] { "helmet", "glasses", "leather_vest", "cake", "blood_leech" })
                     Rules.Items.Add(Array.Find(catalog.data.items, i => i.id == id));
                 Rules.Inventory.Clear();
                 foreach (string id in new[] { "pistol", "smg", "double_barrel_shotgun", "laser_gun", "knife", "spear" })
@@ -73,6 +73,7 @@ namespace Scrapshift
             {
                 outfitShop = true;
                 Rules.Tick(Rules.Remaining); ClearCombat();
+                while (Rules.Phase == RunPhase.Loot) Rules.ResolveCrate(false);
                 while (Rules.Phase == RunPhase.Upgrade) Rules.Choose(0);
             }
             if (playerAnimation.Moving)

@@ -53,6 +53,7 @@ namespace Scrapshift
         public Vector2 wearOffset;
         public float wearScale = .2f;
         public int wearOrder = 11;
+        public AppearanceLayer appearance;
         public string Detail
         {
             get

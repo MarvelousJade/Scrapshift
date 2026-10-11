@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "jobs": [
+    {
+      "key": "enemies-spacing",
+      "path": "C:/Users/FanSh/.codex/generated_images/01a1284b-4f69-7eb3-a342-b7a2b6b94bb9/exec-681052c4-bb23-467d-9273-d1d76f558c48.png",
+      "prompt": "Use case: precise-object-edit. Retain these EXACT SAME 18 clean robot enemies, colors, silhouettes and details. Fix ONLY their sprite atlas spacing. Layout exactly SIX equal columns and THREE equal rows on 1536x1024 transparent canvas. Every enemy must fit entirely inside its own 256x341 cell with at least 30 pixels fully transparent padding on ALL FOUR SIDES. Reduce the individual sprites enough to achieve this. Center every enemy within its cell. In particular separate the red drill enemy (row2 col4) from the yellow spiked enemy (row2 col5); their opaque pixels must NEVER touch or overlap in x. Preserve all spikes, antennae, saw tips and horns intact. Keep clean smooth colors, no rust or noisy texture. No new parts, no hands or legs. EXACTLY these 18 enemies in this same order. Entire background fully transparent, no haze or glow clouds. No text."
+    },
+    {
+      "key": "enemies-transparency",
+      "path": "C:/Users/FanSh/.codex/generated_images/01a1284b-4f69-7eb3-a342-b7a2b6b94bb9/exec-c8496d3d-52ec-4d62-a997-d74ba752c568.png",
+      "prompt": "Use case: background-extraction. Remove the ENTIRE gray/white colored hazy background and ALL colored glow halos from this sprite atlas. Output genuine RGBA transparency: every pixel outside the 18 solid outlined robot silhouettes must be alpha ZERO, including the gaps between robots. The previous output incorrectly retained a translucent haze over the entire canvas. Keep every solid robot pixel's design, color, position, scale and outline unchanged. Do not move or resize robots. Do not add background, drop shadows, glows, gradients, or checkerboard pixels. Exactly these 18 clean enemies with empty transparent gaps. Clean cutout, transparent background. Same1536x1024 canvas."
+    }
+  ]
+}
