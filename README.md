@@ -14,6 +14,10 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project. Initial c
 
 Controls: WASD or arrow keys to move; Escape pauses; 1/2/3 selects upgrades; M toggles sound; Enter starts or restarts. Mouse buttons also work on menus.
 
+Playable Windows output: `Builds/Windows/Scrapshift.exe`. Keep the entire Windows folder together. The packaged download is `Builds/Scrapshift-Windows.zip`.
+
+To verify or rebuild, run `./scripts/verify.ps1` and `./scripts/build.ps1` with the game project's Editor closed. Build binaries and raw logs are intentionally excluded from Git; source, Unity `.meta` files, test summaries and selected screenshots are tracked.
+
 ## Interview evidence
 
 - [Project purpose and scope](docs/design.md)
@@ -21,5 +25,11 @@ Controls: WASD or arrow keys to move; Escape pauses; 1/2/3 selects upgrades; M t
 - [Observed bugs and fixes](docs/bugs.md)
 - [Interview questions and rehearsal](docs/interview.md)
 - [Contribution record](docs/contributions.md)
+- [Architecture and tradeoffs](docs/architecture.md)
+- [Art and animation references](docs/art-references.md)
+- [Brotato combat/source research](docs/combat-references.md)
+- [AssetScope demo guide](docs/assetscope-demo.md)
+- [Verified results and limitations](docs/verification.md)
+- [Your first hands-on playtest](docs/playtest.md)
 
-Verification and build instructions will be recorded as each milestone completes. A design target is not a completed feature or measured result.
+Current baseline: 24 EditMode cases passed; 33 content assets scanned with zero prefab missing-script findings; Windows build succeeded with zero reported build warnings/errors. Actual title/combat/pause/upgrade/wave-transition presentation and controls were inspected. Full-run balance and the user's own playtest remain open.

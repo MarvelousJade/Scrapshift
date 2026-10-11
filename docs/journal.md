@@ -33,3 +33,11 @@ The Windows build succeeded with zero reported build errors or warnings. A 24-se
 Code inspection also found that a resizable square window could crop world space while keeping the HUD fitted. Added a common aspect-ratio calculation and three regression cases. The resulting 24-case suite passed, and the player rebuilt without reported warnings/errors.
 
 Opened the player as an interactive preview. Title art and layout were inspected. Desktop automation verified Return starts the run, a D tap moves the bot, Escape pauses/resumes, a mouse click changes reduced-motion state, the 1 key installs orbit blades, and a mouse click installs the pulse core. Observed automatic combat, scrap collection, damage, an in-wave level-up and readable upgrade UI. These were assistant-operated checks, not claimed user playtests.
+
+The first wave completed at 90 kills. Choosing Field Repair changed hull from 52/100 to 107/115 and advanced to wave two at 60 seconds. The preview was left waiting at a later in-wave upgrade choice. Reduced motion remained enabled from the control check and can be changed in the pause menu.
+
+## 2026-10-10 - Delivery baseline
+
+Prepared a Windows ZIP and recorded executable/archive SHA-256 hashes. Added architecture/tradeoffs, source research, AssetScope walkthrough, verified-results matrix, a personal playtest worksheet and common interview questions. Kept invalid screenshot evidence in ignored raw artifacts; committed selected real interactive screenshots. No public repository push, release publication or external upload was performed.
+
+Incremental history reflects real milestones: foundation -> combat/content -> tests -> observed fixes -> documentation/evidence. No backdated commits, fabricated debugging incidents or synthetic claim of a human-authored history.

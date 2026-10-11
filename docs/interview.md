@@ -16,11 +16,15 @@ Discuss C# state transitions, Unity assets and serialization, Editor-only packag
 
 ## What was difficult? How did you fix a bug?
 
-Pending actual verified investigations in `bugs.md`. Prepare the sequence: observation -> minimal reproduction -> hypothesis -> evidence -> change -> regression check -> remaining limitation. Do not substitute a hypothetical story for an observed bug.
+Three actual investigations are in `bugs.md`: an invalid package dependency blocked import; the runtime smoke check falsely treated a screenshot request as visual success; and code inspection identified an aspect-ratio mismatch between camera and HUD. Use the one you have personally rehearsed and understand.
+
+The strongest testing example is QA-002. A report said Passed, but the player log showed screenshot capture failure. A second run produced a black image. The lesson is that a passing process or a file on disk is weaker evidence than the actual requested output. The repair separates gameplay counters from rendered inspection and requires actual screenshot evidence. Initial invalid reports are retained for provenance rather than quietly relabeled as success.
+
+If asked for a personal debugging story before you reproduce it yourself: "The project encountered this failure during development. The automated investigation found X; I can explain the reproduction and fix." Do not say you personally performed steps recorded as assistant-run checks.
 
 ## How did you test it?
 
-Pending execution. Explain the planned layers: scene-independent rules; content and AssetScope integration; player build and runtime smoke; visual inspection; user playtesting. Distinguish automated coverage from whether the game feels fun.
+24 EditMode cases passed: rules, collision geometry, content/AssetScope integration and aspect-ratio handling. The Windows player built with zero reported build warnings/errors. Real title/gameplay/pause rendering and keyboard/mouse controls were inspected using desktop automation. Initial hidden screenshot attempts failed visual validation and are recorded separately. See `verification.md` for the final exact evidence and remaining gaps. Automated coverage does not establish that the game is balanced or fun.
 
 ## What would you improve next?
 
@@ -34,3 +38,53 @@ Rebinding/controller support, player feedback-driven balance, performance measur
 - Read one real regression test and predict what happens if its fix is removed.
 - Make a small tuning change, explain it, test it and commit it.
 - Practice a two-minute demonstration: game -> asset workflow -> evidence.
+
+## How would you explain the architecture?
+
+"RunRules owns the progression state without scene references. ArenaGame reads input and coordinates combat and presentation. Enemy and weapon definitions are Unity assets referencing prefabs and shared materials. The Editor assembly contains content generation and AssetScope integration; the runtime assembly does not reference UnityEditor."
+
+Point to `architecture.md`. Explain the limitations too: the coordinator is larger than ideal and would be split before expanding the roster.
+
+## How do you prevent bugs around pause and upgrades?
+
+Advance simulation only in Playing state. A level-up and a wave-clear intermission use the same upgrade screen but have different continuation behavior. Tests verify that an in-wave upgrade preserves remaining time and only a wave intermission advances the wave. Invalid or duplicate choice events cannot apply another upgrade after the state returns to Playing.
+
+## What combat problem did you anticipate?
+
+Fast projectiles can move from one side of an enemy to the other between frames. Checking only their current position can miss the collision. The game measures distance to the whole movement segment instead. Tests include a target between endpoints, a target beyond the segment, and a stationary segment. This is a preventative design and tested edge case, not a claim of an observed tunneling incident.
+
+## Why ScriptableObjects?
+
+They let you tune enemy and weapon values as assets rather than scattering constants through combat code. Their prefab and material references are also inspectable in AssetScope. The current small game still has some positional weapon assumptions; expanding it should introduce named references and broader configuration validation.
+
+## How did you decide what to cut?
+
+The original brief emphasized small, polished, Unity experience and AssetScope compatibility. Multiplayer, a large roster, a shop economy and procedural worlds would add work without directly proving that goal. Three recognizable weapons, three enemy types and a complete short loop are enough to show the authoring/testing workflow.
+
+## How would you optimize it?
+
+Measure first with Unity Profiler on a repeatable scenario. Investigate Instantiate/Destroy and nested collision searches if they dominate a frame. Pool transient objects or introduce spatial partitioning only with evidence. The project currently bounds entity counts; it has not established a production performance benchmark. Do not quote an invented FPS improvement.
+
+## How did references influence the game?
+
+Use `art-references.md` and `combat-references.md`. Discuss movement-centered combat and readable choices from Brotato, compact mechanical silhouettes from Into the Breach, and abstract weapon effects from Nova Drift. Public community mod source informed questions about hit processing, bounded history and effective stats. No claim is made to possess the complete official Brotato source.
+
+## How does this demonstrate attention to users?
+
+The controls and objective are visible before play. Combat stops while reading upgrade choices. A health bar and clear timer communicate status. There are sound and reduced-motion controls. The camera and HUD share an aspect ratio so resizing cannot hide reachable parts of the arena. These are design decisions; usability-study success is not claimed.
+
+## How did you use coding tools?
+
+Answer honestly if asked. The user's direction covered concept, scope, references and documentation; implementation and initial automated investigation in this session used a coding assistant. Explain the code you understand, the outputs you reviewed and the hands-on changes you actually made. Do not equate directing generation with independently typing every line. The role explicitly welcomes AI tools, so clear verification and ownership boundaries are useful discussion points.
+
+## Tell me about collaboration or user feedback
+
+This is currently a directed portfolio project, not evidence of a professional team or user study. Use another verified experience for a teamwork question unless you have a real collaboration example here. Record the first playtest feedback in `contributions.md`, then connect the observed issue to a concrete change and verification.
+
+## Two-minute demo order
+
+1. Start a shift and explain movement, auto-fire and scrap collection.
+2. Pause; show the options and explain why simulation is stopped.
+3. In Unity, inspect a weapon definition and trace its effect prefab/material in AssetScope.
+4. Show one rule test and the real bug log, explaining what each proves and does not prove.
+5. End with one specific improvement based on your own playtest.
