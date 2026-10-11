@@ -110,10 +110,13 @@ namespace Scrapshift
         {
             catalog=source;
         }
-        public float Stat(string name)=>stats.TryGetValue(name,out var v)?v:0;
+        float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
+        public float Stat(string name)=>PermanentStat(name)+WeaponSets.Bonus(Inventory,name);
+        public int SetCount(WeaponSet set)=>WeaponSets.Count(Inventory,set);
+        public float WeaponRange(Equipment weapon)=>Mathf.Max(.5f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f));
         void Add(string name,float value)
         {
-            stats[name]=Stat(name)+value;
+            stats[name]=PermanentStat(name)+value;
             Health=Math.Min(Health,MaxHealth);
         }
         public void Start()
@@ -200,7 +203,6 @@ namespace Scrapshift
         public int Price(int value)=>PriceAt(value,Wave);
         static int PriceAt(int value,int wave)=>Math.Max(1,(int)(value+wave+value*wave*.1f));
         public int Price(ShopOffer offer)=>PriceAt(offer.Value,offer.rolledWave>0?offer.rolledWave:Wave);
-        static string WeaponSet(Equipment w)=>w.id=="knife"?"precise":w.id=="spear"?"primitive":"gun";
         void Draft(bool reroll=false)
         {
             var pool=new List<UpgradeKind>
@@ -254,7 +256,7 @@ namespace Scrapshift
                     double wanted=random.NextDouble();
                     float early=Math.Max(0,6-Wave);
                     var preferred=wanted<.2+early*.01 ? pool.Where(w=>Inventory.Any(owned=>owned.id==w.id)).ToArray() :
-                        wanted<.35+early*.04 ? pool.Where(w=>Inventory.Any(owned=>WeaponSet(owned)==WeaponSet(w))).ToArray() : pool;
+                        wanted<.35+early*.04 ? pool.Where(w=>Inventory.Any(owned=>WeaponSets.For(owned)!=null&&WeaponSets.For(owned)==WeaponSets.For(w))).ToArray() : pool;
                     if(preferred.Length>0)pool=preferred;
                     Shop[i]=new ShopOffer
                     {
@@ -303,6 +305,7 @@ namespace Scrapshift
                 Items.Add(s.item);
                 foreach(var e in s.item.effects)Add(e.key.Replace("stat_",""),e.value);
             }
+            Health=Math.Min(Health,MaxHealth);
             Shop[i]=null;
             return true;
         }
@@ -315,6 +318,7 @@ namespace Scrapshift
             {
                 Inventory[index]=catalog.Weapon(w.id,w.tier+1);
                 Inventory.RemoveAt(i);
+                Health=Math.Min(Health,MaxHealth);
                 return;
             }
         }
@@ -323,6 +327,7 @@ namespace Scrapshift
             if(Phase!=RunPhase.Shop||i<0||i>=Inventory.Count)return;
             Scrap+=Math.Max(1,(int)(Price(Inventory[i].value)*.25f));
             Inventory.RemoveAt(i);
+            Health=Math.Min(Health,MaxHealth);
         }
         public void Reroll()
         {

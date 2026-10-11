@@ -300,7 +300,7 @@ namespace Scrapshift
         {
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                var w=Rules.Inventory[i];weaponClocks[i]-=dt;swings[i]=Mathf.Max(0,swings[i]-dt);float range=Mathf.Max(.5f,w.range+Rules.Stat("range")/100);Enemy nearest=null;float distance=range*range;foreach(var e in enemies)
+                var w=Rules.Inventory[i];weaponClocks[i]-=dt;swings[i]=Mathf.Max(0,swings[i]-dt);float range=Rules.WeaponRange(w);Enemy nearest=null;float distance=range*range;foreach(var e in enemies)
                 {
                     if(e.marker!=null)continue;float d=(e.pos-playerPos).sqrMagnitude;if(d<distance)
                     {
