@@ -205,3 +205,10 @@ Use combat-feel-comparison.md as the evidence trail. A single enemy radius had b
 
 
 A second concrete debugging story: hidden Unity runs completed simulation but could not capture screenshots. Existing checks counted capture requests and reported Passed. Comparing log failures, file timestamps and old art in a stale screenshot exposed the false rendering claim. Fresh-file/signature checks and a missing/invalid/stale regression now separate gameplay assertions from rendering evidence. The final reruns passed; normal-speed scripted survival still failed and is reported separately.
+
+
+## Presentation comparison and validation example
+
+Study the stale-scene incident in yard-and-run-presentation.md. A migration marker described work that had happened earlier, but synchronization had replaced the actual scene. The runtime fixture checked animation state and fresh screenshots, yet initially missed the absent canopy. Inspection caught it; the fix checked the real serialized references, guarded migration skipping with those checks and verified the instantiated object at runtime. Discuss the difference between a completed-step marker and evidence that the current output is correct.
+
+The visual comparison also illustrates scope control: source-grounded mounts/timings, original art, a small supported selection catalog, and explicit adaptations such as a timer held during arrival. Do not describe this as a full reproduction of Brotato or a completed human playthrough. Shaoyu directed the changes; Codex implemented, debugged and verified them. Reproduce and understand the example before claiming personal debugging ownership.

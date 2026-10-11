@@ -217,3 +217,12 @@ Code-observed defects: bullets were still culled at the old y=5.25 map edge; one
 ### Rendering checks could pass without screenshots
 
 Actual validation failure during the combat pass: hidden player launches logged3/5/6 screenshot failures for combat, enemy and campaign fixtures, while their gameplay assertions returned Passed. The combat directory also contained older PNGs, so existence alone would have been misleading. Preserved counts in artifacts/combat-capture-recovery/hidden-results.json. Added shared CaptureVerification checks for a PNG signature, minimum bytes and modification time after run start; all three report formats now require capturesVerified. A regression rejects missing, invalid and stale captures. Reran with a rendering window; final reports and inspected images are the evidence, not the earlier hidden-run Passed fields.
+
+
+## October 11 - weapon presentation and stale migrated scene
+
+Source-observed: idle weapon directions fanned radially and all weapon sprite pivots used .24 units. Reference weapons rest horizontally toward facing; knife/spear use different sprite offsets. Fixed independently of combat stats. Ending UI also incorrectly switched to a distant menu camera; now it retains the death scene and shows the attacker.
+
+Actual validation defect: source synchronization restored an older Deck.unity while YardPresentationV1.txt remained. A subsequent build rendered straight rails and no parachute, even though the fixture reported successful arrival pose/flow checks. A fresh screenshot proved that valid PNGs and numeric animation state did not guarantee the intended asset was present. Migration now checks saved scene objects/references, the EditMode suite checks the authored scene, and runtime checks require authoredScenePresent and canopyInstantiated. Existing generation setup repaired the scene before the new regression executed; no failing test run is claimed. Final verification uses the repaired scene, matching source/validation bytes and inspected runtime images.
+
+Two fixture-only presentation issues were also corrected: saved reduced motion suppressed the tested movement; frozen birth age made the staged enemy look tiny. Production scale was not altered to hide a fixture setup error.

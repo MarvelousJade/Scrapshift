@@ -248,3 +248,16 @@ Assistant-operated Computer Use on the rendered final Windows player, using the 
 - Enter started wave 10 at 60 seconds and restored health to 23/23 with the modified loadout.
 
 This verifies actual GUI input in a staged run, not a full human balance playthrough. The staged windows were closed after inspection.
+
+
+## October 11 - yard and run presentation (fdfd5ff)
+
+- Unity 6000.6.5f1: **148/148 EditMode tests passed**, zero skipped, 3.1294492 seconds. Includes saved scene dependencies, repeated leg-scale stability, weapon facing/layering, landing landmarks and run reset.
+- Windows build **Succeeded**, zero reported errors/warnings, **144,292,644 bytes**. Original PNGs unchanged.
+- AssetScope: **225 assets / 1841 serialized usages / 0 findings**. Parachute prefab and mesh/material dependencies serialized in the scene.
+- **691 byte-equal validation inputs**, digest `8ecff3bd77111ce4e825a1d7aa48540feaceabe1faca54152dd5b4e1ca270aeb`. This covers saved files, not unsaved Editor state.
+- `artifacts/presentation-review/presentation.json`: Passed; all scene-presence, canopy-instantiation, starting weapon, arrival gating, restart, main-menu and accelerated victory assertions true; thirteen fresh PNGs verified. Final arena, landing, UI/ending renders inspected. No exception/error/capture-failure match in its player log.
+- Menu mouse/keyboard checks are detailed in playtest.md. Full gameplay remains a staged check, not a manual 20-wave survival run.
+- Package: **49,663,363 bytes / 155 entries**, CRC and every archived file comparison passed. SHA-256 `2f75b573d237b31dbbd79f0e8e33010e4e8c64bb2c3218f597596c23bd5244b7`.
+
+Earlier current-pass screenshots showing the old rails/missing canopy were rejected and replaced after repairing the migration guard. Pure state checks alone had passed; the final report adds authoredScenePresent and canopyInstantiated. The saved-scene regression passed after the existing content-generation setup repaired the input, so no red-test claim is made.

@@ -97,3 +97,12 @@ At normal speed, compare traversal from center to each edge, a single pistol and
 ## Combat feel follow-up
 
 Compare one-pistol movement around first-wave groups: approach/graze from above and below, hit timing, brief enemy slowing after contact, and pistol knockback versus zero-force SMG. Check resistant chargers and boss contact at their lower-body centers. Shoot toward north/south map boundaries and try normal/reduced-motion feedback. Protection is now .2-.4s rather than .6s, so the combined balance must be tested normally. Runtime fixtures and the accelerated campaign do not establish ordinary difficulty.
+
+
+## October 11 - presentation acceptance checklist
+
+Verified in staged runtime captures: curved dark map edge and small details, six weapons facing right/left, canopy descent/collapse/touchdown, character/weapon/setup screens, lost/summary/won screens. Scripted flow verifies starting SMG, timer/spawn hold during arrival, restart and main-menu reset, and accelerated 20-wave completion. These are not balance tests.
+
+Actual desktop menu inputs: Options opens; Escape returns; Enter opens character selection; clicking Punk changes the card; Enter opens weapon selection; clicking laser updates its stats/image; Enter retains both selections in Run Setup. This input pass used the same final menu code before the scene-only repair; final rendered fixture checks used the repaired packaged player. Temporary test player closed. The live Godot reference remains paused on the user's wave-three run.
+
+User follow-up: compare the new edge and loadout silhouette, turn Reduced Motion off in Options to see the full arrival, and assess the motion in a normal run. Existing saved preference was On and was not overwritten by fixtures. Full-run balance remains open.

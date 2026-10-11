@@ -63,3 +63,8 @@ Shaoyu supplied and started the recovered Godot 3 project, then requested direct
 ## Combat feel comparison
 
 Shaoyu requested movement/hitbox/knockback/feedback comparison and retention of original art. Codex inspected live reference combat and inherited source scene/script rules, implemented collision profiles, knockback/contact recovery, ordered projectile hits and original procedural feedback, then ran regression/rendered/integration checks and committed the changes. Automated fixtures supply enemies, gear or invulnerability as documented; ordinary human difficulty/feel acceptance is still open.
+
+
+## Yard and run presentation
+
+Shaoyu requested curved soft map edges/details, original-like weapon positioning, thicker legs, start/end UI and the parachute entrance. Codex inspected the user's paused reference and source without resuming/resetting that run, implemented native geometry and presentation code, ran automated and rendered checks, operated menu controls, fixed the stale-scene migration issue, documented the evidence and committed locally. Existing raster art was preserved. Menu input checks used Options/Escape, Enter through selection, Punk selection and laser selection; the complete start/end transition checks were staged runtime checks. No full manual playthrough or user visual acceptance is claimed.

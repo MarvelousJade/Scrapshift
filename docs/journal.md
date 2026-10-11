@@ -153,3 +153,10 @@ Compared a live stationary Danger 0 pistol sample and the Godot enemy/unit/playe
 
 
 Combat verification concluded with 143/143 tests, clean Windows build, zero AssetScope findings, controlled combat and attack fixtures, and scripted 20-wave integration. Hidden screenshot failures exposed a validation bug; a second implementation commit requires fresh PNG evidence. Final visible renders passed. The normal-speed scripted smoke died in wave 1 at 16.728 seconds and remains a failed survival check, despite its legacy activity-based Passed field. See verification.md for exact metrics and package hash.
+
+
+## October 11 - curved yard, weapon rests and run presentation
+
+User requested closer matching of the map boundary, ground details, weapon placement, thicker legs, menus and parachute entrance. Compared the live paused reference (left intact) and Godot attachment/landing/menu resources. Implemented original native yard/canopy geometry, horizontal weapon rests with family-specific pivots, 45% wider legs, a character/weapon/start flow, a 1.2-second first-wave arrival, and loss/win plus inventory summary screens. Code and source comparison are in fdfd5ff and yard-and-run-presentation.md.
+
+Rendering exposed a bright jagged rim, inherited reduced-motion settings, a staged enemy frozen at birth scale, and a validation sync restoring an old scene under a new migration marker. Fixed the visuals/fixture and made migration skipping conditional on actual floor/parachute references. The saved-scene regression and runtime presence checks cover the latter. Final 148/148 tests, clean build, AssetScope 225 assets/1841 usages/zero findings, and thirteen verified captures. No new PNG art, full-run balance claim or user acceptance.
