@@ -26,13 +26,17 @@ namespace Scrapshift
         void BeginArtReview(string folder)
         {
             artReview = true; artPath = folder; Directory.CreateDirectory(folder);
+            reducedMotion = false; // Exercise bounce/recoil locally without changing the user's saved preference.
             Directory.CreateDirectory(Path.Combine(folder, "frames"));
             artStart = Time.realtimeSinceStartup;
             Begin();
             Rules.Inventory.Add(catalog.Weapon("smg", 2));
             SyncEquipment();
             for (int i = 0; i < 24; i++)
+            {
                 Drop(new Vector2(-3 + i % 6 * 1.2f, -2 + i / 6), 1, false);
+                pickups[pickups.Count - 1].obj.GetComponent<SpriteRenderer>().sprite = catalog.scrapShapes[i % 6];
+            }
         }
 
         Vector2 ArtReviewMovement()
@@ -82,7 +86,7 @@ namespace Scrapshift
             bool passed = idleSeen.Count == 4 && walkSeen.Count == 4 && shapesSeen.Count == 6
                 && leftSeen && rightSeen && flashSeen && recoilSeen && scatterSeen && settledSeen && magnetSeen;
             var report = new ArtReport { status = passed ? "Passed" : "Failed",
-                scope = "Staged Windows art fixture: supplied SMG, 24 drops, scripted idle/right/left movement, restored health, temporary camera close-up. Counts observed states, not perceptual quality or balance. Screenshots inspected separately.",
+                scope = "Staged Windows art fixture: supplied SMG, 24 drops spanning six shapes, scripted idle/right/left movement, restored health, temporary camera close-up, reduced motion disabled only for this process. Counts observed states, not perceptual quality or balance. Screenshots inspected separately.",
                 idleFrames = idleSeen.Count, walkFrames = walkSeen.Count, scrapShapes = shapesSeen.Count, shots = shotsFired,
                 leftFacing = leftSeen, rightFacing = rightSeen, muzzleFlash = flashSeen, recoil = recoilSeen,
                 scatter = scatterSeen, settled = settledSeen, magnet = magnetSeen };

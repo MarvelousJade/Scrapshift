@@ -185,7 +185,7 @@ namespace Scrapshift
             for (int i = sparks.Count - 1; i >= 0; i--)
             {
                 var s = sparks[i]; s.life -= dt; s.pos += s.velocity * dt;
-                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * 2.4f;
+                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * .9f;
                 if (s.life <= 0) { Destroy(s.obj); sparks.RemoveAt(i); }
             }
         }

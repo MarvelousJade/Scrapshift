@@ -259,13 +259,13 @@ namespace Scrapshift
                     if (muzzleViews[i] != null) { muzzleViews[i].enabled = true; muzzleViews[i].sprite = catalog.muzzleFrames[0]; }
                     for(int p=0;p<w.pellets;p++)
                     {
-                        Vector2 dir=Quaternion.Euler(0,0,(p-(w.pellets-1)/2f)*Mathf.Max(5,w.spread*Mathf.Rad2Deg)) * direction;var obj=Instantiate(weapons[0].effectPrefab);obj.transform.position=muzzle;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
+                        Vector2 dir=Quaternion.Euler(0,0,(p-(w.pellets-1)/2f)*Mathf.Max(5,w.spread*Mathf.Rad2Deg)) * direction;var obj=SpriteObject("Rivet tracer",catalog.muzzleFrames[2],muzzle,13);obj.transform.localScale=Vector3.one*.45f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
                         {
                             obj=obj,pos=muzzle,velocity=dir*30,life=range/30,damage=damage,crit=w.crit,pierce=w.piercing
                         })
                         ;shotsFired++;
                     }
-                    Burst(muzzle,2,amber);sound.Play(SoundCue.Fire,playerPos,w.sounds);
+                    sound.Play(SoundCue.Fire,playerPos,w.sounds);
                 }
             }
         }

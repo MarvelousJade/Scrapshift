@@ -67,7 +67,7 @@ namespace Scrapshift.Editor
 
         static void EnsureOriginalArt()
         {
-            if (File.Exists(Root + "/OriginalArtV1.txt")) return;
+            if (File.Exists(Root + "/OriginalArtV2.txt")) return;
             AssetDatabase.Refresh();
             var hero = ImportSheet("hero", Grid(4, 0, 512, 1024), 320, false);
             var enemyRects = new Rect[18];
@@ -79,7 +79,7 @@ namespace Scrapshift.Editor
                 enemyRects[y * 6 + x] = new Rect(edges[y][x], ys[y], edges[y][x + 1] - edges[y][x], ys[y + 1] - ys[y]);
             var enemies = ImportSheet("enemies", enemyRects, 260);
             var gearRects = Grid(6, 0, 341, 683, 1024);
-            int[] gearEdges = { 0, 260, 510, 775, 1040, 1280, 1536 };
+            int[] gearEdges = { 0, 260, 502, 775, 1040, 1280, 1536 };
             for (int x = 0; x < 6; x++) gearRects[x] = new Rect(gearEdges[x], 0, gearEdges[x + 1] - gearEdges[x], 341);
             var gear = ImportSheet("equipment", gearRects, 220, true, true);
             var items = ImportSheet("items", Grid(6, 0, 275, 515, 748, 1024), 220);
@@ -123,7 +123,7 @@ namespace Scrapshift.Editor
             EditorUtility.SetDirty(game);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
-            File.WriteAllText(Root + "/OriginalArtV1.txt", "Five original AI-generated sheets; serialized sprites; reference audio retained.\n");
+            File.WriteAllText(Root + "/OriginalArtV2.txt", "Original sheets with corrected weapon boundary; serialized sprites; reference audio retained.\n");
             AssetDatabase.Refresh();
         }
     }
