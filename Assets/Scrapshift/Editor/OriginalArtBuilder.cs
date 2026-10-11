@@ -22,9 +22,9 @@ namespace Scrapshift.Editor
         }
 
         // Rectangles use source-image coordinates (top left). Slicing never rewrites PNG pixels.
-        static Sprite[] ImportSheet(string file, Rect[] regions, float ppu, bool trim = true, bool gunPivot = false, Vector2? framePivot = null)
+        static Sprite[] ImportSheet(string file, Rect[] regions, float ppu, bool trim = true, bool gunPivot = false, Vector2? framePivot = null, int version = 1)
         {
-            string path = ArtRoot + "/" + file + "-v1.png";
+            string path = ArtRoot + "/" + file + "-v" + version + ".png";
             var source = new Texture2D(2, 2);
             if (!source.LoadImage(File.ReadAllBytes(path))) throw new InvalidOperationException(path);
             var meta = new SpriteMetaData[regions.Length];
@@ -67,10 +67,10 @@ namespace Scrapshift.Editor
 
         static void EnsureOriginalArt()
         {
-            if (File.Exists(Root + "/OriginalArtV4.txt")) return;
+            if (File.Exists(Root + "/OriginalArtV5.txt")) return;
             AssetDatabase.Refresh();
             var hero = ImportSheet("hero", Grid(4, 0, 512, 1024), 320, false);
-            var walk = ImportSheet("hero-walk", Grid(3, 0, 512, 1024), 372, false, framePivot: new Vector2(.5f, .57f));
+            var walk = ImportSheet("hero-walk", Grid(3, 0, 512, 1024), 372, false, framePivot: new Vector2(.5f, .57f), version: 2);
             var enemyRects = new Rect[18];
             int[][] edges = { new[] { 0, 265, 525, 780, 1075, 1290, 1536 },
                 new[] { 0, 265, 515, 790, 1070, 1280, 1536 },
@@ -125,7 +125,7 @@ namespace Scrapshift.Editor
             EditorUtility.SetDirty(game);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
-            File.WriteAllText(Root + "/OriginalArtV4.txt", "Six original sheets; six walking poses at 7 fps; five scrap shapes, battery excluded to distinguish health.\n");
+            File.WriteAllText(Root + "/OriginalArtV5.txt", "Six active original sheets; corrected rightward stride, mirrored for left movement; battery excluded.\n");
             AssetDatabase.Refresh();
         }
     }

@@ -41,6 +41,7 @@ namespace Scrapshift.Tests
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ContentBuilder.Root + "/Prefabs/ScavengerAnimated.prefab");
             var animator = prefab.GetComponent<SpriteFrameAnimator>();
             Assert.AreEqual(6, animator.moveFrames.Distinct().Count());
+            Assert.IsTrue(animator.moveFrames.All(s => AssetDatabase.GetAssetPath(s).EndsWith("hero-walk-v2.png")));
             Assert.AreEqual(7, animator.walkFramesPerSecond);
             for (int i = 0; i < 6; i++)
                 Assert.AreEqual(i, SpriteFrameAnimator.FrameAt((i + .5f) / 7, true, animator.moveFrames.Length, animator.walkFramesPerSecond));
