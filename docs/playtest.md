@@ -87,3 +87,8 @@ Automated timing and rendered checks passed; the user's subjective motion/visual
 ## Clean modular appearance review
 
 Fresh Windows evidence: artifacts/clean-appearance-review (three looks, three outfits, facing, title selector and shop), clean-enemy-gallery (18 fixed renderers), clean-art-review (staged combat). These are scripted visual/integration checks, not a human twenty-wave run. Check LOOK buttons manually, readability at normal zoom, hats during movement and preferred face/hair proportions. Full-run balance remains unverified.
+
+
+## Live reference pass — next human checks
+
+At normal speed, compare traversal from center to each edge, a single pistol and a six-weapon loadout, enemy overlap/contact feel, and pickup readability. New geometry uses the source map dimensions and speed units. Automated reference samples and staged Unity runs do not establish twenty-wave balance or user acceptance.

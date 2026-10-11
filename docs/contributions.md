@@ -53,3 +53,8 @@ Shaoyu requested a shared body with swappable eyes/hair/beard, item embellishmen
 
 
 Leg correction: Shaoyu rejected the close-set straight legs and specified a wider outward curve. Codex regenerated only the leg sprite, shared world/shop spacing constants, adjusted the existing motion checks, and inspected a rendered stance/movement fixture.
+
+
+## Live reference calibration
+
+Shaoyu supplied and started the recovered Godot 3 project, then requested direct gameplay comparison while keeping Scrapshift art. Codex inspected the running reference and source, implemented shared world dimensions, follow camera, presentation scaling and weapon mounts, and ran automated/rendered checks. No new raster artwork was generated or copied in this pass. The short reference runs and staged Unity fixtures are not human balance/acceptance playtests.

@@ -1,5 +1,18 @@
 # Verification record
 
+## Latest results - October 11 live-reference world and scale comparison
+
+Implementation commit `04b5f37`. Compared short live first-wave samples and inspected the Godot 3 source backup; see live-reference-comparison.md for measured values and adaptation limits. No original PNG artwork changed.
+
+- **132/132 EditMode tests passed**, zero failed/skipped, 2.152 seconds. Coverage includes full-height map bounds and spawn coverage, camera follow/clamping, and weapon family/tier dimensions and mounts.
+- **Windows build succeeded**, zero reported errors/warnings, 144,162,740 reported bytes. **AssetScope: 217 assets, 1,398 usages, zero findings.** All **657** Assets/Packages/ProjectSettings input files match isolated validation byte-for-byte, digest `63eb61b3d427c191868ea39925e25eb48e5a2849feb9403125301bd4572ad1e2`. Unsaved Editor state is outside this comparison.
+- **Rendered world review passed:** four-direction travel reached x 10.24 and y 7.68; camera travel 2.58/4.21 includes shake; 115 shots, peak 13 enemies, four captures. Inspected single-weapon, six-weapon/outfit and map-edge renders. The fixture restores health and supplies equipment; this is not purchase or balance validation.
+- **Accelerated 20-wave integration passed:** Won, 20 completed waves, 50 purchases, peak 102 enemies, 1,061 charge releases, 1,290 ranged attacks, one boss phase change, 17 observed enemy IDs. Slasher was not selected in this run. The fixture uses eight 50ms simulation steps per rendered frame, supplied six tier-two weapons, scripted movement, seeded spawning and invulnerability. Its 23.803 wall seconds is neither normal completion time nor a performance benchmark.
+- Player logs retain the known D3D12 info-queue diagnostic `0x80004002`; no new exceptions observed. Ordinary human balance/contact-feel acceptance remains outstanding. Collision radii are unchanged by this visual pass.
+- **Package verified:** 155 entries, 49,635,354 bytes, CRC and every-file comparison passed. SHA-256 `4dbe7417d8a287e2ccca93c1b87406138efe8c9c6193e7bc71e09a15f71a9745`.
+
+Evidence: artifacts/world-review, artifacts/world-campaign, artifacts/editmode.xml, artifacts/build.txt, artifacts/assetscope-report.json, artifacts/validation-copy.json and artifacts/package.json. Reproduce with scripts/verify.ps1 and scripts/build.ps1 in the isolated validation project, then player flags `--world-review <folder>` and `--campaign-check <folder>`. Main Editor remained open. Pre-existing unrelated settings and earlier untracked presentation evidence remain uncommitted.
+
 ## Latest results - October 11 proportions, outlines and shadows
 
 129/129 EditMode tests passed (2.221s), including actor-size, leg-version and shadow ownership regressions. Initial run: 128/129, Editor disable lifecycle failure; retained in artifacts/scale-shadow-review/initial-editmode.xml and explained in modular-appearance.md. One retry encountered Unity's project-open guard after the build; no process was killed, and the later run passed.

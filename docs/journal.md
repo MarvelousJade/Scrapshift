@@ -140,3 +140,8 @@ User clarified the desired leg spacing/curve after rejecting the first pointy-le
 ## October 11 - outlines, proportions and shadows
 
 Compared bare body alpha bounds and scene transforms in the supplied Brotato reference, then implemented a smaller gameplay player, larger first-wave enemy, bolder curved-leg sprite and owned world-space oval shadows. Visual scaling is separated from collision rules. Commit 0c58968 includes the new serialized dependencies and rendering fixture. Initial shadow lifecycle regression failed in EditMode (128/129); ExecuteAlways fixed callback delivery and the final suite passed 129/129. Build and AssetScope checks pass; staged scale and combat images were inspected. Exact results and scope limits are in verification.md; prompt/provenance is in outlined-leg-prompt.txt and modular-appearance.md. No full-run balance or manual acceptance claim.
+
+
+## October 11 — running Godot reference and a consistent world scale
+
+Inspected the recovered Godot 3.6.2 reference in the running title/selection screens and Danger 0 first wave. Short observation runs ended in death; no successful playthrough is claimed. Compared source map/camera data, body and weapon texture bounds, attachment slots and spawn placement with our existing Unity rendering. Found that movement/range used 100 reference pixels per unit but the arena and visual sizes used unrelated dimensions. Added the reference-sized tall arena, bounded follow camera, per-enemy/weapon scale calibration and count-specific weapon mounts. Original PNGs are unchanged. Documentation separates exact measurements from pickup/pivot/UI adaptations. See live-reference-comparison.md and verification.md.

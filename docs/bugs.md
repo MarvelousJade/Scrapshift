@@ -202,3 +202,8 @@ Actual validation failures: first modular pass 126/127 (wing cut, alpha .172549)
 ## October 11 - relative scale and shadow ownership
 
 User-reported: player too large, first-wave enemies too small, thin leg edges and inconsistent shadows. Baby art was additionally scaled to .72 while player stayed at 1.0; relative bare-body width was about half. Set visual-only factors to .85 / 1.4 and separated enemy presentation from collision radii. Replaced an unnormalized atlas-shadow crop that inherited squash/rotation with a flat world-space circle renderer owned by the actor. The first new EditMode regression failed on disable propagation (128/129); ExecuteAlways restores lifecycle callbacks for Editor-created instances. A regression also checks oval bounds under squash/rotation and destruction cleanup. See verification.md for final evidence.
+
+
+## October 11 — world dimensions inconsistent with imported movement/range
+
+Observed mismatch: whole shallow arena visible at once in Unity, whereas the running reference has a taller map and clamped camera following. Root cause: source movement and ranges were converted at 100px/unit while a 23x11.4 floor and ad-hoc visual scales survived from the prototype. Centralized map/camera geometry, applied 20.48x15.36 bounds to movement/spawns/scatter and calibrated original sprites by reference dimensions. Normal-camera edge traversal and source-grounded regression checks cover the fix. Contact radii remain an explicit adaptation; this is not full collision parity.
