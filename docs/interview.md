@@ -2,13 +2,25 @@
 
 Use these notes to understand the project. First-person answers must match the contribution record and your actual hands-on work.
 
+## Latest art/animation example
+
+The user identified that presentation lacked character animation, gun firing motion and varied material shapes visible in the screenshots. The project now separates motion state, weapon aiming/firing, and pickup motion. That separation lets pause stop gameplay animation while keeping menu behavior independent, and lets reduced motion suppress bounce without removing the pickup itself.
+
+For a concrete debugging explanation, study ART-001: a generated atlas did not follow its promised grid exactly, so one weapon's slice included a neighboring fragment. The fix changed the import boundary, not gameplay coordinates, and was checked in the actual player. QA-004 is a useful testing discussion: an inherited user preference suppressed the exact effect the fixture was meant to observe. The fix isolated fixture state without overwriting the user's preference.
+
+For AssetScope: point to serialized frame arrays on `ScavengerAnimated.prefab` and sprite references on `ReferenceCatalog.asset`. Six texture atlases support many sprite subassets; testing that the scene has no historical reference-PNG dependency catches incomplete migration. This is a concrete creator-workflow example rather than a claim about Unity's internal tooling.
+
+Explain that Codex generated the art/code and ran these checks under your direction. Reproduce and understand the example before describing it as your own debugging experience.
+
+The user's stride feedback is an especially useful example of why a green test suite is insufficient: six observed frame indices do not establish a convincing gait. ART-002/003 distinguish a frame-slot count from pose quality and movement direction. The battery correction likewise came from actual interpretation of the visual symbol, not a failing arithmetic test. Discuss how these observations changed the assets and acceptance criteria.
+
 ## Why build this?
 
 "I wanted a small Unity game that I could finish and use alongside my AssetScope Editor tool. Arena survival gave me a clear gameplay loop and real prefab, material and configuration dependencies. It connects the experience of making a game with the problem of helping creators inspect their projects."
 
 ## Why keep it small?
 
-One arena and a five-minute run allow attention to responsiveness, readability, testable behavior and a usable build. Adding more enemies or maps before the loop is reliable would dilute that focus.
+One arena and a bounded content catalog allow attention to responsiveness, readability, testable behavior and a usable build. Adding more enemies or maps before the loop is reliable would dilute that focus.
 
 ## How does it relate to the role?
 

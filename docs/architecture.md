@@ -1,5 +1,9 @@
 # Architecture and tradeoffs
 
+## Original art integration
+
+`OriginalArtBuilder` applies versioned Unity import migrations for six transparent atlases, preserving source pixels and binding sprite subassets into the catalog and animated prefab. `SpriteFrameAnimator` is driven by the arena simulation, with independent idle/walk frames and persistent facing. Weapon recoil/muzzle sprites remain separate from body animation. `ScrapMotion` owns scatter, bounce, settling and attraction; its reward-splitting helper conserves currency under the pickup cap. IMGUI icons use sprite UV rectangles. The opt-in `--art-review` fixture records observed animation/effect states and captures; it is explicitly staged, not a normal-run balance test.
+
 ## Runtime
 
 `ArenaGame` coordinates input and scene objects. Combat advances only in Playing; Upgrade, Shop, Paused and terminal screens stop simulation without changing global Time.timeScale. `RunRules` owns currency, XP, queued levels, inventory, stat effects, shop offers and wave transitions. Its RNG and catalog are injectable.

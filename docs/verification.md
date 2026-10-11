@@ -1,6 +1,27 @@
 # Verification record
 
-## Current reference reconstruction � October 10, 2026
+## Latest original-art iteration — October 11, 2026
+
+- **47/47 EditMode tests passed**, zero failed/skipped. New coverage includes six-pose timing, stable facing across idle transitions, reward conservation at the pickup cap, scatter/settle/magnet behavior, wearable-slot selection, exclusion of the misleading battery, and serialized atlas references.
+- Windows build **Succeeded, zero reported warnings/errors**, Unity 6000.6.5f1. `artifacts/build.txt`.
+- AssetScope: **197 content assets, 1,337 serialized usages, zero findings**, saved-scene/property inspection enabled and cache disabled. Six active generated PNG sheets are scene dependencies; historical reference PNGs are not.
+- Art fixture: four idle frames, six walk frames, both horizontal facings, five material shapes, recoil/muzzle/scatter/settle/magnet states, five worn items and six floating weapons observed. `artifacts/original-art-review/art-review.json`; inspected direction and outfit/shop captures. This is staged with injected equipment/items, restored health and a following close-up camera. It does not test real purchasing or normal-run balance.
+- Normal first-wave smoke: **Passed**, 24 kills, 18 shots, peak nine enemies, eight HP remaining, reached Shop. Scripted normal-speed movement, no health/invulnerability override. `artifacts/original-art-smoke/`.
+- Combat/shop/upgrade presentation fixture passed; captures in `artifacts/original-art-ui/`. This is a staged showcase, not a complete playthrough. No runtime exception/error was found in the three final player logs.
+- Audio files/mixer remain unchanged from the previous verified reference-audio pass; sound-bank integration tests passed in the current suite. The isolated mixer test was not repeated for this art-only change.
+- Package with `python scripts/package.py`: CRC validation plus byte comparison of every archived file against the Windows build; result/hash in `artifacts/package.json`.
+
+### Interpretation and remaining limits
+
+User feedback rejected earlier gait quality despite passing frame-count checks. Those counters prove state coverage, not convincing animation. The sheet was revised and slowed to seven fps, then corrected for inconsistent boot direction. The user elected to move on without identifying the movement direction involved. Left/right art is mirrored correctly; **upward movement still uses front-facing art**, with no dedicated rear-view cycle. Visual acceptance and a complete human 20-wave playthrough remain open.
+
+All 24 items have appearance mappings, with newest-per-slot visibility and all owned stat effects retained. Five attachments were visually checked together; every outfit combination has not been manually reviewed. The wardrobe uses sprite attachments, not skeletal clothing. Historical records below describe prior versions.
+
+### Reproduce the current art checks
+
+Run `scripts/verify.ps1` and `scripts/build.ps1`. Launch the player visibly with `--art-review <folder>`, `--reference-review <folder>`, or `--smoke <folder>`. The art fixture disables reduced motion only in its process, leaving saved preferences unchanged. Captured frame sequences are local/ignored; selected evidence is tracked.
+
+## Previous reference reconstruction — October 10, 2026
 
 - **35/35 EditMode tests pass**, with zero failed/skipped. Covers all 20 scheduled wave durations, frame-size-independent group counts, reward queuing, shop costs, lock persistence, atomic purchases, full inventory, duplicate combinations, recycling, every included item effect, reference upgrade tiers, boss completion, imported media, and AssetScope navigation.
 - Windows build **Succeeded, zero reported errors/warnings**, using Unity 6000.6.5f1. Source and selected evidence are tracked; binary output is under `Builds/Windows`.

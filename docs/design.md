@@ -12,7 +12,7 @@ Collected materials grant spendable currency and XP independently. Crossing an X
 
 Six weapon families (pistol, SMG, shotgun, laser gun, knife, spear), four tiers each, 24 simple stat items and eight level-up stats. 18 reference enemy entries cover the base schedule plus spawned junkies/slashers and one adapted Predator finale. No higher-difficulty roster, DLC, alternate bosses, curses, multiplayer, meta-progression or full-game parity claim. The arena keeps the existing 21-by-10.2 playable bounds rather than reproducing the reference's tilemap dimensions. Weapon class bonuses and every special item interaction are not present.
 
-Original mesh scavenger/yard art remains. Selected enemy, equipment, item and upgrade sprites and 12 effect-cue families now use user-supplied Brotato media. Remaining terminal/legacy effect cues use the prior original sound bank. Every copied file has source/hash provenance. This is an engineering study with third-party media, not an original-art claim.
+The original procedural yard remains; six AI-generated sheets now provide the animated scavenger, mechanical enemy silhouettes, weapon/item/stat icons, warnings and green material shapes. See `original-art.md` and its full prompts. Twelve effect-cue families still use user-supplied reference audio; remaining terminal/legacy cues use the prior original bank. Historical borrowed sprites retain provenance but are no longer scene dependencies. Generated art is explicitly attributed to the assistant/tool, not claimed as candidate hand-drawn art.
 
 ## Engineering choices
 

@@ -1,5 +1,17 @@
 # Development journal
 
+## October 11, 2026 — Original art, animation and wearable items
+
+Inspected the twelve supplied reference screenshots. Generated original scavenger/enemy/gear/item/stat sheets and committed them before integration, with full prompts. Added separate idle/walk animation, ranged recoil and muzzle frames, five final green pickup shapes with scatter/bounce/magnet, and serialized atlas references. Retained the requested reference audio.
+
+Runtime inspection caught a neighboring weapon fragment in the SMG import rectangle and inherited reduced-motion state in the art fixture. Corrected both and retained the first failed evidence locally. Reduced large legacy particles that obscured the new muzzle effects.
+
+User feedback then identified repeated walking poses, backward-looking feet, the need for worn item visuals, and misleading battery loot. Added a dedicated six-pose seven-fps stride and corrected its rightward boot orientation, implemented appearance slots for all 24 items plus a shop preview, and excluded the battery from the currency pool. Decorative arms remain independent of six floating weapons. These are actual iterations, not a claim that the first generated sheet was production-ready.
+
+Final measurements and remaining limits are recorded in verification. Source/art, integration, visual fixes, feedback changes and verification are separate Git milestones.
+
+Closeout: 47 tests passed; AssetScope inspected 197 assets and 1,337 reference usages with zero findings. Final art fixture saw six walk frames, five material shapes, five worn items and six weapons. Normal first-wave smoke reached Shop with 24 kills and eight HP. The user chose to move on from further gait investigation; rear-view movement and full-run acceptance are explicitly left open.
+
 Dates use America/Toronto. Entries record actual work as it occurs; commit hashes provide the sequence.
 
 ## 2026-10-10 - Foundation

@@ -14,9 +14,11 @@ Embedded version: **0.3.0**, copied from companion commit `b7aac0df08a31f7ae9517
 
 ## Verified integration
 
-30 game EditMode tests pass. A game-specific test scans actual content, locates the Fire_01 sound reference, calls source navigation, and verifies Unity selects the GameSounds bank. It also verifies the scene's soundBank property is present in the analysis. The build-time scan completed on 72 assets with 1,202 serialized reference usages and zero findings.
+47 game EditMode tests pass. A game-specific test scans actual content, locates the Fire_01 sound reference, calls source navigation, and verifies Unity selects the GameSounds bank. It also verifies the scene's soundBank property is present in the analysis. The latest build-time scan completed on 197 assets with 1,337 serialized reference usages and zero findings.
 
-The companion tool's own 66-test result is recorded in its repository. That is separate from the 30 game tests run here; the complete companion UI suite was not rerun in this host.
+For the original-art iteration, inspect the `idleFrames` and `moveFrames` arrays on `ScavengerAnimated.prefab`, and the catalog's `scrapShapes` / `muzzleFrames` arrays. These are real serialized Sprite subasset references into six texture sheets. The scene-dependency test confirms no historical reference PNG remains in the active scene graph.
+
+The companion tool's own 66-test result is recorded in its repository. That is separate from the 47 game tests run here; the complete companion UI suite was not rerun in this host.
 
 ## Interpretation and limits
 

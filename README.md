@@ -1,12 +1,12 @@
 # Scrapshift
 
-A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. The original scavenger and salvage yard remain alongside selected reference sprites and sound effects.
+A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Six original AI-generated art sheets supply the animated scavenger, enemies, weapons, pickups and UI icons. The supplied reference sound effects remain.
 
 ## Why this exists
 
 The Unity Editor developer role asks for C#, Unity project experience, automated testing and attention to creators' workflows. AssetScope is the companion Editor tool. This playable project supplies real scene, prefab, material, sprite, audio and data references for inspecting dependencies and navigating to their owners.
 
-The user requested close reference analysis before implementation. See [the source study](docs/reference-rebuild.md) and [media provenance](artifacts/reference-media-provenance.json). Imported Brotato media is third-party work supplied by the user; this is not a claim of original art, official source access or complete game parity.
+The user requested close reference analysis before implementation. See [the source study](docs/reference-rebuild.md), [original art and full prompts](docs/original-art.md), and [historical media provenance](artifacts/reference-media-provenance.json). Reference audio is third-party work supplied by the user. Historical borrowed sprite files remain in the repo but are no longer game-scene dependencies. This is not a claim of official source access or complete game parity.
 
 ## Play and develop
 
@@ -31,6 +31,7 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 
 - [Purpose and scope](docs/design.md)
 - [Reference analysis](docs/reference-rebuild.md)
+- [Generated art, animation and pickup design](docs/original-art.md)
 - [Development journal](docs/journal.md)
 - [Observed bugs and fixes](docs/bugs.md)
 - [Interview rehearsal](docs/interview.md)

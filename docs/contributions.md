@@ -8,7 +8,13 @@ Add the user's actual hands-on observations and edits below as they occur. A sug
 
 ## Hands-on record
 
-Pending first user playtest. Record date, what was played/inspected, a concrete issue, the user's reasoning, and the resulting change.
+User visual feedback during this iteration: the walk appeared to repeat two poses, then appeared backward; six independent floating weapons do not need gripping hands; purchased items should appear on the body; the green battery incorrectly suggests a health pickup. These observations drove the revisions below. A full normal-run playthrough and final acceptance are not recorded.
+
+## Original art iteration — October 11, 2026
+
+User: supplied twelve reference screenshots, requested generated artwork, retained reference sound, and specified idle/move animation, gun firing animation and varied drops. Assistant: inspected screenshots, prompted five original transparent art sheets using built-in image_gen, implemented sprite imports and Unity animation/loot effects, and performed the recorded tests/captures. Generated art is not candidate hand-drawn artwork. Historical paragraphs below describe earlier versions; the active scene now uses generated sprite art and reference audio. User acceptance and a complete human playthrough remain unrecorded.
+
+Follow-up corrections: the user identified the stride/pose problems and ambiguous battery, and requested visible item equipment. Assistant generated and integrated the revised walk sheet, added wearable slots and shop preview, removed the battery from the active drop pool, and retained the reported test limits. Six sheets are active; earlier revisions remain as history.
 
 ## Presentation v2
 
