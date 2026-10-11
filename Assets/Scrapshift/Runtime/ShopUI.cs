@@ -19,13 +19,13 @@ namespace Scrapshift
         {
             Box(new Rect(1110,24,306,750),new Color(.065f,.06f,.05f,.93f));
             Text(1130,43,266,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
-            Text(1133,96,250,30,$"Level {Rules.Level}",body);
+            Text(1133,90,250,30,$"Level {Rules.Level}",body);
             string[] names={"max_hp","hp_regeneration","lifesteal","percent_damage","melee_damage","ranged_damage","attack_speed","crit_chance","armor","dodge","speed","range","harvesting"};
             var right=new GUIStyle(body) { alignment=TextAnchor.MiddleRight };
             for(int i=0;i<names.Length;i++)
             {
                 float value=names[i]=="max_hp"?Rules.MaxHealth:Rules.Stat(names[i]);
-                float y=143+i*35;
+                float y=130+i*28;
                 var entry=System.Array.Find(catalog.data.upgrades,u=>u.stat==names[i]);
                 if(entry!=null)DrawIcon(entry.image,new Rect(1125,y+2,24,25));
                 var label=new GUIStyle(body) { fontSize=18 };
@@ -34,6 +34,7 @@ namespace Scrapshift
                 right.normal.textColor=label.normal.textColor;
                 Text(1351,y,45,32,value.ToString("0"),right);
             }
+            DrawWeaponSets();
             DrawWardrobePreview();
         }
 
@@ -47,7 +48,7 @@ namespace Scrapshift
                     $"\nCritical: x2 ({Mathf.Clamp01(Rules.CritChance+w.crit)*100:0}% chance)"+
                     $"\nCooldown: {Mathf.Max(.035f,w.interval/Rules.FireRate):0.00}s"+
                     $"\nKnockback: {w.knockback:0.#}"+
-                    $"\nRange: {Mathf.Max(.5f,w.range+Rules.Stat("range")/100):0.0}"+
+                    $"\nRange: {Rules.WeaponRange(w):0.0}"+
                     (w.piercing>0?$"\nPiercing: {w.piercing}":"");
                 var style=new GUIStyle(body) { fontSize=18,richText=true };
                 Text(x,y,width,218,detail,style);
@@ -82,7 +83,8 @@ namespace Scrapshift
                 Box(new Rect(x+14,143,68,74),new Color(.17f,.16f,.15f));
                 DrawIcon(offer.Image,new Rect(x+18,148,60,64));
                 Text(x+93,141,145,76,offer.Title=="Smg"?"SMG":offer.Title,body);
-                Text(x+16,224,220,27,offer.weapon!=null?(offer.weapon.melee?"Melee":"Gun")+"  /  Tier "+offer.Tier:"Item",tiny);
+                Text(x+16,224,220,27,offer.weapon!=null?(WeaponSets.For(offer.weapon)?.Name??"Weapon")+"  /  Tier "+offer.Tier:"Item",tiny);
+                if(offer.weapon!=null && new Rect(x+16,224,220,27).Contains(Event.current.mousePosition)) hoveredSet=WeaponSets.For(offer.weapon);
                 DrawOfferDetail(offer,x+16,270,220);
                 GUI.enabled=Rules.CanBuy(i);
                 string price=offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
@@ -119,7 +121,7 @@ namespace Scrapshift
             if(selectedWeapon>=0&&selectedWeapon<Rules.Inventory.Count)
             {
                 var w=Rules.Inventory[selectedWeapon];
-                Text(556,786,530,30,w.title+" / Tier "+w.tier,tiny);
+                Text(556,786,530,30,w.title+" / "+WeaponSets.For(w)?.Name+" / Tier "+w.tier,tiny);
                 GUI.enabled=Rules.CanCombine(selectedWeapon);
                 if(Button(new Rect(556,824,257,43),"Combine duplicate"))
                 {Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
@@ -135,13 +137,45 @@ namespace Scrapshift
                 Frame(new Rect(30,469,335,172),ink);
                 Text(47,484,303,142,GUI.tooltip,body);
             }
+            DrawSetTooltip();
+        }
+
+        WeaponSet hoveredSet;
+        void DrawWeaponSets()
+        {
+            hoveredSet=null;
+            Text(1130,508,266,28,"Weapon sets",new GUIStyle(body) {fontSize=20,fontStyle=FontStyle.Bold});
+            for(int i=0;i<WeaponSets.All.Count;i++)
+            {
+                var set=WeaponSets.All[i];int count=Rules.SetCount(set);float y=540+i*35;
+                var label=new GUIStyle(tiny);label.normal.textColor=count>=2?new Color(.39f,1,.29f):tiny.normal.textColor;
+                Text(1130,y,127,32,$"{set.Name} {count}/6",label);
+                var effect=new GUIStyle(label) {fontSize=15};
+                Text(1260,y,140,34,count>=2?set.Description(count):"Needs 2 weapons",effect);
+                if(new Rect(1124,y,280,34).Contains(Event.current.mousePosition))hoveredSet=set;
+            }
+        }
+        void DrawSetTooltip()
+        {
+            if(setReview && (setReviewStage==1 || setReviewStage==2))hoveredSet=WeaponSets.Primitive;
+            if(hoveredSet==null)return;
+            int count=Rules.SetCount(hoveredSet);
+            Frame(new Rect(754,238,336,282),ink,3);
+            Text(773,253,298,32,$"{hoveredSet.Name} ({count}/6 equipped)",body);
+            Text(773,289,298,26,count>=2?"Current total highlighted":"Inactive until 2 are equipped",tiny);
+            for(int n=2;n<=6;n++)
+            {
+                var row=new GUIStyle(tiny);row.normal.textColor=n==Mathf.Min(6,count)?new Color(.39f,1,.29f):tiny.normal.textColor;
+                Text(773,322+(n-2)*29,298,27,$"({n}) {hoveredSet.Description(n)}",row);
+            }
+            Text(773,475,298,26,"Duplicates count; tiers count equally.",tiny);
         }
 
         void DrawWardrobePreview()
         {
-            Text(1130,619,260,25,"YOUR GEAR",tiny);
+            Text(1130,654,260,25,"YOUR GEAR",tiny);
             Vector2 origin = new Vector2(1260, 712);
-            const float scale = 68;
+            const float scale = 60;
             var worn = CharacterWardrobe.VisibleItems(Rules.Items);
             foreach (var item in worn) if (item.wearOrder < 10) DrawWornIcon(item, origin, scale);
             Sprite hero = playerAnimation.idleFrames[0];

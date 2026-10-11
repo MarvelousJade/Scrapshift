@@ -112,6 +112,7 @@ namespace Scrapshift
             GUI.enabled=Rules.CanReroll;
             if(Button(new Rect(363,664,384,56),$"REROLL  - {Rules.RerollPrice}   [R]"))RerollUpgrade();
             GUI.enabled=true;
+            DrawSetTooltip();
         }
         void PauseUI()
         {

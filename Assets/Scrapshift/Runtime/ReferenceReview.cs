@@ -5,7 +5,9 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        bool review;
+        bool review, setReview, setBonusesObserved, setCombineObserved;
+        int setReviewStage;
+        float setHealthBeforeCombine;
         string reviewPath;
         float reviewStart;
         int reviewStep;
@@ -13,11 +15,12 @@ namespace Scrapshift
         {
             public string scope,status;
             public int shots,kills,meleeHits;
-            public bool gameplay,shop,upgrade;
+            public bool gameplay,shop,upgrade,weaponSets,combineRemovesPrimitiveBonus;
         }
         void BeginReview(string folder)
         {
             review=true;
+            setReview=Array.IndexOf(Environment.GetCommandLineArgs(),"--weapon-set-review")>=0;
             reviewPath=folder;
             Directory.CreateDirectory(folder);
             reviewStart=Time.realtimeSinceStartup;
@@ -29,10 +32,7 @@ namespace Scrapshift
                 Rules.NextWave();
             }
             Rules.Inventory.Clear();
-            foreach(string id in new[]
-            {
-                "pistol","smg","double_barrel_shotgun","laser_gun","knife","spear"
-            })
+            foreach(string id in setReview?new[]{"pistol","smg","knife","knife","spear","spear"}:new[]{"pistol","smg","double_barrel_shotgun","laser_gun","knife","spear"})
             Rules.Inventory.Add(catalog.Weapon(id,2));StartWave();int index=0;foreach(string id in new[]
             {
                 "charger","spitter","spawner","helmet_alien","bruiser","buffer","pursuer"
@@ -77,6 +77,25 @@ namespace Scrapshift
                     return;
                 }
             }
+            if(setReview && reviewStep==3)
+            {
+                if(setReviewStage==0 && t>12.2f)
+                {
+                    setBonusesObserved=Rules.SetCount(WeaponSets.Gun)==2 && Rules.SetCount(WeaponSets.Precise)==2 && Rules.SetCount(WeaponSets.Primitive)==2 &&
+                        Rules.Stat("range")==10 && Rules.Stat("crit_chance")>=3;
+                    setHealthBeforeCombine=Rules.MaxHealth;setReviewStage=1;
+                }
+                if(setReviewStage==1 && t>12.7f)
+                { ScreenCapture.CaptureScreenshot(Path.Combine(reviewPath,"set-thresholds.png"));setReviewStage=2; }
+                if(setReviewStage==2 && t>13.1f)
+                {
+                    Rules.Combine(4);SyncEquipment();
+                    setCombineObserved=Rules.SetCount(WeaponSets.Primitive)==1 && Rules.MaxHealth==setHealthBeforeCombine-3 && Rules.Inventory.Count==5;
+                    setReviewStage=3;
+                }
+                if(setReviewStage==3 && t>13.5f)
+                { ScreenCapture.CaptureScreenshot(Path.Combine(reviewPath,"after-combine.png"));setReviewStage=4; }
+            }
             if(reviewStep==3&&t>14)
             {
                 AdvanceWave();Rules.Collect(Rules.NextLevel);Rules.Tick(Rules.Remaining);ClearCombat();reviewStep++;
@@ -89,7 +108,7 @@ namespace Scrapshift
             {
                 bool a=File.Exists(Path.Combine(reviewPath,"combat.png")),b=File.Exists(Path.Combine(reviewPath,"shop.png")),c=File.Exists(Path.Combine(reviewPath,"upgrade.png"));var report=new ReviewReport
                 {
-                    scope="Opt-in scripted presentation fixture: starts wave 9 with six tier-2 weapons, adds selected enemies, restores health, supplies shop currency. Proves runtime rendering/combat paths, not normal-run balance or manual input.",status=a&&b&&c&&shotsFired>0&&orbitHits>0?"Passed":"Failed",shots=shotsFired,kills=Rules.Kills,meleeHits=orbitHits,gameplay=a,shop=b,upgrade=c
+                    scope=(setReview?"Weapon-set variant: two weapons per set, forced threshold panel, scripted spear combine. ":"")+"Opt-in scripted presentation fixture: starts wave 9 with six tier-2 weapons, adds selected enemies, restores health, supplies shop currency. Proves runtime rendering/combat paths, not normal-run balance or manual input.",weaponSets=setBonusesObserved,combineRemovesPrimitiveBonus=setCombineObserved,status=a&&b&&c&&shotsFired>0&&orbitHits>0&&(!setReview||(setBonusesObserved&&setCombineObserved&&setReviewStage==4))?"Passed":"Failed",shots=shotsFired,kills=Rules.Kills,meleeHits=orbitHits,gameplay=a,shop=b,upgrade=c
                 };
                 File.WriteAllText(Path.Combine(reviewPath,"review.json"),JsonUtility.ToJson(report,true));Application.Quit(report.status=="Passed"?0:1);enabled=false;
             }
