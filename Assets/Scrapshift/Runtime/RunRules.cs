@@ -197,7 +197,10 @@ namespace Scrapshift
         {
             banked+=Math.Max(0,value);
         }
-        public int Price(int value)=>Math.Max(1,(int)(value+Wave+value*Wave*.1f));
+        public int Price(int value)=>PriceAt(value,Wave);
+        static int PriceAt(int value,int wave)=>Math.Max(1,(int)(value+wave+value*wave*.1f));
+        public int Price(ShopOffer offer)=>PriceAt(offer.Value,offer.rolledWave>0?offer.rolledWave:Wave);
+        static string WeaponSet(Equipment w)=>w.id=="knife"?"precise":w.id=="spear"?"primitive":"gun";
         void Draft(bool reroll=false)
         {
             var pool=new List<UpgradeKind>
@@ -237,17 +240,25 @@ namespace Scrapshift
             if(catalog==null)return;
             int guaranteed=Wave<=2?2:Wave<=5?1:0;
             int existing=Shop.Count(s=>s!=null&&s.locked&&s.weapon!=null);
+            var excluded=Shop.Where(s=>s!=null).ToList();
             for(int i=0;i<4;i++)
             {
                 if(Shop[i]!=null&&Shop[i].locked)continue;
-                bool weapon=existing<guaranteed||random.NextDouble()<.35;
+                bool weapon=existing<guaranteed||(Wave>2&&random.NextDouble()<.35);
                 int tier=ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 if(weapon)
                 {
-                    var pool=catalog.data.equipment.Where(w=>w.tier==tier).ToArray();
+                    var fallback=catalog.data.equipment.Where(w=>w.tier==tier).ToArray();
+                    var pool=fallback.Where(w=>!excluded.Any(s=>s.weapon==w)).ToArray();
+                    if(pool.Length==0)pool=fallback;
+                    double wanted=random.NextDouble();
+                    float early=Math.Max(0,6-Wave);
+                    var preferred=wanted<.2+early*.01 ? pool.Where(w=>Inventory.Any(owned=>owned.id==w.id)).ToArray() :
+                        wanted<.35+early*.04 ? pool.Where(w=>Inventory.Any(owned=>WeaponSet(owned)==WeaponSet(w))).ToArray() : pool;
+                    if(preferred.Length>0)pool=preferred;
                     Shop[i]=new ShopOffer
                     {
-                        weapon=pool[random.Next(pool.Length)]
+                        weapon=pool[random.Next(pool.Length)],rolledWave=Wave
                     };
                     existing++;
                 }
@@ -256,11 +267,14 @@ namespace Scrapshift
                     var pool=catalog.data.items.Where(w=>w.tier==tier&&IsShopItem(w.id)).ToArray();
                     while(pool.Length==0 && tier>1)
                     { tier--; pool=catalog.data.items.Where(w=>w.tier==tier&&IsShopItem(w.id)).ToArray(); }
+                    var fresh=pool.Where(w=>!excluded.Any(s=>s.item==w)).ToArray();
+                    if(fresh.Length>0)pool=fresh;
                     Shop[i]=new ShopOffer
                     {
-                        item=pool[random.Next(pool.Length)]
+                        item=pool[random.Next(pool.Length)],rolledWave=Wave
                     };
                 }
+                excluded.Add(Shop[i]);
             }
         }
         public void ToggleLock(int index)
@@ -272,13 +286,13 @@ namespace Scrapshift
         {
             if(Phase!=RunPhase.Shop||i<0||i>=4||Shop[i]==null)return false;
             var s=Shop[i];
-            return Scrap>=Price(s.Value)&&(s.weapon==null||Inventory.Count<6||FindMatch(s.weapon)>=0);
+            return Scrap>=Price(s)&&(s.weapon==null||Inventory.Count<6||FindMatch(s.weapon)>=0);
         }
         public bool Buy(int i)
         {
             if(!CanBuy(i))return false;
             var s=Shop[i];
-            Scrap-=Price(s.Value);
+            Scrap-=Price(s);
             if(s.weapon!=null)
             {
                 if(Inventory.Count==6)Inventory[FindMatch(s.weapon)]=catalog.Weapon(s.weapon.id,s.weapon.tier+1);

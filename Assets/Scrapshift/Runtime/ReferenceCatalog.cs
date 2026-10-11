@@ -103,6 +103,7 @@ namespace Scrapshift
     }
     public sealed class ShopOffer
     {
+        public int rolledWave;
         public Equipment weapon;
         public ItemEntry item;
         public bool locked;

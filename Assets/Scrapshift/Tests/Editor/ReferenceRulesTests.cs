@@ -86,10 +86,10 @@ namespace Scrapshift.Tests
             {
                 var r=Run(seed);
                 Shop(r);
-                Assert.GreaterOrEqual(r.Shop.Count(s=>s.weapon!=null),2);
+                Assert.AreEqual(2,r.Shop.Count(s=>s.weapon!=null));
                 r.NextWave();
                 Shop(r);
-                Assert.GreaterOrEqual(r.Shop.Count(s=>s.weapon!=null),2);
+                Assert.AreEqual(2,r.Shop.Count(s=>s.weapon!=null));
             }
         }
         [Test] public void RerollCostsEscalateAndCannotOverspend()

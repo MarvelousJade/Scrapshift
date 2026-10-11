@@ -19,7 +19,7 @@ namespace Scrapshift.Tests
             Assert.AreEqual(Vector2.right, attack.Direction);
             Assert.AreEqual(AttackPhase.Active, attack.Phase);
             Assert.IsFalse(attack.Step(.75f, Vector2.up, true));
-            
+
             Assert.AreEqual(AttackPhase.Approach, attack.Phase);
         }
 

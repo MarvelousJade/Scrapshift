@@ -42,6 +42,24 @@ namespace Scrapshift.Tests
             Assert.IsFalse(r.Offers.Any(o=>before.Contains(o.Kind)));
             Assert.AreEqual(4,r.Offers.Select(o=>o.Kind).Distinct().Count());
         }
+        [Test] public void NegativeHarvestRemovesOnlyMaterials()
+        {
+            var r=Run();r.Collect(15);r.Tick(r.Remaining);
+            r.Shop[0]=new ShopOffer { item=new ItemEntry { value=0,effects=new[]{new StatEffect {key="stat_harvesting",value=-3}} } };
+            Assert.IsTrue(r.Buy(0));int money=r.Scrap,xp=r.XP;
+            r.NextWave();r.Tick(r.Remaining);
+            Assert.AreEqual(money-3,r.Scrap);Assert.AreEqual(xp,r.XP);Assert.AreEqual(0,r.Level);
+        }
+        [Test] public void LockedShopOfferKeepsOriginalPriceIntoNextWave()
+        {
+            var r=Run();r.Collect(100);r.Tick(r.Remaining);
+            while(r.Phase==RunPhase.Upgrade)r.Choose(0);
+            var offer=r.Shop[0];int price=r.Price(offer);r.ToggleLock(0);
+            r.NextWave();r.Tick(r.Remaining);
+            while(r.Phase==RunPhase.Upgrade)r.Choose(0);
+            Assert.AreSame(offer,r.Shop[0]);Assert.AreEqual(price,r.Price(offer));
+            Assert.Greater(r.Price(offer.Value),price);
+        }
         [Test] public void NeutralBossAndSummonBirthsAreNotStarvedByNormalBacklog()
         {
             var q=new ReferenceBirthQueue<int>();var actual=new List<int>();

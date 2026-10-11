@@ -85,7 +85,7 @@ namespace Scrapshift
                 Text(x+16,224,220,27,offer.weapon!=null?(offer.weapon.melee?"Melee":"Gun")+"  /  Tier "+offer.Tier:"Item",tiny);
                 DrawOfferDetail(offer,x+16,270,220);
                 GUI.enabled=Rules.CanBuy(i);
-                string price=offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer.Value)?"Slots full":Rules.Price(offer.Value).ToString();
+                string price=offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
                 if(Button(new Rect(x+49,491,154,49),price))
                 {Rules.Buy(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
                 GUI.enabled=true;
