@@ -91,6 +91,8 @@ namespace Scrapshift
     {
         public CatalogData data;
         public Sprite warning;
+        public Sprite[] scrapShapes, muzzleFrames;
+        public Sprite repairPickup, shadow;
         public Material spriteMaterial;
         public Equipment Weapon(string id,int tier)=>Array.Find(data.equipment,w=>w.id==id&&w.tier==tier);
         public EnemyEntry Enemy(string id)=>Array.Find(data.enemies,e=>e.id==id);

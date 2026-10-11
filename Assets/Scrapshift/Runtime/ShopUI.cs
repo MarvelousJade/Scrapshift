@@ -8,7 +8,12 @@ namespace Scrapshift
         void DrawIcon(Sprite sprite,Rect r)
         {
             if(sprite==null)return;
-            GUI.DrawTexture(r,sprite.texture,ScaleMode.ScaleToFit,true);
+            Rect source = sprite.rect;
+            float scale = Mathf.Min(r.width / source.width, r.height / source.height);
+            Rect target = new Rect(r.center.x - source.width * scale / 2, r.center.y - source.height * scale / 2,
+                source.width * scale, source.height * scale);
+            GUI.DrawTextureWithTexCoords(target, sprite.texture, new Rect(source.x / sprite.texture.width,
+                source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height), true);
         }
         void ShopUI()
         {

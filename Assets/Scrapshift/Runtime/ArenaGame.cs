@@ -15,7 +15,7 @@ namespace Scrapshift
         public RunRules Rules { get; } = new RunRules();
         sealed class Enemy { public GameObject obj, marker; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge; public bool boosted; public Vector2 wander; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit; public int pierce; public bool hostile; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
-        sealed class Pickup { public GameObject obj; public Vector2 pos; public int value; public bool fruit; }
+        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
@@ -23,6 +23,7 @@ namespace Scrapshift
         readonly List<Spark> sparks = new List<Spark>();
         readonly GameObject[] orbits = new GameObject[2];
         GameObject player, pulse;
+        SpriteFrameAnimator playerAnimation;
         Vector2 playerPos;
         float elapsed, spawnClock, shootClock, orbitClock, pulseClock, invulnerable, pulseAge, shake;
         float smokeStart, screenshotAt;
@@ -41,6 +42,8 @@ namespace Scrapshift
             Application.targetFrameRate = 120; Rules.Configure(catalog);
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
+            playerAnimation = player.GetComponent<SpriteFrameAnimator>();
+            AddGroundShadow(player, .8f, -.55f);
             gun = Instantiate(gunPrefab); gun.name = "Visible rivet pistol";
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
@@ -65,6 +68,8 @@ namespace Scrapshift
                 Directory.CreateDirectory(smokePath); smokeStart = Time.realtimeSinceStartup;
                 Begin();
             }
+            int artIndex = Array.IndexOf(args, "--art-review");
+            if (artIndex >= 0 && artIndex + 1 < args.Length) BeginArtReview(args[artIndex + 1]);
         }
 
         public void Begin()
@@ -101,8 +106,9 @@ namespace Scrapshift
             }
             if (Rules.Phase == RunPhase.Shop) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if(Input.GetKeyDown(KeyCode.R)) RerollUpgrade(); }
             if (Rules.Phase == RunPhase.Playing) { float dt = Mathf.Min(Time.deltaTime, .05f); UpdateFeedback(dt); if (hitStop <= 0) Simulate(dt); }
-            if (Rules.Phase == RunPhase.Title)
-                player.transform.localScale = new Vector3(1 + Mathf.Sin(Time.time * 2) * .035f, 1 - Mathf.Sin(Time.time * 2) * .035f, 1);
+            if (Rules.Phase == RunPhase.Title && titleModel != null)
+                titleModel.GetComponent<SpriteFrameAnimator>().Tick(Vector2.zero, Time.deltaTime, reducedMotion);
+            if (Rules.Phase == RunPhase.Title) player.SetActive(false);
             if (audioPhase != Rules.Phase)
             {
                 if (Rules.Phase != RunPhase.Playing) sound.StopCombat();
@@ -112,6 +118,7 @@ namespace Scrapshift
             }
             if (smoke) SmokeTick();
             ReviewTick();
+            ArtReviewTick();
         }
 
         void Simulate(float dt)
@@ -120,11 +127,12 @@ namespace Scrapshift
             Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
                 (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
             if (smoke || review) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
+            if (artReview) movement = ArtReviewMovement();
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
-            float bob = !reducedMotion && movement.sqrMagnitude > .01f ? Mathf.Sin(elapsed * 22) * .045f : 0;
-            player.transform.localScale = new Vector3(1 + bob, 1 - bob, 1);
-            player.transform.rotation = Quaternion.Euler(0, 0, reducedMotion ? 0 : -movement.x * 8);
+            playerAnimation.Tick(movement, dt, reducedMotion);
+            player.transform.localScale = Vector3.one;
+            player.transform.rotation = Quaternion.identity;
             player.SetActive(invulnerable <= 0 || (int)(invulnerable * 16) % 2 == 0);
             director.Tick(dt, QueueGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
@@ -148,12 +156,14 @@ namespace Scrapshift
         {
             for (int i = pickups.Count - 1; i >= 0; i--)
             {
-                var p = pickups[i]; p.obj.transform.Rotate(0, 0, 80 * dt);
-                if (RunRules.Touches(p.pos, playerPos, Rules.PickupRadius)) p.pos = Vector2.MoveTowards(p.pos, playerPos, dt * 10);
-                p.obj.transform.position = new Vector3(p.pos.x, p.pos.y, -1.5f);
-                if (RunRules.Touches(p.pos, playerPos, .4f))
+                var p = pickups[i];
+                p.motion.Step(dt, playerPos, Rules.PickupRadius, reducedMotion);
+                Vector2 position = p.motion.position;
+                p.obj.transform.position = new Vector3(position.x, position.y + p.motion.height, -1.5f);
+                p.obj.transform.rotation = Quaternion.Euler(0, 0, p.motion.angle);
+                if (p.motion.age > .16f && RunRules.Touches(position, playerPos, .3f))
                 {
-                    int levelBefore=Rules.Level; if(p.fruit) Rules.Heal(3); else Rules.Collect(p.value); if(Rules.Level>levelBefore){sound.Play(SoundCue.LevelUp);FloatText(playerPos,"LEVEL UP!",mint,true);} sound.Play(SoundCue.Pickup, p.pos); Destroy(p.obj); pickups.RemoveAt(i);
+                    int levelBefore=Rules.Level; if(p.fruit) Rules.Heal(3); else Rules.Collect(p.value); if(Rules.Level>levelBefore){sound.Play(SoundCue.LevelUp);FloatText(playerPos,"LEVEL UP!",mint,true);} sound.Play(SoundCue.Pickup, position); Destroy(p.obj); pickups.RemoveAt(i);
                     if (Rules.Phase == RunPhase.Upgrade) { sound.Play(SoundCue.LevelUp); break; }
                 }
             }

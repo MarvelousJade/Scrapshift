@@ -13,6 +13,7 @@ namespace Scrapshift
         readonly Queue<Birth> births=new Queue<Birth>();
         readonly List<Enemy> corpses=new List<Enemy>();
         readonly GameObject[] equipmentViews=new GameObject[6];
+        readonly SpriteRenderer[] muzzleViews = new SpriteRenderer[6];
         readonly float[] weaponClocks=new float[6],swings=new float[6];
         SpawnDirector director;
         float birthClock;
@@ -26,6 +27,14 @@ namespace Scrapshift
             r.sharedMaterial=catalog.spriteMaterial;
             r.sortingOrder=order;
             return obj;
+        }
+        void AddGroundShadow(GameObject actor, float width, float y)
+        {
+            var shadow = SpriteObject("Ground shadow", catalog.shadow, Vector2.zero, 1);
+            shadow.transform.SetParent(actor.transform, false);
+            shadow.transform.localPosition = new Vector3(0, y, .1f);
+            shadow.transform.localScale = new Vector3(width, .18f, 1);
+            shadow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
         }
         void StartWave()
         {
@@ -47,7 +56,19 @@ namespace Scrapshift
         {
             for(int i=0;i<6;i++)
             {
-                if(equipmentViews[i]!=null)Destroy(equipmentViews[i]);equipmentViews[i]=i<Rules.Inventory.Count?SpriteObject(Rules.Inventory[i].title,Rules.Inventory[i].image,playerPos,12):null;if(equipmentViews[i]!=null)equipmentViews[i].transform.localScale=Vector3.one*.45f;
+                if (equipmentViews[i] != null) Destroy(equipmentViews[i]);
+                muzzleViews[i] = null;
+                equipmentViews[i] = i < Rules.Inventory.Count ? SpriteObject(Rules.Inventory[i].title, Rules.Inventory[i].image, playerPos, 12) : null;
+                swings[i] = 0;
+                if (equipmentViews[i] == null) continue;
+                equipmentViews[i].transform.localScale = Vector3.one * .8f;
+                if (Rules.Inventory[i].melee) continue;
+                var flash = SpriteObject("Muzzle flash", catalog.muzzleFrames[0], Vector2.zero, 14);
+                flash.transform.SetParent(equipmentViews[i].transform, false);
+                flash.transform.localPosition = new Vector3(Rules.Inventory[i].image.bounds.max.x + .14f, 0, -.1f);
+                flash.transform.localScale = Vector3.one * .48f;
+                muzzleViews[i] = flash.GetComponent<SpriteRenderer>();
+                muzzleViews[i].enabled = false;
             }
         }
         void SetEquipmentVisible(bool value)
@@ -91,7 +112,7 @@ namespace Scrapshift
         }
         void Spawn(EnemyEntry def,Vector2 pos)
         {
-            var obj=SpriteObject(def.id,def.image,pos);obj.SetActive(false);var marker=SpriteObject("Spawn warning",catalog.warning,pos,2);marker.transform.localScale=Vector3.one*.33f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
+            var obj=SpriteObject(def.id,def.image,pos);AddGroundShadow(obj, .7f, -def.image.bounds.extents.y + .08f);obj.SetActive(false);var marker=SpriteObject("Spawn warning",catalog.warning,pos,2);marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
             {
                 obj=obj,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.cooldown,renderers=obj.GetComponents<Renderer>(),wander=UnityEngine.Random.insideUnitCircle
             })
@@ -210,7 +231,18 @@ namespace Scrapshift
                 }
                 float a=i*Mathf.PI*2/Mathf.Max(1,Rules.Inventory.Count);Vector2 mount=playerPos+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*.72f;Vector2 direction=nearest!=null?(nearest.pos-mount).normalized:new Vector2(Mathf.Cos(a),Mathf.Sin(a));var view=equipmentViews[i];if(view!=null)
                 {
-                    view.transform.position=new Vector3(mount.x+direction.x*swings[i]*2,mount.y+direction.y*swings[i]*2,-2);view.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg-45);
+                    float age = .18f - swings[i];
+                    float kick = SpriteFrameAnimator.Recoil(age);
+                    float offset = w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .05f : .17f);
+                    view.transform.position = new Vector3(mount.x + direction.x * offset, mount.y + direction.y * offset, -2);
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    view.transform.rotation = Quaternion.Euler(0, 0, angle + (w.melee || reducedMotion ? 0 : kick * 7));
+                    view.GetComponent<SpriteRenderer>().flipY = direction.x < 0;
+                    if (muzzleViews[i] != null)
+                    {
+                        muzzleViews[i].enabled = age < .066f;
+                        muzzleViews[i].sprite = catalog.muzzleFrames[Mathf.Clamp((int)(age / .022f), 0, 2)];
+                    }
                 }
                 if(nearest==null||weaponClocks[i]>0)continue;weaponClocks[i]=Mathf.Max(.035f,w.interval/Rules.FireRate);swings[i]=.18f;float damage=Mathf.Max(1,w.damage+Rules.Stat(w.melee?"melee_damage":"ranged_damage"))*Rules.DamageScale;
                 if(w.melee)
@@ -223,15 +255,17 @@ namespace Scrapshift
                 }
                 else
                 {
+                    Vector2 muzzle = mount + direction * (w.image.bounds.max.x * .8f);
+                    if (muzzleViews[i] != null) { muzzleViews[i].enabled = true; muzzleViews[i].sprite = catalog.muzzleFrames[0]; }
                     for(int p=0;p<w.pellets;p++)
                     {
-                        Vector2 dir=Quaternion.Euler(0,0,(p-(w.pellets-1)/2f)*Mathf.Max(5,w.spread*Mathf.Rad2Deg)) * direction;var obj=Instantiate(weapons[0].effectPrefab);obj.transform.position=mount;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
+                        Vector2 dir=Quaternion.Euler(0,0,(p-(w.pellets-1)/2f)*Mathf.Max(5,w.spread*Mathf.Rad2Deg)) * direction;var obj=Instantiate(weapons[0].effectPrefab);obj.transform.position=muzzle;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
                         {
-                            obj=obj,pos=mount,velocity=dir*30,life=range/30,damage=damage,crit=w.crit,pierce=w.piercing
+                            obj=obj,pos=muzzle,velocity=dir*30,life=range/30,damage=damage,crit=w.crit,pierce=w.piercing
                         })
                         ;shotsFired++;
                     }
-                    Burst(mount+direction*.4f,2,amber);sound.Play(SoundCue.Fire,playerPos,w.sounds);
+                    Burst(muzzle,2,amber);sound.Play(SoundCue.Fire,playerPos,w.sounds);
                 }
             }
         }
@@ -277,19 +311,23 @@ namespace Scrapshift
         }
         void Drop(Vector2 p,int value,bool fruit)
         {
-            if(pickups.Count>=240)
+            int[] values = fruit ? (pickups.Count < 240 ? new[] { 0 } : Array.Empty<int>()) : ScrapMotion.SplitValue(value, 240 - pickups.Count);
+            if (values.Length == 0)
             {
-                if(!fruit)Rules.BankMaterials(value);return;
+                if (!fruit && value > 0) Rules.BankMaterials(value);
+                return;
             }
-            var obj=Instantiate(scrapPrefab);if(fruit)
+            foreach (int amount in values)
             {
-                var block=new MaterialPropertyBlock();block.SetColor("_Color",coral);obj.GetComponentInChildren<Renderer>().SetPropertyBlock(block);obj.transform.localScale=Vector3.one*1.6f;
+                int shape = UnityEngine.Random.Range(0, catalog.scrapShapes.Length);
+                var obj = SpriteObject(fruit ? "Repair capsule" : "Scrap shape " + shape,
+                    fruit ? catalog.repairPickup : catalog.scrapShapes[shape], p, 3);
+                obj.transform.localScale = Vector3.one * (fruit ? .34f : UnityEngine.Random.Range(.24f, .34f));
+                pickups.Add(new Pickup { obj = obj, value = amount, fruit = fruit,
+                    motion = new ScrapMotion { position = p, velocity = UnityEngine.Random.insideUnitCircle * 3.2f,
+                        verticalSpeed = UnityEngine.Random.Range(2.5f, 4f), height = .06f,
+                        angle = UnityEngine.Random.Range(0, 360), spin = UnityEngine.Random.Range(-260, 260) } });
             }
-            pickups.Add(new Pickup
-            {
-                obj=obj,pos=p+UnityEngine.Random.insideUnitCircle*.3f,value=value,fruit=fruit
-            })
-            ;
         }
         void UpdateCorpses(float dt)
         {
