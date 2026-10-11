@@ -53,8 +53,8 @@ namespace Scrapshift.Tests
             var r=Run();
             r.Tick(3);
             r.Collect(62);
-            Assert.AreEqual(3,r.Level);
-            Assert.AreEqual(1,r.XP);
+            Assert.AreEqual(2,r.Level);
+            Assert.AreEqual(21,r.XP);
             Assert.AreEqual(62,r.Scrap);
             Assert.AreEqual(2,r.PendingLevels);
             Assert.AreEqual(RunPhase.Playing,r.Phase);
@@ -222,13 +222,13 @@ namespace Scrapshift.Tests
             r.Hurt(200);
             r.Collect(100);
             Assert.AreEqual(20,r.Remaining);
-            Assert.AreEqual(20,r.Health);
+            Assert.AreEqual(10,r.Health);
             Assert.AreEqual(0,r.Scrap);
             r.Pause();
             Shop(r);
             r.Hurt(99);
             r.Collect(100);
-            Assert.AreEqual(20,r.Health);
+            Assert.AreEqual(10,r.Health);
             Assert.AreEqual(0,r.Scrap);
         }
         [Test] public void LethalDamageCannotBecomeWinAndRestartClearsInventoryEconomy()
@@ -239,7 +239,7 @@ namespace Scrapshift.Tests
             r.Tick(1000);
             Assert.AreEqual(RunPhase.Lost,r.Phase);
             r.Start();
-            Assert.AreEqual(20,r.Health);
+            Assert.AreEqual(10,r.Health);
             Assert.AreEqual(0,r.PendingLevels);
             Assert.AreEqual(0,r.Scrap);
             Assert.AreEqual(1,r.Inventory.Count);
@@ -271,7 +271,7 @@ namespace Scrapshift.Tests
             r.Tick(-20);
             r.Collect(-100);
             Assert.AreEqual(20,r.Remaining);
-            Assert.AreEqual(20,r.Health);
+            Assert.AreEqual(10,r.Health);
             Assert.AreEqual(0,r.Scrap);
         }
         [Test] public void ReferenceMediaAndAllScheduledUnitIdsResolve()

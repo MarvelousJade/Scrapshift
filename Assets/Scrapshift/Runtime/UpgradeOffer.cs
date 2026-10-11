@@ -33,7 +33,7 @@ namespace Scrapshift
         public string Stat=>Kind==UpgradeKind.Damage?"percent_damage":Kind==UpgradeKind.Speed?"attack_speed":Kind==UpgradeKind.Repair?"max_hp":Kind==UpgradeKind.Critical?"crit_chance":Kind==UpgradeKind.Armor?"armor":Kind==UpgradeKind.Regeneration?"hp_regeneration":Kind==UpgradeKind.Harvesting?"harvesting":"speed";
         public string Title=>ItemEntry.StatName("stat_"+Stat).ToUpperInvariant();
         public string Detail=>ItemEntry.FormatStat(Stat,Amount);
-        public string Rarity=>Tier==4?"LEGENDARY":Tier==3?"EPIC":Tier==2?"RARE":"COMMON";
+        public string Rarity=>Tier==4?"LEGENDARY":Tier==3?"RARE":Tier==2?"UNCOMMON":"COMMON";
         public string Icon=>Kind==UpgradeKind.Critical?"!":Kind==UpgradeKind.Speed?">>":"+";
     }
 }

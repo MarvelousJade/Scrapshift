@@ -40,7 +40,7 @@ namespace Scrapshift
             get;
             private set;
         }
-        public float MaxHealth=>Math.Max(1,20+Stat("max_hp"));
+        public float MaxHealth=>Math.Max(1,10+Stat("max_hp"));
         public int Kills
         {
             get;
@@ -61,7 +61,7 @@ namespace Scrapshift
             get;
             private set;
         }
-        =1;
+        =0;
         public int PendingLevels
         {
             get;
@@ -127,7 +127,7 @@ namespace Scrapshift
             Remaining=Durations[0];
             Health=MaxHealth;
             Kills=Scrap=XP=PendingLevels=UpgradeCount=rerolls=banked=0;
-            Level=1;
+            Level=0;
             Offers=Array.Empty<UpgradeOffer>();
             Shop=new ShopOffer[4];
         }
@@ -141,9 +141,9 @@ namespace Scrapshift
                 Phase=RunPhase.Won;
                 return;
             }
-            int harvest=Math.Max(0,(int)Stat("harvesting"));
-            Scrap+=harvest;
-            GainXP(harvest);
+            int harvest=(int)Stat("harvesting");
+            Scrap=Math.Max(0,Scrap+harvest);
+            if(harvest>0)GainXP(harvest);
             if(harvest>0)Add("harvesting",Mathf.Ceil(harvest*.05f));
             rerolls=0;
             if(PendingLevels>0)
@@ -181,6 +181,7 @@ namespace Scrapshift
             {
                 XP-=NextLevel;
                 Level++;
+                Add("max_hp",1);
                 PendingLevels++;
             }
         }
@@ -197,18 +198,19 @@ namespace Scrapshift
             banked+=Math.Max(0,value);
         }
         public int Price(int value)=>Math.Max(1,(int)(value+Wave+value*Wave*.1f));
-        void Draft()
+        void Draft(bool reroll=false)
         {
             var pool=new List<UpgradeKind>
             {
                 UpgradeKind.Damage,UpgradeKind.Speed,UpgradeKind.Repair,UpgradeKind.Critical,UpgradeKind.Armor,UpgradeKind.Regeneration,UpgradeKind.Harvesting,UpgradeKind.Move
             };
+            if(reroll) pool.RemoveAll(kind=>Offers.Any(o=>o.Kind==kind));
             int rewardLevel=Level-PendingLevels+1;
             Offers=new UpgradeOffer[4];
             for(int i=0;i<4;i++)
             {
                 int p=random.Next(pool.Count);
-                int tier=rewardLevel%5==0?(rewardLevel==5?2:rewardLevel<=20?3:4):random.NextDouble()<Math.Min(.55,rewardLevel*.025)?2:1;
+                int tier=ReferenceRarity.Upgrade(rewardLevel,Stat("luck"),random.NextDouble());
                 Offers[i]=new UpgradeOffer(pool[p],tier,catalog?.data.upgrades);
                 pool.RemoveAt(p);
             }
@@ -239,9 +241,7 @@ namespace Scrapshift
             {
                 if(Shop[i]!=null&&Shop[i].locked)continue;
                 bool weapon=existing<guaranteed||random.NextDouble()<.35;
-                int tier=random.NextDouble()<Math.Min(.6,Wave*.035)?2:1;
-                if(Wave>=8&&random.NextDouble()<.12)tier=3;
-                if(Wave>=15&&random.NextDouble()<.08)tier=4;
+                int tier=ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 if(weapon)
                 {
                     var pool=catalog.data.equipment.Where(w=>w.tier==tier).ToArray();
@@ -253,7 +253,9 @@ namespace Scrapshift
                 }
                 else
                 {
-                    var pool=catalog.data.items.Where(w=>w.tier<=tier&&IsShopItem(w.id)).ToArray();
+                    var pool=catalog.data.items.Where(w=>w.tier==tier&&IsShopItem(w.id)).ToArray();
+                    while(pool.Length==0 && tier>1)
+                    { tier--; pool=catalog.data.items.Where(w=>w.tier==tier&&IsShopItem(w.id)).ToArray(); }
                     Shop[i]=new ShopOffer
                     {
                         item=pool[random.Next(pool.Length)]
@@ -313,7 +315,7 @@ namespace Scrapshift
             if(!CanReroll)return;
             Scrap-=RerollPrice;
             rerolls++;
-            if(Phase==RunPhase.Upgrade)Draft();
+            if(Phase==RunPhase.Upgrade)Draft(true);
             else RollShop();
         }
         public void NextWave()
