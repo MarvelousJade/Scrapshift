@@ -106,6 +106,8 @@ namespace Scrapshift
     public sealed class ReferenceCatalog:ScriptableObject
     {
         public CatalogData data;
+        public Font referenceFont;
+        public TextAsset uiText;
         public string starterVersion;
         void OnEnable(){if(data!=null)WeaponSets.Configure(data.sets);}
         public Sprite warning;

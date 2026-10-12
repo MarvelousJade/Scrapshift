@@ -13,6 +13,9 @@ Eight item types, 24 available weapon families, up to six floating weapons.
 Fourteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
 Start -> Random or Rookie / Pugilist / Hothead / Sharpshot -> starting weapon -> Danger 0.
 Each character has different modifiers and starting choices. The remaining 46 character slots are locked.
+Weapon selection shows only unlocked choices eligible for that character, plus Random.
+Pause/shop/level-up/crates: hover stats, owned items or weapons to inspect descriptions.
+Tab / Shift+Tab cycle inspection targets; arrow keys move the selector. Move the mouse to return to hover.
 Fullscreen is the default. F11 or Options > Display toggles fullscreen/windowed; your choice is saved.
 New runs enter with a 1.2-second parachute landing before the wave timer starts.
 Options: turn Reduced Motion off to see the full descent and squash animation.

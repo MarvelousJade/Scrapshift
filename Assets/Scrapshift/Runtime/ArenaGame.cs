@@ -57,6 +57,8 @@ namespace Scrapshift
             reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
             InitializeDisplay(args);
+            int inspectIndex=Array.IndexOf(args,"--inspection-review");
+            if(inspectIndex>=0&&inspectIndex+1<args.Length)BeginInspectionReview(args[inspectIndex+1]);
             int starterIndex=Array.IndexOf(args,"--starter-review");
             if(starterIndex>=0&&starterIndex+1<args.Length)BeginStarterReview(args[starterIndex+1]);
             int audioCheck = Array.IndexOf(args, "--audio-check");
@@ -138,7 +140,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview) { float dt = Mathf.Min(Time.deltaTime, .05f); if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !inspectionReview) { float dt = Mathf.Min(Time.deltaTime, .05f); if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
             if (Rules.Phase != RunPhase.Playing && Rules.Phase != RunPhase.Paused && Rules.Phase != RunPhase.Won && Rules.Phase != RunPhase.Lost)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -157,6 +159,8 @@ namespace Scrapshift
             if (smoke) SmokeTick();
             wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
             UpdatePlayerFlash(Rules.Phase == RunPhase.Playing ? Mathf.Min(Time.deltaTime, .05f) : 0);
+            FinishInspectionReview();
+            if(enabled)InspectionReviewTick();
             StarterReviewTick();
             ReviewTick();
             ArtReviewTick();

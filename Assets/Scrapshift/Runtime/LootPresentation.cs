@@ -79,7 +79,7 @@ namespace Scrapshift
             DrawOfferDetail(new ShopOffer {item=item},256,418,586);
             if(Button(new Rect(212,688,330,64),"Take"))ResolveCrate(true);
             if(Button(new Rect(570,688,330,64),$"Recycle +{Rules.CrateRecycleValue}"))ResolveCrate(false);
-            Text(190,785,735,54,$"Free item or materials. Levels follow crates, then the shop.\nMaterials: {Rules.Scrap}",center);
+            DrawIntermissionInventory();
             DrawSetTooltip();
         }
     }

@@ -8,7 +8,7 @@ namespace Scrapshift
     {
         bool randomCharacter;
         CharacterProfile SelectedCharacter=>catalog.data.characters[playerAnimation.lookIndex];
-        string[] CharacterWeapons=>SelectedCharacter.startingWeapons;
+        string[] CharacterWeapons=>StarterChoices.Available(catalog,SelectedCharacter);
         Equipment SelectedWeapon=>catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],1);
         RunRules previewRules;
         RunRules PreviewRules()
@@ -52,20 +52,19 @@ namespace Scrapshift
         void WeaponGrid()
         {
             var choices=CharacterWeapons;
+            float left=720-(Mathf.Min(10,choices.Length+1)*76-10)/2f;
             for(int slot=0;slot<=choices.Length;slot++)
             {
-                Rect r=new Rect(340+slot%10*76,626+slot/10*79,66,68);
+                Rect r=new Rect(left+slot%10*76,626+slot/10*79,66,68);
                 if(slot==0)
                 {
                     if(MenuButton(r,"?"))
                     {
-                        var eligible=Enumerable.Range(0,choices.Length).Where(i=>catalog.Weapon(choices[i],1).available).ToArray();
-                        startingWeapon=eligible[UnityEngine.Random.Range(0,eligible.Length)];ConfirmMenu();
+                        startingWeapon=UnityEngine.Random.Range(0,choices.Length);ConfirmMenu();
                     }
                     continue;
                 }
                 int i=slot-1;var weapon=catalog.Weapon(choices[i],1);
-                if(!weapon.available){RoundedBox(r,panelColor,7);DrawLock(r);continue;}
                 if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)startingWeapon=i;
                 if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
                 DrawIcon(weapon.image,new Rect(r.x+7,r.y+7,52,54));

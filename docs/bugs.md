@@ -251,3 +251,8 @@ Actual test failures: the first expanded suite passed 163/166; two wardrobe test
 Build-warning inspection exposed a recursive Equipment -> WeaponTrait -> Equipment schema that exceeded Unity serialization depth 10. A non-recursive ProjectileStats leaf removes the cycle. The builder now preserves warning/error messages alongside the count. Source inspection also caught missing-health lifesteal using base HP and ignoring set bonuses; a regression now covers Sharp Tooth after Primitive HP increases. See fullscreen-and-starter-characters.md and verification.md for final evidence and limits.
 
 The final player-location review exposed a harness path bug: Unity resolved relative screenshot paths against the Data directory, unlike Directory/File operations. All nine captures failed, and CaptureVerification correctly rejected stale prior PNGs. Normalize the requested review path with Path.GetFullPath at entry; the same relative-path invocation then passed with fresh images. This is a fixture correction after the 167-test pass, verified with the actual rendered player.
+
+
+## October 11 - selection eligibility and inspection descriptions
+
+Weapon selection incorrectly reused locked character-tile presentation for weapon choices; source weapon selection explicitly hides locked entries. Filtering now uses profile eligibility and availability before constructing the grid or Random pool. Inspection work also exposed an empty Wrench scaling list (170/171 initial tests), scroll-view hover-coordinate mismatch, deferred screenshot/state advancement, and missing percentage units on serialized stat effects. See inspection-and-weapon-selection.md for causes, fixes and final evidence.

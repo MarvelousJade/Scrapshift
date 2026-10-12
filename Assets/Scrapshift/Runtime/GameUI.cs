@@ -9,6 +9,7 @@ namespace Scrapshift
         void EnsureStyles()
         {
             if (body != null) return;
+            inspectionText=new InspectionText(catalog.uiText);
             body = Style(21, paper); tiny = Style(16, new Color(.78f,.79f,.69f));
             heading = Style(30, paper, FontStyle.Bold); title = Style(78, paper, FontStyle.Bold);
             number = Style(36, paper, FontStyle.Bold); cardTitle = Style(29, paper, FontStyle.Bold);
@@ -16,6 +17,9 @@ namespace Scrapshift
             icon = Style(56, paper, FontStyle.Bold); icon.alignment = TextAnchor.MiddleCenter;
             damageSmall = Style(22, Color.white, FontStyle.Bold); damageSmall.alignment = TextAnchor.MiddleCenter;
             damageBig = Style(30, amber, FontStyle.Bold); damageBig.alignment = TextAnchor.MiddleCenter;
+            body.font=tiny.font=catalog.referenceFont;
+            inspectionBody=new GUIStyle(body){fontSize=18,richText=true,fontStyle=FontStyle.Normal};
+            inspectionTitle=new GUIStyle(inspectionBody){fontSize=22};
             button = new GUIStyle { fontSize = 21, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter,
                 normal = { textColor = ink }, hover = { textColor = ink }, active = { textColor = ink } };
         }
@@ -36,6 +40,7 @@ namespace Scrapshift
         {
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
+            BeginInspection();
             if(appearanceReview&&appearanceStage>=2&&appearanceStage<6){AppearanceReviewUI();return;}
             if(scaleReview)
             {
@@ -44,9 +49,9 @@ namespace Scrapshift
                 return;
             }
             if (Rules.Phase == RunPhase.Title) { TitleUI(); return; }
-            if (Rules.Phase == RunPhase.Loot) { LootUI(); return; }
-            if (Rules.Phase == RunPhase.Shop) { ShopUI(); return; }
-            if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); return; }
+            if (Rules.Phase == RunPhase.Loot) { LootUI(); EndInspection(); return; }
+            if (Rules.Phase == RunPhase.Shop) { ShopUI(); EndInspection(); return; }
+            if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); EndInspection(); return; }
             DrawHud();
             var boss=enemies.Find(e=>e.type.role=="Boss"&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,"PREDATOR",center);}
             DrawFeedback();
@@ -54,6 +59,7 @@ namespace Scrapshift
             else if (Rules.Phase == RunPhase.Shop) ShopUI();
             else if (Rules.Phase == RunPhase.Paused) PauseUI();
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
+            EndInspection();
         }
         void Overlay() => Box(FullCanvas, new Color(.055f,.05f,.045f,.78f));
         void TitleUI() => ReferenceTitleUI();
@@ -115,7 +121,7 @@ namespace Scrapshift
             GUI.enabled=Rules.CanReroll;
             if(Button(new Rect(363,664,384,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
             GUI.enabled=true;
-            DrawSetTooltip();
+            DrawSetTooltip();DrawIntermissionInventory();
         }
         bool pauseOptions;
         void PauseUI()

@@ -81,3 +81,8 @@ Shaoyu identified the unwanted leg orientation and vocal damage cue and requeste
 ## Four-profile/fullscreen pass
 
 Shaoyu requested native fullscreen without side bars and specified Random plus four playable characters, with the remaining slots locked. Codex inspected supplied source data, implemented profiles/selection/weapons/fullscreen, generated the additional weapon atlas, diagnosed test/build failures and ran the recorded checks. No human playthrough or independent manual implementation is attributed to Shaoyu. See fullscreen-and-starter-characters.md.
+
+
+## Weapon selection and inspection
+
+Shaoyu corrected locked weapon visibility and requested source typography/descriptions plus pause/intermission inspection. Codex compared the supplied source, implemented filtering and shared text/interaction paths, diagnosed the recorded failures, ran tests and staged/native-input checks, and committed locally. Reference font/text are explicitly attributed; existing original sprites are unchanged. No full manual playthrough or human visual acceptance is claimed.

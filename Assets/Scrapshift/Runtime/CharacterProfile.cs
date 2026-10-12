@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Scrapshift
 {
+    public static class StarterChoices
+    {
+        public static string[] Available(ReferenceCatalog catalog,CharacterProfile profile)=>profile.startingWeapons
+            .Select(id=>catalog.Weapon(id,1)).Where(w=>w!=null&&w.available&&profile.Allows(w))
+            .OrderBy(w=>w.melee?0:1).Select(w=>w.id).ToArray();
+    }
     [Serializable] public sealed class CharacterProfile
     {
         public string id,title,description,bonusWeapon,classSet,classStat;

@@ -15,7 +15,7 @@ Read-only reference: `E:/UnityProjects/brotato-(3.x)`. `singletons/item_service.
 
 The extra weapon is added to the selected weapon. Choosing Fist as Pugilist therefore starts with two Fists. Stat gain multipliers apply to accumulated effects and set bonuses, not base HP. Class attack speed and range apply only to matching weapon sets. Starting previews use the same RunRules calculation as gameplay. For example, two Pistols give Sharpshot 60 Range after the Gun set's +10, and two Unarmed weapons give Pugilist 18 Dodge after the set's +3.
 
-Starting lists retain source order and weapon locks:
+Historical imported lists below include locked definitions. The subsequent inspection/selection pass hides unavailable weapons and groups melee before ranged in the actual selector; see inspection-and-weapon-selection.md.
 
 - Rookie: Knife, Stick, Fist, Chopper (locked), Fighting Stick (locked), Cactus Club, Hatchet (locked), Spiky Shield (locked), Ghost Flint, Wrench, Pistol, SMG, Double Barrel Shotgun, Slingshot, Taser, Wand, Icicle, Rail Gun (locked).
 - Pugilist: Fist, Hand, Claw (locked).

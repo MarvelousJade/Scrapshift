@@ -177,3 +177,8 @@ Followed the reference player scene and damage signal through sound, flash, part
 ## October 11 - four gameplay profiles and fullscreen
 
 Implemented the user's clarified roster: Random, four playable reference-derived profiles under new names, 46 locked slots. Imported full starting-choice lists and numerical weapon data, generated one original weapon atlas, connected character modifiers and extra starting weapons, and added fullscreen controls. Replaced cosmetic-only selection with gameplay previews. Preserved original body/enemy art and reference audio provenance. Controlled runtime checks cover all available starter families and core effects; full-run balance remains unverified. See fullscreen-and-starter-characters.md for source mapping, debugging history and remaining adaptations.
+
+
+## October 11 - reference typography and inspectable equipment
+
+Compared source selection, stat popup and weapon-description code. Hid locked weapon choices, retained character locks, imported the reference Anybody font and selected English templates, and added pointer/keyboard inspection across pause and all reward/shop screens. Original art remains. Corrected scroll hit targets, empty turret scaling, percent formatting and capture sequencing. Final 172-test/build/render/native-input evidence is in verification.md; scope and interview discussion are in inspection-and-weapon-selection.md.

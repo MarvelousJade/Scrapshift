@@ -4,6 +4,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int selectedWeapon=-1;
+        readonly System.Collections.Generic.Dictionary<string,Vector2> detailScroll=new System.Collections.Generic.Dictionary<string,Vector2>();
         Vector2 itemScroll;
         void DrawIcon(Sprite sprite,Rect r)
         {
@@ -23,17 +24,18 @@ namespace Scrapshift
             Text(1130,43,266,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
             Text(1133,90,250,30,$"Level {Rules.Level}",body);
             var names=StatPresentation.Keys;
-            var right=new GUIStyle(body) { alignment=TextAnchor.MiddleRight };
+            var right=new GUIStyle(inspectionBody) { alignment=TextAnchor.MiddleRight };
             for(int i=0;i<names.Length;i++)
             {
                 float value=names[i]=="max_hp"?Rules.MaxHealth:Rules.Stat(names[i]);
                 float y=122+i*25;
                 DrawStatIcon(names[i],new Rect(1125,y+2,24,24));
-                var label=new GUIStyle(body) { fontSize=18 };
+                var label=new GUIStyle(inspectionBody);
                 label.normal.textColor=value<0?coral:value>0?new Color(.39f,1,.29f):paper;
-                Text(1157,y,198,32,ItemEntry.StatName(names[i]),label);
+                Text(1157,y,188,32,inspectionText.StatName(names[i]),label);
                 right.normal.textColor=label.normal.textColor;
-                Text(1351,y,49,32,value.ToString("0")+StatPresentation.Unit(names[i]),right);
+                Text(1351,y,49,32,value.ToString("0"),right);
+                Inspect("stat:"+names[i],new Rect(1120,y,282,25),inspectionText.StatName(names[i]),inspectionText.StatDescription(Rules,names[i]),StatPresentation.Icon(catalog,names[i]));
             }
             if(!summary){DrawWeaponSets();DrawWardrobePreview();}
             GUI.matrix=previousMatrix;
@@ -44,15 +46,13 @@ namespace Scrapshift
             if(offer.weapon!=null)
             {
                 var w=offer.weapon;
-                float damage=(preview??Rules).WeaponDamage(w);
-                string detail=$"Damage: <color=#79FF62>{damage:0.#}</color>"+(w.pellets>1?$" x {w.pellets}":"")+
-                    $"\nCritical: x{w.critMultiplier:0.#} ({Mathf.Clamp01((preview??Rules).CritChance+w.crit)*100:0}% chance)"+
-                    $"\nCooldown: {Mathf.Max(.035f,w.interval/(preview??Rules).WeaponFireRate(w))+WeaponMotion.Duration(w,(preview??Rules).WeaponFireRate(w)):0.00}s"+
-                    $"\nKnockback: {w.knockback:0.#}"+
-                    $"\nRange: {(preview??Rules).WeaponRange(w):0.0}"+
-                    (w.piercing>0?$"\nPiercing: {w.piercing}":"");
-                var style=new GUIStyle(body) { fontSize=18,richText=true };
-                Text(x,y,width,218,detail,style);
+                var style=new GUIStyle(inspectionBody){fontSize=18};
+                var content=new GUIContent(inspectionText.WeaponDescription(preview??Rules,w));
+                float height=style.CalcHeight(content,width-18);
+                var key=w.id+":"+x;
+                detailScroll.TryGetValue(key,out var scroll);
+                scroll=GUI.BeginScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
+                GUI.Label(new Rect(0,0,width-18,height+4),content,style);GUI.EndScrollView();detailScroll[key]=scroll;
             }
             else
             {
@@ -60,7 +60,7 @@ namespace Scrapshift
                 {
                     var effect=offer.item.effects[i]; var style=new GUIStyle(body) { fontSize=19 };
                     style.normal.textColor=effect.value<0?coral:new Color(.39f,1,.29f);
-                    Text(x,y+i*57,width,56,ItemEntry.FormatStat(effect.key,effect.value),style);
+                    Text(x,y+i*57,width,56,inspectionText.StatEffect(effect.key,effect.value),style);
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace Scrapshift
                 float x=i%7*69,y=i/7*66;
                 Frame(new Rect(x,y,60,58),new Color(.24f,.23f,.20f),2);
                 DrawIcon(Rules.Items[i].image,new Rect(x+7,y+6,46,46));
-                GUI.Label(new Rect(x,y,60,58),new GUIContent("",Rules.Items[i].title+"\n"+Rules.Items[i].Detail));
+                InspectItem("item:"+i,Rules.Items[i],new Rect(x,y,60,58),new Rect(24,698,510,155),itemScroll);
             }
             GUI.EndScrollView();
             for(int i=0;i<6;i++)
@@ -116,6 +116,7 @@ namespace Scrapshift
                 {
                     DrawIcon(w.image,new Rect(x+8,712,66,47));
                     Text(x+9,753,64,25,$"Tier {w.tier}",tiny);
+                    InspectWeapon("weapon:"+i,w,new Rect(x,700,82,80));
                 }
                 if(GUI.Button(new Rect(x,700,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=selectedWeapon==i?-1:i;
             }

@@ -1,0 +1,532 @@
+{
+  "entries": [
+    {
+      "key": "WEAPON_CACTI_CLUB",
+      "value": "Cacti Club"
+    },
+    {
+      "key": "EFFECT_GOLD_ON_CRIT_KILL",
+      "value": "{0} chance to gain 1 material when killing an enemy with a critical hit"
+    },
+    {
+      "key": "EFFECT_PIERCE_ON_CRIT_WEAPON",
+      "value": "Pierces up to {0} times on critical hit"
+    },
+    {
+      "key": "EFFECT_BOUNCE_ON_CRIT",
+      "value": "Bounces up to {0} times on critical hit"
+    },
+    {
+      "key": "EFFECT_GAIN_STAT_FOR_EVERY_PERCENT_PLAYER_MISSING_HEALTH",
+      "value": "{0} {1} for every {2} of missing health [{4}]"
+    },
+    {
+      "key": "EFFECT_TURRET",
+      "value": "Spawns a turret that shoots bullets dealing {0} ({1}) damage"
+    },
+    {
+      "key": "ADDITIONAL_COOLDOWN_EVERY_X_SHOTS",
+      "value": "Cooldown is {0} every {1} shots"
+    },
+    {
+      "key": "ALTERNATES_ATTACK_TYPE",
+      "value": "Alternates between thrusting and sweeping attacks"
+    },
+    {
+      "key": "BOUNCE",
+      "value": "Bounces"
+    },
+    {
+      "key": "CATEGORY_ITEM",
+      "value": "Item"
+    },
+    {
+      "key": "CATEGORY_WEAPON",
+      "value": "Weapon"
+    },
+    {
+      "key": "CONSUMABLE_HEAL",
+      "value": "Consumable Heal"
+    },
+    {
+      "key": "COOLDOWN",
+      "value": "Cooldown"
+    },
+    {
+      "key": "CRITICAL",
+      "value": "Critical"
+    },
+    {
+      "key": "CRITICAL_FORMATTED",
+      "value": "{0}: {1} ({2}% chance)"
+    },
+    {
+      "key": "DAMAGE_FORMATTED",
+      "value": "{0}: {1}"
+    },
+    {
+      "key": "DEALS_DAMAGE_ON_RETURN",
+      "value": "Also deals damage on return"
+    },
+    {
+      "key": "EFFECT_BURNING",
+      "value": "Deals {0}x{1} ({2}) burning damage"
+    },
+    {
+      "key": "EFFECT_EXPLODE",
+      "value": "Projectiles explode on hit"
+    },
+    {
+      "key": "EFFECT_EXPLODE_CUSTOM",
+      "value": "Projectiles have a {0} chance to explode on hit"
+    },
+    {
+      "key": "EFFECT_GAIN_STAT_EVERY_KILLED_ENEMIES",
+      "value": "{0} {1} for every {2} enemies you kill during a wave with this weapon"
+    },
+    {
+      "key": "EFFECT_LIGHTNING_ON_HIT",
+      "value": "Hitting an enemy spawns a lightning projectile that bounces {2} times and deals {1} ({3}) damage"
+    },
+    {
+      "key": "EFFECT_NO_HIT_BOOST",
+      "value": "Deals {0} Base Damage every {1} seconds until the end of the wave\nBonus resets when taking damage"
+    },
+    {
+      "key": "EFFECT_PROJECTILES_ON_HIT",
+      "value": "Hitting an enemy spawns {0} projectiles dealing {1} ({3}) damage"
+    },
+    {
+      "key": "EFFECT_SLOW_IN_ZONE",
+      "value": "Slows enemies in a radius around the projectile"
+    },
+    {
+      "key": "EFFECT_WEAPON_STACK",
+      "value": "Deals {0} {1} for every additional {2} you have [{3}]"
+    },
+    {
+      "key": "INFO_NEG_STAT_ARMOR",
+      "value": "You take {0} more damage"
+    },
+    {
+      "key": "INFO_NEG_STAT_ATTACK_SPEED",
+      "value": "You attack {0} slower. Also applies to Ranged weapons."
+    },
+    {
+      "key": "INFO_NEG_STAT_CRIT_CHANCE",
+      "value": "Your attacks have {0} less chance to deal more damage"
+    },
+    {
+      "key": "INFO_NEG_STAT_DODGE",
+      "value": "You have a 0% chance to dodge attacks. Max: {1}"
+    },
+    {
+      "key": "INFO_NEG_STAT_ELEMENTAL_DAMAGE",
+      "value": "Elemental damage is reduced by {0}"
+    },
+    {
+      "key": "INFO_NEG_STAT_ENGINEERING",
+      "value": "Decreases the power of your structures. Other primary stats don’t affect structures but secondary stats do. (piercing, bouncing, explosion size etc.)"
+    },
+    {
+      "key": "INFO_NEG_STAT_HARVESTING",
+      "value": "You lose {0} materials at the end of a wave."
+    },
+    {
+      "key": "INFO_NEG_STAT_HP_REGENERATION",
+      "value": "You regenerate 0 HP every 5 seconds"
+    },
+    {
+      "key": "INFO_NEG_STAT_LIFESTEAL",
+      "value": "Your attacks have a 0% chance to heal you for 1 HP. Max: {1} HP / second"
+    },
+    {
+      "key": "INFO_NEG_STAT_LUCK",
+      "value": "You have {0} less chance of finding items or consumables when you kill enemies. Also reduces the rarity of items in the shop and level upgrades."
+    },
+    {
+      "key": "INFO_NEG_STAT_MAX_HP",
+      "value": "You can take 1 damage before dying"
+    },
+    {
+      "key": "INFO_NEG_STAT_MELEE_DAMAGE",
+      "value": "Your melee attacks deal {0} less damage"
+    },
+    {
+      "key": "INFO_NEG_STAT_PERCENT_DAMAGE",
+      "value": "Your attacks deal {0} less damage"
+    },
+    {
+      "key": "INFO_NEG_STAT_RANGE",
+      "value": "The max range of your weapons is reduced by {0}. Half as effective on melee weapons. A lower range also decreases the cooldown of melee weapons. (shorter travel distance)"
+    },
+    {
+      "key": "INFO_NEG_STAT_RANGED_DAMAGE",
+      "value": "Your ranged attacks deal {0} less damage"
+    },
+    {
+      "key": "INFO_NEG_STAT_SPEED",
+      "value": "You move {0} slower"
+    },
+    {
+      "key": "INFO_POS_STAT_ARMOR",
+      "value": "You take {0} less damage"
+    },
+    {
+      "key": "INFO_POS_STAT_ATTACK_SPEED",
+      "value": "You attack {0} faster. Also applies to Ranged weapons."
+    },
+    {
+      "key": "INFO_POS_STAT_CRIT_CHANCE",
+      "value": "Your attacks have a {0} chance to deal more damage"
+    },
+    {
+      "key": "INFO_POS_STAT_DODGE",
+      "value": "You have a {0} chance to dodge attacks. Max: {1}"
+    },
+    {
+      "key": "INFO_POS_STAT_ELEMENTAL_DAMAGE",
+      "value": "Elemental damage is increased by {0}"
+    },
+    {
+      "key": "INFO_POS_STAT_ENGINEERING",
+      "value": "Increases the power of your structures. Other primary stats don’t affect structures but secondary stats do. (piercing, bouncing, explosion size etc.)"
+    },
+    {
+      "key": "INFO_POS_STAT_HARVESTING",
+      "value": "You earn {0} materials and XP at the end of a wave. Increases by {1} every time it activates until wave {2}."
+    },
+    {
+      "key": "INFO_POS_STAT_HARVESTING_LIMITED",
+      "value": "You earn {0} materials and XP at the end of a wave. Increases by {1} every time it activates until wave {2}, then decreases by {3} instead."
+    },
+    {
+      "key": "INFO_POS_STAT_HP_REGENERATION",
+      "value": "You regenerate {0} HP every {1} seconds ({2} HP / second)"
+    },
+    {
+      "key": "INFO_POS_STAT_LIFESTEAL",
+      "value": "Your attacks have a {0} chance to heal you for 1 HP. Max: {1} HP / second"
+    },
+    {
+      "key": "INFO_POS_STAT_LUCK",
+      "value": "You have {0} more chance of finding items or consumables when you kill enemies. Also increases the rarity of items in the shop and level upgrades."
+    },
+    {
+      "key": "INFO_POS_STAT_MAX_HP",
+      "value": "You can take {0} damage before dying"
+    },
+    {
+      "key": "INFO_POS_STAT_MELEE_DAMAGE",
+      "value": "Your melee attacks deal {0} additional damage"
+    },
+    {
+      "key": "INFO_POS_STAT_PERCENT_DAMAGE",
+      "value": "Your attacks deal {0} more damage"
+    },
+    {
+      "key": "INFO_POS_STAT_RANGE",
+      "value": "The max range of your weapons is increased by {0}. Half as effective on melee weapons. A higher range also increases the cooldown of melee weapons. (longer travel distance)"
+    },
+    {
+      "key": "INFO_POS_STAT_RANGED_DAMAGE",
+      "value": "Your ranged attacks deal {0} additional damage"
+    },
+    {
+      "key": "INFO_POS_STAT_SPEED",
+      "value": "You move {0} faster"
+    },
+    {
+      "key": "ITEM",
+      "value": "Item"
+    },
+    {
+      "key": "ITEMS",
+      "value": "Items"
+    },
+    {
+      "key": "ITEM_BAT",
+      "value": "Bat"
+    },
+    {
+      "key": "ITEM_BEANIE",
+      "value": "Beanie"
+    },
+    {
+      "key": "ITEM_CAKE",
+      "value": "Cake"
+    },
+    {
+      "key": "ITEM_COFFEE",
+      "value": "Coffee"
+    },
+    {
+      "key": "ITEM_FERTILIZER",
+      "value": "Fertilizer"
+    },
+    {
+      "key": "ITEM_GLASSES",
+      "value": "Glasses"
+    },
+    {
+      "key": "ITEM_HELMET",
+      "value": "Helmet"
+    },
+    {
+      "key": "ITEM_LEATHER_VEST",
+      "value": "Leather Vest"
+    },
+    {
+      "key": "KNOCKBACK",
+      "value": "Knockback"
+    },
+    {
+      "key": "LIFESTEAL",
+      "value": "Life Steal"
+    },
+    {
+      "key": "MELEE",
+      "value": "Melee"
+    },
+    {
+      "key": "PIERCING",
+      "value": "Piercing"
+    },
+    {
+      "key": "PIERCING_FORMATTED",
+      "value": "{0}: {1} (-{2}% damage)"
+    },
+    {
+      "key": "PRIMARY",
+      "value": "Primary"
+    },
+    {
+      "key": "RANGED",
+      "value": "Ranged"
+    },
+    {
+      "key": "RANGE_FORMATTED",
+      "value": "{0}: {1} ({2})"
+    },
+    {
+      "key": "SECONDARY",
+      "value": "Secondary"
+    },
+    {
+      "key": "STATS",
+      "value": "Stats"
+    },
+    {
+      "key": "STAT_ARMOR",
+      "value": "Armor"
+    },
+    {
+      "key": "STAT_ATTACK_SPEED",
+      "value": "% Attack Speed"
+    },
+    {
+      "key": "STAT_CRIT_CHANCE",
+      "value": "% Crit Chance"
+    },
+    {
+      "key": "STAT_DAMAGE",
+      "value": "Damage"
+    },
+    {
+      "key": "STAT_DODGE",
+      "value": "% Dodge"
+    },
+    {
+      "key": "STAT_ELEMENTAL_DAMAGE",
+      "value": "Elemental Damage"
+    },
+    {
+      "key": "STAT_ENGINEERING",
+      "value": "Engineering"
+    },
+    {
+      "key": "STAT_FORMATTED",
+      "value": "{0}: {1}"
+    },
+    {
+      "key": "STAT_HARVESTING",
+      "value": "Harvesting"
+    },
+    {
+      "key": "STAT_HP_REGENERATION",
+      "value": "HP Regeneration"
+    },
+    {
+      "key": "STAT_LIFESTEAL",
+      "value": "% Life Steal"
+    },
+    {
+      "key": "STAT_LUCK",
+      "value": "Luck"
+    },
+    {
+      "key": "STAT_MAX_HP",
+      "value": "Max HP"
+    },
+    {
+      "key": "STAT_MELEE_DAMAGE",
+      "value": "Melee Damage"
+    },
+    {
+      "key": "STAT_PERCENT_DAMAGE",
+      "value": "% Damage"
+    },
+    {
+      "key": "STAT_RANGE",
+      "value": "Range"
+    },
+    {
+      "key": "STAT_RANGED_DAMAGE",
+      "value": "Ranged Damage"
+    },
+    {
+      "key": "STAT_SPEED",
+      "value": "% Speed"
+    },
+    {
+      "key": "TIER_COMMON",
+      "value": "Common"
+    },
+    {
+      "key": "TIER_LEGENDARY",
+      "value": "Legendary"
+    },
+    {
+      "key": "TIER_RARE",
+      "value": "Rare"
+    },
+    {
+      "key": "TIER_UNCOMMON",
+      "value": "Uncommon"
+    },
+    {
+      "key": "WEAPONS",
+      "value": "Weapons"
+    },
+    {
+      "key": "WEAPON_CHOPPER",
+      "value": "Chopper"
+    },
+    {
+      "key": "WEAPON_CLAW",
+      "value": "Claw"
+    },
+    {
+      "key": "WEAPON_CROSSBOW",
+      "value": "Crossbow"
+    },
+    {
+      "key": "WEAPON_DAGGER",
+      "value": "Thief Dagger"
+    },
+    {
+      "key": "WEAPON_DOUBLE_BARREL_SHOTGUN",
+      "value": "Double Barrel Shotgun"
+    },
+    {
+      "key": "WEAPON_FIGHTING_STICK",
+      "value": "Quarterstaff"
+    },
+    {
+      "key": "WEAPON_FIST",
+      "value": "Fist"
+    },
+    {
+      "key": "WEAPON_GHOST_FLINT",
+      "value": "Ghost Flint"
+    },
+    {
+      "key": "WEAPON_HAND",
+      "value": "Hand"
+    },
+    {
+      "key": "WEAPON_HATCHET",
+      "value": "Hatchet"
+    },
+    {
+      "key": "WEAPON_ICICLE",
+      "value": "Icicle"
+    },
+    {
+      "key": "WEAPON_KNIFE",
+      "value": "Knife"
+    },
+    {
+      "key": "WEAPON_LASER_GUN",
+      "value": "Laser Gun"
+    },
+    {
+      "key": "WEAPON_LIGHTNING_SHIV",
+      "value": "Lightning Shiv"
+    },
+    {
+      "key": "WEAPON_PISTOL",
+      "value": "Pistol"
+    },
+    {
+      "key": "WEAPON_RAIL_GUN",
+      "value": "Rail Gun"
+    },
+    {
+      "key": "WEAPON_REVOLVER",
+      "value": "Revolver"
+    },
+    {
+      "key": "WEAPON_SCISSORS",
+      "value": "Scissors"
+    },
+    {
+      "key": "WEAPON_SHARP_TOOTH",
+      "value": "Sharp Tooth"
+    },
+    {
+      "key": "WEAPON_SHREDDER",
+      "value": "Shredder"
+    },
+    {
+      "key": "WEAPON_SHURIKEN",
+      "value": "Shuriken"
+    },
+    {
+      "key": "WEAPON_SLINGSHOT",
+      "value": "Slingshot"
+    },
+    {
+      "key": "WEAPON_SMG",
+      "value": "SMG"
+    },
+    {
+      "key": "WEAPON_SPEAR",
+      "value": "Spear"
+    },
+    {
+      "key": "WEAPON_SPIKY_SHIELD",
+      "value": "Spiky Shield"
+    },
+    {
+      "key": "WEAPON_STICK",
+      "value": "Stick"
+    },
+    {
+      "key": "WEAPON_TASER",
+      "value": "Taser"
+    },
+    {
+      "key": "WEAPON_WAND",
+      "value": "Wand"
+    },
+    {
+      "key": "WEAPON_WRENCH",
+      "value": "Wrench"
+    },
+    {
+      "key": "XP_GAIN",
+      "value": "% XP Gain"
+    }
+  ]
+}

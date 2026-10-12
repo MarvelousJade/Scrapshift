@@ -227,3 +227,8 @@ See [player-hit-and-leg-correction.md](player-hit-and-leg-correction.md) for a c
 ## Data boundaries and verifying the actual display
 
 The four-character pass offers two further examples: replacing cosmetic-only choices with shared gameplay/preview rules, and fixing a recursive Unity serialization schema by separating leaf projectile stats from weapons with effects. A requested ultrawide capture was actually clamped to 1920x1080, so the report records the real dimensions rather than claiming a test that did not occur. See fullscreen-and-starter-characters.md for source mapping, real failures and attribution. Do not present agent-run checks as personally executed work.
+
+
+## Inspection UI: data filtering, coordinate spaces and evidence quality
+
+See [inspection-and-weapon-selection.md](inspection-and-weapon-selection.md). Useful questions include why eligibility should be filtered before rendering/Random selection, why nested scrolling breaks naive hit testing, how current-value descriptions avoid stale UI, and why a fresh screenshot can still capture the wrong logical state. The document records actual failures and tests rather than inventing a debugging story. Codex performed the implementation/checks; study and reproduce the reasoning before claiming personal execution.

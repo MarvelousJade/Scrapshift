@@ -39,7 +39,7 @@ namespace Scrapshift
                 var w=Rules.Inventory[i];var r=new Rect(area.x+20+i*109,area.y+76,96,90);
                 Frame(r,TierColor(w.tier),2);Box(new Rect(r.x+3,r.y+3,r.width-6,r.height-6),panelColor);
                 DrawIcon(w.image,new Rect(r.x+9,r.y+9,78,72));
-                GUI.Label(r,new GUIContent("",w.title+"\n"+w.Detail+"\n"+WeaponSets.For(w)?.Name));
+                InspectWeapon("weapon:"+i,w,r);
             }
             Text(area.x+20,area.y+200,area.width-40,45,$"Items ({Rules.Items.Count})",heading);
             summaryScroll=GUI.BeginScrollView(new Rect(area.x+20,area.y+257,area.width-40,area.height-275),summaryScroll,new Rect(0,0,area.width-65,Mathf.Max(area.height-295,Mathf.Ceil(Rules.Items.Count/9f)*68)));
@@ -47,14 +47,13 @@ namespace Scrapshift
             {
                 var item=Rules.Items[i];var r=new Rect(i%9*73,i/9*68,62,60);
                 RoundedBox(r,new Color(.23f,.22f,.2f),5);DrawIcon(item.image,new Rect(r.x+6,r.y+5,50,50));
-                GUI.Label(r,new GUIContent("",item.title+"\n"+item.Detail));
+                InspectItem("item:"+i,item,r,new Rect(area.x+20,area.y+257,area.width-40,area.height-275),summaryScroll);
             }
             GUI.EndScrollView();
         }
         void DrawInventoryTooltip()
         {
-            if(string.IsNullOrEmpty(GUI.tooltip))return;
-            RoundedBox(new Rect(710,360,360,210),ink);Text(730,376,320,180,GUI.tooltip,body);
+            // Inspection is drawn once after the entire screen, above all panels.
         }
         void DrawWaveTimeline(float y)
         {
