@@ -165,3 +165,7 @@ Rendering exposed a bright jagged rim, inherited reduced-motion settings, a stag
 ## October 11 - complete UI pass, silver legs and recoil
 
 Inspected live title, selection, landing, loss and summary screens plus local source UI/weapon resources. Removed Enter and movement legends, rebuilt selection interaction and pause/end inventories, added all primary stat icons, replaced only the requested silver rounded limb art, revised the native canopy and corrected body-only landing squash. Kept original characters/enemies/items/weapons and small gameplay catalog. Ranged recoil/cooldown is a separate incremental commit (0525286). See ui-and-motion-comparison.md for scope and deliberate differences; verification.md for results. The older player at a wave-three upgrade is preserved; the refreshed build is separate.
+
+## October 11 - outward silver leg stance
+
+Corrected the horizontal silver limb mounting with a mirrored 110-degree resting angle and a slightly higher attachment. Existing limb pixels, width and outlines are unchanged. Kept the swing relative to the resting pose, corrected both facing directions, migrated the saved prefab and shared the shop/selection portrait renderer. Render inspection exposed a separate GUI mirror/rotation order error; explicit matrix composition now matches the world sprites. The final regression suite passes 158/158, including facing, mirror-order, dimensions and reduced-motion checks. Staged captures are in artifacts/hit-leg-review; source/evidence details are in player-hit-and-leg-correction.md.

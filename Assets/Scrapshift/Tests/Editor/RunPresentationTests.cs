@@ -60,5 +60,39 @@ namespace Scrapshift.Tests
             }
             finally{Object.DestroyImmediate(obj);}
         }
+        [Test] public void LegsRemainVerticalAndBowOutwardWhenFacingEitherDirection()
+        {
+            var obj=Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(ContentBuilder.Root+"/Prefabs/ScavengerAnimated.prefab"));
+            try
+            {
+                var animator=obj.GetComponent<SpriteFrameAnimator>();
+                foreach(var movement in new[]{Vector2.right,Vector2.left})
+                {
+                    animator.Tick(movement,0,true);
+                    foreach(var leg in new[]{animator.leftFoot,animator.rightFoot})
+                    {
+                        float side=Mathf.Sign(leg.transform.localPosition.x);
+                        // Convex side of the source art is local down; it must face away from the body.
+                        Vector3 bow=leg.transform.localRotation*Vector3.down;
+                        Assert.Greater(bow.x*side,.9f);
+                        Assert.Greater(leg.bounds.size.y,leg.bounds.size.x*1.5f);
+                    }
+                }
+            }
+            finally{Object.DestroyImmediate(obj);}
+        }
+        [Test] public void PortraitLegsMirrorInSpriteSpaceBeforeRotation()
+        {
+            Vector2 center=new Vector2(400,300);
+            var right=SpringMotion.PortraitLegTransform(center,1);
+            var left=SpringMotion.PortraitLegTransform(center,-1);
+            foreach(var offset in new[]{new Vector2(-15,8),new Vector2(20,-4),new Vector2(0,7)})
+            {
+                Vector3 r=right.MultiplyPoint3x4(center+offset)-(Vector3)center;
+                Vector3 l=left.MultiplyPoint3x4(center+offset)-(Vector3)center;
+                Assert.That(l.x,Is.EqualTo(-r.x).Within(.001));
+                Assert.That(l.y,Is.EqualTo(r.y).Within(.001));
+            }
+        }
     }
 }

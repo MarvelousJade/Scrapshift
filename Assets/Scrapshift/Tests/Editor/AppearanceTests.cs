@@ -63,13 +63,13 @@ namespace Scrapshift.Tests
             foreach(var look in Prefab.GetComponent<SpriteFrameAnimator>().looks)AppearanceResolver.Resolve(look,rules.Items);
             Assert.AreEqual(2,rules.Items.Count);Assert.AreEqual(hp,rules.MaxHealth);Assert.AreEqual(speed,rules.MoveSpeed);
         }
-        [Test] public void PointedLegSwingMirrorsLoopsAndRespectsReducedMotion()
+        [Test] public void CurvedLegSwingMirrorsLoopsAndRespectsReducedMotion()
         {
             for(float t=0;t<1;t+=.017f)
             {
                 Assert.AreEqual(-SpringMotion.LegAngle(t,-1,true),SpringMotion.LegAngle(t,1,true),.001f);
                 Assert.AreEqual(SpringMotion.LegAngle(t,1,true),SpringMotion.LegAngle(t+.6f,1,true),.001f);
-                Assert.AreEqual(0,SpringMotion.LegAngle(t,1,true,true));
+                Assert.AreEqual(SpringMotion.LegRestAngle,SpringMotion.LegAngle(t,1,true,true));
             }
         }
         [Test] public void ModularAtlasSpritesHaveTransparentBorders()

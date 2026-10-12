@@ -5,7 +5,7 @@ namespace Scrapshift
     public static class SpringMotion
     {
         public const float IdlePeriod=1, WalkPeriod=.6f;
-        public const float LegSpread=.31f, LegY=-.52f, LegHeight=.16f, LegWidth=1;
+        public const float LegSpread=.31f, LegY=-.48f, LegHeight=.16f, LegWidth=1, LegRestAngle=110;
         // Recreates the source's pose landmarks; smooth interpolation is a Unity adaptation.
         public static Vector3 Pose(float time,bool moving,bool reducedMotion=false)
         {
@@ -29,6 +29,13 @@ namespace Scrapshift
             return new Vector2(side*LegSpread+stride*.035f,Mathf.Max(0,stride)*.035f);
         }
         public static float LegAngle(float time,int side,bool moving,bool reducedMotion=false)
-            => moving && !reducedMotion ? Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*side*12 : 0;
+            => side*(LegRestAngle+(moving && !reducedMotion ? Mathf.Sin(time*Mathf.PI*2/WalkPeriod)*12 : 0));
+        public static Matrix4x4 PortraitLegTransform(Vector2 center,int side)
+        {
+            // Mirror in sprite space before rotation, just like SpriteRenderer.flipX.
+            // GUIUtility pivot helpers premultiply and would mirror after rotation.
+            return Matrix4x4.TRS(center,Quaternion.Euler(0,0,-LegAngle(0,side,false)),
+                new Vector3(side<0?-LegWidth:LegWidth,1,1))*Matrix4x4.Translate(-center);
+        }
     }
 }

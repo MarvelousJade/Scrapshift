@@ -72,7 +72,8 @@ namespace Scrapshift
             {
                 var sprite=playerAnimation.footSprite;Vector2 size=sprite.bounds.size*(SpringMotion.LegHeight/sprite.bounds.size.y)*scale;
                 Vector2 p=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
-                var before=GUI.matrix;GUIUtility.ScaleAroundPivot(new Vector2(side<0?-SpringMotion.LegWidth:SpringMotion.LegWidth,1),p);
+                var before=GUI.matrix;
+                GUI.matrix=before*SpringMotion.PortraitLegTransform(p,side);
                 DrawIcon(sprite,new Rect(p-size*.5f,size));GUI.matrix=before;
             }
             var hero=playerAnimation.idleFrames[0];Vector2 bodySize=(Vector2)hero.bounds.size*scale;

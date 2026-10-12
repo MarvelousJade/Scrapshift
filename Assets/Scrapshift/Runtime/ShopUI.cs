@@ -174,24 +174,7 @@ namespace Scrapshift
         void DrawWardrobePreview()
         {
             Text(1130,675,260,25,"YOUR GEAR",tiny);
-            Vector2 origin = new Vector2(1260, 735);
-            const float scale = 60;
-            var worn = AppearanceResolver.Resolve(playerAnimation.Look,Rules.Items);
-            foreach (var layer in worn) if (layer.order < 10) DrawAppearance(layer, origin, scale);
-            Sprite hero = playerAnimation.idleFrames[0];
-            if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
-            {
-                var leg=playerAnimation.footSprite;
-                Vector2 legSize=leg.bounds.size*(SpringMotion.LegHeight/leg.bounds.size.y)*scale;
-                Vector2 center=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
-                Matrix4x4 before=GUI.matrix;
-                GUIUtility.ScaleAroundPivot(new Vector2(side<0?-SpringMotion.LegWidth:SpringMotion.LegWidth,1),center);
-                DrawIcon(leg,new Rect(center-legSize*.5f,legSize));
-                GUI.matrix=before;
-            }
-            Vector2 size = hero.rect.size / hero.pixelsPerUnit * scale;
-            DrawIcon(hero, new Rect(origin - size * .5f, size));
-            foreach (var layer in worn) if (layer.order >= 10) DrawAppearance(layer, origin, scale);
+            Portrait(new Vector2(1260,735),60,playerAnimation.Look,true);
         }
 
         void DrawAppearance(AppearanceLayer layer, Vector2 origin, float scale)

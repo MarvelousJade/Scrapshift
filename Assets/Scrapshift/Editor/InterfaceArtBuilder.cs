@@ -10,8 +10,10 @@ namespace Scrapshift.Editor
         {
             string path=Root+"/Prefabs/ScavengerAnimated.prefab";
             var saved=AssetDatabase.LoadAssetAtPath<GameObject>(path).GetComponent<SpriteFrameAnimator>();
-            if(AssetDatabase.GetAssetPath(saved.footSprite).EndsWith("player-leg-v3.png"))return;
-            var sprite=ImportSheet("player-leg",new[]{new Rect(0,0,1774,887)},333,version:3)[0];
+            bool silver=AssetDatabase.GetAssetPath(saved.footSprite).EndsWith("player-leg-v3.png");
+            if(silver && Mathf.Abs(Mathf.DeltaAngle(saved.rightFoot.transform.localEulerAngles.z,SpringMotion.LegRestAngle))<.01f
+                && Mathf.Abs(saved.rightFoot.transform.localPosition.y-SpringMotion.LegY)<.001f)return;
+            var sprite=silver?saved.footSprite:ImportSheet("player-leg",new[]{new Rect(0,0,1774,887)},333,version:3)[0];
             var root=PrefabUtility.LoadPrefabContents(path);var animator=root.GetComponent<SpriteFrameAnimator>();
             animator.footSprite=sprite;animator.leftFoot.sprite=sprite;animator.rightFoot.sprite=sprite;
             animator.Tick(Vector2.zero,0,false);
