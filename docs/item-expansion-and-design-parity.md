@@ -1,5 +1,7 @@
 # Item expansion and reference design comparison
 
+**Count correction, October 12:** the registered base catalog has 209 unique items, with 135 not imported. The 201/127 folder-scan counts below are historical and superseded by `artifacts/base-catalog-coverage.json`.
+
 October 11, 2026. Reference: user-supplied Brotato 1.1.15.4 Godot 3.x project. Original character, enemy, weapon and item artwork retained.
 
 ## Scope and result

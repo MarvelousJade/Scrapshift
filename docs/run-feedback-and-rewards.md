@@ -33,3 +33,11 @@ See verification.md and artifacts/reward-feedback-review for build/test/render e
 ## October 12 correction: money-icon destination
 
 Shaoyu clarified that wave-end materials should fly to the money icon, not the stored-material bag. The destination now uses the center of the money sprite (HUD y=122.5), with a brief counter pulse and rising green +amount text on arrival. Several simultaneous arrivals aggregate into one readable amount. Removed the timeout that destroyed a pickup before it reached its destination; reward transition waits for all pickups to arrive. Existing stored-material economy is unchanged. Reduced Motion suppresses the scale/vertical animation. The runtime fixture now advances cleanup in 50 ms steps rather than one large jump.
+
+## October 12 - HUD simplification and corrected base catalog count
+
+Harvesting is directly beneath money with a 40x40 icon (previously 28x28); stored reserves move below harvesting. Pending levels show one arrow while any upgrades remain, without a level number or repeated icons. The actual upgrade queue is unchanged.
+
+Fresh audit uses the registered resources in the supplied base item_service.tscn before DLC injection, deduplicating item my_id values and counting weapon families instead of tiers. Base: 62 weapons / 209 items. Imported: 30 weapons / 74 items; obtainable: 24 / 64; imported but locked: 6 / 10. Missing implementation: 32 weapon families / 135 items. Thus 38 weapons / 145 items are currently unavailable when locked imports are included. artifacts/base-catalog-coverage.json lists missing IDs and item source paths.
+
+This supersedes the previous 201/127 item claim: the folder glob included burning-effect data and a second hourglass resource under one folder, while missing registered files with nonstandard names. Registered item identities are the authoritative denominator for this local reference, not a claim about a newer release.

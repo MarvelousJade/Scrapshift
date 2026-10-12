@@ -48,25 +48,23 @@ namespace Scrapshift
         {
             if(Rules.Banked>0||waveSweeping)
             {
-                RoundedBox(new Rect(28,153,29,28),new Color(.58f,.48f,.29f),10);
-                Box(new Rect(35,148,16,5),paper);
-                OutlinedText(67,144,170,42,Rules.Banked.ToString(),body);
+                RoundedBox(new Rect(28,201,29,28),new Color(.58f,.48f,.29f),10);
+                Box(new Rect(35,196,16,5),paper);
+                OutlinedText(67,192,170,42,Rules.Banked.ToString(),body);
             }
-            DrawStatIcon("harvesting",new Rect(28,193,28,28));
-            OutlinedText(67,189,170,38,Rules.Stat("harvesting").ToString("0"),body);
+            DrawStatIcon("harvesting",new Rect(23,147,40,40));
+            OutlinedText(67,148,170,38,Rules.Stat("harvesting").ToString("0"),body);
             if(waveSweeping&&waveSweepAge>1.1f&&Rules.Stat("harvesting")!=0)
-                OutlinedText(28,232,280,38,"Harvesting "+Rules.Stat("harvesting").ToString("+0;-0"),body);
+                OutlinedText(28,245,280,38,"Harvesting "+Rules.Stat("harvesting").ToString("+0;-0"),body);
         }
         void DrawPendingRewards()
         {
             float right=FullCanvas.xMax-30;
-            for(int i=0;i<Mathf.Min(8,Rules.PendingLevels);i++)
+            if(Rules.PendingLevels>0)
             {
-                float x=right-58*(i+1);RoundedBox(new Rect(x,28,49,49),new Color(.12f,.16f,.09f,.9f),7);
+                float x=right-58;RoundedBox(new Rect(x,28,49,49),new Color(.12f,.16f,.09f,.9f),7);
                 Text(x+3,25,44,49,"\u2191",new GUIStyle(center){fontSize=40,normal={textColor=new Color(.4f,1,.2f)}});
-                Text(x+25,55,27,25,(Rules.Level-Rules.PendingLevels+i+1).ToString(),tiny);
             }
-            if(Rules.PendingLevels>8)Text(right-75,84,80,30,"x"+Rules.PendingLevels,body);
             for(int i=0;i<Mathf.Min(8,Rules.PendingCrates);i++)
             {
                 float x=right-58*(i+1);RoundedBox(new Rect(x,117,44,40),new Color(.48f,.29f,.12f),3);

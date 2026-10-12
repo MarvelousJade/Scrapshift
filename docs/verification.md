@@ -344,3 +344,9 @@ The first validation exposed migration/appearance assumptions and an incorrect f
 ## October 12 - money-icon arrival correction
 
 Builds/MoneyRefresh/Scrapshift.exe built with zero errors/warnings; 180/180 tests passed. All 29 runtime inspection captures passed, including completion with 12 stored materials and correct crate/level order. Arrival screenshot inspected: green +12 beside the money counter, clear of the XP bar. Fixture advances 50 ms steps to exercise flight instead of teleporting through cleanup. 868 source/validation files match. Package CRC and all 155 entries match; SHA-256 11445a19bad1449bb35d33832a10f81d2470e53e32f7ec413cf0d1c2fb1b7334. No script exceptions in runtime log. Economy unchanged; correction targets presentation.
+
+## October 12 - HUD and catalog audit
+
+HUD: harvesting moved below money and enlarged to 40x40; one unnumbered pending-upgrade icon. Base catalog audit now uses registered resource identities: 62 weapon families and 209 items. Earlier 201/127 item counts are superseded by 209 total / 135 not imported. Full list: artifacts/base-catalog-coverage.json.
+
+HudRefresh validation: 180/180 tests passed; build has zero errors/warnings. All 29 runtime captures passed; enlarged harvesting icon below money and single unnumbered upgrade arrow visually verified. All 868 validation-copy files match. Package CRC and all 155 entries match; see artifacts/package.json.

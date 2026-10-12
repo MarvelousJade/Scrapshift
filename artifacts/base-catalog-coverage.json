@@ -1,0 +1,1026 @@
+{
+  "reference": "Registered base weapons and unique item my_id values in supplied item_service.tscn, before DLC injection; weapon families, not tiers",
+  "baseWeaponFamilies": 62,
+  "importedWeaponFamilies": 30,
+  "availableWeaponFamilies": 24,
+  "missingWeaponFamilies": [
+    "chain_gun",
+    "circular_saw",
+    "dextroyer",
+    "drill",
+    "excalibur",
+    "fireball",
+    "flamethrower",
+    "flaming_knuckles",
+    "gatling_laser",
+    "ghost_axe",
+    "ghost_scepter",
+    "hammer",
+    "jousting_lance",
+    "medical_gun",
+    "minigun",
+    "nuclear_launcher",
+    "obliterator",
+    "particle_accelerator",
+    "plank",
+    "plasma_sledgehammer",
+    "potato_thrower",
+    "power_fist",
+    "pruner",
+    "rock",
+    "rocket_launcher",
+    "screwdriver",
+    "scythe",
+    "sniper_gun",
+    "sword",
+    "thunder_sword",
+    "torch",
+    "vorpal_sword"
+  ],
+  "lockedWeaponFamilies": [
+    "chopper",
+    "claw",
+    "fighting_stick",
+    "hatchet",
+    "rail_gun",
+    "spiky_shield"
+  ],
+  "baseItems": 209,
+  "importedItems": 74,
+  "availableItems": 64,
+  "missingItems": [
+    "acid",
+    "adrenaline",
+    "alien_baby",
+    "alien_eyes",
+    "alien_tongue",
+    "alien_worm",
+    "anvil",
+    "baby_elephant",
+    "baby_gecko",
+    "baby_with_a_beard",
+    "bag",
+    "bait",
+    "ball_and_chain",
+    "bandana",
+    "banner",
+    "barricade",
+    "bean_teacher",
+    "big_arms",
+    "black_belt",
+    "blazemander",
+    "blood_donation",
+    "bloody_hand",
+    "bonk_dog",
+    "bot_o_mine",
+    "boxing_glove",
+    "broken_hourglass",
+    "campfire",
+    "candle",
+    "candy_bag",
+    "catling_gun",
+    "celery_tea",
+    "chameleon",
+    "clockwork_wasp",
+    "cog",
+    "coil",
+    "community_support",
+    "coupon",
+    "crown",
+    "cute_monkey",
+    "cyberball",
+    "dangerous_bunny",
+    "decomposing_flesh",
+    "diploma",
+    "doc_moth",
+    "dynamite",
+    "estys_couch",
+    "evil_hat",
+    "explosive_shells",
+    "extra_stomach",
+    "eyes_surgery",
+    "fairy",
+    "focus",
+    "fried_rice",
+    "frozen_heart",
+    "fruit_basket",
+    "garden",
+    "gentle_alien",
+    "ghost_outfit",
+    "giant_belt",
+    "gnome",
+    "greek_fire",
+    "grinds_magical_leaf",
+    "handcuffs",
+    "honey",
+    "hourglass",
+    "hunting_trophy",
+    "ice_cube",
+    "improved_tools",
+    "jelly",
+    "jellyshield",
+    "landmines",
+    "lemonade",
+    "little_frog",
+    "lootworm",
+    "lucky_coin",
+    "lumberjack_shirt",
+    "lure",
+    "mammoth",
+    "medikit",
+    "metal_detector",
+    "mouse",
+    "mutation",
+    "nail",
+    "padding",
+    "peacock",
+    "piggy_bank",
+    "pile_of_books",
+    "plastic_explosive",
+    "pocket_factory",
+    "potion",
+    "power_generator",
+    "pumpkin",
+    "ratzilla",
+    "recycling_machine",
+    "retromations_hoodie",
+    "ricochet",
+    "rip_and_tear",
+    "riposte",
+    "robot_arm",
+    "sad_tomato",
+    "scapegoat",
+    "scar",
+    "scared_sausage",
+    "shackles",
+    "sharp_bullet",
+    "sifds_relic",
+    "silver_bullet",
+    "snail",
+    "snake",
+    "snowball",
+    "spicy_sauce",
+    "spider",
+    "statue",
+    "stone_skin",
+    "strange_book",
+    "tardigrade",
+    "tentacle",
+    "torture",
+    "tree",
+    "triangle_of_power",
+    "turret",
+    "turret_flame",
+    "turret_healing",
+    "turret_laser",
+    "turret_rocket",
+    "tyler",
+    "ugly_tooth",
+    "vigilante_ring",
+    "wandering_bot",
+    "weird_food",
+    "weird_ghost",
+    "whetstone",
+    "white_flag",
+    "will_o_the_wisp",
+    "wisdom"
+  ],
+  "itemSources": [
+    {
+      "path": "items/all/acid/acid_data.tres",
+      "id": "item_acid"
+    },
+    {
+      "path": "items/all/alien_baby/alien_baby_data.tres",
+      "id": "item_alien_baby"
+    },
+    {
+      "path": "items/all/alien_eyes/alien_eyes_data.tres",
+      "id": "item_alien_eyes"
+    },
+    {
+      "path": "items/all/alien_magic/alien_magic_data.tres",
+      "id": "item_alien_magic"
+    },
+    {
+      "path": "items/all/alien_tongue/alien_tongue_data.tres",
+      "id": "item_alien_tongue"
+    },
+    {
+      "path": "items/all/alien_worm/alien_worm_data.tres",
+      "id": "item_alien_worm"
+    },
+    {
+      "path": "items/all/alloy/alloy_data.tres",
+      "id": "item_alloy"
+    },
+    {
+      "path": "items/all/baby_elephant/baby_elephant_data.tres",
+      "id": "item_baby_elephant"
+    },
+    {
+      "path": "items/all/baby_gecko/baby_gecko_data.tres",
+      "id": "item_baby_gecko"
+    },
+    {
+      "path": "items/all/baby_with_a_beard/baby_with_a_beard_data.tres",
+      "id": "item_baby_with_a_beard"
+    },
+    {
+      "path": "items/all/bag/bag_data.tres",
+      "id": "item_bag"
+    },
+    {
+      "path": "items/all/bandana/bandana_data.tres",
+      "id": "item_bandana"
+    },
+    {
+      "path": "items/all/banner/banner_data.tres",
+      "id": "item_banner"
+    },
+    {
+      "path": "items/all/barricade/barricade_data.tres",
+      "id": "item_barricade"
+    },
+    {
+      "path": "items/all/bat/bat_data.tres",
+      "id": "item_bat"
+    },
+    {
+      "path": "items/all/beanie/beanie_data.tres",
+      "id": "item_beanie"
+    },
+    {
+      "path": "items/all/bean_teacher/bean_teacher_data.tres",
+      "id": "item_bean_teacher"
+    },
+    {
+      "path": "items/all/big_arms/big_arms_data.tres",
+      "id": "item_big_arms"
+    },
+    {
+      "path": "items/all/black_belt/black_belt_data.tres",
+      "id": "item_black_belt"
+    },
+    {
+      "path": "items/all/blindfold/blindfold_data.tres",
+      "id": "item_blindfold"
+    },
+    {
+      "path": "items/all/blood_donation/blood_donation_data.tres",
+      "id": "item_blood_donation"
+    },
+    {
+      "path": "items/all/blood_leech/blood_leech_data.tres",
+      "id": "item_blood_leech"
+    },
+    {
+      "path": "items/all/boiling_water/boiling_water_data.tres",
+      "id": "item_boiling_water"
+    },
+    {
+      "path": "items/all/book/book_data.tres",
+      "id": "item_book"
+    },
+    {
+      "path": "items/all/bowler_hat/bowler_hat_data.tres",
+      "id": "item_bowler_hat"
+    },
+    {
+      "path": "items/all/boxing_glove/boxing_glove_data.tres",
+      "id": "item_boxing_glove"
+    },
+    {
+      "path": "items/all/broken_mouth/broken_mouth_data.tres",
+      "id": "item_broken_mouth"
+    },
+    {
+      "path": "items/all/butterfly/butterfly_data.tres",
+      "id": "item_butterfly"
+    },
+    {
+      "path": "items/all/cake/cake_data.tres",
+      "id": "item_cake"
+    },
+    {
+      "path": "items/all/campfire/campfire_data.tres",
+      "id": "item_campfire"
+    },
+    {
+      "path": "items/all/candle/candle_data.tres",
+      "id": "item_candle"
+    },
+    {
+      "path": "items/all/cape/cape_data.tres",
+      "id": "item_cape"
+    },
+    {
+      "path": "items/all/chameleon/chameleon_data.tres",
+      "id": "item_chameleon"
+    },
+    {
+      "path": "items/all/charcoal/charcoal_data.tres",
+      "id": "item_charcoal"
+    },
+    {
+      "path": "items/all/claw_tree/claw_tree_data.tres",
+      "id": "item_claw_tree"
+    },
+    {
+      "path": "items/all/clover/clover_data.tres",
+      "id": "item_clover"
+    },
+    {
+      "path": "items/all/coffee/coffee_data.tres",
+      "id": "item_coffee"
+    },
+    {
+      "path": "items/all/cog/cog_data.tres",
+      "id": "item_cog"
+    },
+    {
+      "path": "items/all/compass/compass_data.tres",
+      "id": "item_compass"
+    },
+    {
+      "path": "items/all/coupon/coupon_data.tres",
+      "id": "item_coupon"
+    },
+    {
+      "path": "items/all/crown/crown_data.tres",
+      "id": "item_crown"
+    },
+    {
+      "path": "items/all/cute_monkey/cute_monkey_data.tres",
+      "id": "item_cute_monkey"
+    },
+    {
+      "path": "items/all/cyberball/cyberball_data.tres",
+      "id": "item_cyberball"
+    },
+    {
+      "path": "items/all/cyclops_worm/cyclops_worm_data.tres",
+      "id": "item_cyclops_worm"
+    },
+    {
+      "path": "items/all/defective_steroids/defective_steroids_data.tres",
+      "id": "item_defective_steroids"
+    },
+    {
+      "path": "items/all/diploma/diploma_data.tres",
+      "id": "item_diploma"
+    },
+    {
+      "path": "items/all/duct_tape/duct_tape_data.tres",
+      "id": "item_duct_tape"
+    },
+    {
+      "path": "items/all/dynamite/dynamite_data.tres",
+      "id": "item_dynamite"
+    },
+    {
+      "path": "items/all/energy_bracelet/energy_bracelet_data.tres",
+      "id": "item_energy_bracelet"
+    },
+    {
+      "path": "items/all/exoskeleton/exoskeleton_data.tres",
+      "id": "item_exoskeleton"
+    },
+    {
+      "path": "items/all/eyes_surgery/eye_surgery_data.tres",
+      "id": "item_eyes_surgery"
+    },
+    {
+      "path": "items/all/fertilizer/fertilizer_data.tres",
+      "id": "item_fertilizer"
+    },
+    {
+      "path": "items/all/fin/fin_data.tres",
+      "id": "item_fin"
+    },
+    {
+      "path": "items/all/focus/focus_data.tres",
+      "id": "item_focus"
+    },
+    {
+      "path": "items/all/fuel_tank/fuel_tank_data.tres",
+      "id": "item_fuel_tank"
+    },
+    {
+      "path": "items/all/gambling_token/gambling_token_data.tres",
+      "id": "item_gambling_token"
+    },
+    {
+      "path": "items/all/gentle_alien/gentle_alien_data.tres",
+      "id": "item_gentle_alien"
+    },
+    {
+      "path": "items/all/glasses/glasses_data.tres",
+      "id": "item_glasses"
+    },
+    {
+      "path": "items/all/glass_cannon/glass_cannon_data.tres",
+      "id": "item_glass_cannon"
+    },
+    {
+      "path": "items/all/gnome/gnome_data.tres",
+      "id": "item_gnome"
+    },
+    {
+      "path": "items/all/goat_skull/goat_skull_data.tres",
+      "id": "item_goat_skull"
+    },
+    {
+      "path": "items/all/gummy_berserker/gummy_berserker_data.tres",
+      "id": "item_gummy_berserker"
+    },
+    {
+      "path": "items/all/handcuffs/handcuffs_data.tres",
+      "id": "item_handcuffs"
+    },
+    {
+      "path": "items/all/head_injury/head_injury_data.tres",
+      "id": "item_head_injury"
+    },
+    {
+      "path": "items/all/heavy_bullets/heavy_bullets_data.tres",
+      "id": "item_heavy_bullets"
+    },
+    {
+      "path": "items/all/hedgehog/hedgehog_data.tres",
+      "id": "item_hedgehog"
+    },
+    {
+      "path": "items/all/helmet/helmet_data.tres",
+      "id": "item_helmet"
+    },
+    {
+      "path": "items/all/hunting_trophy/hunting_trophy_data.tres",
+      "id": "item_hunting_trophy"
+    },
+    {
+      "path": "items/all/injection/injection_data.tres",
+      "id": "item_injection"
+    },
+    {
+      "path": "items/all/insanity/insanity_data.tres",
+      "id": "item_insanity"
+    },
+    {
+      "path": "items/all/jetpack/jetpack_data.tres",
+      "id": "item_jetpack"
+    },
+    {
+      "path": "items/all/landmines/landmines_data.tres",
+      "id": "item_landmines"
+    },
+    {
+      "path": "items/all/leather_vest/leather_vest_data.tres",
+      "id": "item_leather_vest"
+    },
+    {
+      "path": "items/all/lemonade/lemonade_data.tres",
+      "id": "item_lemonade"
+    },
+    {
+      "path": "items/all/lens/lens_data.tres",
+      "id": "item_lens"
+    },
+    {
+      "path": "items/all/little_frog/little_frog_data.tres",
+      "id": "item_little_frog"
+    },
+    {
+      "path": "items/all/little_muscley_dude/little_muscley_dude_data.tres",
+      "id": "item_little_muscley_dude"
+    },
+    {
+      "path": "items/all/lost_duck/lost_duck_data.tres",
+      "id": "item_lost_duck"
+    },
+    {
+      "path": "items/all/lucky_charm/lucky_charm_data.tres",
+      "id": "item_lucky_charm"
+    },
+    {
+      "path": "items/all/lumberjack_shirt/lumberjack_shirt_data.tres",
+      "id": "item_lumberjack_shirt"
+    },
+    {
+      "path": "items/all/mammoth/mammoth_data.tres",
+      "id": "item_mammoth"
+    },
+    {
+      "path": "items/all/mastery/mastery_data.tres",
+      "id": "item_mastery"
+    },
+    {
+      "path": "items/all/medal/medal_data.tres",
+      "id": "item_medal"
+    },
+    {
+      "path": "items/all/medikit/medikit_data.tres",
+      "id": "item_medikit"
+    },
+    {
+      "path": "items/all/metal_detector/metal_detector_data.tres",
+      "id": "item_metal_detector"
+    },
+    {
+      "path": "items/all/metal_plate/metal_plate_data.tres",
+      "id": "item_metal_plate"
+    },
+    {
+      "path": "items/all/missile/missile_data.tres",
+      "id": "item_missile"
+    },
+    {
+      "path": "items/all/mouse/mouse_data.tres",
+      "id": "item_mouse"
+    },
+    {
+      "path": "items/all/mushroom/mushroom_data.tres",
+      "id": "item_mushroom"
+    },
+    {
+      "path": "items/all/mutation/mutation_data.tres",
+      "id": "item_mutation"
+    },
+    {
+      "path": "items/all/night_goggles/night_goggles_data.tres",
+      "id": "item_night_goggles"
+    },
+    {
+      "path": "items/all/octopus/octopus_data.tres",
+      "id": "item_octopus"
+    },
+    {
+      "path": "items/all/padding/padding_data.tres",
+      "id": "item_padding"
+    },
+    {
+      "path": "items/all/panda/panda_data.tres",
+      "id": "item_panda"
+    },
+    {
+      "path": "items/all/peaceful_bee/peaceful_bee_data.tres",
+      "id": "item_peaceful_bee"
+    },
+    {
+      "path": "items/all/pencil/pencil_data.tres",
+      "id": "item_pencil"
+    },
+    {
+      "path": "items/all/piggy_bank/piggy_bank_data.tres",
+      "id": "item_piggy_bank"
+    },
+    {
+      "path": "items/all/plant/plant_data.tres",
+      "id": "item_plant"
+    },
+    {
+      "path": "items/all/plastic_explosive/plastic_explosive_data.tres",
+      "id": "item_plastic_explosive"
+    },
+    {
+      "path": "items/all/poisonous_tonic/poisonous_tonic_data.tres",
+      "id": "item_poisonous_tonic"
+    },
+    {
+      "path": "items/all/potato/potato_data.tres",
+      "id": "item_potato"
+    },
+    {
+      "path": "items/all/power_generator/power_generator_data.tres",
+      "id": "item_power_generator"
+    },
+    {
+      "path": "items/all/propeller_hat/propeller_hat_data.tres",
+      "id": "item_propeller_hat"
+    },
+    {
+      "path": "items/all/pumpkin/pumpkin_data.tres",
+      "id": "item_pumpkin"
+    },
+    {
+      "path": "items/all/recycling_machine/recycling_machine_data.tres",
+      "id": "item_recycling_machine"
+    },
+    {
+      "path": "items/all/retromations_hoodie/retromations_hoodie_data.tres",
+      "id": "item_retromations_hoodie"
+    },
+    {
+      "path": "items/all/ricochet/ricochet_data.tres",
+      "id": "item_ricochet"
+    },
+    {
+      "path": "items/all/rip_and_tear/rip_and_tear_data.tres",
+      "id": "item_rip_and_tear"
+    },
+    {
+      "path": "items/all/ritual/ritual_data.tres",
+      "id": "item_ritual"
+    },
+    {
+      "path": "items/all/robot_arm/robot_arm_data.tres",
+      "id": "item_robot_arm"
+    },
+    {
+      "path": "items/all/sad_tomato/sad_tomato_data.tres",
+      "id": "item_sad_tomato"
+    },
+    {
+      "path": "items/all/scar/scar_data.tres",
+      "id": "item_scar"
+    },
+    {
+      "path": "items/all/scared_sausage/scared_sausage_data.tres",
+      "id": "item_scared_sausage"
+    },
+    {
+      "path": "items/all/scope/scope_data.tres",
+      "id": "item_scope"
+    },
+    {
+      "path": "items/all/shady_potion/shady_potion_data.tres",
+      "id": "item_shady_potion"
+    },
+    {
+      "path": "items/all/shmoop/shmoop_data.tres",
+      "id": "item_shmoop"
+    },
+    {
+      "path": "items/all/small_magazine/small_magazine_data.tres",
+      "id": "item_small_magazine"
+    },
+    {
+      "path": "items/all/snail/snail_data.tres",
+      "id": "item_snail"
+    },
+    {
+      "path": "items/all/snake/snake_data.tres",
+      "id": "item_snake"
+    },
+    {
+      "path": "items/all/spider/spider_data.tres",
+      "id": "item_spider"
+    },
+    {
+      "path": "items/all/statue/statue_data.tres",
+      "id": "item_statue"
+    },
+    {
+      "path": "items/all/sunglasses/sunglasses_data.tres",
+      "id": "item_sunglasses"
+    },
+    {
+      "path": "items/all/terrified_onion/terrified_onion_data.tres",
+      "id": "item_terrified_onion"
+    },
+    {
+      "path": "items/all/toolbox/toolbox_data.tres",
+      "id": "item_toolbox"
+    },
+    {
+      "path": "items/all/torture/torture_data.tres",
+      "id": "item_torture"
+    },
+    {
+      "path": "items/all/toxic_sludge/toxic_sludge_data.tres",
+      "id": "item_toxic_sludge"
+    },
+    {
+      "path": "items/all/tractor/tractor_data.tres",
+      "id": "item_tractor"
+    },
+    {
+      "path": "items/all/tree/tree_data.tres",
+      "id": "item_tree"
+    },
+    {
+      "path": "items/all/triangle_of_power/triangle_of_power_data.tres",
+      "id": "item_triangle_of_power"
+    },
+    {
+      "path": "items/all/turret/turret_data.tres",
+      "id": "item_turret"
+    },
+    {
+      "path": "items/all/turret_flame/turret_flame_data.tres",
+      "id": "item_turret_flame"
+    },
+    {
+      "path": "items/all/turret_healing/turret_healing_data.tres",
+      "id": "item_turret_healing"
+    },
+    {
+      "path": "items/all/turret_laser/turret_laser_data.tres",
+      "id": "item_turret_laser"
+    },
+    {
+      "path": "items/all/turret_rocket/turret_rocket_data.tres",
+      "id": "item_turret_rocket"
+    },
+    {
+      "path": "items/all/ugly_tooth/ugly_tooth_data.tres",
+      "id": "item_ugly_tooth"
+    },
+    {
+      "path": "items/all/vigilante_ring/vigilante_ring_data.tres",
+      "id": "item_vigilante_ring"
+    },
+    {
+      "path": "items/all/warrior_helmet/warrior_helmet_data.tres",
+      "id": "item_warrior_helmet"
+    },
+    {
+      "path": "items/all/weird_food/weird_food_data.tres",
+      "id": "item_weird_food"
+    },
+    {
+      "path": "items/all/weird_ghost/weird_ghost_data.tres",
+      "id": "item_weird_ghost"
+    },
+    {
+      "path": "items/all/wheat/wheat_data.tres",
+      "id": "item_wheat"
+    },
+    {
+      "path": "items/all/wheelbarrow/wheelbarrow_data.tres",
+      "id": "item_wheelbarrow"
+    },
+    {
+      "path": "items/all/whetstone/whetstone_data.tres",
+      "id": "item_whetstone"
+    },
+    {
+      "path": "items/all/white_flag/white_flag_data.tres",
+      "id": "item_white_flag"
+    },
+    {
+      "path": "items/all/wings/wings_data.tres",
+      "id": "item_wings"
+    },
+    {
+      "path": "items/all/wisdom/wisdom_data.tres",
+      "id": "item_wisdom"
+    },
+    {
+      "path": "items/all/wolf_helmet/wolf_helmet_data.tres",
+      "id": "item_wolf_helmet"
+    },
+    {
+      "path": "items/all/tyler/tyler_data.tres",
+      "id": "item_tyler"
+    },
+    {
+      "path": "items/all/wandering_bot/wandering_bot_data.tres",
+      "id": "item_wandering_bot"
+    },
+    {
+      "path": "items/all/dangerous_bunny/dangerous_bunny_data.tres",
+      "id": "item_dangerous_bunny"
+    },
+    {
+      "path": "items/all/sifds_relic/sifds_relic_data.tres",
+      "id": "item_sifds_relic"
+    },
+    {
+      "path": "items/all/estys_couch/estys_couch_data.tres",
+      "id": "item_estys_couch"
+    },
+    {
+      "path": "items/all/explosive_shells/explosive_shells_data.tres",
+      "id": "item_explosive_shells"
+    },
+    {
+      "path": "items/all/tardigrade/tardigrade_data.tres",
+      "id": "item_tardigrade"
+    },
+    {
+      "path": "items/all/strange_book/strange_book_data.tres",
+      "id": "item_strange_book"
+    },
+    {
+      "path": "items/all/grinds_magical_leaf/grinds_magical_leaf_data.tres",
+      "id": "item_grinds_magical_leaf"
+    },
+    {
+      "path": "items/all/potion/potion_data.tres",
+      "id": "item_potion"
+    },
+    {
+      "path": "items/all/anvil/anvil_data.tres",
+      "id": "item_anvil"
+    },
+    {
+      "path": "items/all/community_support/community_support_data.tres",
+      "id": "item_community_support"
+    },
+    {
+      "path": "items/all/adrenaline/adrenaline_data.tres",
+      "id": "item_adrenaline"
+    },
+    {
+      "path": "items/all/bait/bait_data.tres",
+      "id": "item_bait"
+    },
+    {
+      "path": "items/all/bloody_hand/bloody_hand_data.tres",
+      "id": "item_bloody_hand"
+    },
+    {
+      "path": "items/all/extra_stomach/extra_stomach_data.tres",
+      "id": "item_extra_stomach"
+    },
+    {
+      "path": "items/all/garden/garden_data.tres",
+      "id": "item_garden"
+    },
+    {
+      "path": "items/all/giant_belt/giant_belt_data.tres",
+      "id": "item_giant_belt"
+    },
+    {
+      "path": "items/all/improved_tools/improved_tools_data.tres",
+      "id": "item_improved_tools"
+    },
+    {
+      "path": "items/all/peacock/peacock_data.tres",
+      "id": "item_peacock"
+    },
+    {
+      "path": "items/all/riposte/riposte_data.tres",
+      "id": "item_riposte"
+    },
+    {
+      "path": "items/all/silver_bullet/silver_bullet_data.tres",
+      "id": "item_silver_bullet"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_data.tres",
+      "id": "item_spicy_sauce"
+    },
+    {
+      "path": "items/all/tentacle/tentacle_data.tres",
+      "id": "item_tentacle"
+    },
+    {
+      "path": "items/all/lucky_coin/lucky_coin_data.tres",
+      "id": "item_lucky_coin"
+    },
+    {
+      "path": "items/all/fairy/fairy_data.tres",
+      "id": "item_fairy"
+    },
+    {
+      "path": "items/all/lure/lure_data.tres",
+      "id": "item_lure"
+    },
+    {
+      "path": "items/all/pocket_factory/pocket_factory_data.tres",
+      "id": "item_pocket_factory"
+    },
+    {
+      "path": "items/all/shackles/shackles_data.tres",
+      "id": "item_shackles"
+    },
+    {
+      "path": "items/all/sharp_bullet/sharp_bullet_data.tres",
+      "id": "item_sharp_bullet"
+    },
+    {
+      "path": "items/all/stone_skin/stone_skin_data.tres",
+      "id": "item_stone_skin"
+    },
+    {
+      "path": "items/all/celery_tea/celery_tea_data.tres",
+      "id": "item_celery_tea"
+    },
+    {
+      "path": "items/all/coil/coil_data.tres",
+      "id": "item_coil"
+    },
+    {
+      "path": "items/all/fried_rice/fried_rice_data.tres",
+      "id": "item_fried_rice"
+    },
+    {
+      "path": "items/all/jelly/jelly_data.tres",
+      "id": "item_jelly"
+    },
+    {
+      "path": "items/all/frozen_heart/frozen_heart_data.tres",
+      "id": "item_frozen_heart"
+    },
+    {
+      "path": "items/all/decomposing_flesh/decomposing_flesh_data.tres",
+      "id": "item_decomposing_flesh"
+    },
+    {
+      "path": "items/all/greek_fire/greek_fire_data.tres",
+      "id": "item_greek_fire"
+    },
+    {
+      "path": "items/all/ball_and_chain/ball_and_chain_data.tres",
+      "id": "item_ball_and_chain"
+    },
+    {
+      "path": "items/all/honey/honey_data.tres",
+      "id": "item_honey"
+    },
+    {
+      "path": "items/all/nail/nail_data.tres",
+      "id": "item_nail"
+    },
+    {
+      "path": "items/all/ice_cube/ice_cube_data.tres",
+      "id": "item_ice_cube"
+    },
+    {
+      "path": "items/all/pile_of_books/pile_of_books_data.tres",
+      "id": "item_pile_of_books"
+    },
+    {
+      "path": "items/all/snowball/snowball_data.tres",
+      "id": "item_snowball"
+    },
+    {
+      "path": "items/all/clockwork_wasp/clockwork_wasp_data.tres",
+      "id": "item_clockwork_wasp"
+    },
+    {
+      "path": "items/all/reinforced_steel/reinforced_steel_data.tres",
+      "id": "item_reinforced_steel"
+    },
+    {
+      "path": "items/all/evil_hat/evil_hat.tres",
+      "id": "item_evil_hat"
+    },
+    {
+      "path": "items/all/fresh_meat/fresh_meat_data.tres",
+      "id": "item_fresh_meat"
+    },
+    {
+      "path": "items/all/ghost_outfit/ghost_outfit_data.tres",
+      "id": "item_ghost_outfit"
+    },
+    {
+      "path": "items/all/fruit_basket/fruit_basket_data.tres",
+      "id": "item_fruit_basket"
+    },
+    {
+      "path": "items/all/hourglass/hourglass_data.tres",
+      "id": "item_hourglass"
+    },
+    {
+      "path": "items/all/hourglass/broken_hourglass_data.tres",
+      "id": "item_broken_hourglass"
+    },
+    {
+      "path": "items/all/candy_bag/candy_bag_data.tres",
+      "id": "item_candy_bag"
+    },
+    {
+      "path": "items/all/will_o_the_wisp/will_o_the_wisp_data.tres",
+      "id": "item_will_o_the_wisp"
+    },
+    {
+      "path": "items/all/lootworm/lootworm.tres",
+      "id": "item_lootworm"
+    },
+    {
+      "path": "items/all/doc_moth/doc_moth.tres",
+      "id": "item_doc_moth"
+    },
+    {
+      "path": "items/all/bonk_dog/bonk_dog.tres",
+      "id": "item_bonk_dog"
+    },
+    {
+      "path": "items/all/scapegoat/scapegoat.tres",
+      "id": "item_scapegoat"
+    },
+    {
+      "path": "items/all/catling_gun/catling_gun.tres",
+      "id": "item_catling_gun"
+    },
+    {
+      "path": "items/all/bot_o_mine/bot_o_mine.tres",
+      "id": "item_bot_o_mine"
+    },
+    {
+      "path": "items/all/jellyshield/jellyshield.tres",
+      "id": "item_jellyshield"
+    },
+    {
+      "path": "items/all/blazemander/blazemander.tres",
+      "id": "item_blazemander"
+    },
+    {
+      "path": "items/all/ratzilla/ratzilla.tres",
+      "id": "item_ratzilla"
+    }
+  ]
+}
