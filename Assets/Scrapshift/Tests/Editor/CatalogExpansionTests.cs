@@ -28,7 +28,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void UnfinishedBehaviorsCannotAppearInShop()
         {
-            var r=Run();Assert.IsFalse(r.CanEquip(catalog.Weapon("pruner",1)));Assert.IsTrue(r.CanEquip(catalog.Weapon("rocket_launcher",2)));
+            var r=Run();Assert.IsTrue(r.CanEquip(catalog.Weapon("pruner",1)));Assert.IsTrue(r.CanEquip(catalog.Weapon("rocket_launcher",2)));
             r.Collect(10000);r.Tick(r.Remaining);while(r.Phase==RunPhase.Upgrade)r.Choose(0);
             for(int n=0;n<100;n++){Assert.IsTrue(r.Shop.Where(o=>o?.weapon!=null).All(o=>o.weapon.implemented));r.Reroll();}
         }

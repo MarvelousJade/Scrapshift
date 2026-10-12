@@ -28,6 +28,7 @@ namespace Scrapshift
     {
         public string key,stat,sourceScript,customKey;
         public float interval;
+        public float spawnInterval=-1,animationSpeed=1;
         public bool resetOnHit;
         [NonSerialized] ConditionalEffect conditional;
         public ConditionalEffect Conditional=>conditional??(conditional=new ConditionalEffect{key=key,value=value,customKey=customKey,interval=interval,resetOnHit=resetOnHit});
@@ -66,7 +67,7 @@ namespace Scrapshift
         public float WeaponAnimationDuration(Equipment w)=>WeaponMotion.ReferenceDuration(w,WeaponAttackSpeed(w),WeaponRange(w));
         public float WeaponDamage(Equipment w)
         {
-            float damage=w.damage;
+            float damage=w.damage+NoHitWeaponBonus(w);
             if(w.scaling!=null)foreach(var s in w.scaling)damage+=(s.key=="max_hp"?MaxHealth:s.key=="levels"?Level:Stat(s.key))*s.value;
             else damage+=Stat(w.melee?"melee_damage":"ranged_damage");
             var stack=w.Trait("effect_weapon_stack");

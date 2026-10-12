@@ -55,7 +55,14 @@ def weapon(path):
   if 'burning_data' in e:
    b=read(e['burning_data']);trait.update(burnDamage=b.get('damage',1),burnTicks=b.get('duration',3),burnInterval=b.get('interval',1),burnChance=b.get('chance',1),burnScaling=b.get('scaling_stats',[]));trait.pop('burnScaling')
    trait['burnScale'] = sum(v for k,v in b.get('scaling_stats',[]) if k=='stat_elemental_damage')
-  if 'scene' in e and 'turret' in e['scene']:trait['key']='turret';trait['projectile']=stats_data(read(e['stats']))
+  if 'scene' in e and 'structures/' in e['scene']:
+   trait['key']='garden' if '/garden/' in e['scene'] else 'landmine' if '/landmine/' in e['scene'] else 'turret'
+   trait['projectile']=stats_data(read(e['stats']))
+   trait['spawnInterval']=e.get('spawn_cooldown',-1)
+   trait['animationSpeed']=e.get('shooting_animation_speed',1)
+   if trait['key']=='landmine':trait['radius']=read(e['effects'][0]).get('scale',1)*1.4734
+  if e.get('script')=='effects/weapons/one_shot_on_hit_effect.gd':trait['key']='one_shot_on_hit'
+  if e.get('scaling_stat'):trait['stat']=stat(e['scaling_stat'])
   trait['sourceScript']=Path(e.get('script','')).stem
   trait['interval']=e.get('interval',0)
   trait['customKey']=e.get('custom_key','')
@@ -63,7 +70,7 @@ def weapon(path):
   traits.append(trait)
  result['traits']=traits
  result['sourceAvailable']=result['available']
- unsupported={'screwdriver','pruner','particle_accelerator','vorpal_sword','thunder_sword','torch'}
+ unsupported=set()
  result['implemented']=name not in unsupported
  result['available']=result['available'] and result['implemented']
  weapons[path]=result

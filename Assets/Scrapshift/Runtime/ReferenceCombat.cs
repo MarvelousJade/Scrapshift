@@ -383,13 +383,16 @@ namespace Scrapshift
                 }
                 else
                 {
+                    if(s.slow>0)foreach(var e in enemies)if(e.marker==null&&!s.slowed.Contains(e)&&SegmentDistance(HurtCenter(e),old,s.pos)<=HurtRadius(e)+1.335f)
+                    {e.contactSlow=SpecialWeaponRules.Slow(e.contactSlow,e.speed,s.slow);s.slowed.Add(e);}
+                    s.hitDelay-=dt;
                     // Resolve in travel order, not enemy-list/spawn order. Piercing loses damage after the nearest hit.
                     while (true)
                     {
                         int nearest = -1; float first = float.PositiveInfinity;
                         for (int j = 0; j < enemies.Count; j++)
                         {
-                            var e = enemies[j]; if (e.marker != null || s.hit.Contains(e)) continue;
+                            var e = enemies[j]; if (s.hitDelay>0 || e.marker != null || s.hit.Contains(e)) continue;
                             float t = CombatGeometry.SweepFraction(HurtCenter(e), HurtRadius(e) + CombatGeometry.BulletRadius, old, s.pos);
                             if (t < first) { first = t; nearest = j; }
                         }
@@ -419,7 +422,10 @@ namespace Scrapshift
             {
                 damage*=weapon?.critMultiplier??2;
             }
-            damage=Mathf.Max(1,bypassArmor?damage:damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
+            damage=Mathf.Max(1,bypassArmor?damage:damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));
+            if(!secondary&&SpecialWeaponRules.Execute(weapon,UnityEngine.Random.value)){damage=Mathf.Max(damage,e.hp);Burst(e.pos,18,mint);}
+            if(!secondary)e.contactSlow=SpecialWeaponRules.Slow(e.contactSlow,e.speed,SpecialWeaponRules.EngineeringSlow(weapon,Rules.Stat("engineering"),e.speed));
+            e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
             Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary);return critical;}Rules.Kill();if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,false);DropConsumable(e.pos,ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value));if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth

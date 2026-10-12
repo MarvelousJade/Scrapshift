@@ -42,7 +42,8 @@ namespace Scrapshift
             get;
             private set;
         }
-        public float MaxHealth=>Math.Max(1,10+Stat("max_hp"));
+        float healthCap=float.PositiveInfinity,speedCap=float.PositiveInfinity;
+        public float MaxHealth=>Math.Max(1,Math.Min(healthCap,10+Stat("max_hp")));
         public int Kills
         {
             get;
@@ -77,7 +78,7 @@ namespace Scrapshift
         public int NextLevel=>(Level+4)*(Level+4);
         public float DamageScale=>Math.Max(0,1+Stat("percent_damage")/100);
         public float FireRate=>Math.Max(.1f,1+Stat("attack_speed")/100);
-        public float MoveSpeed=>4.5f*Math.Max(.2f,1+Stat("speed")/100);
+        public float MoveSpeed=>4.5f*Math.Max(.2f,1+Math.Min(speedCap,Stat("speed"))/100);
         public float PickupRadius=>Mathf.Max(.3f,1.5f*(1+Stat("pickup_range")/100));
         public float CritChance=>Stat("crit_chance")/100;
         public bool OrbitUnlocked=>false;
@@ -115,7 +116,7 @@ namespace Scrapshift
             WeaponSets.Configure(source?.data.sets);
         }
         float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
-        public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1);
+        public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1)+LinkedStat(name);
         public int SetCount(WeaponSet set)=>WeaponSets.Count(Inventory,set);
         public float WeaponRange(Equipment weapon)=>Mathf.Max(.25f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
         void Add(string name,float value)
@@ -128,6 +129,7 @@ namespace Scrapshift
         {
             stats.Clear();xpFraction=0;Character=character;
             ResetConditionalEffects();
+            healthCap=speedCap=float.PositiveInfinity;LivingEnemies=LivingTrees=BurningEnemies=StructureCount=PetCount=0;
             Inventory.Clear();
             Items.Clear();
             crates.Clear();CrateItem=null;regenElapsed=lifeStealCooldown=0;

@@ -1,5 +1,5 @@
 {
-  "supportedItems": 119,
+  "supportedItems": 135,
   "items": [
     {
       "id": "acid",
@@ -457,6 +457,31 @@
       "conditionalEffects": []
     },
     {
+      "id": "blood_donation",
+      "title": "Blood Donation",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "stat_harvesting"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "harvesting"
+      ],
+      "effects": [
+        {
+          "key": "stat_harvesting",
+          "value": 40
+        },
+        {
+          "key": "lose_hp_per_second",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "blood_leech",
       "title": "Blood Leech",
       "available": true,
@@ -485,6 +510,40 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "bloody_hand",
+      "title": "Bloody Hand",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_lifesteal"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "lifesteal"
+      ],
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 10
+        },
+        {
+          "key": "lose_hp_per_second",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_lifesteal",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "boiling_water",
@@ -876,6 +935,63 @@
       "conditionalEffects": []
     },
     {
+      "id": "coil",
+      "title": "Coil",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_percent_damage",
+        "knockback"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "knockback",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "knockback",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
+      "id": "community_support",
+      "title": "Community Support",
+      "available": false,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_attack_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": -2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "living_enemy",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
       "id": "compass",
       "title": "Compass",
       "available": false,
@@ -1129,6 +1245,39 @@
       "conditionalEffects": []
     },
     {
+      "id": "estys_couch",
+      "title": "Estys Couch",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_hp_regeneration",
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 5
+        },
+        {
+          "key": "stat_speed",
+          "value": -20
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_speed",
+          "per": -1,
+          "permanentOnly": true
+        }
+      ]
+    },
+    {
       "id": "exoskeleton",
       "title": "Exoskeleton",
       "available": true,
@@ -1196,6 +1345,39 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "fairy",
+      "title": "Fairy",
+      "available": false,
+      "tier": 3,
+      "value": 85,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "common_item",
+          "per": 1,
+          "permanentOnly": true
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -3,
+          "customKey": "stat_links",
+          "stat": "legendary_item",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "fertilizer",
@@ -1301,6 +1483,31 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "fried_rice",
+      "title": "Fried Rice",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "burning_enemy",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "fuel_tank",
@@ -1520,6 +1727,42 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "handcuffs",
+      "title": "Handcuffs",
+      "available": true,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_melee_damage",
+        "stat_ranged_damage",
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 8
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": 8
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 8
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "hp_cap",
+          "value": 0,
+          "customKey": "stat_cap",
+          "stat": "stat_max_hp"
+        }
+      ]
     },
     {
       "id": "head_injury",
@@ -1953,6 +2196,35 @@
       "conditionalEffects": []
     },
     {
+      "id": "lucky_coin",
+      "title": "Lucky Coin",
+      "available": true,
+      "tier": 4,
+      "value": 105,
+      "tags": [
+        "stat_crit_chance",
+        "stat_luck"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": -2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_crit_chance",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
       "id": "mammoth",
       "title": "Mammoth",
       "available": true,
@@ -2252,6 +2524,34 @@
       "conditionalEffects": []
     },
     {
+      "id": "padding",
+      "title": "Padding",
+      "available": false,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "materials",
+          "per": 80,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
       "id": "panda",
       "title": "Panda",
       "available": false,
@@ -2465,6 +2765,37 @@
       "conditionalEffects": []
     },
     {
+      "id": "power_generator",
+      "title": "Power Generator",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_speed",
+        "stat_percent_damage"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "speed"
+      ],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_speed",
+          "per": 1,
+          "permanentOnly": true
+        }
+      ]
+    },
+    {
       "id": "propeller_hat",
       "title": "Propeller Hat",
       "available": true,
@@ -2556,6 +2887,34 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "retromations_hoodie",
+      "title": "Retromations Hoodie",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_dodge"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": -80
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_dodge",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "ricochet",
@@ -2697,6 +3056,42 @@
       "conditionalEffects": []
     },
     {
+      "id": "shackles",
+      "title": "Shackles",
+      "available": true,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_range",
+        "stat_hp_regeneration",
+        "stat_engineering"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 8
+        },
+        {
+          "key": "stat_engineering",
+          "value": 8
+        },
+        {
+          "key": "stat_range",
+          "value": 80
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "speed_cap",
+          "value": 0,
+          "customKey": "stat_cap",
+          "stat": "stat_speed"
+        }
+      ]
+    },
+    {
       "id": "shady_potion",
       "title": "Shady Potion",
       "available": true,
@@ -2834,6 +3229,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "snake",
+      "title": "Snake",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "burning_spread",
+          "value": 1
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "spider",
       "title": "Spider",
       "available": false,
@@ -2894,6 +3312,72 @@
           "customKey": "temp_stats_while_not_moving",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "stone_skin",
+      "title": "Stone Skin",
+      "available": false,
+      "tier": 3,
+      "value": 85,
+      "tags": [
+        "stat_armor",
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "armor"
+      ],
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": -6
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_armor",
+          "per": 1,
+          "permanentOnly": true
+        }
+      ]
+    },
+    {
+      "id": "strange_book",
+      "title": "Strange Book",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_engineering",
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": -1
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": -1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_engineering",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_elemental_damage",
+          "per": 1,
+          "permanentOnly": true
         }
       ]
     },
@@ -3727,6 +4211,18 @@
       "sha256": "07c75729ef642cbb6e892fa8c97e3a5e52bafc2ca39a30b17935fd6755e5f1d5"
     },
     {
+      "path": "items/all/blood_donation/blood_donation_data.tres",
+      "sha256": "724e9a8b10e4cdb75bdf5369ea897365d7926d5541be30805b7cee889a2f96b2"
+    },
+    {
+      "path": "items/all/blood_donation/blood_donation_effect_1.tres",
+      "sha256": "43ed23455c22cf43ffdd49f7e76f98a345e9ef82e934be78c222cd0c58400265"
+    },
+    {
+      "path": "items/all/blood_donation/blood_donation_effect_2.tres",
+      "sha256": "a2959334b72510be90dd16144b614080c0c3ef23c7f9f34a8b8cbd45a51e95c3"
+    },
+    {
       "path": "items/all/blood_leech/blood_leech_data.tres",
       "sha256": "04cf34d183304db468ced07f40e74396684e40bdedd8719e14e7e1e504b3a339"
     },
@@ -3741,6 +4237,22 @@
     {
       "path": "items/all/blood_leech/blood_leech_effect_3.tres",
       "sha256": "61ebbfe8c543a22656c0eabbf84ce20768329fae614f740c92d03ccf92ef8e85"
+    },
+    {
+      "path": "items/all/bloody_hand/bloody_hand_data.tres",
+      "sha256": "0c1565ceb7015a200f26f67d504d696d70e583b8dd782b9e3f07aea110df3d23"
+    },
+    {
+      "path": "items/all/bloody_hand/bloody_hand_effect_1.tres",
+      "sha256": "31003ebb51c65430517b61bc79cb80d1c6451263204a0ab30d00815a38064751"
+    },
+    {
+      "path": "items/all/bloody_hand/bloody_hand_effect_2.tres",
+      "sha256": "fc5c78ebf3eff625b9d7b24f92ab2851f49895c56a086f13b817a39052af9950"
+    },
+    {
+      "path": "items/all/bloody_hand/bloody_hand_effect_3.tres",
+      "sha256": "a2959334b72510be90dd16144b614080c0c3ef23c7f9f34a8b8cbd45a51e95c3"
     },
     {
       "path": "items/all/boiling_water/boiling_water_data.tres",
@@ -3955,6 +4467,30 @@
       "sha256": "a7ec9e7237ff7e5eb873454f1b187e399c61a188a922dda3d47c22bd05cc5dd5"
     },
     {
+      "path": "items/all/coil/coil_data.tres",
+      "sha256": "886dbaba2064ef041f618c634b676334d4b5f1349d183cf865bf0989c78eb036"
+    },
+    {
+      "path": "items/all/coil/effects/coil_effect_0.tres",
+      "sha256": "5aeb4b14ac8c69fdf721f007f880a2eb213da32e3a4519729842f1d31f12d56b"
+    },
+    {
+      "path": "items/all/coil/effects/coil_effect_1.tres",
+      "sha256": "2617844156046ee7556ea4ef6c13711d9b00dee8db8922381aebd378da32b848"
+    },
+    {
+      "path": "items/all/community_support/community_support_data.tres",
+      "sha256": "cfb826cfc02c71814f159ad2c4232c31bcda6a577e4d4e401532049de5173950"
+    },
+    {
+      "path": "items/all/community_support/community_support_effect_1.tres",
+      "sha256": "350ac40da6c447d48d7012f6589ef039107b8f3d12fc68c0b254867976687bb7"
+    },
+    {
+      "path": "items/all/community_support/community_support_effect_2.tres",
+      "sha256": "faf35bac4481f233e7cd2f46a1027b683c29a8dcb10456ec20a4e04a5c092649"
+    },
+    {
       "path": "items/all/compass/compass_data.tres",
       "sha256": "9c25122e45e59b4611eab63dca9479e48256cf07673f4081a397a24bdb699093"
     },
@@ -4083,6 +4619,22 @@
       "sha256": "fd0b157c967872acd1941616c38084ad08616a530b13fbdb219797602c8448dc"
     },
     {
+      "path": "items/all/estys_couch/estys_couch_data.tres",
+      "sha256": "af2ea790064c57083b7499815ee3fce526e3aab01189a39a34225e1336546d5b"
+    },
+    {
+      "path": "items/all/estys_couch/estys_couch_effect_2.tres",
+      "sha256": "c9773c7fd10d2d2ac4678d261bf7aade0bcd8109033595be758ef9dba48e3070"
+    },
+    {
+      "path": "items/all/estys_couch/estys_couch_effect_1.tres",
+      "sha256": "ab33b675c8902746f153a8d99c9931674a5abe9eb95d3c10f819419fe421abe4"
+    },
+    {
+      "path": "items/all/estys_couch/estys_couch_effect_3.tres",
+      "sha256": "58a11f53cd9c3406585633a9eb67b337fa8cc293ee259fd6fa69d2f0da33fd4d"
+    },
+    {
       "path": "items/all/exoskeleton/exoskeleton_data.tres",
       "sha256": "042743e3140ad07048e7330a300f2646e9840e237cc905610de1e79967ff5272"
     },
@@ -4125,6 +4677,18 @@
     {
       "path": "items/all/explosive_shells/explosive_shells_effect_2.tres",
       "sha256": "5b0934b760ce9278e99caabc38b1b75880c6ca0bd4c2d8a908c521e78499f8d6"
+    },
+    {
+      "path": "items/all/fairy/fairy_data.tres",
+      "sha256": "dd99c30f9e7f057b36315b0e319481ff02b01a502e0d2b9f2f731f0e55619846"
+    },
+    {
+      "path": "items/all/fairy/fairy_effect_1.tres",
+      "sha256": "135be505575b3c598e8f377624d03cbc6d913a06b7fa4b85ebf76a40d347d7ab"
+    },
+    {
+      "path": "items/all/fairy/fairy_effect_2.tres",
+      "sha256": "e0263d0ca364346392790da37fc868043ff83a0e2f462aacccca9a489be69548"
     },
     {
       "path": "items/all/fertilizer/fertilizer_data.tres",
@@ -4177,6 +4741,14 @@
     {
       "path": "items/all/fresh_meat/effects/fresh_meat_effect_1.tres",
       "sha256": "60425ddb2f4e800daf295bf6696278dd80f2e0a94f3bed8da744aa8c94f979cb"
+    },
+    {
+      "path": "items/all/fried_rice/fried_rice_data.tres",
+      "sha256": "ef02e04d17f9b1e841425aa074dce429b0898d0b42a2d127b5be3c4076e9d341"
+    },
+    {
+      "path": "items/all/fried_rice/effects/fried_rice_effect_0.tres",
+      "sha256": "bf3da3328a200910367dd63213d83f63a8f4e42e1ecc24b3d6f728e83148a5ec"
     },
     {
       "path": "items/all/fuel_tank/fuel_tank_data.tres",
@@ -4289,6 +4861,26 @@
     {
       "path": "items/all/gummy_berserker/gummy_berserker_effect_3.tres",
       "sha256": "de3f02b42dd3e0e0b106ecb3dbbde9995317c3b1d1a0fba20630a4df0bc586ce"
+    },
+    {
+      "path": "items/all/handcuffs/handcuffs_data.tres",
+      "sha256": "719ad8bf07803d7d5345b3469d6aa050bdf05fa6b760b4b4bb8595b7587c9ee2"
+    },
+    {
+      "path": "items/all/handcuffs/handcuffs_effect_1.tres",
+      "sha256": "5fe661d8aed55f46a4937f66403dce06f6992eb0e291f1464f734f42d5e66da0"
+    },
+    {
+      "path": "items/all/handcuffs/handcuffs_effect_2.tres",
+      "sha256": "7fed4f4602e26d091e76d8a32beb5049b6b42f4bcb727429404b5d653f670226"
+    },
+    {
+      "path": "items/all/handcuffs/handcuffs_effect_3.tres",
+      "sha256": "c145cafd725afb568aa103ea830c5697638115c6eada69eac421f8bcc7dbda44"
+    },
+    {
+      "path": "items/all/handcuffs/handcuffs_effect_4.tres",
+      "sha256": "8826a6ee33058f1e0393077eb3144716eb2af77c8a38d79b4fdb8051e9509ecb"
     },
     {
       "path": "items/all/head_injury/head_injury_data.tres",
@@ -4527,6 +5119,18 @@
       "sha256": "6b66dd0a0ceadf3090c3dc25c6a93407ca889556a3eb54dc208ca8ac445cfc8a"
     },
     {
+      "path": "items/all/lucky_coin/lucky_coin_data.tres",
+      "sha256": "21958f820375641176c48b5eee9c4493f642ce6b72c384d6834b9b86b6372658"
+    },
+    {
+      "path": "items/all/lucky_coin/lucky_coin_effect_1.tres",
+      "sha256": "c2cff2ce90c12840d94037980021f7e3703bf3eaaf42dbfb94e775e49d498864"
+    },
+    {
+      "path": "items/all/lucky_coin/lucky_coin_effect_2.tres",
+      "sha256": "faf35bac4481f233e7cd2f46a1027b683c29a8dcb10456ec20a4e04a5c092649"
+    },
+    {
       "path": "items/all/mammoth/mammoth_data.tres",
       "sha256": "18648831a491f0dad84d5299b4dc87291986f7f95494c22bc97bebbf9a504f10"
     },
@@ -4695,6 +5299,18 @@
       "sha256": "f9b04eff7801b21e1855084a61fa92770b337ad242a9d6ab80da34cc3337edf8"
     },
     {
+      "path": "items/all/padding/padding_data.tres",
+      "sha256": "53443ea6af17f866d2d41aa1890185a45d52911924793da9b967ff5a9725a6b0"
+    },
+    {
+      "path": "items/all/padding/padding_effect_0.tres",
+      "sha256": "7501dd52fb76f41ff8f451ce3311132b38586b34656557d655eeb146a9679494"
+    },
+    {
+      "path": "items/all/padding/padding_effect_1.tres",
+      "sha256": "e562f8e2fd1de2776993b6b9d12142bc2cf85ff93fe877d7a23b7446a42d33a7"
+    },
+    {
       "path": "items/all/panda/panda_data.tres",
       "sha256": "1d937a6622d915b743679f7fb9b9b6d0ae39946234457cc8e5a95431323289fa"
     },
@@ -4819,6 +5435,18 @@
       "sha256": "ef6774972c644900cb1952171271680e15fc2a4da3882c321cc39df39779eed4"
     },
     {
+      "path": "items/all/power_generator/power_generator_data.tres",
+      "sha256": "8dda09110f2796f7e4ad2edeb5146b48b3480c3fcf4864eec0ce81d390ad668b"
+    },
+    {
+      "path": "items/all/power_generator/power_generator_effect_1.tres",
+      "sha256": "38f10a4999c43468789fc8abe0d47300822ddb803c30b5d96ca95f4a92d4135e"
+    },
+    {
+      "path": "items/all/power_generator/power_generator_effect_2.tres",
+      "sha256": "34a88a6b25ccc935665196e8a99474a92ceea23caed51115e79633c3e56b187f"
+    },
+    {
       "path": "items/all/propeller_hat/propeller_hat_data.tres",
       "sha256": "e28426165495aee092e8fae28b3c55bce6fd5abf6db51a83eab9ec5ed129f001"
     },
@@ -4865,6 +5493,18 @@
     {
       "path": "items/all/reinforced_steel/effects/reinforced_steel_effect_2.tres",
       "sha256": "0815a8d0959d21e252000ab41b30e1d260e3849560f9221c28305253609301ff"
+    },
+    {
+      "path": "items/all/retromations_hoodie/retromations_hoodie_data.tres",
+      "sha256": "11012ff896d47ffb36a00e552e3f3d6293b59811a67ae7319008db8f644657e5"
+    },
+    {
+      "path": "items/all/retromations_hoodie/retromations_hoodie_effect_0.tres",
+      "sha256": "4cd1d3039fb9fb6ecd0a0b581afd9739e7d8dd97303e35bde02490fdadfe07f6"
+    },
+    {
+      "path": "items/all/retromations_hoodie/retromations_hoodie_effect_1.tres",
+      "sha256": "e3b89d8a10b7caa96c48dfc92a33b673b8d86b3b734de0036c9d5bc3b02cbd69"
     },
     {
       "path": "items/all/ricochet/ricochet_data.tres",
@@ -4937,6 +5577,26 @@
     {
       "path": "items/all/scope/scope_effect_3.tres",
       "sha256": "764114b17011566c5921f95a77190b47a3059b1e39128f14a1082da7b8c0e66b"
+    },
+    {
+      "path": "items/all/shackles/shackles_data.tres",
+      "sha256": "9e60f19f2e86dcf919f6b32e867e2733a6802dc4dfb0fbbc65d2c510ebcd7452"
+    },
+    {
+      "path": "items/all/shackles/shackles_effect_1.tres",
+      "sha256": "601ececc23e156e153a3adaa91be0af4f61def4122c196fa8e5e038544d625cc"
+    },
+    {
+      "path": "items/all/shackles/shackles_effect_2.tres",
+      "sha256": "1cf5e63f481d367a058d92ab650f3d4ef8b1e2ac4ec90a91c31d55144383b2f8"
+    },
+    {
+      "path": "items/all/shackles/shackles_effect_3.tres",
+      "sha256": "047761e8058bbbc9cbf2f06d8896ef92c385e65eec898cd50c1f7395412b7b68"
+    },
+    {
+      "path": "items/all/shackles/shackles_effect_4.tres",
+      "sha256": "21803112cbc173628ed6002ea671ebd845bca2f48cb9690dc89fb8d1769335aa"
     },
     {
       "path": "items/all/shady_potion/shady_potion_data.tres",
@@ -5019,6 +5679,18 @@
       "sha256": "0815a8d0959d21e252000ab41b30e1d260e3849560f9221c28305253609301ff"
     },
     {
+      "path": "items/all/snake/snake_data.tres",
+      "sha256": "94c6710fcd0174174a204c0f0bfe63ff724fae0a99ee6b31850a5c1a964376ac"
+    },
+    {
+      "path": "items/all/snake/snake_effect_1.tres",
+      "sha256": "464396ee930dde2d1fa3499bc944ce580c4d5f3b968891dea62a8a9ffda1f089"
+    },
+    {
+      "path": "items/all/snake/snake_effect_2.tres",
+      "sha256": "03418fa9dc34956f451d24d2f7aababa58addea63e2792aee584c1264e8ea6fa"
+    },
+    {
       "path": "items/all/spider/spider_data.tres",
       "sha256": "957dad49a24ded0a594f516abc1d96d77ce0496f11958d059dcc2116ee7f23b7"
     },
@@ -5049,6 +5721,34 @@
     {
       "path": "items/all/statue/statue_effect_2.tres",
       "sha256": "a75f6327713cdbafaaaab6165055f13a40928f4af364e0adb60ff3cb49038156"
+    },
+    {
+      "path": "items/all/stone_skin/stone_skin_data.tres",
+      "sha256": "9b3824cfb45bf508aac13416c03b2cf8739354c5780654e1ec09afe872eb0c35"
+    },
+    {
+      "path": "items/all/stone_skin/stone_skin_effect_1.tres",
+      "sha256": "9295dd53380173e99e07687fccefec881ff516ce5de7c37b2ae4a396eaef013e"
+    },
+    {
+      "path": "items/all/stone_skin/stone_skin_effect_2.tres",
+      "sha256": "c249a4a4333898654ebf131a12ba4f57616adb1ed002e379565ffd84d415efac"
+    },
+    {
+      "path": "items/all/strange_book/strange_book_data.tres",
+      "sha256": "afbb40dafc6b399b95be7dfbf64e622c5e5ee441ef7cf3a1ef94ac570de18b27"
+    },
+    {
+      "path": "items/all/strange_book/strange_book_effect_1.tres",
+      "sha256": "a6ad1a2a22f453f64f9ddd3c21771c2610b74c01bb69bd5c19abdc08d3e2a8c4"
+    },
+    {
+      "path": "items/all/strange_book/strange_book_effect_2.tres",
+      "sha256": "c51cab31139be75fb1050cc505303399bf69a68d2d2c06446f32fb879220d598"
+    },
+    {
+      "path": "items/all/strange_book/strange_book_effect_3.tres",
+      "sha256": "6b66dd0a0ceadf3090c3dc25c6a93407ca889556a3eb54dc208ca8ac445cfc8a"
     },
     {
       "path": "items/all/sunglasses/sunglasses_data.tres",
@@ -5407,21 +6107,6 @@
       ]
     },
     {
-      "id": "blood_donation",
-      "effects": [
-        "stat_harvesting",
-        "lose_hp_per_second"
-      ]
-    },
-    {
-      "id": "bloody_hand",
-      "effects": [
-        "stat_lifesteal",
-        "stat_percent_damage",
-        "lose_hp_per_second"
-      ]
-    },
-    {
       "id": "bonk_dog",
       "effects": [
         ""
@@ -5481,20 +6166,6 @@
       ]
     },
     {
-      "id": "coil",
-      "effects": [
-        "knockback",
-        "stat_percent_damage"
-      ]
-    },
-    {
-      "id": "community_support",
-      "effects": [
-        "stat_attack_speed",
-        "stat_armor"
-      ]
-    },
-    {
       "id": "cute_monkey",
       "effects": [
         "heal_when_pickup_gold",
@@ -5520,14 +6191,6 @@
       ]
     },
     {
-      "id": "estys_couch",
-      "effects": [
-        "stat_max_hp",
-        "stat_hp_regeneration",
-        "stat_speed"
-      ]
-    },
-    {
       "id": "evil_hat",
       "effects": [
         "gold_drops",
@@ -5547,19 +6210,6 @@
         "burning_cooldown_reduction",
         "stat_elemental_damage",
         "stat_range"
-      ]
-    },
-    {
-      "id": "fairy",
-      "effects": [
-        "stat_hp_regeneration",
-        "stat_hp_regeneration"
-      ]
-    },
-    {
-      "id": "fried_rice",
-      "effects": [
-        "stat_hp_regeneration"
       ]
     },
     {
@@ -5615,15 +6265,6 @@
       ]
     },
     {
-      "id": "handcuffs",
-      "effects": [
-        "stat_melee_damage",
-        "stat_ranged_damage",
-        "stat_elemental_damage",
-        "hp_cap"
-      ]
-    },
-    {
       "id": "hourglass",
       "effects": [
         "",
@@ -5676,13 +6317,6 @@
       ]
     },
     {
-      "id": "lucky_coin",
-      "effects": [
-        "stat_luck",
-        "stat_armor"
-      ]
-    },
-    {
       "id": "lumberjack_shirt",
       "effects": [
         "one_shot_trees"
@@ -5718,13 +6352,6 @@
         "stat_engineering",
         "stat_engineering",
         "stat_ranged_damage"
-      ]
-    },
-    {
-      "id": "padding",
-      "effects": [
-        "stat_max_hp",
-        "stat_max_hp"
       ]
     },
     {
@@ -5764,23 +6391,9 @@
       ]
     },
     {
-      "id": "power_generator",
-      "effects": [
-        "stat_percent_damage",
-        "stat_percent_damage"
-      ]
-    },
-    {
       "id": "ratzilla",
       "effects": [
         ""
-      ]
-    },
-    {
-      "id": "retromations_hoodie",
-      "effects": [
-        "stat_attack_speed",
-        "stat_range"
       ]
     },
     {
@@ -5817,15 +6430,6 @@
       ]
     },
     {
-      "id": "shackles",
-      "effects": [
-        "stat_hp_regeneration",
-        "stat_engineering",
-        "stat_range",
-        "speed_cap"
-      ]
-    },
-    {
       "id": "sifds_relic",
       "effects": [
         "stat_armor",
@@ -5839,13 +6443,6 @@
       ]
     },
     {
-      "id": "snake",
-      "effects": [
-        "burning_spread",
-        "stat_max_hp"
-      ]
-    },
-    {
       "id": "snowball",
       "effects": [
         "stat_elemental_damage"
@@ -5856,21 +6453,6 @@
       "effects": [
         "stat_max_hp",
         "explode_on_consumable"
-      ]
-    },
-    {
-      "id": "stone_skin",
-      "effects": [
-        "stat_max_hp",
-        "stat_attack_speed"
-      ]
-    },
-    {
-      "id": "strange_book",
-      "effects": [
-        "stat_engineering",
-        "stat_melee_damage",
-        "stat_ranged_damage"
       ]
     },
     {
@@ -5970,6 +6552,6 @@
       ]
     }
   ],
-  "availableItems": 98,
+  "availableItems": 110,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

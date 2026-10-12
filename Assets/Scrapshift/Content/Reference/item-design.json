@@ -456,6 +456,31 @@
       "conditionalEffects": []
     },
     {
+      "id": "blood_donation",
+      "title": "Blood Donation",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "stat_harvesting"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "harvesting"
+      ],
+      "effects": [
+        {
+          "key": "stat_harvesting",
+          "value": 40
+        },
+        {
+          "key": "lose_hp_per_second",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "blood_leech",
       "title": "Blood Leech",
       "available": true,
@@ -484,6 +509,40 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "bloody_hand",
+      "title": "Bloody Hand",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_lifesteal"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "lifesteal"
+      ],
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 10
+        },
+        {
+          "key": "lose_hp_per_second",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_lifesteal",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "boiling_water",
@@ -875,6 +934,63 @@
       "conditionalEffects": []
     },
     {
+      "id": "coil",
+      "title": "Coil",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_percent_damage",
+        "knockback"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "knockback",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "knockback",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
+      "id": "community_support",
+      "title": "Community Support",
+      "available": false,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_attack_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": -2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "living_enemy",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
       "id": "compass",
       "title": "Compass",
       "available": false,
@@ -1128,6 +1244,39 @@
       "conditionalEffects": []
     },
     {
+      "id": "estys_couch",
+      "title": "Estys Couch",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_hp_regeneration",
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 5
+        },
+        {
+          "key": "stat_speed",
+          "value": -20
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_speed",
+          "per": -1,
+          "permanentOnly": true
+        }
+      ]
+    },
+    {
       "id": "exoskeleton",
       "title": "Exoskeleton",
       "available": true,
@@ -1195,6 +1344,39 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "fairy",
+      "title": "Fairy",
+      "available": false,
+      "tier": 3,
+      "value": 85,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "common_item",
+          "per": 1,
+          "permanentOnly": true
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -3,
+          "customKey": "stat_links",
+          "stat": "legendary_item",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "fertilizer",
@@ -1300,6 +1482,31 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "fried_rice",
+      "title": "Fried Rice",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "burning_enemy",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "fuel_tank",
@@ -1519,6 +1726,42 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "handcuffs",
+      "title": "Handcuffs",
+      "available": true,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_melee_damage",
+        "stat_ranged_damage",
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 8
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": 8
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 8
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "hp_cap",
+          "value": 0,
+          "customKey": "stat_cap",
+          "stat": "stat_max_hp"
+        }
+      ]
     },
     {
       "id": "head_injury",
@@ -1952,6 +2195,35 @@
       "conditionalEffects": []
     },
     {
+      "id": "lucky_coin",
+      "title": "Lucky Coin",
+      "available": true,
+      "tier": 4,
+      "value": 105,
+      "tags": [
+        "stat_crit_chance",
+        "stat_luck"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": -2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_crit_chance",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
       "id": "mammoth",
       "title": "Mammoth",
       "available": true,
@@ -2251,6 +2523,34 @@
       "conditionalEffects": []
     },
     {
+      "id": "padding",
+      "title": "Padding",
+      "available": false,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "materials",
+          "per": 80,
+          "permanentOnly": false
+        }
+      ]
+    },
+    {
       "id": "panda",
       "title": "Panda",
       "available": false,
@@ -2464,6 +2764,37 @@
       "conditionalEffects": []
     },
     {
+      "id": "power_generator",
+      "title": "Power Generator",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_speed",
+        "stat_percent_damage"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "speed"
+      ],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_speed",
+          "per": 1,
+          "permanentOnly": true
+        }
+      ]
+    },
+    {
       "id": "propeller_hat",
       "title": "Propeller Hat",
       "available": true,
@@ -2555,6 +2886,34 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "retromations_hoodie",
+      "title": "Retromations Hoodie",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_dodge"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": -80
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_dodge",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ]
     },
     {
       "id": "ricochet",
@@ -2696,6 +3055,42 @@
       "conditionalEffects": []
     },
     {
+      "id": "shackles",
+      "title": "Shackles",
+      "available": true,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_range",
+        "stat_hp_regeneration",
+        "stat_engineering"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 8
+        },
+        {
+          "key": "stat_engineering",
+          "value": 8
+        },
+        {
+          "key": "stat_range",
+          "value": 80
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "speed_cap",
+          "value": 0,
+          "customKey": "stat_cap",
+          "stat": "stat_speed"
+        }
+      ]
+    },
+    {
       "id": "shady_potion",
       "title": "Shady Potion",
       "available": true,
@@ -2833,6 +3228,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "snake",
+      "title": "Snake",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "burning_spread",
+          "value": 1
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "spider",
       "title": "Spider",
       "available": false,
@@ -2893,6 +3311,72 @@
           "customKey": "temp_stats_while_not_moving",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "stone_skin",
+      "title": "Stone Skin",
+      "available": false,
+      "tier": 3,
+      "value": 85,
+      "tags": [
+        "stat_armor",
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "armor"
+      ],
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": -6
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_armor",
+          "per": 1,
+          "permanentOnly": true
+        }
+      ]
+    },
+    {
+      "id": "strange_book",
+      "title": "Strange Book",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_engineering",
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": -1
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": -1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_engineering",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_elemental_damage",
+          "per": 1,
+          "permanentOnly": true
         }
       ]
     },

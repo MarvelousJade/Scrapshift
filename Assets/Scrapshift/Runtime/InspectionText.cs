@@ -41,7 +41,7 @@ namespace Scrapshift
         }
         public string ItemDescription(ItemEntry item)=>string.Join("\n",item.effects.Select(e=>
             "<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>")
-            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Select(e=>"<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"+e.Suffix)));
+            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Select(e=>e.customKey=="stat_cap"?(e.key=="hp_cap"?"Max HP":"Speed")+" is capped at its value when you obtain this implant":"<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"+e.Suffix)));
         public string Sets(Equipment weapon)=>string.Join(", ",WeaponSets.All.Where(s=>weapon.HasSet(s.Id)).Select(s=>s.Name));
         static string Compared(float current,float original,string shown)=>"<color="+(Mathf.Approximately(current,original)?"#FFFFFF":current>original?"#76FF40":"#FF4444")+">"+shown+"</color>";
         public string WeaponDescription(RunRules rules,Equipment w)
@@ -77,6 +77,13 @@ namespace Scrapshift
                     case "bounce_on_crit":effect=Format("EFFECT_BOUNCE_ON_CRIT",N(t.value));break;
                     case "pierce_on_crit":effect=Format("EFFECT_PIERCE_ON_CRIT_WEAPON",N(t.value));break;
                     case "lose_hp_per_second":effect=$"Lose {N(t.value)} HP every second";break;
+                    case "effect_no_hit_boost":effect=$"+{N(t.value)} base damage every {N(t.interval)} seconds without taking damage. Resets on damage and at wave end.";break;
+                    case "one_shot_on_hit":effect=$"{N(t.value)}% chance to instantly kill on hit";break;
+                    case "effect_weapon_slow_on_hit":effect=$"Slows enemies by {N(t.value)}% per Engineering on hit";break;
+                    case "effect_slow_projectiles_on_hit":effect=$"Spawns {N(t.value)} slowing lightning projectiles on hit ({N(rules.WeaponDamage(t.projectile.AsEquipment()))} damage)";break;
+                    case "burning_spread":effect=$"Burning spreads to {N(t.value)} additional enemies";break;
+                    case "garden":effect=$"Spawns a garden that produces fruit about every {N(t.projectile.interval)} seconds";break;
+                    case "landmine":effect=$"Spawns a landmine every {N(t.spawnInterval)} seconds ({N(SpecialWeaponRules.StructureDamage(rules,t.projectile.AsEquipment()))} damage)";break;
                     default:if(t.key.StartsWith("stat_"))effect=t.per>0?Format("EFFECT_GAIN_STAT_FOR_EVERY_PERCENT_PLAYER_MISSING_HEALTH","+"+N(t.value),StatName(t.key.Substring(5)),N(t.per)+"%","",N(Mathf.Floor((1-rules.Health/rules.MaxHealth)*100/t.per)*t.value)):"+"+N(t.value)+" "+StatName(t.key.Substring(5));break;
                 }
                 if(effect!=null)lines.Add(effect);

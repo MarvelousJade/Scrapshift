@@ -2249,6 +2249,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.0,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -2329,6 +2331,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.5,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -2414,6 +2418,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.0,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -2499,6 +2505,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.0,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -7514,7 +7522,7 @@
       "title": "Torch",
       "value": 10,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "primitive",
         "fire"
@@ -7573,7 +7581,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "torch",
@@ -7581,7 +7589,7 @@
       "title": "Torch",
       "value": 22,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "primitive",
         "fire"
@@ -7640,7 +7648,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "torch",
@@ -7648,7 +7656,7 @@
       "title": "Torch",
       "value": 45,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "primitive",
         "fire"
@@ -7720,7 +7728,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "torch",
@@ -7728,7 +7736,7 @@
       "title": "Torch",
       "value": 91,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "primitive",
         "fire"
@@ -7800,7 +7808,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "minigun",
@@ -8204,7 +8212,7 @@
       "title": "Screwdriver",
       "value": 10,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "tool"
       ],
@@ -8243,13 +8251,41 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "landmine",
           "value": 1,
           "chance": 1,
           "stat": "",
           "amount": 0,
-          "radius": 0.75,
+          "radius": 2.57845,
           "per": 0,
+          "projectile": {
+            "damage": 10,
+            "interval": 0.03333333333333333,
+            "range": 0.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "spawnInterval": 12,
+          "animationSpeed": 1,
           "sourceScript": "structure_effect",
           "interval": 0,
           "customKey": "",
@@ -8257,7 +8293,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "screwdriver",
@@ -8265,7 +8301,7 @@
       "title": "Screwdriver",
       "value": 22,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "tool"
       ],
@@ -8304,13 +8340,41 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "landmine",
           "value": 1,
           "chance": 1,
           "stat": "",
           "amount": 0,
-          "radius": 0.75,
+          "radius": 2.57845,
           "per": 0,
+          "projectile": {
+            "damage": 10,
+            "interval": 0.03333333333333333,
+            "range": 0.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "spawnInterval": 9,
+          "animationSpeed": 1,
           "sourceScript": "structure_effect",
           "interval": 0,
           "customKey": "",
@@ -8318,7 +8382,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "screwdriver",
@@ -8326,7 +8390,7 @@
       "title": "Screwdriver",
       "value": 45,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "tool"
       ],
@@ -8365,13 +8429,41 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "landmine",
           "value": 1,
           "chance": 1,
           "stat": "",
           "amount": 0,
-          "radius": 0.75,
+          "radius": 2.57845,
           "per": 0,
+          "projectile": {
+            "damage": 10,
+            "interval": 0.03333333333333333,
+            "range": 0.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "spawnInterval": 6,
+          "animationSpeed": 1,
           "sourceScript": "structure_effect",
           "interval": 0,
           "customKey": "",
@@ -8379,7 +8471,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "screwdriver",
@@ -8387,7 +8479,7 @@
       "title": "Screwdriver",
       "value": 91,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "tool"
       ],
@@ -8426,13 +8518,41 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "landmine",
           "value": 1,
           "chance": 1,
           "stat": "",
           "amount": 0,
-          "radius": 0.75,
+          "radius": 2.57845,
           "per": 0,
+          "projectile": {
+            "damage": 10,
+            "interval": 0.03333333333333333,
+            "range": 0.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "spawnInterval": 3,
+          "animationSpeed": 1,
           "sourceScript": "structure_effect",
           "interval": 0,
           "customKey": "",
@@ -8440,7 +8560,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "sword",
@@ -9546,7 +9666,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "thunder_sword",
@@ -9636,7 +9756,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "nuclear_launcher",
@@ -10802,7 +10922,7 @@
       "title": "Pruner",
       "value": 15,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "support"
       ],
@@ -10837,7 +10957,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "turret",
+          "key": "garden",
           "value": 1,
           "chance": 1,
           "stat": "",
@@ -10865,6 +10985,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 0.5,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -10872,7 +10994,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "pruner",
@@ -10880,7 +11002,7 @@
       "title": "Pruner",
       "value": 28,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "support"
       ],
@@ -10915,7 +11037,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "turret",
+          "key": "garden",
           "value": 1,
           "chance": 1,
           "stat": "",
@@ -10943,6 +11065,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.0,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -10950,7 +11074,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "pruner",
@@ -10958,7 +11082,7 @@
       "title": "Pruner",
       "value": 52,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "support"
       ],
@@ -10993,7 +11117,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "turret",
+          "key": "garden",
           "value": 1,
           "chance": 1,
           "stat": "",
@@ -11021,6 +11145,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.0,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -11028,7 +11154,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "pruner",
@@ -11036,7 +11162,7 @@
       "title": "Pruner",
       "value": 95,
       "melee": true,
-      "available": false,
+      "available": true,
       "setIds": [
         "support"
       ],
@@ -11071,7 +11197,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "turret",
+          "key": "garden",
           "value": 1,
           "chance": 1,
           "stat": "",
@@ -11099,6 +11225,8 @@
             "recoil": 0.25,
             "recoilHalf": 0.1
           },
+          "spawnInterval": -1,
+          "animationSpeed": 1.0,
           "sourceScript": "turret_effect",
           "interval": 0,
           "customKey": "",
@@ -11106,7 +11234,7 @@
         }
       ],
       "sourceAvailable": true,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "gatling_laser",
@@ -11492,7 +11620,7 @@
           "key": "effect_weapon_slow_on_hit",
           "value": 1,
           "chance": 1,
-          "stat": "",
+          "stat": "engineering",
           "amount": 0,
           "radius": 0.75,
           "per": 0,
@@ -11503,7 +11631,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "particle_accelerator",
@@ -11571,7 +11699,7 @@
           "key": "effect_weapon_slow_on_hit",
           "value": 2,
           "chance": 1,
-          "stat": "",
+          "stat": "engineering",
           "amount": 0,
           "radius": 0.75,
           "per": 0,
@@ -11582,7 +11710,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "fireball",
@@ -12018,7 +12146,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "one_shot_on_hit",
           "value": 1,
           "chance": 1,
           "stat": "",
@@ -12032,7 +12160,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "vorpal_sword",
@@ -12078,7 +12206,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "one_shot_on_hit",
           "value": 2,
           "chance": 1,
           "stat": "",
@@ -12092,7 +12220,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     },
     {
       "id": "vorpal_sword",
@@ -12138,7 +12266,7 @@
       "recoilHalf": 0.1,
       "traits": [
         {
-          "key": "",
+          "key": "one_shot_on_hit",
           "value": 3,
           "chance": 1,
           "stat": "",
@@ -12152,7 +12280,7 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": false
+      "implemented": true
     }
   ],
   "sets": [

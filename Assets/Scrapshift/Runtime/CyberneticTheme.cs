@@ -6,6 +6,22 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"blood_donation","Hemofilter Tap"},
+            {"bloody_hand","Sanguine Servo"},
+            {"coil","Recoil Dynamo"},
+            {"community_support","Threat Census Chip"},
+            {"estys_couch","Sedentary Repair Organ"},
+            {"fairy","Inventory Symbiote"},
+            {"fried_rice","Pyro Repair Gland"},
+            {"handcuffs","Capacity Limiter"},
+            {"lucky_coin","Critical Probability Chip"},
+            {"padding","Reserve Tissue Bank"},
+            {"power_generator","Kinetic Power Organ"},
+            {"retromations_hoodie","Evasion Overclocker"},
+            {"shackles","Velocity Governor"},
+            {"snake","Thermal Relay"},
+            {"stone_skin","Armored Tissue"},
+            {"strange_book","Elemental Coprocessor"},
             {"barricade","Anchor Plating"},
             {"chameleon","Adaptive Dermis"},
             {"decomposing_flesh","Necrotic Vessel"},

@@ -17,6 +17,7 @@ namespace Scrapshift
             public List<StarterResult> characters=new List<StarterResult>();
             public List<string> weaponsDamagedTarget=new List<string>();
             public int availableWeapons; public bool burning,slow,secondaryProjectiles,turretFired,ghostProgress;
+            public bool gardenFruit,mineExplosion,burningSpread,engineeringSlow,thunderProjectiles,vorpalExecution;
         }
         StarterReport starterReport;
         void BeginStarterReview(string folder)
@@ -57,7 +58,8 @@ namespace Scrapshift
                 starterReport.capturesVerified=CaptureVerification.Fresh(starterReviewPath,starterUtc,starterCaptures.ToArray());
                 bool passed=starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==4
                     &&starterReport.weaponsDamagedTarget.Count==starterReport.availableWeapons&&starterReport.burning&&starterReport.slow
-                    &&starterReport.secondaryProjectiles&&starterReport.turretFired&&starterReport.ghostProgress;
+                    &&starterReport.secondaryProjectiles&&starterReport.turretFired&&starterReport.ghostProgress
+                    &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution;
                 starterReport.status=passed?"Passed":"Failed";
                 File.WriteAllText(Path.Combine(starterReviewPath,"starter-review.json"),JsonUtility.ToJson(starterReport,true));
                 Application.Quit(passed?0:1);enabled=false;
@@ -88,7 +90,20 @@ namespace Scrapshift
             Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon("wrench",1));ResetStructures();
             ClearShotsForStarterReview();victim.pos=starterTurrets[0].pos+Vector2.right;
             UpdateStarterEffects(.01f);starterReport.turretFired=shots.Count>0;
+            CheckRemainingWeaponBehaviors();
             ReturnToSelection(1);
+        }
+        void CheckRemainingWeaponBehaviors()
+        {
+            Begin();ClearCombat();Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon("pruner",1));ResetStructures();UpdateStarterEffects(.5f);starterReport.gardenFruit=pickups.Exists(p=>p.fruit);
+            ClearCombat();Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon("screwdriver",1));ResetStructures();
+            var mine=mines[0];var target=FeelEnemy(mine.pos+Vector2.up*.16f);UpdateStarterEffects(.01f);target.pos=mine.pos+Vector2.right*.9f;UpdateStarterEffects(.01f);
+            starterReport.mineExplosion=mines.Count==0&&target.hp<1000;
+            ClearCombat();Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon("torch",4));
+            target=FeelEnemy(Vector2.zero);var nearby=FeelEnemy(Vector2.right*.5f);ApplyStarterHit(target,Rules.Inventory[0],false,false,false);UpdateStarterEffects(.01f);starterReport.burningSpread=nearby.burnTicks>0;
+            target.speed=3;Rules.GainWeaponStat("engineering",20);Damage(enemies.IndexOf(target),1,-100,0,Vector2.right,catalog.Weapon("particle_accelerator",4));starterReport.engineeringSlow=target.contactSlow>0;
+            int before=shots.Count;ApplyStarterHit(target,catalog.Weapon("thunder_sword",4),false,false,false);starterReport.thunderProjectiles=shots.Count==before+4&&shots[shots.Count-1].slow==2;
+            var execution=new Equipment{traits=new[]{new WeaponTrait{key="one_shot_on_hit",value=100}}};Damage(enemies.IndexOf(target),1,-100,0,Vector2.right,execution);starterReport.vorpalExecution=!enemies.Contains(target);
         }
         void ClearShotsForStarterReview(){foreach(var shot in shots)Destroy(shot.obj);shots.Clear();}
     }
