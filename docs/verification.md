@@ -319,3 +319,14 @@ An attempted relative-path fixture initially failed all nine screenshot writes b
 - Final package: **52,965,835 bytes / 155 entries**, CRC and every archived file match the player; SHA-256 `7b8ae3a00a20f25b241c181e7eb3c09dc9f62e4a4dad33b6d0f60c6e29135d1b`.
 
 Initial 170/171 test run failed on an empty higher-tier turret scaling list. Fixed before the final pass. Visual/code inspection also corrected scroll-view hit coordinates, deferred screenshot-state sequencing and missing item percentage units. See inspection-and-weapon-selection.md for source paths, font/text provenance, remaining visual/combat adaptations and attribution.
+
+## October 11 - item expansion and presentation refresh
+
+- Unity 6000.6.5f1 Windows build: Succeeded, 0 errors, 0 warnings. Player: Builds/DesignRefresh/Scrapshift.exe.
+- EditMode: 178/178 passed, 0 failed/skipped (artifacts/editmode.xml). All 74 imported records checked; all 64 obtainable items purchased and primary stat deltas checked.
+- AssetScope: 292 assets, 2686 usages, 0 findings, 0 errors. Existing integration runs in the build pipeline.
+- Isolated validation copy: 864 files across Assets/Packages/ProjectSettings, zero byte differences. Does not cover unsaved editor state.
+- Runtime comparison: 23 fresh 1920x1080 captures, all expected focus targets and panel bounds passed. Character rows/bonus tray, attached weapon set panel and open/fold parachute frames visually inspected. No script exceptions/errors found in the fixture log. The reference character/weapon screenshots were captured from the running supplied Godot game. These are staged render checks; this pass did not repeat the prior native-input/fullscreen checks or perform a human survival run.
+- Package: 52973519 bytes, 155 entries; CRC and every archived file match. SHA-256 e0b422f83f9d233aa70d1b36b3866793516eec4c1f5de597f337509de7454bce.
+
+The first validation exposed migration/appearance assumptions and an incorrect full-health expectation; fixes preceded the final passing suite. Visual verification then caught a concave-canopy triangulation defect; geometry was rebuilt and tests/captures rerun. No existing sprite PNG changed. Scope and remaining 127 special-effect items/new item artwork limitations are documented in item-expansion-and-design-parity.md.
