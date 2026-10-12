@@ -330,3 +330,13 @@ Initial 170/171 test run failed on an empty higher-tier turret scaling list. Fix
 - Package: 52973519 bytes, 155 entries; CRC and every archived file match. SHA-256 e0b422f83f9d233aa70d1b36b3866793516eec4c1f5de597f337509de7454bce.
 
 The first validation exposed migration/appearance assumptions and an incorrect full-health expectation; fixes preceded the final passing suite. Visual verification then caught a concave-canopy triangulation defect; geometry was rebuilt and tests/captures rerun. No existing sprite PNG changed. Scope and remaining 127 special-effect items/new item artwork limitations are documented in item-expansion-and-design-parity.md.
+
+## October 12 - run feedback and reward refresh
+
+- Builds/RewardRefresh/Scrapshift.exe: Unity Windows build succeeded, zero errors/warnings.
+- 180/180 EditMode tests passed, zero skipped. Tests cover all eligible two-weapon starts, target detection vs firing distance, green/red markers and material/harvest/crate/level reward separation.
+- Runtime inspection: 29 fresh captures passed. Final sweep check stored 12 materials and transitioned to Loot with one crate and two pending levels. Weapon action card, crate description and buttons, pending icons, tree cross and harvesting frames visually inspected. Pointer activation is implemented but native right-click was not separately replayed in this pass.
+- Accelerated campaign: Passed, 20 waves completed, final phase Won; 51 purchases. Fixture grants invulnerability and supplied weapons; demonstrates progression and transition integration, not normal balance or a human survival run.
+- AssetScope completed: 292 assets, 0 findings, 0 errors. Validation copy matches all 868 Assets/Packages/ProjectSettings files byte for byte.
+- Package: 52975010 bytes / 155 entries. CRC and each archived file match. SHA-256 91062be5e80fe8e1713035032078e29d7f372ed604059189b125e8b1912871ea.
+- Original sprite PNG files unchanged. Source comparison and deliberate differences: run-feedback-and-rewards.md. No runtime script exceptions found in either fixture log.
