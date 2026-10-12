@@ -51,7 +51,7 @@ for p in sorted((ROOT/'items/all').glob('*/*_data.tres')):
     items.append(dict(id=name,title=name.replace('_',' ').title(),tier=d.get('tier',0)+1,icon=media(d['icon']),value=d.get('value',20),effects=[dict(key=e['key'],value=e['value']) for e in effects]))
     if len(items)>=24: break
 
-audio={'Fire':'weapons/ranged/pistol/gun_pistol_shot_*.wav','Impact':'entities/units/unit/hurt_sounds/bullet_impact_body_flesh_*.wav','Kill':'entities/units/unit/hurt_sounds/punch_general_body_impact_*.wav','Critical':'entities/units/unit/crit_sounds/*.wav','Pickup':'items/materials/water_drop_drip_single_*.wav','LevelUp':'resources/sounds/level_up.wav','Install':'ui/sounds/buy.wav','WaveClear':'ui/sounds/end_wave.wav','Swing':'weapons/melee_sounds/whoosh_weapon_knife_swing_*.wav','Charge':'entities/birth/birth_begin_sound.wav','Hurt':'resources/sounds/zombie_voice_attack_grunt_01.wav','Reroll':'ui/sounds/diceroll.wav'}
+audio={'Fire':'weapons/ranged/pistol/gun_pistol_shot_*.wav','Impact':'entities/units/unit/hurt_sounds/bullet_impact_body_flesh_*.wav','Kill':'entities/units/unit/hurt_sounds/punch_general_body_impact_*.wav','Critical':'entities/units/unit/crit_sounds/*.wav','Pickup':'items/materials/water_drop_drip_single_*.wav','LevelUp':'resources/sounds/level_up.wav','Install':'ui/sounds/buy.wav','WaveClear':'ui/sounds/end_wave.wav','Swing':'weapons/melee_sounds/whoosh_weapon_knife_swing_*.wav','Charge':'entities/birth/birth_begin_sound.wav','Reroll':'ui/sounds/diceroll.wav'}
 for cue,pattern in audio.items():
     for i,p in enumerate(sorted(ROOT.glob(pattern))): media(str(p.relative_to(ROOT)).replace('\\','/'),f'{cue}_{i+1:02}.wav')
 for name in ['smg','double_barrel_shotgun','laser_gun']:

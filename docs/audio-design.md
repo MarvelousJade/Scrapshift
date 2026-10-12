@@ -21,3 +21,7 @@ Game tests check complete playable cue assets, non-repeating selection and actua
 ## Supplied reference audio revision
 
 The user's later request explicitly permitted use of the supplied game's sounds. Current playback uses reference files for Fire, Impact, Kill, Critical, Pickup, LevelUp, Install, WaveClear, Swing, Charge, Hurt and Reroll. SMG, shotgun and laser use their own equipment sound arrays. Win/Lose and the unused legacy pulse cue retain original clips. Earlier original-audio descriptions are historical. The bounded mixer, cooldowns, non-repeating variants, volume, mute and priority ducking remain in use. The provenance manifest identifies each copied WAV and its hash. Numerical output checks are not a claim that the user likes the mix.
+
+## Player damage mapping correction - October 11
+
+The earlier reference integration incorrectly mapped Hurt to a zombie attack grunt. The supplied player's scene uses bullet_impact_body_flesh_05..08 instead. Hurt now shares the four exact imported Impact_01..04 files (all four SHA-256 comparisons match), with +/-0.2 pitch variation. Existing-bank migration and initial integration both enforce the corrected mapping; the importer no longer imports the grunt as Hurt. Reserved voices, gain and ducking remain Unity mix adaptations. artifacts/player-hit-audio/audio-runtime.json verifies all 15 cue outputs and mute suppression; this is not subjective listening approval. The local comparison page provides source-pitch previews.

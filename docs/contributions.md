@@ -73,3 +73,7 @@ Shaoyu requested curved soft map edges/details, original-like weapon positioning
 ## UI and motion follow-through
 
 Shaoyu requested direct UI matching, no key legends, silver rounded legs and a moving/shooting comparison. Codex inspected the running reference and source, generated the replacement limb from existing original art, created missing stat glyphs in code, revised UI flow/panels/recoil/landing, operated checks and committed locally. Eighteen-screen staging and supplied-gear combat are automated evidence, not human acceptance or exact full-game parity.
+
+## Player-hit and leg correction
+
+Shaoyu identified the unwanted leg orientation and vocal damage cue and requested closer reference behavior. Codex inspected the supplied scene/scripts/effect image, corrected mounting and preview transforms, traced the erroneous audio mapping, implemented native hit streaks and recovery feedback, validated the build and documented the findings. Existing character/limb pixels were retained. The fixtures and mixer checks were agent-run; no personal manual playtesting or audio acceptance is attributed to Shaoyu.

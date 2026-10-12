@@ -9,6 +9,16 @@ namespace Scrapshift.Editor
 {
     public static partial class ContentBuilder
     {
+        static void EnsurePlayerHitAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            var hurt=bank.Find(SoundCue.Hurt);
+            var clips=Enumerable.Range(1,4).Select(i=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/Impact_"+i.ToString("00")+".wav")).ToArray();
+            if(clips.Any(c=>c==null))throw new Exception("Missing player impact sound variants");
+            if(hurt.variants.SequenceEqual(clips) && Mathf.Approximately(hurt.pitchVariation,.2f))return;
+            hurt.variants=clips;hurt.pitchVariation=.2f;
+            EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
         static void EnsureAudio()
         {
             string path = Root + "/Definitions/GameSounds.asset";

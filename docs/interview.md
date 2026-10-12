@@ -219,3 +219,7 @@ The visual comparison also illustrates scope control: source-grounded mounts/tim
 The stat display reused the upgrade-offer list as its icon registry. That worked for eight upgradeable stats but left other visible stats blank. A complete presentation lookup now gives every visible primary stat a serialized icon, while upgrade drafting remains a separate concern. Explain how the AssetScope scan and asset-completeness test cover references without claiming safe deletion or runtime completeness.
 
 Weapon recoil supplied a second example: matching the numerical cooldown alone did not match cadence because the reference suspends cooldown during its shooting tween. The fix accounts for animation duration, attack-speed scaling and frame-boundary overshoot, with tests plus rendered six-weapon combat. Codex performed implementation; study and reproduce the reasoning before presenting it as personal debugging work.
+
+## Further debugging evidence: hit audio and mirrored previews
+
+See [player-hit-and-leg-correction.md](player-hit-and-leg-correction.md) for a concrete wrong-asset-mapping diagnosis, a GUI transform-order bug found visually, regression choices, evidence limits and collaborator attribution. Use the documented facts when preparing an answer; do not describe agent-run checks as personally executed tests.

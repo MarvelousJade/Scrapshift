@@ -103,7 +103,7 @@ namespace Scrapshift
             ClearCombat(); Rules.Start(); StartWave(); playerPos = Vector2.zero;
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
-            floaters.Clear(); hurtOverlay = 0;
+            floaters.Clear();
             player.transform.position = Vector3.zero; player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             foreach (var o in orbits) o.SetActive(false); pulse.SetActive(false);
@@ -182,7 +182,7 @@ namespace Scrapshift
             player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
-            player.SetActive(invulnerable <= 0 || (int)(invulnerable * 16) % 2 == 0);
+            player.SetActive(true);
             director.Tick(dt, QueueGroup, BeginSpawnGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
             UpdateWeapons(dt); UpdateSlashes(dt);
@@ -243,7 +243,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
-            ClearReferenceCombat(); ClearImpacts(); floaters.Clear(); hurtOverlay=0;
+            ClearReferenceCombat(); ClearImpacts(); floaters.Clear();
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();
             foreach (var s in shots) Destroy(s.obj); shots.Clear();
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();

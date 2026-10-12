@@ -10,6 +10,13 @@ namespace Scrapshift.Tests
     public sealed class AudioIntegrationTests
     {
         const string BankPath = ContentBuilder.Root + "/Definitions/GameSounds.asset";
+        [Test] public void PlayerDamageUsesFourBodyImpactsWithoutZombieVoice()
+        {
+            var hurt=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath).Find(SoundCue.Hurt);
+            CollectionAssert.AreEqual(new[]{"Impact_01","Impact_02","Impact_03","Impact_04"},hurt.variants.Select(c=>c.name));
+            Assert.AreEqual(.2f,hurt.pitchVariation);
+            Assert.GreaterOrEqual(hurt.priority,2);
+        }
         [Test] public void EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants()
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath); Assert.NotNull(bank);

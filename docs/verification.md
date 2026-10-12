@@ -277,3 +277,18 @@ Earlier current-pass screenshots showing the old rails/missing canopy were rejec
 See ui-and-motion-comparison.md for reference sources, art provenance and remaining parity differences; artifacts/ui-motion-review/comparison.html pairs local reference captures with the final Unity screenshots. Reference images stay in ignored artifacts/raw.
 
 Actual input check on the refreshed 1152x720 Windows player: clicked Start, Punk, Laser Gun and Danger 0; confirmed the selected character/weapon in gameplay, then Escape opened the new pause inventory at wave 1 with 14 seconds and 8/10 HP. Left this test run paused. The older wave-three upgrade player is untouched. This brief stationary check verifies input flow, not survival or balance.
+
+## October 11 - outward legs and player-hit correction
+
+- Final Unity EditMode suite: **158/158 Passed**, zero skipped, **2.1592315 seconds**.
+- Final Windows build: **Succeeded**, **0 errors / 0 warnings**, **144,587,636 bytes**. Player copied to **Builds/HitRefresh/Scrapshift.exe**.
+- AssetScope: **234 assets / 2052 usages / 0 findings**.
+- Isolated validation matches **720 files**, digest `e8b53cc513402a5bc03b40ba1dbbe80c46ccccdaca2b66ec8657385fab7bf970`; saved Assets/Packages/ProjectSettings only.
+- `artifacts/hit-leg-review/presentation.json`: Passed, eighteen fresh captures, all state assertions true. Final corrected portrait and world poses inspected. This rendering preceded the final player-only impact-geometry refinement; the leg/UI code is unchanged by that refinement.
+- `artifacts/player-hit-review/combat-feel.json`: final-build Passed, five fresh captures. White flash, expiry, visible player, second-hit blocking and effect cleanup all true. Controlled one-HP hit yielded 0.266667 seconds protection. Hit and finished frames visually inspected. Fixed enemies and supplied shots; not normal-run balance.
+- `artifacts/player-hit-audio/audio-runtime.json`: all fifteen cues produced sampled mixer output, mute passed, peak two voices, sampled peak 0.17323586. Run before the final geometry-only refinement; audio code/bank unchanged afterward. Not continuous clipping certification or listening approval.
+- All four referenced player impact WAVs match the source files byte for byte by SHA-256.
+- Package **49,860,356 bytes / 155 entries**, CRC and all archived files match. SHA-256 `22e3701f16d336c00377fd42758327962ed61ca61f40725e638a01198d77a95e`.
+- Local comparison with enlarged actual screenshots and audio previews: `artifacts/hit-leg-review/compare.html`.
+
+An early compile failed on a stale removed-overlay field, then passed after correction. Intermediate renders motivated outward tilt, the GUI mirror-order fix, and open-center hit streaks. No user approval of visual/audio feel is implied by these checks.

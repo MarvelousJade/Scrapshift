@@ -65,7 +65,7 @@ namespace Scrapshift.Editor
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
             foreach(var entry in bank.entries)
             {
-                var clips=Directory.GetFiles(folder,entry.cue+"_*.wav").OrderBy(p=>p).Select(p=>AssetDatabase.LoadAssetAtPath<AudioClip>(p.Replace('\\','/'))).ToArray();
+                var clips=Directory.GetFiles(folder,(entry.cue==SoundCue.Hurt?SoundCue.Impact:entry.cue)+"_*.wav").OrderBy(p=>p).Select(p=>AssetDatabase.LoadAssetAtPath<AudioClip>(p.Replace('\\','/'))).ToArray();
                 if(clips.Length>0)entry.variants=clips;
                 entry.gain=entry.cue==SoundCue.Fire?.2f:entry.cue==SoundCue.Pickup?.18f:.35f;
             }

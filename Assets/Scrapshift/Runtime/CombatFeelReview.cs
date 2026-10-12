@@ -16,7 +16,7 @@ namespace Scrapshift
         {
             public string status, scope;
             public bool capturesVerified, northShotSurvived, nearestFirst, whiteFlash, pushDisplaced,
-                outsideContactSafe, insideContactHurt, contactSlow, secondHitBlocked, playerWhiteFlash;
+                outsideContactSafe, insideContactHurt, contactSlow, secondHitBlocked, playerWhiteFlash, flashExpired, playerRemainsVisible, hitEffectsExpired;
             public float nearDamage, farDamage, pushDistance, invulnerabilitySeconds;
         }
         CombatFeelReport feelReport;
@@ -81,9 +81,24 @@ namespace Scrapshift
             }
             else if (combatFeelStage == 3 && t > 2.8f)
             {
-                feelReport.capturesVerified=CaptureVerification.Fresh(combatFeelPath,combatFeelStartedUtc,"piercing-impact","knockback","player-hit");
+                UpdatePlayerFlash(.11f);UpdateFeedback(.11f);UpdateSparks(.11f);
+                var block=new MaterialPropertyBlock();playerAnimation.bodyView.GetPropertyBlock(block);
+                feelReport.flashExpired=block.GetFloat("_Flash")==0;
+                feelReport.playerRemainsVisible=player.activeInHierarchy;
+                ScreenCapture.CaptureScreenshot(Path.Combine(combatFeelPath,"player-hit-recovery.png"));combatFeelStage++;
+            }
+            else if (combatFeelStage == 4 && t > 3.5f)
+            {
+                UpdatePlayerFlash(.5f);UpdateFeedback(.5f);UpdateSparks(.5f);
+                feelReport.hitEffectsExpired=impacts.Count==0&&sparks.Count==0;
+                ScreenCapture.CaptureScreenshot(Path.Combine(combatFeelPath,"player-hit-finished.png"));combatFeelStage++;
+            }
+            else if (combatFeelStage == 5 && t > 4.2f)
+            {
+                feelReport.capturesVerified=CaptureVerification.Fresh(combatFeelPath,combatFeelStartedUtc,"piercing-impact","knockback","player-hit","player-hit-recovery","player-hit-finished");
                 bool passed=feelReport.capturesVerified&&feelReport.northShotSurvived&&feelReport.nearestFirst&&feelReport.whiteFlash&&feelReport.pushDisplaced
-                    &&feelReport.outsideContactSafe&&feelReport.insideContactHurt&&feelReport.contactSlow&&feelReport.secondHitBlocked&&feelReport.playerWhiteFlash;
+                    &&feelReport.outsideContactSafe&&feelReport.insideContactHurt&&feelReport.contactSlow&&feelReport.secondHitBlocked&&feelReport.playerWhiteFlash
+                    &&feelReport.flashExpired&&feelReport.playerRemainsVisible&&feelReport.hitEffectsExpired;
                 feelReport.status=passed?"Passed":"Failed";
                 File.WriteAllText(Path.Combine(combatFeelPath,"combat-feel.json"),JsonUtility.ToJson(feelReport,true));
                 Application.Quit(passed?0:1);enabled=false;

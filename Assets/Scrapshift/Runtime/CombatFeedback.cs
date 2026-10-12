@@ -10,7 +10,7 @@ namespace Scrapshift
         MaterialPropertyBlock flashBlock;
         GameObject gun;
         Vector2 gunDirection = Vector2.right;
-        float recoil, hurtOverlay, playerFlash, shakeTime;
+        float recoil, playerFlash, shakeTime;
         readonly List<SpriteRenderer> playerFlashViews = new List<SpriteRenderer>();
         void Shake(float amount)
         {
@@ -23,6 +23,23 @@ namespace Scrapshift
             if (impacts.Count >= 80) return;
             var obj = new GameObject("Impact star"); obj.transform.position = new Vector3(position.x, position.y, -3);
             obj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            if(playerHit)
+            {
+                // The reference has separate tapered white streaks and an open center.
+                // Keep native geometry instead of importing its effect textures.
+                float[] angles={0,108,182,278},lengths={1,.64f,.92f,.7f};
+                for(int i=0;i<angles.Length;i++)foreach(bool outline in new[]{true,false})
+                {
+                    Vector3 ray=Quaternion.Euler(0,0,angles[i])*Vector3.right;
+                    var line=MakeLine(outline?"Hit streak outline":"Hit streak",obj.transform,
+                        outline?new Color(.12f,.09f,.13f):Color.white,1);
+                    line.sortingOrder=outline?20:21;line.positionCount=2;
+                    line.startWidth=outline?.09f:.055f;line.endWidth=0;
+                    line.SetPosition(0,ray*.22f);line.SetPosition(1,ray*lengths[i]);
+                }
+                obj.transform.localScale=Vector3.one*.75f;
+                impacts.Add(new Impact{obj=obj,size=.75f});return;
+            }
             foreach (bool outline in new[] { true, false })
             {
                 var line = MakeLine(outline ? "Impact outline" : "Impact light", obj.transform,
@@ -34,9 +51,23 @@ namespace Scrapshift
                     line.SetPosition(i, new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0));
                 }
             }
-            float size = playerHit ? .5f : critical ? .4f : .25f;
+            float size = critical ? .4f : .25f;
             obj.transform.localScale = Vector3.one * size;
             impacts.Add(new Impact { obj = obj, size = size });
+        }
+        void PlayerHitParticles()
+        {
+            // Source hit_particles: eight red fragments, 0.5 s, no gravity, 3-6 units/s.
+            for(int i=0;i<8 && sparks.Count<200;i++)
+            {
+                var obj=Instantiate(sparkPrefab);
+                Vector2 pos=playerPos+UnityEngine.Random.insideUnitCircle*.15f;
+                obj.transform.position=new Vector3(pos.x,pos.y,-3);
+                obj.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(0,360));
+                var block=new MaterialPropertyBlock();block.SetColor("_Color",new Color(.623529f,.152941f,.152941f));
+                obj.GetComponentInChildren<Renderer>().SetPropertyBlock(block);
+                sparks.Add(new Spark{obj=obj,pos=pos,velocity=UnityEngine.Random.insideUnitCircle.normalized*UnityEngine.Random.Range(3f,6f),life=.5f,max=.5f});
+            }
         }
         void UpdatePlayerFlash(float dt)
         {
@@ -66,7 +97,6 @@ namespace Scrapshift
         void UpdateFeedback(float dt)
         {
             recoil = Mathf.Max(0, recoil - dt * 1.8f);
-            hurtOverlay = Mathf.Max(0, hurtOverlay - dt);
             for (int i = impacts.Count - 1; i >= 0; i--)
             {
                 var impact = impacts[i]; impact.age += dt;
@@ -94,12 +124,6 @@ namespace Scrapshift
                 style.normal.textColor = new Color(.1f,.08f,.1f,c.a);
                 Text(x + 2, y + 2, width, 45, f.text, style);
                 style.normal.textColor = c; Text(x, y, width, 45, f.text, style);
-            }
-            if (hurtOverlay > 0)
-            {
-                Color c = new Color(1, .18f, .1f, hurtOverlay * .8f);
-                Box(new Rect(0, 100, 1440, 9), c); Box(new Rect(0, 791, 1440, 9), c);
-                Box(new Rect(0, 100, 9, 700), c); Box(new Rect(1431, 100, 9, 700), c);
             }
         }
     }
