@@ -59,7 +59,7 @@ namespace Scrapshift
         }
         void StartWave()
         {
-            director=new SpawnDirector(catalog.data.waves[Rules.Wave-1],UnityEngine.Random.Range(1,int.MaxValue));
+            director=new SpawnDirector(catalog.data.waves[Rules.Wave-1],UnityEngine.Random.Range(1,int.MaxValue),Rules.Stat("number_of_enemies"),Rules.Stat("trees"));
             births.Clear();cratesSpawned=0;
             Array.Clear(weaponClocks,0,6);
             SyncEquipment();ResetStructures();
@@ -293,7 +293,7 @@ namespace Scrapshift
         {
             if(invulnerable>0)return;float before=Rules.Health;Rules.Hurt(amount);float actual=before-Rules.Health;if(actual<=0)
             {
-                FloatText(playerPos,"DODGE",mint,false);invulnerable=CombatGeometry.Invulnerability(0,Rules.MaxHealth);return;
+                FloatText(playerPos,Rules.LastHitProtected?"BLOCK":"DODGE",mint,false);invulnerable=CombatGeometry.Invulnerability(0,Rules.MaxHealth);return;
             }
             lastAttacker=attacker;FloatText(playerPos,$"-{Mathf.CeilToInt(actual)}",coral,true);playerFlash=CombatGeometry.FlashDuration;invulnerable=CombatGeometry.Invulnerability(actual,Rules.MaxHealth);Shake(.05f);ImpactBurst(playerPos,UnityEngine.Random.insideUnitCircle,false,true);sound.Play(SoundCue.Hurt);PlayerHitParticles();
         }
@@ -423,12 +423,14 @@ namespace Scrapshift
                 damage*=weapon?.critMultiplier??2;
             }
             damage=Mathf.Max(1,bypassArmor?damage:damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));
+            if(e.type.role=="Boss")damage=Rules.DamageToBoss(damage);
+            if(e.type.role=="Tree"&&Rules.Stat("one_shot_trees")>0&&weapon!=null)damage=e.hp;
             if(!secondary&&SpecialWeaponRules.Execute(weapon,UnityEngine.Random.value)){damage=Mathf.Max(damage,e.hp);Burst(e.pos,18,mint);}
             if(!secondary)e.contactSlow=SpecialWeaponRules.Slow(e.contactSlow,e.speed,SpecialWeaponRules.EngineeringSlow(weapon,Rules.Stat("engineering"),e.speed));
             e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
-            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary);return critical;}Rules.Kill();if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,false);DropConsumable(e.pos,ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value));if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
+            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary);return critical;}Rules.Kill();if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
@@ -450,7 +452,7 @@ namespace Scrapshift
                     fruit ? catalog.repairPickup : catalog.scrapShapes[shape], p, 3);
                 obj.transform.localScale = Vector3.one * ActorPresentation.SpriteLengthScale(obj.GetComponent<SpriteRenderer>().sprite, UnityEngine.Random.Range(.28f, .36f));
                 pickups.Add(new Pickup { obj = obj, value = amount, fruit = fruit,
-                    motion = new ScrapMotion { position = p, velocity = UnityEngine.Random.insideUnitCircle * 3.2f,
+                    motion = new ScrapMotion { magnetized=UnityEngine.Random.value<Rules.Stat("instant_gold_attracting")/100,position = p, velocity = UnityEngine.Random.insideUnitCircle * 3.2f,
                         verticalSpeed = UnityEngine.Random.Range(2.5f, 4f), height = .06f,
                         angle = UnityEngine.Random.Range(0, 360), spin = UnityEngine.Random.Range(-260, 260) } });
             }

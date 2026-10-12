@@ -112,7 +112,7 @@ namespace Scrapshift
                 if(e.burnSpread>0)foreach(var target in enemies)if(target!=e&&target.marker==null&&target.burnTicks==0&&Vector2.Distance(target.pos,e.pos)<=1.28f)
                 {ApplyBurn(target,e.burnDamage,e.burnTicks,e.burnSpread-1);e.burnSpread=0;break;}
                 e.burnClock-=dt;if(e.burnClock>0)continue;
-                e.burnClock+=1;e.burnTicks--;Burst(e.pos,2,amber);
+                e.burnClock+=Rules.BurningInterval;e.burnTicks--;Burst(e.pos,2,amber);
                 Damage(enemies.IndexOf(e),e.burnDamage,-100,0,Vector2.up,null,true,true);
             }
             foreach(var turret in starterTurrets)
@@ -133,7 +133,7 @@ namespace Scrapshift
             foreach(var mine in mines)Destroy(mine.obj);mines.Clear();mineSpawners.Clear();
         }
         void ApplyBurn(Enemy target,float damage,int ticks,int spread)
-        {if(target.burnTicks<=0)target.burnClock=1;target.burnDamage=Mathf.Max(target.burnTicks>0?target.burnDamage:0,damage);target.burnTicks=Mathf.Max(target.burnTicks,ticks);target.burnSpread=Mathf.Max(target.burnSpread,spread);}
+        {if(target.burnTicks<=0)target.burnClock=Rules.BurningInterval;target.burnDamage=Mathf.Max(target.burnTicks>0?target.burnDamage:0,damage);target.burnTicks=Mathf.Max(target.burnTicks,ticks);target.burnSpread=Mathf.Max(target.burnSpread,spread);}
         void SpawnMine(StarterTurret spawner,Sprite image)
         {
             var pos=new Vector2(UnityEngine.Random.Range(-7f,7f),UnityEngine.Random.Range(-5f,5f));

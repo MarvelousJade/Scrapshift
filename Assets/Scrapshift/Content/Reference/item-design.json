@@ -174,6 +174,30 @@
       "conditionalEffects": []
     },
     {
+      "id": "baby_gecko",
+      "title": "Baby Gecko",
+      "available": true,
+      "tier": 1,
+      "value": 18,
+      "tags": [
+        "pickup",
+        "stat_range"
+      ],
+      "maxCount": 4,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": 10
+        },
+        {
+          "key": "instant_gold_attracting",
+          "value": 25
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "bag",
       "title": "Bag",
       "available": true,
@@ -1059,6 +1083,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "cute_monkey",
+      "title": "Cute Monkey",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "pickup"
+      ],
+      "maxCount": 13,
+      "groups": [],
+      "effects": [
+        {
+          "key": "heal_when_pickup_gold",
+          "value": 8
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "cyclops_worm",
       "title": "Cyclops Worm",
       "available": true,
@@ -1077,6 +1124,25 @@
         {
           "key": "stat_range",
           "value": -12
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "dangerous_bunny",
+      "title": "Dangerous Bunny",
+      "available": true,
+      "tier": 2,
+      "value": 30,
+      "tags": [
+        "economy"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "free_rerolls",
+          "value": 1
         }
       ],
       "conditionalEffects": []
@@ -1277,6 +1343,34 @@
       ]
     },
     {
+      "id": "evil_hat",
+      "title": "Evil Hat",
+      "available": false,
+      "tier": 4,
+      "value": 130,
+      "tags": [
+        "economy",
+        "pickup"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "gold_drops",
+          "value": 70
+        },
+        {
+          "key": "stat_speed",
+          "value": -15
+        },
+        {
+          "key": "stat_dodge",
+          "value": -10
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "exoskeleton",
       "title": "Exoskeleton",
       "available": true,
@@ -1341,6 +1435,33 @@
         {
           "key": "stat_percent_damage",
           "value": -15
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "eyes_surgery",
+      "title": "Eyes Surgery",
+      "available": true,
+      "tier": 2,
+      "value": 60,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 2,
+      "groups": [],
+      "effects": [
+        {
+          "key": "burning_cooldown_reduction",
+          "value": 20
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 1
+        },
+        {
+          "key": "stat_range",
+          "value": -10
         }
       ],
       "conditionalEffects": []
@@ -1509,6 +1630,31 @@
       ]
     },
     {
+      "id": "fruit_basket",
+      "title": "Fruit Basket",
+      "available": false,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "consumable"
+      ],
+      "maxCount": 4,
+      "groups": [
+        "consumable_heal"
+      ],
+      "effects": [
+        {
+          "key": "enemy_fruit_drops",
+          "value": 1
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "fuel_tank",
       "title": "Fuel Tank",
       "available": true,
@@ -1558,6 +1704,68 @@
         {
           "key": "stat_armor",
           "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "gentle_alien",
+      "title": "Gentle Alien",
+      "available": true,
+      "tier": 1,
+      "value": 30,
+      "tags": [
+        "stat_max_hp",
+        "stat_percent_damage",
+        "more_enemies"
+      ],
+      "maxCount": 10,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 2
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": 5
+        },
+        {
+          "key": "number_of_enemies",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "ghost_outfit",
+      "title": "Ghost Outfit",
+      "available": false,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_dodge"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "dodge"
+      ],
+      "effects": [
+        {
+          "key": "dodge_cap",
+          "value": 70
+        },
+        {
+          "key": "stat_dodge",
+          "value": 10
+        },
+        {
+          "key": "stat_speed",
+          "value": -5
+        },
+        {
+          "key": "stat_armor",
+          "value": -3
         }
       ],
       "conditionalEffects": []
@@ -2224,6 +2432,25 @@
       ]
     },
     {
+      "id": "lumberjack_shirt",
+      "title": "Lumberjack Shirt",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "exploration"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "one_shot_trees",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "mammoth",
       "title": "Mammoth",
       "available": true,
@@ -2357,6 +2584,40 @@
       ]
     },
     {
+      "id": "metal_detector",
+      "title": "Metal Detector",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_luck",
+        "stat_engineering",
+        "pickup",
+        "economy"
+      ],
+      "maxCount": 20,
+      "groups": [],
+      "effects": [
+        {
+          "key": "chance_double_gold",
+          "value": 5
+        },
+        {
+          "key": "stat_luck",
+          "value": 6
+        },
+        {
+          "key": "stat_engineering",
+          "value": 2
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "metal_plate",
       "title": "Metal Plate",
       "available": true,
@@ -2400,6 +2661,34 @@
         {
           "key": "stat_attack_speed",
           "value": -4
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "mouse",
+      "title": "Mouse",
+      "available": true,
+      "tier": 3,
+      "value": 55,
+      "tags": [
+        "stat_lifesteal",
+        "more_enemies"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 5
+        },
+        {
+          "key": "number_of_enemies",
+          "value": 10
+        },
+        {
+          "key": "stat_harvesting",
+          "value": -5
         }
       ],
       "conditionalEffects": []
@@ -2627,6 +2916,23 @@
         {
           "key": "stat_engineering",
           "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "piggy_bank",
+      "title": "Piggy Bank",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "gain_pct_gold_start_wave",
+          "value": 20
         }
       ],
       "conditionalEffects": []
@@ -3004,6 +3310,31 @@
       ]
     },
     {
+      "id": "sad_tomato",
+      "title": "Sad Tomato",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 8
+        },
+        {
+          "key": "hp_start_wave",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "scar",
       "title": "Scar",
       "available": true,
@@ -3172,6 +3503,49 @@
         {
           "key": "stat_ranged_damage",
           "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "sifds_relic",
+      "title": "Sifds Relic",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "pickup",
+        "stat_armor"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": 3
+        },
+        {
+          "key": "instant_gold_attracting",
+          "value": 100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "silver_bullet",
+      "title": "Silver Bullet",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "damage_against_bosses",
+          "value": 25
         }
       ],
       "conditionalEffects": []
@@ -3404,6 +3778,46 @@
       "conditionalEffects": []
     },
     {
+      "id": "tardigrade",
+      "title": "Tardigrade",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "hit_protection",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "tentacle",
+      "title": "Tentacle",
+      "available": false,
+      "tier": 2,
+      "value": 35,
+      "tags": [
+        "stat_crit_chance"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_crit_chance",
+          "value": 3
+        },
+        {
+          "key": "heal_on_crit_kill",
+          "value": 20
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "terrified_onion",
       "title": "Terrified Onion",
       "available": true,
@@ -3454,6 +3868,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "torture",
+      "title": "Torture",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 15
+        },
+        {
+          "key": "torture",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "toxic_sludge",
       "title": "Toxic Sludge",
       "available": true,
@@ -3499,6 +3936,25 @@
         {
           "key": "stat_percent_damage",
           "value": -8
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "tree",
+      "title": "Tree",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "exploration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "trees",
+          "value": 1
         }
       ],
       "conditionalEffects": []
@@ -3610,6 +4066,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "weird_ghost",
+      "title": "Weird Ghost",
+      "available": true,
+      "tier": 1,
+      "value": 12,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        },
+        {
+          "key": "hp_start_next_wave",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "wheat",
       "title": "Wheat",
       "available": false,
@@ -3688,6 +4167,30 @@
         {
           "key": "knockback",
           "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "white_flag",
+      "title": "White Flag",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_harvesting",
+        "less_enemies"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_harvesting",
+          "value": 5
+        },
+        {
+          "key": "number_of_enemies",
+          "value": -5
         }
       ],
       "conditionalEffects": []

@@ -17,8 +17,10 @@ namespace Scrapshift
         readonly Random random;
         double time;
         int processed=-1;
-        public SpawnDirector(WaveEntry wave,int seed)
+        readonly float enemyModifier,extraTrees;
+        public SpawnDirector(WaveEntry wave,int seed,float enemyModifier=0,float extraTrees=0)
         {
+            this.enemyModifier=enemyModifier;this.extraTrees=extraTrees;
             random=new Random(seed);
             var picked=new HashSet<int>();
             foreach(var g in wave.groups)
@@ -51,7 +53,10 @@ namespace Scrapshift
                     if(spawn)beginGroup?.Invoke(s.group);
                     if(spawn)foreach(var u in s.group.units)
                     {
-                        float n=random.Next(u.min,u.max+1)*u.chance;int count=(int)n;if(random.NextDouble()<n-count)count++;if(count>0)emit(s.group,u,count);
+                        float number=random.Next(u.min,u.max+1);
+                        if(u.id=="tree")number+=extraTrees;
+                        else if(u.id!="looter")number=Math.Max(1,number*(1+enemyModifier/100));
+                        float n=Math.Max(0,number)*u.chance;int count=(int)n;if(random.NextDouble()<n-count)count++;if(count>0)emit(s.group,u,count);
                     }
                     s.left--;
                     // First repeat keeps the original interval; later repeats reduce before scheduling.

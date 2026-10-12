@@ -8,8 +8,9 @@ ids=['coffee','beanie','glasses','helmet','leather_vest','bat','fertilizer','cak
 records=[]; characters=[]; files=[]; unsupported=[]
 supported={'stat_'+k for k in ['max_hp','hp_regeneration','lifesteal','percent_damage','melee_damage','ranged_damage','elemental_damage','attack_speed','crit_chance','engineering','range','armor','dodge','speed','luck','harvesting']}
 supported.update({'knockback','pickup_range','consumable_heal','xp_gain','items_price','harvesting_growth','recycling_gains','enemy_health','enemy_speed','explosion_size','explosion_damage','piercing_damage','bounce','piercing','item_box_gold'})
-supported.update({'lose_hp_per_second','burning_spread'})
+supported.update({'lose_hp_per_second','burning_spread','instant_gold_attracting','heal_when_pickup_gold','chance_double_gold','gain_pct_gold_start_wave','hp_start_wave','hp_start_next_wave','torture','free_rerolls','hit_protection','damage_against_bosses','heal_on_crit_kill','gold_drops','dodge_cap','enemy_fruit_drops','one_shot_trees','burning_cooldown_reduction'})
 original_ids=ids.copy()
+supported.update({'number_of_enemies','trees'})
 conditional={'temp_stats_while_not_moving','temp_stats_while_moving','unique_weapon_effects','additional_weapon_effects','temp_stats_on_hit','stats_end_of_wave','stats_on_level_up','temp_stats_per_interval'}
 def implemented(e):
     if not isinstance(e.get('value'),(int,float)):return False

@@ -15,7 +15,7 @@ namespace Scrapshift.Tests
         [Test] public void EveryImportedItemMatchesSourceAndHasOriginalPresentation()
         {
             var expected=JsonUtility.FromJson<ItemDesignData>(System.IO.File.ReadAllText(ContentBuilder.Root+"/Reference/item-design.json"));
-            Assert.AreEqual(135,catalog.data.items.Length);Assert.AreEqual(110,catalog.data.items.Count(i=>i.available));
+            Assert.AreEqual(156,catalog.data.items.Length);Assert.AreEqual(127,catalog.data.items.Count(i=>i.available));
             foreach(var source in expected.items)
             {
                 var actual=Array.Find(catalog.data.items,i=>i.id==source.id);

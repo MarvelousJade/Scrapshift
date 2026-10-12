@@ -103,7 +103,7 @@ namespace Scrapshift
         ReferenceCatalog catalog;
         int rerolls,banked;float xpFraction;
         public int Banked=>banked;
-        public int RerollPrice=>(int)(Wave*.75f)+Math.Max(1,(int)(Wave*.4f))*(rerolls+1);
+        public int RerollPrice=>Phase==RunPhase.Shop&&freeShopRerolls>0?0:(int)(Wave*.75f)+Math.Max(1,(int)(Wave*.4f))*(rerolls+1);
         public bool CanReroll=>(Phase==RunPhase.Upgrade||Phase==RunPhase.Shop)&&Scrap>=RerollPrice;
         public RunRules(int seed=-1)
         {
@@ -146,7 +146,7 @@ namespace Scrapshift
             Remaining=Durations[0];
             Health=MaxHealth;
             Kills=Scrap=XP=PendingLevels=UpgradeCount=rerolls=banked=0;
-            Level=0;
+            Level=0;freeShopRerolls=knownFreeRerolls=0;BeginItemWave();
             Offers=Array.Empty<UpgradeOffer>();
             Shop=new ShopOffer[4];
         }
@@ -175,16 +175,18 @@ namespace Scrapshift
         public void Hurt(float amount)
         {
             if(Phase!=RunPhase.Playing||amount<=0)return;
-            if(random.NextDouble()<Mathf.Clamp(Stat("dodge")/100,0,.6f))return;
+            LastHitProtected=false;
+            if(random.NextDouble()<Mathf.Clamp(Stat("dodge")/100,0,DodgeLimit))return;
+            if(HitProtection>0){HitProtection--;LastHitProtected=true;return;}
             float armor=Stat("armor");
             amount*=armor>=0?1/(1+armor/15):2-1/(1-armor/15);
             Health=Math.Max(0,Health-Math.Max(1,amount));
             DamageTriggers();
             if(Health==0)Phase=RunPhase.Lost;
         }
-        public void Heal(float amount)
+        public void Heal(float amount,bool fromTorture=false)
         {
-            if(Phase==RunPhase.Playing&&amount>0)Health=Math.Min(MaxHealth,Health+amount);
+            if(Phase==RunPhase.Playing&&amount>0&&Stat("no_heal")<=0&&(Stat("torture")<=0||fromTorture))Health=Math.Min(MaxHealth,Health+amount);
             if(Health>=MaxHealth)regenElapsed=0;
         }
         public void DefeatBoss()
@@ -213,8 +215,10 @@ namespace Scrapshift
             if(Phase!=RunPhase.Playing||value<=0)return;
             int bonus=Math.Min(value,banked);
             banked-=bonus;
-            Scrap+=value+bonus;
-            GainXP(value+bonus);
+            int boost=random.NextDouble()<Mathf.Clamp01(Stat("chance_double_gold")/100)?2:1;
+            Scrap+=(value+bonus)*boost;
+            GainXP((value+bonus)*boost);
+            if(random.NextDouble()<Mathf.Clamp01(Stat("heal_when_pickup_gold")/100))Heal(1);
         }
         public void BankMaterials(int value)
         {
@@ -255,7 +259,7 @@ namespace Scrapshift
         void OpenShop()
         {
             Phase=RunPhase.Shop;
-            rerolls=0;
+            BeginShopRerolls();rerolls=0;
             RollShop();
         }
         void RollShop()
@@ -350,8 +354,8 @@ namespace Scrapshift
         public void Reroll()
         {
             if(!CanReroll)return;
-            Scrap-=RerollPrice;
-            rerolls++;
+            int cost=RerollPrice;Scrap-=cost;
+            if(Phase==RunPhase.Shop&&freeShopRerolls>0)freeShopRerolls--;else rerolls++;
             if(Phase==RunPhase.Upgrade)Draft(true);
             else RollShop();
         }
@@ -363,7 +367,7 @@ namespace Scrapshift
             ResetConditionalEffects();
             Health=MaxHealth;
             regenElapsed=lifeStealCooldown=0;
-            Phase=RunPhase.Playing;
+            Phase=RunPhase.Playing;BeginItemWave();
             for(int i=0;i<4;i++)if(Shop[i]!=null&&!Shop[i].locked)Shop[i]=null;
         }
         public void Pause()

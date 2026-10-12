@@ -1,5 +1,5 @@
 {
-  "supportedItems": 135,
+  "supportedItems": 156,
   "items": [
     {
       "id": "acid",
@@ -170,6 +170,30 @@
         {
           "key": "stat_dodge",
           "value": -6
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "baby_gecko",
+      "title": "Baby Gecko",
+      "available": true,
+      "tier": 1,
+      "value": 18,
+      "tags": [
+        "pickup",
+        "stat_range"
+      ],
+      "maxCount": 4,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": 10
+        },
+        {
+          "key": "instant_gold_attracting",
+          "value": 25
         }
       ],
       "conditionalEffects": []
@@ -1060,6 +1084,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "cute_monkey",
+      "title": "Cute Monkey",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "pickup"
+      ],
+      "maxCount": 13,
+      "groups": [],
+      "effects": [
+        {
+          "key": "heal_when_pickup_gold",
+          "value": 8
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "cyclops_worm",
       "title": "Cyclops Worm",
       "available": true,
@@ -1078,6 +1125,25 @@
         {
           "key": "stat_range",
           "value": -12
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "dangerous_bunny",
+      "title": "Dangerous Bunny",
+      "available": true,
+      "tier": 2,
+      "value": 30,
+      "tags": [
+        "economy"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "free_rerolls",
+          "value": 1
         }
       ],
       "conditionalEffects": []
@@ -1278,6 +1344,34 @@
       ]
     },
     {
+      "id": "evil_hat",
+      "title": "Evil Hat",
+      "available": false,
+      "tier": 4,
+      "value": 130,
+      "tags": [
+        "economy",
+        "pickup"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "gold_drops",
+          "value": 70
+        },
+        {
+          "key": "stat_speed",
+          "value": -15
+        },
+        {
+          "key": "stat_dodge",
+          "value": -10
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "exoskeleton",
       "title": "Exoskeleton",
       "available": true,
@@ -1342,6 +1436,33 @@
         {
           "key": "stat_percent_damage",
           "value": -15
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "eyes_surgery",
+      "title": "Eyes Surgery",
+      "available": true,
+      "tier": 2,
+      "value": 60,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 2,
+      "groups": [],
+      "effects": [
+        {
+          "key": "burning_cooldown_reduction",
+          "value": 20
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 1
+        },
+        {
+          "key": "stat_range",
+          "value": -10
         }
       ],
       "conditionalEffects": []
@@ -1510,6 +1631,31 @@
       ]
     },
     {
+      "id": "fruit_basket",
+      "title": "Fruit Basket",
+      "available": false,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "consumable"
+      ],
+      "maxCount": 4,
+      "groups": [
+        "consumable_heal"
+      ],
+      "effects": [
+        {
+          "key": "enemy_fruit_drops",
+          "value": 1
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "fuel_tank",
       "title": "Fuel Tank",
       "available": true,
@@ -1559,6 +1705,68 @@
         {
           "key": "stat_armor",
           "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "gentle_alien",
+      "title": "Gentle Alien",
+      "available": true,
+      "tier": 1,
+      "value": 30,
+      "tags": [
+        "stat_max_hp",
+        "stat_percent_damage",
+        "more_enemies"
+      ],
+      "maxCount": 10,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 2
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": 5
+        },
+        {
+          "key": "number_of_enemies",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "ghost_outfit",
+      "title": "Ghost Outfit",
+      "available": false,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_dodge"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "dodge"
+      ],
+      "effects": [
+        {
+          "key": "dodge_cap",
+          "value": 70
+        },
+        {
+          "key": "stat_dodge",
+          "value": 10
+        },
+        {
+          "key": "stat_speed",
+          "value": -5
+        },
+        {
+          "key": "stat_armor",
+          "value": -3
         }
       ],
       "conditionalEffects": []
@@ -2225,6 +2433,25 @@
       ]
     },
     {
+      "id": "lumberjack_shirt",
+      "title": "Lumberjack Shirt",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "exploration"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "one_shot_trees",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "mammoth",
       "title": "Mammoth",
       "available": true,
@@ -2358,6 +2585,40 @@
       ]
     },
     {
+      "id": "metal_detector",
+      "title": "Metal Detector",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_luck",
+        "stat_engineering",
+        "pickup",
+        "economy"
+      ],
+      "maxCount": 20,
+      "groups": [],
+      "effects": [
+        {
+          "key": "chance_double_gold",
+          "value": 5
+        },
+        {
+          "key": "stat_luck",
+          "value": 6
+        },
+        {
+          "key": "stat_engineering",
+          "value": 2
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "metal_plate",
       "title": "Metal Plate",
       "available": true,
@@ -2401,6 +2662,34 @@
         {
           "key": "stat_attack_speed",
           "value": -4
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "mouse",
+      "title": "Mouse",
+      "available": true,
+      "tier": 3,
+      "value": 55,
+      "tags": [
+        "stat_lifesteal",
+        "more_enemies"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 5
+        },
+        {
+          "key": "number_of_enemies",
+          "value": 10
+        },
+        {
+          "key": "stat_harvesting",
+          "value": -5
         }
       ],
       "conditionalEffects": []
@@ -2628,6 +2917,23 @@
         {
           "key": "stat_engineering",
           "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "piggy_bank",
+      "title": "Piggy Bank",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "gain_pct_gold_start_wave",
+          "value": 20
         }
       ],
       "conditionalEffects": []
@@ -3005,6 +3311,31 @@
       ]
     },
     {
+      "id": "sad_tomato",
+      "title": "Sad Tomato",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 8
+        },
+        {
+          "key": "hp_start_wave",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "scar",
       "title": "Scar",
       "available": true,
@@ -3173,6 +3504,49 @@
         {
           "key": "stat_ranged_damage",
           "value": -1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "sifds_relic",
+      "title": "Sifds Relic",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "pickup",
+        "stat_armor"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_armor",
+          "value": 3
+        },
+        {
+          "key": "instant_gold_attracting",
+          "value": 100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "silver_bullet",
+      "title": "Silver Bullet",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "damage_against_bosses",
+          "value": 25
         }
       ],
       "conditionalEffects": []
@@ -3405,6 +3779,46 @@
       "conditionalEffects": []
     },
     {
+      "id": "tardigrade",
+      "title": "Tardigrade",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "hit_protection",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "tentacle",
+      "title": "Tentacle",
+      "available": false,
+      "tier": 2,
+      "value": 35,
+      "tags": [
+        "stat_crit_chance"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_crit_chance",
+          "value": 3
+        },
+        {
+          "key": "heal_on_crit_kill",
+          "value": 20
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "terrified_onion",
       "title": "Terrified Onion",
       "available": true,
@@ -3455,6 +3869,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "torture",
+      "title": "Torture",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 15
+        },
+        {
+          "key": "torture",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "toxic_sludge",
       "title": "Toxic Sludge",
       "available": true,
@@ -3500,6 +3937,25 @@
         {
           "key": "stat_percent_damage",
           "value": -8
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "tree",
+      "title": "Tree",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "exploration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "trees",
+          "value": 1
         }
       ],
       "conditionalEffects": []
@@ -3611,6 +4067,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "weird_ghost",
+      "title": "Weird Ghost",
+      "available": true,
+      "tier": 1,
+      "value": 12,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        },
+        {
+          "key": "hp_start_next_wave",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "wheat",
       "title": "Wheat",
       "available": false,
@@ -3689,6 +4168,30 @@
         {
           "key": "knockback",
           "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "white_flag",
+      "title": "White Flag",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_harvesting",
+        "less_enemies"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_harvesting",
+          "value": 5
+        },
+        {
+          "key": "number_of_enemies",
+          "value": -5
         }
       ],
       "conditionalEffects": []
@@ -4057,6 +4560,18 @@
     {
       "path": "items/all/alloy/alloy_effect_5.tres",
       "sha256": "2dad7490c6d8ce812363e36ec64f4435238a8ef0be78736f5a37784f6d7b0a2b"
+    },
+    {
+      "path": "items/all/baby_gecko/baby_gecko_data.tres",
+      "sha256": "85f59f7ae503f3f5b6e31c16d0a7d1a278072141ac8994ba15a6727f8fbe56f7"
+    },
+    {
+      "path": "items/all/baby_gecko/baby_gecko_effect_0.tres",
+      "sha256": "74e8652859aef0519d75d256e3bc2f928584d1e41ec5fdfd20c3312310aaa3d8"
+    },
+    {
+      "path": "items/all/baby_gecko/baby_gecko_effect_1.tres",
+      "sha256": "e110c9abe39b5717596f8cb83bb9722fe97cc9e458821c90b89e0aa013608e69"
     },
     {
       "path": "items/all/bag/bag_data.tres",
@@ -4523,6 +5038,18 @@
       "sha256": "a2a12b0bbefa7d966bfd5758c1e255c297fc39cab30d4500966bbfd5d1202478"
     },
     {
+      "path": "items/all/cute_monkey/cute_monkey_data.tres",
+      "sha256": "39e0fbe75fbbdca3ef924cf56782fcdfb4881baf1614e7ddd733c6d0ccd2559b"
+    },
+    {
+      "path": "items/all/cute_monkey/cute_monkey_effect_1.tres",
+      "sha256": "25cdf4191a74463da7df8a45b4a2f069595939f2afdb999d19be376f9f6c2015"
+    },
+    {
+      "path": "items/all/cute_monkey/cute_monkey_effect_2.tres",
+      "sha256": "6b66dd0a0ceadf3090c3dc25c6a93407ca889556a3eb54dc208ca8ac445cfc8a"
+    },
+    {
       "path": "items/all/cyclops_worm/cyclops_worm_data.tres",
       "sha256": "06c6d962e2e115ff5add4831e095cca6e80da26ed8ef7c87eef69731067cdc4a"
     },
@@ -4533,6 +5060,14 @@
     {
       "path": "items/all/cyclops_worm/cyclops_worm_effect_2.tres",
       "sha256": "00702dd5cadb4bb4a25bced34470592a609cb7f803e43f56d8a0a27f364f9013"
+    },
+    {
+      "path": "items/all/dangerous_bunny/dangerous_bunny_data.tres",
+      "sha256": "6825e718bd166756cd287da901440bd9f100dce4e06257dd6b3e6f57241fdad2"
+    },
+    {
+      "path": "items/all/dangerous_bunny/dangerous_bunny_effect_0.tres",
+      "sha256": "4c617555ebfc30cc3e8b4a07f6b284a04304b55777a8dc1a99e44cabd6b2d86a"
     },
     {
       "path": "items/all/decomposing_flesh/decomposing_flesh_data.tres",
@@ -4635,6 +5170,22 @@
       "sha256": "58a11f53cd9c3406585633a9eb67b337fa8cc293ee259fd6fa69d2f0da33fd4d"
     },
     {
+      "path": "items/all/evil_hat/evil_hat.tres",
+      "sha256": "5a6d4b4153650ce308f0d317168c5dfd6f4bc47009a816f2440d780424d101e7"
+    },
+    {
+      "path": "items/all/evil_hat/evil_hat_effect_0.tres",
+      "sha256": "395648e08187fe6e298621be494f4bc8984f2a0ad9ea49e982ec578247b58a60"
+    },
+    {
+      "path": "items/all/evil_hat/evil_hat_effect_1.tres",
+      "sha256": "de4223f74b7869a38ea183e77e8282fb13220d1a71637fd36b3498dceb1526f3"
+    },
+    {
+      "path": "items/all/evil_hat/evil_hat_effect_2.tres",
+      "sha256": "14b0db6d266760ed90aada8d2f952cc7380b2a5353c959fe6f7ced6d720c352f"
+    },
+    {
       "path": "items/all/exoskeleton/exoskeleton_data.tres",
       "sha256": "042743e3140ad07048e7330a300f2646e9840e237cc905610de1e79967ff5272"
     },
@@ -4677,6 +5228,22 @@
     {
       "path": "items/all/explosive_shells/explosive_shells_effect_2.tres",
       "sha256": "5b0934b760ce9278e99caabc38b1b75880c6ca0bd4c2d8a908c521e78499f8d6"
+    },
+    {
+      "path": "items/all/eyes_surgery/eye_surgery_data.tres",
+      "sha256": "ce5273122c2c2369dd48ea4c80c463c3386c7173bcf73e1cebcedd3e5a9898be"
+    },
+    {
+      "path": "items/all/eyes_surgery/eye_surgery_effect_1.tres",
+      "sha256": "2d1ef747fa56446ecc228f3bc03c7c14a25c1ee05c8b18b8bb7a2269d9371644"
+    },
+    {
+      "path": "items/all/eyes_surgery/eye_surgery_effect_1b.tres",
+      "sha256": "d586eefa2071955febd3c4a5db720ed4a60b7aa9311e9b581519c122047b07bc"
+    },
+    {
+      "path": "items/all/eyes_surgery/eye_surgery_effect_2.tres",
+      "sha256": "4312f1e7ebcf604113f25069c3890d10add50f07d0ae7cca623b1592eb7fc87c"
     },
     {
       "path": "items/all/fairy/fairy_data.tres",
@@ -4751,6 +5318,18 @@
       "sha256": "bf3da3328a200910367dd63213d83f63a8f4e42e1ecc24b3d6f728e83148a5ec"
     },
     {
+      "path": "items/all/fruit_basket/fruit_basket_data.tres",
+      "sha256": "0338a4db6deacbb315f30929a4c497233897f01d0f0554215fcad80fb5103dd5"
+    },
+    {
+      "path": "items/all/fruit_basket/fruit_basket_effect_1.tres",
+      "sha256": "8a7d36ff180e969d43d30f8b4b2d611c4d525358d9ee3917b408045b9d3272bb"
+    },
+    {
+      "path": "items/all/fruit_basket/fruit_basket_effect_2.tres",
+      "sha256": "c840bb7132cd648486040e44897cd6d8144a7b26b6eae119f5f8c451e5293326"
+    },
+    {
       "path": "items/all/fuel_tank/fuel_tank_data.tres",
       "sha256": "04a2a6bdea6d2641dfbe0fb26d3cecd9e454f3281c0cd8734c85fc0f9469f2e2"
     },
@@ -4777,6 +5356,42 @@
     {
       "path": "items/all/gambling_token/gambling_token_effect_2.tres",
       "sha256": "de3f02b42dd3e0e0b106ecb3dbbde9995317c3b1d1a0fba20630a4df0bc586ce"
+    },
+    {
+      "path": "items/all/gentle_alien/gentle_alien_data.tres",
+      "sha256": "0a534a3edf9dad4e01868c7a344bf41d0841e307e96dffa1169c525a97ef2453"
+    },
+    {
+      "path": "items/all/gentle_alien/gentle_alien_effect_3.tres",
+      "sha256": "ec3a6c7aae0f910f963a787fd281ce19364b46bcd94619f9c20c25a52f2c115f"
+    },
+    {
+      "path": "items/all/gentle_alien/gentle_alien_effect_1.tres",
+      "sha256": "2bfad274382405fd5fa38755fa6aac5cb3bd955116515077bb0dda016de9a8a6"
+    },
+    {
+      "path": "items/all/gentle_alien/gentle_alien_effect_2.tres",
+      "sha256": "23a242a117af5c4f53faccbfdc84554783de25575c2c0c745b672080c575baf2"
+    },
+    {
+      "path": "items/all/ghost_outfit/ghost_outfit_data.tres",
+      "sha256": "6e8869cdc370848bc3f83f6f713148e38f0603f983fdc0163e28183e9b6c1bd5"
+    },
+    {
+      "path": "items/all/ghost_outfit/ghost_outfit_effect_1.tres",
+      "sha256": "2d25a9ef8ae119c7b90103885d188af7f7a4a1b56447179ee67b6fd1349417c6"
+    },
+    {
+      "path": "items/all/ghost_outfit/ghost_outfit_effect_2.tres",
+      "sha256": "27166c8cad7bb37dddeec0dffcda458a40b8e6fc0cb0dfee5b059e16a1401f96"
+    },
+    {
+      "path": "items/all/ghost_outfit/ghost_outfit_effect_3.tres",
+      "sha256": "b9d1c5c849f4242e47843b510c27b6d778f38bf07dd045b8113e3edd38d1d3a2"
+    },
+    {
+      "path": "items/all/ghost_outfit/ghost_outfit_effect_4.tres",
+      "sha256": "c627e257f79fafb6c82e566f01ef89140552e91790e82823ea8bf760038028e6"
     },
     {
       "path": "items/all/glass_cannon/glass_cannon_data.tres",
@@ -5131,6 +5746,14 @@
       "sha256": "faf35bac4481f233e7cd2f46a1027b683c29a8dcb10456ec20a4e04a5c092649"
     },
     {
+      "path": "items/all/lumberjack_shirt/lumberjack_shirt_data.tres",
+      "sha256": "5bc0ab685f33517b1a124ece7a7a57a71da52977bd61d8e6a78bba18414abc4f"
+    },
+    {
+      "path": "items/all/lumberjack_shirt/lumberjack_shirt_effect_1.tres",
+      "sha256": "93a97025d7abe3ea2e4aab411718b8d0ac87f9d8d37812389c5280cc7d3b5d43"
+    },
+    {
       "path": "items/all/mammoth/mammoth_data.tres",
       "sha256": "18648831a491f0dad84d5299b4dc87291986f7f95494c22bc97bebbf9a504f10"
     },
@@ -5207,6 +5830,26 @@
       "sha256": "a294342e7506a71fc0f58d7a2fa06ad36ab8ac419425d879bcc6738c8578fcd0"
     },
     {
+      "path": "items/all/metal_detector/metal_detector_data.tres",
+      "sha256": "dcf8eb872b82f7573c91e47cacc9ab207b8da82888d2cefd6f4f5e3d6e241cbf"
+    },
+    {
+      "path": "items/all/metal_detector/metal_detector_effect_1.tres",
+      "sha256": "6e4c4207233805423c93c15404212a66d755c0e04e13a7db1b281a8e67e72dcd"
+    },
+    {
+      "path": "items/all/metal_detector/metal_detector_effect_2.tres",
+      "sha256": "6e120010319656a5aee8c73b216c6adc4771a6d5cc6704108970fa05acd82c47"
+    },
+    {
+      "path": "items/all/metal_detector/metal_detector_effect_3.tres",
+      "sha256": "6abbdc51fbc5fb73e509bfcb012e84d6c7b674bb8f2f8d203d285c92c85d49cc"
+    },
+    {
+      "path": "items/all/metal_detector/metal_detector_effect_4.tres",
+      "sha256": "34a88a6b25ccc935665196e8a99474a92ceea23caed51115e79633c3e56b187f"
+    },
+    {
       "path": "items/all/metal_plate/metal_plate_data.tres",
       "sha256": "35b0500e9851b7262a4ce5dbe99498a15080b2751767c7f56e2dfbe85add2c55"
     },
@@ -5229,6 +5872,22 @@
     {
       "path": "items/all/missile/missile_effect_2.tres",
       "sha256": "d011aefa368bc618704ba3d77612ce43fccf27bca667eb1ba341f81dbce14b05"
+    },
+    {
+      "path": "items/all/mouse/mouse_data.tres",
+      "sha256": "a1020e511ea389fe760068bf802c68c1a8a7d0326500ee44243438dd7bef52b0"
+    },
+    {
+      "path": "items/all/mouse/mouse_effect_1.tres",
+      "sha256": "0be169563e8e716e60dafbbf8970cc1d577f4b8b654793c1412495108d43eba3"
+    },
+    {
+      "path": "items/all/mouse/mouse_effect_2.tres",
+      "sha256": "70f10aa029461b6f72090726c036faf81b7135e3e86d247eaf7846f56ba0bddd"
+    },
+    {
+      "path": "items/all/mouse/mouse_effect_3.tres",
+      "sha256": "37b6c7d2b9027bce83fff9084defdbfcbba0ff5bcd26f568b78643c84413a187"
     },
     {
       "path": "items/all/mushroom/mushroom_data.tres",
@@ -5353,6 +6012,14 @@
     {
       "path": "items/all/pencil/pencil_effect_1.tres",
       "sha256": "912e219cd0308d217e81d18e9a79890fe136774a1ed1319b2f928543dba328fc"
+    },
+    {
+      "path": "items/all/piggy_bank/piggy_bank_data.tres",
+      "sha256": "8f6fd04237b7a7e6aba3db8093cfedcac5511d9a886bcbbbb0df794c103a5c83"
+    },
+    {
+      "path": "items/all/piggy_bank/piggy_bank_effect_1.tres",
+      "sha256": "103f24bd07117a866643eef6925377e455a82f88c94afe8a7e4fe49925affa7e"
     },
     {
       "path": "items/all/plant/plant_data.tres",
@@ -5551,6 +6218,18 @@
       "sha256": "6f734be14645587bbd7a37403627719c8228af80a2fd1816ed1c04e0a1da0cc8"
     },
     {
+      "path": "items/all/sad_tomato/sad_tomato_data.tres",
+      "sha256": "02fbd84ae335bf9eb364f1d65d8068d7c07ba58b035c739f765d1aa11a9c90df"
+    },
+    {
+      "path": "items/all/sad_tomato/sad_tomato_effect_1.tres",
+      "sha256": "601ececc23e156e153a3adaa91be0af4f61def4122c196fa8e5e038544d625cc"
+    },
+    {
+      "path": "items/all/sad_tomato/sad_tomato_effect_2.tres",
+      "sha256": "f05e9d72d7ec56fa38b2239a1068ca5afc975c21fae30ab1ed101bc318866693"
+    },
+    {
       "path": "items/all/scar/scar_data.tres",
       "sha256": "70da52e52cb492a0179bbb393450bc259f3e05a88e01da99df1b0f0716bb3c6b"
     },
@@ -5649,6 +6328,26 @@
     {
       "path": "items/all/shmoop/shmoop_effect_4.tres",
       "sha256": "6b66dd0a0ceadf3090c3dc25c6a93407ca889556a3eb54dc208ca8ac445cfc8a"
+    },
+    {
+      "path": "items/all/sifds_relic/sifds_relic_data.tres",
+      "sha256": "89c685d66274c4d2cfb52969de64155976f362774b910dbca15c28b8316d1870"
+    },
+    {
+      "path": "items/all/sifds_relic/sifds_relic_effect_0.tres",
+      "sha256": "253ab60ca426fa766afc452acd2d942ab0de4ed2572abd85e2cd9282c1f239f1"
+    },
+    {
+      "path": "items/all/sifds_relic/sifds_relic_effect_1.tres",
+      "sha256": "c30320a3e6975ce40c305698d4e643ee544d0117d264022c2983b4f70729098f"
+    },
+    {
+      "path": "items/all/silver_bullet/silver_bullet_data.tres",
+      "sha256": "c92dfa2243e2c441dd890396947b36098816a5803a6631409c2a929ed7000cca"
+    },
+    {
+      "path": "items/all/silver_bullet/silver_bullet_effect_1.tres",
+      "sha256": "4ebbb8314d51635f5e02465b62d8c28c57d2e6c4070d93f08773dc0d821c1083"
     },
     {
       "path": "items/all/small_magazine/small_magazine_data.tres",
@@ -5763,6 +6462,26 @@
       "sha256": "de3f02b42dd3e0e0b106ecb3dbbde9995317c3b1d1a0fba20630a4df0bc586ce"
     },
     {
+      "path": "items/all/tardigrade/tardigrade_data.tres",
+      "sha256": "d73cc1c336f244dc15642f27cea8bf4694de28c686e32f5ea3240959d3c00d8a"
+    },
+    {
+      "path": "items/all/tardigrade/tardigrade_effect_1.tres",
+      "sha256": "b55e061ebd5dd319e71fd3db481793330eddac9ae1c2452e4f3ec0807719561c"
+    },
+    {
+      "path": "items/all/tentacle/tentacle_data.tres",
+      "sha256": "bc49a13cb587e6e7b7298b8098963c972c1c91521f66f549dae0f4db3f9b8195"
+    },
+    {
+      "path": "items/all/tentacle/tentacle_effect_0.tres",
+      "sha256": "7c8b5fa827dda1a3ab70112774cf881d34ddd40221c1abd85fec0a073b4fbdee"
+    },
+    {
+      "path": "items/all/tentacle/tentacle_effect_1.tres",
+      "sha256": "f568faab0fec7fa0272336952167bc9e9df586b5595005557891312495f35512"
+    },
+    {
       "path": "items/all/terrified_onion/terrified_onion_data.tres",
       "sha256": "b08ac158cfc0bd8b148cc786af254e2cdf66e5b7f6ba969cb4d4788b4a141ef7"
     },
@@ -5787,6 +6506,18 @@
       "sha256": "889e866ba01e03cd92f6a16c862cd43bf38a80c2b7223c880c5e5a282981b3fc"
     },
     {
+      "path": "items/all/torture/torture_data.tres",
+      "sha256": "c305b5468d0a0f6d6d81f7a1c3d3b6fa3d57346a2fa5ad68ad786f808aeba8ae"
+    },
+    {
+      "path": "items/all/torture/torture_effect_1.tres",
+      "sha256": "52cdb034a85b1c3c781b2cbda17f6fae50c63ade85cb865df7aaf850efeb652a"
+    },
+    {
+      "path": "items/all/torture/torture_effect_2.tres",
+      "sha256": "2926bd310fcc7283aa65f17330f6fea6ea836d0427bc8ec9cac036616c749a6b"
+    },
+    {
       "path": "items/all/toxic_sludge/toxic_sludge_data.tres",
       "sha256": "6845749ca120fdc6f75967e306ad3e0f49c5b0678e8127ffdad164f750bb8a5e"
     },
@@ -5809,6 +6540,14 @@
     {
       "path": "items/all/tractor/tractor_effect_2.tres",
       "sha256": "05b97f9a4d4170dc59e65dd29d8ff2fc222c29d9b01596cd5b7b3d92ee52c56c"
+    },
+    {
+      "path": "items/all/tree/tree_data.tres",
+      "sha256": "2fed8b9fe88c5e1a5916eee5f7c8e99b6465da4c2452acbaa50dd0665a0b27e0"
+    },
+    {
+      "path": "items/all/tree/tree_effect_1.tres",
+      "sha256": "b51f8e1ac71c94377e6048e5d46620a9eb73ba644eef7bcdd20eacb8443530c3"
     },
     {
       "path": "items/all/triangle_of_power/triangle_of_power_data.tres",
@@ -5863,6 +6602,18 @@
       "sha256": "d131a5ebe02fa17cfcb8e047c965b158f657d18ebea474e1331ea491f01526d4"
     },
     {
+      "path": "items/all/weird_ghost/weird_ghost_data.tres",
+      "sha256": "8812e2e8862967cb2e6512f7bc92b18e21e575a1289b03305920084288a77419"
+    },
+    {
+      "path": "items/all/weird_ghost/weird_ghost_effect_1.tres",
+      "sha256": "7501dd52fb76f41ff8f451ce3311132b38586b34656557d655eeb146a9679494"
+    },
+    {
+      "path": "items/all/weird_ghost/weird_ghost_effect_2.tres",
+      "sha256": "ec3a4b76968b0202f34dda90c7abea979dea5c11ea2b686a1888b26debcd9b13"
+    },
+    {
       "path": "items/all/wheat/wheat_data.tres",
       "sha256": "32a62ad5e223b7310d5c334037d975f03f1646daa9807c5a146b41e93eb3a3c2"
     },
@@ -5905,6 +6656,18 @@
     {
       "path": "items/all/whetstone/whetstone_effect_2.tres",
       "sha256": "5142dbc9e870cbcbf87dbf2cb334b05fd25faa4f6eb9555761aa0a206ebad6b4"
+    },
+    {
+      "path": "items/all/white_flag/white_flag_data.tres",
+      "sha256": "2573d0fd5cc40ab2b3d1c663a99e9b9b36910aa6aa6c86834e38badbc2637072"
+    },
+    {
+      "path": "items/all/white_flag/white_flag_effect_1.tres",
+      "sha256": "561a795332bc34917f636bbe856e58cf3c3f1723ff823a67095dec6d7e1d5454"
+    },
+    {
+      "path": "items/all/white_flag/white_flag_effect_2.tres",
+      "sha256": "b5e23ddd1276d1baa7ec66cb2bf0e8e0f37a09eb7c8016636456e7c79ee51b33"
     },
     {
       "path": "items/all/wings/wings_data.tres",
@@ -6070,13 +6833,6 @@
       ]
     },
     {
-      "id": "baby_gecko",
-      "effects": [
-        "stat_range",
-        "instant_gold_attracting"
-      ]
-    },
-    {
       "id": "baby_with_a_beard",
       "effects": [
         "projectiles_on_death",
@@ -6166,22 +6922,9 @@
       ]
     },
     {
-      "id": "cute_monkey",
-      "effects": [
-        "heal_when_pickup_gold",
-        "stat_ranged_damage"
-      ]
-    },
-    {
       "id": "cyberball",
       "effects": [
         "stat_luck"
-      ]
-    },
-    {
-      "id": "dangerous_bunny",
-      "effects": [
-        "free_rerolls"
       ]
     },
     {
@@ -6191,25 +6934,9 @@
       ]
     },
     {
-      "id": "evil_hat",
-      "effects": [
-        "gold_drops",
-        "stat_speed",
-        "stat_dodge"
-      ]
-    },
-    {
       "id": "extra_stomach",
       "effects": [
         "stat_max_hp"
-      ]
-    },
-    {
-      "id": "eyes_surgery",
-      "effects": [
-        "burning_cooldown_reduction",
-        "stat_elemental_damage",
-        "stat_range"
       ]
     },
     {
@@ -6222,33 +6949,9 @@
       ]
     },
     {
-      "id": "fruit_basket",
-      "effects": [
-        "enemy_fruit_drops",
-        "stat_hp_regeneration"
-      ]
-    },
-    {
       "id": "garden",
       "effects": [
         ""
-      ]
-    },
-    {
-      "id": "gentle_alien",
-      "effects": [
-        "stat_max_hp",
-        "stat_percent_damage",
-        "number_of_enemies"
-      ]
-    },
-    {
-      "id": "ghost_outfit",
-      "effects": [
-        "dodge_cap",
-        "stat_dodge",
-        "stat_speed",
-        "stat_armor"
       ]
     },
     {
@@ -6317,33 +7020,10 @@
       ]
     },
     {
-      "id": "lumberjack_shirt",
-      "effects": [
-        "one_shot_trees"
-      ]
-    },
-    {
       "id": "lure",
       "effects": [
         "stat_hp_regeneration",
         "extra_loot_aliens_next_wave"
-      ]
-    },
-    {
-      "id": "metal_detector",
-      "effects": [
-        "chance_double_gold",
-        "stat_luck",
-        "stat_engineering",
-        "stat_percent_damage"
-      ]
-    },
-    {
-      "id": "mouse",
-      "effects": [
-        "stat_lifesteal",
-        "number_of_enemies",
-        "stat_harvesting"
       ]
     },
     {
@@ -6360,12 +7040,6 @@
         "xp_gain",
         "xp_gain",
         "enemy_damage"
-      ]
-    },
-    {
-      "id": "piggy_bank",
-      "effects": [
-        "gain_pct_gold_start_wave"
       ]
     },
     {
@@ -6411,13 +7085,6 @@
       ]
     },
     {
-      "id": "sad_tomato",
-      "effects": [
-        "stat_hp_regeneration",
-        "hp_start_wave"
-      ]
-    },
-    {
       "id": "scapegoat",
       "effects": [
         ""
@@ -6427,19 +7094,6 @@
       "id": "scared_sausage",
       "effects": [
         "burn_chance"
-      ]
-    },
-    {
-      "id": "sifds_relic",
-      "effects": [
-        "stat_armor",
-        "instant_gold_attracting"
-      ]
-    },
-    {
-      "id": "silver_bullet",
-      "effects": [
-        "damage_against_bosses"
       ]
     },
     {
@@ -6453,32 +7107,6 @@
       "effects": [
         "stat_max_hp",
         "explode_on_consumable"
-      ]
-    },
-    {
-      "id": "tardigrade",
-      "effects": [
-        "hit_protection"
-      ]
-    },
-    {
-      "id": "tentacle",
-      "effects": [
-        "stat_crit_chance",
-        "heal_on_crit_kill"
-      ]
-    },
-    {
-      "id": "torture",
-      "effects": [
-        "stat_max_hp",
-        "torture"
-      ]
-    },
-    {
-      "id": "tree",
-      "effects": [
-        "trees"
       ]
     },
     {
@@ -6531,20 +7159,6 @@
       ]
     },
     {
-      "id": "weird_ghost",
-      "effects": [
-        "stat_max_hp",
-        "hp_start_next_wave"
-      ]
-    },
-    {
-      "id": "white_flag",
-      "effects": [
-        "stat_harvesting",
-        "number_of_enemies"
-      ]
-    },
-    {
       "id": "will_o_the_wisp",
       "effects": [
         "stat_elemental_damage",
@@ -6552,6 +7166,6 @@
       ]
     }
   ],
-  "availableItems": 110,
+  "availableItems": 127,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

@@ -17666,6 +17666,36 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - pickup
+      - stat_range
+      groups: []
+      maxCount: 4
+      available: 1
+      id: baby_gecko
+      title: Remote Magnet Gland
+      icon: 
+      tier: 1
+      value: 18
+      effects:
+      - key: stat_range
+        value: 10
+      - key: instant_gold_attracting
+        value: 25
+      conditionalEffects: []
+      image: {fileID: -360538525503843100, guid: 662db1823095f3a418341795d6b0221e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_luck
       - exploration
       - economy
@@ -18698,6 +18728,35 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - pickup
+      groups: []
+      maxCount: 13
+      available: 1
+      id: cute_monkey
+      title: Salvage Repair Organ
+      icon: 
+      tier: 1
+      value: 25
+      effects:
+      - key: heal_when_pickup_gold
+        value: 8
+      - key: stat_ranged_damage
+        value: -1
+      conditionalEffects: []
+      image: {fileID: 3041330352059559859, guid: de2beb78cfaef2e42980a487760a7cb2, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_percent_damage
       groups: []
       maxCount: -1
@@ -18726,6 +18785,33 @@ MonoBehaviour:
         scale: 0.56774193
         priority: 1
         order: 13
+    - tags:
+      - economy
+      groups: []
+      maxCount: 3
+      available: 1
+      id: dangerous_bunny
+      title: Market Reroll Chip
+      icon: 
+      tier: 2
+      value: 30
+      effects:
+      - key: free_rerolls
+        value: 1
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
     - tags:
       - stat_lifesteal
       groups:
@@ -18962,6 +19048,38 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - economy
+      - pickup
+      groups: []
+      maxCount: 1
+      available: 0
+      id: evil_hat
+      title: Overdrive Salvager
+      icon: 
+      tier: 4
+      value: 130
+      effects:
+      - key: gold_drops
+        value: 70
+      - key: stat_speed
+        value: -15
+      - key: stat_dodge
+        value: -10
+      conditionalEffects: []
+      image: {fileID: 7070639204220260317, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_armor
       - stat_crit_chance
       - stat_engineering
@@ -19020,6 +19138,37 @@ MonoBehaviour:
         value: -15
       conditionalEffects: []
       image: {fileID: -1302949703750197070, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_elemental_damage
+      groups: []
+      maxCount: 2
+      available: 1
+      id: eyes_surgery
+      title: Thermal Optic Surgery
+      icon: 
+      tier: 2
+      value: 60
+      effects:
+      - key: burning_cooldown_reduction
+        value: 20
+      - key: stat_elemental_damage
+        value: 1
+      - key: stat_range
+        value: -10
+      conditionalEffects: []
+      image: {fileID: 8519474197711240728, guid: a309f1d99058d1745b05ce43be6b59e2, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -19236,6 +19385,36 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - consumable
+      groups:
+      - consumable_heal
+      maxCount: 4
+      available: 0
+      id: fruit_basket
+      title: Nutrient Recovery Filter
+      icon: 
+      tier: 2
+      value: 45
+      effects:
+      - key: enemy_fruit_drops
+        value: 1
+      - key: stat_hp_regeneration
+        value: -3
+      conditionalEffects: []
+      image: {fileID: 6015168892897281963, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_elemental_damage
       groups:
       - elemental_damage
@@ -19297,6 +19476,73 @@ MonoBehaviour:
         scale: 0.30085468
         priority: 2
         order: 12
+    - tags:
+      - stat_max_hp
+      - stat_percent_damage
+      - more_enemies
+      groups: []
+      maxCount: 10
+      available: 1
+      id: gentle_alien
+      title: Threat Attractor
+      icon: 
+      tier: 1
+      value: 30
+      effects:
+      - key: stat_max_hp
+        value: 2
+      - key: stat_percent_damage
+        value: 5
+      - key: number_of_enemies
+        value: 5
+      conditionalEffects: []
+      image: {fileID: -3331130359319390272, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_dodge
+      groups:
+      - dodge
+      maxCount: 1
+      available: 0
+      id: ghost_outfit
+      title: Phase Cloak Implant
+      icon: 
+      tier: 3
+      value: 80
+      effects:
+      - key: dodge_cap
+        value: 70
+      - key: stat_dodge
+        value: 10
+      - key: stat_speed
+        value: -5
+      - key: stat_armor
+        value: -3
+      conditionalEffects: []
+      image: {fileID: -5672869595778636664, guid: a19b75abb96ea01479eb937df9f71202, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
     - tags:
       - stat_percent_damage
       groups: []
@@ -20082,6 +20328,33 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - exploration
+      groups: []
+      maxCount: 1
+      available: 1
+      id: lumberjack_shirt
+      title: Arbor Cutting Servo
+      icon: 
+      tier: 1
+      value: 15
+      effects:
+      - key: one_shot_trees
+        value: 1
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_melee_damage
       - stat_hp_regeneration
       - knockback
@@ -20225,6 +20498,42 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_luck
+      - stat_engineering
+      - pickup
+      - economy
+      groups: []
+      maxCount: 20
+      available: 1
+      id: metal_detector
+      title: Salvage Duplication Chip
+      icon: 
+      tier: 2
+      value: 40
+      effects:
+      - key: chance_double_gold
+        value: 5
+      - key: stat_luck
+        value: 6
+      - key: stat_engineering
+        value: 2
+      - key: stat_percent_damage
+        value: -5
+      conditionalEffects: []
+      image: {fileID: 7324782304291205637, guid: 970c93b42cf0548449bd558f8be5bb3a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_armor
       groups:
       - armor
@@ -20271,6 +20580,38 @@ MonoBehaviour:
         value: -4
       conditionalEffects: []
       image: {fileID: -1302949703750197070, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_lifesteal
+      - more_enemies
+      groups: []
+      maxCount: 5
+      available: 1
+      id: mouse
+      title: Hemovore Lure
+      icon: 
+      tier: 3
+      value: 55
+      effects:
+      - key: stat_lifesteal
+        value: 5
+      - key: number_of_enemies
+        value: 10
+      - key: stat_harvesting
+        value: -5
+      conditionalEffects: []
+      image: {fileID: 7123017666264362218, guid: 4a97ead259ba6634e83a5ba92d1da867, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -20529,6 +20870,32 @@ MonoBehaviour:
       effects:
       - key: stat_engineering
         value: 1
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags: []
+      groups: []
+      maxCount: 1
+      available: 1
+      id: piggy_bank
+      title: Reserve Interest Vault
+      icon: 
+      tier: 2
+      value: 40
+      effects:
+      - key: gain_pct_gold_start_wave
+        value: 20
       conditionalEffects: []
       image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
       wearSlot: 
@@ -20983,6 +21350,36 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_hp_regeneration
+      groups:
+      - hp_regeneration
+      maxCount: 1
+      available: 1
+      id: sad_tomato
+      title: Dormant Repair Organ
+      icon: 
+      tier: 3
+      value: 50
+      effects:
+      - key: stat_hp_regeneration
+        value: 8
+      - key: hp_start_wave
+        value: -50
+      conditionalEffects: []
+      image: {fileID: 6015168892897281963, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - xp_gain
       groups: []
       maxCount: -1
@@ -21168,6 +21565,63 @@ MonoBehaviour:
         value: -1
       conditionalEffects: []
       image: {fileID: -3331130359319390272, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - pickup
+      - stat_armor
+      groups: []
+      maxCount: 1
+      available: 1
+      id: sifds_relic
+      title: Global Magnetic Organ
+      icon: 
+      tier: 4
+      value: 100
+      effects:
+      - key: stat_armor
+        value: 3
+      - key: instant_gold_attracting
+        value: 100
+      conditionalEffects: []
+      image: {fileID: -959558555997306856, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_percent_damage
+      groups: []
+      maxCount: -1
+      available: 1
+      id: silver_bullet
+      title: Boss Targeting Cortex
+      icon: 
+      tier: 3
+      value: 70
+      effects:
+      - key: damage_against_bosses
+        value: 25
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -21451,6 +21905,61 @@ MonoBehaviour:
         scale: 1
         priority: 0
         order: 11
+    - tags: []
+      groups: []
+      maxCount: -1
+      available: 1
+      id: tardigrade
+      title: Impact Nullifier
+      icon: 
+      tier: 3
+      value: 50
+      effects:
+      - key: hit_protection
+        value: 1
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_crit_chance
+      groups: []
+      maxCount: 5
+      available: 0
+      id: tentacle
+      title: Critical Repair Tendril
+      icon: 
+      tier: 2
+      value: 35
+      effects:
+      - key: stat_crit_chance
+        value: 3
+      - key: heal_on_crit_kill
+        value: 20
+      conditionalEffects: []
+      image: {fileID: 8193314173140209569, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
     - tags:
       - stat_speed
       groups:
@@ -21512,6 +22021,35 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_max_hp
+      groups: []
+      maxCount: 1
+      available: 1
+      id: torture
+      title: Isolated Life Support
+      icon: 
+      tier: 4
+      value: 100
+      effects:
+      - key: stat_max_hp
+        value: 15
+      - key: torture
+        value: 5
+      conditionalEffects: []
+      image: {fileID: -3331130359319390272, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_elemental_damage
       groups:
       - elemental_damage
@@ -21559,6 +22097,33 @@ MonoBehaviour:
         value: -8
       conditionalEffects: []
       image: {fileID: -8763562391763445944, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - exploration
+      groups: []
+      maxCount: -1
+      available: 1
+      id: tree
+      title: Arbor Seeder
+      icon: 
+      tier: 1
+      value: 15
+      effects:
+      - key: trees
+        value: 1
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -21704,6 +22269,35 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_max_hp
+      groups: []
+      maxCount: -1
+      available: 1
+      id: weird_ghost
+      title: Emergency Reboot Graft
+      icon: 
+      tier: 1
+      value: 12
+      effects:
+      - key: stat_max_hp
+        value: 3
+      - key: hp_start_next_wave
+        value: -100
+      conditionalEffects: []
+      image: {fileID: -3331130359319390272, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_melee_damage
       - stat_ranged_damage
       - stat_harvesting
@@ -21786,6 +22380,36 @@ MonoBehaviour:
         value: -3
       conditionalEffects: []
       image: {fileID: 7123017666264362218, guid: 4a97ead259ba6634e83a5ba92d1da867, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_harvesting
+      - less_enemies
+      groups: []
+      maxCount: 1
+      available: 1
+      id: white_flag
+      title: Truce Transmitter
+      icon: 
+      tier: 2
+      value: 40
+      effects:
+      - key: stat_harvesting
+        value: 5
+      - key: number_of_enemies
+        value: -5
+      conditionalEffects: []
+      image: {fileID: -8763562391763445944, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2

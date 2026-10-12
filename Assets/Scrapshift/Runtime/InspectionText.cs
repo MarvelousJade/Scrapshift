@@ -34,7 +34,7 @@ namespace Scrapshift
             {float coefficient=value>=0?1/(1+value/15):2-1/(1-value/15);return Format(key,N(Mathf.Round(Mathf.Abs(1-coefficient)*100))+"%");}
             if(stat=="hp_regeneration")return Format(key,value>0?"1":"0",value>0?RunRules.RegenerationInterval(value).ToString("0.##",CultureInfo.InvariantCulture):"5",value>0?(1/RunRules.RegenerationInterval(value)).ToString("0.##",CultureInfo.InvariantCulture):"0");
             if(stat=="harvesting")return Format(key+(value>=0?"_LIMITED":""),number,N(5+rules.Stat("harvesting_growth"))+"%","20","10%");
-            if(stat=="dodge")return Format(key,number+"%","60%");
+            if(stat=="dodge")return Format(key,number+"%",N(rules.DodgeLimit*100)+"%");
             if(stat=="lifesteal")return Format(key,number+"%","10");
             if(StatPresentation.Unit(stat)=="%"||stat=="luck")number+="%";
             return Format(key,number);
