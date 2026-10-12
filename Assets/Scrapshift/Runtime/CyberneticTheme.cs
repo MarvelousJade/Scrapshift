@@ -6,6 +6,8 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"lure","Salvage Beacon Gland"},
+            {"pocket_factory","Arbor Fabrication Organ"},
             {"alien_eyes","Radial Optic Array"},
             {"baby_with_a_beard","Death Shard Gland"},
             {"rip_and_tear","Rupture Catalyst"},

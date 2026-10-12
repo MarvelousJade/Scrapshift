@@ -4,6 +4,15 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
+        void DeployTreeTurrets(Vector2 position)
+        {
+            int count=(int)Rules.Stat("tree_turrets");if(count<=0)return;
+            var implant=Array.Find(catalog.data.items,i=>i.id=="turret");var spec=Array.Find(implant.conditionalEffects,e=>e.customKey=="structure").structure;
+            // Source area=200 is a two-unit square, centered after clamping its bounds.
+            Vector2 margin=ArenaGeometry.HalfSize-Vector2.one*1.64f;
+            var center=new Vector2(Mathf.Clamp(position.x,-margin.x,margin.x),Mathf.Clamp(position.y,-margin.y,margin.y));
+            for(int i=0;i<count;i++)DeployStructure(spec,StructureImage(spec.kind),center+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)));
+        }
         Sprite StructureImage(string kind)
         {
             string id=kind=="garden"?"pruner":kind=="landmine"?"screwdriver":kind=="healing"?"medical_gun":kind=="flame"?"flamethrower":kind=="rocket"?"rocket_launcher":kind=="laser"?"laser_gun":kind=="tyler"?"thunder_sword":kind=="wandering_bot"?"taser":"wrench";

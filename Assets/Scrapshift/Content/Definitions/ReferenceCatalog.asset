@@ -28673,6 +28673,35 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_hp_regeneration
+      groups: []
+      maxCount: -1
+      available: 0
+      id: lure
+      title: Salvage Beacon Gland
+      icon: 
+      tier: 2
+      value: 34
+      effects:
+      - key: stat_hp_regeneration
+        value: 2
+      - key: extra_loot_aliens_next_wave
+        value: 2
+      conditionalEffects: []
+      image: {fileID: 6015168892897281963, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_melee_damage
       - stat_hp_regeneration
       - knockback
@@ -29679,6 +29708,37 @@ MonoBehaviour:
       effects:
       - key: explosion_size
         value: 25
+      conditionalEffects: []
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_engineering
+      - exploration
+      - structure
+      groups: []
+      maxCount: 1
+      available: 1
+      id: pocket_factory
+      title: Arbor Fabrication Organ
+      icon: 
+      tier: 2
+      value: 75
+      effects:
+      - key: stat_engineering
+        value: 2
+      - key: tree_turrets
+        value: 1
       conditionalEffects: []
       image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
       wearSlot: 

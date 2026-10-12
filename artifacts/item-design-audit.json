@@ -1,5 +1,5 @@
 {
-  "supportedItems": 191,
+  "supportedItems": 193,
   "items": [
     {
       "id": "acid",
@@ -3005,6 +3005,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "lure",
+      "title": "Lure",
+      "available": false,
+      "tier": 2,
+      "value": 34,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2
+        },
+        {
+          "key": "extra_loot_aliens_next_wave",
+          "value": 2
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "mammoth",
       "title": "Mammoth",
       "available": true,
@@ -3626,6 +3649,31 @@
         {
           "key": "explosion_size",
           "value": 25
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "pocket_factory",
+      "title": "Pocket Factory",
+      "available": true,
+      "tier": 2,
+      "value": 75,
+      "tags": [
+        "stat_engineering",
+        "exploration",
+        "structure"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_engineering",
+          "value": 2
+        },
+        {
+          "key": "tree_turrets",
+          "value": 1
         }
       ],
       "conditionalEffects": []
@@ -7335,6 +7383,18 @@
       "sha256": "93a97025d7abe3ea2e4aab411718b8d0ac87f9d8d37812389c5280cc7d3b5d43"
     },
     {
+      "path": "items/all/lure/lure_data.tres",
+      "sha256": "45a3579e169e0fd39d45d559348862c7d9bc3a9fa87a753a3ff7d21f8f61cfc7"
+    },
+    {
+      "path": "items/all/lure/lure_effect_1.tres",
+      "sha256": "346061d8d417bc937288c35fde74f6e73f5e3382878eb255a46069be6ce71bf1"
+    },
+    {
+      "path": "items/all/lure/lure_effect_2.tres",
+      "sha256": "73a213bc9a56e979fda9fe958a32ef14c44d30e39dbbe23214a2b6532cd3b09f"
+    },
+    {
       "path": "items/all/mammoth/mammoth_data.tres",
       "sha256": "18648831a491f0dad84d5299b4dc87291986f7f95494c22bc97bebbf9a504f10"
     },
@@ -7669,6 +7729,18 @@
     {
       "path": "items/all/plastic_explosive/plastic_explosive_effect_1.tres",
       "sha256": "9e2d4abf856784e696a4d09c9d2d5ed0e26a432fe9fc5e6f68525e6022154102"
+    },
+    {
+      "path": "items/all/pocket_factory/pocket_factory_data.tres",
+      "sha256": "4144470a6a0af507b403b53ee8bacb42d8e19834557b9569e6479e218284b07f"
+    },
+    {
+      "path": "items/all/pocket_factory/pocket_factory_effect_0.tres",
+      "sha256": "6abbdc51fbc5fb73e509bfcb012e84d6c7b674bb8f2f8d203d285c92c85d49cc"
+    },
+    {
+      "path": "items/all/pocket_factory/pocket_factory_effect_1.tres",
+      "sha256": "98a0c56dac25772b8f0f2611588e52d56253598de009ca701ce6baef4c0805db"
     },
     {
       "path": "items/all/poisonous_tonic/poisonous_tonic_data.tres",
@@ -8742,20 +8814,6 @@
       ]
     },
     {
-      "id": "lure",
-      "effects": [
-        "stat_hp_regeneration",
-        "extra_loot_aliens_next_wave"
-      ]
-    },
-    {
-      "id": "pocket_factory",
-      "effects": [
-        "stat_engineering",
-        "tree_turrets"
-      ]
-    },
-    {
       "id": "ratzilla",
       "effects": [
         ""
@@ -8768,6 +8826,6 @@
       ]
     }
   ],
-  "availableItems": 154,
+  "availableItems": 155,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

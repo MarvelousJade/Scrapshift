@@ -61,7 +61,7 @@ namespace Scrapshift
                 bool passed=starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==catalog.data.characters.Length
                     &&starterReport.weaponsDamagedTarget.Count==starterReport.availableWeapons&&starterReport.burning&&starterReport.slow
                     &&starterReport.secondaryProjectiles&&starterReport.turretFired&&starterReport.ghostProgress
-                    &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution&&starterReport.deployableImplantsPassed.Count==9&&starterReport.attackImplantsPassed.Count==6;
+                    &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution&&starterReport.deployableImplantsPassed.Count==10&&starterReport.attackImplantsPassed.Count==6;
                 starterReport.status=passed?"Passed":"Failed";
                 File.WriteAllText(Path.Combine(starterReviewPath,"starter-review.json"),JsonUtility.ToJson(starterReport,true));
                 Application.Quit(passed?0:1);enabled=false;

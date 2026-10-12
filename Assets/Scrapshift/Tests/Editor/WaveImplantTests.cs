@@ -11,6 +11,16 @@ namespace Scrapshift.Tests
         RunRules Run(){var r=new RunRules(18);r.Configure(catalog);r.Start();return r;}
         void Shop(RunRules r){r.Tick(r.Remaining);while(r.Phase==RunPhase.Upgrade)r.Choose(0);}
         void Buy(RunRules r,string id){r.Shop[0]=new ShopOffer{item=catalog.data.items.Single(i=>i.id==id),rolledWave=r.Wave};Assert.IsTrue(r.Buy(0));}
+        [Test] public void LureIsConsumedOnceAndBuyingAgainQueuesTwoMore()
+        {
+            var r=Run();r.Collect(2000);Shop(r);Buy(r,"lure");r.NextWave();Assert.AreEqual(2,r.ExtraLootAliens);Assert.AreEqual(0,r.Stat("extra_loot_aliens_next_wave"));
+            Shop(r);r.NextWave();Assert.AreEqual(0,r.ExtraLootAliens);Shop(r);Buy(r,"lure");r.NextWave();Assert.AreEqual(2,r.ExtraLootAliens);
+        }
+        [Test] public void ExtraLootAliensSpawnOnceInsideTheReferenceWindowWithoutEnemyCountScaling()
+        {
+            var wave=new WaveEntry{duration=30,groups=new SpawnGroup[0]};var director=new SpawnDirector(wave,17,300,0,2);
+            int count=0;for(int second=1;second<=30;second++)director.Tick(1,(g,u,n)=>{Assert.AreEqual("looter",u.id);Assert.That(second,Is.InRange(5,20));count+=n;});Assert.AreEqual(2,count);
+        }
         [Test] public void PeacockBonusIsNextWaveOnlyAndRebuyQueuesAnother()
         {
             var r=Run();r.Collect(2000);Shop(r);Buy(r,"peacock");Assert.AreEqual(25,r.Stat("xp_gain"));Assert.AreEqual(0,r.Stat("enemy_damage"));

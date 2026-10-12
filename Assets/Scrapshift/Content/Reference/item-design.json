@@ -3004,6 +3004,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "lure",
+      "title": "Lure",
+      "available": false,
+      "tier": 2,
+      "value": 34,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2
+        },
+        {
+          "key": "extra_loot_aliens_next_wave",
+          "value": 2
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "mammoth",
       "title": "Mammoth",
       "available": true,
@@ -3625,6 +3648,31 @@
         {
           "key": "explosion_size",
           "value": 25
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "pocket_factory",
+      "title": "Pocket Factory",
+      "available": true,
+      "tier": 2,
+      "value": 75,
+      "tags": [
+        "stat_engineering",
+        "exploration",
+        "structure"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_engineering",
+          "value": 2
+        },
+        {
+          "key": "tree_turrets",
+          "value": 1
         }
       ],
       "conditionalEffects": []

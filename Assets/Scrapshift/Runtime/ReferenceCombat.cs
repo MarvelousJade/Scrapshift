@@ -59,7 +59,7 @@ namespace Scrapshift
         }
         void StartWave()
         {
-            director=new SpawnDirector(catalog.data.waves[Rules.Wave-1],UnityEngine.Random.Range(1,int.MaxValue),Rules.Stat("number_of_enemies"),Rules.Stat("trees"));
+            director=new SpawnDirector(catalog.data.waves[Rules.Wave-1],UnityEngine.Random.Range(1,int.MaxValue),Rules.Stat("number_of_enemies"),Rules.Stat("trees"),Rules.ExtraLootAliens);
             births.Clear();cratesSpawned=0;
             Array.Clear(weaponClocks,0,6);
             SyncEquipment();ResetStructures();
@@ -441,7 +441,7 @@ namespace Scrapshift
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
-            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure);if(e.type.role!="Tree"){EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0||bypassArmor);}return critical;
+            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure);if(e.type.role!="Tree"){EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0||bypassArmor);}else DeployTreeTurrets(e.pos);return critical;
         }
         void Drop(Vector2 p,int value,bool fruit)
         {

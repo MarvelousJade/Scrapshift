@@ -18,7 +18,7 @@ namespace Scrapshift
         double time;
         int processed=-1;
         readonly float enemyModifier,extraTrees;
-        public SpawnDirector(WaveEntry wave,int seed,float enemyModifier=0,float extraTrees=0)
+        public SpawnDirector(WaveEntry wave,int seed,float enemyModifier=0,float extraTrees=0,int extraLootAliens=0)
         {
             this.enemyModifier=enemyModifier;this.extraTrees=extraTrees;
             random=new Random(seed);
@@ -33,12 +33,14 @@ namespace Scrapshift
                 }
                 else Add(g);
             }
+            // Crash Zone loot group: one alien per copy, once between 5s and ten seconds before the end.
+            for(int i=0;i<extraLootAliens;i++)Add(new SpawnGroup{start=5+(float)random.NextDouble()*Math.Max(0,wave.duration-15),interval=3,minimum=1,repeats=-1,chance=1,area=-1,inset=2,units=new[]{new UnitEntry{id="looter",min=1,max=1,chance=1}}});
         }
         void Add(SpawnGroup g)
         {
             states.Add(new State
             {
-                group=g,next=g.start,interval=Math.Max(g.minimum,g.interval),left=g.repeats+1
+                group=g,next=g.start,interval=Math.Max(g.minimum,g.interval),left=Math.Max(0,g.repeats)+1
             })
             ;
         }

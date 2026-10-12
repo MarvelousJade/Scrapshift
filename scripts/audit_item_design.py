@@ -13,7 +13,7 @@ supported.update({'lose_hp_per_second','burning_spread','instant_gold_attracting
 original_ids=ids.copy()
 supported.update({'number_of_enemies','trees'})
 supported.update({'structure_attack_speed','structures_can_crit'})
-supported.add('enemy_damage')
+supported.update({'enemy_damage','tree_turrets','extra_loot_aliens_next_wave'})
 conditional={'temp_stats_while_not_moving','temp_stats_while_moving','unique_weapon_effects','additional_weapon_effects','temp_stats_on_hit','stats_end_of_wave','stats_on_level_up','temp_stats_per_interval'}
 def implemented(e):
     if not isinstance(e.get('value'),(int,float)):return False

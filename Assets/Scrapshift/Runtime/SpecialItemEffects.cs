@@ -5,6 +5,8 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> lifecycle=new Dictionary<string,string>
         {
+            {"extra_loot_aliens_next_wave","{0} additional loot aliens appear next wave"},
+            {"tree_turrets","Spawn {0} turret near each destroyed tree"},
             {"instant_gold_attracting","{0}% chance to attract a material as soon as it drops"},
             {"heal_when_pickup_gold","{0}% chance to heal 1 HP when picking up a material"},
             {"chance_double_gold","{0}% chance to double the value of picked-up materials"},

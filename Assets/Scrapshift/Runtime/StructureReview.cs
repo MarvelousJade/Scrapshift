@@ -27,6 +27,12 @@ namespace Scrapshift
                 if(passed)starterReport.deployableImplantsPassed.Add(id);
                 else Debug.LogError("Deployable implant fixture failed: "+id);
             }
+            Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();Rules.GainWeaponStat("tree_turrets",1);
+            Spawn(catalog.Enemy("tree"),Vector2.right*2);var tree=enemies[enemies.Count-1];Destroy(tree.marker);tree.marker=null;tree.obj.SetActive(true);
+            Damage(enemies.IndexOf(tree),100000,-100,0,Vector2.zero);
+            bool treeConverted=starterTurrets.Count==1&&starterTurrets[0].spec.kind=="turret";
+            if(treeConverted){var target=FeelEnemy(starterTurrets[0].pos+Vector2.right*.6f);for(int i=0;i<120;i++){UpdateStarterEffects(1f/60);UpdateWeapons(1f/60);}treeConverted=target.hp<1000;}
+            if(treeConverted)starterReport.deployableImplantsPassed.Add("pocket_factory");else Debug.LogError("Tree turret conversion fixture failed");
             UnityEngine.Random.state=state;
         }
     }

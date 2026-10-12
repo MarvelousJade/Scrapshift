@@ -9,10 +9,10 @@ Crates resolve before levels. Remaining crates are collected automatically.
 At wave end, choose queued stat upgrades with 1-4 or the mouse.
 Shop: buy items/weapons and lock offers. Left/right-click an owned weapon for Combine, Recycle and Cancel.
 R: paid reroll. Six equipped weapons maximum.
-98 obtainable item types, 43 available weapon families, up to six floating weapons.
+155 initially obtainable item types, 46 available weapon families, up to six floating weapons.
 Fifteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
-Start -> Random or Rookie / Pugilist / Hothead / Sharpshot -> starting weapon -> Danger 0.
-Each character starts with one fixed weapon plus your chosen weapon, and has different modifiers and starting choices. The remaining 46 character slots are locked.
+Start -> Random or Rookie / Pugilist / Hothead / Sharpshot / Arc Weaver -> starting weapon -> Danger 0.
+Each character starts with one fixed weapon plus your chosen weapon, and has different modifiers and starting choices. The remaining 45 character slots are locked.
 Weapon selection shows only unlocked choices eligible for that character, plus Random.
 Pause/shop/level-up/crates: hover stats, owned items or weapons to inspect descriptions.
 Tab / Shift+Tab cycle inspection targets; arrow keys move the selector. Move the mouse to return to hover.
@@ -36,4 +36,6 @@ Combat update: distinct lower-body hitboxes, stronger pistol knockback, brief en
 
 Cybernetic presentation: cream human-like mascot, implant names with reference values, footsteps/pickup feedback and tabbed options. All 62 base weapon families are registered; only implemented, source-unlocked tiers can appear. No DLC resources imported.
 
-October 12 conditional implants: 119 item definitions (98 available), 43 available weapon families. Added standing/inventory bonuses, timed growth, damage-triggered growth and permanent wave/level gains. Drill, Scythe, Jousting Lance and Excalibur now have their reference special behaviors; Excalibur remains source-locked. 90 base items and six explicitly gated weapon families remain; locked Rail Gun also still lacks its special behavior.
+October 12 base-catalog implementation checkpoint: 193/209 item definitions (155 initially available), all 62 base weapon families (205 tiers) and all previously missing weapon special behaviors. Source locks leave 46 families / 160 tiers initially available. Five starting characters include Arc Weaver, the Mage counterpart. The other 45 character profiles and persistent unlock progression remain unfinished; their slots currently show locks. Sixteen base items remain, including pets and wave-changing effects. This build is an incremental checkpoint, not complete base-game parity.
+
+Validation: clean Windows build, 248 passing EditMode tests, and a visible combat fixture checking all 160 initially available weapon tiers, ten deployable implants, six attack implants, and five starting profiles. Automated fixtures do not replace human playtesting.

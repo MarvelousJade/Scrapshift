@@ -6,12 +6,14 @@ namespace Scrapshift
     public sealed partial class RunRules
     {
         int freeShopRerolls,knownFreeRerolls;
+        public int ExtraLootAliens {get;private set;}
         public int HitProtection {get;private set;}
         public bool LastHitProtected {get;private set;}
         public float BurningInterval=>Mathf.Max(.1f,1+(Stat("burning_cooldown_increase")-Stat("burning_cooldown_reduction"))/100);
         public float DodgeLimit=>Mathf.Clamp(Mathf.Max(60,Stat("dodge_cap")),0,100)/100;
         void BeginItemWave()
         {
+            ExtraLootAliens=Math.Max(0,(int)PermanentStat("extra_loot_aliens_next_wave"));stats["extra_loot_aliens_next_wave"]=0;
             consumableGains.Clear();
             HitProtection=Math.Max(0,(int)Stat("hit_protection"));LastHitProtected=false;
             float percentage=100+Stat("hp_start_wave");
