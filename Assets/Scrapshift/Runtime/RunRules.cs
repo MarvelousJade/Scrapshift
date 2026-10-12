@@ -115,7 +115,7 @@ namespace Scrapshift
             WeaponSets.Configure(source?.data.sets);
         }
         float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
-        public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name))*(Character?.Gain(name)??1);
+        public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1);
         public int SetCount(WeaponSet set)=>WeaponSets.Count(Inventory,set);
         public float WeaponRange(Equipment weapon)=>Mathf.Max(.25f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
         void Add(string name,float value)
@@ -127,6 +127,7 @@ namespace Scrapshift
         public void Start(CharacterProfile character=null,string weaponId=null)
         {
             stats.Clear();xpFraction=0;Character=character;
+            ResetConditionalEffects();
             Inventory.Clear();
             Items.Clear();
             crates.Clear();CrateItem=null;regenElapsed=lifeStealCooldown=0;
@@ -150,12 +151,15 @@ namespace Scrapshift
         public void Tick(float seconds)
         {
             if(Phase!=RunPhase.Playing||seconds<=0)return;
-            TickSurvival(Math.Min(seconds,Remaining));
+            TickConditionalEffects(Math.Min(seconds,Remaining));
+            if(Phase!=RunPhase.Playing)return;
             Remaining=Math.Max(0,Remaining-seconds);
             if(Remaining>0)return;
+            PermanentTrigger("stats_end_of_wave");
             if(Wave==WaveCount)
             {
                 Phase=RunPhase.Won;
+                ResetConditionalEffects();
                 return;
             }
             int harvest=(int)Stat("harvesting");
@@ -163,6 +167,7 @@ namespace Scrapshift
             if(harvest>0)GainXP(harvest);
             if(harvest>0)Add("harvesting",Mathf.Ceil(harvest*Mathf.Max(0,5+Stat("harvesting_growth"))/100));
             rerolls=0;
+            ResetConditionalEffects();
             OpenRewards();
         }
         public void Hurt(float amount)
@@ -172,6 +177,7 @@ namespace Scrapshift
             float armor=Stat("armor");
             amount*=armor>=0?1/(1+armor/15):2-1/(1-armor/15);
             Health=Math.Max(0,Health-Math.Max(1,amount));
+            DamageTriggers();
             if(Health==0)Phase=RunPhase.Lost;
         }
         public void Heal(float amount)
@@ -196,6 +202,7 @@ namespace Scrapshift
                 XP-=NextLevel;
                 Level++;
                 Add("max_hp",1);
+                PermanentTrigger("stats_on_level_up");
                 PendingLevels++;
             }
         }
@@ -351,6 +358,7 @@ namespace Scrapshift
             if(Phase!=RunPhase.Shop)return;
             Wave++;
             Remaining=Durations[Wave-1];
+            ResetConditionalEffects();
             Health=MaxHealth;
             regenElapsed=lifeStealCooldown=0;
             Phase=RunPhase.Playing;

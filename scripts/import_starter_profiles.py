@@ -59,10 +59,11 @@ def weapon(path):
   trait['sourceScript']=Path(e.get('script','')).stem
   trait['interval']=e.get('interval',0)
   trait['customKey']=e.get('custom_key','')
+  trait['resetOnHit']=e.get('reset_on_hit',False)
   traits.append(trait)
  result['traits']=traits
  result['sourceAvailable']=result['available']
- unsupported={'screwdriver','pruner','drill','scythe','jousting_lance','excalibur','particle_accelerator','vorpal_sword','thunder_sword','torch'}
+ unsupported={'screwdriver','pruner','particle_accelerator','vorpal_sword','thunder_sword','torch'}
  result['implemented']=name not in unsupported
  result['available']=result['available'] and result['implemented']
  weapons[path]=result

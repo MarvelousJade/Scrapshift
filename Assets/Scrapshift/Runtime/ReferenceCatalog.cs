@@ -59,6 +59,7 @@ namespace Scrapshift
         public string id,title,icon;
         public int tier,value;
         public StatEffect[] effects;
+        public ConditionalEffect[] conditionalEffects;
         public Sprite image;
         public string wearSlot;
         public Vector2 wearOffset;
@@ -71,6 +72,7 @@ namespace Scrapshift
             {
                 string s="";
                 foreach(var e in effects)s+=FormatStat(e.key,e.value)+"\n";
+                if(conditionalEffects!=null)foreach(var e in conditionalEffects)s+=e.Description+"\n";
                 return s.TrimEnd();
             }
         }

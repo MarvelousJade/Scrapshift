@@ -39,7 +39,8 @@ namespace Scrapshift
             return Format(key,number);
         }
         public string ItemDescription(ItemEntry item)=>string.Join("\n",item.effects.Select(e=>
-            "<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"));
+            "<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>")
+            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Select(e=>"<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"+e.Suffix)));
         public string Sets(Equipment weapon)=>string.Join(", ",WeaponSets.All.Where(s=>weapon.HasSet(s.Id)).Select(s=>s.Name));
         static string Compared(float current,float original,string shown)=>"<color="+(Mathf.Approximately(current,original)?"#FFFFFF":current>original?"#76FF40":"#FF4444")+">"+shown+"</color>";
         public string WeaponDescription(RunRules rules,Equipment w)
@@ -61,6 +62,7 @@ namespace Scrapshift
             if(w.traits!=null)foreach(var t in w.traits)
             {
                 string effect=null;
+                if(!string.IsNullOrEmpty(t.customKey)){lines.Add(StatEffect(t.key,t.value)+t.Conditional.Suffix);continue;}
                 switch(t.key)
                 {
                     case "effect_burning":effect=Format(t.key.ToUpperInvariant(),N(t.burnDamage),N(t.burnTicks),N(t.burnScale*100)+"% "+StatName("elemental_damage"));break;
@@ -73,6 +75,7 @@ namespace Scrapshift
                     case "gold_on_crit_kill":effect=Format("EFFECT_GOLD_ON_CRIT_KILL",N(t.value)+"%");break;
                     case "bounce_on_crit":effect=Format("EFFECT_BOUNCE_ON_CRIT",N(t.value));break;
                     case "pierce_on_crit":effect=Format("EFFECT_PIERCE_ON_CRIT_WEAPON",N(t.value));break;
+                    case "lose_hp_per_second":effect=$"Lose {N(t.value)} HP every second";break;
                     default:if(t.key.StartsWith("stat_"))effect=t.per>0?Format("EFFECT_GAIN_STAT_FOR_EVERY_PERCENT_PLAYER_MISSING_HEALTH","+"+N(t.value),StatName(t.key.Substring(5)),N(t.per)+"%","",N(Mathf.Floor((1-rules.Health/rules.MaxHealth)*100/t.per)*t.value)):"+"+N(t.value)+" "+StatName(t.key.Substring(5));break;
                 }
                 if(effect!=null)lines.Add(effect);

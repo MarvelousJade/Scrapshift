@@ -19,7 +19,7 @@ namespace Scrapshift.Editor
                 if(target==null)target=new ItemEntry{id=item.id};
                 if(!original){target.image=StatPresentation.Icon(catalog,System.Array.Find(item.effects,e=>e.key.StartsWith("stat_"))?.key.Substring(5)??"engineering");target.appearance=null;target.wearSlot=null;}
                 target.title=CyberneticTheme.ItemName(item.id,text.T("ITEM_"+item.id.ToUpperInvariant(),item.title));target.available=item.available;
-                target.value=item.value;target.tier=item.tier;target.effects=item.effects;
+                target.value=item.value;target.tier=item.tier;target.effects=item.effects;target.conditionalEffects=item.conditionalEffects;
                 target.tags=item.tags;target.groups=item.groups;target.maxCount=item.maxCount;
                 expanded.Add(target);
             }

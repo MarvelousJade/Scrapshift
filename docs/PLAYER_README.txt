@@ -9,14 +9,14 @@ Crates resolve before levels. Remaining crates are collected automatically.
 At wave end, choose queued stat upgrades with 1-4 or the mouse.
 Shop: buy items/weapons and lock offers. Left/right-click an owned weapon for Combine, Recycle and Cancel.
 R: paid reroll. Six equipped weapons maximum.
-64 obtainable item types, 24 available weapon families, up to six floating weapons.
-Fourteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
+98 obtainable item types, 43 available weapon families, up to six floating weapons.
+Fifteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
 Start -> Random or Rookie / Pugilist / Hothead / Sharpshot -> starting weapon -> Danger 0.
 Each character starts with one fixed weapon plus your chosen weapon, and has different modifiers and starting choices. The remaining 46 character slots are locked.
 Weapon selection shows only unlocked choices eligible for that character, plus Random.
 Pause/shop/level-up/crates: hover stats, owned items or weapons to inspect descriptions.
 Tab / Shift+Tab cycle inspection targets; arrow keys move the selector. Move the mouse to return to hover.
-Fullscreen is the default. F11 or Options > Display toggles fullscreen/windowed; your choice is saved.
+Fullscreen is the default. F11 or Options > Video toggles fullscreen/windowed; your choice is saved.
 New runs enter with a 1.2-second parachute landing before the wave timer starts.
 Options: turn Reduced Motion off to see the full descent and squash animation.
 The player has a smooth shell, swappable facial details and widely spaced, rounded silver boat-shaped tiny legs.
@@ -35,3 +35,5 @@ Full-run balance and player acceptance remain unverified.
 Combat update: distinct lower-body hitboxes, stronger pistol knockback, brief enemy slowing after contact, and clearer white impact flashes. Original artwork retained.
 
 October 12 cybernetic refresh: cream human-like mascot, implant names with reference values, footsteps/pickup feedback, tabbed options. 106 item definitions (91 available); 62 weapon families imported (40 available on this profile). Some special-effect weapons and 103 reference items remain unfinished and are not included in the shop. No DLC resources imported.
+
+October 12 conditional implants: 119 item definitions (98 available), 43 available weapon families. Added standing/inventory bonuses, timed growth, damage-triggered growth and permanent wave/level gains. Drill, Scythe, Jousting Lance and Excalibur now have their reference special behaviors; Excalibur remains source-locked. 90 base items and six explicitly gated weapon families remain; locked Rail Gun also still lacks its special behavior.

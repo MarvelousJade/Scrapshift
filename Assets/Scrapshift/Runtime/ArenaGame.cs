@@ -188,6 +188,7 @@ namespace Scrapshift
             if(worldReview) movement=WorldReviewMovement();
             if (artReview) movement = ArtReviewMovement();
             if (enemyReview || lootReview) movement = Vector2.zero;
+            Rules.SetMoving(movement.sqrMagnitude>0);
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(movement,dt);
@@ -206,6 +207,7 @@ namespace Scrapshift
             gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
             float healthBefore=Rules.Health;Rules.Tick(dt);
+            if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
             if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); }
             if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) player.SetActive(true);

@@ -1,5 +1,5 @@
 {
-  "supportedItems": 106,
+  "supportedItems": 119,
   "items": [
     {
       "id": "acid",
@@ -25,7 +25,8 @@
           "key": "knockback",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_baby",
@@ -47,7 +48,8 @@
           "key": "enemy_health",
           "value": 10
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_magic",
@@ -74,7 +76,8 @@
           "key": "stat_luck",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_tongue",
@@ -97,7 +100,8 @@
           "key": "knockback",
           "value": 1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_worm",
@@ -124,7 +128,8 @@
           "key": "consumable_heal",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alloy",
@@ -166,7 +171,8 @@
           "key": "stat_dodge",
           "value": -6
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bag",
@@ -190,7 +196,8 @@
           "key": "stat_speed",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bandana",
@@ -212,7 +219,8 @@
           "key": "stat_percent_damage",
           "value": -10
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "banner",
@@ -239,6 +247,40 @@
           "key": "knockback",
           "value": -5
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "barricade",
+      "title": "Barricade",
+      "available": true,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_armor",
+        "stand_still",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "knockback",
+          "value": 3
+        },
+        {
+          "key": "stat_speed",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_armor",
+          "value": 8,
+          "customKey": "temp_stats_while_not_moving",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -263,7 +305,8 @@
           "key": "stat_harvesting",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bean_teacher",
@@ -285,7 +328,8 @@
           "key": "stat_lifesteal",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "beanie",
@@ -309,7 +353,8 @@
           "key": "stat_range",
           "value": -6
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "big_arms",
@@ -347,7 +392,8 @@
           "key": "stat_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "black_belt",
@@ -379,7 +425,8 @@
           "key": "stat_luck",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "blindfold",
@@ -406,7 +453,8 @@
           "key": "stat_range",
           "value": -15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "blood_leech",
@@ -435,7 +483,8 @@
           "key": "stat_harvesting",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "boiling_water",
@@ -459,7 +508,8 @@
           "key": "stat_max_hp",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "book",
@@ -488,7 +538,8 @@
           "key": "stat_luck",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bowler_hat",
@@ -519,7 +570,8 @@
           "key": "stat_crit_chance",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "boxing_glove",
@@ -542,7 +594,8 @@
           "key": "knockback",
           "value": 3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "broken_mouth",
@@ -564,7 +617,8 @@
           "key": "stat_hp_regeneration",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "butterfly",
@@ -588,7 +642,8 @@
           "key": "stat_elemental_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cake",
@@ -610,7 +665,8 @@
           "key": "stat_percent_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cape",
@@ -645,6 +701,41 @@
           "key": "stat_elemental_damage",
           "value": -2
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "chameleon",
+      "title": "Chameleon",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_dodge",
+        "stand_still"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "dodge"
+      ],
+      "effects": [
+        {
+          "key": "stat_dodge",
+          "value": 3
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -4
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_dodge",
+          "value": 20,
+          "customKey": "temp_stats_while_not_moving",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -672,7 +763,8 @@
           "key": "stat_harvesting",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "claw_tree",
@@ -699,7 +791,8 @@
           "key": "stat_max_hp",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "clover",
@@ -726,7 +819,8 @@
           "key": "stat_lifesteal",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "coffee",
@@ -748,7 +842,8 @@
           "key": "stat_percent_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cog",
@@ -777,7 +872,8 @@
           "key": "stat_percent_damage",
           "value": -4
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "compass",
@@ -804,7 +900,8 @@
           "key": "stat_crit_chance",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "coupon",
@@ -822,7 +919,8 @@
           "key": "items_price",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "crown",
@@ -842,7 +940,8 @@
           "key": "harvesting_growth",
           "value": 8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cyclops_worm",
@@ -863,6 +962,38 @@
         {
           "key": "stat_range",
           "value": -12
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "decomposing_flesh",
+      "title": "Decomposing Flesh",
+      "available": false,
+      "tier": 2,
+      "value": 30,
+      "tags": [
+        "stat_lifesteal"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "lifesteal"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "customKey": "stats_on_level_up",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1,
+          "customKey": "stats_on_level_up",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -891,7 +1022,8 @@
           "key": "stat_attack_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "diploma",
@@ -918,7 +1050,8 @@
           "key": "stat_max_hp",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "duct_tape",
@@ -945,7 +1078,8 @@
           "key": "stat_max_hp",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "dynamite",
@@ -963,7 +1097,8 @@
           "key": "explosion_damage",
           "value": 15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "energy_bracelet",
@@ -990,7 +1125,8 @@
           "key": "stat_ranged_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "exoskeleton",
@@ -1031,7 +1167,8 @@
           "key": "stat_lifesteal",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "explosive_shells",
@@ -1057,7 +1194,8 @@
           "key": "stat_percent_damage",
           "value": -15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "fertilizer",
@@ -1081,7 +1219,8 @@
           "key": "stat_melee_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "fin",
@@ -1108,6 +1247,34 @@
           "key": "stat_luck",
           "value": -8
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "focus",
+      "title": "Focus",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 30
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": -3,
+          "customKey": "unique_weapon_effects",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -1132,7 +1299,8 @@
           "key": "stat_hp_regeneration",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "fuel_tank",
@@ -1160,7 +1328,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "gambling_token",
@@ -1184,7 +1353,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "glass_cannon",
@@ -1206,7 +1376,8 @@
           "key": "stat_armor",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "glasses",
@@ -1224,7 +1395,8 @@
           "key": "stat_range",
           "value": 20
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "gnome",
@@ -1255,7 +1427,8 @@
           "key": "pickup_range",
           "value": -20
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "goat_skull",
@@ -1278,6 +1451,45 @@
         {
           "key": "stat_crit_chance",
           "value": -2
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "grinds_magical_leaf",
+      "title": "Grinds Magical Leaf",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_max_hp",
+        "stat_hp_regeneration",
+        "stat_lifesteal"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -1306,7 +1518,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "head_injury",
@@ -1328,7 +1541,8 @@
           "key": "stat_range",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "heavy_bullets",
@@ -1364,7 +1578,8 @@
           "key": "stat_crit_chance",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "hedgehog",
@@ -1393,7 +1608,8 @@
           "key": "stat_hp_regeneration",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "helmet",
@@ -1417,7 +1633,8 @@
           "key": "stat_speed",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "honey",
@@ -1452,7 +1669,8 @@
           "key": "stat_dodge",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "injection",
@@ -1474,7 +1692,8 @@
           "key": "stat_max_hp",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "insanity",
@@ -1495,6 +1714,29 @@
         {
           "key": "stat_percent_damage",
           "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "jelly",
+      "title": "Jelly",
+      "available": false,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "unique_weapon_effects",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -1527,7 +1769,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "leather_vest",
@@ -1554,7 +1797,8 @@
           "key": "stat_max_hp",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lemonade",
@@ -1574,7 +1818,8 @@
           "key": "consumable_heal",
           "value": 1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lens",
@@ -1598,7 +1843,8 @@
           "key": "stat_range",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "little_frog",
@@ -1625,7 +1871,8 @@
           "key": "stat_dodge",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "little_muscley_dude",
@@ -1652,7 +1899,8 @@
           "key": "stat_range",
           "value": -15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lost_duck",
@@ -1674,7 +1922,8 @@
           "key": "stat_elemental_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lucky_charm",
@@ -1700,7 +1949,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mammoth",
@@ -1736,7 +1986,8 @@
           "key": "stat_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mastery",
@@ -1760,7 +2011,8 @@
           "key": "stat_ranged_damage",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "medal",
@@ -1797,6 +2049,40 @@
           "key": "stat_crit_chance",
           "value": -4
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "medikit",
+      "title": "Medikit",
+      "available": false,
+      "tier": 4,
+      "value": 95,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 10
+        },
+        {
+          "key": "stat_luck",
+          "value": -10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2,
+          "customKey": "temp_stats_per_interval",
+          "interval": 5,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -1821,7 +2107,8 @@
           "key": "stat_percent_damage",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "missile",
@@ -1843,7 +2130,8 @@
           "key": "stat_attack_speed",
           "value": -4
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mushroom",
@@ -1867,7 +2155,8 @@
           "key": "stat_luck",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mutation",
@@ -1894,7 +2183,8 @@
           "key": "knockback",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "night_goggles",
@@ -1925,7 +2215,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "octopus",
@@ -1957,7 +2248,8 @@
           "key": "stat_crit_chance",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "panda",
@@ -1984,7 +2276,8 @@
           "key": "stat_percent_damage",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "peaceful_bee",
@@ -2015,7 +2308,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "pencil",
@@ -2035,7 +2329,8 @@
           "key": "stat_engineering",
           "value": 1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "plant",
@@ -2059,7 +2354,8 @@
           "key": "stat_lifesteal",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "plastic_explosive",
@@ -2077,7 +2373,8 @@
           "key": "explosion_size",
           "value": 25
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "poisonous_tonic",
@@ -2109,7 +2406,8 @@
           "key": "stat_hp_regeneration",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "potato",
@@ -2163,7 +2461,8 @@
           "key": "stat_luck",
           "value": 5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "propeller_hat",
@@ -2185,7 +2484,8 @@
           "key": "stat_percent_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "pumpkin",
@@ -2207,7 +2507,8 @@
           "key": "stat_percent_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "recycling_machine",
@@ -2225,7 +2526,8 @@
           "key": "recycling_gains",
           "value": 35
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "reinforced_steel",
@@ -2252,7 +2554,8 @@
           "key": "stat_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "ricochet",
@@ -2274,7 +2577,8 @@
           "key": "stat_percent_damage",
           "value": -25
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "ritual",
@@ -2301,6 +2605,44 @@
           "key": "stat_engineering",
           "value": -2
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "robot_arm",
+      "title": "Robot Arm",
+      "available": false,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_melee_damage",
+        "stat_engineering"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_engineering",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -2323,7 +2665,8 @@
           "key": "stat_range",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "scope",
@@ -2350,7 +2693,8 @@
           "key": "stat_attack_speed",
           "value": -7
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "shady_potion",
@@ -2372,7 +2716,8 @@
           "key": "stat_hp_regeneration",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "sharp_bullet",
@@ -2402,7 +2747,8 @@
           "key": "knockback",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "shmoop",
@@ -2433,7 +2779,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "small_magazine",
@@ -2460,7 +2807,8 @@
           "key": "stat_percent_damage",
           "value": -6
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "snail",
@@ -2481,6 +2829,71 @@
         {
           "key": "stat_speed",
           "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "spider",
+      "title": "Spider",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_percent_damage",
+        "stat_attack_speed"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 12
+        },
+        {
+          "key": "stat_dodge",
+          "value": -3
+        },
+        {
+          "key": "stat_harvesting",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 6,
+          "customKey": "unique_weapon_effects",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "statue",
+      "title": "Statue",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "stat_attack_speed",
+        "stand_still"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_speed",
+          "value": -10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 40,
+          "customKey": "temp_stats_while_not_moving",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -2504,7 +2917,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "terrified_onion",
@@ -2528,7 +2942,8 @@
           "key": "stat_luck",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "toolbox",
@@ -2552,7 +2967,8 @@
           "key": "stat_attack_speed",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "toxic_sludge",
@@ -2576,7 +2992,8 @@
           "key": "stat_dodge",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "tractor",
@@ -2599,6 +3016,60 @@
         {
           "key": "stat_percent_damage",
           "value": -8
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "triangle_of_power",
+      "title": "Triangle Of Power",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 20
+        },
+        {
+          "key": "stat_armor",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -2,
+          "customKey": "temp_stats_on_hit",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "vigilante_ring",
+      "title": "Vigilante Ring",
+      "available": true,
+      "tier": 3,
+      "value": 92,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -2627,7 +3098,8 @@
           "key": "stat_speed",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "weird_food",
@@ -2651,7 +3123,8 @@
           "key": "stat_dodge",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "wheat",
@@ -2683,7 +3156,8 @@
           "key": "stat_elemental_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "wheelbarrow",
@@ -2707,7 +3181,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "whetstone",
@@ -2731,7 +3206,8 @@
           "key": "knockback",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "wings",
@@ -2757,6 +3233,34 @@
         {
           "key": "stat_elemental_damage",
           "value": -2
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "wisdom",
+      "title": "Wisdom",
+      "available": true,
+      "tier": 3,
+      "value": 85,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -15
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 5,
+          "customKey": "temp_stats_per_interval",
+          "interval": 5,
+          "resetOnHit": false
         }
       ]
     },
@@ -2785,7 +3289,8 @@
           "key": "stat_engineering",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     }
   ],
   "characters": [
@@ -2940,7 +3445,34 @@
       ]
     }
   ],
-  "initialDataDifferences": [],
+  "initialDataDifferences": [
+    {
+      "id": "decomposing_flesh",
+      "field": "effects",
+      "before": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1
+        }
+      ],
+      "source": []
+    },
+    {
+      "id": "jelly",
+      "field": "effects",
+      "before": [
+        {
+          "key": "stat_max_hp",
+          "value": 1
+        }
+      ],
+      "source": []
+    }
+  ],
   "sources": [
     {
       "path": "items/all/acid/acid_data.tres",
@@ -3081,6 +3613,22 @@
     {
       "path": "items/all/banner/banner_effect_3.tres",
       "sha256": "4543a6dd9b72712e48f92035ce364e1e9ee064073f40acc1c2b70bd08736f319"
+    },
+    {
+      "path": "items/all/barricade/barricade_data.tres",
+      "sha256": "82b61fd2ca5629c70ac696807f7797409e9a81c90e76dff0dcfa601f84db39bf"
+    },
+    {
+      "path": "items/all/barricade/barricade_effect_0.tres",
+      "sha256": "9dc2de81f0a0b79b128946325a64b5f2dced8633176c40b113b02b5db0f6cb3f"
+    },
+    {
+      "path": "items/all/barricade/barricade_effect_1.tres",
+      "sha256": "4e8f7cf8f6fc20fa7cd4d2c1c3d47ee16fb69e44a3a9a1603b0a5cce46542c42"
+    },
+    {
+      "path": "items/all/barricade/barricade_effect_2.tres",
+      "sha256": "b9d1c5c849f4242e47843b510c27b6d778f38bf07dd045b8113e3edd38d1d3a2"
     },
     {
       "path": "items/all/bat/bat_data.tres",
@@ -3315,6 +3863,22 @@
       "sha256": "91c93da8a7e995653ebfb97c5b34a78aa6d262861b10e701b5368f0888b0ff62"
     },
     {
+      "path": "items/all/chameleon/chameleon_data.tres",
+      "sha256": "46f5588ed4c62b4de14c294a747a48c34030bc906c4baa06cb8c1633897385a9"
+    },
+    {
+      "path": "items/all/chameleon/chameleon_effect_0.tres",
+      "sha256": "22e8e0bfe712f6e7f9a667871999e29f25cda897476b43fc25e483fd829c2621"
+    },
+    {
+      "path": "items/all/chameleon/chameleon_effect_1.tres",
+      "sha256": "15d625f42dd960409eacaeff0c85f08f4f26f583baf4b5663f874cf553e87028"
+    },
+    {
+      "path": "items/all/chameleon/chameleon_effect_2.tres",
+      "sha256": "a7ec9e7237ff7e5eb873454f1b187e399c61a188a922dda3d47c22bd05cc5dd5"
+    },
+    {
       "path": "items/all/charcoal/charcoal_data.tres",
       "sha256": "6f501d38fba0f08a4a45757c9d00042ab7b5809762b0a3a4ac9270298599fab5"
     },
@@ -3433,6 +3997,18 @@
     {
       "path": "items/all/cyclops_worm/cyclops_worm_effect_2.tres",
       "sha256": "00702dd5cadb4bb4a25bced34470592a609cb7f803e43f56d8a0a27f364f9013"
+    },
+    {
+      "path": "items/all/decomposing_flesh/decomposing_flesh_data.tres",
+      "sha256": "c46371502793935fc665682951a34f864a7c0e72b3bff4eede430e7e06f91454"
+    },
+    {
+      "path": "items/all/decomposing_flesh/effects/decomposing_flesh_effect_0.tres",
+      "sha256": "7cd6009b2b976ba858ff2e35e6750c936686597b00843621f63d7324ce16a36c"
+    },
+    {
+      "path": "items/all/decomposing_flesh/effects/decomposing_flesh_effect_1.tres",
+      "sha256": "5fbfed398588533328413645ccf2134221fd96872108dd853f720c616c8416fb"
     },
     {
       "path": "items/all/defective_steroids/defective_steroids_data.tres",
@@ -3579,6 +4155,18 @@
       "sha256": "679aeabaa2af269f9e3de667c84379dc0f78523719ad915092d361af05be1b6f"
     },
     {
+      "path": "items/all/focus/focus_data.tres",
+      "sha256": "c9883814a9082ccbc7273af0a667b70947d9d013a1b2d86efa5abe94b2b9b029"
+    },
+    {
+      "path": "items/all/focus/focus_effect_1.tres",
+      "sha256": "6e9156b9b95fedadd9fc76148cad72170d537c5a7252d5799fd55f3672888684"
+    },
+    {
+      "path": "items/all/focus/focus_effect_2.tres",
+      "sha256": "49598fb29298ce428a4f3eb256b0343ce4c55d059239f6c31df9cf3e5134ab9a"
+    },
+    {
       "path": "items/all/fresh_meat/fresh_meat_data.tres",
       "sha256": "81d598bb5534c382da2da1af8c79b02f5af86d51dc2a98f3dda9cde7d182158b"
     },
@@ -3669,6 +4257,22 @@
     {
       "path": "items/all/goat_skull/goat_skull_effect_2.tres",
       "sha256": "8748165fb836a7d5e4228de05416f008a49a4413ae7bc5c0721d33f082bc6a8d"
+    },
+    {
+      "path": "items/all/grinds_magical_leaf/grinds_magical_leaf_data.tres",
+      "sha256": "734b6997fad590f78d77e71ad9806ebb79b5c60b95cf4978c6bbe7dbd7ef8510"
+    },
+    {
+      "path": "items/all/grinds_magical_leaf/grinds_magical_leaf_effect_1.tres",
+      "sha256": "ada4bc5555325c462cf585c00112250985d8cebb7b7a3f84b8971301c5f43071"
+    },
+    {
+      "path": "items/all/grinds_magical_leaf/grinds_magical_leaf_effect_2.tres",
+      "sha256": "a992c6dca9ef19f7eef2d713337f7013454240e2fb120ad9207c344b3a5e82ab"
+    },
+    {
+      "path": "items/all/grinds_magical_leaf/grinds_magical_leaf_effect_3.tres",
+      "sha256": "63cf7d24808f7add974f660e5e804738f31335138afa3baa48d1f876caadf517"
     },
     {
       "path": "items/all/gummy_berserker/gummy_berserker_data.tres",
@@ -3797,6 +4401,14 @@
     {
       "path": "items/all/insanity/insanity_effect_2.tres",
       "sha256": "f688cbd67c8c1f5c18a632291b52b2ba208649f95daa7e5fc30c0e5559e3d7cd"
+    },
+    {
+      "path": "items/all/jelly/jelly_data.tres",
+      "sha256": "598f0236d8545c9eef8472e241a594a5826bba445e6e6a1b78f6dc560911c532"
+    },
+    {
+      "path": "items/all/jelly/effects/jelly_effect_0.tres",
+      "sha256": "50923e9966b8d7274afb1b2d6079f6e60aec846e65b8e1324272c47ce0601163"
     },
     {
       "path": "items/all/jetpack/jetpack_data.tres",
@@ -3973,6 +4585,22 @@
     {
       "path": "items/all/medal/medal_effect_5.tres",
       "sha256": "f7e0803d391f2d6f1ffe8359d5a3ec0a8df45a947fbbf4f4af08accdc4813fd3"
+    },
+    {
+      "path": "items/all/medikit/medikit_data.tres",
+      "sha256": "2b82b959cd6990c9ea3c88c5e33eac59a1f79c9dc25b00536aa0b9d8e25db909"
+    },
+    {
+      "path": "items/all/medikit/medikit_effect_1.tres",
+      "sha256": "610562eb7cdfe0414b2b07d7b1e0bc216243e9a693b201de6529929c1ff01364"
+    },
+    {
+      "path": "items/all/medikit/medikit_effect_1b.tres",
+      "sha256": "cb376f4c99472f5d05bac48870c1dffedfdad55cef46a4643609549a4171baaf"
+    },
+    {
+      "path": "items/all/medikit/medikit_effect_2.tres",
+      "sha256": "a294342e7506a71fc0f58d7a2fa06ad36ab8ac419425d879bcc6738c8578fcd0"
     },
     {
       "path": "items/all/metal_plate/metal_plate_data.tres",
@@ -4267,6 +4895,22 @@
       "sha256": "07535912bf6fff1caf6040aa12274b1a8fcd6f5a1029bc5dcdf31569b1a91082"
     },
     {
+      "path": "items/all/robot_arm/robot_arm_data.tres",
+      "sha256": "2b4a9861fc862ef61f5f94a73effb037c58c64b1f031c228614b7fb585c083ee"
+    },
+    {
+      "path": "items/all/robot_arm/robot_arm_effect_0.tres",
+      "sha256": "7a7e7986d340289ac4c17ccd06fafa45f9bf6f60a6183e20d0bec5d67a8e24e8"
+    },
+    {
+      "path": "items/all/robot_arm/robot_arm_effect_1.tres",
+      "sha256": "2b250d5d97677732bcdfd077f2cadc37881e96b882a7d2fd04f2831c93581aa5"
+    },
+    {
+      "path": "items/all/robot_arm/robot_arm_effect_2.tres",
+      "sha256": "6f734be14645587bbd7a37403627719c8228af80a2fd1816ed1c04e0a1da0cc8"
+    },
+    {
       "path": "items/all/scar/scar_data.tres",
       "sha256": "70da52e52cb492a0179bbb393450bc259f3e05a88e01da99df1b0f0716bb3c6b"
     },
@@ -4375,6 +5019,38 @@
       "sha256": "0815a8d0959d21e252000ab41b30e1d260e3849560f9221c28305253609301ff"
     },
     {
+      "path": "items/all/spider/spider_data.tres",
+      "sha256": "957dad49a24ded0a594f516abc1d96d77ce0496f11958d059dcc2116ee7f23b7"
+    },
+    {
+      "path": "items/all/spider/spider_effect_1.tres",
+      "sha256": "cb34b3f1f9ddffe3199afee91320de2c94da5bbf44f62cd7e505f321ced44597"
+    },
+    {
+      "path": "items/all/spider/spider_effect_2.tres",
+      "sha256": "f55c9e21499d29a39668ab90e73645d295c46be16a1000c3aaa59417794434ff"
+    },
+    {
+      "path": "items/all/spider/spider_effect_3.tres",
+      "sha256": "b6476547a0d9abcf278b61cb7c3da74defc8cf1b07200a000076232f59f751a7"
+    },
+    {
+      "path": "items/all/spider/spider_effect_4.tres",
+      "sha256": "37b6c7d2b9027bce83fff9084defdbfcbba0ff5bcd26f568b78643c84413a187"
+    },
+    {
+      "path": "items/all/statue/statue_data.tres",
+      "sha256": "e4357b7a407351312ed51a126c80e46d8f0295b84adea2d813bda77976d86cba"
+    },
+    {
+      "path": "items/all/statue/statue_effect_1.tres",
+      "sha256": "ce2cf0eec2abf5160073d55005c1a50eb89bd281e2a690c605c506d968b41220"
+    },
+    {
+      "path": "items/all/statue/statue_effect_2.tres",
+      "sha256": "a75f6327713cdbafaaaab6165055f13a40928f4af364e0adb60ff3cb49038156"
+    },
+    {
       "path": "items/all/sunglasses/sunglasses_data.tres",
       "sha256": "fa596c0401ac80961bfccf0e4d57d1aa7c1b5fabb67b8f9de618baf4a11972cf"
     },
@@ -4433,6 +5109,30 @@
     {
       "path": "items/all/tractor/tractor_effect_2.tres",
       "sha256": "05b97f9a4d4170dc59e65dd29d8ff2fc222c29d9b01596cd5b7b3d92ee52c56c"
+    },
+    {
+      "path": "items/all/triangle_of_power/triangle_of_power_data.tres",
+      "sha256": "0a5320e6347099ffce69a3396581a4fc60de526de43110d3f969c3ec9484f017"
+    },
+    {
+      "path": "items/all/triangle_of_power/triangle_of_power_effect_1.tres",
+      "sha256": "14fdbc48956cd85b19fa77601facab826c4ec3666ad4481fcdbbcfc7541e6652"
+    },
+    {
+      "path": "items/all/triangle_of_power/triangle_of_power_effect_2.tres",
+      "sha256": "5eb914190a158094b622f850b4a5191a79dfd206e7c369706f5e8106f8598e68"
+    },
+    {
+      "path": "items/all/triangle_of_power/triangle_of_power_effect_3.tres",
+      "sha256": "6d1dd59e4011ff0ddf6bb0486823f12e518806ba24b9f60c80f0d775db741290"
+    },
+    {
+      "path": "items/all/vigilante_ring/vigilante_ring_data.tres",
+      "sha256": "fb9856feb5fe780450ddcf021a634588ae2d8b8f4e334a31a46c4989916eb282"
+    },
+    {
+      "path": "items/all/vigilante_ring/vigilante_ring_effect_1.tres",
+      "sha256": "0c1ac7b2006dd884358a6ff650d1667599b80cc5a7be11551efee0ecf2036e0c"
     },
     {
       "path": "items/all/warrior_helmet/warrior_helmet_data.tres",
@@ -4521,6 +5221,18 @@
     {
       "path": "items/all/wings/wings_effect_3.tres",
       "sha256": "91c93da8a7e995653ebfb97c5b34a78aa6d262861b10e701b5368f0888b0ff62"
+    },
+    {
+      "path": "items/all/wisdom/wisdom_data.tres",
+      "sha256": "f9b726c8c4be49fb0642ba2907bf210ae498b4b79af3b6ce9c65465bd75861d6"
+    },
+    {
+      "path": "items/all/wisdom/wisdom_effect_1.tres",
+      "sha256": "9335371995296df4444f4646731f883816e8d69f84c4328dec3ff41055ec24b5"
+    },
+    {
+      "path": "items/all/wisdom/wisdom_effect_2.tres",
+      "sha256": "5b0934b760ce9278e99caabc38b1b75880c6ca0bd4c2d8a908c521e78499f8d6"
     },
     {
       "path": "items/all/wolf_helmet/wolf_helmet_data.tres",
@@ -4689,14 +5401,6 @@
       ]
     },
     {
-      "id": "barricade",
-      "effects": [
-        "knockback",
-        "stat_armor",
-        "stat_speed"
-      ]
-    },
-    {
       "id": "blazemander",
       "effects": [
         ""
@@ -4770,14 +5474,6 @@
       ]
     },
     {
-      "id": "chameleon",
-      "effects": [
-        "stat_dodge",
-        "stat_dodge",
-        "stat_percent_damage"
-      ]
-    },
-    {
       "id": "clockwork_wasp",
       "effects": [
         "structure_attack_speed",
@@ -4815,13 +5511,6 @@
       "id": "dangerous_bunny",
       "effects": [
         "free_rerolls"
-      ]
-    },
-    {
-      "id": "decomposing_flesh",
-      "effects": [
-        "stat_lifesteal",
-        "stat_max_hp"
       ]
     },
     {
@@ -4865,13 +5554,6 @@
       "effects": [
         "stat_hp_regeneration",
         "stat_hp_regeneration"
-      ]
-    },
-    {
-      "id": "focus",
-      "effects": [
-        "stat_percent_damage",
-        "stat_attack_speed"
       ]
     },
     {
@@ -4933,14 +5615,6 @@
       ]
     },
     {
-      "id": "grinds_magical_leaf",
-      "effects": [
-        "stat_max_hp",
-        "stat_hp_regeneration",
-        "stat_lifesteal"
-      ]
-    },
-    {
       "id": "handcuffs",
       "effects": [
         "stat_melee_damage",
@@ -4983,12 +5657,6 @@
       ]
     },
     {
-      "id": "jelly",
-      "effects": [
-        "stat_max_hp"
-      ]
-    },
-    {
       "id": "jellyshield",
       "effects": [
         "jellyshield_count",
@@ -5025,14 +5693,6 @@
       "effects": [
         "stat_hp_regeneration",
         "extra_loot_aliens_next_wave"
-      ]
-    },
-    {
-      "id": "medikit",
-      "effects": [
-        "stat_hp_regeneration",
-        "stat_hp_regeneration",
-        "stat_luck"
       ]
     },
     {
@@ -5138,14 +5798,6 @@
       ]
     },
     {
-      "id": "robot_arm",
-      "effects": [
-        "stat_melee_damage",
-        "stat_engineering",
-        "stat_max_hp"
-      ]
-    },
-    {
       "id": "sad_tomato",
       "effects": [
         "stat_hp_regeneration",
@@ -5207,22 +5859,6 @@
       ]
     },
     {
-      "id": "spider",
-      "effects": [
-        "stat_percent_damage",
-        "stat_attack_speed",
-        "stat_dodge",
-        "stat_harvesting"
-      ]
-    },
-    {
-      "id": "statue",
-      "effects": [
-        "stat_attack_speed",
-        "stat_speed"
-      ]
-    },
-    {
       "id": "stone_skin",
       "effects": [
         "stat_max_hp",
@@ -5261,14 +5897,6 @@
       "id": "tree",
       "effects": [
         "trees"
-      ]
-    },
-    {
-      "id": "triangle_of_power",
-      "effects": [
-        "stat_percent_damage",
-        "stat_armor",
-        "stat_percent_damage"
       ]
     },
     {
@@ -5315,12 +5943,6 @@
       ]
     },
     {
-      "id": "vigilante_ring",
-      "effects": [
-        "stat_percent_damage"
-      ]
-    },
-    {
       "id": "wandering_bot",
       "effects": [
         "wandering_bot"
@@ -5346,15 +5968,8 @@
         "stat_elemental_damage",
         "stat_attack_speed"
       ]
-    },
-    {
-      "id": "wisdom",
-      "effects": [
-        "stat_percent_damage",
-        "stat_percent_damage"
-      ]
     }
   ],
-  "availableItems": 91,
-  "scope": "Implemented primary stats and scalar secondary effects from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
+  "availableItems": 98,
+  "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

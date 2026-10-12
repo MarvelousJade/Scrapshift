@@ -6,6 +6,19 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"barricade","Anchor Plating"},
+            {"chameleon","Adaptive Dermis"},
+            {"decomposing_flesh","Necrotic Vessel"},
+            {"focus","Targeting Cortex"},
+            {"grinds_magical_leaf","Regenerative Organ"},
+            {"jelly","Modular Tissue"},
+            {"medikit","Repair Gland"},
+            {"robot_arm","Growing Servo Arm"},
+            {"spider","Distributed Reflex Mesh"},
+            {"statue","Stationary Overclock"},
+            {"triangle_of_power","Volatile Power Gland"},
+            {"vigilante_ring","Adaptive Combat Chip"},
+            {"wisdom","Learning Cortex"},
             {"alien_magic","Xeno Gland"},
             {"alloy","Alloy Tendons"},
             {"bat","Hemovore Jaw"},

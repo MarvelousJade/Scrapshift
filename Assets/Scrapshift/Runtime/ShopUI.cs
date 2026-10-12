@@ -56,12 +56,12 @@ namespace Scrapshift
             }
             else
             {
-                for(int i=0;i<offer.item.effects.Length;i++)
-                {
-                    var effect=offer.item.effects[i]; var style=new GUIStyle(body) { fontSize=19 };
-                    style.normal.textColor=SpecialItemEffects.IsPenalty(effect.key,effect.value)?coral:new Color(.39f,1,.29f);
-                    Text(x,y+i*57,width,56,inspectionText.StatEffect(effect.key,effect.value),style);
-                }
+                var style=new GUIStyle(inspectionBody){fontSize=19,richText=true};
+                var content=new GUIContent(inspectionText.ItemDescription(offer.item));
+                float height=style.CalcHeight(content,width-18);
+                var key="item:"+offer.item.id+":"+x;detailScroll.TryGetValue(key,out var scroll);
+                scroll=GUI.BeginScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
+                GUI.Label(new Rect(0,0,width-18,height+4),content,style);GUI.EndScrollView();detailScroll[key]=scroll;
             }
         }
 

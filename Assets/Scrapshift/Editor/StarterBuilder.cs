@@ -11,7 +11,7 @@ namespace Scrapshift.Editor
         static void EnsureStarterProfiles()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(Root+"/Definitions/ReferenceCatalog.asset");
-            if(catalog.starterVersion=="5"&&catalog.data.characters?.Length==4&&catalog.data.equipment.Length==205)return;
+            if(catalog.starterVersion=="6"&&catalog.data.characters?.Length==4&&catalog.data.equipment.Length==205)return;
             AssetDatabase.Refresh();
             var data=JsonUtility.FromJson<StarterData>(File.ReadAllText(Root+"/Reference/starter-profiles.json"));
             // Generated art is not a mechanically aligned grid: slice in the actual transparent gutters.
@@ -42,7 +42,7 @@ namespace Scrapshift.Editor
                 importer.defaultSampleSettings=settings;importer.SaveAndReimport();
             }
             catalog.data.equipment=data.equipment;catalog.data.characters=data.characters;catalog.data.sets=data.sets;catalog.data.rosterSlots=data.rosterSlots;
-            catalog.starterVersion="5";WeaponSets.Configure(data.sets);EditorUtility.SetDirty(catalog);
+            catalog.starterVersion="6";WeaponSets.Configure(data.sets);EditorUtility.SetDirty(catalog);
             string prefabPath=Root+"/Prefabs/ScavengerAnimated.prefab";
             var root=PrefabUtility.LoadPrefabContents(prefabPath);var animator=root.GetComponent<SpriteFrameAnimator>();
             var old=animator.looks;

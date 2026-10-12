@@ -8,13 +8,14 @@ namespace Scrapshift.Tests
 {
     public sealed class ItemDesignTests
     {
+        [Serializable] sealed class ConditionalRows { public ConditionalEffect[] rows; }
         ReferenceCatalog catalog;
         [SetUp] public void Setup()=>catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
         RunRules Run(){var r=new RunRules(12);r.Configure(catalog);r.Start();return r;}
         [Test] public void EveryImportedItemMatchesSourceAndHasOriginalPresentation()
         {
             var expected=JsonUtility.FromJson<ItemDesignData>(System.IO.File.ReadAllText(ContentBuilder.Root+"/Reference/item-design.json"));
-            Assert.AreEqual(106,catalog.data.items.Length);Assert.AreEqual(91,catalog.data.items.Count(i=>i.available));
+            Assert.AreEqual(119,catalog.data.items.Length);Assert.AreEqual(98,catalog.data.items.Count(i=>i.available));
             foreach(var source in expected.items)
             {
                 var actual=Array.Find(catalog.data.items,i=>i.id==source.id);
@@ -22,13 +23,14 @@ namespace Scrapshift.Tests
                 Assert.AreEqual(source.available,RunRules.IsShopItem(actual.id),source.id);Assert.AreEqual(source.maxCount,actual.maxCount);
                 CollectionAssert.AreEqual(source.tags,actual.tags);CollectionAssert.AreEqual(source.groups,actual.groups);
                 CollectionAssert.AreEqual(source.effects.Select(e=>e.key+":"+e.value),actual.effects.Select(e=>e.key+":"+e.value));
+                Assert.AreEqual(JsonUtility.ToJson(new ConditionalRows{rows=source.conditionalEffects}),JsonUtility.ToJson(new ConditionalRows{rows=actual.conditionalEffects}),source.id);
                 Assert.IsNotNull(actual.image,source.id);Assert.IsFalse(AssetDatabase.GetAssetPath(actual.image).Contains("/Reference/"),source.id);
                 var text=new InspectionText(catalog.uiText);Assert.IsFalse(text.ItemDescription(actual).Contains("STAT_"),source.id);
             }
         }
-        [Test] public void EveryObtainableItemActuallyAppliesAllItsEffects()
+        [Test] public void EveryScalarItemAppliesItsImmediateEffects()
         {
-            foreach(var item in catalog.data.items.Where(i=>i.available))
+            foreach(var item in catalog.data.items.Where(i=>i.available&&(i.conditionalEffects==null||i.conditionalEffects.Length==0)))
             {
                 var run=Run();run.Collect(1000);run.Tick(run.Remaining);while(run.Phase==RunPhase.Upgrade)run.Choose(0);
                 var before=StatPresentation.Keys.ToDictionary(k=>k,k=>run.Stat(k));

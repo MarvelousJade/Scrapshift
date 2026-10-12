@@ -24,7 +24,8 @@
           "key": "knockback",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_baby",
@@ -46,7 +47,8 @@
           "key": "enemy_health",
           "value": 10
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_magic",
@@ -73,7 +75,8 @@
           "key": "stat_luck",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_tongue",
@@ -96,7 +99,8 @@
           "key": "knockback",
           "value": 1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alien_worm",
@@ -123,7 +127,8 @@
           "key": "consumable_heal",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "alloy",
@@ -165,7 +170,8 @@
           "key": "stat_dodge",
           "value": -6
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bag",
@@ -189,7 +195,8 @@
           "key": "stat_speed",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bandana",
@@ -211,7 +218,8 @@
           "key": "stat_percent_damage",
           "value": -10
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "banner",
@@ -238,6 +246,40 @@
           "key": "knockback",
           "value": -5
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "barricade",
+      "title": "Barricade",
+      "available": true,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_armor",
+        "stand_still",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "knockback",
+          "value": 3
+        },
+        {
+          "key": "stat_speed",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_armor",
+          "value": 8,
+          "customKey": "temp_stats_while_not_moving",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -262,7 +304,8 @@
           "key": "stat_harvesting",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bean_teacher",
@@ -284,7 +327,8 @@
           "key": "stat_lifesteal",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "beanie",
@@ -308,7 +352,8 @@
           "key": "stat_range",
           "value": -6
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "big_arms",
@@ -346,7 +391,8 @@
           "key": "stat_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "black_belt",
@@ -378,7 +424,8 @@
           "key": "stat_luck",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "blindfold",
@@ -405,7 +452,8 @@
           "key": "stat_range",
           "value": -15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "blood_leech",
@@ -434,7 +482,8 @@
           "key": "stat_harvesting",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "boiling_water",
@@ -458,7 +507,8 @@
           "key": "stat_max_hp",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "book",
@@ -487,7 +537,8 @@
           "key": "stat_luck",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "bowler_hat",
@@ -518,7 +569,8 @@
           "key": "stat_crit_chance",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "boxing_glove",
@@ -541,7 +593,8 @@
           "key": "knockback",
           "value": 3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "broken_mouth",
@@ -563,7 +616,8 @@
           "key": "stat_hp_regeneration",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "butterfly",
@@ -587,7 +641,8 @@
           "key": "stat_elemental_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cake",
@@ -609,7 +664,8 @@
           "key": "stat_percent_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cape",
@@ -644,6 +700,41 @@
           "key": "stat_elemental_damage",
           "value": -2
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "chameleon",
+      "title": "Chameleon",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_dodge",
+        "stand_still"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "dodge"
+      ],
+      "effects": [
+        {
+          "key": "stat_dodge",
+          "value": 3
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -4
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_dodge",
+          "value": 20,
+          "customKey": "temp_stats_while_not_moving",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -671,7 +762,8 @@
           "key": "stat_harvesting",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "claw_tree",
@@ -698,7 +790,8 @@
           "key": "stat_max_hp",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "clover",
@@ -725,7 +818,8 @@
           "key": "stat_lifesteal",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "coffee",
@@ -747,7 +841,8 @@
           "key": "stat_percent_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cog",
@@ -776,7 +871,8 @@
           "key": "stat_percent_damage",
           "value": -4
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "compass",
@@ -803,7 +899,8 @@
           "key": "stat_crit_chance",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "coupon",
@@ -821,7 +918,8 @@
           "key": "items_price",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "crown",
@@ -841,7 +939,8 @@
           "key": "harvesting_growth",
           "value": 8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "cyclops_worm",
@@ -862,6 +961,38 @@
         {
           "key": "stat_range",
           "value": -12
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "decomposing_flesh",
+      "title": "Decomposing Flesh",
+      "available": false,
+      "tier": 2,
+      "value": 30,
+      "tags": [
+        "stat_lifesteal"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "lifesteal"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "customKey": "stats_on_level_up",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1,
+          "customKey": "stats_on_level_up",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -890,7 +1021,8 @@
           "key": "stat_attack_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "diploma",
@@ -917,7 +1049,8 @@
           "key": "stat_max_hp",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "duct_tape",
@@ -944,7 +1077,8 @@
           "key": "stat_max_hp",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "dynamite",
@@ -962,7 +1096,8 @@
           "key": "explosion_damage",
           "value": 15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "energy_bracelet",
@@ -989,7 +1124,8 @@
           "key": "stat_ranged_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "exoskeleton",
@@ -1030,7 +1166,8 @@
           "key": "stat_lifesteal",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "explosive_shells",
@@ -1056,7 +1193,8 @@
           "key": "stat_percent_damage",
           "value": -15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "fertilizer",
@@ -1080,7 +1218,8 @@
           "key": "stat_melee_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "fin",
@@ -1107,6 +1246,34 @@
           "key": "stat_luck",
           "value": -8
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "focus",
+      "title": "Focus",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 30
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": -3,
+          "customKey": "unique_weapon_effects",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -1131,7 +1298,8 @@
           "key": "stat_hp_regeneration",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "fuel_tank",
@@ -1159,7 +1327,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "gambling_token",
@@ -1183,7 +1352,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "glass_cannon",
@@ -1205,7 +1375,8 @@
           "key": "stat_armor",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "glasses",
@@ -1223,7 +1394,8 @@
           "key": "stat_range",
           "value": 20
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "gnome",
@@ -1254,7 +1426,8 @@
           "key": "pickup_range",
           "value": -20
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "goat_skull",
@@ -1277,6 +1450,45 @@
         {
           "key": "stat_crit_chance",
           "value": -2
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "grinds_magical_leaf",
+      "title": "Grinds Magical Leaf",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_max_hp",
+        "stat_hp_regeneration",
+        "stat_lifesteal"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -1305,7 +1517,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "head_injury",
@@ -1327,7 +1540,8 @@
           "key": "stat_range",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "heavy_bullets",
@@ -1363,7 +1577,8 @@
           "key": "stat_crit_chance",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "hedgehog",
@@ -1392,7 +1607,8 @@
           "key": "stat_hp_regeneration",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "helmet",
@@ -1416,7 +1632,8 @@
           "key": "stat_speed",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "honey",
@@ -1451,7 +1668,8 @@
           "key": "stat_dodge",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "injection",
@@ -1473,7 +1691,8 @@
           "key": "stat_max_hp",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "insanity",
@@ -1494,6 +1713,29 @@
         {
           "key": "stat_percent_damage",
           "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "jelly",
+      "title": "Jelly",
+      "available": false,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "unique_weapon_effects",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -1526,7 +1768,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "leather_vest",
@@ -1553,7 +1796,8 @@
           "key": "stat_max_hp",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lemonade",
@@ -1573,7 +1817,8 @@
           "key": "consumable_heal",
           "value": 1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lens",
@@ -1597,7 +1842,8 @@
           "key": "stat_range",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "little_frog",
@@ -1624,7 +1870,8 @@
           "key": "stat_dodge",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "little_muscley_dude",
@@ -1651,7 +1898,8 @@
           "key": "stat_range",
           "value": -15
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lost_duck",
@@ -1673,7 +1921,8 @@
           "key": "stat_elemental_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "lucky_charm",
@@ -1699,7 +1948,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mammoth",
@@ -1735,7 +1985,8 @@
           "key": "stat_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mastery",
@@ -1759,7 +2010,8 @@
           "key": "stat_ranged_damage",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "medal",
@@ -1796,6 +2048,40 @@
           "key": "stat_crit_chance",
           "value": -4
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "medikit",
+      "title": "Medikit",
+      "available": false,
+      "tier": 4,
+      "value": 95,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 10
+        },
+        {
+          "key": "stat_luck",
+          "value": -10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2,
+          "customKey": "temp_stats_per_interval",
+          "interval": 5,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -1820,7 +2106,8 @@
           "key": "stat_percent_damage",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "missile",
@@ -1842,7 +2129,8 @@
           "key": "stat_attack_speed",
           "value": -4
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mushroom",
@@ -1866,7 +2154,8 @@
           "key": "stat_luck",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "mutation",
@@ -1893,7 +2182,8 @@
           "key": "knockback",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "night_goggles",
@@ -1924,7 +2214,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "octopus",
@@ -1956,7 +2247,8 @@
           "key": "stat_crit_chance",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "panda",
@@ -1983,7 +2275,8 @@
           "key": "stat_percent_damage",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "peaceful_bee",
@@ -2014,7 +2307,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "pencil",
@@ -2034,7 +2328,8 @@
           "key": "stat_engineering",
           "value": 1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "plant",
@@ -2058,7 +2353,8 @@
           "key": "stat_lifesteal",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "plastic_explosive",
@@ -2076,7 +2372,8 @@
           "key": "explosion_size",
           "value": 25
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "poisonous_tonic",
@@ -2108,7 +2405,8 @@
           "key": "stat_hp_regeneration",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "potato",
@@ -2162,7 +2460,8 @@
           "key": "stat_luck",
           "value": 5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "propeller_hat",
@@ -2184,7 +2483,8 @@
           "key": "stat_percent_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "pumpkin",
@@ -2206,7 +2506,8 @@
           "key": "stat_percent_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "recycling_machine",
@@ -2224,7 +2525,8 @@
           "key": "recycling_gains",
           "value": 35
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "reinforced_steel",
@@ -2251,7 +2553,8 @@
           "key": "stat_speed",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "ricochet",
@@ -2273,7 +2576,8 @@
           "key": "stat_percent_damage",
           "value": -25
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "ritual",
@@ -2300,6 +2604,44 @@
           "key": "stat_engineering",
           "value": -2
         }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "robot_arm",
+      "title": "Robot Arm",
+      "available": false,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_melee_damage",
+        "stat_engineering"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_engineering",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -1,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        }
       ]
     },
     {
@@ -2322,7 +2664,8 @@
           "key": "stat_range",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "scope",
@@ -2349,7 +2692,8 @@
           "key": "stat_attack_speed",
           "value": -7
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "shady_potion",
@@ -2371,7 +2715,8 @@
           "key": "stat_hp_regeneration",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "sharp_bullet",
@@ -2401,7 +2746,8 @@
           "key": "knockback",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "shmoop",
@@ -2432,7 +2778,8 @@
           "key": "stat_ranged_damage",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "small_magazine",
@@ -2459,7 +2806,8 @@
           "key": "stat_percent_damage",
           "value": -6
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "snail",
@@ -2480,6 +2828,71 @@
         {
           "key": "stat_speed",
           "value": -3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "spider",
+      "title": "Spider",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_percent_damage",
+        "stat_attack_speed"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 12
+        },
+        {
+          "key": "stat_dodge",
+          "value": -3
+        },
+        {
+          "key": "stat_harvesting",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 6,
+          "customKey": "unique_weapon_effects",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "statue",
+      "title": "Statue",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "stat_attack_speed",
+        "stand_still"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_speed",
+          "value": -10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 40,
+          "customKey": "temp_stats_while_not_moving",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -2503,7 +2916,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "terrified_onion",
@@ -2527,7 +2941,8 @@
           "key": "stat_luck",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "toolbox",
@@ -2551,7 +2966,8 @@
           "key": "stat_attack_speed",
           "value": -8
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "toxic_sludge",
@@ -2575,7 +2991,8 @@
           "key": "stat_dodge",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "tractor",
@@ -2598,6 +3015,60 @@
         {
           "key": "stat_percent_damage",
           "value": -8
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "triangle_of_power",
+      "title": "Triangle Of Power",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 20
+        },
+        {
+          "key": "stat_armor",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -2,
+          "customKey": "temp_stats_on_hit",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "vigilante_ring",
+      "title": "Vigilante Ring",
+      "available": true,
+      "tier": 3,
+      "value": 92,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 3,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
         }
       ]
     },
@@ -2626,7 +3097,8 @@
           "key": "stat_speed",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "weird_food",
@@ -2650,7 +3122,8 @@
           "key": "stat_dodge",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "wheat",
@@ -2682,7 +3155,8 @@
           "key": "stat_elemental_damage",
           "value": -2
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "wheelbarrow",
@@ -2706,7 +3180,8 @@
           "key": "stat_armor",
           "value": -1
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "whetstone",
@@ -2730,7 +3205,8 @@
           "key": "knockback",
           "value": -3
         }
-      ]
+      ],
+      "conditionalEffects": []
     },
     {
       "id": "wings",
@@ -2756,6 +3232,34 @@
         {
           "key": "stat_elemental_damage",
           "value": -2
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "wisdom",
+      "title": "Wisdom",
+      "available": true,
+      "tier": 3,
+      "value": 85,
+      "tags": [
+        "stat_percent_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -15
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 5,
+          "customKey": "temp_stats_per_interval",
+          "interval": 5,
+          "resetOnHit": false
         }
       ]
     },
@@ -2784,7 +3288,8 @@
           "key": "stat_engineering",
           "value": -5
         }
-      ]
+      ],
+      "conditionalEffects": []
     }
   ],
   "characters": [
