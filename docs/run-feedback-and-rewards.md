@@ -29,3 +29,7 @@ Crates were already implemented: pickup healing and queued items, processed befo
 ## Evidence and ownership
 
 See verification.md and artifacts/reward-feedback-review for build/test/render evidence. Staged fixtures exercise the normal renderers and sweep method; they are not a human full-run playthrough or a pixel-perfect UI claim. Shaoyu identified the symptoms and requested behavior; Codex compared source, implemented changes, ran checks and documented limitations. Useful interview discussion: distinguishing a missing mechanic from a missing presentation, preserving economy semantics while animating cleanup, and separating target detection from attack range.
+
+## October 12 correction: money-icon destination
+
+Shaoyu clarified that wave-end materials should fly to the money icon, not the stored-material bag. The destination now uses the center of the money sprite (HUD y=122.5), with a brief counter pulse and rising green +amount text on arrival. Several simultaneous arrivals aggregate into one readable amount. Removed the timeout that destroyed a pickup before it reached its destination; reward transition waits for all pickups to arrive. Existing stored-material economy is unchanged. Reduced Motion suppresses the scale/vertical animation. The runtime fixture now advances cleanup in 50 ms steps rather than one large jump.

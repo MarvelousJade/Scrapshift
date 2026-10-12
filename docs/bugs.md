@@ -264,3 +264,7 @@ The first expansion migration dropped original wearables outside the eight-item 
 ## October 11 - run feedback and rewards
 
 The ranged pre-shot line was a custom telegraph, now removed. Aiming previously acquired only attack-range targets; detection now extends beyond firing distance using the reference thresholds. Instant wave cleanup concealed stored-material collection; presentation now runs before the reward transition. Tree markers used enemy red; original green strokes avoid multiplying red sprite pixels.
+
+## October 12 - wrong collection destination
+
+Wave-end pickups targeted the bag at HUD y=166 instead of the money icon at y=122.5. Corrected the endpoint, added arrival pulse/rising amounts and removed the forced disappearance timeout. User identified the visual mismatch; Codex corrected and validated it.

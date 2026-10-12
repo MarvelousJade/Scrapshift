@@ -39,7 +39,7 @@ namespace Scrapshift
                 Rules.CollectConsumable(ConsumableKind.Crate);
                 if(inspectionStage==23){Rules.Inventory.Add(catalog.Weapon("pistol",1));Rules.Tick(Rules.Remaining);Rules.ResolveCrate(true);while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);selectedWeapon=0;}
                 else if(inspectionStage==25){Spawn(catalog.Enemy("tree"),new Vector2(2,1));UpdateEnemies(.3f);}
-                else if(inspectionStage>=26){for(int k=0;k<12;k++)Drop(new Vector2(k*.5f-3,1),1,false);BeginWaveSweep();TickWaveSweep(inspectionStage==28?1.8f:inspectionStage==27?1.2f:.08f);}
+                else if(inspectionStage>=26){for(int k=0;k<12;k++)Drop(new Vector2(k*.5f-3,1),1,false);BeginWaveSweep();for(int step=0;step<(inspectionStage==28?40:inspectionStage==27?16:3);step++)TickWaveSweep(.05f);}
             }
             else if(inspectionStage>=16){reducedMotion=false;StartSelectedRun();TickArrival(new[]{.25f,.5f,.7f,.8f,.9f,1f,1.2f}[inspectionStage-16]);}
             else

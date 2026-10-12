@@ -10,24 +10,39 @@ namespace Scrapshift
     }
     public sealed partial class ArenaGame
     {
-        bool waveSweeping;float waveSweepAge;
-        void BeginWaveSweep(){waveSweeping=true;waveSweepAge=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
+        void BeginWaveSweep(){waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
         void TickWaveSweep(float dt)
         {
             waveSweepAge+=dt;
             float scale=PresentationLayout.CanvasScale(Screen.width,Screen.height);
-            Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-166*scale,20));
+            Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-122.5f*scale,20));
             for(int i=pickups.Count-1;i>=0;i--)
             {
                 var pickup=pickups[i];Vector2 to=pickup.fruit?playerPos:(Vector2)target;
                 pickup.motion.position=Vector2.MoveTowards(pickup.motion.position,to,(8+waveSweepAge*45)*dt);
                 pickup.obj.transform.position=new Vector3(pickup.motion.position.x,pickup.motion.position.y,-2);
-                if(Vector2.Distance(pickup.motion.position,to)>.15f&&waveSweepAge<1.1f)continue;
-                if(pickup.fruit)CollectPickup(pickup);else Rules.BankMaterials(pickup.value);
+                if(Vector2.Distance(pickup.motion.position,to)>.15f)continue;
+                if(pickup.fruit)CollectPickup(pickup);else {Rules.BankMaterials(pickup.value);if(waveSweepAge-moneyArrivalTime>.12f)moneyArrivalAmount=0;moneyArrivalAmount+=pickup.value;moneyArrivalTime=waveSweepAge;}
                 Destroy(pickup.obj);pickups.RemoveAt(i);
             }
-            if(waveSweepAge<1.8f)return;
+            if(waveSweepAge<1.8f||pickups.Count>0)return;
             waveSweeping=false;Rules.Tick(Rules.Remaining);ClearCombat();
+        }
+        void DrawMoneyCounter()
+        {
+            float age=waveSweeping?waveSweepAge-moneyArrivalTime:10;
+            float pulse=age<.32f?Mathf.Sin(age/.32f*Mathf.PI)*.16f:0;
+            var matrix=GUI.matrix;
+            if(!reducedMotion)GUIUtility.ScaleAroundPivot(Vector2.one*(1+pulse),new Vector2(48,122));
+            DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
+            OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
+            GUI.matrix=matrix;
+            if(age<.7f&&moneyArrivalAmount>0)
+            {
+                var gain=new GUIStyle(body){fontSize=25,normal={textColor=new Color(.4f,1,.2f,1-age/.7f)}};
+                OutlinedText(180,122-(reducedMotion?0:age*38),180,36,"+"+moneyArrivalAmount,gain);
+            }
         }
         void DrawStoredMaterials()
         {

@@ -3,7 +3,7 @@ SCRAPSHIFT
 Run Scrapshift.exe with its entire Windows folder beside it.
 WASD / arrow keys: move. Weapons attack automatically.
 Escape: back in menus, pause/resume in game. M: sound. Enter: confirm or next wave.
-Collect green materials for currency and XP. At wave end, remaining materials fly into stored reserves for later doubled pickups. Pending upgrades/crates appear at the top right; harvesting is shown beneath materials.
+Collect green materials for currency and XP. At wave end, remaining materials fly to the money icon with rising amounts, then remain in stored reserves for later doubled pickups. Pending upgrades/crates appear at the top right; harvesting is shown beneath materials.
 Crates heal 3 HP and reveal an item at wave end: Enter takes it, X recycles.
 Crates resolve before levels. Remaining crates are collected automatically.
 At wave end, choose queued stat upgrades with 1-4 or the mouse.

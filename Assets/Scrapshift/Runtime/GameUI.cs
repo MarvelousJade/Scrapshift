@@ -80,8 +80,7 @@ namespace Scrapshift
             Frame(new Rect(24,64,246,27),new Color(.25f,.25f,.24f),3);
             Box(new Rect(27,67,240*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),21),new Color(.2f,.8f,.18f));
             Text(179,62,87,29,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
-            DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
-            OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
+            DrawMoneyCounter();
             DrawStoredMaterials();
             GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(0,FullCanvas.yMin,0));
             OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",new GUIStyle(center){fontSize=32});
