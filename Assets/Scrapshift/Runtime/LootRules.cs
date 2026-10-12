@@ -49,7 +49,7 @@ namespace Scrapshift
 
         void ApplyItem(ItemEntry item)
         {
-            Items.Add(item);
+            Items.Add(item);QueueNextWaveEffects(item);
             foreach(var effect in item.effects){Add(effect.key.Replace("stat_",""),effect.value);OnItemStatAdded(effect.key,effect.value);}
             if(Phase==RunPhase.Shop)UpdateShopRerolls();
             if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)if(effect.customKey=="stat_cap")

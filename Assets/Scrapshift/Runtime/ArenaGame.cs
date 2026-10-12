@@ -43,6 +43,7 @@ namespace Scrapshift
         void Start()
         {
             Application.targetFrameRate = 120; Rules.Configure(catalog);
+            Rules.RandomDamageRequested+=QueueImplantDamage;
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
             playerAnimation = player.GetComponent<SpriteFrameAnimator>();
@@ -203,6 +204,7 @@ namespace Scrapshift
             UpdateEnemies(dt);
             UpdateWeapons(dt); UpdateStarterEffects(dt); UpdateSlashes(dt);
             UpdatePickups(dt);
+            ResolveImplantDamage();
             UpdateSparks(dt); UpdateCorpses(dt);
             shakeTime = Mathf.Max(0, shakeTime - dt);
             if (shakeTime <= 0) shake = 0;

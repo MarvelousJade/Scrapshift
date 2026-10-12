@@ -202,6 +202,48 @@
       "conditionalEffects": []
     },
     {
+      "id": "anvil",
+      "title": "Anvil",
+      "available": false,
+      "tier": 4,
+      "value": 120,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_armor",
+          "value": 2,
+          "customKey": "upgrade_random_weapon",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "baby_elephant",
+      "title": "Baby Elephant",
+      "available": true,
+      "tier": 1,
+      "value": 22,
+      "tags": [
+        "stat_luck",
+        "pickup"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 25,
+          "customKey": "dmg_when_pickup_gold",
+          "chance": 0.25
+        }
+      ]
+    },
+    {
       "id": "baby_gecko",
       "title": "Baby Gecko",
       "available": true,
@@ -854,6 +896,42 @@
       "conditionalEffects": []
     },
     {
+      "id": "celery_tea",
+      "title": "Celery Tea",
+      "available": false,
+      "tier": 2,
+      "value": 35,
+      "tags": [
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "xp_gain",
+          "value": 5,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "xp_gain",
+          "value": 50,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "enemy_health",
+          "value": 100,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "chameleon",
       "title": "Chameleon",
       "available": true,
@@ -1195,6 +1273,27 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "cyberball",
+      "title": "Cyberball",
+      "available": true,
+      "tier": 2,
+      "value": 30,
+      "tags": [
+        "stat_luck"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 25,
+          "customKey": "dmg_when_death",
+          "chance": 0.25
+        }
+      ]
     },
     {
       "id": "cyclops_worm",
@@ -3155,6 +3254,40 @@
       "conditionalEffects": []
     },
     {
+      "id": "peacock",
+      "title": "Peacock",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "xp_gain",
+          "value": 25
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "xp_gain",
+          "value": 100,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "enemy_damage",
+          "value": 50,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "pencil",
       "title": "Pencil",
       "available": true,
@@ -4578,6 +4711,35 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "will_o_the_wisp",
+      "title": "Will O The Wisp",
+      "available": false,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": -7
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 30,
+          "customKey": "gain_stat_for_killed_enemies_while_burning",
+          "per": 1,
+          "limit": 4
+        }
+      ]
     },
     {
       "id": "wings",

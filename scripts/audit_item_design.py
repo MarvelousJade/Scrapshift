@@ -12,15 +12,17 @@ supported.update({'lose_hp_per_second','burning_spread','instant_gold_attracting
 original_ids=ids.copy()
 supported.update({'number_of_enemies','trees'})
 supported.update({'structure_attack_speed','structures_can_crit'})
+supported.add('enemy_damage')
 conditional={'temp_stats_while_not_moving','temp_stats_while_moving','unique_weapon_effects','additional_weapon_effects','temp_stats_on_hit','stats_end_of_wave','stats_on_level_up','temp_stats_per_interval'}
 def implemented(e):
     if not isinstance(e.get('value'),(int,float)):return False
     if e.get('script')=='effects/items/burn_chance_effect.gd':return True
+    if e.get('script')=='effects/items/gain_stat_for_killed_enemies_while_burning.gd':return True
     if e.get('script')=='effects/items/double_value_effect.gd' and (e.get('key') in {'remove_speed','hp_regen_bonus','giant_crit_damage'} or e.get('custom_key')=='consumable_stats_while_max'):return True
     if e.get('script')=='effects/items/weapon_cooldown_effect.gd' and e.get('key')=='minimum_weapon_cooldowns':return True
-    if e.get('script')=='effects/items/chance_stat_damage_effect.gd' and e.get('custom_key')=='heal_on_dodge':return True
+    if e.get('script')=='effects/items/chance_stat_damage_effect.gd' and e.get('custom_key') in {'heal_on_dodge','dmg_when_pickup_gold','dmg_when_death'}:return True
     if e.get('script')=='effects/items/double_key_value_effect.gd' and e.get('custom_key')=='gain_stat_for_equipped_item_with_stat':return True
-    if e.get('script')=='items/global/effect.gd' and e.get('custom_key') in {'gold_on_crit_kill','weapon_scaling_stats','structures_cooldown_reduction'}:return True
+    if e.get('script')=='items/global/effect.gd' and e.get('custom_key') in {'gold_on_crit_kill','weapon_scaling_stats','structures_cooldown_reduction','stats_next_wave','upgrade_random_weapon'}:return True
     if e.get('script') in {'effects/items/gain_stat_for_every_stat_effect.gd','effects/items/stat_cap_effect.gd'}:return True
     if e.get('custom_key'):
         return e.get('key') in supported and e['custom_key'] in conditional and e.get('script') in {'items/global/effect.gd','effects/items/temp_stats_per_interval_effect.gd'}
@@ -42,6 +44,8 @@ def read(path):
 
 def special(e):
     script=e.get('script','')
+    if script.endswith('/gain_stat_for_killed_enemies_while_burning.gd'):
+        return dict(key=e['key'],value=e['value'],customKey=e['custom_key'],per=e['value2'],limit=e['value3'])
     if script.endswith('/double_value_effect.gd'):
         return dict(key=e['key'],value=e['value'],customKey=e.get('custom_key') or e['key'],per=e['value2'])
     if script.endswith('/weapon_cooldown_effect.gd'):

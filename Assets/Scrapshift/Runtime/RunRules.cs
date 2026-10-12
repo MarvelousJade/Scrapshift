@@ -127,7 +127,7 @@ namespace Scrapshift
         public void ReturnToTitle() { Phase=RunPhase.Title; }
         public void Start(CharacterProfile character=null,string weaponId=null)
         {
-            stats.Clear();xpFraction=0;Character=character;
+            stats.Clear();nextWaveStats.Clear();burnKillCounts.Clear();xpFraction=0;Character=character;
             ResetConditionalEffects();
             healthCap=speedCap=float.PositiveInfinity;LivingEnemies=LivingTrees=BurningEnemies=StructureCount=PetCount=0;
             Inventory.Clear();
@@ -148,7 +148,7 @@ namespace Scrapshift
             Remaining=Durations[0];
             Health=MaxHealth;
             Kills=Scrap=XP=PendingLevels=UpgradeCount=rerolls=banked=0;
-            Level=0;freeShopRerolls=knownFreeRerolls=0;BeginItemWave();
+            Level=0;freeShopRerolls=knownFreeRerolls=0;ApplyNextWaveEffects();BeginItemWave();
             Offers=Array.Empty<UpgradeOffer>();
             Shop=new ShopOffer[4];
         }
@@ -221,6 +221,7 @@ namespace Scrapshift
             Scrap+=(value+bonus)*boost;
             GainXP((value+bonus)*boost);
             if(random.NextDouble()<Mathf.Clamp01(Stat("heal_when_pickup_gold")/100))Heal(1);
+            RandomDamageTrigger("dmg_when_pickup_gold");
         }
         public void BankMaterials(int value)
         {
@@ -261,7 +262,7 @@ namespace Scrapshift
         void OpenShop()
         {
             Phase=RunPhase.Shop;
-            BeginShopRerolls();rerolls=0;
+            UpgradeWeaponImplants();BeginShopRerolls();rerolls=0;
             RollShop();
         }
         void RollShop()
@@ -369,7 +370,7 @@ namespace Scrapshift
             ResetConditionalEffects();
             Health=MaxHealth;
             regenElapsed=lifeStealCooldown=0;
-            Phase=RunPhase.Playing;BeginItemWave();
+            Phase=RunPhase.Playing;ApplyNextWaveEffects();BeginItemWave();
             for(int i=0;i<4;i++)if(Shop[i]!=null&&!Shop[i].locked)Shop[i]=null;
         }
         public void Pause()

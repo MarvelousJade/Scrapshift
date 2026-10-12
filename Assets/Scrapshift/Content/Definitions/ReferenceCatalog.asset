@@ -17521,6 +17521,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0.5
+        limit: 0
         permanentOnly: 0
         value: 5
         interval: 1
@@ -17702,6 +17703,76 @@ MonoBehaviour:
         scale: 1
         priority: 0
         order: 11
+    - tags: []
+      groups: []
+      maxCount: 1
+      available: 0
+      id: anvil
+      title: Autoforge Implant
+      icon: 
+      tier: 4
+      value: 120
+      effects: []
+      conditionalEffects:
+      - key: stat_armor
+        customKey: upgrade_random_weapon
+        stat: 
+        per: 0
+        chance: 0
+        limit: 0
+        permanentOnly: 0
+        value: 2
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_luck
+      - pickup
+      groups: []
+      maxCount: -1
+      available: 1
+      id: baby_elephant
+      title: Salvage Discharge Organ
+      icon: 
+      tier: 1
+      value: 22
+      effects: []
+      conditionalEffects:
+      - key: stat_luck
+        customKey: dmg_when_pickup_gold
+        stat: 
+        per: 0
+        chance: 0.25
+        limit: 0
+        permanentOnly: 0
+        value: 25
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
     - tags:
       - pickup
       - stat_range
@@ -17790,6 +17861,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 45
         interval: 1
@@ -17891,6 +17963,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 8
         interval: 1
@@ -18187,6 +18260,7 @@ MonoBehaviour:
         stat: stat_lifesteal
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 2
         interval: 1
@@ -18456,6 +18530,61 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - xp_gain
+      groups: []
+      maxCount: -1
+      available: 0
+      id: celery_tea
+      title: Adaptive Memory Tonic
+      icon: 
+      tier: 2
+      value: 35
+      effects: []
+      conditionalEffects:
+      - key: xp_gain
+        customKey: stats_end_of_wave
+        stat: 
+        per: 0
+        chance: 0
+        limit: 0
+        permanentOnly: 0
+        value: 5
+        interval: 1
+        resetOnHit: 0
+      - key: xp_gain
+        customKey: stats_next_wave
+        stat: 
+        per: 0
+        chance: 0
+        limit: 0
+        permanentOnly: 0
+        value: 50
+        interval: 1
+        resetOnHit: 0
+      - key: enemy_health
+        customKey: stats_next_wave
+        stat: 
+        per: 0
+        chance: 0
+        limit: 0
+        permanentOnly: 0
+        value: 100
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_dodge
       - stand_still
       groups:
@@ -18478,6 +18607,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 20
         interval: 1
@@ -18703,6 +18833,7 @@ MonoBehaviour:
         stat: knockback
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -18739,6 +18870,7 @@ MonoBehaviour:
         stat: living_enemy
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -18873,6 +19005,41 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_luck
+      groups: []
+      maxCount: -1
+      available: 1
+      id: cyberball
+      title: Death Relay Processor
+      icon: 
+      tier: 2
+      value: 30
+      effects: []
+      conditionalEffects:
+      - key: stat_luck
+        customKey: dmg_when_death
+        stat: 
+        per: 0
+        chance: 0.25
+        limit: 0
+        permanentOnly: 0
+        value: 25
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_percent_damage
       groups: []
       maxCount: -1
@@ -18946,6 +19113,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -18955,6 +19123,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: -1
         interval: 1
@@ -19149,6 +19318,7 @@ MonoBehaviour:
         stat: stat_speed
         per: -1
         chance: 0
+        limit: 0
         permanentOnly: 1
         value: 2
         interval: 1
@@ -19287,6 +19457,7 @@ MonoBehaviour:
         stat: 
         per: 8
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -19353,6 +19524,7 @@ MonoBehaviour:
         stat: common_item
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -19362,6 +19534,7 @@ MonoBehaviour:
         stat: legendary_item
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: -3
         interval: 1
@@ -19460,6 +19633,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: -3
         interval: 1
@@ -19525,6 +19699,7 @@ MonoBehaviour:
         stat: burning_enemy
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -19567,6 +19742,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 10
         interval: 1
@@ -19760,6 +19936,7 @@ MonoBehaviour:
         stat: 
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 10
         interval: 1
@@ -19916,6 +20093,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -19925,6 +20103,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -19934,6 +20113,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -20008,6 +20188,7 @@ MonoBehaviour:
         stat: stat_max_hp
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 0
         interval: 1
@@ -20207,6 +20388,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 33
         interval: 1
@@ -20244,6 +20426,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 50
         interval: 1
@@ -20336,6 +20519,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -20621,6 +20805,7 @@ MonoBehaviour:
         stat: stat_crit_chance
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 2
         interval: 1
@@ -20792,6 +20977,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 2
         interval: 5
@@ -21020,6 +21206,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 20
         interval: 1
@@ -21125,6 +21312,7 @@ MonoBehaviour:
         stat: materials
         per: 80
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -21196,6 +21384,53 @@ MonoBehaviour:
         value: -1
       conditionalEffects: []
       image: {fileID: -5672869595778636664, guid: a19b75abb96ea01479eb937df9f71202, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - xp_gain
+      groups: []
+      maxCount: -1
+      available: 1
+      id: peacock
+      title: Volatile Learning Gland
+      icon: 
+      tier: 3
+      value: 50
+      effects:
+      - key: xp_gain
+        value: 25
+      conditionalEffects:
+      - key: xp_gain
+        customKey: stats_next_wave
+        stat: 
+        per: 0
+        chance: 0
+        limit: 0
+        permanentOnly: 0
+        value: 100
+        interval: 1
+        resetOnHit: 0
+      - key: enemy_damage
+        customKey: stats_next_wave
+        stat: 
+        per: 0
+        chance: 0
+        limit: 0
+        permanentOnly: 0
+        value: 50
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -21453,6 +21688,7 @@ MonoBehaviour:
         stat: 
         per: 50
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -21491,6 +21727,7 @@ MonoBehaviour:
         stat: stat_speed
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -21644,6 +21881,7 @@ MonoBehaviour:
         stat: stat_dodge
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 2
         interval: 1
@@ -21740,6 +21978,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -21749,6 +21988,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -21758,6 +21998,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: -1
         interval: 1
@@ -21851,6 +22092,7 @@ MonoBehaviour:
         stat: 
         per: 1
         chance: 0.25
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 3
@@ -21925,6 +22167,7 @@ MonoBehaviour:
         stat: stat_speed
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 0
         interval: 1
@@ -22203,6 +22446,7 @@ MonoBehaviour:
         stat: stat_elemental_damage
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -22244,6 +22488,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 6
         interval: 1
@@ -22281,6 +22526,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 40
         interval: 1
@@ -22319,6 +22565,7 @@ MonoBehaviour:
         stat: stat_armor
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -22359,6 +22606,7 @@ MonoBehaviour:
         stat: stat_elemental_damage
         per: 1
         chance: 0
+        limit: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -22657,6 +22905,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: -2
         interval: 1
@@ -22693,6 +22942,7 @@ MonoBehaviour:
         stat: 
         per: 20
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 5
         interval: 1
@@ -22727,6 +22977,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -22961,6 +23212,44 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_elemental_damage
+      groups:
+      - elemental_damage
+      maxCount: -1
+      available: 0
+      id: will_o_the_wisp
+      title: Pyro Learning Organ
+      icon: 
+      tier: 3
+      value: 80
+      effects:
+      - key: stat_attack_speed
+        value: -7
+      conditionalEffects:
+      - key: stat_elemental_damage
+        customKey: gain_stat_for_killed_enemies_while_burning
+        stat: 
+        per: 1
+        chance: 0
+        limit: 4
+        permanentOnly: 0
+        value: 30
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 6548839812415577367, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_speed
       - stat_range
       groups: []
@@ -23011,6 +23300,7 @@ MonoBehaviour:
         stat: 
         per: 0
         chance: 0
+        limit: 0
         permanentOnly: 0
         value: 5
         interval: 5

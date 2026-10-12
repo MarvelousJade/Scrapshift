@@ -46,3 +46,9 @@ Global burning merges base damage and chance across implants, retains the longes
 Current checkpoint: 170/209 base items, 138 initially available, 39 missing. Five playable starting profiles; the other 45 profiles and persistent unlock integration remain unfinished. Windows build: zero errors/warnings, 234/234 EditMode tests passed. The five-character rendered fixture passed at the Mage stage (226 tests), including all 160 available weapon tiers, and its selection screenshot was visually inspected. Later trigger changes have unit/build coverage but have not yet been rerun through that rendered fixture.
 
 Two older tests assumed exactly one bearded preset and exactly four starting profiles. They were updated to test layer replacement and the five-profile lists without imposing those obsolete constraints. This is a staged implementation log, not a claim that the full requested roster is complete.
+
+## One-wave and death-triggered implants
+
+Added Anvil, Peacock, Celery Tea, Will-o'-the-Wisp, Baby Elephant and Cyberball: 176/209 items, 141 initially available, 33 missing. One-wave stats are queued on acquisition, consumed at the next wave start and cleared at its end. Anvil upgrades a randomly chosen eligible weapon on entering the next shop, falling back to its exact Armor gain when no upgrade exists. Burning kills count victims already burning as well as lethal burn ticks, with the reference's per-wave reward limit. Random damage stacks are rounded individually, aggregated and resolved iteratively against live enemies to avoid recursive list mutation during death chains.
+
+Compared shop-entry effects, player/run wave-reset logic and main-scene stat-damage/death handling. Windows build clean; 239/239 EditMode tests passed. Tests cover single-use expiry, repeat purchase, persistent versus temporary XP, Anvil fallback, burning-kill thresholds/reset and damage rounding. Full character roster/unlocks and the remaining 33 items are still in progress.

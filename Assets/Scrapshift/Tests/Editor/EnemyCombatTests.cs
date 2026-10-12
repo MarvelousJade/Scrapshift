@@ -82,7 +82,7 @@ namespace Scrapshift.Tests
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
             Assert.AreEqual(20,RunRules.WaveCount);
-            Assert.AreEqual(138,catalog.data.items.Count(i=>RunRules.IsShopItem(i.id)));
+            Assert.AreEqual(141,catalog.data.items.Count(i=>RunRules.IsShopItem(i.id)));
             var run=new RunRules(5); run.Configure(catalog); run.Start();
             var offered=new HashSet<string>();
             for(int wave=1;wave<20;wave++)

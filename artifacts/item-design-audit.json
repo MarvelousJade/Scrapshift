@@ -1,5 +1,5 @@
 {
-  "supportedItems": 170,
+  "supportedItems": 176,
   "items": [
     {
       "id": "acid",
@@ -201,6 +201,48 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "anvil",
+      "title": "Anvil",
+      "available": false,
+      "tier": 4,
+      "value": 120,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_armor",
+          "value": 2,
+          "customKey": "upgrade_random_weapon",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "baby_elephant",
+      "title": "Baby Elephant",
+      "available": true,
+      "tier": 1,
+      "value": 22,
+      "tags": [
+        "stat_luck",
+        "pickup"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 25,
+          "customKey": "dmg_when_pickup_gold",
+          "chance": 0.25
+        }
+      ]
     },
     {
       "id": "baby_gecko",
@@ -855,6 +897,42 @@
       "conditionalEffects": []
     },
     {
+      "id": "celery_tea",
+      "title": "Celery Tea",
+      "available": false,
+      "tier": 2,
+      "value": 35,
+      "tags": [
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "xp_gain",
+          "value": 5,
+          "customKey": "stats_end_of_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "xp_gain",
+          "value": 50,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "enemy_health",
+          "value": 100,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "chameleon",
       "title": "Chameleon",
       "available": true,
@@ -1196,6 +1274,27 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "cyberball",
+      "title": "Cyberball",
+      "available": true,
+      "tier": 2,
+      "value": 30,
+      "tags": [
+        "stat_luck"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 25,
+          "customKey": "dmg_when_death",
+          "chance": 0.25
+        }
+      ]
     },
     {
       "id": "cyclops_worm",
@@ -3156,6 +3255,40 @@
       "conditionalEffects": []
     },
     {
+      "id": "peacock",
+      "title": "Peacock",
+      "available": true,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "xp_gain",
+          "value": 25
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "xp_gain",
+          "value": 100,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        },
+        {
+          "key": "enemy_damage",
+          "value": 50,
+          "customKey": "stats_next_wave",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "pencil",
       "title": "Pencil",
       "available": true,
@@ -4581,6 +4714,35 @@
       "conditionalEffects": []
     },
     {
+      "id": "will_o_the_wisp",
+      "title": "Will O The Wisp",
+      "available": false,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": -7
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 30,
+          "customKey": "gain_stat_for_killed_enemies_while_burning",
+          "per": 1,
+          "limit": 4
+        }
+      ]
+    },
+    {
       "id": "wings",
       "title": "Wings",
       "available": true,
@@ -5003,6 +5165,22 @@
       "sha256": "2dad7490c6d8ce812363e36ec64f4435238a8ef0be78736f5a37784f6d7b0a2b"
     },
     {
+      "path": "items/all/anvil/anvil_data.tres",
+      "sha256": "10569263443cc411a4a8b197978573af70e7f5c8f9fb58954bf9910a67ea47a9"
+    },
+    {
+      "path": "items/all/anvil/anvil_effect_0.tres",
+      "sha256": "dfed870677b8b565b865eeae519cff9836a347b93d893aaad73be72823eb1b1a"
+    },
+    {
+      "path": "items/all/baby_elephant/baby_elephant_data.tres",
+      "sha256": "b9f89b6a7aeea663701c411975f7cbf5a7a88efc65745725400d4ee3ee631838"
+    },
+    {
+      "path": "items/all/baby_elephant/baby_elephant_effect_1.tres",
+      "sha256": "30d560ce4ba52cddadffe2a20f43051764cc1eb740dd35426b5306d46de2396f"
+    },
+    {
       "path": "items/all/baby_gecko/baby_gecko_data.tres",
       "sha256": "85f59f7ae503f3f5b6e31c16d0a7d1a278072141ac8994ba15a6727f8fbe56f7"
     },
@@ -5355,6 +5533,22 @@
       "sha256": "91c93da8a7e995653ebfb97c5b34a78aa6d262861b10e701b5368f0888b0ff62"
     },
     {
+      "path": "items/all/celery_tea/celery_tea_data.tres",
+      "sha256": "27c33b4c0bbeb3a3ce413da98bad953c4750fe5798f3795ee287e7f1e0b8d509"
+    },
+    {
+      "path": "items/all/celery_tea/effects/celery_tea_effect_0.tres",
+      "sha256": "f810d328208cb750ac1c6bdbc9c7deac881bbe86fffbb2095d1347e87bb8a3af"
+    },
+    {
+      "path": "items/all/celery_tea/effects/celery_tea_effect_0b.tres",
+      "sha256": "88864ba364823b51ec70aaa8b5d235b8347d26d4ae08ebaef002b51baf5f49f7"
+    },
+    {
+      "path": "items/all/celery_tea/effects/celery_tea_effect_1.tres",
+      "sha256": "54bebac5dab0b3d0ccfed51104e9523922a0230394c7ad0ab8218bcfd222b2bb"
+    },
+    {
       "path": "items/all/chameleon/chameleon_data.tres",
       "sha256": "46f5588ed4c62b4de14c294a747a48c34030bc906c4baa06cb8c1633897385a9"
     },
@@ -5525,6 +5719,14 @@
     {
       "path": "items/all/cute_monkey/cute_monkey_effect_2.tres",
       "sha256": "6b66dd0a0ceadf3090c3dc25c6a93407ca889556a3eb54dc208ca8ac445cfc8a"
+    },
+    {
+      "path": "items/all/cyberball/cyberball_data.tres",
+      "sha256": "8424d29918b28e6f61c651de7fd88202aa8370d0002d0faaea152654bd8ce517"
+    },
+    {
+      "path": "items/all/cyberball/cyberball_effect_1.tres",
+      "sha256": "00ad22fd0ac4ad7f0ca649c65b2bf3714ce40eb3e89e365aa0de13670c62556e"
     },
     {
       "path": "items/all/cyclops_worm/cyclops_worm_data.tres",
@@ -6555,6 +6757,22 @@
       "sha256": "6b66dd0a0ceadf3090c3dc25c6a93407ca889556a3eb54dc208ca8ac445cfc8a"
     },
     {
+      "path": "items/all/peacock/peacock_data.tres",
+      "sha256": "b50147eff1a97b1f82b10015cf8dfe656d6cfca95d51ca73315a22e2df163e96"
+    },
+    {
+      "path": "items/all/peacock/peacock_effect_1.tres",
+      "sha256": "067bbdb9b4da37d5f1596edc9ca47882696cb5832aabe8fce4b7f0f489e43fdb"
+    },
+    {
+      "path": "items/all/peacock/peacock_effect_2.tres",
+      "sha256": "615c91253d8644ee359210203e8683b2051fca34074ba3f8818af9b9d14b5996"
+    },
+    {
+      "path": "items/all/peacock/peacock_effect_3.tres",
+      "sha256": "854eb8b2313c620445f333aced6d0d26d65bbb047bd5e70f4a9b686cbd4e23e1"
+    },
+    {
       "path": "items/all/pencil/pencil_data.tres",
       "sha256": "f8aaed4c0f55c16d741d99c05546abaf5ac715b0abf2f5afc75dc23dc491c0af"
     },
@@ -7287,6 +7505,18 @@
       "sha256": "b5e23ddd1276d1baa7ec66cb2bf0e8e0f37a09eb7c8016636456e7c79ee51b33"
     },
     {
+      "path": "items/all/will_o_the_wisp/will_o_the_wisp_data.tres",
+      "sha256": "7b3fa3cac02b2aea78bd2b5e8c8fc38069996a741e9419d704de040ac42a7fe6"
+    },
+    {
+      "path": "items/all/will_o_the_wisp/will_o_the_wisp_effect_0.tres",
+      "sha256": "ce7aba40a620d0ce2564e07a15789febe0b66056d173c148d8e071e63b7f57b7"
+    },
+    {
+      "path": "items/all/will_o_the_wisp/will_o_the_wisp_effect_1.tres",
+      "sha256": "764114b17011566c5921f95a77190b47a3059b1e39128f14a1082da7b8c0e66b"
+    },
+    {
       "path": "items/all/wings/wings_data.tres",
       "sha256": "9a7ae3e7de02ea94afb2b77acb55fa11bbcc415aab8558174d897caa1fb28ebc"
     },
@@ -7459,18 +7689,6 @@
       ]
     },
     {
-      "id": "anvil",
-      "effects": [
-        "stat_armor"
-      ]
-    },
-    {
-      "id": "baby_elephant",
-      "effects": [
-        "stat_luck"
-      ]
-    },
-    {
       "id": "baby_with_a_beard",
       "effects": [
         "projectiles_on_death",
@@ -7532,20 +7750,6 @@
       "id": "catling_gun",
       "effects": [
         ""
-      ]
-    },
-    {
-      "id": "celery_tea",
-      "effects": [
-        "xp_gain",
-        "xp_gain",
-        "enemy_health"
-      ]
-    },
-    {
-      "id": "cyberball",
-      "effects": [
-        "stat_luck"
       ]
     },
     {
@@ -7611,14 +7815,6 @@
       "effects": [
         "stat_hp_regeneration",
         "extra_loot_aliens_next_wave"
-      ]
-    },
-    {
-      "id": "peacock",
-      "effects": [
-        "xp_gain",
-        "xp_gain",
-        "enemy_damage"
       ]
     },
     {
@@ -7702,15 +7898,8 @@
       "effects": [
         "wandering_bot"
       ]
-    },
-    {
-      "id": "will_o_the_wisp",
-      "effects": [
-        "stat_elemental_damage",
-        "stat_attack_speed"
-      ]
     }
   ],
-  "availableItems": 138,
+  "availableItems": 141,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

@@ -240,7 +240,7 @@ namespace Scrapshift
                 if(role=="Boss") UpdateBossArm(e,dt);
                 if (role != "Tree" && invulnerable <= 0 && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                 {
-                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1),e.type);
+                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1)*Mathf.Max(0,1+Rules.Stat("enemy_damage")/100),e.type);
                     e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, e.speed);
                     if (role == "Pursuer") e.action = 0;
                 }
@@ -436,7 +436,7 @@ namespace Scrapshift
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
-            ;ApplyStarterHit(e,weapon,critical,true,secondary);return critical;
+            ;ApplyStarterHit(e,weapon,critical,true,secondary);if(e.type.role!="Tree")Rules.KillEffects(e.burnTicks>0||bypassArmor);return critical;
         }
         void Drop(Vector2 p,int value,bool fruit)
         {
@@ -471,6 +471,7 @@ namespace Scrapshift
         }
         void ClearReferenceCombat()
         {
+            implantDamage.Clear();
             ClearStarterEffects();births.Clear();foreach(var slash in slashes)Destroy(slash.obj);slashes.Clear();foreach(var e in corpses)Destroy(e.obj);corpses.Clear();
         }
     }
