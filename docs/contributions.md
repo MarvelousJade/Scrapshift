@@ -86,3 +86,7 @@ Shaoyu requested native fullscreen without side bars and specified Random plus f
 ## Weapon selection and inspection
 
 Shaoyu corrected locked weapon visibility and requested source typography/descriptions plus pause/intermission inspection. Codex compared the supplied source, implemented filtering and shared text/interaction paths, diagnosed the recorded failures, ran tests and staged/native-input checks, and committed locally. Reference font/text are explicitly attributed; existing original sprites are unchanged. No full manual playthrough or human visual acceptance is claimed.
+
+## Item expansion and design comparison
+
+Shaoyu authorized expansion toward the full catalog and requested closer character descriptions, attached set panels and visible parachute motion. Codex audited local source/live screenshots, implemented the supported 74-item catalog (64 obtainable), corrected shop/stat/cadence behavior, preserved existing art, diagnosed migration/geometry bugs and ran validation. Staged captures and tests are agent-run evidence; no human full-run acceptance is claimed.

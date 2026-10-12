@@ -3,6 +3,14 @@ namespace Scrapshift
 {
     public static class WeaponMotion
     {
+        public static float ReferenceDuration(Equipment w,float attackSpeed,float range)
+        {
+            float recoil=w.recoilHalf/Mathf.Max(1,1+attackSpeed);
+            if(!w.melee)return recoil*2;
+            float rangeFactor=range*100/Mathf.Clamp(70*(1+attackSpeed/3),70,120);
+            float attack=Mathf.Max(.01f,.2f-attackSpeed/10)+rangeFactor*.15f;
+            return attack/2+(attackSpeed>0?.2f/(1+attackSpeed*3):.2f)+recoil;
+        }
         public static float HalfDuration(string id)=>id=="smg"?.05f:id=="laser_gun"?.2f:.1f;
         public static float Distance(string id)=>id=="smg"?.1f:id=="laser_gun"?.4f:.25f;
         public static float Duration(Equipment w,float fireRate=1)=>(w.scaling!=null?w.recoilHalf*2:w.melee?.18f:HalfDuration(w.id)*2)/Mathf.Max(1,fireRate);

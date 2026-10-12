@@ -53,6 +53,9 @@ namespace Scrapshift
     }
     [Serializable] public sealed class ItemEntry
     {
+        public string[] tags,groups;
+        public int maxCount=-1;
+        public bool available;
         public string id,title,icon;
         public int tier,value;
         public StatEffect[] effects;
@@ -109,7 +112,7 @@ namespace Scrapshift
         public Font referenceFont;
         public TextAsset uiText;
         public string starterVersion;
-        void OnEnable(){if(data!=null)WeaponSets.Configure(data.sets);}
+        void OnEnable(){if(data!=null){WeaponSets.Configure(data.sets);RunRules.ConfigureShopItems(data.items);}}
         public Sprite warning;
         public Sprite[] extraStatIcons;
         public Sprite[] scrapShapes, muzzleFrames;

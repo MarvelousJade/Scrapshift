@@ -78,8 +78,41 @@ namespace Scrapshift
             if(randomCharacter&&menuPage==1)Text(left+20,300,180,120,"?",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
             else Portrait(new Vector2(left+110,365),100,playerAnimation.Look);
             string details=randomCharacter&&menuPage==1?"Choose one of the four\nplayable characters at random.":SelectedCharacter.description;
-            Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
-            if(!(randomCharacter&&menuPage==1))Text(left+20,511,530,38,$"{PreviewRules().MaxHealth:0.##} starting Max HP",tiny);
+            if(randomCharacter&&menuPage==1)Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
+            else DrawCharacterEffects(SelectedCharacter,left+220,246,328);
+            if(!(randomCharacter&&menuPage==1)&&!string.IsNullOrEmpty(SelectedCharacter.bonusWeapon))
+            {
+                RoundedBox(new Rect(left+20,499,180,61),new Color(.35f,.32f,.29f),8);
+                var r=new Rect(left+146,505,48,49);RoundedBox(r,panelColor,5);
+                DrawIcon(catalog.Weapon(SelectedCharacter.bonusWeapon,1).image,new Rect(r.x+4,r.y+4,40,41));
+            }
+        }
+        void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)
+        {
+            var style=new GUIStyle(inspectionBody){fontSize=18,richText=true};
+            var lines=new System.Collections.Generic.List<(Sprite image,string label,float height)>();
+            foreach(var row in profile.effectRows.Where(r=>r.kind!="weapon"))
+            {
+                string value=(row.value>0?"+":"")+row.value.ToString("0.##");
+                string color=row.value<0?"#FF3B3B":"#76FF40";
+                string stat=inspectionText.StatName(row.key).TrimStart('%',' ');
+                string unit=StatPresentation.Unit(row.key);
+                string colored="<color="+color+">"+value+unit+"</color>";
+                string label=colored+" "+stat;
+                Sprite image=StatPresentation.Icon(catalog,row.key);
+                if(row.kind=="class")label=colored+" "+stat+" with "+System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(row.extra)+" weapons";
+                else if(row.kind=="weapon")
+                {var weapon=catalog.Weapon(row.key,1);image=weapon.image;label="You start with <color=#76FF40>"+row.value.ToString("0")+" "+inspectionText.WeaponName(weapon)+"</color>";}
+                else if(row.kind=="gain")label=stat+" modifications are "+(row.value<0?"reduced":"increased")+" by <color="+color+">"+Mathf.Abs(row.value).ToString("0")+"%</color>";
+                else if(row.kind=="noMelee")label="<color=#FF3B3B>You can't equip melee weapons</color>";
+                float h=style.CalcHeight(new GUIContent(label),width-30);
+                lines.Add((image,label,h));
+            }
+            y+=Mathf.Max(0,(245-lines.Sum(l=>l.height+8))/2);
+            foreach(var line in lines)
+            {
+                DrawIcon(line.image,new Rect(x,y+3,21,21));Text(x+30,y,width-30,line.height+4,line.label,style);y+=line.height+8;
+            }
         }
     }
 }

@@ -6,6 +6,9 @@ namespace Scrapshift
     public static class ArrivalMotion
     {
         public const float Duration = 1.2f;
+        public static float CanopyRotation(float time)=>time<.5f?Mathf.Lerp(0,8.2f,Mathf.SmoothStep(0,1,time/.5f)):
+            time<.7f?Mathf.Lerp(8.2f,-4.2f,Mathf.SmoothStep(0,1,(time-.5f)/.2f)):
+            Mathf.Lerp(-4.2f,0,Mathf.SmoothStep(0,1,(time-.7f)/.1f));
         public static Vector2 Offset(float time)
         {
             if(time < .7f) return Vector2.Lerp(new Vector2(-2.65f,7.25f),new Vector2(-.01f,1.4f),1-Mathf.Pow(1-Mathf.Clamp01(time/.7f),3));

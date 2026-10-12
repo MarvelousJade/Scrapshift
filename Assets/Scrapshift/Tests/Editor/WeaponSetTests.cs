@@ -81,8 +81,8 @@ namespace Scrapshift.Tests
             r.Inventory.Add(catalog.Weapon("spear",1));r.Inventory.Add(catalog.Weapon("spear",1));
             r.NextWave();Assert.AreEqual(baseline+3,r.Health);
             r.Tick(r.Remaining);while(r.Phase==RunPhase.Upgrade)r.Choose(0);
-            float beforeCombine=r.MaxHealth;
-            r.Combine(0);Assert.AreEqual(beforeCombine-3,r.Health);Assert.AreEqual(beforeCombine-3,r.MaxHealth);
+            float beforeCombine=r.MaxHealth,beforeHealth=r.Health;
+            r.Combine(0);Assert.AreEqual(UnityEngine.Mathf.Min(beforeHealth,beforeCombine-3),r.Health);Assert.AreEqual(beforeCombine-3,r.MaxHealth);
             r.Start();Assert.AreEqual(10,r.MaxHealth);Assert.AreEqual(0,r.Stat("range"));
             Assert.AreEqual(0,r.Stat("crit_chance"));Assert.AreEqual(1,r.SetCount(WeaponSets.Gun));
         }

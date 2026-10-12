@@ -37,7 +37,7 @@ namespace Scrapshift
                 Text(1351,y,49,32,value.ToString("0"),right);
                 Inspect("stat:"+names[i],new Rect(1120,y,282,25),inspectionText.StatName(names[i]),inspectionText.StatDescription(Rules,names[i]),StatPresentation.Icon(catalog,names[i]));
             }
-            if(!summary){DrawWeaponSets();DrawWardrobePreview();}
+            if(!summary)DrawWardrobePreview();
             GUI.matrix=previousMatrix;
         }
 
@@ -85,7 +85,7 @@ namespace Scrapshift
                 DrawIcon(offer.Image,new Rect(x+18,148,60,64));
                 Text(x+93,141,145,76,offer.Title=="Smg"?"SMG":offer.Title,body);
                 Text(x+16,224,220,27,offer.weapon!=null?(WeaponSets.For(offer.weapon)?.Name??"Weapon")+"  /  Tier "+offer.Tier:"Item",tiny);
-                if(offer.weapon!=null && new Rect(x+16,224,220,27).Contains(Event.current.mousePosition)) hoveredSet=WeaponSets.For(offer.weapon);
+                if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,140,228,110));
                 DrawOfferDetail(offer,x+16,270,220);
                 GUI.enabled=Rules.CanBuy(i);
                 string price=offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
@@ -161,6 +161,7 @@ namespace Scrapshift
         }
         void DrawSetTooltip()
         {
+            if(!setReview)return; // Normal inspection owns the attached set panels.
             if(setReview && (setReviewStage==1 || setReviewStage==2))hoveredSet=WeaponSets.Primitive;
             if(hoveredSet==null)return;
             int count=Rules.SetCount(hoveredSet);

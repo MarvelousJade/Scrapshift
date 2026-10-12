@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        sealed class InspectEntry { public string id,title,description,category; public Sprite image; public Rect anchor; public Color color; }
+        sealed class InspectEntry { public string id,title,description,category; public Sprite image; public Rect anchor; public Color color; public Equipment weapon; }
         readonly List<InspectEntry> inspectionEntries=new List<InspectEntry>();
         InspectionText inspectionText;
         InspectEntry hoveredInspection;
@@ -41,7 +42,8 @@ namespace Scrapshift
                 Box(new Rect(local.x,local.y,2,local.height),c);Box(new Rect(local.xMax-2,local.y,2,local.height),c);
             }
         }
-        void InspectWeapon(string id,Equipment w,Rect r,Rect? clip=null)=>Inspect(id,r,inspectionText.WeaponName(w),inspectionText.WeaponDescription(Rules,w),w.image,inspectionText.Sets(w),w.tier,clip);
+        void InspectWeapon(string id,Equipment w,Rect r,Rect? clip=null)
+        {Inspect(id,r,inspectionText.WeaponName(w),inspectionText.WeaponDescription(Rules,w),w.image,inspectionText.Sets(w),w.tier,clip);var entry=inspectionEntries.LastOrDefault(e=>e.id==id);if(entry!=null)entry.weapon=w;}
         void InspectItem(string id,ItemEntry item,Rect r,Rect? clip=null,Vector2 scroll=default)=>Inspect(id,r,inspectionText.ItemName(item),inspectionText.ItemDescription(item),item.image,"Item",item.tier,clip,clip.HasValue?(Rect?)new Rect(clip.Value.position+r.position-scroll,r.size):null);
         void EndInspection()
         {
@@ -75,16 +77,46 @@ namespace Scrapshift
             float titleHeight=inspectionTitle.CalcHeight(new GUIContent(entry.title),bodyWidth);
             float header=titleHeight+(string.IsNullOrEmpty(entry.category)?0:34);
             float height=Mathf.Max(122,header+textHeight+40);
-            float x=entry.anchor.xMax+12;if(x+width>FullCanvas.xMax-12)x=entry.anchor.xMin-width-12;
-            x=Mathf.Clamp(x,FullCanvas.xMin+12,FullCanvas.xMax-width-12);
-            float y=Mathf.Clamp(entry.anchor.y,FullCanvas.yMin+12,FullCanvas.yMax-height-12);
-            lastInspectionPanel=new Rect(x,y,width,height);
-            RoundedBox(new Rect(x,y,width,height),new Color(0,0,0,.95f),10);
+            var sets=entry.weapon==null?new WeaponSet[0]:WeaponSets.All.Where(s=>entry.weapon.HasSet(s.Id)).ToArray();
+            float groupWidth=width+(sets.Length>0?342:0),groupHeight=Mathf.Max(height,InspectionSetsHeight(sets));
+            float x=entry.anchor.center.x>FullCanvas.center.x?entry.anchor.xMax-groupWidth:entry.anchor.xMin;
+            x=Mathf.Clamp(x,FullCanvas.xMin+12,FullCanvas.xMax-groupWidth-12);
+            float y=entry.anchor.center.y>FullCanvas.center.y?entry.anchor.yMin-groupHeight-10:entry.anchor.yMax+10;
+            y=Mathf.Clamp(y,FullCanvas.yMin+12,FullCanvas.yMax-groupHeight-12);
+            lastInspectionPanel=new Rect(x,y,groupWidth,groupHeight);
+            RoundedBox(new Rect(x,y,width,height),new Color(0,0,0,1),10);
             DrawIcon(entry.image,new Rect(x+18,y+20,88,88));
             var nameStyle=new GUIStyle(inspectionTitle);nameStyle.normal.textColor=entry.color;
             OutlinedText(x+118,y+16,bodyWidth,titleHeight,entry.title,nameStyle);
             if(!string.IsNullOrEmpty(entry.category))Text(x+118,y+20+titleHeight,bodyWidth,32,entry.category,inspectionBody);
             Text(x+118,y+22+header,bodyWidth,textHeight+8,entry.description,inspectionBody);
+            DrawInspectionSets(sets,x+width+8,y);
+        }
+        float InspectionSetsHeight(WeaponSet[] sets)
+        {
+            float height=0;var style=new GUIStyle(inspectionBody){fontSize=16};
+            foreach(var set in sets){height+=42;for(int n=2;n<=6;n++)height+=Mathf.Max(23,style.CalcHeight(new GUIContent("("+n+") "+set.Description(n)),306));height+=14;}
+            return height;
+        }
+        void DrawInspectionSets(WeaponSet[] sets,float x,float y)
+        {
+            var style=new GUIStyle(inspectionBody){fontSize=16};
+            foreach(var set in sets)
+            {
+                float h=InspectionSetsHeight(new[]{set})-6;
+                RoundedBox(new Rect(x,y,334,h),new Color(0,0,0,1),10);
+                Text(x+14,y+10,306,30,set.Name,new GUIStyle(inspectionBody){normal={textColor=new Color(.85f,.82f,.58f)}});
+                float rowY=y+42;int count=Mathf.Min(6,Rules.SetCount(set));
+                for(int n=2;n<=6;n++)
+                {
+                    string description="("+n+") "+set.Description(n);
+                    float rowHeight=Mathf.Max(23,style.CalcHeight(new GUIContent(description),306));
+                    style.normal.textColor=n==count?paper:new Color(.4f,.4f,.4f);
+                    if(n==count)description=System.Text.RegularExpressions.Regex.Replace(description,@"[+-]\d+%?",m=>"<color=#76FF40>"+m.Value+"</color>");
+                    Text(x+14,rowY,306,rowHeight,description,style);rowY+=rowHeight;
+                }
+                y+=h+6;
+            }
         }
         void DrawIntermissionInventory()
         {

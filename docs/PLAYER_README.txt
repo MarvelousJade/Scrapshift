@@ -9,7 +9,7 @@ Crates resolve before levels. Remaining crates are collected automatically.
 At wave end, choose queued stat upgrades with 1-4 or the mouse.
 Shop: buy items/weapons, lock offers, combine matching weapons, recycle.
 R: paid reroll. Six equipped weapons maximum.
-Eight item types, 24 available weapon families, up to six floating weapons.
+64 obtainable item types, 24 available weapon families, up to six floating weapons.
 Fourteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
 Start -> Random or Rookie / Pugilist / Hothead / Sharpshot -> starting weapon -> Danger 0.
 Each character has different modifiers and starting choices. The remaining 46 character slots are locked.
@@ -22,7 +22,7 @@ Options: turn Reduced Motion off to see the full descent and squash animation.
 The player has a smooth shell, swappable facial details and widely spaced, rounded silver boat-shaped tiny legs.
 Reference-sized arena with soft curved earth edges, small ground details, a following camera and flat oval shadows.
 Floating weapons rest toward your facing direction; rear slots sit behind the body.
-Clean items alter visible features; enemies spring without arms or legs.
+Previously illustrated items alter visible features; newly added items currently use stat icons; enemies spring without arms or legs.
 Watch enemy windups: amber direction cues precede charges and ranged shots.
 Survive twenty waves. The pause menu shows weapons, item effects, stats and the wave timeline. Audio and reduced motion are in Options.
 The ending shows the attacker/result, then stats and gear. Restart keeps your starting selection; New Run returns to selection.

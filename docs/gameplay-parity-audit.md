@@ -47,3 +47,7 @@ The subsequent loot/survival pass adds crate drops and queued take-or-recycle re
 ## Validation outcome (before the weapon-set pass)
 
 83 EditMode tests passed. The final Windows build succeeded with zero errors/warnings, and AssetScope found no issues among 198 assets / 1,337 reference usages. The final automated campaign completed all 20 waves and observed the boss transition. Normal-speed first-wave smoke reached the shop with 1 HP; it warrants personal difficulty testing. See `verification.md` and its linked artifact paths for exact counters, fixture overrides, screenshots and archive digest.
+
+## October 11 expansion update
+
+The old eight-item limit is superseded by 64 obtainable / 74 serialized flat-stat items. Another 127 source base items remain unsupported. See item-expansion-and-design-parity.md for exact scope, shop-selection changes, UI and remaining limitations.

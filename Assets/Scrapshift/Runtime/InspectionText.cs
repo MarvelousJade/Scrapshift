@@ -44,8 +44,8 @@ namespace Scrapshift
         public string WeaponDescription(RunRules rules,Equipment w)
         {
             float damage=rules.WeaponDamage(w),range=rules.WeaponRange(w)*100;
-            float cd=Mathf.Max(.035f,w.interval/rules.WeaponFireRate(w))+WeaponMotion.Duration(w,rules.WeaponFireRate(w));
-            float baseCd=w.interval+WeaponMotion.Duration(w,1);
+            float cd=rules.WeaponCooldown(w)+rules.WeaponAnimationDuration(w);
+            float baseCd=w.interval+WeaponMotion.ReferenceDuration(w,0,w.range);
             string scaled=w.scaling==null?"":string.Join(" + ",w.scaling.Select(s=>N(s.value*100)+"% "+StatName(s.key).TrimStart('%',' ')));
             string dmg=Compared(damage,w.damage,N(damage))+(w.pellets>1?"x"+w.pellets:"")+(Mathf.Approximately(damage,w.damage)?"":" ["+N(w.damage)+"]")+(scaled.Length>0?" ("+scaled+")":"");
             var lines=new List<string>{Format("DAMAGE_FORMATTED",T("STAT_DAMAGE"),dmg),
@@ -56,7 +56,7 @@ namespace Scrapshift
             if(w.bounce>0)lines.Add(Format("PIERCING_FORMATTED",T("BOUNCE"),w.bounce,N(w.bounceLoss*100)));
             if(w.piercing>0)lines.Add(Format("PIERCING_FORMATTED",T("PIERCING"),w.piercing,N(w.pierceLoss*100)));
             if(w.lifesteal>0)lines.Add(Format("STAT_FORMATTED",T("LIFESTEAL"),N(w.lifesteal*100)+"%"));
-            if(w.reloadEvery>0)lines.Add(Format("ADDITIONAL_COOLDOWN_EVERY_X_SHOTS",N(w.interval/rules.WeaponFireRate(w)*w.reloadMultiplier+WeaponMotion.Duration(w,rules.WeaponFireRate(w)))+"s",w.reloadEvery));
+            if(w.reloadEvery>0)lines.Add(Format("ADDITIONAL_COOLDOWN_EVERY_X_SHOTS",N(rules.WeaponCooldown(w)*w.reloadMultiplier+rules.WeaponAnimationDuration(w))+"s",w.reloadEvery));
             if(w.traits!=null)foreach(var t in w.traits)
             {
                 string effect=null;

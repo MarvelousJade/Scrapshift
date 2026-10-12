@@ -182,3 +182,7 @@ Implemented the user's clarified roster: Random, four playable reference-derived
 ## October 11 - reference typography and inspectable equipment
 
 Compared source selection, stat popup and weapon-description code. Hid locked weapon choices, retained character locks, imported the reference Anybody font and selected English templates, and added pointer/keyboard inspection across pause and all reward/shop screens. Original art remains. Corrected scroll hit targets, empty turret scaling, percent formatting and capture sequencing. Final 172-test/build/render/native-input evidence is in verification.md; scope and interview discussion are in inspection-and-weapon-selection.md.
+
+## October 11 - expanded items and reference presentation
+
+Expanded the obtainable pool from 8 to 64, preserving original art and documenting the 127 unsupported special-effect items. Compared live character/weapon UI and source parachute keys, moved set inspection beside weapons, corrected character modifier rows and bonus-weapon tray, and rebuilt the canopy. Debugging exposed appearance loss during migration, an incorrect health-test assumption and concave mesh triangulation. See item-expansion-and-design-parity.md and verification.md.

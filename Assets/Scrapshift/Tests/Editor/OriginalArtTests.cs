@@ -120,10 +120,11 @@ namespace Scrapshift.Tests
             }
         }
 
-        [Test] public void EveryPurchasableItemHasAnAppearanceAndLatestSlotWinsWithoutRemovingInventory()
+        [Test] public void AuthoredWearablesKeepAppearancesAndLatestSlotWinsWithoutRemovingInventory()
         {
             var catalog = AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root + "/Definitions/ReferenceCatalog.asset");
-            foreach (var item in catalog.data.items)
+            Assert.That(catalog.data.items.Count(i=>i.appearance?.image!=null),Is.EqualTo(22));
+            foreach (var item in catalog.data.items.Where(i=>i.appearance?.image!=null))
             {
                 Assert.IsNotEmpty(item.wearSlot, item.id);
                 Assert.Greater(item.wearScale, 0, item.id);

@@ -15,6 +15,8 @@ namespace Scrapshift
         static readonly HashSet<string> shopItems = new HashSet<string>
         { "coffee", "beanie", "glasses", "helmet", "leather_vest", "bat", "fertilizer", "cake" };
         public static bool IsShopItem(string id) => shopItems.Contains(id);
+        public static void ConfigureShopItems(ItemEntry[] items)
+        {if(items==null||!items.Any(i=>i.available))return;shopItems.Clear();foreach(var i in items)if(i.available)shopItems.Add(i.id);}
         public static readonly int[] Durations=
         {
             20,25,30,35,40,45,50,55,60,60,60,60,60,60,60,60,60,60,60,90
@@ -73,11 +75,11 @@ namespace Scrapshift
             private set;
         }
         public int NextLevel=>(Level+4)*(Level+4);
-        public float DamageScale=>Math.Max(.1f,1+Stat("percent_damage")/100);
+        public float DamageScale=>Math.Max(0,1+Stat("percent_damage")/100);
         public float FireRate=>Math.Max(.1f,1+Stat("attack_speed")/100);
         public float MoveSpeed=>4.5f*Math.Max(.2f,1+Stat("speed")/100);
         public float PickupRadius=>1.3f;
-        public float CritChance=>Mathf.Clamp(Stat("crit_chance")/100,0,.75f);
+        public float CritChance=>Stat("crit_chance")/100;
         public bool OrbitUnlocked=>false;
         public bool PulseUnlocked=>false;
         public bool WaveUpgrade=>Phase==RunPhase.Upgrade;
@@ -109,12 +111,13 @@ namespace Scrapshift
         public void Configure(ReferenceCatalog source)
         {
             catalog=source;
+            ConfigureShopItems(source?.data.items);
             WeaponSets.Configure(source?.data.sets);
         }
         float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
         public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name))*(Character?.Gain(name)??1);
         public int SetCount(WeaponSet set)=>WeaponSets.Count(Inventory,set);
-        public float WeaponRange(Equipment weapon)=>Mathf.Max(.5f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
+        public float WeaponRange(Equipment weapon)=>Mathf.Max(.25f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
         void Add(string name,float value)
         {
             stats[name]=PermanentStat(name)+value;
@@ -263,7 +266,7 @@ namespace Scrapshift
                     double wanted=random.NextDouble();
                     float early=Math.Max(0,6-Wave);
                     var preferred=wanted<.2+early*.01 ? pool.Where(w=>Inventory.Any(owned=>owned.id==w.id)).ToArray() :
-                        wanted<.35+early*.04 ? pool.Where(w=>Inventory.Any(owned=>WeaponSets.For(owned)!=null&&WeaponSets.For(owned)==WeaponSets.For(w))).ToArray() : pool;
+                        wanted<.35+early*.04 ? pool.Where(w=>Inventory.Any(owned=>ShopSelection.SharesSet(owned,w))).ToArray() : pool;
                     if(preferred.Length>0)pool=preferred;
                     Shop[i]=new ShopOffer
                     {
@@ -273,11 +276,9 @@ namespace Scrapshift
                 }
                 else
                 {
-                    var pool=catalog.data.items.Where(w=>w.tier==tier&&IsShopItem(w.id)).ToArray();
-                    while(pool.Length==0 && tier>1)
-                    { tier--; pool=catalog.data.items.Where(w=>w.tier==tier&&IsShopItem(w.id)).ToArray(); }
-                    var fresh=pool.Where(w=>!excluded.Any(s=>s.item==w)).ToArray();
-                    if(fresh.Length>0)pool=fresh;
+                    var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<.05,
+                        excluded.Where(s=>s.item!=null).Select(s=>s.item),Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)));
+                    if(pool.Length==0){Shop[i]=null;continue;}
                     Shop[i]=new ShopOffer
                     {
                         item=pool[random.Next(pool.Length)],rolledWave=Wave

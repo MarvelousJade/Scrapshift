@@ -37,7 +37,7 @@ namespace Scrapshift
             {
                 parachute.transform.position=(Vector3)(playerPos+offset)+Vector3.back*3;
                 Vector2 canopy=ArrivalMotion.CanopyScale(time);parachute.transform.localScale=new Vector3(canopy.x,canopy.y,1);
-                parachute.transform.rotation=Quaternion.Euler(0,0,reducedMotion?0:Mathf.Sin(time*Mathf.PI*2)*8);
+                parachute.transform.rotation=Quaternion.Euler(0,0,reducedMotion?0:ArrivalMotion.CanopyRotation(time));
             }
         }
         void TickArrival(float dt)

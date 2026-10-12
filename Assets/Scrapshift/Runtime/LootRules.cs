@@ -25,9 +25,8 @@ namespace Scrapshift
             {
                 int tier=crates.Peek()?4:ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 // Same intentionally small catalog and empty-tier fallback as our shop.
-                ItemEntry[] pool;
-                do { pool=catalog.data.items.Where(i=>i.tier==tier && IsShopItem(i.id)).ToArray(); }
-                while(pool.Length==0 && --tier>0);
+                var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<.05,Array.Empty<ItemEntry>(),
+                    Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)));
                 if(pool.Length>0)
                 {
                     CrateItem=pool[random.Next(pool.Length)];Phase=RunPhase.Loot;return;

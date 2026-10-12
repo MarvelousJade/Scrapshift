@@ -78,11 +78,11 @@ namespace Scrapshift.Tests
             Assert.LessOrEqual(Mathf.Abs(constrained.x-anchor.x),1.001f);
         }
 
-        [Test] public void TwentyWavesRemainPlayableWithEightItemShopPool()
+        [Test] public void TwentyWavesRemainPlayableWithExpandedItemShopPool()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
             Assert.AreEqual(20,RunRules.WaveCount);
-            Assert.AreEqual(8,catalog.data.items.Count(i=>RunRules.IsShopItem(i.id)));
+            Assert.AreEqual(64,catalog.data.items.Count(i=>RunRules.IsShopItem(i.id)));
             var run=new RunRules(5); run.Configure(catalog); run.Start();
             var offered=new HashSet<string>();
             for(int wave=1;wave<20;wave++)
@@ -97,7 +97,7 @@ namespace Scrapshift.Tests
                 }
                 run.NextWave();
             }
-            Assert.AreEqual(8,offered.Count);
+            Assert.That(offered.Count,Is.GreaterThan(40),"Seeded multi-wave sampling should reach many eligible items across tiers.");
             run.Tick(run.Remaining);Assert.AreEqual(RunPhase.Won,run.Phase);
         }
     }

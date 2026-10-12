@@ -12,6 +12,8 @@ namespace Scrapshift
     }
     [Serializable] public sealed class CharacterProfile
     {
+        public string[] wantedTags,bannedItems;
+        public CharacterEffectRow[] effectRows;
         public string id,title,description,bonusWeapon,classSet,classStat;
         public string[] startingWeapons,bannedItemGroups;
         public StatEffect[] stats,gains;
@@ -53,7 +55,10 @@ namespace Scrapshift
     {
         public CharacterProfile Character {get;private set;}
         public bool CanEquip(Equipment w)=>w!=null&&w.available&&(Character==null||Character.Allows(w));
-        public float WeaponFireRate(Equipment w)=>Mathf.Max(.1f,1+(Stat("attack_speed")+(Character?.WeaponBonus(w,"attack_speed_mod")??0))/100);
+        public float WeaponAttackSpeed(Equipment w)=>(Stat("attack_speed")+(Character?.WeaponBonus(w,"attack_speed_mod")??0))/100;
+        public float WeaponFireRate(Equipment w){float speed=WeaponAttackSpeed(w);return speed>=0?1+speed:1/(1-speed);}
+        public float WeaponCooldown(Equipment w)=>Mathf.Max(2,Mathf.Floor(Mathf.Max(2,w.interval*60)/WeaponFireRate(w)+.0001f))/60;
+        public float WeaponAnimationDuration(Equipment w)=>WeaponMotion.ReferenceDuration(w,WeaponAttackSpeed(w),WeaponRange(w));
         public float WeaponDamage(Equipment w)
         {
             float damage=w.damage;

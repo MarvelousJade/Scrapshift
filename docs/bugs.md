@@ -256,3 +256,7 @@ The final player-location review exposed a harness path bug: Unity resolved rela
 ## October 11 - selection eligibility and inspection descriptions
 
 Weapon selection incorrectly reused locked character-tile presentation for weapon choices; source weapon selection explicitly hides locked entries. Filtering now uses profile eligibility and availability before constructing the grid or Random pool. Inspection work also exposed an empty Wrench scaling list (170/171 initial tests), scroll-view hover-coordinate mismatch, deferred screenshot/state advancement, and missing percentage units on serialized stat effects. See inspection-and-weapon-selection.md for causes, fixes and final evidence.
+
+## October 11 - expansion migration and parachute mesh
+
+The first expansion migration dropped original wearables outside the eight-item shop whitelist. Preserve all authored images/appearances before merging source data (22 supported original definitions). A rendered canopy showed jagged recesses despite passing bounds tests: center-fan triangles bridged concave edges. Replaced them with a vertical strip and re-rendered. Tooltip translucency also let underlying stats show through; use opaque backgrounds. Full account and regression evidence: item-expansion-and-design-parity.md.

@@ -322,10 +322,10 @@ namespace Scrapshift
                 Vector2 direction=aim!=null&&enemies.Contains(aim)?(aim.pos-mount).normalized:shooting?weaponDirections[i]:ActorPresentation.RestDirection(playerAnimation.FacingLeft);
                 weaponDirections[i]=direction;
                 bool fire=!shooting&&nearest!=null&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
-                if(fire){weaponShots[i]++;weaponClocks[i]=Mathf.Max(.035f,w.interval/Rules.WeaponFireRate(w))*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=WeaponMotion.Duration(w,Rules.WeaponFireRate(w));weaponTargets[i]=nearest;}
+                if(fire){weaponShots[i]++;weaponClocks[i]=Rules.WeaponCooldown(w)*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=nearest;}
                 var view=equipmentViews[i];if(view!=null)
                 {
-                    float age = WeaponMotion.Duration(w,Rules.WeaponFireRate(w)) - swings[i];
+                    float age = Rules.WeaponAnimationDuration(w) - swings[i];
                     float kick = WeaponMotion.Recoil(w,age,Rules.WeaponFireRate(w));
                     float offset = ActorPresentation.WeaponPivot(w.id) + (w.melee ? swings[i] * 2 : -kick * (reducedMotion ? .2f : 1));
                     view.transform.position = new Vector3(mount.x + direction.x * offset, mount.y + direction.y * offset, -2);
