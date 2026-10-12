@@ -360,3 +360,7 @@ HudRefresh validation: 180/180 tests passed; build has zero errors/warnings. All
 - AssetScope: 311 assets, zero errors/findings. Validation copy: all 914 source/metadata files match byte for byte (Assets/Packages/ProjectSettings).
 - Preserved existing PNG artwork; one new original generated weapon atlas, prompt/provenance in artifacts/base-weapons-art-prompt.txt. Source reference audio attribution remains separate.
 - Build failures found and corrected: MP3 weapon audio overlooked by WAV-only loader; tests assumed all weapons had tier 1 and a fixed art-sheet count. See catalog-expansion-oct12.md and cybernetic-presentation.md.
+
+- Final runtime inspection: 39 fresh 1920x1080 captures passed. Implant penalties, long-title wrapping, new weapon slices, options and top/bottom border gradient visually checked. No runtime script exceptions found.
+- Final 20-wave campaign fixture: Passed, 20 waves, 47 purchases, 1 boss phase change, 128.2 seconds. Scripted invulnerable play; not a human balance test. The first overlapping capture run is superseded by this completed post-build run.
+- Final package: 55448578 bytes / 155 entries, CRC and every file match; SHA-256 `c95c676aec6e3eb7e9760b86e68c657eddd793858c75079d30e0f1398c0f88a9`.

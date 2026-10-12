@@ -28,3 +28,5 @@ Existing item artwork is retained; generic stat glyphs are used where no bespoke
 ## Validation
 
 Seven new EditMode tests cover actual tier existence and eligibility gates, prices/recycling, fractional XP/pickup radius, crate currency/healing, Crown growth and theme separation. Existing item tests compare all imported records against extracted values and buy every eligible item. Runtime weapon fixture exercises every eligible tier, not just tier 1. Final results are recorded in `docs/verification.md` after execution.
+
+Visual QA additionally fixed long weapon names splitting mid-word, neighboring sprite slivers in the atlas slice, and discount/enemy-stat benefit colors in shop cards. Final 39-frame inspection and 187-test rerun pass; 20-wave fixture completes.
