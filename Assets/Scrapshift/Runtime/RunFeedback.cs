@@ -11,7 +11,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
-        void BeginWaveSweep(){waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        void BeginWaveSweep(){RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
         void TickWaveSweep(float dt)
         {
             waveSweepAge+=dt;
@@ -27,7 +27,7 @@ namespace Scrapshift
                 Destroy(pickup.obj);pickups.RemoveAt(i);
             }
             if(waveSweepAge<1.8f||pickups.Count>0)return;
-            waveSweeping=false;Rules.Tick(Rules.Remaining);ClearCombat();
+            waveSweeping=false;Rules.Tick(Rules.Remaining);
         }
         void DrawMoneyCounter()
         {
@@ -53,22 +53,23 @@ namespace Scrapshift
                 OutlinedText(67,192,170,42,Rules.Banked.ToString(),body);
             }
             DrawStatIcon("harvesting",new Rect(23,147,40,40));
-            OutlinedText(67,148,170,38,Rules.Stat("harvesting").ToString("0"),body);
+            OutlinedText(67,141,170,51,Rules.Stat("harvesting").ToString("0"),number);
             if(waveSweeping&&waveSweepAge>1.1f&&Rules.Stat("harvesting")!=0)
                 OutlinedText(28,245,280,38,"Harvesting "+Rules.Stat("harvesting").ToString("+0;-0"),body);
         }
         void DrawPendingRewards()
         {
             float right=FullCanvas.xMax-30;
-            if(Rules.PendingLevels>0)
+            for(int i=0;i<Rules.PendingLevels;i++)
             {
-                float x=right-58;RoundedBox(new Rect(x,28,49,49),new Color(.12f,.16f,.09f,.9f),7);
-                Text(x+3,25,44,49,"\u2191",new GUIStyle(center){fontSize=40,normal={textColor=new Color(.4f,1,.2f)}});
+                float x=right-58*(i%12+1);RoundedBox(new Rect(x,28+(i/12)*55,49,49),new Color(.12f,.16f,.09f,.9f),7);
+                Text(x+3,25+(i/12)*55,44,49,"\u2191",new GUIStyle(center){fontSize=40,normal={textColor=new Color(.4f,1,.2f)}});
             }
             for(int i=0;i<Mathf.Min(8,Rules.PendingCrates);i++)
             {
-                float x=right-58*(i+1);RoundedBox(new Rect(x,117,44,40),new Color(.48f,.29f,.12f),3);
-                Box(new Rect(x+18,119,7,36),amber);Box(new Rect(x+2,133,40,6),amber);
+                float y=28+Mathf.Max(1,Mathf.CeilToInt(Rules.PendingLevels/12f))*55;
+                float x=right-58*(i+1);RoundedBox(new Rect(x,y,44,40),new Color(.48f,.29f,.12f),3);
+                Box(new Rect(x+18,y+2,7,36),amber);Box(new Rect(x+2,y+16,40,6),amber);
             }
         }
         void DrawWeaponActions()

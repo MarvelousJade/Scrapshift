@@ -71,7 +71,7 @@ namespace Scrapshift
         }
         void AdvanceWave()
         {
-            if(Rules.Phase!=RunPhase.Shop)return;Rules.NextWave();gameCamera.orthographicSize=ArenaGeometry.CameraHalfHeight;playerPos=Vector2.zero;StartWave();sound.Play(SoundCue.Install);
+            if(Rules.Phase!=RunPhase.Shop)return;ClearCombat();Rules.NextWave();gameCamera.orthographicSize=ArenaGeometry.CameraHalfHeight;playerPos=Vector2.zero;StartWave();sound.Play(SoundCue.Install);
         }
         void SyncEquipment()
         {
@@ -263,7 +263,7 @@ namespace Scrapshift
             var sprite = e.obj.GetComponent<SpriteRenderer>();
             if (Mathf.Abs(velocity.x) > .05f) sprite.flipX = velocity.x < 0;
             float scale = ActorPresentation.EnemyScale(e.type) * (1+e.evolution*.2f);
-            var spring=SpringMotion.Pose(e.activeAge*(e.type.id=="baby_alien"?1:.8f),velocity.sqrMagnitude>.01f,reducedMotion||e.type.role=="Tree");
+            var spring=SpringMotion.Pose(e.activeAge*(e.type.id=="baby_alien"?1:.8f),velocity.sqrMagnitude>.01f,reducedMotion);
             float anticipation = reducedMotion || !winding ? 0 : e.attack.Progress * .16f;
             float emerge = reducedMotion ? 1 : Mathf.Lerp(.45f, 1, Mathf.Clamp01(e.activeAge / .16f));
             e.obj.transform.position = new Vector3(e.pos.x, e.pos.y+spring.z*scale, -1);

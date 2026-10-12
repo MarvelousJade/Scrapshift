@@ -33,7 +33,7 @@ namespace Scrapshift
             if(bodyView!=null)
             {
                 Frame=0;SpringPose=SpringMotion.Pose(clock,moving,reducedMotion);
-                bodyView.flipX=FacingLeft;
+                bodyView.flipX=FacingLeft;bodyView.color=PresentationPolish.BodyTint;
                 bodyView.transform.localScale=new Vector3(SpringPose.x,SpringPose.y,1);
                 bodyView.transform.localPosition=new Vector3(0,SpringPose.z,0);
                 PoseFoot(leftFoot,-1,reducedMotion);PoseFoot(rightFoot,1,reducedMotion);

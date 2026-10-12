@@ -66,7 +66,8 @@ namespace Scrapshift
             bool lit=selected||r.Contains(Event.current.mousePosition);
             RoundedBox(r,lit?paper:panelColor,9);
             var labelStyle=new GUIStyle(center){fontSize=27};labelStyle.normal.textColor=lit?ink:paper;
-            return GUI.Button(r,label,labelStyle);
+            if(GUI.enabled&&r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
+            bool clicked=GUI.Button(r,label,labelStyle);if(clicked)sound.Play(SoundCue.UiPress);return clicked;
         }
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false)
         {
@@ -81,7 +82,7 @@ namespace Scrapshift
                 DrawIcon(sprite,new Rect(p-size*.5f,size));GUI.matrix=before;
             }
             var hero=playerAnimation.idleFrames[0];Vector2 bodySize=(Vector2)hero.bounds.size*scale;
-            DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));
+            var bodyColor=GUI.color;GUI.color=PresentationPolish.BodyTint;DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));GUI.color=bodyColor;
             foreach(var layer in layers)if(layer.order>=10)DrawAppearance(layer,origin,scale);
         }
         void SelectionUI()
@@ -89,13 +90,7 @@ namespace Scrapshift
             MenuBackdrop();
             if(menuPage==4)
             {
-                Text(420,100,600,75,"Options",new GUIStyle(title){fontSize=58,alignment=TextAnchor.MiddleCenter});
-                if(MenuButton(new Rect(470,285,500,65),muted?"Sound: Off":"Sound: On"))ToggleSound();
-                if(MenuButton(new Rect(470,375,500,65),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);}
-                Text(470,477,500,40,$"Effects volume  {sound.Volume*100:0}%",center);
-                float volume=GUI.HorizontalSlider(new Rect(490,543,460,30),sound.Volume,0,1);if(Mathf.Abs(volume-sound.Volume)>.001f)sound.SetVolume(volume);
-                if(MenuButton(new Rect(470,605,500,65),DisplayLabel))ToggleFullscreen();
-                if(MenuButton(new Rect(50,805,235,55),"Back"))menuPage=0;return;
+                DrawTabbedOptions(false);return;
             }
             OutlinedText(250,48,940,78,menuPage==1?"Character Selection":menuPage==2?"Weapon Selection":"Difficulty Selection",new GUIStyle(title){fontSize=49,alignment=TextAnchor.MiddleCenter});
             if(MenuButton(new Rect(24,24,178,44),"Back"))menuPage--;

@@ -111,7 +111,7 @@ namespace Scrapshift
                 Box(new Rect(x+3,323,246,4),TierColor(o.Tier));
                 Box(new Rect(x+14,340,66,70),new Color(.17f,.16f,.15f));
                 DrawIcon(o.Image,new Rect(x+20,346,54,58));
-                Text(x+92,342,144,58,ItemEntry.StatName(o.Stat),body);
+                Text(x+92,342,144,58,CyberneticTheme.UpgradeName(o.Stat),body);
                 Text(x+92,400,144,28,o.Rarity,tiny);
                 var gain=new GUIStyle(body);gain.normal.textColor=new Color(.38f,1,.25f);
                 Text(x+18,466,216,75,o.Detail,gain);
@@ -128,15 +128,7 @@ namespace Scrapshift
             Overlay();
             if(pauseOptions)
             {
-                Text(480,160,480,70,"Options",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
-                if(Button(new Rect(480,290,480,62),muted?"Sound: Off":"Sound: On"))ToggleSound();
-                if(Button(new Rect(480,375,480,62),reducedMotion?"Reduced motion: On":"Reduced motion: Off"))
-                {reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);}
-                Text(480,478,480,35,$"Effects volume  {sound.Volume*100:0}%",center);
-                float volume=GUI.HorizontalSlider(new Rect(484,540,470,24),sound.Volume,0,1);
-                if(Mathf.Abs(volume-sound.Volume)>.001f)sound.SetVolume(volume);
-                if(Button(new Rect(480,590,480,62),DisplayLabel))ToggleFullscreen();
-                if(Button(new Rect(480,685,480,62),"Back"))pauseOptions=false;
+                DrawTabbedOptions(true);
                 return;
             }
             DrawStatsPanel();

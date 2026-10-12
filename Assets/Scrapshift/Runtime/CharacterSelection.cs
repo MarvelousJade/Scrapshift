@@ -52,10 +52,10 @@ namespace Scrapshift
         void WeaponGrid()
         {
             var choices=CharacterWeapons;
-            float left=720-(Mathf.Min(10,choices.Length+1)*76-10)/2f;
+            float step=Mathf.Min(76,1180f/(choices.Length+1));float left=720-((choices.Length+1)*step-10)/2f;
             for(int slot=0;slot<=choices.Length;slot++)
             {
-                Rect r=new Rect(left+slot%10*76,626+slot/10*79,66,68);
+                Rect r=new Rect(left+slot*step,626,step-10,68);
                 if(slot==0)
                 {
                     if(MenuButton(r,"?"))
@@ -67,7 +67,7 @@ namespace Scrapshift
                 int i=slot-1;var weapon=catalog.Weapon(choices[i],1);
                 if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)startingWeapon=i;
                 if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
-                DrawIcon(weapon.image,new Rect(r.x+7,r.y+7,52,54));
+                DrawIcon(weapon.image,new Rect(r.x+5,r.y+7,r.width-10,54));
             }
         }
         void CharacterDetails(float left)

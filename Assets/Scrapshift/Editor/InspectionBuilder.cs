@@ -18,7 +18,7 @@ namespace Scrapshift.Editor
                 bool original=target?.image!=null&&!AssetDatabase.GetAssetPath(target.image).Contains("/Reference/");
                 if(target==null)target=new ItemEntry{id=item.id};
                 if(!original){target.image=StatPresentation.Icon(catalog,item.effects[0].key.Substring(5));target.appearance=null;target.wearSlot=null;}
-                target.title=text.T("ITEM_"+item.id.ToUpperInvariant(),item.title);target.available=item.available;
+                target.title=CyberneticTheme.ItemName(item.id,text.T("ITEM_"+item.id.ToUpperInvariant(),item.title));target.available=item.available;
                 target.value=item.value;target.tier=item.tier;target.effects=item.effects;
                 target.tags=item.tags;target.groups=item.groups;target.maxCount=item.maxCount;
                 expanded.Add(target);

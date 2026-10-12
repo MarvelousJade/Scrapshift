@@ -122,6 +122,7 @@ namespace Scrapshift
             {
                 ScreenCapture.CaptureScreenshot(Path.Combine(smokePath, "preview.png")); previewCapture = false;
             }
+            TickAmbientPresentation();
             if (titleModel != null) titleModel.SetActive(false);
             gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
@@ -142,7 +143,7 @@ namespace Scrapshift
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
             if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !inspectionReview) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
-            if (Rules.Phase != RunPhase.Playing && Rules.Phase != RunPhase.Paused && Rules.Phase != RunPhase.Won && Rules.Phase != RunPhase.Lost)
+            if (Rules.Phase == RunPhase.Title)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
             {
@@ -189,7 +190,7 @@ namespace Scrapshift
             if (enemyReview || lootReview) movement = Vector2.zero;
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
-            playerAnimation.Tick(movement, dt, reducedMotion);
+            playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(movement,dt);
             player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;

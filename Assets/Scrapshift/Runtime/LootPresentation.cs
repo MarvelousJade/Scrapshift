@@ -46,6 +46,7 @@ namespace Scrapshift
             if(pickup.consumable==ConsumableKind.Crate || pickup.consumable==ConsumableKind.LegendaryCrate)
             { FloatText(playerPos,"ITEM CRATE!",amber,true);sound.Play(SoundCue.Install); }
             else sound.Play(SoundCue.Pickup,pickup.motion.position);
+            PickupContactEffect();
             if(Rules.Level>levelBefore){sound.Play(SoundCue.LevelUp);FloatText(playerPos,"LEVEL UP!",mint,true);}
         }
 

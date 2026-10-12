@@ -10,9 +10,9 @@ namespace Scrapshift
         float inspectionNext;int inspectionStage=-1;DateTime inspectionUtc;
         readonly List<string> inspectionCaptures=new List<string>();
         [Serializable] sealed class InspectionResult { public string name,phase,target,drawn;public bool panelOnScreen;public int banked,pendingLevels,pendingCrates;public float arrivalTime,canopyWidth,canopyHeight,remaining; }
-        [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; native mouse/keyboard checked separately.";public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
+        [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
         InspectionReport inspectionReport;
-        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete"};
+        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree"};
         void BeginInspectionReview(string path)
         {inspectionReview=true;inspectionPath=Path.GetFullPath(path);Directory.CreateDirectory(inspectionPath);inspectionUtc=DateTime.UtcNow;inspectionNext=Time.realtimeSinceStartup+.5f;inspectionReport=new InspectionReport();Begin();sound.SetMuted(true);}
         void InspectionReviewTick()
@@ -31,7 +31,10 @@ namespace Scrapshift
             if(inspectionStage==inspectionCases.Length){inspectionNext=Time.realtimeSinceStartup+.6f;return;}
             if(inspectionStage>inspectionCases.Length)return;
             forcedInspection=null;lastDrawnInspection=null;
-            if(inspectionStage<4){ReturnToSelection(2);ChangeLook(inspectionStage-playerAnimation.lookIndex);startingWeapon=0;}
+            if(inspectionStage>=29&&inspectionStage<=32){Begin();Rules.Pause();pauseOptions=true;optionsTab=inspectionStage-29;}
+            else if(inspectionStage==33){pauseOptions=false;Begin();ClearCombat();arrivalAge=2;for(int i=0;i<5;i++)AddFootDust(playerPos-new Vector2(i*.16f,.3f),false);}
+            else if(inspectionStage==34){Begin();ClearCombat();Spawn(catalog.Enemy("tree"),playerPos+new Vector2(1,1));UpdateEnemies(1.5f);BeginWaveSweep();for(int i=0;i<40;i++)TickWaveSweep(.05f);}
+            else if(inspectionStage<4){ReturnToSelection(2);ChangeLook(inspectionStage-playerAnimation.lookIndex);startingWeapon=0;}
             else if(inspectionStage>=12&&inspectionStage<16){ReturnToSelection(1);randomCharacter=false;ChangeLook(inspectionStage-12-playerAnimation.lookIndex);startingWeapon=0;}
             else if(inspectionStage>=23)
             {
