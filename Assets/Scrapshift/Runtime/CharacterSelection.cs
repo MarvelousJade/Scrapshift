@@ -80,11 +80,11 @@ namespace Scrapshift
             string details=randomCharacter&&menuPage==1?"Choose one of the four\nplayable characters at random.":SelectedCharacter.description;
             if(randomCharacter&&menuPage==1)Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
             else DrawCharacterEffects(SelectedCharacter,left+220,246,328);
-            if(!(randomCharacter&&menuPage==1)&&!string.IsNullOrEmpty(SelectedCharacter.bonusWeapon))
+            if(!(randomCharacter&&menuPage==1)&&!string.IsNullOrEmpty(SelectedCharacter.DefaultWeapon))
             {
                 RoundedBox(new Rect(left+20,499,180,61),new Color(.35f,.32f,.29f),8);
                 var r=new Rect(left+146,505,48,49);RoundedBox(r,panelColor,5);
-                DrawIcon(catalog.Weapon(SelectedCharacter.bonusWeapon,1).image,new Rect(r.x+4,r.y+4,40,41));
+                DrawIcon(catalog.Weapon(SelectedCharacter.DefaultWeapon,1).image,new Rect(r.x+4,r.y+4,40,41));
             }
         }
         void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)

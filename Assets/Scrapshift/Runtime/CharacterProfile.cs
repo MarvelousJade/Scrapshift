@@ -19,6 +19,7 @@ namespace Scrapshift
         public StatEffect[] stats,gains;
         public float classValue;
         public bool noMelee;
+        public string DefaultWeapon=>!string.IsNullOrEmpty(bonusWeapon)?bonusWeapon:"pistol";
         public float Gain(string stat)=>1+(Array.Find(gains,g=>g.key==stat)?.value??0)/100;
         public float WeaponBonus(Equipment w,string stat)=>classStat==stat&&w.HasSet(classSet)?classValue:0;
         public bool Allows(Equipment w)=>w!=null&&(!noMelee||!w.melee);

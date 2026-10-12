@@ -25,8 +25,8 @@ namespace Scrapshift.Tests
                 if(!catalog.Weapon(id,1).available)continue;
                 var r=new RunRules(42);r.Configure(catalog);r.Start(c,id);
                 Assert.AreEqual(id,r.Inventory[0].id);
-                Assert.AreEqual(string.IsNullOrEmpty(c.bonusWeapon)?1:2,r.Inventory.Count,c.id);
-                if(r.Inventory.Count==2)Assert.AreEqual(c.bonusWeapon,r.Inventory[1].id);
+                Assert.AreEqual(2,r.Inventory.Count,c.id);
+                if(r.Inventory.Count==2)Assert.AreEqual(c.DefaultWeapon,r.Inventory[1].id);
                 Assert.AreEqual(r.MaxHealth,r.Health);
             }
         }

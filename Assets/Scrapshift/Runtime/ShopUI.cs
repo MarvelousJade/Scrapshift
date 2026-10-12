@@ -118,20 +118,9 @@ namespace Scrapshift
                     Text(x+9,753,64,25,$"Tier {w.tier}",tiny);
                     InspectWeapon("weapon:"+i,w,new Rect(x,700,82,80));
                 }
-                if(GUI.Button(new Rect(x,700,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=selectedWeapon==i?-1:i;
+                if(w!=null&&GUI.enabled&&Event.current.type==EventType.MouseDown&&Event.current.button==1&&new Rect(x,700,82,80).Contains(Event.current.mousePosition)){selectedWeapon=i;Event.current.Use();}
+                if(w!=null&&GUI.Button(new Rect(x,700,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=i;
             }
-            if(selectedWeapon>=0&&selectedWeapon<Rules.Inventory.Count)
-            {
-                var w=Rules.Inventory[selectedWeapon];
-                Text(556,786,530,30,w.title+" / "+WeaponSets.For(w)?.Name+" / Tier "+w.tier,tiny);
-                GUI.enabled=Rules.CanCombine(selectedWeapon);
-                if(Button(new Rect(556,824,257,43),"Combine duplicate"))
-                {Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
-                GUI.enabled=true;
-                if(selectedWeapon>=0&&selectedWeapon<Rules.Inventory.Count&&Button(new Rect(828,824,257,43),$"Recycle (+{Mathf.Max(1,(int)(Rules.Price(Rules.Inventory[selectedWeapon].value)*.25f))})"))
-                {Rules.Recycle(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
-            }
-            else Text(556,801,530,52,"Select a weapon to combine or recycle.",tiny);
             if(Button(new Rect(1110,806,306,61),$"Go (Wave {Rules.Wave+1})")) {selectedWeapon=-1;AdvanceWave();}
             if(!string.IsNullOrEmpty(GUI.tooltip))
             {

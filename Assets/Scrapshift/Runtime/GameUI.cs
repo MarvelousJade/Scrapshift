@@ -50,7 +50,7 @@ namespace Scrapshift
             }
             if (Rules.Phase == RunPhase.Title) { TitleUI(); return; }
             if (Rules.Phase == RunPhase.Loot) { LootUI(); EndInspection(); return; }
-            if (Rules.Phase == RunPhase.Shop) { ShopUI(); EndInspection(); return; }
+            if (Rules.Phase == RunPhase.Shop) { GUI.enabled=selectedWeapon<0;ShopUI();GUI.enabled=true; if(selectedWeapon>=0)DrawWeaponActions();else EndInspection(); return; }
             if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); EndInspection(); return; }
             DrawHud();
             var boss=enemies.Find(e=>e.type.role=="Boss"&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,"PREDATOR",center);}
@@ -82,13 +82,13 @@ namespace Scrapshift
             Text(179,62,87,29,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
             DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
             OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
-            if(Rules.Banked>0)OutlinedText(26,146,235,30,$"Stored  {Rules.Banked}",body);
-            if(Rules.PendingCrates>0)OutlinedText(26,180,260,30,$"Item crates  {Rules.PendingCrates}",body);
+            DrawStoredMaterials();
             GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(0,FullCanvas.yMin,0));
             OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",new GUIStyle(center){fontSize=32});
             var timer=new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter };
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
-                OutlinedText(630,61,180,56,Mathf.CeilToInt(Rules.Remaining).ToString(),timer);
+                OutlinedText(630,61,180,56,(waveSweeping?0:Mathf.CeilToInt(Rules.Remaining)).ToString(),timer);
+            DrawPendingRewards();
             GUI.matrix=hudMatrix;
         }
 

@@ -186,3 +186,7 @@ Compared source selection, stat popup and weapon-description code. Hid locked we
 ## October 11 - expanded items and reference presentation
 
 Expanded the obtainable pool from 8 to 64, preserving original art and documenting the 127 unsupported special-effect items. Compared live character/weapon UI and source parachute keys, moved set inspection beside weapons, corrected character modifier rows and bonus-weapon tray, and rebuilt the canopy. Debugging exposed appearance loss during migration, an incorrect health-test assumption and concave mesh triangulation. See item-expansion-and-design-parity.md and verification.md.
+
+## October 11 - run feedback and rewards
+
+Implemented two-weapon starts for all four profiles, pre-range aiming, green tree warnings, removed ranged warning lines, animated material banking and exposed pending rewards/harvesting. Reworked weapon actions and crate cards. See run-feedback-and-rewards.md.

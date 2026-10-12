@@ -135,7 +135,7 @@ namespace Scrapshift
                 var starting=catalog.Weapon(weaponId??"pistol",1);
                 if(!CanEquip(starting)||character!=null&&Array.IndexOf(character.startingWeapons,starting.id)<0)throw new ArgumentException("Invalid starting weapon for character");
                 Inventory.Add(starting);
-                if(!string.IsNullOrEmpty(character?.bonusWeapon))Inventory.Add(catalog.Weapon(character.bonusWeapon,1));
+                if(character!=null)Inventory.Add(catalog.Weapon(character.DefaultWeapon,1));
             }
             if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
             Phase=RunPhase.Playing;

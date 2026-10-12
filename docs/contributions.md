@@ -90,3 +90,7 @@ Shaoyu corrected locked weapon visibility and requested source typography/descri
 ## Item expansion and design comparison
 
 Shaoyu authorized expansion toward the full catalog and requested closer character descriptions, attached set panels and visible parachute motion. Codex audited local source/live screenshots, implemented the supported 74-item catalog (64 obtainable), corrected shop/stat/cadence behavior, preserved existing art, diagnosed migration/geometry bugs and ran validation. Staged captures and tests are agent-run evidence; no human full-run acceptance is claimed.
+
+## October 11 - run feedback and rewards
+
+Shaoyu reported missing or mismatched combat/reward feedback and requested a default weapon plus a selected one for every profile. Codex inspected supplied source, implemented and validated the changes. The two-weapon rule intentionally differs from the reference for two profiles. No human acceptance or manual implementation is attributed to Shaoyu.

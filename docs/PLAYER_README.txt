@@ -3,16 +3,16 @@ SCRAPSHIFT
 Run Scrapshift.exe with its entire Windows folder beside it.
 WASD / arrow keys: move. Weapons attack automatically.
 Escape: back in menus, pause/resume in game. M: sound. Enter: confirm or next wave.
-Collect green materials for currency and XP.
+Collect green materials for currency and XP. At wave end, remaining materials fly into stored reserves for later doubled pickups. Pending upgrades/crates appear at the top right; harvesting is shown beneath materials.
 Crates heal 3 HP and reveal an item at wave end: Enter takes it, X recycles.
 Crates resolve before levels. Remaining crates are collected automatically.
 At wave end, choose queued stat upgrades with 1-4 or the mouse.
-Shop: buy items/weapons, lock offers, combine matching weapons, recycle.
+Shop: buy items/weapons and lock offers. Left/right-click an owned weapon for Combine, Recycle and Cancel.
 R: paid reroll. Six equipped weapons maximum.
 64 obtainable item types, 24 available weapon families, up to six floating weapons.
 Fourteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
 Start -> Random or Rookie / Pugilist / Hothead / Sharpshot -> starting weapon -> Danger 0.
-Each character has different modifiers and starting choices. The remaining 46 character slots are locked.
+Each character starts with one fixed weapon plus your chosen weapon, and has different modifiers and starting choices. The remaining 46 character slots are locked.
 Weapon selection shows only unlocked choices eligible for that character, plus Random.
 Pause/shop/level-up/crates: hover stats, owned items or weapons to inspect descriptions.
 Tab / Shift+Tab cycle inspection targets; arrow keys move the selector. Move the mouse to return to hover.

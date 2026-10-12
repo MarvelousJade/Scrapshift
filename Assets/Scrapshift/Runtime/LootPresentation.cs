@@ -67,18 +67,16 @@ namespace Scrapshift
 
         void LootUI()
         {
-            Box(FullCanvas,new Color(.19f,.175f,.15f,.98f));DrawStatsPanel();
-            OutlinedText(24,48,1062,64,"Item found!",new GUIStyle(number){alignment=TextAnchor.MiddleCenter});
-            Text(24,125,1062,40,$"Wave {Rules.Wave} cleared  /  {Rules.PendingCrates} crate(s) remaining",center);
+            Overlay();DrawHud();DrawStatsPanel();
+            OutlinedText(24,100,1062,64,"Item found!",new GUIStyle(number){alignment=TextAnchor.MiddleCenter});
             var item=Rules.CrateItem;if(item==null)return;
-            Frame(new Rect(212,205,688,448),ink,3);
-            Box(new Rect(216,209,680,5),TierColor(item.tier));
-            DrawIcon(item.image,new Rect(244,248,128,140));
-            Text(404,243,450,66,item.title,heading);
-            Text(404,315,450,36,item.tier==4?"LEGENDARY":item.tier==3?"RARE":item.tier==2?"UNCOMMON":"COMMON",tiny);
-            DrawOfferDetail(new ShopOffer {item=item},256,418,586);
-            if(Button(new Rect(212,688,330,64),"Take"))ResolveCrate(true);
-            if(Button(new Rect(570,688,330,64),$"Recycle +{Rules.CrateRecycleValue}"))ResolveCrate(false);
+            var r=new Rect(335,208,440,360);RoundedBox(r,Color.black,10);
+            DrawIcon(item.image,new Rect(r.x+18,r.y+20,78,78));
+            Text(r.x+112,r.y+20,305,60,inspectionText.ItemName(item),new GUIStyle(inspectionTitle){normal={textColor=TierColor(item.tier)}});
+            Text(r.x+112,r.y+85,305,28,"Item",inspectionBody);
+            Text(r.x+25,r.y+138,390,200,inspectionText.ItemDescription(item),inspectionBody);
+            if(Button(new Rect(335,586,440,56),"Take"))ResolveCrate(true);
+            if(Button(new Rect(335,654,440,56),$"Recycle (+{Rules.CrateRecycleValue})"))ResolveCrate(false);
             DrawIntermissionInventory();
             DrawSetTooltip();
         }

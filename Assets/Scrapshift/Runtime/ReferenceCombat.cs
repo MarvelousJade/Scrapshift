@@ -119,7 +119,13 @@ namespace Scrapshift
             if(campaignCheck)campaignEnemyIds.Add(def.id);
             var behavior = EnemyBehavior.For(def.id);
             var attack = MakeAttack(behavior);
-            var obj=SpriteObject(def.id,def.image,pos);var shadow=AddGroundShadow(obj, def.image.bounds.size.x * .9f, -def.image.bounds.extents.y + .05f);obj.SetActive(false);var marker=SpriteObject("Spawn warning",catalog.warning,pos,2);marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
+            var obj=SpriteObject(def.id,def.image,pos);var shadow=AddGroundShadow(obj, def.image.bounds.size.x * .9f, -def.image.bounds.extents.y + .05f);obj.SetActive(false);var marker=SpriteObject("Spawn warning",catalog.warning,pos,2);if(def.role=="Tree")
+            {
+                marker.GetComponent<SpriteRenderer>().enabled=false;
+                foreach(float sign in new[]{-1f,1f})
+                {var stroke=MakeLine("Green tree warning",marker.transform,RunFeedback.SpawnColor(true,1),.12f);stroke.positionCount=2;stroke.SetPosition(0,new Vector3(-.4f,-.4f*sign,0));stroke.SetPosition(1,new Vector3(.4f,.4f*sign,0));}
+            }
+            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
             {
                 obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
             })
@@ -133,7 +139,7 @@ namespace Scrapshift
                 if (e.marker != null)
                 {
                     var mr = e.marker.GetComponent<SpriteRenderer>();
-                    mr.color = new Color(1, .25f, .2f, Mathf.Repeat(e.age * (2 + e.age * 8), 1) < .3f ? .35f : 1);
+                    mr.color = RunFeedback.SpawnColor(e.type.role=="Tree",Mathf.Repeat(e.age * (2 + e.age * 8), 1) < .3f ? .35f : 1);
                     e.marker.transform.localScale = Vector3.one * (.52f + .12f * e.age);
                     if (e.age < 1) continue;
                     if (e.type.role!="Boss" && e.type.role!="Tree" && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
@@ -269,7 +275,7 @@ namespace Scrapshift
             sprite.color = winding ? Color.Lerp(Color.white, new Color(1, .35f, .2f), e.attack.Progress) :
                 e.boosted || e.supportFlash > 0 ? new Color(.85f, .55f, 1) : Color.white;
             Flash(e, e.flash > 0 ? 1 : 0);
-            if (e.attack != null)
+            if (e.attack != null && e.behavior.charge)
             {
                 if (e.telegraph == null) e.telegraph = MakeLine("Attack direction", e.obj.transform, new Color(1, .55f, .22f, .65f), .055f);
                 e.telegraph.enabled = winding;
@@ -309,19 +315,18 @@ namespace Scrapshift
         {
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                var w=Rules.Inventory[i];WeaponMotion.Step(w,dt,ref swings[i],ref weaponClocks[i]);float range=Rules.WeaponRange(w);Enemy nearest=null;float distance=range*range;foreach(var e in enemies)
+                var w=Rules.Inventory[i];WeaponMotion.Step(w,dt,ref swings[i],ref weaponClocks[i]);float range=Rules.WeaponRange(w);Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);Enemy nearest=null;float distance=RunFeedback.DetectionRange(range)*RunFeedback.DetectionRange(range);foreach(var e in enemies)
                 {
-                    if(e.marker!=null)continue;float d=(e.pos-playerPos).sqrMagnitude;if(d<distance)
+                    if(e.marker!=null)continue;float d=(e.pos-mount).sqrMagnitude;if(d<distance)
                     {
                         distance=d;nearest=e;
                     }
                 }
-                Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,i);
                 bool shooting=swings[i]>0;
                 var aim=shooting?weaponTargets[i]:nearest;
                 Vector2 direction=aim!=null&&enemies.Contains(aim)?(aim.pos-mount).normalized:shooting?weaponDirections[i]:ActorPresentation.RestDirection(playerAnimation.FacingLeft);
                 weaponDirections[i]=direction;
-                bool fire=!shooting&&nearest!=null&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
+                bool fire=!shooting&&nearest!=null&&RunFeedback.CanAttack(range,distance)&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
                 if(fire){weaponShots[i]++;weaponClocks[i]=Rules.WeaponCooldown(w)*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=nearest;}
                 var view=equipmentViews[i];if(view!=null)
                 {

@@ -260,3 +260,7 @@ Weapon selection incorrectly reused locked character-tile presentation for weapo
 ## October 11 - expansion migration and parachute mesh
 
 The first expansion migration dropped original wearables outside the eight-item shop whitelist. Preserve all authored images/appearances before merging source data (22 supported original definitions). A rendered canopy showed jagged recesses despite passing bounds tests: center-fan triangles bridged concave edges. Replaced them with a vertical strip and re-rendered. Tooltip translucency also let underlying stats show through; use opaque backgrounds. Full account and regression evidence: item-expansion-and-design-parity.md.
+
+## October 11 - run feedback and rewards
+
+The ranged pre-shot line was a custom telegraph, now removed. Aiming previously acquired only attack-range targets; detection now extends beyond firing distance using the reference thresholds. Instant wave cleanup concealed stored-material collection; presentation now runs before the reward transition. Tree markers used enemy red; original green strokes avoid multiplying red sprite pixels.

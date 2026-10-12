@@ -1,0 +1,82 @@
+using UnityEngine;
+using System.Linq;
+namespace Scrapshift
+{
+    public static class RunFeedback
+    {
+        public static float DetectionRange(float range)=>range+2f;
+        public static bool CanAttack(float range,float squaredDistance)=>squaredDistance<=(range+.5f)*(range+.5f);
+        public static Color SpawnColor(bool tree,float alpha)=>tree?new Color(.3f,1,.2f,alpha):new Color(1,.25f,.2f,alpha);
+    }
+    public sealed partial class ArenaGame
+    {
+        bool waveSweeping;float waveSweepAge;
+        void BeginWaveSweep(){waveSweeping=true;waveSweepAge=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        void TickWaveSweep(float dt)
+        {
+            waveSweepAge+=dt;
+            float scale=PresentationLayout.CanvasScale(Screen.width,Screen.height);
+            Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-166*scale,20));
+            for(int i=pickups.Count-1;i>=0;i--)
+            {
+                var pickup=pickups[i];Vector2 to=pickup.fruit?playerPos:(Vector2)target;
+                pickup.motion.position=Vector2.MoveTowards(pickup.motion.position,to,(8+waveSweepAge*45)*dt);
+                pickup.obj.transform.position=new Vector3(pickup.motion.position.x,pickup.motion.position.y,-2);
+                if(Vector2.Distance(pickup.motion.position,to)>.15f&&waveSweepAge<1.1f)continue;
+                if(pickup.fruit)CollectPickup(pickup);else Rules.BankMaterials(pickup.value);
+                Destroy(pickup.obj);pickups.RemoveAt(i);
+            }
+            if(waveSweepAge<1.8f)return;
+            waveSweeping=false;Rules.Tick(Rules.Remaining);ClearCombat();
+        }
+        void DrawStoredMaterials()
+        {
+            if(Rules.Banked>0||waveSweeping)
+            {
+                RoundedBox(new Rect(28,153,29,28),new Color(.58f,.48f,.29f),10);
+                Box(new Rect(35,148,16,5),paper);
+                OutlinedText(67,144,170,42,Rules.Banked.ToString(),body);
+            }
+            DrawStatIcon("harvesting",new Rect(28,193,28,28));
+            OutlinedText(67,189,170,38,Rules.Stat("harvesting").ToString("0"),body);
+            if(waveSweeping&&waveSweepAge>1.1f&&Rules.Stat("harvesting")!=0)
+                OutlinedText(28,232,280,38,"Harvesting "+Rules.Stat("harvesting").ToString("+0;-0"),body);
+        }
+        void DrawPendingRewards()
+        {
+            float right=FullCanvas.xMax-30;
+            for(int i=0;i<Mathf.Min(8,Rules.PendingLevels);i++)
+            {
+                float x=right-58*(i+1);RoundedBox(new Rect(x,28,49,49),new Color(.12f,.16f,.09f,.9f),7);
+                Text(x+3,25,44,49,"\u2191",new GUIStyle(center){fontSize=40,normal={textColor=new Color(.4f,1,.2f)}});
+                Text(x+25,55,27,25,(Rules.Level-Rules.PendingLevels+i+1).ToString(),tiny);
+            }
+            if(Rules.PendingLevels>8)Text(right-75,84,80,30,"x"+Rules.PendingLevels,body);
+            for(int i=0;i<Mathf.Min(8,Rules.PendingCrates);i++)
+            {
+                float x=right-58*(i+1);RoundedBox(new Rect(x,117,44,40),new Color(.48f,.29f,.12f),3);
+                Box(new Rect(x+18,119,7,36),amber);Box(new Rect(x+2,133,40,6),amber);
+            }
+        }
+        void DrawWeaponActions()
+        {
+            if(selectedWeapon<0||selectedWeapon>=Rules.Inventory.Count){selectedWeapon=-1;return;}
+            var w=Rules.Inventory[selectedWeapon];Overlay();
+            const float x=345,y=125,width=460;
+            float textHeight=inspectionBody.CalcHeight(new GUIContent(inspectionText.WeaponDescription(Rules,w)),420);
+            float buttonsY=y+138+textHeight;
+            RoundedBox(new Rect(x,y,width,buttonsY-y+210),Color.black,10);
+            DrawIcon(w.image,new Rect(x+18,y+18,82,82));
+            Text(x+115,y+18,325,48,inspectionText.WeaponName(w),new GUIStyle(inspectionTitle){normal={textColor=TierColor(w.tier)}});
+            Text(x+115,y+69,325,32,inspectionText.Sets(w),inspectionBody);
+            Text(x+20,y+123,420,textHeight+8,inspectionText.WeaponDescription(Rules,w),inspectionBody);
+            GUI.enabled=Rules.CanCombine(selectedWeapon);
+            if(Button(new Rect(x+15,buttonsY+10,width-30,49),"Combine")){Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
+            GUI.enabled=true;
+            if(Button(new Rect(x+15,buttonsY+72,width-30,49),"Recycle (+"+Mathf.Max(1,(int)(Rules.Price(w.value)*.25f))+")"))
+            {Rules.Recycle(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
+            if(Button(new Rect(x+15,buttonsY+134,width-30,49),"Cancel"))selectedWeapon=-1;
+            DrawInspectionSets(WeaponSets.All.Where(s=>w.HasSet(s.Id)).ToArray(),x+width+8,y);
+        }
+    }
+}
