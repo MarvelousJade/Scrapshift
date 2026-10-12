@@ -292,3 +292,17 @@ Actual input check on the refreshed 1152x720 Windows player: clicked Start, Punk
 - Local comparison with enlarged actual screenshots and audio previews: `artifacts/hit-leg-review/compare.html`.
 
 An early compile failed on a stale removed-overlay field, then passed after correction. Intermediate renders motivated outward tilt, the GUI mirror-order fix, and open-center hit streaks. No user approval of visual/audio feel is implied by these checks.
+
+## October 11 - fullscreen and four starter profiles
+
+- Unity EditMode: **167/167 Passed**, zero skipped, **2.5476816 seconds**. This run includes the final gameplay, data, slicing and fullscreen code; the subsequent review-harness-only path normalization was verified by rerunning its rendering fixture.
+- Final Windows build: **Succeeded**, **0 errors / 0 warnings**, **152,731,292 bytes**. Warning messages are preserved in artifacts/build-messages.txt (empty for the final build). Player: **Builds/StarterRefresh/Scrapshift.exe**.
+- AssetScope: **289 assets / 2524 usages / 0 findings**.
+- Isolated validation matches **844 saved files**; digest `6bf102b87485476a1aab2ef67ba0ccc4ec2de4d48a4e5cc2e07453f6aa805150`.
+- `artifacts/starter-review-wide/starter-review.json`: **Passed**, 1920x1080, full viewport, four profiles, 46 locked positions, Random resolves to a playable character, nine fresh captures. Character modifiers/extra loadouts recorded; every one of the 24 available tier-one families damaged a controlled target. Burn, slow, secondary projectiles, turret firing and ghost progress across combat clears passed. Frozen enemies and explicitly advanced simulation; not a balance playthrough.
+- Final Sharpshot selection screenshot visually inspected; earlier Rookie/Pugilist/Hothead selections, weapon selection and two-Pistol gameplay also inspected. Original body/face art remains intact.
+- Native input through Computer Use: launched without screen overrides, observed 1920x1080 borderless title without side bars; F11 produced a framed 1440x900 game, second F11 restored fullscreen; mouse Start opened the four-profile roster. Fullscreen preference saved. This preceded the last harness-only path fix; gameplay/display code was unchanged.
+- Requested 3440x1440 capture was clamped to **1920x1080** by the available display. `artifacts/starter-review-ultrawide/starter-review.json` is the intermediate record of that clamped attempt, not an ultrawide rendering pass. EditMode layout math covers 3440x1440 and square windows; physical ultrawide rendering remains unverified.
+- Final package: **52,902,901 bytes / 155 entries**, CRC and every archived file match the final player. SHA-256 `521788dc2a8ffe369180577c9a60305f852557fd0d52345469b3174b68edc61a`.
+
+An attempted relative-path fixture initially failed all nine screenshot writes because Unity resolved the screenshot path against its Data directory while the JSON writer used the working directory. The freshness gate reported Failed rather than accepting the previous PNGs. Canonicalizing the review directory with Path.GetFullPath fixed the harness; the final relative-path rerun produced nine fresh captures and Passed. No gameplay failure or human playthrough is inferred from either fixture result.

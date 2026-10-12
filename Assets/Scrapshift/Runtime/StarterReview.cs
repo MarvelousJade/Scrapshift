@@ -21,7 +21,7 @@ namespace Scrapshift
         StarterReport starterReport;
         void BeginStarterReview(string folder)
         {
-            starterReview=true;starterReviewPath=folder;Directory.CreateDirectory(folder);starterUtc=DateTime.UtcNow;
+            starterReview=true;starterReviewPath=Path.GetFullPath(folder);Directory.CreateDirectory(starterReviewPath);starterUtc=DateTime.UtcNow;
             starterNext=Time.realtimeSinceStartup+.7f;starterReport=new StarterReport{playable=4,locked=catalog.data.rosterSlots-4};
             Begin();ReturnToSelection(1);sound.SetMuted(true);
         }
