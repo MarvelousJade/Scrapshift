@@ -1,0 +1,91 @@
+{
+    "status": "Passed",
+    "scope": "Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; native mouse/keyboard checked separately.",
+    "capturesVerified": true,
+    "checks": [
+        {
+            "name": "rookie-weapons",
+            "phase": "Title",
+            "target": "",
+            "drawn": "",
+            "panelOnScreen": true
+        },
+        {
+            "name": "pugilist-weapons",
+            "phase": "Title",
+            "target": "",
+            "drawn": "",
+            "panelOnScreen": true
+        },
+        {
+            "name": "hothead-weapons",
+            "phase": "Title",
+            "target": "",
+            "drawn": "",
+            "panelOnScreen": true
+        },
+        {
+            "name": "sharpshot-weapons",
+            "phase": "Title",
+            "target": "",
+            "drawn": "",
+            "panelOnScreen": true
+        },
+        {
+            "name": "pause-stat",
+            "phase": "Paused",
+            "target": "stat:armor",
+            "drawn": "stat:armor",
+            "panelOnScreen": true
+        },
+        {
+            "name": "pause-weapon",
+            "phase": "Paused",
+            "target": "weapon:1",
+            "drawn": "weapon:1",
+            "panelOnScreen": true
+        },
+        {
+            "name": "pause-item",
+            "phase": "Paused",
+            "target": "item:0",
+            "drawn": "item:0",
+            "panelOnScreen": true
+        },
+        {
+            "name": "shop-stat",
+            "phase": "Shop",
+            "target": "stat:armor",
+            "drawn": "stat:armor",
+            "panelOnScreen": true
+        },
+        {
+            "name": "shop-weapon",
+            "phase": "Shop",
+            "target": "weapon:1",
+            "drawn": "weapon:1",
+            "panelOnScreen": true
+        },
+        {
+            "name": "shop-item",
+            "phase": "Shop",
+            "target": "item:0",
+            "drawn": "item:0",
+            "panelOnScreen": true
+        },
+        {
+            "name": "upgrade-weapon",
+            "phase": "Upgrade",
+            "target": "weapon:1",
+            "drawn": "weapon:1",
+            "panelOnScreen": true
+        },
+        {
+            "name": "loot-item",
+            "phase": "Loot",
+            "target": "item:0",
+            "drawn": "item:0",
+            "panelOnScreen": true
+        }
+    ]
+}

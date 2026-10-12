@@ -306,3 +306,16 @@ An early compile failed on a stale removed-overlay field, then passed after corr
 - Final package: **52,902,901 bytes / 155 entries**, CRC and every archived file match the final player. SHA-256 `521788dc2a8ffe369180577c9a60305f852557fd0d52345469b3174b68edc61a`.
 
 An attempted relative-path fixture initially failed all nine screenshot writes because Unity resolved the screenshot path against its Data directory while the JSON writer used the working directory. The freshness gate reported Failed rather than accepting the previous PNGs. Canonicalizing the review directory with Path.GetFullPath fixed the harness; the final relative-path rerun produced nine fresh captures and Passed. No gameplay failure or human playthrough is inferred from either fixture result.
+
+
+## October 11 - eligible weapons and inspection UI
+
+- Final Unity EditMode suite: **172/172 Passed**, zero skipped, **2.9578277 seconds**. Includes all four eligible starting lists, all sixteen stat descriptions, all 120 weapon descriptions, source font references and signed percentage effects.
+- Final Windows build: **Succeeded**, **0 errors / 0 warnings**, **152,872,476 bytes**. Player: **Builds/InspectionRefresh/Scrapshift.exe**.
+- AssetScope: **291 assets / 2528 usages / 0 findings**. Font and text references remain serialized through ReferenceCatalog.
+- Isolated validation: **858 files** match byte for byte; digest `5d426aac544bb57223843f582590939f0d54001a538d05825273860552f3c9ee`. This covers saved Assets/Packages/ProjectSettings, not unsaved editor state.
+- `artifacts/inspection-review/inspection.json`: **Passed**, twelve fresh 1920×1080 screenshots, requested/rendered focus matches and popup bounds pass. Four eligible weapon-selection grids, pause stat/weapon/item, shop stat/weapon/item, level-up weapon and crate item. Final Coffee screenshot visibly shows +10% Attack Speed and -2% Damage. Earlier same-layout Pugilist/Armor/Wand images were also inspected.
+- Native Computer Use input on final player: Start → Pugilist → Fist → Danger 0, Escape. Paused at wave 1, 16 seconds, 10/10 HP. Pointer over Dodge showed 18% and 60% cap; Tab moved to Speed; Left moved to second Fist and showed adjusted cooldown/range. Test run left paused. Item/intermission checks above use forced fixture focus, not a native reward-screen playthrough. No runtime script exceptions observed in fixture/input logs; D3D12 logged an info-queue-interface diagnostic.
+- Final package: **52,965,835 bytes / 155 entries**, CRC and every archived file match the player; SHA-256 `7b8ae3a00a20f25b241c181e7eb3c09dc9f62e4a4dad33b6d0f60c6e29135d1b`.
+
+Initial 170/171 test run failed on an empty higher-tier turret scaling list. Fixed before the final pass. Visual/code inspection also corrected scroll-view hit coordinates, deferred screenshot-state sequencing and missing item percentage units. See inspection-and-weapon-selection.md for source paths, font/text provenance, remaining visual/combat adaptations and attribution.
