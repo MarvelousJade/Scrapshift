@@ -21,7 +21,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void ItemEyesReplaceCharacterEyesAndRemovingItemRestoresBase()
         {
-            var look=Prefab.GetComponent<SpriteFrameAnimator>().looks[1];
+            var look=Prefab.GetComponent<SpriteFrameAnimator>().looks.Single(l=>l.layers.Any(a=>a.id=="beard"));
             var glasses=Item("glasses");
             var composed=AppearanceResolver.Resolve(look,new[]{glasses});
             Assert.AreSame(glasses.appearance,composed.Single(l=>l.slot=="eyes"));
@@ -38,7 +38,7 @@ namespace Scrapshift.Tests
                 items[0]=Item("helmet");wardrobe.Sync(items,Catalog.spriteMaterial,false);
                 Assert.IsTrue(wardrobe.Layers.Contains(items[0].appearance));
                 Assert.IsFalse(wardrobe.Layers.Any(l=>l.id=="beanie"));
-                animator.lookIndex=1;items[0]=Item("head_injury");wardrobe.Sync(items,Catalog.spriteMaterial,true);
+                animator.lookIndex=System.Array.FindIndex(animator.looks,l=>l.layers.Any(a=>a.id=="beard"));items[0]=Item("head_injury");wardrobe.Sync(items,Catalog.spriteMaterial,true);
                 Assert.IsTrue(wardrobe.Layers.Any(l=>l.id=="beard"));
                 var view=obj.GetComponentsInChildren<SpriteRenderer>().Single(v=>v.enabled&&v.sprite==items[0].appearance.image);
                 Assert.AreSame(animator.BodyRoot,view.transform.parent);
@@ -46,10 +46,10 @@ namespace Scrapshift.Tests
             }
             finally {Object.DestroyImmediate(obj);}
         }
-        [Test] public void PresetsShareBodyAndLegsButHaveDistinctEyes()
+        [Test] public void FourPresetsShareBodyAndLegsWithDistinctFaceHairCombinations()
         {
             var animator=Prefab.GetComponent<SpriteFrameAnimator>();
-            Assert.AreEqual(3,animator.looks.Length);
+            Assert.AreEqual(4,animator.looks.Length);
             Assert.AreEqual(3,animator.looks.Select(l=>l.layers.Single(a=>a.slot=="eyes").image).Distinct().Count());
             Assert.AreEqual("player-parts_00",animator.bodyView.sprite.name);
             Assert.AreEqual("player-leg_00",animator.footSprite.name);
@@ -74,7 +74,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void ModularAtlasSpritesHaveTransparentBorders()
         {
-            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v3"})
+            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v3","starter-weapons-v1"})
             {
                 string path=ContentBuilder.ArtRoot+"/"+sheet+".png";
                 var source=new Texture2D(2,2);

@@ -19,9 +19,9 @@ namespace Scrapshift
             if(ticks>0){regenElapsed-=ticks*interval;Heal(ticks);}
         }
 
-        public bool TryLifeSteal(double roll)
+        public bool TryLifeSteal(double roll,float weaponBonus=0)
         {
-            if(Phase!=RunPhase.Playing || lifeStealCooldown>1e-7 || roll>=Mathf.Clamp01(Stat("lifesteal")/100))return false;
+            if(Phase!=RunPhase.Playing || lifeStealCooldown>1e-7 || roll>=Mathf.Clamp01(Stat("lifesteal")/100+weaponBonus))return false;
             lifeStealCooldown=.1;
             float before=Health;Heal(1);return Health>before;
         }

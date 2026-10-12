@@ -34,7 +34,7 @@ namespace Scrapshift
             Begin(); ClearCombat(); Rules.Inventory.Clear(); SyncEquipment(); sound.SetMuted(true);
             playerPos = new Vector2(0,6.5f); player.transform.position = playerPos;
             player.SetActive(true); playerAnimation.Tick(Vector2.zero,0,false); playerShadow.Place(playerPos,ActorPresentation.PlayerScale);
-            gameCamera.transform.position = (Vector3)ArenaGeometry.CameraPosition(playerPos,PresentationLayout.Aspect)+Vector3.back*20;
+            gameCamera.transform.position = (Vector3)ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect)+Vector3.back*20;
             feelReport = new CombatFeelReport { scope = "Controlled runtime checks with fixed enemies, supplied shots and 1000 enemy HP. Normal camera; simulation advanced explicitly for reproducible impact captures. Not normal-run balance or a human playthrough." };
         }
         void CombatFeelReviewTick()

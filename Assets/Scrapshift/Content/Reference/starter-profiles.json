@@ -1,0 +1,7141 @@
+{
+  "characters": [
+    {
+      "id": "well_rounded",
+      "title": "Rookie",
+      "description": "+5 Max HP\n+5% Speed\n+8 Harvesting",
+      "startingWeapons": [
+        "knife",
+        "stick",
+        "fist",
+        "chopper",
+        "fighting_stick",
+        "cactus_mace",
+        "hatchet",
+        "spiky_shield",
+        "ghost_flint",
+        "wrench",
+        "pistol",
+        "smg",
+        "double_barrel_shotgun",
+        "slingshot",
+        "taser",
+        "wand",
+        "icicle",
+        "rail_gun"
+      ],
+      "stats": [
+        {
+          "key": "max_hp",
+          "value": 5
+        },
+        {
+          "key": "speed",
+          "value": 5
+        },
+        {
+          "key": "harvesting",
+          "value": 8
+        }
+      ],
+      "gains": [],
+      "bonusWeapon": "",
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "bannedItemGroups": []
+    },
+    {
+      "id": "brawler",
+      "title": "Pugilist",
+      "description": "+50% Attack Speed with Unarmed weapons\nStart with 1 Fist\n+15% Dodge\n-50 Range\n-50 Ranged Damage",
+      "startingWeapons": [
+        "fist",
+        "hand",
+        "claw"
+      ],
+      "stats": [
+        {
+          "key": "dodge",
+          "value": 15
+        },
+        {
+          "key": "range",
+          "value": -50
+        },
+        {
+          "key": "ranged_damage",
+          "value": -50
+        }
+      ],
+      "gains": [],
+      "bonusWeapon": "fist",
+      "classSet": "unarmed",
+      "classStat": "attack_speed_mod",
+      "classValue": 50,
+      "noMelee": false,
+      "bannedItemGroups": [
+        "ranged_damage"
+      ]
+    },
+    {
+      "id": "crazy",
+      "title": "Hothead",
+      "description": "+100 Range with Precise weapons\n+25% Attack Speed\nStart with 1 Knife\n-30% Dodge\n-10 Engineering\n-10 Ranged Damage",
+      "startingWeapons": [
+        "knife",
+        "dagger",
+        "scissors",
+        "lightning_shiv",
+        "claw",
+        "sharp_tooth",
+        "shuriken",
+        "icicle"
+      ],
+      "stats": [
+        {
+          "key": "attack_speed",
+          "value": 25
+        },
+        {
+          "key": "dodge",
+          "value": -30
+        },
+        {
+          "key": "engineering",
+          "value": -10
+        },
+        {
+          "key": "ranged_damage",
+          "value": -10
+        }
+      ],
+      "gains": [],
+      "bonusWeapon": "knife",
+      "classSet": "precise",
+      "classStat": "max_range",
+      "classValue": 100,
+      "noMelee": false,
+      "bannedItemGroups": []
+    },
+    {
+      "id": "ranger",
+      "title": "Sharpshot",
+      "description": "+50 Range\nStart with 1 Pistol\nRanged Damage gains increased by 50%\nCannot equip melee weapons\nMax HP gains reduced by 25%",
+      "startingWeapons": [
+        "pistol",
+        "smg",
+        "revolver",
+        "double_barrel_shotgun",
+        "laser_gun",
+        "shredder",
+        "crossbow",
+        "slingshot",
+        "rail_gun"
+      ],
+      "stats": [
+        {
+          "key": "range",
+          "value": 50
+        }
+      ],
+      "gains": [
+        {
+          "key": "ranged_damage",
+          "value": 50
+        },
+        {
+          "key": "max_hp",
+          "value": -25
+        }
+      ],
+      "bonusWeapon": "pistol",
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": true,
+      "bannedItemGroups": [
+        "melee_damage"
+      ]
+    }
+  ],
+  "equipment": [
+    {
+      "id": "knife",
+      "tier": 1,
+      "title": "Knife",
+      "value": 10,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 9,
+      "interval": 0.4166666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.2,
+      "critMultiplier": 2.5,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "knife",
+      "tier": 2,
+      "title": "Knife",
+      "value": 22,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 13,
+      "interval": 0.35,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.3,
+      "critMultiplier": 3.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "knife",
+      "tier": 3,
+      "title": "Knife",
+      "value": 45,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 18,
+      "interval": 0.2833333333333333,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.4,
+      "critMultiplier": 3.5,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "knife",
+      "tier": 4,
+      "title": "Knife",
+      "value": 91,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 25,
+      "interval": 0.2,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.5,
+      "critMultiplier": 4.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "stick",
+      "tier": 1,
+      "title": "Stick",
+      "value": 10,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 8,
+      "interval": 0.7,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_weapon_stack",
+          "value": 4,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 2,
+      "title": "Stick",
+      "value": 22,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 9,
+      "interval": 0.6333333333333333,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_weapon_stack",
+          "value": 6,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 3,
+      "title": "Stick",
+      "value": 45,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 10,
+      "interval": 0.5666666666666667,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_weapon_stack",
+          "value": 8,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 4,
+      "title": "Stick",
+      "value": 91,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 12,
+      "interval": 0.5,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_weapon_stack",
+          "value": 10,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "fist",
+      "tier": 1,
+      "title": "Fist",
+      "value": 10,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 8,
+      "interval": 0.21666666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "fist",
+      "tier": 2,
+      "title": "Fist",
+      "value": 22,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 16,
+      "interval": 0.16666666666666666,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "fist",
+      "tier": 3,
+      "title": "Fist",
+      "value": 45,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 32,
+      "interval": 0.13333333333333333,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "fist",
+      "tier": 4,
+      "title": "Fist",
+      "value": 91,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 64,
+      "interval": 0.03333333333333333,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "chopper",
+      "tier": 1,
+      "title": "Chopper",
+      "value": 15,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "blade"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 6,
+      "interval": 0.45,
+      "range": 1.35,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.1,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "max_hp",
+          "value": 0.15
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "consumable_heal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 2,
+      "title": "Chopper",
+      "value": 31,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "blade"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 12,
+      "interval": 0.4166666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.15,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "max_hp",
+          "value": 0.2
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "consumable_heal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 3,
+      "title": "Chopper",
+      "value": 61,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "blade"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 18,
+      "interval": 0.38333333333333336,
+      "range": 1.65,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.2,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "max_hp",
+          "value": 0.25
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "consumable_heal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 4,
+      "title": "Chopper",
+      "value": 122,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "blade"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 30,
+      "interval": 0.3,
+      "range": 1.8,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.25,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "max_hp",
+          "value": 0.3
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "consumable_heal",
+          "value": 2,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 1,
+      "title": "Fighting Stick",
+      "value": 15,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 10,
+      "interval": 0.8333333333333334,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "levels",
+          "value": 0.75
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "xp_gain",
+          "value": 2,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 2,
+      "title": "Fighting Stick",
+      "value": 31,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 15,
+      "interval": 0.6666666666666666,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "levels",
+          "value": 0.85
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.65
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "xp_gain",
+          "value": 5,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 3,
+      "title": "Fighting Stick",
+      "value": 61,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 20,
+      "interval": 0.5,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "levels",
+          "value": 1.0
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "xp_gain",
+          "value": 9,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 4,
+      "title": "Fighting Stick",
+      "value": 122,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 30,
+      "interval": 0.3333333333333333,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "levels",
+          "value": 1.25
+        },
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "xp_gain",
+          "value": 15,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 1,
+      "title": "Cactus Mace",
+      "value": 20,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 15,
+      "interval": 1.05,
+      "range": 2.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_projectiles_on_hit",
+          "value": 3,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 1,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.03,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "ranged_damage",
+                "value": 0.6
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 2,
+      "title": "Cactus Mace",
+      "value": 39,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 20,
+      "interval": 0.9666666666666667,
+      "range": 2.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.85
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_projectiles_on_hit",
+          "value": 4,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 2,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.03,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "ranged_damage",
+                "value": 0.7
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 3,
+      "title": "Cactus Mace",
+      "value": 74,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 35,
+      "interval": 0.9,
+      "range": 2.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.9
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_projectiles_on_hit",
+          "value": 5,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 3,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.03,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "ranged_damage",
+                "value": 0.8
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 4,
+      "title": "Cactus Mace",
+      "value": 149,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 60,
+      "interval": 0.75,
+      "range": 2.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_projectiles_on_hit",
+          "value": 6,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 4,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.03,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "ranged_damage",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "hatchet",
+      "tier": 1,
+      "title": "Hatchet",
+      "value": 10,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 7,
+      "interval": 0.15,
+      "range": 1.25,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        },
+        {
+          "key": "attack_speed",
+          "value": 0.2
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "hatchet",
+      "tier": 2,
+      "title": "Hatchet",
+      "value": 22,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 11,
+      "interval": 0.13333333333333333,
+      "range": 1.25,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        },
+        {
+          "key": "attack_speed",
+          "value": 0.2
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "hatchet",
+      "tier": 3,
+      "title": "Hatchet",
+      "value": 45,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 22,
+      "interval": 0.11666666666666667,
+      "range": 1.25,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        },
+        {
+          "key": "attack_speed",
+          "value": 0.2
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "hatchet",
+      "tier": 4,
+      "title": "Hatchet",
+      "value": 91,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 45,
+      "interval": 0.1,
+      "range": 1.25,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        },
+        {
+          "key": "attack_speed",
+          "value": 0.2
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 1,
+      "title": "Spiky Shield",
+      "value": 15,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "medieval",
+        "blunt"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 10,
+      "interval": 0.6,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "armor",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 2,
+      "title": "Spiky Shield",
+      "value": 31,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "medieval",
+        "blunt"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 15,
+      "interval": 0.6,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "armor",
+          "value": 1.25
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 3,
+      "title": "Spiky Shield",
+      "value": 61,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "medieval",
+        "blunt"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 20,
+      "interval": 0.6,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "armor",
+          "value": 1.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 4,
+      "title": "Spiky Shield",
+      "value": 122,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "medieval",
+        "blunt"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 30,
+      "interval": 0.45,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "armor",
+          "value": 2.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 1,
+      "title": "Ghost Flint",
+      "value": 12,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "ethereal"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 6,
+      "interval": 0.6666666666666666,
+      "range": 1.7,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_gain_stat_every_killed_enemies",
+          "value": 20,
+          "chance": 1,
+          "stat": "attack_speed",
+          "amount": 1,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 2,
+      "title": "Ghost Flint",
+      "value": 26,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "ethereal"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 9,
+      "interval": 0.6,
+      "range": 1.8,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_gain_stat_every_killed_enemies",
+          "value": 18,
+          "chance": 1,
+          "stat": "attack_speed",
+          "amount": 1,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 3,
+      "title": "Ghost Flint",
+      "value": 52,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "ethereal"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 12,
+      "interval": 0.5166666666666667,
+      "range": 1.9,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_gain_stat_every_killed_enemies",
+          "value": 16,
+          "chance": 1,
+          "stat": "attack_speed",
+          "amount": 1,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 4,
+      "title": "Ghost Flint",
+      "value": 105,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "ethereal"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 20,
+      "interval": 0.45,
+      "range": 2.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_gain_stat_every_killed_enemies",
+          "value": 12,
+          "chance": 1,
+          "stat": "attack_speed",
+          "amount": 1,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 1,
+      "title": "Wrench",
+      "value": 20,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "tool"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 12,
+      "interval": 1.1166666666666667,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "turret",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 10,
+            "interval": 0.5333333333333333,
+            "range": 3.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 0.8
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 2,
+      "title": "Wrench",
+      "value": 39,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "tool"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 16,
+      "interval": 1.05,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "turret",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 1,
+            "interval": 0.25,
+            "range": 3.0,
+            "pellets": 1,
+            "piercing": 99,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [],
+            "lifesteal": 0.0,
+            "projectileSpeed": 10.0,
+            "pierceLoss": 1.0,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 3,
+      "title": "Wrench",
+      "value": 74,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "tool"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 20,
+      "interval": 0.9666666666666667,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "turret",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 20,
+            "interval": 0.6666666666666666,
+            "range": 4.0,
+            "pellets": 1,
+            "piercing": 3,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 1.25
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.0,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 4,
+      "title": "Wrench",
+      "value": 149,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "tool"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 24,
+      "interval": 0.9,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "turret",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 25,
+            "interval": 0.6666666666666666,
+            "range": 5.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "engineering",
+                "value": 1.5
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 20.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "pistol",
+      "tier": 1,
+      "title": "Pistol",
+      "value": 10,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 12,
+      "interval": 1.0,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.1,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "pistol",
+      "tier": 2,
+      "title": "Pistol",
+      "value": 22,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 20,
+      "interval": 0.9166666666666666,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.15,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "pistol",
+      "tier": 3,
+      "title": "Pistol",
+      "value": 45,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 30,
+      "interval": 0.8333333333333334,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.2,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "pistol",
+      "tier": 4,
+      "title": "Pistol",
+      "value": 91,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 50,
+      "interval": 0.6666666666666666,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.25,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "smg",
+      "tier": 1,
+      "title": "Smg",
+      "value": 20,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_submachine_auto_shot_01",
+        "starter_gun_submachine_auto_shot_02",
+        "starter_gun_submachine_auto_shot_03",
+        "starter_gun_submachine_auto_shot_04",
+        "starter_gun_submachine_auto_shot_05",
+        "starter_gun_submachine_auto_shot_06",
+        "starter_gun_submachine_auto_shot_07",
+        "starter_gun_submachine_auto_shot_08",
+        "starter_gun_submachine_auto_shot_09"
+      ],
+      "damage": 3,
+      "interval": 0.06666666666666667,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.1,
+      "recoilHalf": 0.05,
+      "traits": []
+    },
+    {
+      "id": "smg",
+      "tier": 2,
+      "title": "Smg",
+      "value": 39,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_submachine_auto_shot_01",
+        "starter_gun_submachine_auto_shot_02",
+        "starter_gun_submachine_auto_shot_03",
+        "starter_gun_submachine_auto_shot_04",
+        "starter_gun_submachine_auto_shot_05",
+        "starter_gun_submachine_auto_shot_06",
+        "starter_gun_submachine_auto_shot_07",
+        "starter_gun_submachine_auto_shot_08",
+        "starter_gun_submachine_auto_shot_09"
+      ],
+      "damage": 4,
+      "interval": 0.06666666666666667,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.6
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.1,
+      "recoilHalf": 0.05,
+      "traits": []
+    },
+    {
+      "id": "smg",
+      "tier": 3,
+      "title": "Smg",
+      "value": 74,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_submachine_auto_shot_01",
+        "starter_gun_submachine_auto_shot_02",
+        "starter_gun_submachine_auto_shot_03",
+        "starter_gun_submachine_auto_shot_04",
+        "starter_gun_submachine_auto_shot_05",
+        "starter_gun_submachine_auto_shot_06",
+        "starter_gun_submachine_auto_shot_07",
+        "starter_gun_submachine_auto_shot_08",
+        "starter_gun_submachine_auto_shot_09"
+      ],
+      "damage": 5,
+      "interval": 0.06666666666666667,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.7
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.1,
+      "recoilHalf": 0.05,
+      "traits": []
+    },
+    {
+      "id": "smg",
+      "tier": 4,
+      "title": "Smg",
+      "value": 149,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_submachine_auto_shot_01",
+        "starter_gun_submachine_auto_shot_02",
+        "starter_gun_submachine_auto_shot_03",
+        "starter_gun_submachine_auto_shot_04",
+        "starter_gun_submachine_auto_shot_05",
+        "starter_gun_submachine_auto_shot_06",
+        "starter_gun_submachine_auto_shot_07",
+        "starter_gun_submachine_auto_shot_08",
+        "starter_gun_submachine_auto_shot_09"
+      ],
+      "damage": 8,
+      "interval": 0.05,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.1,
+      "recoilHalf": 0.05,
+      "traits": []
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 1,
+      "title": "Double Barrel Shotgun",
+      "value": 20,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_shotgun_sawed_off_shot_01",
+        "starter_gun_shotgun_sawed_off_shot_02",
+        "starter_gun_shotgun_sawed_off_shot_03",
+        "starter_gun_shotgun_sawed_off_shot_04"
+      ],
+      "damage": 3,
+      "interval": 1.1666666666666667,
+      "range": 3.5,
+      "pellets": 4,
+      "piercing": 2,
+      "spread": 0.5,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.3,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 2,
+      "title": "Double Barrel Shotgun",
+      "value": 39,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_shotgun_sawed_off_shot_01",
+        "starter_gun_shotgun_sawed_off_shot_02",
+        "starter_gun_shotgun_sawed_off_shot_03",
+        "starter_gun_shotgun_sawed_off_shot_04"
+      ],
+      "damage": 6,
+      "interval": 1.0833333333333333,
+      "range": 3.5,
+      "pellets": 4,
+      "piercing": 2,
+      "spread": 0.5,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.85
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.3,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 3,
+      "title": "Double Barrel Shotgun",
+      "value": 74,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_shotgun_sawed_off_shot_01",
+        "starter_gun_shotgun_sawed_off_shot_02",
+        "starter_gun_shotgun_sawed_off_shot_03",
+        "starter_gun_shotgun_sawed_off_shot_04"
+      ],
+      "damage": 9,
+      "interval": 1.0,
+      "range": 3.5,
+      "pellets": 4,
+      "piercing": 2,
+      "spread": 0.5,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.9
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.3,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 4,
+      "title": "Double Barrel Shotgun",
+      "value": 149,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_shotgun_sawed_off_shot_01",
+        "starter_gun_shotgun_sawed_off_shot_02",
+        "starter_gun_shotgun_sawed_off_shot_03",
+        "starter_gun_shotgun_sawed_off_shot_04"
+      ],
+      "damage": 9,
+      "interval": 1.0,
+      "range": 3.5,
+      "pellets": 6,
+      "piercing": 3,
+      "spread": 0.5,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.3,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "slingshot",
+      "tier": 1,
+      "title": "Slingshot",
+      "value": 15,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03"
+      ],
+      "damage": 10,
+      "interval": 0.9166666666666666,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 1,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": []
+    },
+    {
+      "id": "slingshot",
+      "tier": 2,
+      "title": "Slingshot",
+      "value": 31,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03"
+      ],
+      "damage": 13,
+      "interval": 0.8666666666666667,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 2,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": []
+    },
+    {
+      "id": "slingshot",
+      "tier": 3,
+      "title": "Slingshot",
+      "value": 61,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03"
+      ],
+      "damage": 16,
+      "interval": 0.8333333333333334,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 3,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": []
+    },
+    {
+      "id": "slingshot",
+      "tier": 4,
+      "title": "Slingshot",
+      "value": 122,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03"
+      ],
+      "damage": 20,
+      "interval": 0.8,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 4,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": []
+    },
+    {
+      "id": "taser",
+      "tier": 1,
+      "title": "Taser",
+      "value": 15,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "support",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_taser"
+      ],
+      "damage": 7,
+      "interval": 0.75,
+      "range": 2.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_slow_in_zone",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 2,
+      "title": "Taser",
+      "value": 31,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "support",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_taser"
+      ],
+      "damage": 7,
+      "interval": 0.75,
+      "range": 2.0,
+      "pellets": 2,
+      "piercing": 0,
+      "spread": 0.5,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.7
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_slow_in_zone",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 3,
+      "title": "Taser",
+      "value": 61,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "support",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_taser"
+      ],
+      "damage": 7,
+      "interval": 0.75,
+      "range": 2.0,
+      "pellets": 3,
+      "piercing": 0,
+      "spread": 0.7,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.6
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_slow_in_zone",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 4,
+      "title": "Taser",
+      "value": 122,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "support",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_taser"
+      ],
+      "damage": 14,
+      "interval": 0.75,
+      "range": 2.0,
+      "pellets": 4,
+      "piercing": 0,
+      "spread": 0.7,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_slow_in_zone",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 1,
+      "title": "Wand",
+      "value": 10,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 1,
+      "interval": 0.6666666666666666,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.0,
+      "critMultiplier": 2.0,
+      "knockback": 1.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 3,
+          "burnTicks": 3,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 2,
+      "title": "Wand",
+      "value": 22,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 1,
+      "interval": 0.5833333333333334,
+      "range": 3.75,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.0,
+      "critMultiplier": 2.0,
+      "knockback": 1.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.65
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 5,
+          "burnTicks": 5,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 3,
+      "title": "Wand",
+      "value": 45,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 1,
+      "interval": 0.5,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.0,
+      "critMultiplier": 2.0,
+      "knockback": 1.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 8,
+          "burnTicks": 6,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 4,
+      "title": "Wand",
+      "value": 91,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_small_harsh_01",
+        "starter_whoosh_swish_small_harsh_02",
+        "starter_whoosh_swish_small_harsh_03"
+      ],
+      "damage": 1,
+      "interval": 0.3333333333333333,
+      "range": 4.25,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.0,
+      "critMultiplier": 2.0,
+      "knockback": 1.0,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 12,
+          "burnTicks": 9,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0
+        }
+      ]
+    },
+    {
+      "id": "icicle",
+      "tier": 1,
+      "title": "Icicle",
+      "value": 18,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 10,
+      "interval": 0.8333333333333334,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.05,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "icicle",
+      "tier": 2,
+      "title": "Icicle",
+      "value": 36,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 20,
+      "interval": 0.75,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.1,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "icicle",
+      "tier": 3,
+      "title": "Icicle",
+      "value": 66,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 30,
+      "interval": 0.6666666666666666,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.15,
+      "critMultiplier": 2.5,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "icicle",
+      "tier": 4,
+      "title": "Icicle",
+      "value": 140,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 40,
+      "interval": 0.5,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.2,
+      "critMultiplier": 3.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "elemental_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 20.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "rail_gun",
+      "tier": 1,
+      "title": "Rail Gun",
+      "value": 20,
+      "melee": false,
+      "available": false,
+      "setIds": [
+        "gun",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_gun_machinegun_auto_heavy_shot_01",
+        "starter_gun_machinegun_auto_heavy_shot_02",
+        "starter_gun_machinegun_auto_heavy_shot_03",
+        "starter_gun_machinegun_auto_heavy_shot_04",
+        "starter_gun_machinegun_auto_heavy_shot_05",
+        "starter_gun_machinegun_auto_heavy_shot_06",
+        "starter_gun_machinegun_auto_heavy_shot_07",
+        "starter_gun_machinegun_auto_heavy_shot_08"
+      ],
+      "damage": 10,
+      "interval": 0.8666666666666667,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        },
+        {
+          "key": "dodge",
+          "value": 0.3
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_no_hit_boost",
+          "value": 3,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 2,
+      "title": "Rail Gun",
+      "value": 40,
+      "melee": false,
+      "available": false,
+      "setIds": [
+        "gun",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_gun_machinegun_auto_heavy_shot_01",
+        "starter_gun_machinegun_auto_heavy_shot_02",
+        "starter_gun_machinegun_auto_heavy_shot_03",
+        "starter_gun_machinegun_auto_heavy_shot_04",
+        "starter_gun_machinegun_auto_heavy_shot_05",
+        "starter_gun_machinegun_auto_heavy_shot_06",
+        "starter_gun_machinegun_auto_heavy_shot_07",
+        "starter_gun_machinegun_auto_heavy_shot_08"
+      ],
+      "damage": 15,
+      "interval": 0.8166666666666667,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 1.75,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.8
+        },
+        {
+          "key": "dodge",
+          "value": 0.35
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.35,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_no_hit_boost",
+          "value": 4,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 3,
+      "title": "Rail Gun",
+      "value": 80,
+      "melee": false,
+      "available": false,
+      "setIds": [
+        "gun",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_gun_machinegun_auto_heavy_shot_01",
+        "starter_gun_machinegun_auto_heavy_shot_02",
+        "starter_gun_machinegun_auto_heavy_shot_03",
+        "starter_gun_machinegun_auto_heavy_shot_04",
+        "starter_gun_machinegun_auto_heavy_shot_05",
+        "starter_gun_machinegun_auto_heavy_shot_06",
+        "starter_gun_machinegun_auto_heavy_shot_07",
+        "starter_gun_machinegun_auto_heavy_shot_08"
+      ],
+      "damage": 20,
+      "interval": 0.7833333333333333,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 2,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.9
+        },
+        {
+          "key": "dodge",
+          "value": 0.4
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.35,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_no_hit_boost",
+          "value": 5,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 4,
+      "title": "Rail Gun",
+      "value": 160,
+      "melee": false,
+      "available": false,
+      "setIds": [
+        "gun",
+        "heavy"
+      ],
+      "soundNames": [
+        "starter_gun_machinegun_auto_heavy_shot_01",
+        "starter_gun_machinegun_auto_heavy_shot_02",
+        "starter_gun_machinegun_auto_heavy_shot_03",
+        "starter_gun_machinegun_auto_heavy_shot_04",
+        "starter_gun_machinegun_auto_heavy_shot_05",
+        "starter_gun_machinegun_auto_heavy_shot_06",
+        "starter_gun_machinegun_auto_heavy_shot_07",
+        "starter_gun_machinegun_auto_heavy_shot_08"
+      ],
+      "damage": 35,
+      "interval": 0.75,
+      "range": 3.0,
+      "pellets": 1,
+      "piercing": 3,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.25,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        },
+        {
+          "key": "dodge",
+          "value": 0.45
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.25,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_no_hit_boost",
+          "value": 6,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 1,
+      "title": "Hand",
+      "value": 10,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed",
+        "support"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 1,
+      "interval": 0.45,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 3.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_harvesting",
+          "value": 3,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 2,
+      "title": "Hand",
+      "value": 22,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed",
+        "support"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 1,
+      "interval": 0.36666666666666664,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 3.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_harvesting",
+          "value": 6,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 3,
+      "title": "Hand",
+      "value": 45,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed",
+        "support"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 1,
+      "interval": 0.3,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 3.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_harvesting",
+          "value": 12,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 4,
+      "title": "Hand",
+      "value": 91,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "unarmed",
+        "support"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 1,
+      "interval": 0.15,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.01,
+      "critMultiplier": 1.5,
+      "knockback": 3.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_harvesting",
+          "value": 25,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "claw",
+      "tier": 1,
+      "title": "Claw",
+      "value": 15,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "unarmed",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 5,
+      "interval": 0.21666666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.1,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "attack_speed",
+          "value": 0.15
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "claw",
+      "tier": 2,
+      "title": "Claw",
+      "value": 28,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "unarmed",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 10,
+      "interval": 0.18333333333333332,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.15,
+      "critMultiplier": 2.15,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "attack_speed",
+          "value": 0.2
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "claw",
+      "tier": 3,
+      "title": "Claw",
+      "value": 55,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "unarmed",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 15,
+      "interval": 0.13333333333333333,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.2,
+      "critMultiplier": 2.3,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "attack_speed",
+          "value": 0.25
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "claw",
+      "tier": 4,
+      "title": "Claw",
+      "value": 110,
+      "melee": true,
+      "available": false,
+      "setIds": [
+        "unarmed",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 25,
+      "interval": 0.05,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.25,
+      "critMultiplier": 2.5,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "attack_speed",
+          "value": 0.3
+        },
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "dagger",
+      "tier": 1,
+      "title": "Dagger",
+      "value": 12,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 6,
+      "interval": 0.45,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.2,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "gold_on_crit_kill",
+          "value": 50,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 2,
+      "title": "Dagger",
+      "value": 26,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 12,
+      "interval": 0.36666666666666664,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.25,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "gold_on_crit_kill",
+          "value": 56,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 3,
+      "title": "Dagger",
+      "value": 52,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 18,
+      "interval": 0.3,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.3,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "gold_on_crit_kill",
+          "value": 62,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 4,
+      "title": "Dagger",
+      "value": 105,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 30,
+      "interval": 0.16666666666666666,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.4,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "gold_on_crit_kill",
+          "value": 80,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "scissors",
+      "tier": 1,
+      "title": "Scissors",
+      "value": 15,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "medical",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 5,
+      "interval": 0.45,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.1,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.4,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "scissors",
+      "tier": 2,
+      "title": "Scissors",
+      "value": 31,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "medical",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 10,
+      "interval": 0.4166666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.12,
+      "critMultiplier": 2.15,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.45,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "scissors",
+      "tier": 3,
+      "title": "Scissors",
+      "value": 61,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "medical",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 15,
+      "interval": 0.38333333333333336,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.15,
+      "critMultiplier": 2.3,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.5,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "scissors",
+      "tier": 4,
+      "title": "Scissors",
+      "value": 122,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "medical",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 20,
+      "interval": 0.3,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.2,
+      "critMultiplier": 2.5,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.6,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 1,
+      "title": "Lightning Shiv",
+      "value": 18,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 3,
+      "interval": 0.45,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.04,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_lightning_on_hit",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 5,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.04,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "elemental_damage",
+                "value": 0.8
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.0,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 2,
+      "title": "Lightning Shiv",
+      "value": 36,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 6,
+      "interval": 0.36666666666666664,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.06,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_lightning_on_hit",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 6,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.06,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "elemental_damage",
+                "value": 0.8
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 1,
+            "bounceLoss": 0.0,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 3,
+      "title": "Lightning Shiv",
+      "value": 66,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 9,
+      "interval": 0.3,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.08,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_lightning_on_hit",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 8,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.08,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "elemental_damage",
+                "value": 0.8
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 2,
+            "bounceLoss": 0.0,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 4,
+      "title": "Lightning Shiv",
+      "value": 142,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "precise",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 15,
+      "interval": 0.21666666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.1,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_lightning_on_hit",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "projectile": {
+            "damage": 11,
+            "interval": 1.0,
+            "range": 99.99,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.1,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "elemental_damage",
+                "value": 0.8
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 3,
+            "bounceLoss": 0.0,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 1,
+      "title": "Sharp Tooth",
+      "value": 12,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 5,
+      "interval": 0.5833333333333334,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "lifesteal",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 25
+        }
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 2,
+      "title": "Sharp Tooth",
+      "value": 26,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 8,
+      "interval": 0.5,
+      "range": 1.6,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.06,
+      "critMultiplier": 2.15,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "lifesteal",
+          "value": 0.65
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 20
+        }
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 3,
+      "title": "Sharp Tooth",
+      "value": 52,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 11,
+      "interval": 0.4166666666666667,
+      "range": 1.7,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.09,
+      "critMultiplier": 2.3,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "lifesteal",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 15
+        }
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 4,
+      "title": "Sharp Tooth",
+      "value": 105,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 15,
+      "interval": 0.3333333333333333,
+      "range": 1.8,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.12,
+      "critMultiplier": 2.5,
+      "knockback": 0.2,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "lifesteal",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 10
+        }
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 1,
+      "title": "Shuriken",
+      "value": 12,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 7,
+      "interval": 0.6666666666666666,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.35,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.25
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 15.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "bounce_on_crit",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 2,
+      "title": "Shuriken",
+      "value": 26,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 9,
+      "interval": 0.6333333333333333,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.38,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.34
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 15.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "bounce_on_crit",
+          "value": 2,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 3,
+      "title": "Shuriken",
+      "value": 52,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 11,
+      "interval": 0.6,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.41,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.42
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 15.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "bounce_on_crit",
+          "value": 3,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 4,
+      "title": "Shuriken",
+      "value": 105,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_fast_01",
+        "starter_whoosh_swish_high_fast_02",
+        "starter_whoosh_swish_high_fast_03",
+        "starter_whoosh_swish_high_fast_04"
+      ],
+      "damage": 15,
+      "interval": 0.5,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.45,
+      "critMultiplier": 1.5,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 15.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.0,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "bounce_on_crit",
+          "value": 4,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "revolver",
+      "tier": 1,
+      "title": "Revolver",
+      "value": 20,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 15,
+      "interval": 0.23333333333333334,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": 6,
+      "reloadMultiplier": 8.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "revolver",
+      "tier": 2,
+      "title": "Revolver",
+      "value": 34,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 20,
+      "interval": 0.21666666666666667,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.3
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": 6,
+      "reloadMultiplier": 8.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "revolver",
+      "tier": 3,
+      "title": "Revolver",
+      "value": 70,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 25,
+      "interval": 0.2,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 1.65
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": 6,
+      "reloadMultiplier": 8.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "revolver",
+      "tier": 4,
+      "title": "Revolver",
+      "value": 130,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_pistol_shot_01",
+        "starter_gun_pistol_shot_02",
+        "starter_gun_pistol_shot_03",
+        "starter_gun_pistol_shot_04",
+        "starter_gun_pistol_shot_05"
+      ],
+      "damage": 40,
+      "interval": 0.18333333333333332,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 1.5,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 2.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": 6,
+      "reloadMultiplier": 8.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "laser_gun",
+      "tier": 1,
+      "title": "Laser Gun",
+      "value": 15,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_sniper1_shot_04",
+        "starter_gun_silenced_sniper1_shot_04v2"
+      ],
+      "damage": 40,
+      "interval": 1.5833333333333333,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 4.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.25,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.2,
+      "traits": []
+    },
+    {
+      "id": "laser_gun",
+      "tier": 2,
+      "title": "Laser Gun",
+      "value": 31,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_sniper1_shot_04",
+        "starter_gun_silenced_sniper1_shot_04v2"
+      ],
+      "damage": 55,
+      "interval": 1.5,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 4.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.25,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.2,
+      "traits": []
+    },
+    {
+      "id": "laser_gun",
+      "tier": 3,
+      "title": "Laser Gun",
+      "value": 61,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_sniper1_shot_04",
+        "starter_gun_silenced_sniper1_shot_04v2"
+      ],
+      "damage": 70,
+      "interval": 1.4166666666666667,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 5.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.25,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.2,
+      "traits": []
+    },
+    {
+      "id": "laser_gun",
+      "tier": 4,
+      "title": "Laser Gun",
+      "value": 122,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_sniper1_shot_04",
+        "starter_gun_silenced_sniper1_shot_04v2"
+      ],
+      "damage": 100,
+      "interval": 1.25,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 1,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 6.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.25,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.2,
+      "traits": []
+    },
+    {
+      "id": "shredder",
+      "tier": 1,
+      "title": "Shredder",
+      "value": 15,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun",
+        "explosive"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_AR_sniper_shot_01",
+        "starter_gun_silenced_AR_sniper_shot_02",
+        "starter_gun_silenced_AR_sniper_shot_03",
+        "starter_gun_silenced_AR_sniper_shot_04"
+      ],
+      "damage": 5,
+      "interval": 1.0,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 3,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 25.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "effect_explode_custom",
+          "value": 0,
+          "chance": 0.5,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 2,
+      "title": "Shredder",
+      "value": 31,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun",
+        "explosive"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_AR_sniper_shot_01",
+        "starter_gun_silenced_AR_sniper_shot_02",
+        "starter_gun_silenced_AR_sniper_shot_03",
+        "starter_gun_silenced_AR_sniper_shot_04"
+      ],
+      "damage": 10,
+      "interval": 0.9166666666666666,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 3,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "effect_explode_custom",
+          "value": 0,
+          "chance": 0.65,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.8,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 3,
+      "title": "Shredder",
+      "value": 61,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun",
+        "explosive"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_AR_sniper_shot_01",
+        "starter_gun_silenced_AR_sniper_shot_02",
+        "starter_gun_silenced_AR_sniper_shot_03",
+        "starter_gun_silenced_AR_sniper_shot_04"
+      ],
+      "damage": 15,
+      "interval": 0.8333333333333334,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 3,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "effect_explode_custom",
+          "value": 0,
+          "chance": 0.8,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.85,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 4,
+      "title": "Shredder",
+      "value": 122,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "gun",
+        "explosive"
+      ],
+      "soundNames": [
+        "starter_gun_silenced_AR_sniper_shot_01",
+        "starter_gun_silenced_AR_sniper_shot_02",
+        "starter_gun_silenced_AR_sniper_shot_03",
+        "starter_gun_silenced_AR_sniper_shot_04"
+      ],
+      "damage": 25,
+      "interval": 0.75,
+      "range": 4.5,
+      "pellets": 1,
+      "piercing": 3,
+      "spread": 0.0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.4,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "effect_explode",
+          "value": 0,
+          "chance": 1.0,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.9,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 1,
+      "title": "Crossbow",
+      "value": 16,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_bow_crossbow_arrow_shoot_type1_01",
+        "starter_bow_crossbow_arrow_shoot_type1_02",
+        "starter_bow_crossbow_arrow_shoot_type1_03",
+        "starter_bow_crossbow_arrow_shoot_type1_04",
+        "starter_bow_crossbow_arrow_shoot_type1_05"
+      ],
+      "damage": 10,
+      "interval": 0.8333333333333334,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.3,
+      "critMultiplier": 1.5,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        },
+        {
+          "key": "range",
+          "value": 0.1
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.3,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "pierce_on_crit",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 2,
+      "title": "Crossbow",
+      "value": 34,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_bow_crossbow_arrow_shoot_type1_01",
+        "starter_bow_crossbow_arrow_shoot_type1_02",
+        "starter_bow_crossbow_arrow_shoot_type1_03",
+        "starter_bow_crossbow_arrow_shoot_type1_04",
+        "starter_bow_crossbow_arrow_shoot_type1_05"
+      ],
+      "damage": 12,
+      "interval": 0.8333333333333334,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.35,
+      "critMultiplier": 1.75,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        },
+        {
+          "key": "range",
+          "value": 0.1
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.3,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "pierce_on_crit",
+          "value": 2,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 3,
+      "title": "Crossbow",
+      "value": 62,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_bow_crossbow_arrow_shoot_type1_01",
+        "starter_bow_crossbow_arrow_shoot_type1_02",
+        "starter_bow_crossbow_arrow_shoot_type1_03",
+        "starter_bow_crossbow_arrow_shoot_type1_04",
+        "starter_bow_crossbow_arrow_shoot_type1_05"
+      ],
+      "damage": 15,
+      "interval": 0.8333333333333334,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.4,
+      "critMultiplier": 2.0,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        },
+        {
+          "key": "range",
+          "value": 0.1
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.3,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "pierce_on_crit",
+          "value": 3,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 4,
+      "title": "Crossbow",
+      "value": 132,
+      "melee": false,
+      "available": true,
+      "setIds": [
+        "precise",
+        "medieval"
+      ],
+      "soundNames": [
+        "starter_bow_crossbow_arrow_shoot_type1_01",
+        "starter_bow_crossbow_arrow_shoot_type1_02",
+        "starter_bow_crossbow_arrow_shoot_type1_03",
+        "starter_bow_crossbow_arrow_shoot_type1_04",
+        "starter_bow_crossbow_arrow_shoot_type1_05"
+      ],
+      "damage": 18,
+      "interval": 0.8333333333333334,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0.0,
+      "crit": 0.45,
+      "critMultiplier": 2.25,
+      "knockback": 0.8,
+      "scaling": [
+        {
+          "key": "ranged_damage",
+          "value": 0.5
+        },
+        {
+          "key": "range",
+          "value": 0.1
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.0,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.3,
+      "recoilHalf": 0.15,
+      "traits": [
+        {
+          "key": "pierce_on_crit",
+          "value": 4,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0
+        }
+      ]
+    },
+    {
+      "id": "spear",
+      "tier": 1,
+      "title": "Spear",
+      "value": 20,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 15,
+      "interval": 0.75,
+      "range": 3.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spear",
+      "tier": 2,
+      "title": "Spear",
+      "value": 39,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 25,
+      "interval": 0.6,
+      "range": 3.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spear",
+      "tier": 3,
+      "title": "Spear",
+      "value": 74,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 40,
+      "interval": 0.45,
+      "range": 4.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    },
+    {
+      "id": "spear",
+      "tier": 4,
+      "title": "Spear",
+      "value": 149,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 60,
+      "interval": 0.3,
+      "range": 5.0,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": []
+    }
+  ],
+  "sets": [
+    {
+      "id": "precise",
+      "name": "Precise",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "crit_chance",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "crit_chance",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "crit_chance",
+              "value": 9
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "crit_chance",
+              "value": 12
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "crit_chance",
+              "value": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "primitive",
+      "name": "Primitive",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "max_hp",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "max_hp",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "max_hp",
+              "value": 9
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "max_hp",
+              "value": 12
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "max_hp",
+              "value": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unarmed",
+      "name": "Unarmed",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 9
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 12
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blade",
+      "name": "Blade",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "melee_damage",
+              "value": 1
+            },
+            {
+              "key": "lifesteal",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "melee_damage",
+              "value": 2
+            },
+            {
+              "key": "lifesteal",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "melee_damage",
+              "value": 3
+            },
+            {
+              "key": "lifesteal",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "melee_damage",
+              "value": 4
+            },
+            {
+              "key": "lifesteal",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "melee_damage",
+              "value": 5
+            },
+            {
+              "key": "lifesteal",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medieval",
+      "name": "Medieval",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 1
+            },
+            {
+              "key": "dodge",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 2
+            },
+            {
+              "key": "dodge",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 2
+            },
+            {
+              "key": "dodge",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 3
+            },
+            {
+              "key": "dodge",
+              "value": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heavy",
+      "name": "Heavy",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "percent_damage",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "percent_damage",
+              "value": 10
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "percent_damage",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "percent_damage",
+              "value": 20
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "percent_damage",
+              "value": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blunt",
+      "name": "Blunt",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 1
+            },
+            {
+              "key": "speed",
+              "value": -2
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 1
+            },
+            {
+              "key": "max_hp",
+              "value": 3
+            },
+            {
+              "key": "speed",
+              "value": -4
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 2
+            },
+            {
+              "key": "max_hp",
+              "value": 3
+            },
+            {
+              "key": "speed",
+              "value": -6
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 2
+            },
+            {
+              "key": "max_hp",
+              "value": 6
+            },
+            {
+              "key": "speed",
+              "value": -8
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "armor",
+              "value": 3
+            },
+            {
+              "key": "max_hp",
+              "value": 6
+            },
+            {
+              "key": "speed",
+              "value": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ethereal",
+      "name": "Ethereal",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 6
+            },
+            {
+              "key": "armor",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 12
+            },
+            {
+              "key": "armor",
+              "value": -2
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 18
+            },
+            {
+              "key": "armor",
+              "value": -3
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 24
+            },
+            {
+              "key": "armor",
+              "value": -4
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "dodge",
+              "value": 30
+            },
+            {
+              "key": "armor",
+              "value": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tool",
+      "name": "Tool",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "engineering",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "engineering",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "engineering",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "engineering",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "engineering",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gun",
+      "name": "Gun",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "range",
+              "value": 10
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "range",
+              "value": 20
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "range",
+              "value": 30
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "range",
+              "value": 40
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "range",
+              "value": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "name": "Support",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "harvesting",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "harvesting",
+              "value": 10
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "harvesting",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "harvesting",
+              "value": 20
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "harvesting",
+              "value": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fire",
+      "name": "Fire",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "elemental_damage",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "elemental_damage",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "elemental_damage",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "elemental_damage",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "elemental_damage",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "name": "Medical",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "hp_regeneration",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "hp_regeneration",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "hp_regeneration",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "hp_regeneration",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "hp_regeneration",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "explosive",
+      "name": "Explosive",
+      "bonuses": [
+        {
+          "count": 2,
+          "effects": [
+            {
+              "key": "explosion_size",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "count": 3,
+          "effects": [
+            {
+              "key": "explosion_size",
+              "value": 10
+            }
+          ]
+        },
+        {
+          "count": 4,
+          "effects": [
+            {
+              "key": "explosion_size",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "count": 5,
+          "effects": [
+            {
+              "key": "explosion_size",
+              "value": 20
+            }
+          ]
+        },
+        {
+          "count": 6,
+          "effects": [
+            {
+              "key": "explosion_size",
+              "value": 25
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rosterSlots": 50
+}

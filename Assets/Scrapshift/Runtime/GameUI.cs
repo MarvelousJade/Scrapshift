@@ -55,17 +55,19 @@ namespace Scrapshift
             else if (Rules.Phase == RunPhase.Paused) PauseUI();
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
         }
-        void Overlay() => Box(new Rect(0,0,1440,900), new Color(.055f,.05f,.045f,.78f));
+        void Overlay() => Box(FullCanvas, new Color(.055f,.05f,.045f,.78f));
         void TitleUI() => ReferenceTitleUI();
         void ChangeLook(int direction)
         {
             var looks=playerAnimation.looks;if(looks==null||looks.Length==0)return;
+            if(direction!=0)startingWeapon=0;
             playerAnimation.lookIndex=(playerAnimation.lookIndex+direction+looks.Length)%looks.Length;
             if(titleModel!=null)titleModel.GetComponent<SpriteFrameAnimator>().lookIndex=playerAnimation.lookIndex;
         }
         Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.76f,.43f,1) : tier==2 ? new Color(.40f,.66f,1) : paper;
         void DrawHud()
         {
+            var hudMatrix=GUI.matrix;GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(FullCanvas.xMin,FullCanvas.yMin,0));
             Frame(new Rect(24,22,246,34), new Color(.22f,.18f,.17f), 4);
             Box(new Rect(28,26,238*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), new Color(.83f,.07f,.05f));
             Text(24,22,246,34,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
@@ -76,10 +78,12 @@ namespace Scrapshift
             OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
             if(Rules.Banked>0)OutlinedText(26,146,235,30,$"Stored  {Rules.Banked}",body);
             if(Rules.PendingCrates>0)OutlinedText(26,180,260,30,$"Item crates  {Rules.PendingCrates}",body);
+            GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(0,FullCanvas.yMin,0));
             OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",new GUIStyle(center){fontSize=32});
             var timer=new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter };
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
                 OutlinedText(630,61,180,56,Mathf.CeilToInt(Rules.Remaining).ToString(),timer);
+            GUI.matrix=hudMatrix;
         }
 
         void OutlinedText(float x,float y,float w,float h,string label,GUIStyle style)
@@ -126,7 +130,8 @@ namespace Scrapshift
                 Text(480,478,480,35,$"Effects volume  {sound.Volume*100:0}%",center);
                 float volume=GUI.HorizontalSlider(new Rect(484,540,470,24),sound.Volume,0,1);
                 if(Mathf.Abs(volume-sound.Volume)>.001f)sound.SetVolume(volume);
-                if(Button(new Rect(480,620,480,62),"Back"))pauseOptions=false;
+                if(Button(new Rect(480,590,480,62),DisplayLabel))ToggleFullscreen();
+                if(Button(new Rect(480,685,480,62),"Back"))pauseOptions=false;
                 return;
             }
             DrawStatsPanel();

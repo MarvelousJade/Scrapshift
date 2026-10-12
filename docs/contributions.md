@@ -77,3 +77,7 @@ Shaoyu requested direct UI matching, no key legends, silver rounded legs and a m
 ## Player-hit and leg correction
 
 Shaoyu identified the unwanted leg orientation and vocal damage cue and requested closer reference behavior. Codex inspected the supplied scene/scripts/effect image, corrected mounting and preview transforms, traced the erroneous audio mapping, implemented native hit streaks and recovery feedback, validated the build and documented the findings. Existing character/limb pixels were retained. The fixtures and mixer checks were agent-run; no personal manual playtesting or audio acceptance is attributed to Shaoyu.
+
+## Four-profile/fullscreen pass
+
+Shaoyu requested native fullscreen without side bars and specified Random plus four playable characters, with the remaining slots locked. Codex inspected supplied source data, implemented profiles/selection/weapons/fullscreen, generated the additional weapon atlas, diagnosed test/build failures and ran the recorded checks. No human playthrough or independent manual implementation is attributed to Shaoyu. See fullscreen-and-starter-characters.md.

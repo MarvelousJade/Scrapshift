@@ -164,30 +164,23 @@ MonoBehaviour:
       scale: 0.50721854
       priority: 0
       order: 14
-  - name: Veteran
+  - name: Pugilist
     layers:
-    - id: sleepy
+    - id: stern
       slot: eyes
-      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.12}
+      scale: 0.57733744
       priority: 0
       order: 13
-    - id: beard
+    - id: smile
       slot: mouth
-      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
-      scale: 0.57994384
+      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.2}
+      scale: 0.48516557
       priority: 0
       order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
-  - name: Punk
+  - name: Hothead
     layers:
     - id: stern
       slot: eyes
@@ -208,6 +201,29 @@ MonoBehaviour:
       image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.67}
       scale: 0.49595743
+      priority: 0
+      order: 12
+  - name: Sharpshot
+    layers:
+    - id: sleepy
+      slot: eyes
+      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.55844724
+      priority: 0
+      order: 13
+    - id: beard
+      slot: mouth
+      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.24}
+      scale: 0.57994384
+      priority: 0
+      order: 14
+    - id: swept-hair
+      slot: head
+      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: -0.02, y: 0.48}
+      scale: 0.6347507
       priority: 0
       order: 12
   lookIndex: 0

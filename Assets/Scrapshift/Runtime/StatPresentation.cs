@@ -19,7 +19,7 @@ namespace Scrapshift
     {
         void MenuBackdrop()
         {
-            Box(new Rect(0,0,1440,900),new Color(.31f,.30f,.27f));
+            Box(FullCanvas,new Color(.31f,.30f,.27f));
             var before=GUI.color;GUI.color=new Color(.65f,.63f,.55f,.14f);
             for(int i=0;i<22;i++)
             {

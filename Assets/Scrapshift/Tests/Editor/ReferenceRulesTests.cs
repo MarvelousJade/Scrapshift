@@ -348,9 +348,12 @@ namespace Scrapshift.Tests
             };
             int count=0;new SpawnDirector(wave,1).Tick(100,(g,u,n)=>count+=n);Assert.AreEqual(206,count);
         }
-        [TestCase(1440,900)][TestCase(1920,1080)][TestCase(900,900)]public void ResizePreservesArena(int w,int h)
+        [TestCase(1440,900)][TestCase(1920,1080)][TestCase(3440,1440)][TestCase(900,900)]public void ResizeFillsScreenWithoutStretchingUI(int w,int h)
         {
-            var r=PresentationLayout.Viewport(w,h);Assert.AreEqual(PresentationLayout.Aspect,w*r.width/(h*r.height),.0001f);
+            Assert.AreEqual(new Rect(0,0,1,1),PresentationLayout.Viewport(w,h));
+            var r=PresentationLayout.CanvasBounds(w,h);float scale=PresentationLayout.CanvasScale(w,h);
+            Assert.That(r.width*scale,Is.EqualTo(w).Within(.001));Assert.That(r.height*scale,Is.EqualTo(h).Within(.001));
+            Assert.That(Vector2.Distance(new Vector2(720,450),PresentationLayout.ViewportToCanvas(new Vector2(.5f,.5f),w,h)),Is.LessThan(.001));
         }
         [Test]public void SweptProjectileCannotTunnel()
         {

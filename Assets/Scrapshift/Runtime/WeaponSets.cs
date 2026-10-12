@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Scrapshift
@@ -7,11 +8,15 @@ namespace Scrapshift
     {
         public readonly string Id, Name, Stat;
         readonly int increment;
+        public SetEntry Data;
         public WeaponSet(string id, string name, string stat, int increment)
         { Id=id; Name=name; Stat=stat; this.increment=increment; }
         // Reference resources contain total effects for counts 2..6, not cumulative tiers.
         public int Bonus(int count) => Mathf.Clamp(count-1,0,5)*increment;
-        public string Description(int count) => ItemEntry.FormatStat(Stat,Bonus(count));
+        public float Bonus(int count,string stat)=>count<2?0:Data==null?(stat==Stat?Bonus(count):0):
+            Data.bonuses.First(b=>b.count==Mathf.Clamp(count,2,6)).effects.Where(e=>e.key==stat).Sum(e=>e.value);
+        public string Description(int count) => Data==null?ItemEntry.FormatStat(Stat,Bonus(count)):
+            string.Join(", ",Data.bonuses.First(b=>b.count==Mathf.Clamp(count,2,6)).effects.Select(e=>ItemEntry.FormatStat(e.key,e.value)));
     }
 
     public static class WeaponSets
@@ -19,9 +24,15 @@ namespace Scrapshift
         public static readonly WeaponSet Gun=new WeaponSet("gun","Gun","range",10);
         public static readonly WeaponSet Precise=new WeaponSet("precise","Precise","crit_chance",3);
         public static readonly WeaponSet Primitive=new WeaponSet("primitive","Primitive","max_hp",3);
-        public static readonly IReadOnlyList<WeaponSet> All=new[]{Gun,Precise,Primitive};
+        public static IReadOnlyList<WeaponSet> All {get;private set;}=new[]{Gun,Precise,Primitive};
+        public static void Configure(SetEntry[] entries)
+        {
+            if(entries==null)return;
+            All=entries.Select(e=>{var s=e.id=="gun"?Gun:e.id=="precise"?Precise:e.id=="primitive"?Primitive:new WeaponSet(e.id,e.name,e.bonuses[0].effects[0].key,0);s.Data=e;return s;}).ToArray();
+        }
         public static WeaponSet For(Equipment weapon)
         {
+            if(weapon?.setIds!=null&&weapon.setIds.Length>0)return All.FirstOrDefault(s=>s.Id==weapon.setIds[0]);
             switch(weapon?.id)
             {
                 case "pistol": case "smg": case "double_barrel_shotgun": case "laser_gun": return Gun;
@@ -33,13 +44,13 @@ namespace Scrapshift
         public static int Count(IReadOnlyList<Equipment> inventory,WeaponSet set)
         {
             int count=0;
-            for(int i=0;i<inventory.Count;i++)if(For(inventory[i])==set)count++;
+            for(int i=0;i<inventory.Count;i++)if(inventory[i].HasSet(set.Id)||For(inventory[i])==set)count++;
             return count;
         }
-        public static int Bonus(IReadOnlyList<Equipment> inventory,string stat)
+        public static float Bonus(IReadOnlyList<Equipment> inventory,string stat)
         {
-            int result=0;
-            foreach(var set in All)if(set.Stat==stat)result+=set.Bonus(Count(inventory,set));
+            float result=0;
+            foreach(var set in All)result+=set.Bonus(Count(inventory,set),stat);
             return result;
         }
     }

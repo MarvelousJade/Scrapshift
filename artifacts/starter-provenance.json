@@ -1,0 +1,1429 @@
+{
+  "referenceRoot": "E:\\UnityProjects\\brotato-(3.x)",
+  "sources": [
+    {
+      "source": "items/characters/well_rounded/well_rounded_data.tres",
+      "sha256": "ad0fdbd2864987282cc7a45088ca73dcd1fb8171596ed20c4bf0f82395a72e31"
+    },
+    {
+      "source": "weapons/melee/knife/1/knife_data.tres",
+      "sha256": "0e576b79aeb0871973151460be76730e156103564245fb7bd6ca731a7a319a2e"
+    },
+    {
+      "source": "weapons/melee/knife/1/knife_stats.tres",
+      "sha256": "72b4210b768f90c3e348f914269baa0e0a9699f62a99b3792b002c09a70ad71c"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_weapon_knife_swing_01.wav",
+      "sha256": "2cf7bce78340f4ec3f65cbb441c3e65bf54a6ee4a2b51dcdcae768b92dab3d97"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_weapon_knife_swing_02.wav",
+      "sha256": "83e14f9188683c87111cc8662099e51baf07e481a23fe1bc559672222d334b80"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_weapon_knife_swing_03.wav",
+      "sha256": "0f2c67645625f5764aab216c470c244baad55b188603daff4d35f0c23a285e77"
+    },
+    {
+      "source": "weapons/melee/knife/2/knife_2_data.tres",
+      "sha256": "69535d2eaffce5cf82c6285cb062913402a2eefd73089809856d9391d383652b"
+    },
+    {
+      "source": "weapons/melee/knife/2/knife_2_stats.tres",
+      "sha256": "115a7ae1545c1f4710453dc07c7b1ccf8fb89e390470d170bd25a328c1a2b983"
+    },
+    {
+      "source": "weapons/melee/knife/3/knife_3_data.tres",
+      "sha256": "3500ee0a5a3656301e21701a97327ec10887506525944bbc08810c6b5d9de18b"
+    },
+    {
+      "source": "weapons/melee/knife/3/knife_3_stats.tres",
+      "sha256": "0bfe1b9735e0a47071d82157df653a16a18eef8d406edc9e0cba0d8a3f26b000"
+    },
+    {
+      "source": "weapons/melee/knife/4/knife_4_data.tres",
+      "sha256": "4b8d4e27126a0c0c370e4e88de65ad47f6b390be075ab69f0ad3f35f5af56e58"
+    },
+    {
+      "source": "weapons/melee/knife/4/knife_4_stats.tres",
+      "sha256": "c951c155aa17cc7df1c8bea7c29120f997e7e53234fd72a1479e334ee234fc5e"
+    },
+    {
+      "source": "weapons/melee/stick/1/stick_data.tres",
+      "sha256": "ec7095c914cee2c79d28f235fa9898727a62b2974727b5b3d572613954690c29"
+    },
+    {
+      "source": "weapons/melee/stick/1/stick_stats.tres",
+      "sha256": "c1da8257a4d34dc337439c002f0aa5b72f86f7acee70ee78ebb981b31e8d21f6"
+    },
+    {
+      "source": "weapons/melee/stick/1/stick_effect_1.tres",
+      "sha256": "1f0d34ec896f6aa3d08aef7f730a8694bc31a298f9792117dd30caa5bdffc1b0"
+    },
+    {
+      "source": "weapons/melee/stick/2/stick_2_data.tres",
+      "sha256": "3d39dfe7f935cfd1001c8e41b2d0ea6c368fc5bcb4f86ee1beb4e130f0d84323"
+    },
+    {
+      "source": "weapons/melee/stick/2/stick_2_stats.tres",
+      "sha256": "b30f32beb9039b6bfa6d8fd8d2587a4cae7bd88e4d8eabfe0ebc720aae944ccd"
+    },
+    {
+      "source": "weapons/melee/stick/2/stick_2_effect_1.tres",
+      "sha256": "4a4ebad6c7b669816a17c473c7a9a3165d969d8f3b4bfdae8936c8a7deb7e98f"
+    },
+    {
+      "source": "weapons/melee/stick/3/stick_3_data.tres",
+      "sha256": "687823fd83ba2b87af0e659750fa3a9131b498ab76004a266dacabfee8934428"
+    },
+    {
+      "source": "weapons/melee/stick/3/stick_3_stats.tres",
+      "sha256": "de34fb3b4d04439eb07c79b5e747edb2752b0e60192c73360b7effd6555f301b"
+    },
+    {
+      "source": "weapons/melee/stick/3/stick_3_effect_1.tres",
+      "sha256": "6af7f4cfc4738ba07f96507b4d4fe68ac0d1b2907e2fbc98c3708273cea27805"
+    },
+    {
+      "source": "weapons/melee/stick/4/stick_4_data.tres",
+      "sha256": "a9d864f7c6240c912b0096ad95f87b385c7854702caa86e2cdfa26e9a5dc43a0"
+    },
+    {
+      "source": "weapons/melee/stick/4/stick_4_stats.tres",
+      "sha256": "f387dd11e0ea3fe060bcbcca289e9ac043c226e7fd3a2f634f6d11ab45e12897"
+    },
+    {
+      "source": "weapons/melee/stick/4/stick_4_effect_1.tres",
+      "sha256": "5dd0e1bdbe9bd4a912eea592e635ef126760514a4ead31d909c22fcb6ec0e4e2"
+    },
+    {
+      "source": "weapons/melee/fist/1/fist_data.tres",
+      "sha256": "5625d844bbbffff1707797c183290c5fb44934ef51847c114ade11e6241d7f20"
+    },
+    {
+      "source": "weapons/melee/fist/1/fist_stats.tres",
+      "sha256": "9477a08e84c029a7e43d282e3b0c57449f4dd690f3fe7cea3545d26ba353a325"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_fast_01.wav",
+      "sha256": "51e4fbbafd6c6999c648729d255ba29fb690dbe1514a6fd01d8732e356b65b9c"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_fast_02.wav",
+      "sha256": "21dd2adc6e9a9fb0c367821ce6e6375f0cbb8864f39d966ab14b59c79bcaefe4"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_fast_03.wav",
+      "sha256": "f364af223eb73d5fa9b7bd10c953c211fc0d6e9f5edbd668e9ed67e8419fc518"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_fast_04.wav",
+      "sha256": "6870f8417cc540b3226feb7542c04519c1d5f31dcb2c11d51c3ea60ecaff4853"
+    },
+    {
+      "source": "weapons/melee/fist/2/fist_2_data.tres",
+      "sha256": "508c780035f6c752b105fc3b2a2ce31a2542cc2a85ee358d67efc8a0b6d82dd0"
+    },
+    {
+      "source": "weapons/melee/fist/2/fist_2_stats.tres",
+      "sha256": "c3bdd640144f4f765a50816801075ec30b9c1fb9dc1e3ecb5aeb870e7f5091e4"
+    },
+    {
+      "source": "weapons/melee/fist/3/fist_3_data.tres",
+      "sha256": "ae8bf6bfd127c872cb6585fd1da9b8fbd59e0d72eec6bfc71996dd8d4f06a81c"
+    },
+    {
+      "source": "weapons/melee/fist/3/fist_3_stats.tres",
+      "sha256": "49155addc05be3a9850c5f98fa9bf73a8e194f50ec755e509fc7edcd32a6b4db"
+    },
+    {
+      "source": "weapons/melee/fist/4/fist_4_data.tres",
+      "sha256": "b84ee3cf176756fa9923924966c34ee9c12cedabbd557f88a6a8a857da99f886"
+    },
+    {
+      "source": "weapons/melee/fist/4/fist_4_stats.tres",
+      "sha256": "8833dff79dbafb15eee9ed414faad5625ddf00e8137a4e2a6e1ce591ffa94ea4"
+    },
+    {
+      "source": "weapons/melee/chopper/1/chopper_data.tres",
+      "sha256": "def38b98e076ffb4d439ea402d5e5b1f1688e99b3adb668aa1f0bb798ec05202"
+    },
+    {
+      "source": "weapons/melee/chopper/1/chopper_stats.tres",
+      "sha256": "440ca43c3d7bf15b4549c58471bf04e79bdef6141a867f1375156960ceec1227"
+    },
+    {
+      "source": "weapons/melee/chopper/chopper_effect.tres",
+      "sha256": "df66343aefca783651dd294b2f180acd55e11fc08419a6a90d90948da5a40061"
+    },
+    {
+      "source": "weapons/melee/chopper/2/chopper_2_data.tres",
+      "sha256": "e0afe774fafff361a7d8080bd02024c0aca00769752a9eca3c0d723803d29307"
+    },
+    {
+      "source": "weapons/melee/chopper/2/chopper_2_stats.tres",
+      "sha256": "b2efd6cdca85e33a9689cb9f386f5dac0cb252aeab1acf8aeb633adfcb8bc7ec"
+    },
+    {
+      "source": "weapons/melee/chopper/3/chopper_3_data.tres",
+      "sha256": "351956bb50d08f381473d1d4a560004587420d372357b758c47061e809087fb8"
+    },
+    {
+      "source": "weapons/melee/chopper/3/chopper_3_stats.tres",
+      "sha256": "e89b1744ce66cc20408caa3f3cd2893edaa34f9e9e06257a422f2932ee551ab9"
+    },
+    {
+      "source": "weapons/melee/chopper/4/chopper_4_data.tres",
+      "sha256": "535f274b43a917cf0930d0dc2f9740cdadfed00afc1b8741f6aeca8468eaa63b"
+    },
+    {
+      "source": "weapons/melee/chopper/4/chopper_4_stats.tres",
+      "sha256": "39b78f6cb5cf81c089e9b8c3e705a5c70097c09e4a1dd6a67b3819905498b985"
+    },
+    {
+      "source": "weapons/melee/chopper/4/chopper_4_effect.tres",
+      "sha256": "7a83703739c3d0a64dd63f99bbdc7347c70eec672a95262c74a2a961e79bbbcd"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/1/fighting_stick_data.tres",
+      "sha256": "61f6b99e010adf5fcdd0e7ed130bcf4777f88e644c04efd0c696c6d03603557d"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/1/fighting_stick_stats.tres",
+      "sha256": "67b09bec9974d673657c96d8c7900133280b63509041c237ffd4538d2cf8f82f"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/1/fighting_stick_effect_0.tres",
+      "sha256": "1a99056fd27078f5c1c900fac06a5f6869602d11e8f4f2aa241936cd2fcfad3d"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/2/fighting_stick_2_data.tres",
+      "sha256": "de5b4b414df9becc5fd366813b128cbcc40ae93be7c6192189e5945c36a90e86"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/2/fighting_stick_2_stats.tres",
+      "sha256": "1a2bc3b22f39755be6566cb687ecd2f09c451632fae9af708d800eb4e35ee39a"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/2/fighting_stick_2_effect_0.tres",
+      "sha256": "20bf0035b69789d8a78c34bbf57fd4d0661723eb167687ed97e6aed4f9f9eb1c"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/3/fighting_stick_3_data.tres",
+      "sha256": "ca9e8e2c41f13611f111b4ea150767c1f8984f4a4b965fd38dfdfb8cd02263b5"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/3/fighting_stick_3_stats.tres",
+      "sha256": "66d2d8e6a08edca908346a1a18c1bb41c344dd8bcf0b1e4bc71534c7a35a3419"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/3/fighting_stick_3_effect_0.tres",
+      "sha256": "9e9e0a151794d93528b5fdc64d253e3dda68b949a6bba35f711129d4c6e88b69"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/4/fighting_stick_4_data.tres",
+      "sha256": "ef86a16f44ad9f7bf5acab3d9846926f19ebb9c110bf7480893376c11bcaac49"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/4/fighting_stick_4_stats.tres",
+      "sha256": "1b09e985ed0664dc4f77e8c7e993a5fc60bf276d614b127a591379a511a2683f"
+    },
+    {
+      "source": "weapons/melee/fighting_stick/4/fighting_stick_4_effect_0.tres",
+      "sha256": "763e54cee3c752f2e7119d9eba446b7940cfab08f8f11cfbc53f49b3deafd919"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/1/cactus_mace_data.tres",
+      "sha256": "724d4761e4ad3608ddaa73e9364dc13013e43461e23cfbdc91607d478ce6d2e4"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/1/cactus_mace_stats.tres",
+      "sha256": "caadaf391da14031fdcc9684e1cd22821af236fcd726943511c3b4114d309aa7"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_big_01.wav",
+      "sha256": "74481c34d96bda6a5e5f5244f8332b252877f27554a4f26e297c11373c2f7922"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_big_02.wav",
+      "sha256": "1b07848aff6d72eb7d3477243886b8c3ddb41c51df66cdf2c22c5637242a59c4"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_big_03.wav",
+      "sha256": "ed794a60c0d9fcef8a6c2178c4e19e6bfc64331d83bd4a23dd21f91110d03c42"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_big_04.wav",
+      "sha256": "ffb4f4594b9b1ad317e3e9df3ccf7595a29152652c1a13a73a5d0bd929d75999"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_high_big_05.wav",
+      "sha256": "0c3eb1b8d51e34052f303dd99f033e32b23809208881a09eabbb8613da346ba3"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/1/cactus_mace_effect_1.tres",
+      "sha256": "08d06625b9cf627fbcb30a59909150adc42e9ccb99b10043a5cb661b61a70e2b"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/2/cactus_mace_2_data.tres",
+      "sha256": "89b1f6c8f027d5c0328930484fc67328580995596a779f58229ab2e9167f6212"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/2/cactus_mace_2_stats.tres",
+      "sha256": "2e10703533e7f1154035a8d8c222d260c549844accccf42b22dd8a1d36c01ba2"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/2/cactus_mace_2_effect_1.tres",
+      "sha256": "6b4c022bb6d77da46efbe8c4e1bef05a8b0c9facc4d906deb0dbabf0d352b791"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/3/cactus_mace_3_data.tres",
+      "sha256": "93d2fb8ee9ee48f1f93bbdb438bb8252e786f0a3489ec63ea7f2930b7a48577b"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/3/cactus_mace_3_stats.tres",
+      "sha256": "e169868bb58d6fcaf7eaa557bc7d25f6b5d9bd18d857ce6697035906863851bf"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/3/cactus_mace_3_effect_1.tres",
+      "sha256": "d211d39595bf153fe5c9ce56b364f6853450d4c0369cfad14ae3fd1f318b6ea4"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/4/cactus_mace_4_data.tres",
+      "sha256": "32f93080ec346fb4b871d6053cb8da40c5a1e4949da2f784ea67eb8daed5ca28"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/4/cactus_mace_4_stats.tres",
+      "sha256": "f3da62c2ac1700e1d5797ce35d32c951f1f0632e2c2e2b9668a96eb14c6f0d7a"
+    },
+    {
+      "source": "weapons/melee/cactus_mace/4/cactus_mace_4_effect_1.tres",
+      "sha256": "cee0e8cff1c642e7957a21d880e03b2c3afc4ee603e2a003a80742f28e9501f4"
+    },
+    {
+      "source": "weapons/melee/hatchet/1/hatchet_data.tres",
+      "sha256": "6b045539f5fa17f7ac95884963a153903358ff4ef90ddfc34d8a1dfa8c19b2aa"
+    },
+    {
+      "source": "weapons/melee/hatchet/1/hatchet_stats.tres",
+      "sha256": "72618c3d67abd30f35b5342a5138f37df3242fa2ed95058453226ed8d5de96ec"
+    },
+    {
+      "source": "weapons/melee/hatchet/2/hatchet_2_data.tres",
+      "sha256": "03ee1bf1102ce8e3d4d12a74230a13e58ec180e31083063a7684c94441febe54"
+    },
+    {
+      "source": "weapons/melee/hatchet/2/hatchet_2_stats.tres",
+      "sha256": "4d45395b2a006a3854e3a34493b9b8bb0ad13a65554ace6ad67c0c03852570dd"
+    },
+    {
+      "source": "weapons/melee/hatchet/3/hatchet_3_data.tres",
+      "sha256": "06a9117249ad46e2f768b4441a19f1386756423f468f6aa15a5a66ad8df1f7b1"
+    },
+    {
+      "source": "weapons/melee/hatchet/3/hatchet_3_stats.tres",
+      "sha256": "e4003de42690ab120e68a189293ee526090010685bf69bf234f1e76871c1ec38"
+    },
+    {
+      "source": "weapons/melee/hatchet/4/hatchet_4_data.tres",
+      "sha256": "f39e4b284078077eae60a53a175df090fe1f49ce6d26444cc146b995db94140d"
+    },
+    {
+      "source": "weapons/melee/hatchet/4/hatchet_4_stats.tres",
+      "sha256": "6cb3ee10bbe11a9ab73de51dd8d1e15cc08ee6e11830c0e27487b2f3f8a54db0"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/1/spiky_shield_data.tres",
+      "sha256": "63bc061ea4d593d0da176edd8a46c18f02adbc093991c547609544da32414fcf"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/1/spiky_shield_stats.tres",
+      "sha256": "496ee6116c5d6db3d7ca9db73301a9e4d4259d6aa285c22bc6c89f51268126e3"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_small_harsh_01.wav",
+      "sha256": "3f9aa736eb3b1861ac85733ab37b1c425bf278d09ccffa17af4124d9f3bd92d6"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_small_harsh_02.wav",
+      "sha256": "e875d0d067a087f9b430b825e24790c26166fdba280d9894f90f979754217ee4"
+    },
+    {
+      "source": "weapons/melee_sounds/whoosh_swish_small_harsh_03.wav",
+      "sha256": "c3ee0794cca2d85614e2f76633497e22d108ea8cbe8a6c1984a207e9539b4365"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/2/spiky_shield_2_data.tres",
+      "sha256": "f7502ad3c89e1d874a846327b9ffc669a9f42f08d2505d125984dc9dddd2800a"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/2/spiky_shield_2_stats.tres",
+      "sha256": "e861512bc3c59fd4433b2c2bc83a5d601c85e4ff06c4038cfb00d93fb88d1fd8"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/3/spiky_shield_3_data.tres",
+      "sha256": "efc459a2baa06011474eed252e04c8a718f7268dc7bd28750a3d3523f7c916b1"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/3/spiky_shield_3_stats.tres",
+      "sha256": "b1083728dc7b3eeddb7953a1aaf8d054240c8e194f4296df47ce24a65d06216f"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/4/spiky_shield_4_data.tres",
+      "sha256": "71524c5352c7a01622cec6852e9ade1b723dae636450bc478c0a9f135399d885"
+    },
+    {
+      "source": "weapons/melee/spiky_shield/4/spiky_shield_4_stats.tres",
+      "sha256": "3ff5cfe21e086b56368099df0610e6359b68dd65b3857d01814389808f455931"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/1/ghost_flint_data.tres",
+      "sha256": "fc9fa759523b8a85ccb3be19ca691e894419482134b6e9ddea1aba03e34ab05d"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/1/ghost_flint_stats.tres",
+      "sha256": "5466b453fe1798721e27c7265c3bb5cb138b5a4d744aabe6746b5ea1f801686d"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/1/ghost_flint_effect.tres",
+      "sha256": "7f7067ef7e7366a1ed51d25b6ec8a01d09965346d0170622f2cedc20303746b5"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/2/ghost_flint_2_data.tres",
+      "sha256": "3fc35c74f8578271b3924b704e5265ecd4f9163110a5b21cf78861c366dc101a"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/2/ghost_flint_2_stats.tres",
+      "sha256": "8f69f96b2b16ef4071fd88cd2d49d467140a71cdbc6f91c012d5fa033253c0bb"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/2/ghost_flint_2_effect.tres",
+      "sha256": "bc3999143b5d63eaa4065098662d809e417fd50225756aab12d1d053fdff9ba6"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/3/ghost_flint_3_data.tres",
+      "sha256": "cc6724c36790fb66c159472be55dd8c86de03eb13f5d17d3735e72a38db0a0ec"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/3/ghost_flint_3_stats.tres",
+      "sha256": "ee1d258a017b688e426efc8a1eee1c28e39edef9c654037f32bd155d1341194f"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/3/ghost_flint_3_effect.tres",
+      "sha256": "a572aee64e961d82512a72e3fe9c69f2fc85f92c032b3e528a40e3ec600eb5fd"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/4/ghost_flint_4_data.tres",
+      "sha256": "9bc52347298ab2392e48fc8f1b13a123fdae7b3b641c389ede6101955861418f"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/4/ghost_flint_4_stats.tres",
+      "sha256": "cd2676b4d595ba25e3a4247c183d7d837958c47b0b433ec9e09e23dcdc46ac4b"
+    },
+    {
+      "source": "weapons/melee/ghost_flint/4/ghost_flint_4_effect.tres",
+      "sha256": "26fa9d3b4b3bd103784793c10d1bf0c5cf8e70da659102c5263fb0ebd76115b1"
+    },
+    {
+      "source": "weapons/melee/wrench/1/wrench_data.tres",
+      "sha256": "4a359b7df844d63d7b24e2d2dcbcd8683f27135f2fa92e258a028976e2e20e00"
+    },
+    {
+      "source": "weapons/melee/wrench/1/wrench_stats.tres",
+      "sha256": "27a455eee501f62935d184b66475c959db017dce9a0450e8c8edecf5e0a7717b"
+    },
+    {
+      "source": "items/all/turret/turret_effect_1.tres",
+      "sha256": "57ae56f1d69ba862553c742742dc3c8e1390c325941b02f72b5ea199d45711c3"
+    },
+    {
+      "source": "weapons/melee/wrench/2/wrench_2_data.tres",
+      "sha256": "f37c362236133845236033e8a33e171509490e18d27709d8801907c5ffb56ec6"
+    },
+    {
+      "source": "weapons/melee/wrench/2/wrench_2_stats.tres",
+      "sha256": "69038a36959360a8fde1f6e17c07892cc811383c69883d79bf02f75c861825b7"
+    },
+    {
+      "source": "items/all/turret_flame/turret_flame_effect_1.tres",
+      "sha256": "3c11a5593b1a6f0789882c3c5f923903e292dc77b4333801c774508c2a879afe"
+    },
+    {
+      "source": "weapons/melee/wrench/3/wrench_3_data.tres",
+      "sha256": "27852dbe049eeafdd3980806e3fa25a071ab0435ecd8e22bf0108606edb98e80"
+    },
+    {
+      "source": "weapons/melee/wrench/3/wrench_3_stats.tres",
+      "sha256": "819d921036135e1128b30d9be3b90288e9c152850c61ef2257c4fc01ba6a34aa"
+    },
+    {
+      "source": "items/all/turret_laser/turret_laser_effect_1.tres",
+      "sha256": "12585de6565ce37c1c9917d0290788e6a99a9e9cfeb16e2e31c20e9c0af82170"
+    },
+    {
+      "source": "weapons/melee/wrench/4/wrench_4_data.tres",
+      "sha256": "99a05443c26b4e25484c8937ca60f57069303890a4c098134de3860e4be4348b"
+    },
+    {
+      "source": "weapons/melee/wrench/4/wrench_4_stats.tres",
+      "sha256": "bfaeaa3603b07321d89a293a609e3808213da19b5294e821137a130dc43dbc97"
+    },
+    {
+      "source": "items/all/turret_rocket/turret_rocket_effect_1.tres",
+      "sha256": "e5ea89f0c82762a28e2df70df5688b62cbc8ef14440a1651b3b14d19d700f725"
+    },
+    {
+      "source": "weapons/ranged/pistol/1/pistol_data.tres",
+      "sha256": "23762c8ed516f7614b8986b713176d8c7896c21419a36391530937aeb75711d8"
+    },
+    {
+      "source": "weapons/ranged/pistol/1/pistol_stats.tres",
+      "sha256": "71593e6cc9731715ca1fbcc5a02d9652eb796d2ac53ad91a0bd8e601396cb44c"
+    },
+    {
+      "source": "weapons/ranged/pistol/gun_pistol_shot_01.wav",
+      "sha256": "7445ecbf10732169221e6342722f7bcf1e9743a6b28ae62b3ea247868004ae19"
+    },
+    {
+      "source": "weapons/ranged/pistol/gun_pistol_shot_02.wav",
+      "sha256": "47c8866c9b38425e653485fbe1c1ae1f7f59a978fcfc1347de07cb7e48ebac55"
+    },
+    {
+      "source": "weapons/ranged/pistol/gun_pistol_shot_03.wav",
+      "sha256": "51afdff5e426825cc074348a9e8f54e4b83dd3575907f28524de74025ef73e73"
+    },
+    {
+      "source": "weapons/ranged/pistol/gun_pistol_shot_04.wav",
+      "sha256": "d7b3f90e5b3e08edcd3c30f5ca5451afe540c74b8af4943ccd42d0f8bd68caef"
+    },
+    {
+      "source": "weapons/ranged/pistol/gun_pistol_shot_05.wav",
+      "sha256": "e3825b165c91d8103edb760992e33653e03655c1729938f0ba568e31135afb4b"
+    },
+    {
+      "source": "weapons/ranged/pistol/2/pistol_2_data.tres",
+      "sha256": "63382d8f5724327ddb28d8d58855c5c7a28ed2bb25fbfba0e7eb6d37f5d7a397"
+    },
+    {
+      "source": "weapons/ranged/pistol/2/pistol_2_stats.tres",
+      "sha256": "e92d669e2b257c2d6784fdb0499afe5f06e763b781e5355882b2b715dd5dd13a"
+    },
+    {
+      "source": "weapons/ranged/pistol/3/pistol_3_data.tres",
+      "sha256": "305091b646144f7735714f2347bef0ec37ee5b7e3101e14b3b36b055d89c38a2"
+    },
+    {
+      "source": "weapons/ranged/pistol/3/pistol_3_stats.tres",
+      "sha256": "a43bf97c841fe0a70cf06b15d2a6bb5a00a38739dbf95e5af61359d4ef9476da"
+    },
+    {
+      "source": "weapons/ranged/pistol/4/pistol_4_data.tres",
+      "sha256": "40a86444240eb033944901ea98c0ae0f158a2deab4442222120e45f4ae923070"
+    },
+    {
+      "source": "weapons/ranged/pistol/4/pistol_4_stats.tres",
+      "sha256": "f4b98c608bb16e2c26daed5975e36acd170384ba267d65b424de5d0a16d23b32"
+    },
+    {
+      "source": "weapons/ranged/smg/1/smg_data.tres",
+      "sha256": "1183b60a1ef69c54a15e9f0b8d0011c0f5d493693e34b852f6547517ee5c01b0"
+    },
+    {
+      "source": "weapons/ranged/smg/1/smg_stats.tres",
+      "sha256": "58f35b45e7b1b09132c00c035a51c60cf35a3ca437df76aeb61cddaed9f8b90d"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_01.wav",
+      "sha256": "a51d6501f3b7892b508c604dfff8b43e9335828a63c72a44f07ef688ecdfacd4"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_02.wav",
+      "sha256": "c735502f9fb4d6875bf3196cbf786bb9a33889ed915c6770c98035672ccf2d89"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_03.wav",
+      "sha256": "e8402f83202e8677698d34d4f54f9e6d3c72482aca00ccc423ab88219d180da6"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_04.wav",
+      "sha256": "d68162c1f52cec77aba7ff7083e9db9d1e0d5a4bcaefeb134cd4080066d5fcdf"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_05.wav",
+      "sha256": "b2af70eea952951bfc207b2e0913353d725036fd75ce4730ae126bf833e3ef42"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_06.wav",
+      "sha256": "5da78b4034e7fe36d3224ec1f7173c0a98578804f3e44ef6667fddf4181df4a8"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_07.wav",
+      "sha256": "63a115e69acdee015abb5526b045b6116874592a0de41dcdfdb6d0383f2ab941"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_08.wav",
+      "sha256": "209dc8dbf2dba5721a15b40a82bd16883caa8bb1e103ccf95b00b510ac2f58b7"
+    },
+    {
+      "source": "weapons/ranged/smg/gun_submachine_auto_shot_09.wav",
+      "sha256": "9dca621c4749f381ef8fbf3cfd3cda19da8d3532c367762aa8063cac2f789df6"
+    },
+    {
+      "source": "weapons/ranged/smg/2/smg_2_data.tres",
+      "sha256": "e7ea3efc88d1187927e41fa42f91b746bfba676df52bceb00b427813371aa845"
+    },
+    {
+      "source": "weapons/ranged/smg/2/smg_2_stats.tres",
+      "sha256": "aaad48113c99cbbdd442ca4b7261e58cf8f7c6e7e96a67a28fce062d4b2f6618"
+    },
+    {
+      "source": "weapons/ranged/smg/3/smg_3_data.tres",
+      "sha256": "1a722f90cd531f36ea82508cc53b9994a61a97f6b37816f04a6f079c30c32ffe"
+    },
+    {
+      "source": "weapons/ranged/smg/3/smg_3_stats.tres",
+      "sha256": "b9f359d293a80cfbb5a7291d61a6b5ce3f83f1ee6b5fd23813fbe92ca65b0efb"
+    },
+    {
+      "source": "weapons/ranged/smg/4/smg_4_data.tres",
+      "sha256": "9ac25597656ec622ae2609f792d339203e5fae254372864e678e06de33ed496b"
+    },
+    {
+      "source": "weapons/ranged/smg/4/smg_4_stats.tres",
+      "sha256": "6121fedea0d1a073a278900c2bc8060a0788f635b2e296e20edd324287be9f5e"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/1/double_barrel_shotgun_data.tres",
+      "sha256": "48723757eab3309b349a0ff75550cda4b81467f8ed6852adb19e547e2e7fb044"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/1/double_barrel_shotgun_stats.tres",
+      "sha256": "0cb0917e072e6fd05f76362a4f44d9115b66c61a0bf4aa371429a890dfa8f74f"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/gun_shotgun_sawed_off_shot_01.wav",
+      "sha256": "df98978ca427ad69028d2e7007c30d3828f91b48b3e32b5785c3e0a3ae8ee634"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/gun_shotgun_sawed_off_shot_02.wav",
+      "sha256": "55f3bc01d9bb4b0246400124d3d81b08c16d13c82777b284c6a8952033020571"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/gun_shotgun_sawed_off_shot_03.wav",
+      "sha256": "cf83b9c18c40aeae05146537df6ffad4923ab981dbdddade7dd713b671b09f8e"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/gun_shotgun_sawed_off_shot_04.wav",
+      "sha256": "9086bf4aa7ca277289518ffa2b11b3fdf35df34f205e8dd7620a5a78d532df74"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/2/double_barrel_shotgun_2_data.tres",
+      "sha256": "bd4c0fd34410724ba318471ad20fc5d9408a3e8000ff14e765db79b68e83cf0a"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/2/double_barrel_shotgun_2_stats.tres",
+      "sha256": "3bdd19827124f2dc62e596ca9b0f7f1e4df34dbfa2ee178acd1448c2b08ab404"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/3/double_barrel_shotgun_3_data.tres",
+      "sha256": "8af82f171d87f2b7feffd926f7663b2ccc75d723c4c93f0f0ee60665b3d6110d"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/3/double_barrel_shotgun_3_stats.tres",
+      "sha256": "34eb852e8fb8c870cb940f219ccd1062c79241c7dc5ec6d27b512238d915b234"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/4/double_barrel_shotgun_4_data.tres",
+      "sha256": "e0c77ea0554a0028c61c9c5cf19444fb106de6ce356b0a7d32c1d39603eec378"
+    },
+    {
+      "source": "weapons/ranged/double_barrel_shotgun/4/double_barrel_shotgun_4_stats.tres",
+      "sha256": "7ce0baa253a9f7fd9b3a0c7292e4662069f80d5363950f5ccf6bcd1a5135855f"
+    },
+    {
+      "source": "weapons/ranged/slingshot/1/slingshot_data.tres",
+      "sha256": "db9979a202018df91c6e943420e8a68d1a2c17cac4241abfc043874b8b7194a5"
+    },
+    {
+      "source": "weapons/ranged/slingshot/1/slingshot_stats.tres",
+      "sha256": "215063bb36a5408d6a007adabb623d75a9f3959141fb857adb512dd343b4a9f5"
+    },
+    {
+      "source": "weapons/ranged/slingshot/2/slingshot_2_data.tres",
+      "sha256": "233d9eb4bef3595ce6b5bc56554bb3338005b57c463955914491800a60285dcd"
+    },
+    {
+      "source": "weapons/ranged/slingshot/2/slingshot_2_stats.tres",
+      "sha256": "79287a379e55e43d35df76061f765d5cdf934c54895998958ffc8e478f456282"
+    },
+    {
+      "source": "weapons/ranged/slingshot/3/slingshot_3_data.tres",
+      "sha256": "578d577e65540a5956c459e442d7d20c3682bbd211e08dc97f9ae3492720f50d"
+    },
+    {
+      "source": "weapons/ranged/slingshot/3/slingshot_3_stats.tres",
+      "sha256": "1d408f5e247076a85fc4d4fd47966e2c0644747aadcf279dfcb6019a296cdc09"
+    },
+    {
+      "source": "weapons/ranged/slingshot/4/slingshot_4_data.tres",
+      "sha256": "40bbea6d20c602c394d09850da6d48303093af4cb78f93befb2a7edc1beaea01"
+    },
+    {
+      "source": "weapons/ranged/slingshot/4/slingshot_4_stats.tres",
+      "sha256": "fc60ca5fd1d0f10b9ffe66b0287f871368189f0d820947ee014bb7b6ecbfcbf9"
+    },
+    {
+      "source": "weapons/ranged/taser/1/taser_data.tres",
+      "sha256": "b1d636fba079990e176171bdcbaafdcb08336ce5cec602efc1415a31413b0b8e"
+    },
+    {
+      "source": "weapons/ranged/taser/1/taser_stats.tres",
+      "sha256": "f4a27b2e2f0e429cbbb8d3f5ea19f327f09da42aef65bbd0254fb45b723053dd"
+    },
+    {
+      "source": "weapons/ranged/taser/taser.wav",
+      "sha256": "38c9a996fca4daa22d2b47a8974445fd0b82d6a21450e85e2c54420927d6dbcb"
+    },
+    {
+      "source": "weapons/ranged/taser/taser_effect_1.tres",
+      "sha256": "77ee583c37f5a5bf835834eed75e1f3d6c774068467b9b2a2743a4601edb3a8b"
+    },
+    {
+      "source": "weapons/ranged/taser/2/taser_2_data.tres",
+      "sha256": "100050a845db01ef5ad8e2c1b6d32997dc1e4e71960349b139730d886be88663"
+    },
+    {
+      "source": "weapons/ranged/taser/2/taser_2_stats.tres",
+      "sha256": "2d611ad22e2613a18f634078ea14878dd2263fda1888f9a73cda6ee0a76a62a2"
+    },
+    {
+      "source": "weapons/ranged/taser/3/taser_3_data.tres",
+      "sha256": "ac99662ae084aa6948b2eb6813eab0bced375b6c8ec8e13b3ff71cda88b8fb30"
+    },
+    {
+      "source": "weapons/ranged/taser/3/taser_3_stats.tres",
+      "sha256": "117ea52e1eeb044b1858eba7251cfc17cbf93688e38754034913bf5045026bab"
+    },
+    {
+      "source": "weapons/ranged/taser/4/taser_4_data.tres",
+      "sha256": "0857d6cd4201e7fdd2d1c3b889753e4f1a2bda7050f67642cc081e0d136a129a"
+    },
+    {
+      "source": "weapons/ranged/taser/4/taser_4_stats.tres",
+      "sha256": "db5a6b56fde5d65fedb98e03e35ec00b023e11a2acfb8675d75c6551e9c9966d"
+    },
+    {
+      "source": "weapons/ranged/wand/1/wand_data.tres",
+      "sha256": "fe60b7302dbf8ed44177b904f274a3bad1814f256ebec45a16f6ff4bc46f5431"
+    },
+    {
+      "source": "weapons/ranged/wand/1/wand_stats.tres",
+      "sha256": "a36c78cbe1a6650d2e7037c3b07efa56c4d6e88df8f61305cfc6502c4115be9d"
+    },
+    {
+      "source": "weapons/ranged/wand/1/wand_effect_1.tres",
+      "sha256": "080337a076cac366816dd4c4ae1a26207399d299816c06baebaf90561ba207c1"
+    },
+    {
+      "source": "weapons/ranged/wand/2/wand_2_data.tres",
+      "sha256": "7519e74b0256705edb0423ba77367b9a81c5797d09db58e75ef4719ba921692c"
+    },
+    {
+      "source": "weapons/ranged/wand/2/wand_2_stats.tres",
+      "sha256": "8c5669bf309d7de7ad088371f0444ac858dafc7e4de115f700719b297ef9f587"
+    },
+    {
+      "source": "weapons/ranged/wand/2/wand_2_effect_1.tres",
+      "sha256": "307498847ffd3bd7c5d48f0115b5291b5b8e1bb8715400cc450be5d937057e07"
+    },
+    {
+      "source": "weapons/ranged/wand/3/wand_3_data.tres",
+      "sha256": "93071156740fb57f19c19fcd4de21256842e3fb3e2cf64efcf7139bc11935de2"
+    },
+    {
+      "source": "weapons/ranged/wand/3/wand_3_stats.tres",
+      "sha256": "8372fc77653cd0cafdd0485d83af195df7a79e1b1b982595c1c4f355e925eabb"
+    },
+    {
+      "source": "weapons/ranged/wand/3/wand_3_effect_1.tres",
+      "sha256": "f4e52f8677e5b779a88e72ad285ec2482c0b9959da66d574a43424d00997de7c"
+    },
+    {
+      "source": "weapons/ranged/wand/4/wand_4_data.tres",
+      "sha256": "d78d57253a90194f7c703200d14212c7f027a47b96dc6c66dd915739de5c0984"
+    },
+    {
+      "source": "weapons/ranged/wand/4/wand_4_stats.tres",
+      "sha256": "9dd166be1775698e24d0063319a168388396b854bf898c5aef38943f6dfce941"
+    },
+    {
+      "source": "weapons/ranged/wand/4/wand_4_effect_1.tres",
+      "sha256": "eebf4f2005b3d6f88b3ac5a5abf23b6b38e4e30a6b23e0a35dc8195f8525e439"
+    },
+    {
+      "source": "weapons/ranged/icicle/1/icicle_data.tres",
+      "sha256": "cf433d0a7a49e7e2e001a5d80fff1b257518d29250efa21fec9f9f8dc9a58348"
+    },
+    {
+      "source": "weapons/ranged/icicle/1/icicle_stats.tres",
+      "sha256": "602dc1b3986f2afa3c41772b45208d6b5def94c481e29b53f0de8315b800185f"
+    },
+    {
+      "source": "weapons/ranged/icicle/2/icicle_2_data.tres",
+      "sha256": "bf9dbd18fc38f870eba9ca1b80fe24aa4e8fceb2a7c86869bae171f97c68a2fa"
+    },
+    {
+      "source": "weapons/ranged/icicle/2/icicle_2_stats.tres",
+      "sha256": "cc7105436a97b98db0e36759b6161ca9aa8072720ea327a3d1d0365ee64467b3"
+    },
+    {
+      "source": "weapons/ranged/icicle/3/icicle_3_data.tres",
+      "sha256": "1c741ae2400d8324830d63471db9657fda8de1fc0debabe5e0e89ccaec69f1e4"
+    },
+    {
+      "source": "weapons/ranged/icicle/3/icicle_3_stats.tres",
+      "sha256": "6b1ab6657d5679da8dfe63c16a02a92944aebe2f055862ea99aa62a2db5f64c7"
+    },
+    {
+      "source": "weapons/ranged/icicle/4/icicle_4_data.tres",
+      "sha256": "efdf5644bb0e1211ce4c25de5ba7441103078dbba1f80765168c8af49a80b15a"
+    },
+    {
+      "source": "weapons/ranged/icicle/4/icicle_4_stats.tres",
+      "sha256": "46c7c3da5ec78fea72e42384a1a8b11ac7a8c8856658c204a298905f52f57a46"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/1/rail_gun_1_data.tres",
+      "sha256": "816f759cd010797f788c612456213234f17804bfbb12a7f5bbd0152187817e95"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/1/rail_gun_1_stats.tres",
+      "sha256": "b05c1ce39b5868a4b402b9e533b8ea20e597899b5e8ededf2dc96fafb17456af"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_01.wav",
+      "sha256": "68c87be1462846762f53255c0bd82f66684a9a634c2d15a806ba3405693f28cc"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_02.wav",
+      "sha256": "41d9c6770cbd1260dbfb56e1f0f06f163946518859131864029ac08b3c132b7c"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_03.wav",
+      "sha256": "4c9a64565394cf2fd91bbe5485ceaebd7aefa81c6813849b8c7f9ff80581b7b8"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_04.wav",
+      "sha256": "c3955c3a1a24520d8fd577e228e11ec3c24e9edebd27bf4226f4996015799f44"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_05.wav",
+      "sha256": "9964314fe993853dc40d75fdebd7111b55b5baaf7673414af9312806e35b7766"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_06.wav",
+      "sha256": "3341fbccbf1a4b326f1b79b87309f552bbdf5af44b77fe8d7c7d27d3e4251719"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_07.wav",
+      "sha256": "a96104f4b6da81174e7937636f78e0a6c9e87a738cf0cb0231372b2bbda4a277"
+    },
+    {
+      "source": "weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_08.wav",
+      "sha256": "1b2491049cec879263aafbb73e25e2441dd3f65ebaff85ee0486fb696eb432b3"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/1/rail_gun_1_effect.tres",
+      "sha256": "e84150b786e76bd4272d4bc308316ac7fcfbb73711ad8af348bc721ce32eea51"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/2/rail_gun_2_data.tres",
+      "sha256": "3e7db9bfbae9025924ea1691cdf89f1327ede7df830a7e9c3f6811e5053da3cb"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/2/rail_gun_2_stats.tres",
+      "sha256": "48b28408c31b2e31f62fe234c99b33a719a9ff13e2aabf30f758a53282818f2e"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/2/rail_gun_2_effect.tres",
+      "sha256": "e8028063515f04a92a7d31e6ba32ba8cf53df12450b35bd38357c946a74abb4f"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/3/rail_gun_3_data.tres",
+      "sha256": "cd6beb2e5c53d090a8a88210396aa4c9e371977e071fe6a3afb6dc891f56d02e"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/3/rail_gun_3_stats.tres",
+      "sha256": "e9200094496131958d55ead2d063b6d411fee62679dfd9a2261799e70395845c"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/3/rail_gun_3_effect.tres",
+      "sha256": "f391f1e07c06307788b14a0d6c284b0a4a6b6e6b47056928ef5eb5bd96087351"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/4/rail_gun_4_data.tres",
+      "sha256": "dee04e754a5b1a27ea71ce9b007aaa4eab80b0060bd8eefe79b53d805eca7191"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/4/rail_gun_4_stats.tres",
+      "sha256": "033433a954a5831499d43da8ea11f4729db7c6e37c91b0ed014e349c20289cf7"
+    },
+    {
+      "source": "weapons/ranged/rail_gun/4/rail_gun_4_effect.tres",
+      "sha256": "264e5fa6b4ad5758b938b0121276f27994713fc9e648591f66c3bb4ac204f883"
+    },
+    {
+      "source": "items/characters/brawler/brawler_data.tres",
+      "sha256": "dc4a4d89047c244c10d2d4111ca75b91a5debe41886789977c25969bdc809997"
+    },
+    {
+      "source": "weapons/melee/hand/1/hand_data.tres",
+      "sha256": "8323a825a4b25fec45a3fa42284b4544881d358c7388be63cb101f0be3971cd6"
+    },
+    {
+      "source": "weapons/melee/hand/1/hand_stats.tres",
+      "sha256": "cf8890d75fd520f8fbc1964cce19722363da6e3c66795c641774d24653549105"
+    },
+    {
+      "source": "weapons/melee/hand/1/hand_effect_1.tres",
+      "sha256": "4056ee6c22567e08ae8690a27618c4030cf2f69c71d478ee2e2f2f9534146752"
+    },
+    {
+      "source": "weapons/melee/hand/2/hand_2_data.tres",
+      "sha256": "5c01b518173e92f21b71e9d8937fac30ed7d328803252b487f406dd9230c9844"
+    },
+    {
+      "source": "weapons/melee/hand/2/hand_2_stats.tres",
+      "sha256": "61130897c741d88b96ebf302c49018bb387905a17eae781543b6faf03cb67e66"
+    },
+    {
+      "source": "weapons/melee/hand/2/hand_2_effect_1.tres",
+      "sha256": "7940a964bd52dfdc8b9265eb0ddf043faba75f158d6d8aed91dc51ed1bc4d1d0"
+    },
+    {
+      "source": "weapons/melee/hand/3/hand_3_data.tres",
+      "sha256": "8f45863162c66d2a6bad693677973f54f611e9862287df9e36f119b5faf64fd9"
+    },
+    {
+      "source": "weapons/melee/hand/3/hand_3_stats.tres",
+      "sha256": "190bf6c37cb977d439edf317f89049a1742f94d504ce4c1eaaebbe05ec87cd90"
+    },
+    {
+      "source": "weapons/melee/hand/3/hand_3_effect_1.tres",
+      "sha256": "9197dcea2b587775c7997e56b5441c794793907c7f324a35cf04bc10ce7cf973"
+    },
+    {
+      "source": "weapons/melee/hand/4/hand_4_data.tres",
+      "sha256": "7de1fa6df464efacd18e515b6da49347afa340825ae224c19a8c7ea9e15557cb"
+    },
+    {
+      "source": "weapons/melee/hand/4/hand_4_stats.tres",
+      "sha256": "a6bb496e7c41ae8826525bec9a27838ea47ddcecee145d362266f25fbe97ccac"
+    },
+    {
+      "source": "weapons/melee/hand/4/hand_4_effect_1.tres",
+      "sha256": "61ad601885f9521ce40b644ff44d9cacbe8bccef9d0f0a47dcf8ae0fcdac6406"
+    },
+    {
+      "source": "weapons/melee/claw/1/claw_data.tres",
+      "sha256": "abaf2424c3ff8c0455d4fbed5a97048be3d37fa1eea8add5aeca0a04e91df9c1"
+    },
+    {
+      "source": "weapons/melee/claw/1/claw_stats.tres",
+      "sha256": "ebd08f1a684859f52009d25f89c6b0e3cf80c11985c81f3695ee7305de5596f2"
+    },
+    {
+      "source": "weapons/melee/claw/2/claw_2_data.tres",
+      "sha256": "af86542bc702c3377eced2f68e13c427e64ea5f12c4de405ec60f56fae27e715"
+    },
+    {
+      "source": "weapons/melee/claw/2/claw_2_stats.tres",
+      "sha256": "9b8eeef3342927932883d0832c1f48dc0ecfeae4ec3bb5bd70c16a31b5b9cadb"
+    },
+    {
+      "source": "weapons/melee/claw/3/claw_3_data.tres",
+      "sha256": "98a4c49496359c529afc7b52ede4a0c3fceebdb21cb20840f9b3859cd81a6c60"
+    },
+    {
+      "source": "weapons/melee/claw/3/claw_3_stats.tres",
+      "sha256": "2a374b64c50cb15e4e8db746d71d829d6a7da2374de4f2a95b328f01c549bfd6"
+    },
+    {
+      "source": "weapons/melee/claw/4/claw_4_data.tres",
+      "sha256": "242740156c742c74a6556dddcc32a3299d0329a115e2c50c4c557456c5db7912"
+    },
+    {
+      "source": "weapons/melee/claw/4/claw_4_stats.tres",
+      "sha256": "f1c3891ac1169f9b9559ab6c3b5166edbab5b41802fdfdb4c4fbc5902f5c94e8"
+    },
+    {
+      "source": "items/characters/crazy/crazy_data.tres",
+      "sha256": "68f4dbc9bb9f5e865c13885b3c99ef6de944bc9ce440a13f800cfd86f7c004f8"
+    },
+    {
+      "source": "weapons/melee/dagger/1/dagger_data.tres",
+      "sha256": "3f88c601f2ebfadf9163a7e89afe3bbf38a2338c241af421862400285a80335a"
+    },
+    {
+      "source": "weapons/melee/dagger/1/dagger_stats.tres",
+      "sha256": "c65beaacd3da7dd2e36aba38083a346eaaea189eba3cce573c688364200289df"
+    },
+    {
+      "source": "weapons/melee/dagger/1/dagger_effect.tres",
+      "sha256": "07eeb06f20f723e26a14d99e64487342cf83fee020c4414a1d888456268c7d18"
+    },
+    {
+      "source": "weapons/melee/dagger/2/dagger_2_data.tres",
+      "sha256": "25fcea4c40233ea82c9869d706a73a964df99146a52c1f587b9832e39c24fdc2"
+    },
+    {
+      "source": "weapons/melee/dagger/2/dagger_2_stats.tres",
+      "sha256": "a22683fb99f58c555469acd3bee2e2fde0712e27bba2940157f7ed318fbc5617"
+    },
+    {
+      "source": "weapons/melee/dagger/2/dagger_2_effect.tres",
+      "sha256": "67af573ba57ef0449af586b6d4d8609e2435e3e6ffa05ce4dd1e88e91732b491"
+    },
+    {
+      "source": "weapons/melee/dagger/3/dagger_3_data.tres",
+      "sha256": "a3bf2af17220ae0545a03e0fdf207748138bf56f3f00673c1e194abb9db733cb"
+    },
+    {
+      "source": "weapons/melee/dagger/3/dagger_3_stats.tres",
+      "sha256": "a4634e4aa7571a467e5a047441209a2db64095154adc200e7ed20262de549553"
+    },
+    {
+      "source": "weapons/melee/dagger/3/dagger_3_effect.tres",
+      "sha256": "796ae23e0e98fefdde4d6b1c29905a08e79f6145eb2dc0e2a5f208ce21258f70"
+    },
+    {
+      "source": "weapons/melee/dagger/4/dagger_4_data.tres",
+      "sha256": "bd6e0fb66891f9c44bc1efdd189a912b233ee0657765b6c5c3d1b968a25d292a"
+    },
+    {
+      "source": "weapons/melee/dagger/4/dagger_4_stats.tres",
+      "sha256": "ff85b3f31d090bc23b60109b238ce3730d592a1cb59b5c3c3774e396c4d1c1ab"
+    },
+    {
+      "source": "weapons/melee/dagger/4/dagger_4_effect.tres",
+      "sha256": "743e754bcd4825898d295e96cb9889aac0d3741ef21b173fd3594f1beb08d70a"
+    },
+    {
+      "source": "weapons/melee/scissors/1/scissors_data.tres",
+      "sha256": "8afbf4bfdc229f7359b861cb5506d2935e3d569dd1f46376f340fb5a8c3f945d"
+    },
+    {
+      "source": "weapons/melee/scissors/1/scissors_stats.tres",
+      "sha256": "7a639cb570b5e1b620e6ec21e5082fc53c70a2bf46792a596ab875e337d961b6"
+    },
+    {
+      "source": "weapons/melee/scissors/2/scissors_2_data.tres",
+      "sha256": "79539224b468625f4a5f7bf9de5265b060b8a0c8a112971c89806d1f0ec531be"
+    },
+    {
+      "source": "weapons/melee/scissors/2/scissors_2_stats.tres",
+      "sha256": "93142352610a1519b79ed408322977e405de9a241c78ba7ea3ca8ce051c0d78d"
+    },
+    {
+      "source": "weapons/melee/scissors/3/scissors_3_data.tres",
+      "sha256": "f0e5904e86f9e91c229a76201877504b1b828db75127abc94bc4ce960ea3e55f"
+    },
+    {
+      "source": "weapons/melee/scissors/3/scissors_3_stats.tres",
+      "sha256": "a2363d7be0c9ea71b6b797d3e6850c5531214ca1edf9207bc2139d4380b09730"
+    },
+    {
+      "source": "weapons/melee/scissors/4/scissors_4_data.tres",
+      "sha256": "b56b934288a33b91fd2b836ab07b2a65c3f50746ba6afb0ac16240fcaeb66a7e"
+    },
+    {
+      "source": "weapons/melee/scissors/4/scissors_4_stats.tres",
+      "sha256": "93ab7412d49ec2d27a8056c9880cc299d7faa43806b30bae5b1cbf85943a2e08"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/1/lightning_shiv_data.tres",
+      "sha256": "93b02549b944a75d004ddb91be2d541be4ef545d300e68d003a012f355d2e237"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/1/lightning_shiv_stats.tres",
+      "sha256": "61e68d2c0070c8c254ed5a3ce7ebb35dd782dffc0a80c01bb6b10f572e475c49"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/1/lightning_shiv_effect_1.tres",
+      "sha256": "6ce95b19cf6cb9f597577d13031125dce742d90f74063187e54853728e8553a2"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/2/lightning_shiv_2_data.tres",
+      "sha256": "0457657d868994e5f2fd3221176e94bc50d2eaabf90469a7dd7b5bba99ae1c18"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/2/lightning_shiv_2_stats.tres",
+      "sha256": "ad217ceb55e506875544519de4d275e5fc8dfb506bbca3e97bedd088489f0e13"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/2/lightning_shiv_2_effect_1.tres",
+      "sha256": "d68d2a2f4815907657b9edb78f44c9c9871748ae7f099fbdb1160deed5919f01"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/3/lightning_shiv_3_data.tres",
+      "sha256": "c632b8d5e03e2317a1fcc96ca8e97ed67966eb2fb34d36c513de68a4d3b85428"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/3/lightning_shiv_3_stats.tres",
+      "sha256": "6627a706eb6407e7566f75fbf18fcfb6fea369ff0b4844e885e7477bf06084f1"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/3/lightning_shiv_3_effect_1.tres",
+      "sha256": "64b699d92b8ca006af4a65fc631d547768a0576d487c2883f648bdfc0b61d86a"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/4/lightning_shiv_4_data.tres",
+      "sha256": "7f1516572ab757f706d87f2677b7896ea22a895189ce26d062092793faa4a1b8"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/4/lightning_shiv_4_stats.tres",
+      "sha256": "a622ef52b405f4d937c4e99d035c2fc2b705e097e7f5a00d90418d40c4a0ef05"
+    },
+    {
+      "source": "weapons/melee/lightning_shiv/4/lightning_shiv_4_effect_1.tres",
+      "sha256": "3a8e1c9b6b63e9e37ebca5943b6b7ff07aa32beaded60909a7d9fd9ac366bfc6"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/1/sharp_tooth_data.tres",
+      "sha256": "0937c2059f1bcc425ac2e42c0f021e1d7a5a91073d788566968703852be350a8"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/1/sharp_tooth_stats.tres",
+      "sha256": "c394eb2963b22bb9bd233d40fea70bdd8adee4e5893737b8823801877d7d35db"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/1/sharp_tooth_effect_0.tres",
+      "sha256": "d395f3086fdc69a8b5161c28533020da58d5196b6470bd9b1080e5b9e736fb43"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/2/sharp_tooth_2_data.tres",
+      "sha256": "a7cdfdcfd07e368510e9054db68ab9b0d93ac11dd53d8b70aa38f8d50da2768b"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/2/sharp_tooth_2_stats.tres",
+      "sha256": "d26ab579c5927f83a826a5d148601cd6a5179b690ceeb8c5427c3ba97b783798"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/2/sharp_tooth_2_effect_0.tres",
+      "sha256": "a30926808b6395aada67895213778bd9d785126987dd0237871046c5afe6e4b3"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/3/sharp_tooth_3_data.tres",
+      "sha256": "eda45ee357fba6e4a66a79282c5a28c3662cd00d9bffa6c5a6086e933a61a59e"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/3/sharp_tooth_3_stats.tres",
+      "sha256": "7ce1d1b35a0dbf71bce40bc55b30c64c40758c09f0789d42fb768fe6be105f9f"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/3/sharp_tooth_3_effect_0.tres",
+      "sha256": "6300c9a96a5c8250f50bd3c3cbada0954f702802526cf51f62fd092b0a1d0f96"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/4/sharp_tooth_4_data.tres",
+      "sha256": "1f7d611445902947c167b8a7ccb4c7d1c5ffc0189d2e04a7abe2b78eb14785ca"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/4/sharp_tooth_4_stats.tres",
+      "sha256": "15639b315bc4cc80b8271385bda14b586adeb5b8ebe099002ef6c8603560727e"
+    },
+    {
+      "source": "weapons/melee/sharp_tooth/4/sharp_tooth_4_effect_0.tres",
+      "sha256": "6708c068894327b03e6462ff97c3455b81597b85620f23e2880766390dab1533"
+    },
+    {
+      "source": "weapons/ranged/shuriken/1/shuriken_data.tres",
+      "sha256": "20325211af2b24cba09a51aa45e014a82d9afaeba59b0d5613b93b8e2c481e78"
+    },
+    {
+      "source": "weapons/ranged/shuriken/1/shuriken_stats.tres",
+      "sha256": "6f2db1b859590d37f36c8cba8c8c9ab35f2d93242dfae594938190f0cdb85da2"
+    },
+    {
+      "source": "weapons/ranged/shuriken/1/shuriken_effect.tres",
+      "sha256": "b110c4ac665aac31edcef6687a62232e03405c06dd4f8980d88b59da503f2961"
+    },
+    {
+      "source": "weapons/ranged/shuriken/2/shuriken_2_data.tres",
+      "sha256": "0a2dbdf973996b838a10e12a010ea08b931b740e9a018f04849abcd0a9d9c37b"
+    },
+    {
+      "source": "weapons/ranged/shuriken/2/shuriken_2_stats.tres",
+      "sha256": "16006260d9962e0f1a38d441def455c87c1ec5e8599692ee5f25aec581ef455a"
+    },
+    {
+      "source": "weapons/ranged/shuriken/2/shuriken_2_effect.tres",
+      "sha256": "8a8fb2dac123748401088106d74f8f47986f19547053f2104234781a9a934836"
+    },
+    {
+      "source": "weapons/ranged/shuriken/3/shuriken_3_data.tres",
+      "sha256": "e4b29c113f25740cf1ad767a042e2a6facf7f8c052f7d0e3949626ce1a00fcca"
+    },
+    {
+      "source": "weapons/ranged/shuriken/3/shuriken_3_stats.tres",
+      "sha256": "4e7a9c46b83f3c55efea1402645509ec30011d8afdc692da266317e5505fb4d0"
+    },
+    {
+      "source": "weapons/ranged/shuriken/3/shuriken_3_effect.tres",
+      "sha256": "5eae2c782463b0278f58d94f35903a9c194c8b5377b96247432650d899bff654"
+    },
+    {
+      "source": "weapons/ranged/shuriken/4/shuriken_4_data.tres",
+      "sha256": "5cc235f608d362ea619dc54b57842832802c645ed8226f91d3ea1cd17c2f4b71"
+    },
+    {
+      "source": "weapons/ranged/shuriken/4/shuriken_4_stats.tres",
+      "sha256": "a3697d79c3ea52ea7f976510ddc085f7cd74420b1a656df33dd614a379ebbd00"
+    },
+    {
+      "source": "weapons/ranged/shuriken/4/shuriken_4_effect.tres",
+      "sha256": "05b738619ec846376105e2ef0f954f496996201204253e1c6f2a8e64024fed22"
+    },
+    {
+      "source": "items/characters/ranger/ranger_data.tres",
+      "sha256": "03e16533886072ec1ab802cb66fc4a71c5e1a5ea73efb1c94786bf1c6c8ea672"
+    },
+    {
+      "source": "weapons/ranged/revolver/1/revolver_data.tres",
+      "sha256": "d6d61f70885bc0a831a3b485a6ae954436227df87f63d0494d52ad40b346a289"
+    },
+    {
+      "source": "weapons/ranged/revolver/1/revolver_stats.tres",
+      "sha256": "7438b2be5f82687e81aeaf6f703e0c8177f6fdb5901226e5989c72a252703146"
+    },
+    {
+      "source": "weapons/ranged/revolver/2/revolver_2_data.tres",
+      "sha256": "073c27e8f4390e8d0f8cdd8d6507bc6550b032ed6dd23c497bcfa60cf9189f0d"
+    },
+    {
+      "source": "weapons/ranged/revolver/2/revolver_2_stats.tres",
+      "sha256": "6f2f196918c587b00b649a4d8342a38389821847516b952a1efbf54b6b07dc5f"
+    },
+    {
+      "source": "weapons/ranged/revolver/3/revolver_3_data.tres",
+      "sha256": "a7a7099a237bbdc640dd43ce62aae275c953e6ee27e19f1db9fd2d265a2bb428"
+    },
+    {
+      "source": "weapons/ranged/revolver/3/revolver_3_stats.tres",
+      "sha256": "be14862ceffb273244c9dc2312fe20ecd370be02b85205b42471e8bb7989a745"
+    },
+    {
+      "source": "weapons/ranged/revolver/4/revolver_4_data.tres",
+      "sha256": "937a2075daa7affc25da4b9893fc633c3dc890f2c6308f349bc20b63fae88b1e"
+    },
+    {
+      "source": "weapons/ranged/revolver/4/revolver_4_stats.tres",
+      "sha256": "b728534d3b4cfd0e3b37fcf8169f4ef50c3e63b69f537b530d9f8477c19bce0d"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/1/laser_gun_data.tres",
+      "sha256": "ae51cb21787fb3dfd5cae5bc7934c7c504feee8c586b20b7041fc9f28993c3b4"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/1/laser_gun_stats.tres",
+      "sha256": "de2b2d22587a155cad304fa4cde6bca2b9c0f1135e6f21936f5dd5ea7e369eb5"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/gun_silenced_sniper1_shot_04.wav",
+      "sha256": "a1a9a7648a9f9145a7ec3892e76150101e129634f4a8f3413eaa4a9e68a44bb6"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/gun_silenced_sniper1_shot_04v2.wav",
+      "sha256": "b060dc30a4f80128d6f83ebade818ea7b536615e0efa8b8ab2cd4f973fd119b4"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/2/laser_gun_2_data.tres",
+      "sha256": "aecb089a2d5e0b39d1695bafbade7faf7e476737c35d5d320d4d9826986b4b47"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/2/laser_gun_2_stats.tres",
+      "sha256": "b99d7ca1ffa0b511f16e7ea20dbd5e1f225bf2e90903c19edc15c5bcdc32a4ef"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/3/laser_gun_3_data.tres",
+      "sha256": "a1297dfbace0a0b208b7f0add771889ee20b4ded293fefe3c5f3c31dacdadace"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/3/laser_gun_3_stats.tres",
+      "sha256": "f60aabd50755dbc17666341e42d89fe7a2be3db94cb9b60fb2f2f5ec9dbceaa5"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/4/laser_gun_4_data.tres",
+      "sha256": "414415b6fd91ae3f48beffe06b2e0ac668ba5b43d46c3eddcf11f2fad47186db"
+    },
+    {
+      "source": "weapons/ranged/laser_gun/4/laser_gun_4_stats.tres",
+      "sha256": "4e5121ec23bfab49848169db47f9b48fece4a08d2cca8652207f4e0c9570a6cf"
+    },
+    {
+      "source": "weapons/ranged/shredder/1/shredder_data.tres",
+      "sha256": "46c8ac0531ac16cd14d337dbdc3f7e5fbc00728020f7009791422eb7629c120d"
+    },
+    {
+      "source": "weapons/ranged/shredder/1/shredder_stats.tres",
+      "sha256": "736c911f2ba7a390b023b8cd2332ab30ace415b439005b63d5cce9a036fa3799"
+    },
+    {
+      "source": "weapons/ranged/shredder/gun_silenced_AR_sniper_shot_01.wav",
+      "sha256": "356b561f1297cf70fe44326320115aa7fd5303a13e39db1347b430cbaa6857f0"
+    },
+    {
+      "source": "weapons/ranged/shredder/gun_silenced_AR_sniper_shot_02.wav",
+      "sha256": "b5fd908546d7fc80f13ee94a9cd00f2deefdd746d11f1ecc2b0512e1a8eee952"
+    },
+    {
+      "source": "weapons/ranged/shredder/gun_silenced_AR_sniper_shot_03.wav",
+      "sha256": "fac493ebafdc23908c198fcd848d8aaee51c4709ba2e3f8345cfc3a2af790a1e"
+    },
+    {
+      "source": "weapons/ranged/shredder/gun_silenced_AR_sniper_shot_04.wav",
+      "sha256": "7a2df305a7dd5d8e677b289b2e07bc1254bbca3aa60fe304dbee43085c3b63da"
+    },
+    {
+      "source": "weapons/ranged/shredder/1/shredder_effect.tres",
+      "sha256": "37f67fdb34c27ac42efca83d23dfbbce87e030c1bc24d1f3385af4f898bcb8be"
+    },
+    {
+      "source": "weapons/ranged/shredder/2/shredder_2_data.tres",
+      "sha256": "722f9fa7abb5d64fde7459dd580c1da7ef35a7d76fe720c8fb4e667746e119cc"
+    },
+    {
+      "source": "weapons/ranged/shredder/2/shredder_2_stats.tres",
+      "sha256": "3331abaca7e84b64cc59ccba5c4033abee41ce91b23208468950b0f13c461a56"
+    },
+    {
+      "source": "weapons/ranged/shredder/2/shredder_2_effect.tres",
+      "sha256": "551b253128e09ad641c6033bd67aa1034004be47c8d366f5d488f81c16e8285e"
+    },
+    {
+      "source": "weapons/ranged/shredder/3/shredder_3_data.tres",
+      "sha256": "d5aeb2c0b79ec321531872896259adf4226f1f92a9b8123f9e30881d6ecda57a"
+    },
+    {
+      "source": "weapons/ranged/shredder/3/shredder_3_stats.tres",
+      "sha256": "5510da8b1436c5dc655108c39dd2eedb5cb90a3d8d57e13353f9e8f5e3370206"
+    },
+    {
+      "source": "weapons/ranged/shredder/3/shredder_3_effect.tres",
+      "sha256": "1653ff31505d09554bac607b211e20e4b180eb139d57f9c42fec0d794c9102af"
+    },
+    {
+      "source": "weapons/ranged/shredder/4/shredder_4_data.tres",
+      "sha256": "da60766ba1fcd1060222bb72022300ea5f2eb5163609d53649d9012314c3a118"
+    },
+    {
+      "source": "weapons/ranged/shredder/4/shredder_4_stats.tres",
+      "sha256": "3349116809b9aa63f273f360aa1ffce119589fe5074e04c8af8f188ae48e9d3b"
+    },
+    {
+      "source": "weapons/ranged/shredder/4/shredder_4_effect.tres",
+      "sha256": "c34ec2f2949c5cf6ca09a381054e73904888e06daa206acea9c325b3b03b4f92"
+    },
+    {
+      "source": "weapons/ranged/crossbow/1/crossbow_data.tres",
+      "sha256": "4bf3a4ed74d8aa57487beefd2bbc788d14b65382a1fd1c1df51514eb640f12eb"
+    },
+    {
+      "source": "weapons/ranged/crossbow/1/crossbow_stats.tres",
+      "sha256": "241423dd326a7f7b6af3b2d6731d2b371c7766489ff3cd86a80315e9fa285e40"
+    },
+    {
+      "source": "weapons/ranged/crossbow/bow_crossbow_arrow_shoot_type1_01.wav",
+      "sha256": "be3aeecd36d7396f69a9e3f88b3b4d0dc068d3ec6eed5f8a254833683b5b8eac"
+    },
+    {
+      "source": "weapons/ranged/crossbow/bow_crossbow_arrow_shoot_type1_02.wav",
+      "sha256": "44ef1f79cf94d2a327d87340ddae9bbb58fa1c231b5dd51dfbe2390dbd504362"
+    },
+    {
+      "source": "weapons/ranged/crossbow/bow_crossbow_arrow_shoot_type1_03.wav",
+      "sha256": "0aadc30fb3e18ad76d59bb9113a63cf8ad5d7c7879d3ed03ad72aa3b3f2f5b6f"
+    },
+    {
+      "source": "weapons/ranged/crossbow/bow_crossbow_arrow_shoot_type1_04.wav",
+      "sha256": "0cd11c95f266e1993dea8efb1791ec7998f76f9c2deb7ed5fe682bc54861d714"
+    },
+    {
+      "source": "weapons/ranged/crossbow/bow_crossbow_arrow_shoot_type1_05.wav",
+      "sha256": "c6c4fb476ecdb231588196cf9f7e5973e37ca7239c360a10b8fbf28a90f4861b"
+    },
+    {
+      "source": "weapons/ranged/crossbow/1/crossbow_effect.tres",
+      "sha256": "4173047f02cb291ac97541234d364bf80b11823bb777fc4bb12cab5de29a2102"
+    },
+    {
+      "source": "weapons/ranged/crossbow/2/crossbow_data_2.tres",
+      "sha256": "dac8ffe5f010f9424847f9a4794495fbcb94665f232f7d4229bda7a53a6707ce"
+    },
+    {
+      "source": "weapons/ranged/crossbow/2/crossbow_stats_2.tres",
+      "sha256": "66ab9d73094f0b27f97f0f46fb10fe42e1f2ffd08581ebb0b36d9cff427161dd"
+    },
+    {
+      "source": "weapons/ranged/crossbow/2/crossbow_effect_2.tres",
+      "sha256": "f878d571fdf079eb94d85c4dfd4933e01204c0e45f540c46c7219f824023844f"
+    },
+    {
+      "source": "weapons/ranged/crossbow/3/crossbow_data_3.tres",
+      "sha256": "f2d26bad531a496761438b1efec81e6dc2193f2686a47d73553cb9ac374bdd3b"
+    },
+    {
+      "source": "weapons/ranged/crossbow/3/crossbow_stats_3.tres",
+      "sha256": "5b003e7303f7d074b143edf2b308f41a61d7c1c1c23c9f5feaa4f55592ed2c79"
+    },
+    {
+      "source": "weapons/ranged/crossbow/3/crossbow_effect_3.tres",
+      "sha256": "3133a0e97cb71a2842ac8f10c3cefdacc15f7de17d8cd1688a87e7cb9f51d8a2"
+    },
+    {
+      "source": "weapons/ranged/crossbow/4/crossbow_data_4.tres",
+      "sha256": "d13149636ea7608ab4ceed1d169e227d06962767e9bf99e408795243441d4787"
+    },
+    {
+      "source": "weapons/ranged/crossbow/4/crossbow_stats_4.tres",
+      "sha256": "8448a017c281aa9acd92b391a5bcd6ae2a5031480af8d166b9569993b9716fcb"
+    },
+    {
+      "source": "weapons/ranged/crossbow/4/crossbow_effect_4.tres",
+      "sha256": "14ee193b6e757e6353beb9236ad74a4eb13274426b319fed3d7a418807e73502"
+    },
+    {
+      "source": "weapons/melee/spear/1/spear_data.tres",
+      "sha256": "27733b6e6072cb1a6ce0d930794de72f1ec25fa77e196d18e8e605c1508acc64"
+    },
+    {
+      "source": "weapons/melee/spear/1/spear_stats.tres",
+      "sha256": "9a89101e60d39de01e447d903ecf51098398844477cfec49fae7812734c87bbc"
+    },
+    {
+      "source": "weapons/melee/spear/2/spear_2_data.tres",
+      "sha256": "83699e31e5e03701256bd77cd5171713f0f1aaade1aabd397cc6a61343feedfd"
+    },
+    {
+      "source": "weapons/melee/spear/2/spear_2_stats.tres",
+      "sha256": "38e802b7e3c4d27126dcd8e2053ad0de27e5a48c08d2cd6b26763d5829effb94"
+    },
+    {
+      "source": "weapons/melee/spear/3/spear_3_data.tres",
+      "sha256": "dca37d27f636acae642247e40385a7f478b87f3cf708480607cd323affc57ad7"
+    },
+    {
+      "source": "weapons/melee/spear/3/spear_3_stats.tres",
+      "sha256": "69d75beb147e3e3a03ee739ebf041007f5ca7e2adf0fb8eacb359a5808f7673e"
+    },
+    {
+      "source": "weapons/melee/spear/4/spear_4_data.tres",
+      "sha256": "12b0711b773d976e94571b80063be60cb304b26a1bf5e02f45f1c9fa04ba2851"
+    },
+    {
+      "source": "weapons/melee/spear/4/spear_4_stats.tres",
+      "sha256": "442343c02f491aa9f120cf16c4b1059f9a803dddde02db449a99201acadd0133"
+    }
+  ]
+}

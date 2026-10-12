@@ -67,7 +67,7 @@ namespace Scrapshift
 
         void LootUI()
         {
-            Box(new Rect(0,0,1440,900),new Color(.19f,.175f,.15f,.98f));DrawStatsPanel();
+            Box(FullCanvas,new Color(.19f,.175f,.15f,.98f));DrawStatsPanel();
             OutlinedText(24,48,1062,64,"Item found!",new GUIStyle(number){alignment=TextAnchor.MiddleCenter});
             Text(24,125,1062,40,$"Wave {Rules.Wave} cleared  /  {Rules.PendingCrates} crate(s) remaining",center);
             var item=Rules.CrateItem;if(item==null)return;

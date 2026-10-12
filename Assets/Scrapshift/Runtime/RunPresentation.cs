@@ -17,7 +17,7 @@ namespace Scrapshift
 
         void StartSelectedRun()
         {
-            pauseOptions=false;Begin();Rules.Inventory.Clear();Rules.Inventory.Add(catalog.Weapon(startingWeapons[startingWeapon],1));SyncEquipment();
+            pauseOptions=false;Begin();Rules.Start(SelectedCharacter,SelectedWeapon.id);SyncEquipment();ResetStructures();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             gameCamera.transform.position=Vector3.back*20;PoseArrival(0);
@@ -53,7 +53,11 @@ namespace Scrapshift
         }
         void ConfirmMenu()
         {
-            if(Rules.Phase==RunPhase.Title){if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();}
+            if(Rules.Phase==RunPhase.Title)
+            {
+                if(menuPage==1&&randomCharacter){ChangeLook(UnityEngine.Random.Range(0,4)-playerAnimation.lookIndex);randomCharacter=false;}
+                if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();
+            }
             else if(!endSummary)endSummary=true;else StartSelectedRun();
         }
         static void RoundedBox(Rect r,Color color,float radius=12) => GUI.DrawTexture(r,Texture2D.whiteTexture,ScaleMode.StretchToFill,true,0,color,0,radius);
@@ -90,51 +94,34 @@ namespace Scrapshift
                 if(MenuButton(new Rect(470,375,500,65),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);}
                 Text(470,477,500,40,$"Effects volume  {sound.Volume*100:0}%",center);
                 float volume=GUI.HorizontalSlider(new Rect(490,543,460,30),sound.Volume,0,1);if(Mathf.Abs(volume-sound.Volume)>.001f)sound.SetVolume(volume);
+                if(MenuButton(new Rect(470,605,500,65),DisplayLabel))ToggleFullscreen();
                 if(MenuButton(new Rect(50,805,235,55),"Back"))menuPage=0;return;
             }
             OutlinedText(250,48,940,78,menuPage==1?"Character Selection":menuPage==2?"Weapon Selection":"Difficulty Selection",new GUIStyle(title){fontSize=49,alignment=TextAnchor.MiddleCenter});
             if(MenuButton(new Rect(24,24,178,44),"Back"))menuPage--;
-            float left=menuPage==1?335:menuPage==3?80:230;
-            float cardWidth=menuPage==3?530:570;
+            float left=menuPage==1?335:menuPage==3?40:210;
+            float cardWidth=570;
             RoundedBox(new Rect(left,155,cardWidth,420),new Color(.16f,.15f,.13f,.82f));
-            Text(left+20,165,cardWidth-40,58,playerAnimation.Look?.name??"Scavenger",new GUIStyle(heading){fontSize=40,alignment=TextAnchor.MiddleCenter});
-            Frame(new Rect(left+20,245,204,245),new Color(.32f,.29f,.25f));
-            Portrait(new Vector2(left+122,368),100,playerAnimation.Look);
-            DrawStatIcon("max_hp",new Rect(left+246,327,25,25));
-            Text(left+282,324,260,35,"10 Max HP",body);
-            Text(left+248,369,298,100,"Same starting stats\nChoose your appearance",tiny);
+            CharacterDetails(left);
             if(menuPage==1)
             {
                 RoundedBox(new Rect(935,155,230,420),panelColor);
                 Text(955,184,190,40,"Run options",heading);
                 Text(957,265,185,150,"Single player\n20 waves\nThe salvage yard",body);
-                var looks=playerAnimation.looks;float first=720-looks.Length*42;
-                for(int i=0;i<looks.Length;i++)
-                {
-                    Rect r=new Rect(first+i*84,642,74,78);
-                    if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)ChangeLook(i-playerAnimation.lookIndex);
-                    if(MenuButton(r,"",playerAnimation.lookIndex==i)){ChangeLook(i-playerAnimation.lookIndex);ConfirmMenu();}
-                    Portrait(r.center,46,looks[i]);
-                }
+                CharacterGrid();
             }
             else
             {
-                var w=catalog.Weapon(startingWeapons[startingWeapon],1);
+                var w=SelectedWeapon;
                 float wx=menuPage==3?630:822;
                 RoundedBox(new Rect(wx,155,330,420),panelColor);
                 Text(wx+20,174,290,47,w.id=="smg"?"SMG":w.title,heading);
                 DrawIcon(w.image,new Rect(wx+20,246,86,83));
                 Text(wx+123,252,185,75,WeaponSets.For(w)?.Name??"Weapon",body);
-                DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290);
+                DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290,PreviewRules());
                 if(menuPage==2)
                 {
-                    for(int i=0;i<startingWeapons.Length;i++)
-                    {
-                        Rect r=new Rect(468+i*84,642,74,78);
-                        if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)startingWeapon=i;
-                        if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
-                        DrawIcon(catalog.Weapon(startingWeapons[i],1).image,new Rect(r.x+9,r.y+9,56,60));
-                    }
+                    WeaponGrid();
                 }
                 else
                 {
@@ -149,7 +136,7 @@ namespace Scrapshift
         void ReferenceTitleUI()
         {
             if(menuPage!=0){SelectionUI();return;}
-            Box(new Rect(0,0,1440,900),new Color(.25f,.24f,.22f));
+            Box(FullCanvas,new Color(.25f,.24f,.22f));
             var old=GUI.color;GUI.color=new Color(.65f,.6f,.53f,.28f);
             for(int i=0;i<20;i++)DrawIcon(catalog.data.enemies[i%catalog.data.enemies.Length].image,new Rect((i%5)*320-90+(i/5%2)*65,(i/5)*260-55,240,235));
             GUI.color=old;

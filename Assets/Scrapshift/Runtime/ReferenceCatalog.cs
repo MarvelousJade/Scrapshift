@@ -36,6 +36,14 @@ namespace Scrapshift
         public float damage,interval,range,spread,crit,knockback;
         public Sprite image;
         public AudioClip[] sounds;
+        public string[] setIds,soundNames;
+        public StatEffect[] scaling;
+        public WeaponTrait[] traits;
+        public bool available=true;
+        public float critMultiplier=2,lifesteal,projectileSpeed=30,pierceLoss=.5f,bounceLoss=.5f,reloadMultiplier=1,recoil=.25f,recoilHalf=.1f;
+        public int bounce,reloadEvery=-1;
+        public bool HasSet(string id)=>setIds!=null&&Array.IndexOf(setIds,id)>=0;
+        public WeaponTrait Trait(string key)=>traits==null?null:Array.Find(traits,t=>t.key==key);
         public string Detail=>$"{damage:0} damage | {interval:0.00}s\n{range:0.0} range"+(pellets>1?$" | {pellets} shots":"")+(melee?"\nMelee":"\nRanged");
     }
     [Serializable] public sealed class StatEffect
@@ -91,10 +99,15 @@ namespace Scrapshift
         public Equipment[] equipment;
         public ItemEntry[] items;
         public UpgradeEntry[] upgrades;
+        public CharacterProfile[] characters;
+        public SetEntry[] sets;
+        public int rosterSlots;
     }
     public sealed class ReferenceCatalog:ScriptableObject
     {
         public CatalogData data;
+        public string starterVersion;
+        void OnEnable(){if(data!=null)WeaponSets.Configure(data.sets);}
         public Sprite warning;
         public Sprite[] extraStatIcons;
         public Sprite[] scrapShapes, muzzleFrames;

@@ -109,24 +109,32 @@ namespace Scrapshift
         public void Configure(ReferenceCatalog source)
         {
             catalog=source;
+            WeaponSets.Configure(source?.data.sets);
         }
         float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
-        public float Stat(string name)=>PermanentStat(name)+WeaponSets.Bonus(Inventory,name);
+        public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name))*(Character?.Gain(name)??1);
         public int SetCount(WeaponSet set)=>WeaponSets.Count(Inventory,set);
-        public float WeaponRange(Equipment weapon)=>Mathf.Max(.5f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f));
+        public float WeaponRange(Equipment weapon)=>Mathf.Max(.5f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
         void Add(string name,float value)
         {
             stats[name]=PermanentStat(name)+value;
             Health=Math.Min(Health,MaxHealth);
         }
         public void ReturnToTitle() { Phase=RunPhase.Title; }
-        public void Start()
+        public void Start(CharacterProfile character=null,string weaponId=null)
         {
-            stats.Clear();
+            stats.Clear();Character=character;
             Inventory.Clear();
             Items.Clear();
             crates.Clear();CrateItem=null;regenElapsed=lifeStealCooldown=0;
-            if(catalog!=null)Inventory.Add(catalog.Weapon("pistol",1));
+            if(catalog!=null)
+            {
+                var starting=catalog.Weapon(weaponId??"pistol",1);
+                if(!CanEquip(starting)||character!=null&&Array.IndexOf(character.startingWeapons,starting.id)<0)throw new ArgumentException("Invalid starting weapon for character");
+                Inventory.Add(starting);
+                if(!string.IsNullOrEmpty(character?.bonusWeapon))Inventory.Add(catalog.Weapon(character.bonusWeapon,1));
+            }
+            if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
             Phase=RunPhase.Playing;
             Wave=1;
             Remaining=Durations[0];
@@ -249,7 +257,7 @@ namespace Scrapshift
                 int tier=ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 if(weapon)
                 {
-                    var fallback=catalog.data.equipment.Where(w=>w.tier==tier).ToArray();
+                    var fallback=catalog.data.equipment.Where(w=>w.tier==tier&&CanEquip(w)).ToArray();
                     var pool=fallback.Where(w=>!excluded.Any(s=>s.weapon==w)).ToArray();
                     if(pool.Length==0)pool=fallback;
                     double wanted=random.NextDouble();
@@ -287,7 +295,7 @@ namespace Scrapshift
         {
             if(Phase!=RunPhase.Shop||i<0||i>=4||Shop[i]==null)return false;
             var s=Shop[i];
-            return Scrap>=Price(s)&&(s.weapon==null||Inventory.Count<6||FindMatch(s.weapon)>=0);
+            return Scrap>=Price(s)&&(s.weapon==null||CanEquip(s.weapon)&&(Inventory.Count<6||FindMatch(s.weapon)>=0));
         }
         public bool Buy(int i)
         {

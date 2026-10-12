@@ -118,7 +118,8 @@ namespace Scrapshift
             {
                 var p = gameCamera.WorldToViewportPoint(f.pos);
                 float width = f.text.Length > 5 ? 260 : 120;
-                float x = p.x * 1440 - width / 2, y = (1 - p.y) * 900 - 35;
+                Vector2 canvas=PresentationLayout.ViewportToCanvas(p,Screen.width,Screen.height);
+                float x=canvas.x-width/2,y=canvas.y-35;
                 var style = f.big ? damageBig : damageSmall;
                 var c = f.color; c.a = Mathf.Clamp01((.72f - f.age) * 5);
                 style.normal.textColor = new Color(.1f,.08f,.1f,c.a);

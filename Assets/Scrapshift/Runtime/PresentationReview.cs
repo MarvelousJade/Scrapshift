@@ -32,7 +32,7 @@ namespace Scrapshift
             {
                 case 0:break;
                 case 1:ConfirmMenu();break;
-                case 2:ChangeLook(1);ConfirmMenu();startingWeapon=1;break;
+                case 2:ChangeLook(3);ConfirmMenu();startingWeapon=1;break;
                 case 3:ConfirmMenu();break;
                 case 4:
                     ConfirmMenu();presentationReport.canopyInstantiated=parachute!=null;presentationReport.selectedWeaponStarted=Rules.Inventory.Count==1&&Rules.Inventory[0].id=="smg";
@@ -46,7 +46,7 @@ namespace Scrapshift
                 case 8:playerAnimation.Tick(Vector2.left,0,true);UpdateEquipment(0);break;
                 case 9:
                     playerPos=new Vector2(-9.6f,6.8f);player.transform.position=playerPos;playerShadow.Place(playerPos,ActorPresentation.PlayerScale);UpdateEquipment(0);
-                    gameCamera.transform.position=(Vector3)ArenaGeometry.CameraPosition(playerPos,PresentationLayout.Aspect)+Vector3.back*20;
+                    gameCamera.transform.position=(Vector3)ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect)+Vector3.back*20;
                     var edgeEnemy=FeelEnemy(playerPos+new Vector2(1,-.5f));edgeEnemy.activeAge=1;UpdateEnemyPresentation(edgeEnemy,Vector2.zero,0);break;
                 case 10:invulnerable=0;HurtPlayer(10000,catalog.Enemy("baby_alien"));break;
                 case 11:ConfirmMenu();break;

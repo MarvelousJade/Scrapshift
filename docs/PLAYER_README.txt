@@ -9,9 +9,11 @@ Crates resolve before levels. Remaining crates are collected automatically.
 At wave end, choose queued stat upgrades with 1-4 or the mouse.
 Shop: buy items/weapons, lock offers, combine matching weapons, recycle.
 R: paid reroll. Six equipped weapons maximum.
-Eight item types, six weapon families, up to six floating weapons.
-Gun / Precise / Primitive set bonuses count duplicates, regardless of tier.
-Start -> choose Rookie, Veteran or Punk (cosmetic; same stats) -> starting weapon -> Danger 0.
+Eight item types, 24 available weapon families, up to six floating weapons.
+Fourteen weapon sets count duplicates, regardless of tier; some weapons belong to two sets.
+Start -> Random or Rookie / Pugilist / Hothead / Sharpshot -> starting weapon -> Danger 0.
+Each character has different modifiers and starting choices. The remaining 46 character slots are locked.
+Fullscreen is the default. F11 or Options > Display toggles fullscreen/windowed; your choice is saved.
 New runs enter with a 1.2-second parachute landing before the wave timer starts.
 Options: turn Reduced Motion off to see the full descent and squash animation.
 The player has a smooth shell, swappable facial details and widely spaced, rounded silver boat-shaped tiny legs.

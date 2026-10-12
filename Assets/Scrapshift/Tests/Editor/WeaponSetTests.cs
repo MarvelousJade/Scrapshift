@@ -17,9 +17,9 @@ namespace Scrapshift.Tests
         }
         [Test] public void EveryShippedWeaponTierHasItsReferenceMembership()
         {
-            Assert.AreEqual(24,catalog.data.equipment.Length);
+            Assert.AreEqual(120,catalog.data.equipment.Length);
             foreach(var weapon in catalog.data.equipment)
-                Assert.AreSame(weapon.id=="knife"?WeaponSets.Precise:weapon.id=="spear"?WeaponSets.Primitive:WeaponSets.Gun,WeaponSets.For(weapon));
+                Assert.AreEqual(weapon.setIds[0],WeaponSets.For(weapon).Id);
             Assert.IsNull(WeaponSets.For(new Equipment {id="future_unknown"}));
         }
         [TestCase(0,0,0)] [TestCase(1,0,0)] [TestCase(2,10,3)] [TestCase(3,20,6)]

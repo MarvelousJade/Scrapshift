@@ -223,3 +223,7 @@ Weapon recoil supplied a second example: matching the numerical cooldown alone d
 ## Further debugging evidence: hit audio and mirrored previews
 
 See [player-hit-and-leg-correction.md](player-hit-and-leg-correction.md) for a concrete wrong-asset-mapping diagnosis, a GUI transform-order bug found visually, regression choices, evidence limits and collaborator attribution. Use the documented facts when preparing an answer; do not describe agent-run checks as personally executed tests.
+
+## Data boundaries and verifying the actual display
+
+The four-character pass offers two further examples: replacing cosmetic-only choices with shared gameplay/preview rules, and fixing a recursive Unity serialization schema by separating leaf projectile stats from weapons with effects. A requested ultrawide capture was actually clamped to 1920x1080, so the report records the real dimensions rather than claiming a test that did not occur. See fullscreen-and-starter-characters.md for source mapping, real failures and attribution. Do not present agent-run checks as personally executed work.

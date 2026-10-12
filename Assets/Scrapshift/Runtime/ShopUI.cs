@@ -39,17 +39,17 @@ namespace Scrapshift
             GUI.matrix=previousMatrix;
         }
 
-        void DrawOfferDetail(ShopOffer offer,float x,float y,float width)
+        void DrawOfferDetail(ShopOffer offer,float x,float y,float width,RunRules preview=null)
         {
             if(offer.weapon!=null)
             {
                 var w=offer.weapon;
-                float damage=Mathf.Max(1,w.damage+Rules.Stat(w.melee?"melee_damage":"ranged_damage"))*Rules.DamageScale;
+                float damage=(preview??Rules).WeaponDamage(w);
                 string detail=$"Damage: <color=#79FF62>{damage:0.#}</color>"+(w.pellets>1?$" x {w.pellets}":"")+
-                    $"\nCritical: x2 ({Mathf.Clamp01(Rules.CritChance+w.crit)*100:0}% chance)"+
-                    $"\nCooldown: {Mathf.Max(.035f,w.interval/Rules.FireRate)+WeaponMotion.Duration(w,Rules.FireRate):0.00}s"+
+                    $"\nCritical: x{w.critMultiplier:0.#} ({Mathf.Clamp01((preview??Rules).CritChance+w.crit)*100:0}% chance)"+
+                    $"\nCooldown: {Mathf.Max(.035f,w.interval/(preview??Rules).WeaponFireRate(w))+WeaponMotion.Duration(w,(preview??Rules).WeaponFireRate(w)):0.00}s"+
                     $"\nKnockback: {w.knockback:0.#}"+
-                    $"\nRange: {Rules.WeaponRange(w):0.0}"+
+                    $"\nRange: {(preview??Rules).WeaponRange(w):0.0}"+
                     (w.piercing>0?$"\nPiercing: {w.piercing}":"");
                 var style=new GUIStyle(body) { fontSize=18,richText=true };
                 Text(x,y,width,218,detail,style);
@@ -67,7 +67,7 @@ namespace Scrapshift
 
         void ShopUI()
         {
-            Box(new Rect(0,0,1440,900),new Color(.19f,.175f,.15f,.97f));
+            Box(FullCanvas,new Color(.19f,.175f,.15f,.97f));
             OutlinedText(24,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
             DrawIcon(catalog.scrapShapes[0],new Rect(558,34,34,40));
             Text(604,26,170,58,Rules.Scrap.ToString(),number);
@@ -141,19 +141,22 @@ namespace Scrapshift
         }
 
         WeaponSet hoveredSet;
+        Vector2 setScroll;
         void DrawWeaponSets()
         {
             hoveredSet=null;
             Text(1130,531,266,28,"Weapon sets",new GUIStyle(body) {fontSize=20,fontStyle=FontStyle.Bold});
-            for(int i=0;i<WeaponSets.All.Count;i++)
+            var active=System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(WeaponSets.All,set=>Rules.SetCount(set)>0));
+            setScroll=GUI.BeginScrollView(new Rect(1124,565,283,100),setScroll,new Rect(0,0,265,active.Length*46));
+            for(int i=0;i<active.Length;i++)
             {
-                var set=WeaponSets.All[i];int count=Rules.SetCount(set);float y=566+i*32;
-                var label=new GUIStyle(tiny);label.normal.textColor=count>=2?new Color(.39f,1,.29f):tiny.normal.textColor;
-                Text(1130,y,127,32,$"{set.Name} {count}/6",label);
-                var effect=new GUIStyle(label) {fontSize=15};
-                Text(1260,y,140,34,count>=2?set.Description(count):"Needs 2 weapons",effect);
-                if(new Rect(1124,y,280,34).Contains(Event.current.mousePosition))hoveredSet=set;
+                var set=active[i];int count=Rules.SetCount(set);float y=i*46;
+                var label=new GUIStyle(tiny){fontSize=15};label.normal.textColor=count>=2?new Color(.39f,1,.29f):tiny.normal.textColor;
+                Text(6,y,110,44,$"{set.Name} {count}/6",label);
+                Text(119,y,140,44,count>=2?set.Description(count):"Needs 2 weapons",label);
+                if(new Rect(0,y,265,44).Contains(Event.current.mousePosition))hoveredSet=set;
             }
+            GUI.EndScrollView();
         }
         void DrawSetTooltip()
         {

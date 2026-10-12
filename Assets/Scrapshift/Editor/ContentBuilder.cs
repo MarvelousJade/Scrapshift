@@ -21,7 +21,7 @@ namespace Scrapshift.Editor
         public static void Generate()
         {
             // Safe to invoke again: authored content is never overwritten by the generator.
-            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureCombatPresentation(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); return; }
+            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureCombatPresentation(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); EnsureStarterProfiles(); return; }
             foreach (var sub in new[] { "Meshes", "Materials", "Prefabs", "Definitions", "Scenes" }) Directory.CreateDirectory(Root + "/" + sub);
             AssetDatabase.Refresh();
             quad = Polygon("Quad", 4, 45, 1.41421356f);
@@ -86,14 +86,14 @@ namespace Scrapshift.Editor
             game.titleModel = display;
             PlayerSettings.companyName = "Shaoyu"; PlayerSettings.productName = "Scrapshift";
             PlayerSettings.defaultScreenWidth = 1440; PlayerSettings.defaultScreenHeight = 900;
-            PlayerSettings.fullScreenMode = FullScreenMode.Windowed; PlayerSettings.resizableWindow = true;
+            PlayerSettings.fullScreenMode = FullScreenMode.FullScreenWindow; PlayerSettings.resizableWindow = true;
             PlayerSettings.runInBackground = true; PlayerSettings.colorSpace = ColorSpace.Gamma;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Standalone, ScriptingImplementation.Mono2x);
             QualitySettings.vSyncCount = 0; QualitySettings.antiAliasing = 4;
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };
             AssetDatabase.SaveAssets();
-            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); Scan(); Debug.Log("Scrapshift content generated.");
+            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); EnsureStarterProfiles(); Scan(); Debug.Log("Scrapshift content generated.");
         }
 
         static Color Hex(string hex) { ColorUtility.TryParseHtmlString(hex, out var c); return c; }
@@ -190,6 +190,8 @@ namespace Scrapshift.Editor
             Generate(); Scan(); Directory.CreateDirectory("Builds/Windows");
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = new[] { ScenePath }, locationPathName = "Builds/Windows/Scrapshift.exe", target = BuildTarget.StandaloneWindows64, options = BuildOptions.None });
             File.WriteAllText("artifacts/build.txt", $"Result: {report.summary.result}\nErrors: {report.summary.totalErrors}\nWarnings: {report.summary.totalWarnings}\nBytes: {report.summary.totalSize}\n");
+            File.WriteAllLines("artifacts/build-messages.txt",report.steps.SelectMany(s=>s.messages)
+                .Where(m=>m.type==LogType.Warning||m.type==LogType.Error||m.type==LogType.Exception).Select(m=>m.type+": "+m.content));
             if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors != 0) throw new Exception("Windows build failed or logged errors; inspect artifacts/raw/build.log.");
         }
     }
