@@ -17,7 +17,7 @@ namespace Scrapshift
 
         void StartSelectedRun()
         {
-            pauseOptions=false;Begin();Rules.Start(SelectedCharacter,SelectedWeapon.id);SyncEquipment();ResetStructures();
+            pauseOptions=false;Begin();Rules.Start(SelectedCharacter,SelectedWeapon.id);StartWave();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             gameCamera.transform.position=Vector3.back*20;PoseArrival(0);
@@ -125,7 +125,7 @@ namespace Scrapshift
                     Text(1000,183,330,45,"Danger 0",heading);
                     Text(1000,270,330,110,"No modifiers\n20 waves",body);
                     if(MenuButton(new Rect(678,633,84,84),"0",true))StartSelectedRun();
-                    Text(460,724,520,36,"Standard enemies · 20 waves",center);
+                    Text(460,724,520,36,"Standard enemies Â· 20 waves",center);
                 }
             }
         }

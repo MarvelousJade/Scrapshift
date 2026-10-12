@@ -376,7 +376,9 @@ namespace Scrapshift
                 var s = shots[i]; Vector2 old = s.pos;
                 s.pos += s.velocity * Mathf.Min(dt, Mathf.Max(0, s.life)); s.life -= dt;
                 s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -2);
-                if (s.hostile)
+                if(s.structureSpec?.healing==true)
+                {if(SegmentDistance(PlayerHurtCenter,old,s.pos)<=CombatGeometry.PlayerHurtRadius+1.04f){float hp=Rules.Health;Rules.Heal(s.damage);if(Rules.Health>hp){FloatText(playerPos,$"+{Rules.Health-hp:0} HP",mint,false);sound.Play(SoundCue.Pickup);}s.life=0;}}
+                else if (s.hostile)
                 {
                     if (SegmentDistance(PlayerHurtCenter, old, s.pos) <= CombatGeometry.PlayerHurtRadius + CombatGeometry.HostileRadius)
                     { HurtPlayer(s.damage,s.attacker); s.life = 0; }
@@ -399,6 +401,7 @@ namespace Scrapshift
                         if (nearest < 0) break;
                         var victim=enemies[nearest];s.hit.Add(victim);
                         bool critical=Damage(nearest,s.damage,s.crit,s.knockback,s.velocity,s.weapon,s.secondary,false,s.structure);
+                        if(s.structureSpec!=null&&s.structureSpec.explosionRadius>0)StructureExplosion(victim.pos,s.structureSpec,victim);
                         int bounceBonus=critical?(int)(s.weapon?.Trait("bounce_on_crit")?.value??0):0;
                         if(s.bounces+bounceBonus>0)
                         {
@@ -432,11 +435,11 @@ namespace Scrapshift
             e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
-            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary);return critical;}Rules.Kill();Rules.CriticalKillMaterials(critical);if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
+            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(!structure&&Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary,structure);return critical;}Rules.Kill();Rules.CriticalKillMaterials(critical);if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
-            ;ApplyStarterHit(e,weapon,critical,true,secondary);if(e.type.role!="Tree")Rules.KillEffects(e.burnTicks>0||bypassArmor);return critical;
+            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure);if(e.type.role!="Tree")Rules.KillEffects(e.burnTicks>0||bypassArmor);return critical;
         }
         void Drop(Vector2 p,int value,bool fruit)
         {
@@ -476,3 +479,5 @@ namespace Scrapshift
         }
     }
 }
+
+

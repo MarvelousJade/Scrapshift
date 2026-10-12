@@ -4,6 +4,7 @@ Reads the supplied Godot 3 reference. Does not copy its character or weapon art.
 import json, hashlib, shutil, re
 from pathlib import Path
 import analyze_reference as source
+from structure_specs import structure
 
 ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 source.ROOT=ROOT
@@ -57,6 +58,7 @@ def weapon(path):
    b=read(e['burning_data']);trait.update(burnDamage=b.get('damage',1),burnTicks=b.get('duration',3),burnInterval=b.get('interval',1),burnChance=b.get('chance',1),burnScaling=b.get('scaling_stats',[]));trait.pop('burnScaling')
    trait['burnScale'] = sum(v for k,v in b.get('scaling_stats',[]) if k=='stat_elemental_damage')
   if 'scene' in e and 'structures/' in e['scene']:
+   trait['structure']=structure(e)
    trait['key']='garden' if '/garden/' in e['scene'] else 'landmine' if '/landmine/' in e['scene'] else 'turret'
    trait['projectile']=stats_data(read(e['stats']))
    trait['spawnInterval']=e.get('spawn_cooldown',-1)

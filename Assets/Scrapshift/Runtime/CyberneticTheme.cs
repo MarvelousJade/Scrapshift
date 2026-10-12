@@ -6,6 +6,15 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"landmines","Proximity Charge Gland"},
+            {"turret","Ballistic Drone Socket"},
+            {"turret_flame","Thermal Drone Socket"},
+            {"turret_healing","Repair Drone Socket"},
+            {"turret_laser","Laser Drone Socket"},
+            {"turret_rocket","Rocket Drone Socket"},
+            {"tyler","Storm Drone Socket"},
+            {"wandering_bot","Orbiting Slow Emitter"},
+            {"garden","Nutrient Cultivator"},
             {"anvil","Autoforge Implant"},
             {"peacock","Volatile Learning Gland"},
             {"celery_tea","Adaptive Memory Tonic"},

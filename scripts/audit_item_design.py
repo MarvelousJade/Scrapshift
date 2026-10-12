@@ -2,6 +2,7 @@
 import json, hashlib, re
 from pathlib import Path
 import analyze_reference as source
+from structure_specs import structure
 source.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 root=Path(__file__).resolve().parents[1]
 ids=['coffee','beanie','glasses','helmet','leather_vest','bat','fertilizer','cake']
@@ -17,6 +18,7 @@ conditional={'temp_stats_while_not_moving','temp_stats_while_moving','unique_wea
 def implemented(e):
     if not isinstance(e.get('value'),(int,float)):return False
     if e.get('script')=='effects/items/burn_chance_effect.gd':return True
+    if e.get('script') in {'effects/items/structure_effect.gd','effects/items/turret_effect.gd'}:return True
     if e.get('script')=='effects/items/gain_stat_for_killed_enemies_while_burning.gd':return True
     if e.get('script')=='effects/items/double_value_effect.gd' and (e.get('key') in {'remove_speed','hp_regen_bonus','giant_crit_damage'} or e.get('custom_key')=='consumable_stats_while_max'):return True
     if e.get('script')=='effects/items/weapon_cooldown_effect.gd' and e.get('key')=='minimum_weapon_cooldowns':return True
@@ -44,6 +46,8 @@ def read(path):
 
 def special(e):
     script=e.get('script','')
+    if script in {'effects/items/structure_effect.gd','effects/items/turret_effect.gd'}:
+        return dict(key='structure',value=e['value'],customKey='structure',structure=structure(e))
     if script.endswith('/gain_stat_for_killed_enemies_while_burning.gd'):
         return dict(key=e['key'],value=e['value'],customKey=e['custom_key'],per=e['value2'],limit=e['value3'])
     if script.endswith('/double_value_effect.gd'):

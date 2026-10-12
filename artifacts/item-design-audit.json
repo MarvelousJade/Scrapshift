@@ -1,5 +1,5 @@
 {
-  "supportedItems": 176,
+  "supportedItems": 185,
   "items": [
     {
       "id": "acid",
@@ -1960,6 +1960,58 @@
       "conditionalEffects": []
     },
     {
+      "id": "garden",
+      "title": "Garden",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "consumable",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "garden",
+            "stats": {
+              "damage": 0,
+              "interval": 15.0,
+              "range": 1.5,
+              "pellets": 0,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 0.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 0.5,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          }
+        }
+      ]
+    },
+    {
       "id": "gentle_alien",
       "title": "Gentle Alien",
       "available": true,
@@ -2543,6 +2595,64 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "landmines",
+      "title": "Landmines",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "stat_engineering",
+        "explosive",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "landmine",
+            "stats": {
+              "damage": 10,
+              "interval": 0.03333333333333333,
+              "range": 0.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": 12,
+            "animationSpeed": 1,
+            "accuracy": 1.0,
+            "explosionRadius": 2.57845,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          }
+        }
+      ]
     },
     {
       "id": "leather_vest",
@@ -4483,6 +4593,356 @@
       ]
     },
     {
+      "id": "turret",
+      "title": "Turret",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "stat_engineering",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "turret",
+            "stats": {
+              "damage": 10,
+              "interval": 0.5333333333333333,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 0.8
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "turret_flame",
+      "title": "Turret Flame",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_engineering",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "flame",
+            "stats": {
+              "damage": 1,
+              "interval": 0.25,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 99,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 10.0,
+              "pierceLoss": 1.0,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.5,
+            "accuracy": 0.6,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false,
+            "burn": {
+              "key": "effect_burning",
+              "burnDamage": 5,
+              "burnChance": 1.0,
+              "burnTicks": 8,
+              "burnScale": 0.33,
+              "burnStat": "engineering"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "turret_healing",
+      "title": "Turret Healing",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_engineering",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "healing",
+            "stats": {
+              "damage": 3,
+              "interval": 2.0,
+              "range": 4.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 0.05
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": true,
+            "pet": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "turret_laser",
+      "title": "Turret Laser",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_engineering",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "laser",
+            "stats": {
+              "damage": 20,
+              "interval": 0.6666666666666666,
+              "range": 4.0,
+              "pellets": 1,
+              "piercing": 3,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.25
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.0,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "turret_rocket",
+      "title": "Turret Rocket",
+      "available": true,
+      "tier": 4,
+      "value": 80,
+      "tags": [
+        "stat_engineering",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "rocket",
+            "stats": {
+              "damage": 25,
+              "interval": 0.6666666666666666,
+              "range": 5.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.5
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 20.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 0.6,
+            "explosionRadius": 1.4734,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "tyler",
+      "title": "Tyler",
+      "available": true,
+      "tier": 2,
+      "value": 62,
+      "tags": [
+        "stat_engineering",
+        "stat_elemental_damage",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "tyler",
+            "stats": {
+              "damage": 12,
+              "interval": 2.0,
+              "range": 2.35,
+              "pellets": 10,
+              "piercing": 2,
+              "spread": 3.142,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 0.9
+                },
+                {
+                  "key": "elemental_damage",
+                  "value": 0.9
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 20.0,
+              "pierceLoss": 0.0,
+              "bounce": 0,
+              "bounceLoss": 0.0,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 0.5,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": true,
+            "healing": false,
+            "pet": false
+          }
+        }
+      ]
+    },
+    {
       "id": "ugly_tooth",
       "title": "Ugly Tooth",
       "available": true,
@@ -4527,6 +4987,64 @@
           "customKey": "stats_end_of_wave",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "wandering_bot",
+      "title": "Wandering Bot",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "less_enemy_speed",
+        "structure",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "structure",
+          "value": 1,
+          "customKey": "structure",
+          "structure": {
+            "kind": "wandering_bot",
+            "stats": {
+              "damage": 1,
+              "interval": 16666666.65,
+              "range": 0.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 0.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 20.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": true
+          }
         }
       ]
     },
@@ -6065,6 +6583,14 @@
       "sha256": "de3f02b42dd3e0e0b106ecb3dbbde9995317c3b1d1a0fba20630a4df0bc586ce"
     },
     {
+      "path": "items/all/garden/garden_data.tres",
+      "sha256": "780dc22e4825274fc93e44b9b18a50555856e5edb68d258511b9a6cd9f827d51"
+    },
+    {
+      "path": "items/all/garden/garden_effect_1.tres",
+      "sha256": "d5edae04551324917dbfc8a64d646a6ccd10b6945f204ea24945e877efa7f5e4"
+    },
+    {
       "path": "items/all/gentle_alien/gentle_alien_data.tres",
       "sha256": "0a534a3edf9dad4e01868c7a344bf41d0841e307e96dffa1169c525a97ef2453"
     },
@@ -6371,6 +6897,14 @@
     {
       "path": "items/all/jetpack/jetpack_effect_4.tres",
       "sha256": "de3f02b42dd3e0e0b106ecb3dbbde9995317c3b1d1a0fba20630a4df0bc586ce"
+    },
+    {
+      "path": "items/all/landmines/landmines_data.tres",
+      "sha256": "6bf8e1a8ad7d8fc049350cff0b416f6468df0ccf083a35693f8e4d94da8bad2b"
+    },
+    {
+      "path": "items/all/landmines/landmines_effect_1.tres",
+      "sha256": "454b8b16ed172af07ef999f5426d954e4ec1a504976b1fd0a267afd317da64ce"
     },
     {
       "path": "items/all/leather_vest/leather_vest_data.tres",
@@ -7389,6 +7923,54 @@
       "sha256": "6d1dd59e4011ff0ddf6bb0486823f12e518806ba24b9f60c80f0d775db741290"
     },
     {
+      "path": "items/all/turret/turret_data.tres",
+      "sha256": "f845b38a664acb62070b416e5082d35ca8ff1e43364b07cfe8db77a6472ded5c"
+    },
+    {
+      "path": "items/all/turret/turret_effect_1.tres",
+      "sha256": "57ae56f1d69ba862553c742742dc3c8e1390c325941b02f72b5ea199d45711c3"
+    },
+    {
+      "path": "items/all/turret_flame/turret_flame_data.tres",
+      "sha256": "2f5aa967154a2439e068c982b207eabdb5f0bc3a9f5da274015897ace84e9487"
+    },
+    {
+      "path": "items/all/turret_flame/turret_flame_effect_1.tres",
+      "sha256": "3c11a5593b1a6f0789882c3c5f923903e292dc77b4333801c774508c2a879afe"
+    },
+    {
+      "path": "items/all/turret_healing/turret_healing_data.tres",
+      "sha256": "48103d358e890674effdf732a9aab4c1bd0dc5fc1ad692c0526b6bed745e29a0"
+    },
+    {
+      "path": "items/all/turret_healing/turret_healing_effect_1.tres",
+      "sha256": "8d3787872593f820cd9e9bcdb76f17dfd5b2c884c13968f5a52894a339ee45e5"
+    },
+    {
+      "path": "items/all/turret_laser/turret_laser_data.tres",
+      "sha256": "2d3571d381a2801bbac37c8389e279a41aa9e34730f3888557e8e5da4d4216d2"
+    },
+    {
+      "path": "items/all/turret_laser/turret_laser_effect_1.tres",
+      "sha256": "12585de6565ce37c1c9917d0290788e6a99a9e9cfeb16e2e31c20e9c0af82170"
+    },
+    {
+      "path": "items/all/turret_rocket/turret_rocket_data.tres",
+      "sha256": "686d42401f4d9fb0bd84e07ca377345ff808ad1508b91d2d21ffe0e4b51a5324"
+    },
+    {
+      "path": "items/all/turret_rocket/turret_rocket_effect_1.tres",
+      "sha256": "e5ea89f0c82762a28e2df70df5688b62cbc8ef14440a1651b3b14d19d700f725"
+    },
+    {
+      "path": "items/all/tyler/tyler_data.tres",
+      "sha256": "f312a6e3a6a14338629de75fc77fa5973c797f3315289dab36e3bd443301e679"
+    },
+    {
+      "path": "items/all/tyler/tyler_effect_1.tres",
+      "sha256": "9f64de5249831f3b3200a3089d339d93d87f42043b28115cb3635351cfc2377f"
+    },
+    {
       "path": "items/all/ugly_tooth/ugly_tooth_data.tres",
       "sha256": "9c5ef72b5b4e8809853713ec6f5cb600953f1935bd5ffa0f85e7b8ea82e9fe98"
     },
@@ -7407,6 +7989,14 @@
     {
       "path": "items/all/vigilante_ring/vigilante_ring_effect_1.tres",
       "sha256": "0c1ac7b2006dd884358a6ff650d1667599b80cc5a7be11551efee0ecf2036e0c"
+    },
+    {
+      "path": "items/all/wandering_bot/wandering_bot_data.tres",
+      "sha256": "3db509fe979caa80b45c7a132cd0ad29b16db71184fb6cb9936f882bb07befce"
+    },
+    {
+      "path": "items/all/wandering_bot/wandering_bot_effect_1.tres",
+      "sha256": "503dd37ef30cab82d873ef94bc6e0373764e9c98cafd1770896d6e632b9698dd"
     },
     {
       "path": "items/all/warrior_helmet/warrior_helmet_data.tres",
@@ -7759,12 +8349,6 @@
       ]
     },
     {
-      "id": "garden",
-      "effects": [
-        ""
-      ]
-    },
-    {
       "id": "greek_fire",
       "effects": [
         "burning_enemy_hp_percent_damage",
@@ -7795,12 +8379,6 @@
       "id": "jellyshield",
       "effects": [
         "jellyshield_count",
-        ""
-      ]
-    },
-    {
-      "id": "landmines",
-      "effects": [
         ""
       ]
     },
@@ -7856,50 +8434,8 @@
         "stat_max_hp",
         "explode_on_consumable"
       ]
-    },
-    {
-      "id": "turret",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "turret_flame",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "turret_healing",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "turret_laser",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "turret_rocket",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "tyler",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "wandering_bot",
-      "effects": [
-        "wandering_bot"
-      ]
     }
   ],
-  "availableItems": 141,
+  "availableItems": 150,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

@@ -5,7 +5,7 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        sealed class StarterTurret { public GameObject obj; public Vector2 pos; public Equipment stats; public float clock; public WeaponTrait trait; }
+        sealed class StarterTurret { public GameObject obj; public Vector2 pos; public Equipment stats; public float clock; public WeaponTrait trait; public StructureSpec spec;public float angle,orbitRadius,orbitSpeed;public bool firing;public readonly HashSet<Enemy> touched=new HashSet<Enemy>(); }
         sealed class Mine { public GameObject obj; public Vector2 pos; public Equipment stats; public float radius; public readonly HashSet<Enemy> occupants=new HashSet<Enemy>(); public bool playerOn; }
         readonly List<Mine> mines=new List<Mine>();
         readonly List<StarterTurret> mineSpawners=new List<StarterTurret>();
@@ -21,20 +21,22 @@ namespace Scrapshift
             }
             return target;
         }
-        void StarterProjectile(Vector2 position,Vector2 direction,Equipment stats,bool secondary,Enemy exclude=null,bool delayedSlow=false,bool structure=false)
+        void StarterProjectile(Vector2 position,Vector2 direction,Equipment stats,bool secondary,Enemy exclude=null,bool delayedSlow=false,bool structure=false,StructureSpec structureSpec=null)
         {
             if(shots.Count>=400)return;
             var obj=SpriteObject("Weapon projectile",catalog.muzzleFrames[2],position,13);
             obj.transform.localScale=Vector3.one*.35f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
             var shot=new Shot{obj=obj,pos=position,velocity=direction.normalized*stats.projectileSpeed,
                 life=(stats.range+1)/Mathf.Max(1,stats.projectileSpeed),damage=structure?SpecialWeaponRules.StructureDamage(Rules,stats):Rules.WeaponDamage(stats),
-                crit=stats.crit,pierce=stats.piercing,bounces=stats.bounce,knockback=stats.knockback,weapon=stats,secondary=secondary,structure=structure};
+                crit=stats.crit,pierce=stats.piercing,bounces=stats.bounce,knockback=stats.knockback,weapon=stats,secondary=secondary,structure=structure,structureSpec=structureSpec};
+            if(structureSpec?.delayed==true)shot.hitDelay=UnityEngine.Random.Range(0,.05f);
+            if(structureSpec?.healing==true)obj.GetComponent<SpriteRenderer>().color=mint;
             if(delayedSlow){shot.hitDelay=UnityEngine.Random.Range(0,.05f);shot.slow=2;}
             if(exclude!=null)shot.hit.Add(exclude);shots.Add(shot);shotsFired++;
         }
-        void ApplyStarterHit(Enemy victim,Equipment weapon,bool critical,bool killed,bool secondary)
+        void ApplyStarterHit(Enemy victim,Equipment weapon,bool critical,bool killed,bool secondary,bool structure=false)
         {
-            if(weapon!=null&&!killed&&Rules.RollBurn(weapon,UnityEngine.Random.value,out float burnDamage,out int burnTicks))
+            if(weapon!=null&&!killed&&Rules.RollBurn(weapon,UnityEngine.Random.value,out float burnDamage,out int burnTicks,structure))
                 ApplyBurn(victim,burnDamage,burnTicks,(int)Rules.Stat("burning_spread"));
             if(weapon==null||secondary||weapon.traits==null)return;
             foreach(var trait in weapon.traits)
@@ -81,14 +83,10 @@ namespace Scrapshift
             foreach(var w in Rules.Inventory)
             {
                 var trait=w.Trait("turret")??w.Trait("garden")??w.Trait("landmine");if(trait?.projectile==null)continue;
-                var pos=new Vector2(UnityEngine.Random.Range(-7f,7f),UnityEngine.Random.Range(-5f,5f));
-                var obj=SpriteObject("Deployable turret",w.image,pos,7);
-                obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(w.image,.6f);
-                AddGroundShadow(obj,w.image.bounds.size.x,-.2f);
-                var structure=new StarterTurret{obj=obj,pos=pos,stats=trait.projectile.AsEquipment(),trait=trait,clock=trait.key=="garden"?.2f/trait.animationSpeed:0};
-                if(trait.key=="landmine"){Destroy(obj);structure.obj=null;structure.clock=trait.spawnInterval;mineSpawners.Add(structure);SpawnMine(structure,w.image);}
-                else starterTurrets.Add(structure);
+                DeployStructure(trait.structure??new StructureSpec{kind=trait.key,stats=trait.projectile,spawnInterval=trait.spawnInterval,animationSpeed=trait.animationSpeed,explosionRadius=trait.radius},w.image);
             }
+            foreach(var item in Rules.Items)if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)
+                if(effect.customKey=="structure"&&effect.structure!=null)for(int i=0;i<(int)effect.value;i++)DeployStructure(effect.structure,StructureImage(effect.structure.kind));
         }
         void UpdateStarterEffects(float dt)
         {
@@ -115,17 +113,7 @@ namespace Scrapshift
                 e.burnClock+=Rules.BurningInterval;e.burnTicks--;Burst(e.pos,2,amber);
                 Damage(enemies.IndexOf(e),e.burnDamage,-100,0,Vector2.up,null,true,true);
             }
-            foreach(var turret in starterTurrets)
-            {
-                turret.clock-=dt;if(turret.clock>0)continue;
-                if(turret.trait?.key=="garden")
-                {DropConsumable(turret.pos,ConsumableKind.Fruit);turret.clock=UnityEngine.Random.Range(Rules.StructureCooldown(turret.stats.interval)*.7f,Rules.StructureCooldown(turret.stats.interval)*1.3f)+.3f/turret.trait.animationSpeed;sound.Play(SoundCue.Pickup,turret.pos);continue;}
-                var target=NearestStarterTarget(turret.pos);
-                if(target==null||Vector2.Distance(target.pos,turret.pos)>turret.stats.range)continue;
-                StarterProjectile(turret.pos,target.pos-turret.pos,turret.stats,true,structure:true);
-                turret.clock=Rules.StructureCooldown(turret.stats.interval)+turret.stats.recoilHalf*2;
-                sound.Play(SoundCue.Fire,turret.pos);
-            }
+            foreach(var turret in starterTurrets)TickStructure(turret,dt);
         }
         void ClearStarterEffects()
         {

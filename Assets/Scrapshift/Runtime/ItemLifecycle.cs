@@ -39,7 +39,7 @@ namespace Scrapshift
             return (int)value+(fractionalRoll<value-(int)value?1:0);
         }
         public float DamageToBoss(float damage)=>Stat("damage_against_bosses")>0?(int)(damage*(1+Stat("damage_against_bosses")/100)):damage;
-        public bool RollBurn(Equipment weapon,double roll,out float damage,out int ticks)
+        public bool RollBurn(Equipment weapon,double roll,out float damage,out int ticks,bool structure=false)
         {
             var burn=weapon?.Trait("effect_burning");float globalDamage=0,globalChance=0,globalScale=0,globalTicks=0;
             foreach(var e in ConditionalEffects())if(e.customKey=="global_burn")
@@ -47,7 +47,7 @@ namespace Scrapshift
             // A weapon with native burning keeps its chance/duration/scaling, gaining only global base damage.
             float chance=burn!=null?burn.burnChance:globalChance;
             ticks=(int)(burn!=null?burn.burnTicks:globalTicks);
-            damage=Mathf.Max(1,((burn?.burnDamage??0)+globalDamage+Stat("elemental_damage")*(burn!=null?burn.burnScale:globalScale))*DamageScale);
+            damage=Mathf.Max(1,((burn?.burnDamage??0)+globalDamage+Stat(burn!=null&&!string.IsNullOrEmpty(burn.burnStat)?burn.burnStat:"elemental_damage")*(burn!=null?burn.burnScale:globalScale))*(structure&&burn!=null?1:DamageScale));
             return ticks>0&&roll<chance;
         }
     }

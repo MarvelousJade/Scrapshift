@@ -2275,6 +2275,42 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "turret",
+            "stats": {
+              "damage": 10,
+              "interval": 0.5333333333333333,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 0.8
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 10,
             "interval": 0.5333333333333333,
@@ -2362,6 +2398,45 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "flame",
+            "stats": {
+              "damage": 1,
+              "interval": 0.25,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 99,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 10.0,
+              "pierceLoss": 1.0,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.5,
+            "accuracy": 0.6,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false,
+            "burn": {
+              "key": "effect_burning",
+              "burnDamage": 5,
+              "burnChance": 1.0,
+              "burnTicks": 8,
+              "burnScale": 0.33,
+              "burnStat": "engineering"
+            }
+          },
           "projectile": {
             "damage": 1,
             "interval": 0.25,
@@ -2444,6 +2519,42 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "laser",
+            "stats": {
+              "damage": 20,
+              "interval": 0.6666666666666666,
+              "range": 4.0,
+              "pellets": 1,
+              "piercing": 3,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.25
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.0,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 20,
             "interval": 0.6666666666666666,
@@ -2531,6 +2642,42 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "rocket",
+            "stats": {
+              "damage": 25,
+              "interval": 0.6666666666666666,
+              "range": 5.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.5
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 20.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 0.6,
+            "explosionRadius": 1.4734,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 25,
             "interval": 0.6666666666666666,
@@ -8582,6 +8729,42 @@
           "amount": 0,
           "radius": 2.57845,
           "per": 0,
+          "structure": {
+            "kind": "landmine",
+            "stats": {
+              "damage": 10,
+              "interval": 0.03333333333333333,
+              "range": 0.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": 12,
+            "animationSpeed": 1,
+            "accuracy": 1.0,
+            "explosionRadius": 2.57845,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 10,
             "interval": 0.03333333333333333,
@@ -8671,6 +8854,42 @@
           "amount": 0,
           "radius": 2.57845,
           "per": 0,
+          "structure": {
+            "kind": "landmine",
+            "stats": {
+              "damage": 10,
+              "interval": 0.03333333333333333,
+              "range": 0.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": 9,
+            "animationSpeed": 1,
+            "accuracy": 1.0,
+            "explosionRadius": 2.57845,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 10,
             "interval": 0.03333333333333333,
@@ -8760,6 +8979,42 @@
           "amount": 0,
           "radius": 2.57845,
           "per": 0,
+          "structure": {
+            "kind": "landmine",
+            "stats": {
+              "damage": 10,
+              "interval": 0.03333333333333333,
+              "range": 0.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": 6,
+            "animationSpeed": 1,
+            "accuracy": 1.0,
+            "explosionRadius": 2.57845,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 10,
             "interval": 0.03333333333333333,
@@ -8849,6 +9104,42 @@
           "amount": 0,
           "radius": 2.57845,
           "per": 0,
+          "structure": {
+            "kind": "landmine",
+            "stats": {
+              "damage": 10,
+              "interval": 0.03333333333333333,
+              "range": 0.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 2.0,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": 3,
+            "animationSpeed": 1,
+            "accuracy": 1.0,
+            "explosionRadius": 2.57845,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 10,
             "interval": 0.03333333333333333,
@@ -11016,6 +11307,37 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "garden",
+            "stats": {
+              "damage": 0,
+              "interval": 15.0,
+              "range": 1.5,
+              "pellets": 0,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 0.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 0.5,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 0,
             "interval": 15.0,
@@ -11096,6 +11418,37 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "garden",
+            "stats": {
+              "damage": 0,
+              "interval": 14.0,
+              "range": 1.5,
+              "pellets": 0,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 0,
             "interval": 14.0,
@@ -11176,6 +11529,37 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "garden",
+            "stats": {
+              "damage": 0,
+              "interval": 12.0,
+              "range": 1.5,
+              "pellets": 0,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 0,
             "interval": 12.0,
@@ -11256,6 +11640,37 @@
           "amount": 0,
           "radius": 0.75,
           "per": 0,
+          "structure": {
+            "kind": "garden",
+            "stats": {
+              "damage": 0,
+              "interval": 10.0,
+              "range": 1.5,
+              "pellets": 0,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "spawnInterval": -1,
+            "animationSpeed": 1.0,
+            "accuracy": 1.0,
+            "explosionRadius": 0,
+            "delayed": false,
+            "healing": false,
+            "pet": false
+          },
           "projectile": {
             "damage": 0,
             "interval": 10.0,

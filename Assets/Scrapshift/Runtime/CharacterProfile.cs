@@ -26,7 +26,8 @@ namespace Scrapshift
     }
     [Serializable] public sealed class WeaponTrait
     {
-        public string key,stat,sourceScript,customKey;
+        public string key,stat,sourceScript,customKey,burnStat;
+        public StructureSpec structure;
         public float interval;
         public float spawnInterval=-1,animationSpeed=1;
         public bool resetOnHit;
