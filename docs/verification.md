@@ -340,3 +340,7 @@ The first validation exposed migration/appearance assumptions and an incorrect f
 - AssetScope completed: 292 assets, 0 findings, 0 errors. Validation copy matches all 868 Assets/Packages/ProjectSettings files byte for byte.
 - Package: 52975010 bytes / 155 entries. CRC and each archived file match. SHA-256 91062be5e80fe8e1713035032078e29d7f372ed604059189b125e8b1912871ea.
 - Original sprite PNG files unchanged. Source comparison and deliberate differences: run-feedback-and-rewards.md. No runtime script exceptions found in either fixture log.
+
+## October 12 - money-icon arrival correction
+
+Builds/MoneyRefresh/Scrapshift.exe built with zero errors/warnings; 180/180 tests passed. All 29 runtime inspection captures passed, including completion with 12 stored materials and correct crate/level order. Arrival screenshot inspected: green +12 beside the money counter, clear of the XP bar. Fixture advances 50 ms steps to exercise flight instead of teleporting through cleanup. 868 source/validation files match. Package CRC and all 155 entries match; SHA-256 11445a19bad1449bb35d33832a10f81d2470e53e32f7ec413cf0d1c2fb1b7334. No script exceptions in runtime log. Economy unchanged; correction targets presentation.
