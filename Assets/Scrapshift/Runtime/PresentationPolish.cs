@@ -24,10 +24,11 @@ namespace Scrapshift
             for(int i=0;i<12;i++){float a=i*Mathf.PI*2/12;line.SetPosition(i,new Vector3(Mathf.Cos(a)*.11f,Mathf.Sin(a)*.055f,0));}
             footDust.Add(new Dust{line=line,pos=pos,pickup=pickup});
         }
+        void ClearFootDust(){foreach(var d in footDust)if(d.line!=null)Destroy(d.line.transform.parent.gameObject);footDust.Clear();stepClock=0;}
         void PickupContactEffect(){AddFootDust(playerPos,true);}
         void RemoveWaveEnemies()
         {
-            births.Clear();foreach(var e in enemies.ToArray())if(e.type.role!="Tree"){Destroy(e.obj);if(e.marker!=null)Destroy(e.marker);enemies.Remove(e);}
+            births.Clear();foreach(var e in enemies.ToArray())if(e.type.role!="Tree"||e.marker!=null){Destroy(e.obj);if(e.marker!=null)Destroy(e.marker);enemies.Remove(e);}
             foreach(var shot in shots)Destroy(shot.obj);shots.Clear();
         }
         void TickAmbientPresentation()

@@ -1,7 +1,7 @@
 """Extract the first four character profiles and their complete starting-weapon lists.
 Reads the supplied Godot 3 reference. Does not copy its character or weapon art.
 """
-import json, hashlib, shutil
+import json, hashlib, shutil, re
 from pathlib import Path
 import analyze_reference as source
 
@@ -56,8 +56,15 @@ def weapon(path):
    b=read(e['burning_data']);trait.update(burnDamage=b.get('damage',1),burnTicks=b.get('duration',3),burnInterval=b.get('interval',1),burnChance=b.get('chance',1),burnScaling=b.get('scaling_stats',[]));trait.pop('burnScaling')
    trait['burnScale'] = sum(v for k,v in b.get('scaling_stats',[]) if k=='stat_elemental_damage')
   if 'scene' in e and 'turret' in e['scene']:trait['key']='turret';trait['projectile']=stats_data(read(e['stats']))
+  trait['sourceScript']=Path(e.get('script','')).stem
+  trait['interval']=e.get('interval',0)
+  trait['customKey']=e.get('custom_key','')
   traits.append(trait)
  result['traits']=traits
+ result['sourceAvailable']=result['available']
+ unsupported={'screwdriver','pruner','drill','scythe','jousting_lance','excalibur','particle_accelerator','vorpal_sword','thunder_sword','torch'}
+ result['implemented']=name not in unsupported
+ result['available']=result['available'] and result['implemented']
  weapons[path]=result
  for p in d.get('sets',[]):
   sid=Path(p).parts[-2]
@@ -80,8 +87,11 @@ for cid,title in renames.items():
   elif e['key'].startswith('stat_'):profile['stats'].append(dict(key=stat(e['key']),value=e['value']))
  profiles.append(profile)
  for w in d['starting_weapons']:weapon(w)
-# Preserve the existing Spear and enrich it with the same complete stat schema.
-weapon('weapons/melee/spear/1/spear_data.tres')
+# Registered base-game resources only; never infer tiers or include DLC folders.
+scene=(ROOT/'singletons/item_service.tscn').read_text()
+refs={i:p for p,i in re.findall(r'\[ext_resource path="res://([^"]+)" type="Resource" id=(\d+)\]',scene)}
+line=next(l for l in scene.splitlines() if l.startswith('weapons ='))
+for resource_id in re.findall(r'ExtResource\( (\d+) \)',line):weapon(refs[resource_id])
 data=dict(characters=profiles,equipment=list(weapons.values()),sets=list(sets.values()),rosterSlots=50)
 (OUT/'starter-profiles.json').write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
 (PROJECT/'artifacts/starter-provenance.json').write_text(json.dumps(dict(referenceRoot=str(ROOT),sources=list({p['source']:p for p in provenance}.values())),indent=2)+'\n')

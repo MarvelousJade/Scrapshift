@@ -36,7 +36,7 @@ namespace Scrapshift.Tests
             var scene = EditorSceneManager.OpenScene(ContentBuilder.ScenePath);
             var game = scene.GetRootGameObjects().SelectMany(o => o.GetComponentsInChildren<ArenaGame>()).Single();
             Assert.NotNull(game.playerPrefab); Assert.NotNull(game.gameCamera); Assert.NotNull(game.scrapPrefab); Assert.NotNull(game.gunPrefab);
-            Assert.AreEqual(3, game.weapons.Length); Assert.NotNull(game.catalog); Assert.AreEqual(20,game.catalog.data.waves.Length); Assert.AreEqual(120,game.catalog.data.equipment.Length);
+            Assert.AreEqual(3, game.weapons.Length); Assert.NotNull(game.catalog); Assert.AreEqual(20,game.catalog.data.waves.Length); Assert.AreEqual(205,game.catalog.data.equipment.Length);
             foreach (var e in game.enemyTypes) { Assert.NotNull(e.prefab); Assert.Greater(e.health, 0); }
         }
         [Test] public void RepeatedGenerationPreservesAuthoredAssetGuids()

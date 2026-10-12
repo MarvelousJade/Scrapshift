@@ -9,14 +9,14 @@ namespace Scrapshift
         readonly Queue<bool> crates=new Queue<bool>();
         public int PendingCrates=>crates.Count;
         public ItemEntry CrateItem {get;private set;}
-        public int CrateRecycleValue=>CrateItem==null?0:Math.Max(1,(int)(Price(CrateItem.value)*.25f));
+        public int CrateRecycleValue=>CrateItem==null?0:RecycleValue(CrateItem.value);
 
         public void CollectConsumable(ConsumableKind kind)
         {
             if(Phase!=RunPhase.Playing || kind==ConsumableKind.None)return;
-            Heal(3);
+            Heal(Math.Max(0,3+Stat("consumable_heal")));
             if(kind==ConsumableKind.Crate || kind==ConsumableKind.LegendaryCrate)
-                crates.Enqueue(kind==ConsumableKind.LegendaryCrate);
+            {crates.Enqueue(kind==ConsumableKind.LegendaryCrate);Scrap+=Math.Max(0,(int)Stat("item_box_gold"));}
         }
 
         void OpenRewards()

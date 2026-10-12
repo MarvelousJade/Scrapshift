@@ -1,6 +1,54 @@
 {
   "items": [
     {
+      "id": "acid",
+      "title": "Acid",
+      "available": true,
+      "tier": 2,
+      "value": 65,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 8
+        },
+        {
+          "key": "stat_dodge",
+          "value": -2
+        },
+        {
+          "key": "knockback",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "alien_baby",
+      "title": "Alien Baby",
+      "available": true,
+      "tier": 3,
+      "value": 80,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 15
+        },
+        {
+          "key": "enemy_health",
+          "value": 10
+        }
+      ]
+    },
+    {
       "id": "alien_magic",
       "title": "Alien Magic",
       "available": true,
@@ -24,6 +72,56 @@
         {
           "key": "stat_luck",
           "value": -8
+        }
+      ]
+    },
+    {
+      "id": "alien_tongue",
+      "title": "Alien Tongue",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "pickup",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "pickup_range",
+          "value": 30
+        },
+        {
+          "key": "knockback",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "alien_worm",
+      "title": "Alien Worm",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "stat_max_hp",
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2
+        },
+        {
+          "key": "consumable_heal",
+          "value": -1
         }
       ]
     },
@@ -70,6 +168,79 @@
       ]
     },
     {
+      "id": "bag",
+      "title": "Bag",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "stat_luck",
+        "exploration",
+        "economy"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "item_box_gold",
+          "value": 15
+        },
+        {
+          "key": "stat_speed",
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "bandana",
+      "title": "Bandana",
+      "available": true,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "piercing",
+          "value": 1
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -10
+        }
+      ]
+    },
+    {
+      "id": "banner",
+      "title": "Banner",
+      "available": true,
+      "tier": 2,
+      "value": 55,
+      "tags": [
+        "stat_range",
+        "stat_attack_speed"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": 20
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": 10
+        },
+        {
+          "key": "knockback",
+          "value": -5
+        }
+      ]
+    },
+    {
       "id": "bat",
       "title": "Bat",
       "available": true,
@@ -89,6 +260,28 @@
         },
         {
           "key": "stat_harvesting",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "bean_teacher",
+      "title": "Bean Teacher",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "xp_gain",
+          "value": 50
+        },
+        {
+          "key": "stat_lifesteal",
           "value": -2
         }
       ]
@@ -114,6 +307,76 @@
         {
           "key": "stat_range",
           "value": -6
+        }
+      ]
+    },
+    {
+      "id": "big_arms",
+      "title": "Big Arms",
+      "available": false,
+      "tier": 4,
+      "value": 105,
+      "tags": [
+        "stat_melee_damage",
+        "stat_ranged_damage",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "melee_and_ranged_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 12
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": 6
+        },
+        {
+          "key": "knockback",
+          "value": 3
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": -3
+        },
+        {
+          "key": "stat_speed",
+          "value": -3
+        }
+      ]
+    },
+    {
+      "id": "black_belt",
+      "title": "Black Belt",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_melee_damage",
+        "xp_gain",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "xp_gain",
+          "value": 25
+        },
+        {
+          "key": "stat_melee_damage",
+          "value": 3
+        },
+        {
+          "key": "knockback",
+          "value": 3
+        },
+        {
+          "key": "stat_luck",
+          "value": -8
         }
       ]
     },
@@ -254,6 +517,29 @@
         {
           "key": "stat_crit_chance",
           "value": -3
+        }
+      ]
+    },
+    {
+      "id": "boxing_glove",
+      "title": "Boxing Glove",
+      "available": true,
+      "tier": 1,
+      "value": 18,
+      "tags": [
+        "stat_melee_damage",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 1
+        },
+        {
+          "key": "knockback",
+          "value": 3
         }
       ]
     },
@@ -464,6 +750,35 @@
       ]
     },
     {
+      "id": "cog",
+      "title": "Cog",
+      "available": true,
+      "tier": 2,
+      "value": 35,
+      "tags": [
+        "stat_engineering",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "engineering"
+      ],
+      "effects": [
+        {
+          "key": "stat_engineering",
+          "value": 4
+        },
+        {
+          "key": "knockback",
+          "value": 1
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -4
+        }
+      ]
+    },
+    {
       "id": "compass",
       "title": "Compass",
       "available": false,
@@ -487,6 +802,44 @@
         {
           "key": "stat_crit_chance",
           "value": -3
+        }
+      ]
+    },
+    {
+      "id": "coupon",
+      "title": "Coupon",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "economy"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "items_price",
+          "value": -5
+        }
+      ]
+    },
+    {
+      "id": "crown",
+      "title": "Crown",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_harvesting"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "harvesting"
+      ],
+      "effects": [
+        {
+          "key": "harvesting_growth",
+          "value": 8
         }
       ]
     },
@@ -540,6 +893,33 @@
       ]
     },
     {
+      "id": "diploma",
+      "title": "Diploma",
+      "available": true,
+      "tier": 4,
+      "value": 90,
+      "tags": [
+        "stat_engineering",
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_engineering",
+          "value": 10
+        },
+        {
+          "key": "xp_gain",
+          "value": 50
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -3
+        }
+      ]
+    },
+    {
       "id": "duct_tape",
       "title": "Duct Tape",
       "available": true,
@@ -563,6 +943,24 @@
         {
           "key": "stat_max_hp",
           "value": -2
+        }
+      ]
+    },
+    {
+      "id": "dynamite",
+      "title": "Dynamite",
+      "available": true,
+      "tier": 1,
+      "value": 20,
+      "tags": [
+        "explosive"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "explosion_damage",
+          "value": 15
         }
       ]
     },
@@ -631,6 +1029,32 @@
         {
           "key": "stat_lifesteal",
           "value": -2
+        }
+      ]
+    },
+    {
+      "id": "explosive_shells",
+      "title": "Explosive Shells",
+      "available": false,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "explosive"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "explosion_damage",
+          "value": 60
+        },
+        {
+          "key": "explosion_size",
+          "value": 15
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -15
         }
       ]
     },
@@ -802,6 +1226,37 @@
       ]
     },
     {
+      "id": "gnome",
+      "title": "Gnome",
+      "available": false,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_melee_damage",
+        "stat_elemental_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 10
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 10
+        },
+        {
+          "key": "stat_range",
+          "value": -20
+        },
+        {
+          "key": "pickup_range",
+          "value": -20
+        }
+      ]
+    },
+    {
       "id": "goat_skull",
       "title": "Goat Skull",
       "available": true,
@@ -964,6 +1419,41 @@
       ]
     },
     {
+      "id": "honey",
+      "title": "Honey",
+      "available": true,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "stat_ranged_damage",
+        "explosive"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_ranged_damage",
+          "value": 3
+        },
+        {
+          "key": "explosion_damage",
+          "value": 10
+        },
+        {
+          "key": "explosion_size",
+          "value": 5
+        },
+        {
+          "key": "stat_speed",
+          "value": -3
+        },
+        {
+          "key": "stat_dodge",
+          "value": -3
+        }
+      ]
+    },
+    {
       "id": "injection",
       "title": "Injection",
       "available": true,
@@ -1066,6 +1556,26 @@
       ]
     },
     {
+      "id": "lemonade",
+      "title": "Lemonade",
+      "available": true,
+      "tier": 1,
+      "value": 15,
+      "tags": [
+        "consumable"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "consumable_heal"
+      ],
+      "effects": [
+        {
+          "key": "consumable_heal",
+          "value": 1
+        }
+      ]
+    },
+    {
       "id": "lens",
       "title": "Lens",
       "available": true,
@@ -1086,6 +1596,33 @@
         {
           "key": "stat_range",
           "value": -5
+        }
+      ]
+    },
+    {
+      "id": "little_frog",
+      "title": "Little Frog",
+      "available": true,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "stat_harvesting",
+        "pickup"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "pickup_range",
+          "value": 20
+        },
+        {
+          "key": "stat_harvesting",
+          "value": 10
+        },
+        {
+          "key": "stat_dodge",
+          "value": -3
         }
       ]
     },
@@ -1161,6 +1698,42 @@
         {
           "key": "stat_ranged_damage",
           "value": -1
+        }
+      ]
+    },
+    {
+      "id": "mammoth",
+      "title": "Mammoth",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_melee_damage",
+        "stat_hp_regeneration",
+        "knockback"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 20
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 5
+        },
+        {
+          "key": "knockback",
+          "value": 5
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -8
+        },
+        {
+          "key": "stat_speed",
+          "value": -3
         }
       ]
     },
@@ -1292,6 +1865,33 @@
         {
           "key": "stat_luck",
           "value": -2
+        }
+      ]
+    },
+    {
+      "id": "mutation",
+      "title": "Mutation",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "stat_ranged_damage",
+        "stat_elemental_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_ranged_damage",
+          "value": 1
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 1
+        },
+        {
+          "key": "knockback",
+          "value": -3
         }
       ]
     },
@@ -1461,6 +2061,24 @@
       ]
     },
     {
+      "id": "plastic_explosive",
+      "title": "Plastic Explosive",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "explosive"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "explosion_size",
+          "value": 25
+        }
+      ]
+    },
+    {
       "id": "poisonous_tonic",
       "title": "Poisonous Tonic",
       "available": true,
@@ -1569,6 +2187,46 @@
       ]
     },
     {
+      "id": "pumpkin",
+      "title": "Pumpkin",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "piercing_damage",
+          "value": 15
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -2
+        }
+      ]
+    },
+    {
+      "id": "recycling_machine",
+      "title": "Recycling Machine",
+      "available": true,
+      "tier": 2,
+      "value": 35,
+      "tags": [
+        "economy"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "recycling_gains",
+          "value": 35
+        }
+      ]
+    },
+    {
       "id": "reinforced_steel",
       "title": "Reinforced Steel",
       "available": true,
@@ -1596,6 +2254,28 @@
       ]
     },
     {
+      "id": "ricochet",
+      "title": "Ricochet",
+      "available": true,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "bounce",
+          "value": 1
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -25
+        }
+      ]
+    },
+    {
       "id": "ritual",
       "title": "Ritual",
       "available": false,
@@ -1619,6 +2299,28 @@
         {
           "key": "stat_engineering",
           "value": -2
+        }
+      ]
+    },
+    {
+      "id": "scar",
+      "title": "Scar",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "xp_gain"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "xp_gain",
+          "value": 20
+        },
+        {
+          "key": "stat_range",
+          "value": -8
         }
       ]
     },
@@ -1668,6 +2370,36 @@
         {
           "key": "stat_hp_regeneration",
           "value": -2
+        }
+      ]
+    },
+    {
+      "id": "sharp_bullet",
+      "title": "Sharp Bullet",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "stat_ranged_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "piercing",
+          "value": 1
+        },
+        {
+          "key": "piercing_damage",
+          "value": -20
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        },
+        {
+          "key": "knockback",
+          "value": -3
         }
       ]
     },
@@ -1726,6 +2458,28 @@
         {
           "key": "stat_percent_damage",
           "value": -6
+        }
+      ]
+    },
+    {
+      "id": "snail",
+      "title": "Snail",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "less_enemy_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "enemy_speed",
+          "value": -8
+        },
+        {
+          "key": "stat_speed",
+          "value": -3
         }
       ]
     },
@@ -1875,6 +2629,30 @@
       ]
     },
     {
+      "id": "weird_food",
+      "title": "Weird Food",
+      "available": true,
+      "tier": 1,
+      "value": 20,
+      "tags": [
+        "consumable"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "consumable_heal"
+      ],
+      "effects": [
+        {
+          "key": "consumable_heal",
+          "value": 2
+        },
+        {
+          "key": "stat_dodge",
+          "value": -2
+        }
+      ]
+    },
+    {
       "id": "wheat",
       "title": "Wheat",
       "available": false,
@@ -1927,6 +2705,30 @@
         {
           "key": "stat_armor",
           "value": -1
+        }
+      ]
+    },
+    {
+      "id": "whetstone",
+      "title": "Whetstone",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_lifesteal"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "lifesteal"
+      ],
+      "effects": [
+        {
+          "key": "stat_lifesteal",
+          "value": 4
+        },
+        {
+          "key": "knockback",
+          "value": -3
         }
       ]
     },

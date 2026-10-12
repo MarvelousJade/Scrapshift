@@ -59,7 +59,7 @@ namespace Scrapshift
                 for(int i=0;i<offer.item.effects.Length;i++)
                 {
                     var effect=offer.item.effects[i]; var style=new GUIStyle(body) { fontSize=19 };
-                    style.normal.textColor=effect.value<0?coral:new Color(.39f,1,.29f);
+                    style.normal.textColor=SpecialItemEffects.IsPenalty(effect.key,effect.value)?coral:new Color(.39f,1,.29f);
                     Text(x,y+i*57,width,56,inspectionText.StatEffect(effect.key,effect.value),style);
                 }
             }
@@ -83,7 +83,9 @@ namespace Scrapshift
                 Box(new Rect(x+3,127,246,4),TierColor(offer.Tier));
                 Box(new Rect(x+14,143,68,74),new Color(.17f,.16f,.15f));
                 DrawIcon(offer.Image,new Rect(x+18,148,60,64));
-                Text(x+93,141,145,76,offer.Title=="Smg"?"SMG":offer.Title,body);
+                var offerTitle=offer.Title=="Smg"?"SMG":offer.Title;var offerStyle=new GUIStyle(body);
+                foreach(var word in offerTitle.Split(' '))while(offerStyle.fontSize>16&&offerStyle.CalcSize(new GUIContent(word)).x>145)offerStyle.fontSize--;
+                Text(x+93,141,145,76,offerTitle,offerStyle);
                 Text(x+16,224,220,27,offer.weapon!=null?(WeaponSets.For(offer.weapon)?.Name??"Weapon")+"  /  Tier "+offer.Tier:"Item",tiny);
                 if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,140,228,110));
                 DrawOfferDetail(offer,x+16,270,220);

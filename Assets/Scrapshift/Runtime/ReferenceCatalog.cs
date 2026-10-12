@@ -39,7 +39,7 @@ namespace Scrapshift
         public string[] setIds,soundNames;
         public StatEffect[] scaling;
         public WeaponTrait[] traits;
-        public bool available=true;
+        public bool available=true,sourceAvailable=true,implemented=true;
         public float critMultiplier=2,lifesteal,projectileSpeed=30,pierceLoss=.5f,bounceLoss=.5f,reloadMultiplier=1,recoil=.25f,recoilHalf=.1f;
         public int bounce,reloadEvery=-1;
         public bool HasSet(string id)=>setIds!=null&&Array.IndexOf(setIds,id)>=0;

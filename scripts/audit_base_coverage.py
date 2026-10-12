@@ -15,7 +15,9 @@ base_items={i['id'].removeprefix('item_') for i in items}
 content=root/'Assets/Scrapshift/Content/Reference'
 equipment=json.loads((content/'starter-profiles.json').read_text())['equipment']+json.loads((content/'catalog.json').read_text())['equipment']
 present={w['id'] for w in equipment};available={w['id'] for w in equipment if w.get('available',True)}
+source_available={w['id'] for w in equipment if w.get('sourceAvailable',w.get('available',True))}
+unfinished={w['id'] for w in equipment if not w.get('implemented',True)}
 ours=json.loads((content/'item-design.json').read_text())['items']
-report=dict(reference='Registered base weapons and unique item my_id values in supplied item_service.tscn, before DLC injection; weapon families, not tiers',baseWeaponFamilies=len(base),importedWeaponFamilies=len(base&present),availableWeaponFamilies=len(base&available),missingWeaponFamilies=sorted(base-present),lockedWeaponFamilies=sorted((base&present)-available),baseItems=len(base_items),importedItems=len(ours),availableItems=sum(i['available'] for i in ours),missingItems=sorted(base_items-{i['id'] for i in ours}),itemSources=items)
+report=dict(reference='Registered base weapons and unique item my_id values in supplied item_service.tscn, before DLC injection; weapon families, not tiers',baseWeaponFamilies=len(base),importedWeaponFamilies=len(base&present),availableWeaponFamilies=len(base&available),missingWeaponFamilies=sorted(base-present),lockedWeaponFamilies=sorted((base&present)-source_available),unfinishedWeaponFamilies=sorted(unfinished),implementedWeaponFamilies=len(base- unfinished),baseItems=len(base_items),importedItems=len(ours),availableItems=sum(i['available'] for i in ours),missingItems=sorted(base_items-{i['id'] for i in ours}),itemSources=items)
 (root/'artifacts/base-catalog-coverage.json').write_text(json.dumps(report,indent=2)+'\n')
 print('Missing:',len(report['missingWeaponFamilies']),'weapon families,',len(report['missingItems']),'items')

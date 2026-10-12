@@ -18,6 +18,7 @@ namespace Scrapshift
         public string StatName(string key)=>T("STAT_"+(key.StartsWith("stat_")?key.Substring(5):key).ToUpperInvariant(),ItemEntry.StatName(key));
         public string StatEffect(string key,float value)
         {
+            if(!key.StartsWith("stat_")&&SpecialItemEffects.IsSecondary(key))return SpecialItemEffects.Description(key,value);
             string name=StatName(key);bool percent=name.StartsWith("%");
             return (value>0?"+":"")+N(value)+(percent?"%":"")+" "+name.TrimStart('%',' ');
         }
@@ -31,14 +32,14 @@ namespace Scrapshift
             if(stat=="armor")
             {float coefficient=value>=0?1/(1+value/15):2-1/(1-value/15);return Format(key,N(Mathf.Round(Mathf.Abs(1-coefficient)*100))+"%");}
             if(stat=="hp_regeneration")return Format(key,value>0?"1":"0",value>0?RunRules.RegenerationInterval(value).ToString("0.##",CultureInfo.InvariantCulture):"5",value>0?(1/RunRules.RegenerationInterval(value)).ToString("0.##",CultureInfo.InvariantCulture):"0");
-            if(stat=="harvesting")return Format(key+(value>=0?"_LIMITED":""),number,"5%","20","10%");
+            if(stat=="harvesting")return Format(key+(value>=0?"_LIMITED":""),number,N(5+rules.Stat("harvesting_growth"))+"%","20","10%");
             if(stat=="dodge")return Format(key,number+"%","60%");
             if(stat=="lifesteal")return Format(key,number+"%","10");
             if(StatPresentation.Unit(stat)=="%"||stat=="luck")number+="%";
             return Format(key,number);
         }
         public string ItemDescription(ItemEntry item)=>string.Join("\n",item.effects.Select(e=>
-            "<color="+(e.value<0?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"));
+            "<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"));
         public string Sets(Equipment weapon)=>string.Join(", ",WeaponSets.All.Where(s=>weapon.HasSet(s.Id)).Select(s=>s.Name));
         static string Compared(float current,float original,string shown)=>"<color="+(Mathf.Approximately(current,original)?"#FFFFFF":current>original?"#76FF40":"#FF4444")+">"+shown+"</color>";
         public string WeaponDescription(RunRules rules,Equipment w)
@@ -64,7 +65,7 @@ namespace Scrapshift
                 {
                     case "effect_burning":effect=Format(t.key.ToUpperInvariant(),N(t.burnDamage),N(t.burnTicks),N(t.burnScale*100)+"% "+StatName("elemental_damage"));break;
                     case "effect_slow_in_zone":effect=T(t.key.ToUpperInvariant());break;
-                    case "effect_explode_custom":effect=Format(t.key.ToUpperInvariant(),N(t.chance*100)+"%");break;
+                    case "effect_explode":case "effect_explode_melee":case "effect_explode_custom":effect=N(t.chance*100)+"% chance to explode on hit";break;
                     case "effect_projectiles_on_hit":case "effect_lightning_on_hit":effect=Format(t.key.ToUpperInvariant(),N(t.value),N(rules.WeaponDamage(t.projectile.AsEquipment())),N(t.projectile.bounce),string.Join(" + ",t.projectile.scaling.Select(s=>N(s.value*100)+"% "+StatName(s.key))));break;
                     case "effect_weapon_stack":effect=Format(t.key.ToUpperInvariant(),"+"+N(t.value),T("STAT_DAMAGE"),WeaponName(w),N(t.value*Mathf.Max(0,rules.Inventory.Count(a=>a.id==w.id)-1)));break;
                     case "effect_gain_stat_every_killed_enemies":effect=Format(t.key.ToUpperInvariant(),"+"+N(t.amount),StatName(t.stat),N(t.value));break;

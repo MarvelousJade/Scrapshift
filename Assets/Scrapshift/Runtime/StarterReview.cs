@@ -68,11 +68,11 @@ namespace Scrapshift
         {
             foreach(var weapon in catalog.data.equipment)
             {
-                if(weapon.tier!=1||!weapon.available)continue;
+                if(!weapon.available)continue;
                 starterReport.availableWeapons++;Begin();ClearCombat();Rules.Inventory.Clear();Rules.Inventory.Add(weapon);SyncEquipment();
                 var target=FeelEnemy(new Vector2(.6f,0));
                 for(int i=0;i<180;i++){UpdateEquipment(1f/60);UpdateWeapons(1f/60);UpdateStarterEffects(1f/60);}
-                if(target.hp<1000)starterReport.weaponsDamagedTarget.Add(weapon.id);
+                if(target.hp<1000)starterReport.weaponsDamagedTarget.Add(weapon.id+"/"+weapon.tier);
             }
             Begin();ClearCombat();var victim=FeelEnemy(Vector2.right);var other=FeelEnemy(Vector2.right*2);
             ApplyStarterHit(victim,catalog.Weapon("wand",1),false,false,false);

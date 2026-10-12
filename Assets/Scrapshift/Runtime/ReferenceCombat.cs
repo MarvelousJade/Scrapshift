@@ -125,7 +125,7 @@ namespace Scrapshift
                 foreach(float sign in new[]{-1f,1f})
                 {var stroke=MakeLine("Green tree warning",marker.transform,RunFeedback.SpawnColor(true,1),.12f);stroke.positionCount=2;stroke.SetPosition(0,new Vector3(-.4f,-.4f*sign,0));stroke.SetPosition(1,new Vector3(.4f,.4f*sign,0));}
             }
-            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=def.health+def.growth*(Rules.Wave-1);enemies.Add(new Enemy
+            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Mathf.Max(.01f,1+Rules.Stat("enemy_health")/100);enemies.Add(new Enemy
             {
                 obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
             })
@@ -210,7 +210,7 @@ namespace Scrapshift
                         }
                     }
                 }
-                speed = Mathf.Max(0, speed - e.contactSlow);
+                speed = Mathf.Max(0, speed*Mathf.Max(.01f,1+Rules.Stat("enemy_speed")/100) - e.contactSlow);
                 e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
                 if (role == "Buffer" && e.cooldown <= 0)
                 {
@@ -361,7 +361,7 @@ namespace Scrapshift
                     {
                         Vector2 dir=Quaternion.Euler(0,0,(p-(w.pellets-1)/2f)*Mathf.Max(5,w.spread*Mathf.Rad2Deg)) * direction;var obj=SpriteObject("Rivet tracer",catalog.muzzleFrames[2],muzzle,13);obj.transform.localScale=Vector3.one*.45f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
                         {
-                            obj=obj,pos=muzzle,velocity=dir*w.projectileSpeed,life=(range+1)/w.projectileSpeed,damage=damage,crit=w.crit,pierce=w.piercing,knockback=w.knockback,weapon=w,bounces=w.bounce
+                            obj=obj,pos=muzzle,velocity=dir*w.projectileSpeed,life=(range+1)/w.projectileSpeed,damage=damage,crit=w.crit,pierce=w.piercing+(int)Rules.Stat("piercing"),knockback=w.knockback,weapon=w,bounces=w.bounce+(int)Rules.Stat("bounce")
                         })
                         ;shotsFired++;
                     }
@@ -404,7 +404,7 @@ namespace Scrapshift
                         }
                         int pierceBonus=critical?(int)(s.weapon?.Trait("pierce_on_crit")?.value??0):0;
                         if(s.pierce--+pierceBonus<=0){s.life=0;break;}
-                        s.damage*=1-(s.weapon?.pierceLoss??.5f);
+                        s.damage*=Mathf.Clamp01(1-(s.weapon?.pierceLoss??.5f)+Rules.Stat("piercing_damage")/100);
                     }
                 }
                 if (s.life <= 0 || CombatGeometry.ProjectileOutside(s.pos))
@@ -413,6 +413,8 @@ namespace Scrapshift
         }
         bool Damage(int index,float damage,float crit=0,float knockback=1,Vector2 attackDirection=default,Equipment weapon=null,bool secondary=false,bool bypassArmor=false)
         {
+            if(index<0||index>=enemies.Count)return false;
+            knockback+=Rules.Stat("knockback")/10;
             var e=enemies[index];if(e.marker!=null)return false;bool critical=UnityEngine.Random.value<Mathf.Clamp01(Rules.CritChance+crit);if(critical)
             {
                 damage*=weapon?.critMultiplier??2;

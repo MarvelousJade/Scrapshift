@@ -33,3 +33,5 @@ An engineering/portfolio study; not an official Brotato release.
 Full-run balance and player acceptance remain unverified.
 
 Combat update: distinct lower-body hitboxes, stronger pistol knockback, brief enemy slowing after contact, and clearer white impact flashes. Original artwork retained.
+
+October 12 cybernetic refresh: cream human-like mascot, implant names with reference values, footsteps/pickup feedback, tabbed options. 106 item definitions (91 available); 62 weapon families imported (40 available on this profile). Some special-effect weapons and 103 reference items remain unfinished and are not included in the shop. No DLC resources imported.

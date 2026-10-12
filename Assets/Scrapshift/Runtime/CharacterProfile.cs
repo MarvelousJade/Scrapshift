@@ -26,7 +26,8 @@ namespace Scrapshift
     }
     [Serializable] public sealed class WeaponTrait
     {
-        public string key,stat;
+        public string key,stat,sourceScript,customKey;
+        public float interval;
         public float value,chance=1,amount,radius,per,burnDamage,burnTicks,burnInterval=1,burnChance=1,burnScale;
         public ProjectileStats projectile;
     }
@@ -73,7 +74,7 @@ namespace Scrapshift
         {
             float value=0;
             foreach(var w in Inventory)if(w.traits!=null)foreach(var t in w.traits)
-                if(t.key=="stat_"+key)
+                if(t.key=="stat_"+key||t.key==key)
                     value+=t.per>0?Mathf.Floor((1-Mathf.Clamp01(Health/MaxHealth))*100/t.per)*t.value:t.value;
             return value;
         }

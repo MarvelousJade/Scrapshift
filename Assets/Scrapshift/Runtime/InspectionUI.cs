@@ -51,6 +51,7 @@ namespace Scrapshift
             var ev=Event.current;
             if(ev.type==EventType.KeyDown&&(ev.keyCode==KeyCode.Tab||ev.keyCode==KeyCode.LeftArrow||ev.keyCode==KeyCode.RightArrow||ev.keyCode==KeyCode.UpArrow||ev.keyCode==KeyCode.DownArrow))
             {
+                sound.Play(SoundCue.UiFocus);
                 int index=inspectionEntries.FindIndex(e=>e.id==focusedInspection);
                 if(index<0)index=0;
                 else if(ev.keyCode==KeyCode.Tab)index=(index+(ev.shift?-1:1)+inspectionEntries.Count)%inspectionEntries.Count;

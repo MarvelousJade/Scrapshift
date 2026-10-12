@@ -127,7 +127,7 @@ namespace Scrapshift
             gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)) { if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
+            if (Input.GetKeyDown(KeyCode.Escape)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
             if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {
@@ -255,7 +255,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
-            ClearReferenceCombat(); ClearImpacts(); floaters.Clear();
+            ClearReferenceCombat(); ClearImpacts(); ClearFootDust(); floaters.Clear();
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();
             foreach (var s in shots) Destroy(s.obj); shots.Clear();
             foreach (var p in pickups) Destroy(p.obj); pickups.Clear();

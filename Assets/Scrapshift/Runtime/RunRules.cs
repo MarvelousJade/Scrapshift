@@ -78,7 +78,7 @@ namespace Scrapshift
         public float DamageScale=>Math.Max(0,1+Stat("percent_damage")/100);
         public float FireRate=>Math.Max(.1f,1+Stat("attack_speed")/100);
         public float MoveSpeed=>4.5f*Math.Max(.2f,1+Stat("speed")/100);
-        public float PickupRadius=>1.3f;
+        public float PickupRadius=>Mathf.Max(.3f,1.5f*(1+Stat("pickup_range")/100));
         public float CritChance=>Stat("crit_chance")/100;
         public bool OrbitUnlocked=>false;
         public bool PulseUnlocked=>false;
@@ -100,7 +100,7 @@ namespace Scrapshift
         readonly Dictionary<string,float> stats=new Dictionary<string,float>();
         readonly System.Random random;
         ReferenceCatalog catalog;
-        int rerolls,banked;
+        int rerolls,banked;float xpFraction;
         public int Banked=>banked;
         public int RerollPrice=>(int)(Wave*.75f)+Math.Max(1,(int)(Wave*.4f))*(rerolls+1);
         public bool CanReroll=>(Phase==RunPhase.Upgrade||Phase==RunPhase.Shop)&&Scrap>=RerollPrice;
@@ -126,7 +126,7 @@ namespace Scrapshift
         public void ReturnToTitle() { Phase=RunPhase.Title; }
         public void Start(CharacterProfile character=null,string weaponId=null)
         {
-            stats.Clear();Character=character;
+            stats.Clear();xpFraction=0;Character=character;
             Inventory.Clear();
             Items.Clear();
             crates.Clear();CrateItem=null;regenElapsed=lifeStealCooldown=0;
@@ -161,7 +161,7 @@ namespace Scrapshift
             int harvest=(int)Stat("harvesting");
             Scrap=Math.Max(0,Scrap+harvest);
             if(harvest>0)GainXP(harvest);
-            if(harvest>0)Add("harvesting",Mathf.Ceil(harvest*.05f));
+            if(harvest>0)Add("harvesting",Mathf.Ceil(harvest*Mathf.Max(0,5+Stat("harvesting_growth"))/100));
             rerolls=0;
             OpenRewards();
         }
@@ -189,7 +189,8 @@ namespace Scrapshift
         }
         void GainXP(int value)
         {
-            XP+=value;
+            float gained=value*Mathf.Max(0,1+Stat("xp_gain")/100)+xpFraction;
+            XP+=(int)gained;xpFraction=gained-(int)gained;
             while(XP>=NextLevel)
             {
                 XP-=NextLevel;
@@ -210,9 +211,10 @@ namespace Scrapshift
         {
             banked+=Math.Max(0,value);
         }
-        public int Price(int value)=>PriceAt(value,Wave);
+        public int Price(int value)=>Math.Max(1,(int)((value+Wave+value*Wave*.1f)*Mathf.Max(0,1+Stat("items_price")/100)));
+        public int RecycleValue(int value)=>Math.Max(1,(int)(Price(value)*Mathf.Clamp(.25f+Stat("recycling_gains")/100,.01f,1)));
         static int PriceAt(int value,int wave)=>Math.Max(1,(int)(value+wave+value*wave*.1f));
-        public int Price(ShopOffer offer)=>PriceAt(offer.Value,offer.rolledWave>0?offer.rolledWave:Wave);
+        public int Price(ShopOffer offer){int wave=offer.rolledWave>0?offer.rolledWave:Wave;return Math.Max(1,(int)((offer.Value+wave+offer.Value*wave*.1f)*Mathf.Max(0,1+Stat("items_price")/100)));}
         void Draft(bool reroll=false)
         {
             var pool=new List<UpgradeKind>
@@ -332,7 +334,7 @@ namespace Scrapshift
         public void Recycle(int i)
         {
             if(Phase!=RunPhase.Shop||i<0||i>=Inventory.Count)return;
-            Scrap+=Math.Max(1,(int)(Price(Inventory[i].value)*.25f));
+            Scrap+=RecycleValue(Inventory[i].value);
             Inventory.RemoveAt(i);
             Health=Math.Min(Health,MaxHealth);
         }

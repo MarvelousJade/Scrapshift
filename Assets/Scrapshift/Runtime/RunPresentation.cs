@@ -53,6 +53,7 @@ namespace Scrapshift
         }
         void ConfirmMenu()
         {
+            sound.Play(SoundCue.UiPress);
             if(Rules.Phase==RunPhase.Title)
             {
                 if(menuPage==1&&randomCharacter){ChangeLook(UnityEngine.Random.Range(0,4)-playerAnimation.lookIndex);randomCharacter=false;}

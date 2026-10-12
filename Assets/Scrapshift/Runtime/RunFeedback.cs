@@ -87,7 +87,7 @@ namespace Scrapshift
             GUI.enabled=Rules.CanCombine(selectedWeapon);
             if(Button(new Rect(x+15,buttonsY+10,width-30,49),"Combine")){Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
             GUI.enabled=true;
-            if(Button(new Rect(x+15,buttonsY+72,width-30,49),"Recycle (+"+Mathf.Max(1,(int)(Rules.Price(w.value)*.25f))+")"))
+            if(Button(new Rect(x+15,buttonsY+72,width-30,49),"Recycle (+"+Rules.RecycleValue(w.value)+")"))
             {Rules.Recycle(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
             if(Button(new Rect(x+15,buttonsY+134,width-30,49),"Cancel"))selectedWeapon=-1;
             DrawInspectionSets(WeaponSets.All.Where(s=>w.HasSet(s.Id)).ToArray(),x+width+8,y);

@@ -49,13 +49,13 @@ namespace Scrapshift
                             StarterProjectile(victim.pos,direction,trait.projectile.AsEquipment(),true,victim);
                         }
                         break;
-                    case "effect_explode_custom":
+                    case "effect_explode":case "effect_explode_melee":case "effect_explode_custom":
                         if(UnityEngine.Random.value<trait.chance)
                         {
                             float radius=trait.radius*(1+Rules.Stat("explosion_size")/100);
                             Burst(victim.pos,12,amber);
                             foreach(var e in enemies.ToArray())if(e!=victim&&e.marker==null&&Vector2.Distance(e.pos,victim.pos)<radius)
-                                Damage(enemies.IndexOf(e),Rules.WeaponDamage(weapon),weapon.crit,weapon.knockback,e.pos-victim.pos,weapon,true);
+                                Damage(enemies.IndexOf(e),Rules.WeaponDamage(weapon)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),weapon.crit,weapon.knockback,e.pos-victim.pos,weapon,true);
                         }
                         break;
                     case "gold_on_crit_kill":
@@ -64,7 +64,7 @@ namespace Scrapshift
                         if(killed)
                         {
                             ghostKills.TryGetValue(weapon,out int count);count++;
-                            if(count>=trait.value){count=0;Rules.GainWeaponStat(trait.stat,trait.amount);FloatText(playerPos,"+1 Attack Speed",mint,false);}
+                            if(count>=trait.value){count=0;Rules.GainWeaponStat(trait.stat,trait.amount);FloatText(playerPos,ItemEntry.FormatStat(trait.stat,trait.amount),mint,false);}
                             ghostKills[weapon]=count;
                         }
                         break;

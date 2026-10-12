@@ -350,3 +350,13 @@ Builds/MoneyRefresh/Scrapshift.exe built with zero errors/warnings; 180/180 test
 HUD: harvesting moved below money and enlarged to 40x40; one unnumbered pending-upgrade icon. Base catalog audit now uses registered resource identities: 62 weapon families and 209 items. Earlier 201/127 item counts are superseded by 209 total / 135 not imported. Full list: artifacts/base-catalog-coverage.json.
 
 HudRefresh validation: 180/180 tests passed; build has zero errors/warnings. All 29 runtime captures passed; enlarged harvesting icon below money and single unnumbered upgrade arrow visually verified. All 868 validation-copy files match. Package CRC and all 155 entries match; see artifacts/package.json.
+
+
+## October 12 — cybernetic theme and catalog continuation
+
+- `Builds/CyberneticRefresh/Scrapshift.exe`: Unity Windows build succeeded, zero errors/warnings. 187/187 EditMode tests passed, none skipped.
+- Catalog: 62 registered weapon families / 205 tier records; 40 available families / 142 obtainable tiers. All 142 dealt damage in the actual Windows combat fixture; burning, slow, secondary projectiles, turret firing and ghost gains passed. Frozen targets and scripted invocation are not a human balance test.
+- Items: 106 imported, 91 obtainable; all extracted values checked and all eligible purchases tested. 103 registered item definitions remain outside runtime. Ten new weapon families with unfinished effects are explicitly gated; legacy locked Rail Gun behavior is also pending. Full-game shop probabilities are not yet reproduced.
+- AssetScope: 311 assets, zero errors/findings. Validation copy: all 914 source/metadata files match byte for byte (Assets/Packages/ProjectSettings).
+- Preserved existing PNG artwork; one new original generated weapon atlas, prompt/provenance in artifacts/base-weapons-art-prompt.txt. Source reference audio attribution remains separate.
+- Build failures found and corrected: MP3 weapon audio overlooked by WAV-only loader; tests assumed all weapons had tier 1 and a fixed art-sheet count. See catalog-expansion-oct12.md and cybernetic-presentation.md.
