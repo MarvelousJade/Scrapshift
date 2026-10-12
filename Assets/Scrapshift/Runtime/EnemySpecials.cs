@@ -36,7 +36,7 @@ namespace Scrapshift
                 // Reference projectiles extend along one rotating arm at 100 px/s.
                 Vector2 pos=e.pos+Vector2.down*.32f+direction*Mathf.Min(bossRadii[i],e.activeAge);
                 e.orbitProjectiles[i].transform.position=new Vector3(pos.x,pos.y,-2);
-                if(RunRules.Touches(pos,PlayerHurtCenter,CombatGeometry.PlayerHurtRadius+CombatGeometry.HostileRadius))HurtPlayer(ProjectileDamage(e),e.type);
+                if(RunRules.Touches(pos,PlayerHurtCenter,CombatGeometry.PlayerHurtRadius+CombatGeometry.HostileRadius))HurtPlayer(ProjectileDamage(e),e.type,e);
             }
         }
         void EatMaterials(Enemy e,float dt)
@@ -80,7 +80,7 @@ namespace Scrapshift
                 Vector2 local=PlayerHurtCenter-s.pos;
                 float along=Vector2.Dot(local,s.direction),across=Vector2.Dot(local,new Vector2(-s.direction.y,s.direction.x));
                 if(Mathf.Abs(along-centers[frame])<widths[frame]+CombatGeometry.PlayerHurtRadius && Mathf.Abs(across)<.17f+CombatGeometry.PlayerHurtRadius)
-                { HurtPlayer(s.damage,s.owner.type);s.hit=true; }
+                { HurtPlayer(s.damage,s.owner.type,s.owner);s.hit=true; }
             }
         }
     }

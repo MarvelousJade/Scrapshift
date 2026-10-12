@@ -39,7 +39,7 @@ namespace Scrapshift
         void CollectPickup(Pickup pickup)
         {
             int levelBefore=Rules.Level;float healthBefore=Rules.Health;
-            if(pickup.fruit)Rules.CollectConsumable(pickup.consumable);
+            if(pickup.fruit){Rules.CollectConsumable(pickup.consumable);if(!waveSweeping)QueueImplantExplosions("explode_on_consumable",pickup.motion.position);}
             else Rules.Collect(pickup.value);
             float healed=Rules.Health-healthBefore;
             if(healed>0)FloatText(playerPos,$"+{healed:0} HP",mint,true);

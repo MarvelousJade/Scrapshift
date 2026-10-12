@@ -44,7 +44,7 @@ namespace Scrapshift
         public int pellets=1,piercing,bounce,reloadEvery=-1;
         public StatEffect[] scaling;
         [NonSerialized] Equipment cached;
-        public Equipment AsEquipment()=>cached??(cached=new Equipment{damage=damage,interval=interval,range=range,
+        public Equipment AsEquipment()=>cached??(cached=new Equipment{specialSpawn=true,damage=damage,interval=interval,range=range,
             spread=spread,crit=crit,knockback=knockback,critMultiplier=critMultiplier,lifesteal=lifesteal,
             projectileSpeed=projectileSpeed,pierceLoss=pierceLoss,bounceLoss=bounceLoss,reloadMultiplier=reloadMultiplier,
             recoil=recoil,recoilHalf=recoilHalf,pellets=pellets,piercing=piercing,bounce=bounce,reloadEvery=reloadEvery,scaling=scaling});
@@ -66,14 +66,14 @@ namespace Scrapshift
         public float WeaponFireRate(Equipment w){float speed=WeaponAttackSpeed(w);return speed>=0?1+speed:1/(1-speed);}
         public float WeaponCooldown(Equipment w)=>Mathf.Max(MinimumWeaponCooldown-WeaponAnimationDuration(w),Mathf.Max(2,Mathf.Floor(Mathf.Max(2,w.interval*60)/WeaponFireRate(w)+.0001f))/60);
         public float WeaponAnimationDuration(Equipment w)=>WeaponMotion.ReferenceDuration(w,WeaponAttackSpeed(w),WeaponRange(w));
-        public float WeaponDamage(Equipment w)
+        public float WeaponDamage(Equipment w,float additionalPercent=0)
         {
-            float damage=w.damage+NoHitWeaponBonus(w)+AddedWeaponScaling;
+            float damage=w.damage+NoHitWeaponBonus(w)+(w.specialSpawn?0:AddedWeaponScaling);
             if(w.scaling!=null)foreach(var s in w.scaling)damage+=(s.key=="max_hp"?MaxHealth:s.key=="levels"?Level:Stat(s.key))*s.value;
             else damage+=Stat(w.melee?"melee_damage":"ranged_damage");
             var stack=w.Trait("effect_weapon_stack");
             if(stack!=null)damage+=stack.value*Mathf.Max(0,Inventory.Count(a=>a.id==w.id)-1);
-            return Mathf.Max(1,damage*DamageScale);
+            return Mathf.Max(1,damage*Mathf.Max(0,1+(Stat("percent_damage")+additionalPercent)/100));
         }
         float EquipmentStat(string key)
         {

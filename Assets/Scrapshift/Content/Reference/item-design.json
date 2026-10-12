@@ -79,6 +79,53 @@
       "conditionalEffects": []
     },
     {
+      "id": "alien_eyes",
+      "title": "Alien Eyes",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "alien_eyes",
+          "value": 6,
+          "customKey": "alien_eyes",
+          "projectile": {
+            "damage": 1,
+            "interval": 1.0,
+            "range": 100.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "max_hp",
+                "value": 0.5
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 5.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "interval": 3
+        }
+      ]
+    },
+    {
       "id": "alien_magic",
       "title": "Alien Magic",
       "available": true,
@@ -266,6 +313,58 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "baby_with_a_beard",
+      "title": "Baby With A Beard",
+      "available": true,
+      "tier": 3,
+      "value": 100,
+      "tags": [
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "projectiles_on_death",
+          "value": 1,
+          "customKey": "projectiles_on_death",
+          "projectile": {
+            "damage": 1,
+            "interval": 1.0,
+            "range": 100.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.03,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "ranged_damage",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "interval": -1
+        }
+      ]
     },
     {
       "id": "bag",
@@ -2468,6 +2567,29 @@
       ]
     },
     {
+      "id": "ice_cube",
+      "title": "Ice Cube",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 10,
+          "customKey": "enemy_percent_damage_taken",
+          "interval": 3,
+          "per": 1,
+          "limit": 1
+        }
+      ]
+    },
+    {
       "id": "improved_tools",
       "title": "Improved Tools",
       "available": false,
@@ -3799,6 +3921,89 @@
       "conditionalEffects": []
     },
     {
+      "id": "rip_and_tear",
+      "title": "Rip And Tear",
+      "available": false,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_melee_damage",
+        "explosive"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_crit_chance",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "explode_on_death",
+          "value": 1,
+          "customKey": "explode_on_death",
+          "projectile": {
+            "damage": 10,
+            "interval": 1.0,
+            "range": 1.5,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0,
+            "crit": 0.0,
+            "critMultiplier": 1.5,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "melee_damage",
+                "value": 0.5
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "chance": 0.2,
+          "radius": 0.9577100000000001
+        }
+      ]
+    },
+    {
+      "id": "riposte",
+      "title": "Riposte",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_dodge",
+        "stat_melee_damage"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "melee_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 300,
+          "customKey": "dmg_on_dodge",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
       "id": "ritual",
       "title": "Ritual",
       "available": false,
@@ -4222,6 +4427,61 @@
           "customKey": "gain_stat_for_equipped_item_with_stat",
           "stat": "stat_elemental_damage",
           "per": 0
+        }
+      ]
+    },
+    {
+      "id": "spicy_sauce",
+      "title": "Spicy Sauce",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_max_hp",
+        "stat_luck",
+        "explosive"
+      ],
+      "maxCount": 2,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "explode_on_consumable",
+          "value": 1,
+          "customKey": "explode_on_consumable",
+          "projectile": {
+            "damage": 0,
+            "interval": 1.0,
+            "range": 1.5,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0,
+            "crit": 0.0,
+            "critMultiplier": 1.5,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "max_hp",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "chance": 0.5,
+          "radius": 1.84175
         }
       ]
     },

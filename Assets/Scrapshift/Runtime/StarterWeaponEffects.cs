@@ -27,8 +27,8 @@ namespace Scrapshift
             var obj=SpriteObject("Weapon projectile",catalog.muzzleFrames[2],position,13);
             obj.transform.localScale=Vector3.one*.35f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
             var shot=new Shot{obj=obj,pos=position,velocity=direction.normalized*stats.projectileSpeed,
-                life=(stats.range+1)/Mathf.Max(1,stats.projectileSpeed),damage=structure?SpecialWeaponRules.StructureDamage(Rules,stats):Rules.WeaponDamage(stats),
-                crit=stats.crit,pierce=stats.piercing,bounces=stats.bounce,knockback=stats.knockback,weapon=stats,secondary=secondary,structure=structure,structureSpec=structureSpec};
+                life=((structure?stats.range:Rules.WeaponRange(stats))+1)/Mathf.Max(1,stats.projectileSpeed),damage=structure?SpecialWeaponRules.StructureDamage(Rules,stats):Rules.WeaponDamage(stats),
+                crit=stats.crit,pierce=stats.piercing+(int)Rules.Stat("piercing"),bounces=stats.bounce+(int)Rules.Stat("bounce"),knockback=stats.knockback,weapon=stats,secondary=secondary,structure=structure,structureSpec=structureSpec};
             if(structureSpec?.delayed==true)shot.hitDelay=UnityEngine.Random.Range(0,.05f);
             if(structureSpec?.healing==true)obj.GetComponent<SpriteRenderer>().color=mint;
             if(delayedSlow){shot.hitDelay=UnityEngine.Random.Range(0,.05f);shot.slow=2;}
@@ -37,7 +37,7 @@ namespace Scrapshift
         void ApplyStarterHit(Enemy victim,Equipment weapon,bool critical,bool killed,bool secondary,bool structure=false)
         {
             if(weapon!=null&&!killed&&Rules.RollBurn(weapon,UnityEngine.Random.value,out float burnDamage,out int burnTicks,structure))
-                ApplyBurn(victim,burnDamage,burnTicks,(int)Rules.Stat("burning_spread"));
+                ApplyBurn(victim,burnDamage,burnTicks,(int)Rules.Stat("burning_spread"),weapon.Trait("effect_burning")?.burnStat??"elemental_damage");
             if(weapon==null||secondary||weapon.traits==null)return;
             foreach(var trait in weapon.traits)
             {
@@ -108,7 +108,7 @@ namespace Scrapshift
             foreach(var e in enemies.ToArray())if(e.burnTicks>0&&e.marker==null)
             {
                 if(e.burnSpread>0)foreach(var target in enemies)if(target!=e&&target.marker==null&&target.burnTicks==0&&Vector2.Distance(target.pos,e.pos)<=1.28f)
-                {ApplyBurn(target,e.burnDamage,e.burnTicks,e.burnSpread-1);e.burnSpread=0;break;}
+                {ApplyBurn(target,e.burnDamage,e.burnTicks,e.burnSpread-1,e.burnStat);e.burnSpread=0;break;}
                 e.burnClock-=dt;if(e.burnClock>0)continue;
                 e.burnClock+=Rules.BurningInterval;e.burnTicks--;Burst(e.pos,2,amber);
                 Damage(enemies.IndexOf(e),e.burnDamage,-100,0,Vector2.up,null,true,true);
@@ -120,8 +120,8 @@ namespace Scrapshift
             foreach(var t in starterTurrets)Destroy(t.obj);starterTurrets.Clear();
             foreach(var mine in mines)Destroy(mine.obj);mines.Clear();mineSpawners.Clear();
         }
-        void ApplyBurn(Enemy target,float damage,int ticks,int spread)
-        {if(target.burnTicks<=0)target.burnClock=Rules.BurningInterval;target.burnDamage=Mathf.Max(target.burnTicks>0?target.burnDamage:0,damage);target.burnTicks=Mathf.Max(target.burnTicks,ticks);target.burnSpread=Mathf.Max(target.burnSpread,spread);}
+        void ApplyBurn(Enemy target,float damage,int ticks,int spread,string stat="elemental_damage")
+        {stat=string.IsNullOrEmpty(stat)?"elemental_damage":stat;target.burnStat=stat;TryVulnerability(target,stat);if(target.burnTicks<=0)target.burnClock=Rules.BurningInterval;target.burnDamage=Mathf.Max(target.burnTicks>0?target.burnDamage:0,damage);target.burnTicks=Mathf.Max(target.burnTicks,ticks);target.burnSpread=Mathf.Max(target.burnSpread,spread);}
         void SpawnMine(StarterTurret spawner,Sprite image)
         {
             var pos=new Vector2(UnityEngine.Random.Range(-7f,7f),UnityEngine.Random.Range(-5f,5f));

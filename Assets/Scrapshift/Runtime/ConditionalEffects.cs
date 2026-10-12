@@ -11,6 +11,8 @@ namespace Scrapshift
         public float per,chance,limit;
         public bool permanentOnly;
         public StructureSpec structure;
+        public ProjectileStats projectile;
+        public float radius;
         public float value,interval=1;
         public bool resetOnHit;
         public string Description
@@ -20,6 +22,12 @@ namespace Scrapshift
                 switch(customKey)
                 {
                     case "structure":return structure?.Description??"Deploy a structure";
+                    case "alien_eyes":return $"Fire {value:0} projectiles every {interval:0.##} seconds (1 + 50% Max HP damage)";
+                    case "projectiles_on_death":return $"Enemies release {value:0} projectiles when killed (1 + 100% Ranged Damage)";
+                    case "explode_on_death":return $"{chance*100:0.##}% chance for enemies to explode when killed (10 + 50% Melee Damage)";
+                    case "explode_on_consumable":return $"{chance*100:0.##}% chance to explode on collecting a consumable (100% Max HP damage)";
+                    case "dmg_on_dodge":return $"{chance*100:0.##}% chance to deal {value:0.##}% {ItemEntry.StatName(key)} damage to an enemy whose attack you dodge";
+                    case "enemy_percent_damage_taken":return $"First hit scaling with {ItemEntry.StatName(key)} makes an enemy take {value:0.##}% more damage for {interval:0.##} seconds";
                     case "global_burn":return $"{chance*100:0.##}% chance to burn for {value:0.##} + {per*100:0.##}% Elemental Damage, {interval:0} times";
                     case "remove_speed":return $"Hits reduce enemy speed by {value:0.##}%, up to {per:0.##}%";
                     case "hp_regen_bonus":return $"+{value*100:0.##}% regeneration healing below {per:0.##}% HP";
@@ -38,7 +46,7 @@ namespace Scrapshift
                 }
             }
         }
-        public bool HasCustomDescription=>customKey=="structure"||customKey=="dmg_when_pickup_gold"||customKey=="dmg_when_death"||customKey=="upgrade_random_weapon"||customKey=="gain_stat_for_killed_enemies_while_burning"||customKey=="global_burn"||customKey=="remove_speed"||customKey=="hp_regen_bonus"||customKey=="heal_on_dodge"||customKey=="consumable_stats_while_max"||customKey=="giant_crit_damage"||customKey=="gold_on_crit_kill"||customKey=="weapon_scaling_stats"||customKey=="structures_cooldown_reduction"||customKey=="minimum_weapon_cooldowns"||customKey=="gain_stat_for_equipped_item_with_stat";
+        public bool HasCustomDescription=>customKey=="alien_eyes"||customKey=="projectiles_on_death"||customKey=="explode_on_death"||customKey=="explode_on_consumable"||customKey=="dmg_on_dodge"||customKey=="enemy_percent_damage_taken"||customKey=="structure"||customKey=="dmg_when_pickup_gold"||customKey=="dmg_when_death"||customKey=="upgrade_random_weapon"||customKey=="gain_stat_for_killed_enemies_while_burning"||customKey=="global_burn"||customKey=="remove_speed"||customKey=="hp_regen_bonus"||customKey=="heal_on_dodge"||customKey=="consumable_stats_while_max"||customKey=="giant_crit_damage"||customKey=="gold_on_crit_kill"||customKey=="weapon_scaling_stats"||customKey=="structures_cooldown_reduction"||customKey=="minimum_weapon_cooldowns"||customKey=="gain_stat_for_equipped_item_with_stat";
         public string Suffix
         {
             get
@@ -73,6 +81,7 @@ namespace Scrapshift
         bool moving;
         // Source uses input movement, not displacement: pushing against an edge still counts.
         public void SetMoving(bool value){if(Phase==RunPhase.Playing)moving=value;}
+        public IEnumerable<ConditionalEffect> Effects(string trigger)=>ConditionalEffects().Where(e=>e.customKey==trigger);
         IEnumerable<ConditionalEffect> ConditionalEffects()
         {
             foreach(var item in Items)if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)yield return effect;

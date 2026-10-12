@@ -2,7 +2,7 @@
 import json, hashlib, re
 from pathlib import Path
 import analyze_reference as source
-from structure_specs import structure
+from structure_specs import structure,stats_data
 source.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 root=Path(__file__).resolve().parents[1]
 ids=['coffee','beanie','glasses','helmet','leather_vest','bat','fertilizer','cake']
@@ -18,11 +18,12 @@ conditional={'temp_stats_while_not_moving','temp_stats_while_moving','unique_wea
 def implemented(e):
     if not isinstance(e.get('value'),(int,float)):return False
     if e.get('script')=='effects/items/burn_chance_effect.gd':return True
+    if e.get('script') in {'effects/items/projectile_effect.gd','effects/items/item_exploding_effect.gd','effects/items/percent_damage_effect.gd'}:return True
     if e.get('script') in {'effects/items/structure_effect.gd','effects/items/turret_effect.gd'}:return True
     if e.get('script')=='effects/items/gain_stat_for_killed_enemies_while_burning.gd':return True
     if e.get('script')=='effects/items/double_value_effect.gd' and (e.get('key') in {'remove_speed','hp_regen_bonus','giant_crit_damage'} or e.get('custom_key')=='consumable_stats_while_max'):return True
     if e.get('script')=='effects/items/weapon_cooldown_effect.gd' and e.get('key')=='minimum_weapon_cooldowns':return True
-    if e.get('script')=='effects/items/chance_stat_damage_effect.gd' and e.get('custom_key') in {'heal_on_dodge','dmg_when_pickup_gold','dmg_when_death'}:return True
+    if e.get('script')=='effects/items/chance_stat_damage_effect.gd' and e.get('custom_key') in {'heal_on_dodge','dmg_when_pickup_gold','dmg_when_death','dmg_on_dodge'}:return True
     if e.get('script')=='effects/items/double_key_value_effect.gd' and e.get('custom_key')=='gain_stat_for_equipped_item_with_stat':return True
     if e.get('script')=='items/global/effect.gd' and e.get('custom_key') in {'gold_on_crit_kill','weapon_scaling_stats','structures_cooldown_reduction','stats_next_wave','upgrade_random_weapon'}:return True
     if e.get('script') in {'effects/items/gain_stat_for_every_stat_effect.gd','effects/items/stat_cap_effect.gd'}:return True
@@ -46,6 +47,12 @@ def read(path):
 
 def special(e):
     script=e.get('script','')
+    if script=='effects/items/projectile_effect.gd':
+        return dict(key=e['key'],value=e['value'],customKey=e['key'],projectile=stats_data(read(e['weapon_stats'])),interval=e.get('cooldown',-1))
+    if script=='effects/items/item_exploding_effect.gd':
+        return dict(key=e['key'],value=e['value'],customKey=e['key'],projectile=stats_data(read(e['stats'])),chance=e.get('chance',1),radius=e.get('scale',1)*1.4734)
+    if script=='effects/items/percent_damage_effect.gd':
+        return dict(key=e['key'],value=e['value'],customKey=e['custom_key'],interval=e['duration_secs'],per=e['max_stacks'],limit=e['max_procs'])
     if script in {'effects/items/structure_effect.gd','effects/items/turret_effect.gd'}:
         return dict(key='structure',value=e['value'],customKey='structure',structure=structure(e))
     if script.endswith('/gain_stat_for_killed_enemies_while_burning.gd'):

@@ -135,7 +135,7 @@ namespace Scrapshift
         {
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
-                var e = enemies[i]; e.age += dt; e.flash = Mathf.Max(0, e.flash - dt);
+                var e = enemies[i]; e.age += dt;e.iceClock=Mathf.Max(0,e.iceClock-dt); e.flash = Mathf.Max(0, e.flash - dt);
                 if (e.marker != null)
                 {
                     var mr = e.marker.GetComponent<SpriteRenderer>();
@@ -240,7 +240,7 @@ namespace Scrapshift
                 if(role=="Boss") UpdateBossArm(e,dt);
                 if (role != "Tree" && invulnerable <= 0 && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                 {
-                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1)*Mathf.Max(0,1+Rules.Stat("enemy_damage")/100),e.type);
+                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1)*Mathf.Max(0,1+Rules.Stat("enemy_damage")/100),e.type,e);
                     e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, e.speed);
                     if (role == "Pursuer") e.action = 0;
                 }
@@ -289,9 +289,9 @@ namespace Scrapshift
                 }
             }
         }
-        void HurtPlayer(float amount,EnemyEntry attacker=null)
+        void HurtPlayer(float amount,EnemyEntry attacker=null,Enemy sourceEnemy=null)
         {
-            if(invulnerable>0)return;float before=Rules.Health;Rules.Hurt(amount);float actual=before-Rules.Health;if(actual<=0)
+            if(invulnerable>0)return;float before=Rules.Health;Rules.Hurt(amount);float actual=before-Rules.Health;if(Rules.LastHitDodged&&Rules.DodgeRetaliation>0&&sourceEnemy!=null)implantRetaliations.Enqueue((sourceEnemy,Rules.DodgeRetaliation));if(actual<=0)
             {
                 FloatText(playerPos,Rules.LastHitProtected?"BLOCK":"DODGE",mint,false);invulnerable=CombatGeometry.Invulnerability(0,Rules.MaxHealth);return;
             }
@@ -309,7 +309,7 @@ namespace Scrapshift
             core.sortingOrder = 14; core.positionCount = 2;
             core.SetPosition(0, new Vector3(-.025f, 0, -.01f)); core.SetPosition(1, new Vector3(.025f, 0, -.01f));
             shots.Add(new Shot { obj = obj, pos = e.pos, velocity = direction.normalized * e.behavior.projectileSpeed, life = 30,
-                damage = ProjectileDamage(e), hostile = true, attacker=e.type });
+                damage = ProjectileDamage(e), hostile = true, attacker=e.type,sourceEnemy=e });
         }
         void UpdateEquipment(float dt)
         {
@@ -381,7 +381,7 @@ namespace Scrapshift
                 else if (s.hostile)
                 {
                     if (SegmentDistance(PlayerHurtCenter, old, s.pos) <= CombatGeometry.PlayerHurtRadius + CombatGeometry.HostileRadius)
-                    { HurtPlayer(s.damage,s.attacker); s.life = 0; }
+                    { HurtPlayer(s.damage,s.attacker,s.sourceEnemy); s.life = 0; }
                 }
                 else
                 {
@@ -425,6 +425,8 @@ namespace Scrapshift
             {
                 damage*=weapon?.critMultiplier??2;
             }
+            if(weapon!=null&&Rules.WeaponScalesWith(weapon,"elemental_damage"))TryVulnerability(e,"elemental_damage");
+            if(e.iceClock>0)damage*=1+e.icePercent/100;
             damage=Mathf.Max(1,bypassArmor?damage:damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));
             if(e.type.role=="Boss")damage=Rules.DamageToBoss(damage);
             if(critical)damage+=Rules.CriticalCurrentHealthDamage(e.hp,e.type.role=="Boss");
@@ -439,7 +441,7 @@ namespace Scrapshift
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
-            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure);if(e.type.role!="Tree")Rules.KillEffects(e.burnTicks>0||bypassArmor);return critical;
+            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure);if(e.type.role!="Tree"){EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0||bypassArmor);}return critical;
         }
         void Drop(Vector2 p,int value,bool fruit)
         {
@@ -474,10 +476,8 @@ namespace Scrapshift
         }
         void ClearReferenceCombat()
         {
-            implantDamage.Clear();
+            implantDamage.Clear();implantExplosions.Clear();implantRetaliations.Clear();alienClock=0;
             ClearStarterEffects();births.Clear();foreach(var slash in slashes)Destroy(slash.obj);slashes.Clear();foreach(var e in corpses)Destroy(e.obj);corpses.Clear();
         }
     }
 }
-
-

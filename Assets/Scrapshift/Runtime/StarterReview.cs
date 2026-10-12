@@ -18,6 +18,7 @@ namespace Scrapshift
             public List<string> weaponsDamagedTarget=new List<string>();
             public int availableWeapons; public bool burning,slow,secondaryProjectiles,turretFired,ghostProgress;
             public bool gardenFruit,mineExplosion,burningSpread,engineeringSlow,thunderProjectiles,vorpalExecution;
+            public List<string> attackImplantsPassed=new List<string>();
             public List<string> deployableImplantsPassed=new List<string>();
         }
         StarterReport starterReport;
@@ -51,7 +52,7 @@ namespace Scrapshift
                 starterReport.randomSelectedPlayable=menuPage==2&&playerAnimation.lookIndex>=0&&playerAnimation.lookIndex<catalog.data.characters.Length;
                 starterCaptures.Add("random-weapons");ScreenCapture.CaptureScreenshot(Path.Combine(starterReviewPath,"random-weapons.png"));
             }
-            else if(starterStage==catalog.data.characters.Length*2+1){CheckStarterCombat();CheckDeployableImplants();}
+            else if(starterStage==catalog.data.characters.Length*2+1){CheckStarterCombat();CheckDeployableImplants();CheckImplantAttacks();}
             else
             {
                 starterReport.width=Screen.width;starterReport.height=Screen.height;
@@ -60,7 +61,7 @@ namespace Scrapshift
                 bool passed=starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==catalog.data.characters.Length
                     &&starterReport.weaponsDamagedTarget.Count==starterReport.availableWeapons&&starterReport.burning&&starterReport.slow
                     &&starterReport.secondaryProjectiles&&starterReport.turretFired&&starterReport.ghostProgress
-                    &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution&&starterReport.deployableImplantsPassed.Count==9;
+                    &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution&&starterReport.deployableImplantsPassed.Count==9&&starterReport.attackImplantsPassed.Count==6;
                 starterReport.status=passed?"Passed":"Failed";
                 File.WriteAllText(Path.Combine(starterReviewPath,"starter-review.json"),JsonUtility.ToJson(starterReport,true));
                 Application.Quit(passed?0:1);enabled=false;

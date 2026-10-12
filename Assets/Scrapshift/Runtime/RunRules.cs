@@ -177,8 +177,8 @@ namespace Scrapshift
         public void Hurt(float amount)
         {
             if(Phase!=RunPhase.Playing||amount<=0)return;
-            LastHitProtected=false;
-            if(random.NextDouble()<Mathf.Clamp(Stat("dodge")/100,0,DodgeLimit)){DodgeTriggers();return;}
+            LastHitProtected=false;LastHitDodged=false;DodgeRetaliation=0;
+            if(random.NextDouble()<Mathf.Clamp(Stat("dodge")/100,0,DodgeLimit)){LastHitDodged=true;DodgeTriggers();RetaliationTriggers();return;}
             if(HitProtection>0){HitProtection--;LastHitProtected=true;return;}
             float armor=Stat("armor");
             amount*=armor>=0?1/(1+armor/15):2-1/(1-armor/15);

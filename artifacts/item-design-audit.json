@@ -1,5 +1,5 @@
 {
-  "supportedItems": 185,
+  "supportedItems": 191,
   "items": [
     {
       "id": "acid",
@@ -78,6 +78,53 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "alien_eyes",
+      "title": "Alien Eyes",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_max_hp"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "alien_eyes",
+          "value": 6,
+          "customKey": "alien_eyes",
+          "projectile": {
+            "damage": 1,
+            "interval": 1.0,
+            "range": 100.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.0,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "max_hp",
+                "value": 0.5
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 5.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "interval": 3
+        }
+      ]
     },
     {
       "id": "alien_magic",
@@ -267,6 +314,58 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "baby_with_a_beard",
+      "title": "Baby With A Beard",
+      "available": true,
+      "tier": 3,
+      "value": 100,
+      "tags": [
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_range",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "projectiles_on_death",
+          "value": 1,
+          "customKey": "projectiles_on_death",
+          "projectile": {
+            "damage": 1,
+            "interval": 1.0,
+            "range": 100.0,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0.0,
+            "crit": 0.03,
+            "critMultiplier": 2.0,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "ranged_damage",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "interval": -1
+        }
+      ]
     },
     {
       "id": "bag",
@@ -2469,6 +2568,29 @@
       ]
     },
     {
+      "id": "ice_cube",
+      "title": "Ice Cube",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 10,
+          "customKey": "enemy_percent_damage_taken",
+          "interval": 3,
+          "per": 1,
+          "limit": 1
+        }
+      ]
+    },
+    {
       "id": "improved_tools",
       "title": "Improved Tools",
       "available": false,
@@ -3800,6 +3922,89 @@
       "conditionalEffects": []
     },
     {
+      "id": "rip_and_tear",
+      "title": "Rip And Tear",
+      "available": false,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_melee_damage",
+        "explosive"
+      ],
+      "maxCount": 5,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_crit_chance",
+          "value": -5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "explode_on_death",
+          "value": 1,
+          "customKey": "explode_on_death",
+          "projectile": {
+            "damage": 10,
+            "interval": 1.0,
+            "range": 1.5,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0,
+            "crit": 0.0,
+            "critMultiplier": 1.5,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "melee_damage",
+                "value": 0.5
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "chance": 0.2,
+          "radius": 0.9577100000000001
+        }
+      ]
+    },
+    {
+      "id": "riposte",
+      "title": "Riposte",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_dodge",
+        "stat_melee_damage"
+      ],
+      "maxCount": -1,
+      "groups": [
+        "melee_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 300,
+          "customKey": "dmg_on_dodge",
+          "chance": 1.0
+        }
+      ]
+    },
+    {
       "id": "ritual",
       "title": "Ritual",
       "available": false,
@@ -4223,6 +4428,61 @@
           "customKey": "gain_stat_for_equipped_item_with_stat",
           "stat": "stat_elemental_damage",
           "per": 0
+        }
+      ]
+    },
+    {
+      "id": "spicy_sauce",
+      "title": "Spicy Sauce",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_max_hp",
+        "stat_luck",
+        "explosive"
+      ],
+      "maxCount": 2,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_max_hp",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "explode_on_consumable",
+          "value": 1,
+          "customKey": "explode_on_consumable",
+          "projectile": {
+            "damage": 0,
+            "interval": 1.0,
+            "range": 1.5,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0,
+            "crit": 0.0,
+            "critMultiplier": 1.5,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "max_hp",
+                "value": 1.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          },
+          "chance": 0.5,
+          "radius": 1.84175
         }
       ]
     },
@@ -5611,6 +5871,26 @@
       "sha256": "c7879499965f73bfc361abb47bb70e0410a356b99add53e42f7a27d5754cd185"
     },
     {
+      "path": "items/all/alien_eyes/alien_eyes_data.tres",
+      "sha256": "3be1e2358f190913780e6abe3a5b7ea09cdd8290e397fd26466587d62d4bf89b"
+    },
+    {
+      "path": "items/all/alien_eyes/alien_eyes_effect_1.tres",
+      "sha256": "1856f63213f4565f840f0f22294d7ad95ecb413556941e2974cebc187e3e1a44"
+    },
+    {
+      "path": "items/all/alien_eyes/alien_eyes_stats.tres",
+      "sha256": "0fb78bc5cd9033f365e7ac2a70b8fa8dde4069f59173981f27cee012b04f17df"
+    },
+    {
+      "path": "items/all/alien_eyes/alien_eyes_stats.tres",
+      "sha256": "0fb78bc5cd9033f365e7ac2a70b8fa8dde4069f59173981f27cee012b04f17df"
+    },
+    {
+      "path": "items/all/alien_eyes/alien_eyes_stats.tres",
+      "sha256": "0fb78bc5cd9033f365e7ac2a70b8fa8dde4069f59173981f27cee012b04f17df"
+    },
+    {
       "path": "items/all/alien_magic/alien_magic_data.tres",
       "sha256": "8bd6ffe0a7a5a8919bbb40023de43676e9d6870d3451491e3f7fe4a24b108426"
     },
@@ -5709,6 +5989,30 @@
     {
       "path": "items/all/baby_gecko/baby_gecko_effect_1.tres",
       "sha256": "e110c9abe39b5717596f8cb83bb9722fe97cc9e458821c90b89e0aa013608e69"
+    },
+    {
+      "path": "items/all/baby_with_a_beard/baby_with_a_beard_data.tres",
+      "sha256": "cdfa79085d5902d86f4349eded58bd905c7d0cba9c0f9701131168aae88020d4"
+    },
+    {
+      "path": "items/all/baby_with_a_beard/baby_with_a_beard_effect_1.tres",
+      "sha256": "eaa0248157fc5703ec83e9448e55277cfbbaa180d1a82fdfb09fe8e21be846e0"
+    },
+    {
+      "path": "items/all/baby_with_a_beard/baby_with_a_beard_effect_2.tres",
+      "sha256": "43be59b81dd1635719e2d36e47e12a2fb48efd8ae02c19d46dfedddfb40d5ddf"
+    },
+    {
+      "path": "weapons/ranged/base_ranged_weapon_stats.tres",
+      "sha256": "42c4d974098dfbcf608a574297bcfc085234ba0a6e56f6d061eb1fd001925b7c"
+    },
+    {
+      "path": "weapons/ranged/base_ranged_weapon_stats.tres",
+      "sha256": "42c4d974098dfbcf608a574297bcfc085234ba0a6e56f6d061eb1fd001925b7c"
+    },
+    {
+      "path": "weapons/ranged/base_ranged_weapon_stats.tres",
+      "sha256": "42c4d974098dfbcf608a574297bcfc085234ba0a6e56f6d061eb1fd001925b7c"
     },
     {
       "path": "items/all/bag/bag_data.tres",
@@ -6835,6 +7139,14 @@
       "sha256": "059f9f4526cb78f19514bfba8601603efb41c850c7fc90f37e4ce6b3a936a652"
     },
     {
+      "path": "items/all/ice_cube/ice_cube_data.tres",
+      "sha256": "18c3d64d38bfaffebe292bd4b0afea8d9db517aa3533816c85ed7d58c8a1e726"
+    },
+    {
+      "path": "items/all/ice_cube/effects/ice_cube_effect_0.tres",
+      "sha256": "c84107aab144a0bda24c77ab89e984d7b4241eea7a9a6fcc57c4ab4a2b91fc69"
+    },
+    {
       "path": "items/all/improved_tools/improved_tools_data.tres",
       "sha256": "392ff8ebae96dd9fec12695d592986cf0b6a96b3837ca9c2fe3275a090962b4e"
     },
@@ -7515,6 +7827,42 @@
       "sha256": "f3f4bc354ed2e1651ac0e94f45a30a39be3dbeb236ea14a389edf2041dd4f287"
     },
     {
+      "path": "items/all/rip_and_tear/rip_and_tear_data.tres",
+      "sha256": "3d685f0535592716f26fe2ce3428bd3dddc163d86679965cb151c3b416ccacb3"
+    },
+    {
+      "path": "items/all/rip_and_tear/rip_and_tear_effect_1.tres",
+      "sha256": "14cd188466d967e8be957800a3a2998939fa0b2666497002bf331d1630038e6c"
+    },
+    {
+      "path": "items/all/rip_and_tear/rip_and_tear_effect_2.tres",
+      "sha256": "b29ffaa031715378f90ddb3f82922b274ff76baca8764f0b35b132379b46c277"
+    },
+    {
+      "path": "items/all/rip_and_tear/rip_and_tear_stats.tres",
+      "sha256": "5c679ff677b5376b4e9e95a3302d3023dc7354ddb2dbd886ad1b2c783dc54279"
+    },
+    {
+      "path": "items/all/rip_and_tear/rip_and_tear_stats.tres",
+      "sha256": "5c679ff677b5376b4e9e95a3302d3023dc7354ddb2dbd886ad1b2c783dc54279"
+    },
+    {
+      "path": "items/all/rip_and_tear/rip_and_tear_stats.tres",
+      "sha256": "5c679ff677b5376b4e9e95a3302d3023dc7354ddb2dbd886ad1b2c783dc54279"
+    },
+    {
+      "path": "items/all/riposte/riposte_data.tres",
+      "sha256": "b98f4435792fd636d0c9710e90594afd9c5123fe9764172df93ed0ef80eaccbf"
+    },
+    {
+      "path": "items/all/riposte/riposte_effect_0.tres",
+      "sha256": "3286ddb3be918eca1e938fe6a44ba020ebfdd3a9a8632658125425954139085d"
+    },
+    {
+      "path": "items/all/riposte/riposte_effect_1.tres",
+      "sha256": "b542e62105ce554aee7e301e68a199a25adea6866b07e3d49dc3210e3638a2c1"
+    },
+    {
       "path": "items/all/ritual/ritual_data.tres",
       "sha256": "d4a4332138fa97ea044fb4eca3a16f4e51f8678a69c5df204df223f09b0425f9"
     },
@@ -7745,6 +8093,30 @@
     {
       "path": "items/all/snowball/effects/snowball_effect_0.tres",
       "sha256": "2852bf9a864de7a95b200668c265df7b0cdcafc21b09248106d0d2722ffb1a2f"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_data.tres",
+      "sha256": "68e9e8781da593df21ff32d5c0e9a8a23d0d0e995ee638a05d000e564a2d4c00"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_effect_0.tres",
+      "sha256": "7501dd52fb76f41ff8f451ce3311132b38586b34656557d655eeb146a9679494"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_effect_1.tres",
+      "sha256": "1ea111b4176da99b483552f107dcef02ad37456d271d1b22a783066af9094a02"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_stats.tres",
+      "sha256": "eb0533b4d05aba100211170bbda6b9dfae9f252ace28c96d516874b6392ce9a1"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_stats.tres",
+      "sha256": "eb0533b4d05aba100211170bbda6b9dfae9f252ace28c96d516874b6392ce9a1"
+    },
+    {
+      "path": "items/all/spicy_sauce/spicy_sauce_stats.tres",
+      "sha256": "eb0533b4d05aba100211170bbda6b9dfae9f252ace28c96d516874b6392ce9a1"
     },
     {
       "path": "items/all/spider/spider_data.tres",
@@ -8273,19 +8645,6 @@
   ],
   "unsupported": [
     {
-      "id": "alien_eyes",
-      "effects": [
-        "alien_eyes"
-      ]
-    },
-    {
-      "id": "baby_with_a_beard",
-      "effects": [
-        "projectiles_on_death",
-        "stat_range"
-      ]
-    },
-    {
       "id": "bait",
       "effects": [
         "stat_percent_damage",
@@ -8370,12 +8729,6 @@
       ]
     },
     {
-      "id": "ice_cube",
-      "effects": [
-        "stat_elemental_damage"
-      ]
-    },
-    {
       "id": "jellyshield",
       "effects": [
         "jellyshield_count",
@@ -8409,33 +8762,12 @@
       ]
     },
     {
-      "id": "rip_and_tear",
-      "effects": [
-        "explode_on_death",
-        "stat_crit_chance"
-      ]
-    },
-    {
-      "id": "riposte",
-      "effects": [
-        "stat_melee_damage",
-        "stat_melee_damage"
-      ]
-    },
-    {
       "id": "scapegoat",
       "effects": [
         ""
       ]
-    },
-    {
-      "id": "spicy_sauce",
-      "effects": [
-        "stat_max_hp",
-        "explode_on_consumable"
-      ]
     }
   ],
-  "availableItems": 150,
+  "availableItems": 154,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

@@ -33,6 +33,7 @@ namespace Scrapshift
         public string id,title,icon;
         public int tier,value,pellets,piercing;
         public bool melee;
+        public bool specialSpawn;
         public float damage,interval,range,spread,crit,knockback;
         public Sprite image;
         public AudioClip[] sounds;

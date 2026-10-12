@@ -6,6 +6,12 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"alien_eyes","Radial Optic Array"},
+            {"baby_with_a_beard","Death Shard Gland"},
+            {"rip_and_tear","Rupture Catalyst"},
+            {"spicy_sauce","Volatile Nutrient Organ"},
+            {"ice_cube","Cryogenic Exposure Chip"},
+            {"riposte","Reflex Retaliation Servo"},
             {"landmines","Proximity Charge Gland"},
             {"turret","Ballistic Drone Socket"},
             {"turret_flame","Thermal Drone Socket"},
