@@ -10,10 +10,10 @@ namespace Scrapshift.Tests
         ReferenceCatalog catalog;
         [SetUp] public void Setup()=>catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
         RunRules Start(int character,string weapon){var r=new RunRules(42);r.Configure(catalog);r.Start(catalog.data.characters[character],weapon);return r;}
-        [Test] public void FourProfilesKeepReferenceOrderAndCompleteStartingLists()
+        [Test] public void FiveProfilesKeepReferenceOrderAndCompleteStartingLists()
         {
-            CollectionAssert.AreEqual(new[]{"well_rounded","brawler","crazy","ranger"},catalog.data.characters.Select(c=>c.id));
-            CollectionAssert.AreEqual(new[]{18,3,8,9},catalog.data.characters.Select(c=>c.startingWeapons.Length));
+            CollectionAssert.AreEqual(new[]{"well_rounded","brawler","crazy","ranger","mage"},catalog.data.characters.Select(c=>c.id));
+            CollectionAssert.AreEqual(new[]{18,3,8,9,8},catalog.data.characters.Select(c=>c.startingWeapons.Length));
             Assert.AreEqual(50,catalog.data.rosterSlots);
             foreach(var c in catalog.data.characters)foreach(var id in c.startingWeapons)
                 for(int tier=1;tier<=4;tier++){var w=catalog.Weapon(id,tier);Assert.NotNull(w,id);Assert.NotNull(w.image,id);Assert.IsNotEmpty(w.sounds,id);}
@@ -33,6 +33,20 @@ namespace Scrapshift.Tests
         [Test] public void RookieHasReferenceStartingStats()
         {
             var r=Start(0,"knife");Assert.AreEqual(15,r.MaxHealth);Assert.AreEqual(8,r.Stat("harvesting"));Assert.AreEqual(4.725f,r.MoveSpeed,.001);
+        }
+        [Test] public void MageStartsWithBothBurningImplantsAndExactGainRestrictions()
+        {
+            var r=Start(4,"wand");CollectionAssert.AreEquivalent(new[]{"snake","scared_sausage"},r.Items.Select(i=>i.id));
+            Assert.AreEqual(1,r.Stat("burning_spread"));r.GainWeaponStat("elemental_damage",4);r.GainWeaponStat("melee_damage",8);r.GainWeaponStat("ranged_damage",8);r.GainWeaponStat("engineering",8);
+            Assert.AreEqual(5,r.Stat("elemental_damage"));Assert.AreEqual(0,r.Stat("melee_damage"));Assert.AreEqual(0,r.Stat("ranged_damage"));Assert.AreEqual(4,r.Stat("engineering"));
+            Assert.IsTrue(r.RollBurn(catalog.Weapon("pistol",1),.24,out float damage,out int ticks));Assert.AreEqual(6,damage);Assert.AreEqual(3,ticks);
+            Assert.IsFalse(r.RollBurn(catalog.Weapon("pistol",1),.25,out _,out _));
+        }
+        [Test] public void GlobalBurnStacksChanceAndBaseDamageButNotDurationOrScaling()
+        {
+            var r=Start(4,"wand");r.Items.Add(catalog.data.items.Single(i=>i.id=="scared_sausage"));r.GainWeaponStat("elemental_damage",4);
+            Assert.IsTrue(r.RollBurn(catalog.Weapon("pistol",1),.49,out float damage,out int ticks));Assert.AreEqual(7,damage);Assert.AreEqual(3,ticks);
+            var wand=catalog.Weapon("wand",1);Assert.IsTrue(r.RollBurn(wand,.9,out damage,out ticks));Assert.AreEqual((wand.Trait("effect_burning").burnDamage+2+5*wand.Trait("effect_burning").burnScale)*r.DamageScale,damage);Assert.AreEqual((int)wand.Trait("effect_burning").burnTicks,ticks);
         }
         [Test] public void PugilistAttackSpeedAppliesOnlyToUnarmedWeapons()
         {

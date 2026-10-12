@@ -1,4 +1,4 @@
-"""Extract the first four character profiles and their complete starting-weapon lists.
+"""Extract the initial five character profiles and their complete starting-weapon lists.
 Reads the supplied Godot 3 reference. Does not copy its character or weapon art.
 """
 import json, hashlib, shutil, re
@@ -11,8 +11,9 @@ PROJECT=Path(__file__).resolve().parents[1]
 OUT=PROJECT/'Assets/Scrapshift/Content/Reference'
 read=source.resource
 profiles=[]; weapons={}; sets={}; provenance=[]
-renames={'well_rounded':'Rookie','brawler':'Pugilist','crazy':'Hothead','ranger':'Sharpshot'}
+renames={'well_rounded':'Rookie','brawler':'Pugilist','crazy':'Hothead','ranger':'Sharpshot','mage':'Arc Weaver'}
 descriptions={
+ 'mage':'Elemental Damage gains increased by 25%\nStart with Thermal Relay and Ignition Gland\nMelee and Ranged Damage gains reduced by 100%\nEngineering gains reduced by 50%',
  'well_rounded':'+5 Max HP\n+5% Speed\n+8 Harvesting',
  'brawler':'+50% Attack Speed with Unarmed weapons\nStart with 1 Fist\n+15% Dodge\n-50 Range\n-50 Ranged Damage',
  'crazy':'+100 Range with Precise weapons\n+25% Attack Speed\nStart with 1 Knife\n-30% Dodge\n-10 Engineering\n-10 Ranged Damage',
@@ -85,10 +86,11 @@ for cid,title in renames.items():
  path=f'items/characters/{cid}/{cid}_data.tres';d=read(path);track(path)
  effects=[read(e) for e in d['effects']]
  profile=dict(id=cid,title=title,description=descriptions[cid],startingWeapons=[Path(p).parts[-3] for p in d['starting_weapons']],
-   stats=[],gains=[],bonusWeapon='',classSet='',classStat='',classValue=0,noMelee=False,
+   stats=[],gains=[],startingItems=[],bonusWeapon='',classSet='',classStat='',classValue=0,noMelee=False,
    bannedItemGroups=d.get('banned_item_groups',[]))
  for e in effects:
   if e.get('custom_key')=='starting_weapon':profile['bonusWeapon']=e['key'].removeprefix('weapon_').removesuffix('_1')
+  elif e.get('custom_key')=='starting_item':profile['startingItems'] += [e['key'].removeprefix('item_')]*int(e['value'])
   elif 'stats_modified' in e:profile['gains'] += [dict(key=stat(k),value=e['value']) for k in e['stats_modified']]
   elif 'set_id' in e:profile.update(classSet=e['set_id'].removeprefix('set_'),classStat=e['stat_name'],classValue=e['value'])
   elif e['key']=='no_melee_weapons':profile['noMelee']=True

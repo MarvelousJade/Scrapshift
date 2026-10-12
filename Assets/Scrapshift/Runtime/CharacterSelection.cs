@@ -77,7 +77,7 @@ namespace Scrapshift
             Frame(new Rect(left+20,244,180,245),new Color(.32f,.29f,.25f));
             if(randomCharacter&&menuPage==1)Text(left+20,300,180,120,"?",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
             else Portrait(new Vector2(left+110,365),100,playerAnimation.Look);
-            string details=randomCharacter&&menuPage==1?"Choose one of the four\nplayable characters at random.":SelectedCharacter.description;
+            string details=randomCharacter&&menuPage==1?"Choose an unlocked\ncharacter at random.":SelectedCharacter.description;
             if(randomCharacter&&menuPage==1)Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
             else DrawCharacterEffects(SelectedCharacter,left+220,246,328);
             if(!(randomCharacter&&menuPage==1)&&!string.IsNullOrEmpty(SelectedCharacter.DefaultWeapon))
@@ -103,6 +103,8 @@ namespace Scrapshift
                 if(row.kind=="class")label=colored+" "+stat+" with "+System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(row.extra)+" weapons";
                 else if(row.kind=="weapon")
                 {var weapon=catalog.Weapon(row.key,1);image=weapon.image;label="You start with <color=#76FF40>"+row.value.ToString("0")+" "+inspectionText.WeaponName(weapon)+"</color>";}
+                else if(row.kind=="item")
+                {var item=Array.Find(catalog.data.items,i=>i.id==row.key);image=item.image;label="Start with <color=#76FF40>"+row.value.ToString("0")+" "+inspectionText.ItemName(item)+"</color>";}
                 else if(row.kind=="gain")label=stat+" modifications are "+(row.value<0?"reduced":"increased")+" by <color="+color+">"+Mathf.Abs(row.value).ToString("0")+"%</color>";
                 else if(row.kind=="noMelee")label="<color=#FF3B3B>You can't equip melee weapons</color>";
                 float h=style.CalcHeight(new GUIContent(label),width-30);

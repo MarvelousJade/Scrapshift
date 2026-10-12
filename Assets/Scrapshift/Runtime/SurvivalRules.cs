@@ -16,7 +16,7 @@ namespace Scrapshift
             regenElapsed+=dt;
             double interval=torture>0?1:RegenerationInterval(regen);
             int ticks=(int)Math.Floor((regenElapsed+1e-7)/interval);
-            if(ticks>0){regenElapsed-=ticks*interval;Heal(ticks*(torture>0?torture:1),torture>0);}
+            if(ticks>0){regenElapsed-=ticks*interval;for(int i=0;i<ticks;i++)Heal(torture>0?torture:RegenerationHealMultiplier,torture>0);}
         }
 
         public bool TryLifeSteal(double roll,float weaponBonus=0)

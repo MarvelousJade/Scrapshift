@@ -1,5 +1,5 @@
 {
-  "supportedItems": 156,
+  "supportedItems": 170,
   "items": [
     {
       "id": "acid",
@@ -27,6 +27,34 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "adrenaline",
+      "title": "Adrenaline",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "stat_dodge"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "dodge"
+      ],
+      "effects": [
+        {
+          "key": "stat_dodge",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "",
+          "value": 5,
+          "customKey": "heal_on_dodge",
+          "chance": 0.5
+        }
+      ]
     },
     {
       "id": "alien_baby",
@@ -222,6 +250,45 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "ball_and_chain",
+      "title": "Ball And Chain",
+      "available": true,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_percent_damage",
+        "stat_armor",
+        "knockback"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 15
+        },
+        {
+          "key": "stat_armor",
+          "value": 3
+        },
+        {
+          "key": "knockback",
+          "value": 5
+        },
+        {
+          "key": "stat_speed",
+          "value": -3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "minimum_weapon_cooldowns",
+          "value": 45,
+          "customKey": "minimum_weapon_cooldowns"
+        }
+      ]
     },
     {
       "id": "bandana",
@@ -878,6 +945,30 @@
       "conditionalEffects": []
     },
     {
+      "id": "clockwork_wasp",
+      "title": "Clockwork Wasp",
+      "available": true,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "structure",
+        "stat_speed"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "structure_attack_speed",
+          "value": 10
+        },
+        {
+          "key": "stat_speed",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "clover",
       "title": "Clover",
       "available": true,
@@ -1441,6 +1532,28 @@
       "conditionalEffects": []
     },
     {
+      "id": "extra_stomach",
+      "title": "Extra Stomach",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_max_hp",
+        "stat_luck"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "consumable_stats_while_max",
+          "per": 8
+        }
+      ]
+    },
+    {
       "id": "eyes_surgery",
       "title": "Eyes Surgery",
       "available": true,
@@ -1631,6 +1744,44 @@
       ]
     },
     {
+      "id": "frozen_heart",
+      "title": "Frozen Heart",
+      "available": true,
+      "tier": 3,
+      "value": 90,
+      "tags": [
+        "stat_elemental_damage",
+        "stat_crit_chance"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 8
+        },
+        {
+          "key": "stat_crit_chance",
+          "value": 5
+        },
+        {
+          "key": "burning_cooldown_reduction",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 10,
+          "customKey": "weapon_scaling_stats",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "fruit_basket",
       "title": "Fruit Basket",
       "available": false,
@@ -1770,6 +1921,27 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "giant_belt",
+      "title": "Giant Belt",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_crit_chance"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "giant_crit_damage",
+          "value": 10,
+          "customKey": "giant_crit_damage",
+          "per": 1
+        }
+      ]
     },
     {
       "id": "glass_cannon",
@@ -2122,6 +2294,56 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "hunting_trophy",
+      "title": "Hunting Trophy",
+      "available": false,
+      "tier": 3,
+      "value": 55,
+      "tags": [
+        "stat_crit_chance"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "gold_on_crit_kill",
+          "value": 33,
+          "customKey": "gold_on_crit_kill",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "improved_tools",
+      "title": "Improved Tools",
+      "available": false,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "structure",
+        "stat_attack_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 50,
+          "customKey": "structures_cooldown_reduction",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
     },
     {
       "id": "injection",
@@ -2748,6 +2970,39 @@
       "conditionalEffects": []
     },
     {
+      "id": "nail",
+      "title": "Nail",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_engineering"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "engineering"
+      ],
+      "effects": [
+        {
+          "key": "stat_engineering",
+          "value": 5
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": -2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_engineering",
+          "value": 20,
+          "customKey": "weapon_scaling_stats",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "night_goggles",
       "title": "Night Goggles",
       "available": false,
@@ -2939,6 +3194,34 @@
       "conditionalEffects": []
     },
     {
+      "id": "pile_of_books",
+      "title": "Pile Of Books",
+      "available": true,
+      "tier": 2,
+      "value": 60,
+      "tags": [
+        "stat_crit_chance",
+        "stat_engineering"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "structures_can_crit",
+          "value": 1
+        },
+        {
+          "key": "stat_crit_chance",
+          "value": 5
+        },
+        {
+          "key": "stat_engineering",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "plant",
       "title": "Plant",
       "available": true,
@@ -3069,6 +3352,34 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "potion",
+      "title": "Potion",
+      "available": true,
+      "tier": 4,
+      "value": 90,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "hp_regen_bonus",
+          "value": 1,
+          "customKey": "hp_regen_bonus",
+          "per": 50
+        }
+      ]
     },
     {
       "id": "power_generator",
@@ -3359,6 +3670,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "scared_sausage",
+      "title": "Scared Sausage",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 4,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "burn_chance",
+          "customKey": "global_burn",
+          "value": 1,
+          "chance": 0.25,
+          "interval": 3,
+          "per": 1.0
+        }
+      ]
+    },
+    {
       "id": "scope",
       "title": "Scope",
       "available": true,
@@ -3624,6 +3958,30 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "snowball",
+      "title": "Snowball",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 1,
+          "customKey": "gain_stat_for_equipped_item_with_stat",
+          "stat": "stat_elemental_damage",
+          "per": 0
+        }
+      ]
     },
     {
       "id": "spider",
@@ -3988,6 +4346,32 @@
           "customKey": "temp_stats_on_hit",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "ugly_tooth",
+      "title": "Ugly Tooth",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "less_enemy_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_speed",
+          "value": -3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "remove_speed",
+          "value": 5,
+          "customKey": "remove_speed",
+          "per": 20
         }
       ]
     },
@@ -4430,6 +4814,51 @@
           "extra": ""
         }
       ]
+    },
+    {
+      "id": "mage",
+      "wantedTags": [
+        "stat_elemental_damage"
+      ],
+      "bannedItems": [],
+      "rows": [
+        {
+          "kind": "gain",
+          "key": "elemental_damage",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "snake",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "scared_sausage",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "melee_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "ranged_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "engineering",
+          "value": -50,
+          "extra": ""
+        }
+      ]
     }
   ],
   "initialDataDifferences": [
@@ -4476,6 +4905,18 @@
     {
       "path": "items/all/acid/acid_effect_3.tres",
       "sha256": "ea75bbc171484491fbdad57335a5e1b8a1873023a1a9b2371788970e884f3e7c"
+    },
+    {
+      "path": "items/all/adrenaline/adrenaline_data.tres",
+      "sha256": "9dd91c0ff745768cf835743c20c87d1456da965176a6878f0bcaf45b5370a0d4"
+    },
+    {
+      "path": "items/all/adrenaline/adrenaline_effect_0.tres",
+      "sha256": "f25ec7758db5e8dbf135abfdc06fccf064330555242066df08e7cd7e1d329a78"
+    },
+    {
+      "path": "items/all/adrenaline/adrenaline_effect_1.tres",
+      "sha256": "187e02e75f98e41ab750ac09c2e876570e03f3fab6da554fb12ccb319a004111"
     },
     {
       "path": "items/all/alien_baby/alien_baby_data.tres",
@@ -4584,6 +5025,30 @@
     {
       "path": "items/all/bag/bag_effect_2.tres",
       "sha256": "30acd05f109020b7fa0c5c9c26c6d303600add7d56f9885d5274d70df83e720b"
+    },
+    {
+      "path": "items/all/ball_and_chain/ball_and_chain_data.tres",
+      "sha256": "3b55a2eff171a96efff24b0d995642b8169cf05a69195a7a44076de930b476f4"
+    },
+    {
+      "path": "items/all/ball_and_chain/effects/ball_and_chain_effect_0.tres",
+      "sha256": "0928de1e99c231c80de3004f3676c3040a410ae44bfe6302dcfe0db5adc51cfc"
+    },
+    {
+      "path": "items/all/ball_and_chain/effects/ball_and_chain_effect_1.tres",
+      "sha256": "253ab60ca426fa766afc452acd2d942ab0de4ed2572abd85e2cd9282c1f239f1"
+    },
+    {
+      "path": "items/all/ball_and_chain/effects/ball_and_chain_effect_2.tres",
+      "sha256": "5aeb4b14ac8c69fdf721f007f880a2eb213da32e3a4519729842f1d31f12d56b"
+    },
+    {
+      "path": "items/all/ball_and_chain/effects/ball_and_chain_effect_2b.tres",
+      "sha256": "0815a8d0959d21e252000ab41b30e1d260e3849560f9221c28305253609301ff"
+    },
+    {
+      "path": "items/all/ball_and_chain/effects/ball_and_chain_effect_3.tres",
+      "sha256": "6debd7fac2f23675ba901decba5374919d2228c269f498534718613bde2deb57"
     },
     {
       "path": "items/all/bandana/bandana_data.tres",
@@ -4938,6 +5403,18 @@
       "sha256": "03418fa9dc34956f451d24d2f7aababa58addea63e2792aee584c1264e8ea6fa"
     },
     {
+      "path": "items/all/clockwork_wasp/clockwork_wasp_data.tres",
+      "sha256": "dc3312adb56ba0c93bb1988eabf02646d8860c22bf3768dc06a375518b789790"
+    },
+    {
+      "path": "items/all/clockwork_wasp/effects/clockwork_wasp_effect_1.tres",
+      "sha256": "829e8f4f708c4d2095d32aa7299155ea7ce7605bc75537f0fcebccd48afb5a18"
+    },
+    {
+      "path": "items/all/clockwork_wasp/effects/clockwork_wasp_effect_0.tres",
+      "sha256": "3f60be34cfae94aa85a89f8ca9b1f82a571339e9650f6d81d07b1ab85e3160df"
+    },
+    {
       "path": "items/all/clover/clover_data.tres",
       "sha256": "cc83c9bcb137383f0672d8c56822afa1dbdabd15376e09041cebac0fd89bce45"
     },
@@ -5230,6 +5707,14 @@
       "sha256": "5b0934b760ce9278e99caabc38b1b75880c6ca0bd4c2d8a908c521e78499f8d6"
     },
     {
+      "path": "items/all/extra_stomach/extra_stomach_data.tres",
+      "sha256": "ad5391e52495c623c4fe04cc522ea3ca30897bcdcfe6e9ac3b90a7617854ed8f"
+    },
+    {
+      "path": "items/all/extra_stomach/extra_stomach_effect_1.tres",
+      "sha256": "edc90986474cf25b57361811412dc42ec0c6ef7ea13ac11bfc887bf5ccc5ec5f"
+    },
+    {
       "path": "items/all/eyes_surgery/eye_surgery_data.tres",
       "sha256": "ce5273122c2c2369dd48ea4c80c463c3386c7173bcf73e1cebcedd3e5a9898be"
     },
@@ -5318,6 +5803,26 @@
       "sha256": "bf3da3328a200910367dd63213d83f63a8f4e42e1ecc24b3d6f728e83148a5ec"
     },
     {
+      "path": "items/all/frozen_heart/frozen_heart_data.tres",
+      "sha256": "e4db031e2ed0787aed678d3cf78e462f28519e36e33e9c51b996a934cd64f0d6"
+    },
+    {
+      "path": "items/all/frozen_heart/effects/frozen_heart_effect_1.tres",
+      "sha256": "c145cafd725afb568aa103ea830c5697638115c6eada69eac421f8bcc7dbda44"
+    },
+    {
+      "path": "items/all/frozen_heart/effects/frozen_heart_effect_2.tres",
+      "sha256": "446bb221adaf48d45c27757e5a04ff839c58230a75f3fae1d7bfbc6b9b8c420a"
+    },
+    {
+      "path": "items/all/frozen_heart/effects/frozen_heart_effect_0.tres",
+      "sha256": "66583bb8d675b14b6fea033e12f3160ffa23bffe06238aaf77aa979d68ce1e07"
+    },
+    {
+      "path": "items/all/frozen_heart/effects/frozen_heart_effect_3.tres",
+      "sha256": "f01a7ab9c464fd865506d78c1b91b181312b00b56edfbd1551c02c06f325fbd8"
+    },
+    {
       "path": "items/all/fruit_basket/fruit_basket_data.tres",
       "sha256": "0338a4db6deacbb315f30929a4c497233897f01d0f0554215fcad80fb5103dd5"
     },
@@ -5392,6 +5897,14 @@
     {
       "path": "items/all/ghost_outfit/ghost_outfit_effect_4.tres",
       "sha256": "c627e257f79fafb6c82e566f01ef89140552e91790e82823ea8bf760038028e6"
+    },
+    {
+      "path": "items/all/giant_belt/giant_belt_data.tres",
+      "sha256": "d1c2cb21e9cfc76c21d44c18baa71d817cccdccee5e012cd5dcf527cb70b3f07"
+    },
+    {
+      "path": "items/all/giant_belt/giant_belt_effect_1.tres",
+      "sha256": "047266917ff5ffc5b7c48402c5eb6679cb0dcabc0c2c670d953080199dafaf53"
     },
     {
       "path": "items/all/glass_cannon/glass_cannon_data.tres",
@@ -5584,6 +6097,26 @@
     {
       "path": "items/all/honey/effects/honey_effect_4.tres",
       "sha256": "b6476547a0d9abcf278b61cb7c3da74defc8cf1b07200a000076232f59f751a7"
+    },
+    {
+      "path": "items/all/hunting_trophy/hunting_trophy_data.tres",
+      "sha256": "b56515580e0836de256e99bb4540c4a60077deabb615b5238a81dfc5df0d8e79"
+    },
+    {
+      "path": "items/all/hunting_trophy/hunting_trophy_effect_1.tres",
+      "sha256": "059f9f4526cb78f19514bfba8601603efb41c850c7fc90f37e4ce6b3a936a652"
+    },
+    {
+      "path": "items/all/improved_tools/improved_tools_data.tres",
+      "sha256": "392ff8ebae96dd9fec12695d592986cf0b6a96b3837ca9c2fe3275a090962b4e"
+    },
+    {
+      "path": "items/all/improved_tools/improved_tools_effect_0.tres",
+      "sha256": "b82791fc41fe5a8108c96e4686c6012a2d4de27cbd4e92cdeab482bc23f33693"
+    },
+    {
+      "path": "items/all/improved_tools/improved_tools_effect_1.tres",
+      "sha256": "0457900d913b77bde6ae9be990aa3b2a5671541d540671768e0b1d8ca6b1e65d"
     },
     {
       "path": "items/all/injection/injection_data.tres",
@@ -5918,6 +6451,22 @@
       "sha256": "5142dbc9e870cbcbf87dbf2cb334b05fd25faa4f6eb9555761aa0a206ebad6b4"
     },
     {
+      "path": "items/all/nail/nail_data.tres",
+      "sha256": "dc16a23edd691fa16c4d885d5ae038deb41a536b21d29b0457e9678975bb6a51"
+    },
+    {
+      "path": "items/all/nail/effects/nail_effect_0.tres",
+      "sha256": "bbc20bcb200ed9c856b5875098329971d04de1e3f5732cb7bdda4c269a0eb5db"
+    },
+    {
+      "path": "items/all/nail/effects/nail_effect_0b.tres",
+      "sha256": "5d8f33471a08a4731919350627e3da917374d501171c05416ee8b609cf3fb1a9"
+    },
+    {
+      "path": "items/all/nail/effects/nail_effect_2.tres",
+      "sha256": "fd0b157c967872acd1941616c38084ad08616a530b13fbdb219797602c8448dc"
+    },
+    {
       "path": "items/all/night_goggles/night_goggles_data.tres",
       "sha256": "a2ea04b41ed8443b26b475ed4f5e36cd48b2e9db0c76724d348aa5029a88f221"
     },
@@ -6022,6 +6571,22 @@
       "sha256": "103f24bd07117a866643eef6925377e455a82f88c94afe8a7e4fe49925affa7e"
     },
     {
+      "path": "items/all/pile_of_books/pile_of_books_data.tres",
+      "sha256": "a071664b458d341a47511f88202cb221ff95c93092da90bb77542d0654dd7606"
+    },
+    {
+      "path": "items/all/pile_of_books/effects/pile_of_books_effect_0.tres",
+      "sha256": "e59bb05eb40d54d83b34acbe47e566526832ec42902a347275dd17c59fbd26f0"
+    },
+    {
+      "path": "items/all/pile_of_books/effects/pile_of_books_effect_1.tres",
+      "sha256": "446bb221adaf48d45c27757e5a04ff839c58230a75f3fae1d7bfbc6b9b8c420a"
+    },
+    {
+      "path": "items/all/pile_of_books/effects/pile_of_books_effect_2.tres",
+      "sha256": "b641ddb93f0f045a4d1b12c305d3b726a97278925ae9960ff944eceb5ad5e077"
+    },
+    {
       "path": "items/all/plant/plant_data.tres",
       "sha256": "ba69163d8ef1b08bf65fdfd89e5366716703f2f36162f1ff1af0ae1cba4e6ea2"
     },
@@ -6100,6 +6665,18 @@
     {
       "path": "items/all/potato/potato_effect_5.tres",
       "sha256": "ef6774972c644900cb1952171271680e15fc2a4da3882c321cc39df39779eed4"
+    },
+    {
+      "path": "items/all/potion/potion_data.tres",
+      "sha256": "3e7d8d534fbfbbb34db91acdde26d448ebac02edc9551345f8def31f861026e0"
+    },
+    {
+      "path": "items/all/potion/potion_effect_1.tres",
+      "sha256": "226266d75de556b9cb02a0917a068b0e4e2819f11b4a1d07f16dd997b4a6258e"
+    },
+    {
+      "path": "items/all/potion/potion_effect_2.tres",
+      "sha256": "b39f69ef0b2187c2dc6e39f6a92ffb24a81473481a5d753a34ddcc83fb01b5ad"
     },
     {
       "path": "items/all/power_generator/power_generator_data.tres",
@@ -6240,6 +6817,26 @@
     {
       "path": "items/all/scar/scar_effect_2.tres",
       "sha256": "fed4be12bcad3d4ff835fb72642d75b28a3876ddd90814dd7b8089ad4389e9bd"
+    },
+    {
+      "path": "items/all/scared_sausage/scared_sausage_data.tres",
+      "sha256": "f2b1447d137804560c9d6be5ee417d5e6209767a9e5797873d9047cadb17df1c"
+    },
+    {
+      "path": "items/all/scared_sausage/scared_sausage_effect_1.tres",
+      "sha256": "1bed737e82c67d1e3404a5d556792b6a091e6ed9ddd3654c5e122dc0e635b05a"
+    },
+    {
+      "path": "items/all/scared_sausage/scared_sausage_burning_data.tres",
+      "sha256": "9548b05828315032b232ee608a3be38dfe43644ed257b36ade69009b36bb3f21"
+    },
+    {
+      "path": "items/all/scared_sausage/scared_sausage_burning_data.tres",
+      "sha256": "9548b05828315032b232ee608a3be38dfe43644ed257b36ade69009b36bb3f21"
+    },
+    {
+      "path": "items/all/scared_sausage/scared_sausage_burning_data.tres",
+      "sha256": "9548b05828315032b232ee608a3be38dfe43644ed257b36ade69009b36bb3f21"
     },
     {
       "path": "items/all/scope/scope_data.tres",
@@ -6388,6 +6985,14 @@
     {
       "path": "items/all/snake/snake_effect_2.tres",
       "sha256": "03418fa9dc34956f451d24d2f7aababa58addea63e2792aee584c1264e8ea6fa"
+    },
+    {
+      "path": "items/all/snowball/snowball_data.tres",
+      "sha256": "5e95f697e230fce1835ea63171d469cbb623ddb08fb4dbcc8461e721cd5c15fc"
+    },
+    {
+      "path": "items/all/snowball/effects/snowball_effect_0.tres",
+      "sha256": "2852bf9a864de7a95b200668c265df7b0cdcafc21b09248106d0d2722ffb1a2f"
     },
     {
       "path": "items/all/spider/spider_data.tres",
@@ -6564,6 +7169,18 @@
     {
       "path": "items/all/triangle_of_power/triangle_of_power_effect_3.tres",
       "sha256": "6d1dd59e4011ff0ddf6bb0486823f12e518806ba24b9f60c80f0d775db741290"
+    },
+    {
+      "path": "items/all/ugly_tooth/ugly_tooth_data.tres",
+      "sha256": "9c5ef72b5b4e8809853713ec6f5cb600953f1935bd5ffa0f85e7b8ea82e9fe98"
+    },
+    {
+      "path": "items/all/ugly_tooth/ugly_tooth_effect_1.tres",
+      "sha256": "a9eb19cd799cc464e4f5428dc3e95c2f5c85dfa81a14b0373c7923bc41435556"
+    },
+    {
+      "path": "items/all/ugly_tooth/ugly_tooth_effect_2.tres",
+      "sha256": "0815a8d0959d21e252000ab41b30e1d260e3849560f9221c28305253609301ff"
     },
     {
       "path": "items/all/vigilante_ring/vigilante_ring_data.tres",
@@ -6804,16 +7421,37 @@
     {
       "path": "items/characters/ranger/ranger_effect_6.tres",
       "sha256": "a31eb84e103030cb40e3a7758f54726e665de37fe41e2d423093fde855eebe00"
+    },
+    {
+      "path": "items/characters/mage/mage_data.tres",
+      "sha256": "23c4180efe65654f7e8a9784ba4abe9245535e06592e41b97e9e8ab22f5bc2b9"
+    },
+    {
+      "path": "items/characters/mage/mage_effect_2.tres",
+      "sha256": "b1c550df18a0506ab26e6106b1948a821ed3ba254492647e2be61312644a4cea"
+    },
+    {
+      "path": "items/characters/mage/mage_effect_3.tres",
+      "sha256": "8a51ed32c2ec4b9d03670851756b61ff4269be9938346ab406d3348286b858da"
+    },
+    {
+      "path": "items/characters/mage/mage_effect_3b.tres",
+      "sha256": "5f3237adb30a160a3dbe38c85c2e5597756e2be9a0571f43ebe0871cc97a78f0"
+    },
+    {
+      "path": "items/characters/mage/mage_effect_7.tres",
+      "sha256": "2823659b326115e941056b6461283ee4762a4f4646faf4582a17355143e293ff"
+    },
+    {
+      "path": "items/characters/mage/mage_effect_8.tres",
+      "sha256": "222bf5d7c26d5d2c31d87dee5215596eed1b99c9bfc86a1bff3afece41ed38ca"
+    },
+    {
+      "path": "items/characters/mage/mage_effect_9.tres",
+      "sha256": "6f5eb5fc8af0a4e3a68471f562a529319fb7ba78d0b8a134ebed6dcf7aadbd92"
     }
   ],
   "unsupported": [
-    {
-      "id": "adrenaline",
-      "effects": [
-        "stat_dodge",
-        ""
-      ]
-    },
     {
       "id": "alien_eyes",
       "effects": [
@@ -6844,16 +7482,6 @@
       "effects": [
         "stat_percent_damage",
         "extra_enemies_next_wave"
-      ]
-    },
-    {
-      "id": "ball_and_chain",
-      "effects": [
-        "stat_percent_damage",
-        "stat_armor",
-        "knockback",
-        "stat_speed",
-        "minimum_weapon_cooldowns"
       ]
     },
     {
@@ -6915,13 +7543,6 @@
       ]
     },
     {
-      "id": "clockwork_wasp",
-      "effects": [
-        "structure_attack_speed",
-        "stat_speed"
-      ]
-    },
-    {
       "id": "cyberball",
       "effects": [
         "stat_luck"
@@ -6934,30 +7555,9 @@
       ]
     },
     {
-      "id": "extra_stomach",
-      "effects": [
-        "stat_max_hp"
-      ]
-    },
-    {
-      "id": "frozen_heart",
-      "effects": [
-        "stat_elemental_damage",
-        "stat_crit_chance",
-        "stat_elemental_damage",
-        "burning_cooldown_reduction"
-      ]
-    },
-    {
       "id": "garden",
       "effects": [
         ""
-      ]
-    },
-    {
-      "id": "giant_belt",
-      "effects": [
-        "giant_crit_damage"
       ]
     },
     {
@@ -6982,22 +7582,9 @@
       ]
     },
     {
-      "id": "hunting_trophy",
-      "effects": [
-        "gold_on_crit_kill"
-      ]
-    },
-    {
       "id": "ice_cube",
       "effects": [
         "stat_elemental_damage"
-      ]
-    },
-    {
-      "id": "improved_tools",
-      "effects": [
-        "stat_attack_speed",
-        "stat_attack_speed"
       ]
     },
     {
@@ -7027,14 +7614,6 @@
       ]
     },
     {
-      "id": "nail",
-      "effects": [
-        "stat_engineering",
-        "stat_engineering",
-        "stat_ranged_damage"
-      ]
-    },
-    {
       "id": "peacock",
       "effects": [
         "xp_gain",
@@ -7043,25 +7622,10 @@
       ]
     },
     {
-      "id": "pile_of_books",
-      "effects": [
-        "structures_can_crit",
-        "stat_crit_chance",
-        "stat_engineering"
-      ]
-    },
-    {
       "id": "pocket_factory",
       "effects": [
         "stat_engineering",
         "tree_turrets"
-      ]
-    },
-    {
-      "id": "potion",
-      "effects": [
-        "hp_regen_bonus",
-        "stat_hp_regeneration"
       ]
     },
     {
@@ -7088,18 +7652,6 @@
       "id": "scapegoat",
       "effects": [
         ""
-      ]
-    },
-    {
-      "id": "scared_sausage",
-      "effects": [
-        "burn_chance"
-      ]
-    },
-    {
-      "id": "snowball",
-      "effects": [
-        "stat_elemental_damage"
       ]
     },
     {
@@ -7146,13 +7698,6 @@
       ]
     },
     {
-      "id": "ugly_tooth",
-      "effects": [
-        "remove_speed",
-        "stat_speed"
-      ]
-    },
-    {
       "id": "wandering_bot",
       "effects": [
         "wandering_bot"
@@ -7166,6 +7711,6 @@
       ]
     }
   ],
-  "availableItems": 127,
+  "availableItems": 138,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

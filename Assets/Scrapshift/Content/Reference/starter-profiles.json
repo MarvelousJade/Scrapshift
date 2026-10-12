@@ -39,6 +39,7 @@
         }
       ],
       "gains": [],
+      "startingItems": [],
       "bonusWeapon": "",
       "classSet": "",
       "classStat": "",
@@ -70,6 +71,7 @@
         }
       ],
       "gains": [],
+      "startingItems": [],
       "bonusWeapon": "fist",
       "classSet": "unarmed",
       "classStat": "attack_speed_mod",
@@ -112,6 +114,7 @@
         }
       ],
       "gains": [],
+      "startingItems": [],
       "bonusWeapon": "knife",
       "classSet": "precise",
       "classStat": "max_range",
@@ -150,6 +153,7 @@
           "value": -25
         }
       ],
+      "startingItems": [],
       "bonusWeapon": "pistol",
       "classSet": "",
       "classStat": "",
@@ -157,6 +161,54 @@
       "noMelee": true,
       "bannedItemGroups": [
         "melee_damage"
+      ]
+    },
+    {
+      "id": "mage",
+      "title": "Arc Weaver",
+      "description": "Elemental Damage gains increased by 25%\nStart with Thermal Relay and Ignition Gland\nMelee and Ranged Damage gains reduced by 100%\nEngineering gains reduced by 50%",
+      "startingWeapons": [
+        "wand",
+        "torch",
+        "plank",
+        "taser",
+        "lightning_shiv",
+        "icicle",
+        "smg",
+        "double_barrel_shotgun"
+      ],
+      "stats": [],
+      "gains": [
+        {
+          "key": "elemental_damage",
+          "value": 25
+        },
+        {
+          "key": "melee_damage",
+          "value": -100
+        },
+        {
+          "key": "ranged_damage",
+          "value": -100
+        },
+        {
+          "key": "engineering",
+          "value": -50
+        }
+      ],
+      "startingItems": [
+        "snake",
+        "scared_sausage"
+      ],
+      "bonusWeapon": "",
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "bannedItemGroups": [
+        "melee_damage",
+        "ranged_damage",
+        "melee_and_ranged_damage"
       ]
     }
   ],
@@ -6653,6 +6705,572 @@
       "implemented": true
     },
     {
+      "id": "torch",
+      "tier": 1,
+      "title": "Torch",
+      "value": 10,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 1,
+      "interval": 0.5166666666666667,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.0,
+      "critMultiplier": 1.5,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.5
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.5
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 3,
+          "burnTicks": 3,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0,
+          "sourceScript": "burning_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "torch",
+      "tier": 2,
+      "title": "Torch",
+      "value": 22,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 1,
+      "interval": 0.45,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.0,
+      "critMultiplier": 1.5,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.65
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.65
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 5,
+          "burnTicks": 5,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0,
+          "sourceScript": "burning_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "torch",
+      "tier": 3,
+      "title": "Torch",
+      "value": 45,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 1,
+      "interval": 0.36666666666666664,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.0,
+      "critMultiplier": 1.5,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 8,
+          "burnTicks": 6,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0,
+          "sourceScript": "burning_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        },
+        {
+          "key": "burning_spread",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "sourceScript": "effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "torch",
+      "tier": 4,
+      "title": "Torch",
+      "value": 91,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "primitive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_weapon_knife_swing_01",
+        "starter_whoosh_weapon_knife_swing_02",
+        "starter_whoosh_weapon_knife_swing_03"
+      ],
+      "damage": 1,
+      "interval": 0.21666666666666667,
+      "range": 1.75,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.0,
+      "critMultiplier": 1.5,
+      "knockback": 2.0,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 1.0
+        },
+        {
+          "key": "elemental_damage",
+          "value": 1.0
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_burning",
+          "value": 0,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "burnDamage": 12,
+          "burnTicks": 9,
+          "burnInterval": 1,
+          "burnChance": 1.0,
+          "burnScale": 1.0,
+          "sourceScript": "burning_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        },
+        {
+          "key": "burning_spread",
+          "value": 1,
+          "chance": 1,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "sourceScript": "effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "plank",
+      "tier": 1,
+      "title": "Plank",
+      "value": 15,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "explosive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 10,
+      "interval": 0.6666666666666666,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.6
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.6
+        },
+        {
+          "key": "engineering",
+          "value": 0.6
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_explode_melee",
+          "value": 1,
+          "chance": 0.25,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "sourceScript": "exploding_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "plank",
+      "tier": 2,
+      "title": "Plank",
+      "value": 31,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "explosive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 15,
+      "interval": 0.5833333333333334,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.7
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.7
+        },
+        {
+          "key": "engineering",
+          "value": 0.7
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_explode_melee",
+          "value": 1,
+          "chance": 0.3,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "sourceScript": "exploding_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "plank",
+      "tier": 3,
+      "title": "Plank",
+      "value": 61,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "explosive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 20,
+      "interval": 0.5,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.8
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.8
+        },
+        {
+          "key": "engineering",
+          "value": 0.8
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_explode_melee",
+          "value": 1,
+          "chance": 0.4,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "sourceScript": "exploding_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
+      "id": "plank",
+      "tier": 4,
+      "title": "Plank",
+      "value": 122,
+      "melee": true,
+      "available": true,
+      "setIds": [
+        "explosive",
+        "fire"
+      ],
+      "soundNames": [
+        "starter_whoosh_swish_high_big_01",
+        "starter_whoosh_swish_high_big_02",
+        "starter_whoosh_swish_high_big_03",
+        "starter_whoosh_swish_high_big_04",
+        "starter_whoosh_swish_high_big_05"
+      ],
+      "damage": 30,
+      "interval": 0.4166666666666667,
+      "range": 1.5,
+      "pellets": 1,
+      "piercing": 0,
+      "spread": 0,
+      "crit": 0.03,
+      "critMultiplier": 2.0,
+      "knockback": 0.5,
+      "scaling": [
+        {
+          "key": "melee_damage",
+          "value": 0.9
+        },
+        {
+          "key": "elemental_damage",
+          "value": 0.9
+        },
+        {
+          "key": "engineering",
+          "value": 0.9
+        }
+      ],
+      "lifesteal": 0.0,
+      "projectileSpeed": 30.0,
+      "pierceLoss": 0.5,
+      "bounce": 0,
+      "bounceLoss": 0.5,
+      "reloadEvery": -1,
+      "reloadMultiplier": -1.0,
+      "recoil": 0.25,
+      "recoilHalf": 0.1,
+      "traits": [
+        {
+          "key": "effect_explode_melee",
+          "value": 1,
+          "chance": 0.5,
+          "stat": "",
+          "amount": 0,
+          "radius": 0.75,
+          "per": 0,
+          "sourceScript": "exploding_effect",
+          "interval": 0,
+          "customKey": "",
+          "resetOnHit": false
+        }
+      ],
+      "sourceAvailable": true,
+      "implemented": true
+    },
+    {
       "id": "circular_saw",
       "tier": 2,
       "title": "Circular Saw",
@@ -7513,300 +8131,6 @@
       "recoil": 0.25,
       "recoilHalf": 0.1,
       "traits": [],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "torch",
-      "tier": 1,
-      "title": "Torch",
-      "value": 10,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "primitive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_weapon_knife_swing_01",
-        "starter_whoosh_weapon_knife_swing_02",
-        "starter_whoosh_weapon_knife_swing_03"
-      ],
-      "damage": 1,
-      "interval": 0.5166666666666667,
-      "range": 1.75,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.0,
-      "critMultiplier": 1.5,
-      "knockback": 2.0,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.5
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.5
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_burning",
-          "value": 0,
-          "chance": 1,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "burnDamage": 3,
-          "burnTicks": 3,
-          "burnInterval": 1,
-          "burnChance": 1.0,
-          "burnScale": 1.0,
-          "sourceScript": "burning_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "torch",
-      "tier": 2,
-      "title": "Torch",
-      "value": 22,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "primitive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_weapon_knife_swing_01",
-        "starter_whoosh_weapon_knife_swing_02",
-        "starter_whoosh_weapon_knife_swing_03"
-      ],
-      "damage": 1,
-      "interval": 0.45,
-      "range": 1.75,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.0,
-      "critMultiplier": 1.5,
-      "knockback": 2.0,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.65
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.65
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_burning",
-          "value": 0,
-          "chance": 1,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "burnDamage": 5,
-          "burnTicks": 5,
-          "burnInterval": 1,
-          "burnChance": 1.0,
-          "burnScale": 1.0,
-          "sourceScript": "burning_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "torch",
-      "tier": 3,
-      "title": "Torch",
-      "value": 45,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "primitive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_weapon_knife_swing_01",
-        "starter_whoosh_weapon_knife_swing_02",
-        "starter_whoosh_weapon_knife_swing_03"
-      ],
-      "damage": 1,
-      "interval": 0.36666666666666664,
-      "range": 1.75,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.0,
-      "critMultiplier": 1.5,
-      "knockback": 2.0,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.8
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.8
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_burning",
-          "value": 0,
-          "chance": 1,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "burnDamage": 8,
-          "burnTicks": 6,
-          "burnInterval": 1,
-          "burnChance": 1.0,
-          "burnScale": 1.0,
-          "sourceScript": "burning_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        },
-        {
-          "key": "burning_spread",
-          "value": 1,
-          "chance": 1,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "sourceScript": "effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "torch",
-      "tier": 4,
-      "title": "Torch",
-      "value": 91,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "primitive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_weapon_knife_swing_01",
-        "starter_whoosh_weapon_knife_swing_02",
-        "starter_whoosh_weapon_knife_swing_03"
-      ],
-      "damage": 1,
-      "interval": 0.21666666666666667,
-      "range": 1.75,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.0,
-      "critMultiplier": 1.5,
-      "knockback": 2.0,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 1.0
-        },
-        {
-          "key": "elemental_damage",
-          "value": 1.0
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_burning",
-          "value": 0,
-          "chance": 1,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "burnDamage": 12,
-          "burnTicks": 9,
-          "burnInterval": 1,
-          "burnChance": 1.0,
-          "burnScale": 1.0,
-          "sourceScript": "burning_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        },
-        {
-          "key": "burning_spread",
-          "value": 1,
-          "chance": 1,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "sourceScript": "effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
       "sourceAvailable": true,
       "implemented": true
     },
@@ -10338,278 +10662,6 @@
         }
       ],
       "sourceAvailable": false,
-      "implemented": true
-    },
-    {
-      "id": "plank",
-      "tier": 1,
-      "title": "Plank",
-      "value": 15,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "explosive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_swish_high_big_01",
-        "starter_whoosh_swish_high_big_02",
-        "starter_whoosh_swish_high_big_03",
-        "starter_whoosh_swish_high_big_04",
-        "starter_whoosh_swish_high_big_05"
-      ],
-      "damage": 10,
-      "interval": 0.6666666666666666,
-      "range": 1.5,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.03,
-      "critMultiplier": 2.0,
-      "knockback": 0.5,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.6
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.6
-        },
-        {
-          "key": "engineering",
-          "value": 0.6
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_explode_melee",
-          "value": 1,
-          "chance": 0.25,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "sourceScript": "exploding_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "plank",
-      "tier": 2,
-      "title": "Plank",
-      "value": 31,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "explosive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_swish_high_big_01",
-        "starter_whoosh_swish_high_big_02",
-        "starter_whoosh_swish_high_big_03",
-        "starter_whoosh_swish_high_big_04",
-        "starter_whoosh_swish_high_big_05"
-      ],
-      "damage": 15,
-      "interval": 0.5833333333333334,
-      "range": 1.5,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.03,
-      "critMultiplier": 2.0,
-      "knockback": 0.5,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.7
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.7
-        },
-        {
-          "key": "engineering",
-          "value": 0.7
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_explode_melee",
-          "value": 1,
-          "chance": 0.3,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "sourceScript": "exploding_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "plank",
-      "tier": 3,
-      "title": "Plank",
-      "value": 61,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "explosive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_swish_high_big_01",
-        "starter_whoosh_swish_high_big_02",
-        "starter_whoosh_swish_high_big_03",
-        "starter_whoosh_swish_high_big_04",
-        "starter_whoosh_swish_high_big_05"
-      ],
-      "damage": 20,
-      "interval": 0.5,
-      "range": 1.5,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.03,
-      "critMultiplier": 2.0,
-      "knockback": 0.5,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.8
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.8
-        },
-        {
-          "key": "engineering",
-          "value": 0.8
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_explode_melee",
-          "value": 1,
-          "chance": 0.4,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "sourceScript": "exploding_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
-      "implemented": true
-    },
-    {
-      "id": "plank",
-      "tier": 4,
-      "title": "Plank",
-      "value": 122,
-      "melee": true,
-      "available": true,
-      "setIds": [
-        "explosive",
-        "fire"
-      ],
-      "soundNames": [
-        "starter_whoosh_swish_high_big_01",
-        "starter_whoosh_swish_high_big_02",
-        "starter_whoosh_swish_high_big_03",
-        "starter_whoosh_swish_high_big_04",
-        "starter_whoosh_swish_high_big_05"
-      ],
-      "damage": 30,
-      "interval": 0.4166666666666667,
-      "range": 1.5,
-      "pellets": 1,
-      "piercing": 0,
-      "spread": 0,
-      "crit": 0.03,
-      "critMultiplier": 2.0,
-      "knockback": 0.5,
-      "scaling": [
-        {
-          "key": "melee_damage",
-          "value": 0.9
-        },
-        {
-          "key": "elemental_damage",
-          "value": 0.9
-        },
-        {
-          "key": "engineering",
-          "value": 0.9
-        }
-      ],
-      "lifesteal": 0.0,
-      "projectileSpeed": 30.0,
-      "pierceLoss": 0.5,
-      "bounce": 0,
-      "bounceLoss": 0.5,
-      "reloadEvery": -1,
-      "reloadMultiplier": -1.0,
-      "recoil": 0.25,
-      "recoilHalf": 0.1,
-      "traits": [
-        {
-          "key": "effect_explode_melee",
-          "value": 1,
-          "chance": 0.5,
-          "stat": "",
-          "amount": 0,
-          "radius": 0.75,
-          "per": 0,
-          "sourceScript": "exploding_effect",
-          "interval": 0,
-          "customKey": "",
-          "resetOnHit": false
-        }
-      ],
-      "sourceAvailable": true,
       "implemented": true
     },
     {

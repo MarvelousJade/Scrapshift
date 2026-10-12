@@ -23,6 +23,8 @@ namespace Scrapshift
             {"burning_cooldown_reduction","Burning activates {0}% faster"},
             {"number_of_enemies","{0}% enemies"},
             {"trees","{0} trees in each tree spawn group"}
+            ,{"structure_attack_speed","{0}% structure attack speed"}
+            ,{"structures_can_crit","Structures can critically hit"}
         };
         static readonly HashSet<string> percent=new HashSet<string>{"pickup_range","xp_gain","items_price","harvesting_growth","recycling_gains","enemy_health","enemy_speed","explosion_size","explosion_damage","piercing_damage"};
         public static bool IsSecondary(string key)=>lifecycle.ContainsKey(key)||percent.Contains(key)||key=="knockback"||key=="consumable_heal"||key=="item_box_gold"||key=="bounce"||key=="piercing"||key=="lose_hp_per_second"||key=="burning_spread";

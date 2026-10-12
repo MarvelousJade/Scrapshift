@@ -28,20 +28,20 @@ namespace Scrapshift
             obj.transform.localScale=Vector3.one*.35f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
             var shot=new Shot{obj=obj,pos=position,velocity=direction.normalized*stats.projectileSpeed,
                 life=(stats.range+1)/Mathf.Max(1,stats.projectileSpeed),damage=structure?SpecialWeaponRules.StructureDamage(Rules,stats):Rules.WeaponDamage(stats),
-                crit=stats.crit,pierce=stats.piercing,bounces=stats.bounce,knockback=stats.knockback,weapon=stats,secondary=secondary};
+                crit=stats.crit,pierce=stats.piercing,bounces=stats.bounce,knockback=stats.knockback,weapon=stats,secondary=secondary,structure=structure};
             if(delayedSlow){shot.hitDelay=UnityEngine.Random.Range(0,.05f);shot.slow=2;}
             if(exclude!=null)shot.hit.Add(exclude);shots.Add(shot);shotsFired++;
         }
         void ApplyStarterHit(Enemy victim,Equipment weapon,bool critical,bool killed,bool secondary)
         {
+            if(weapon!=null&&!killed&&Rules.RollBurn(weapon,UnityEngine.Random.value,out float burnDamage,out int burnTicks))
+                ApplyBurn(victim,burnDamage,burnTicks,(int)Rules.Stat("burning_spread"));
             if(weapon==null||secondary||weapon.traits==null)return;
             foreach(var trait in weapon.traits)
             {
                 switch(trait.key)
                 {
                     case "effect_burning":
-                        if(!killed&&UnityEngine.Random.value<trait.burnChance)
-                        ApplyBurn(victim,Mathf.Max(1,(trait.burnDamage+Rules.Stat("elemental_damage")*trait.burnScale)*Rules.DamageScale),(int)trait.burnTicks,(int)Rules.Stat("burning_spread"));
                         break;
                     case "effect_slow_in_zone":
                         if(!killed)victim.contactSlow+=2;break;
@@ -104,7 +104,7 @@ namespace Scrapshift
                 if(mine.occupants.Count>0||mine.playerOn)mine.obj.GetComponent<SpriteRenderer>().color=coral;
                 if(!left)continue;
                 foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,mine.pos)<mine.radius)
-                    Damage(enemies.IndexOf(e),SpecialWeaponRules.StructureDamage(Rules,mine.stats)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),-100,0,e.pos-mine.pos,mine.stats,true);
+                    Damage(enemies.IndexOf(e),SpecialWeaponRules.StructureDamage(Rules,mine.stats)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),0,0,e.pos-mine.pos,mine.stats,true,false,true);
                 Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos);Destroy(mine.obj);mines.RemoveAt(i);
             }
             foreach(var e in enemies.ToArray())if(e.burnTicks>0&&e.marker==null)
@@ -119,11 +119,11 @@ namespace Scrapshift
             {
                 turret.clock-=dt;if(turret.clock>0)continue;
                 if(turret.trait?.key=="garden")
-                {DropConsumable(turret.pos,ConsumableKind.Fruit);turret.clock=UnityEngine.Random.Range(turret.stats.interval*.7f,turret.stats.interval*1.3f)+.3f/turret.trait.animationSpeed;sound.Play(SoundCue.Pickup,turret.pos);continue;}
+                {DropConsumable(turret.pos,ConsumableKind.Fruit);turret.clock=UnityEngine.Random.Range(Rules.StructureCooldown(turret.stats.interval)*.7f,Rules.StructureCooldown(turret.stats.interval)*1.3f)+.3f/turret.trait.animationSpeed;sound.Play(SoundCue.Pickup,turret.pos);continue;}
                 var target=NearestStarterTarget(turret.pos);
                 if(target==null||Vector2.Distance(target.pos,turret.pos)>turret.stats.range)continue;
                 StarterProjectile(turret.pos,target.pos-turret.pos,turret.stats,true,structure:true);
-                turret.clock=turret.stats.interval+turret.stats.recoilHalf*2;
+                turret.clock=Rules.StructureCooldown(turret.stats.interval)+turret.stats.recoilHalf*2;
                 sound.Play(SoundCue.Fire,turret.pos);
             }
         }

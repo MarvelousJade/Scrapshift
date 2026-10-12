@@ -56,7 +56,7 @@ namespace Scrapshift
             sound.Play(SoundCue.UiPress);
             if(Rules.Phase==RunPhase.Title)
             {
-                if(menuPage==1&&randomCharacter){ChangeLook(UnityEngine.Random.Range(0,4)-playerAnimation.lookIndex);randomCharacter=false;}
+                if(menuPage==1&&randomCharacter){ChangeLook(UnityEngine.Random.Range(0,catalog.data.characters.Length)-playerAnimation.lookIndex);randomCharacter=false;}
                 if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();
             }
             else if(!endSummary)endSummary=true;else StartSelectedRun();

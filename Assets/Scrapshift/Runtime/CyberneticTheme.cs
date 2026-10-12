@@ -6,6 +6,20 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"adrenaline","Evasive Repair Injector"},
+            {"potion","Emergency Regen Reservoir"},
+            {"ugly_tooth","Mobility Corruption Spike"},
+            {"hunting_trophy","Critical Salvage Chip"},
+            {"extra_stomach","Nutrient Expansion Organ"},
+            {"giant_belt","Vitality Severing Cortex"},
+            {"nail","Engineering Coupler"},
+            {"improved_tools","Structure Overclock Link"},
+            {"frozen_heart","Cryogenic Heart"},
+            {"ball_and_chain","Inertial Governor"},
+            {"snowball","Elemental Learning Organ"},
+            {"clockwork_wasp","Drone Tempo Oscillator"},
+            {"pile_of_books","Structure Critical Library"},
+            {"scared_sausage","Ignition Gland"},
             {"baby_gecko","Remote Magnet Gland"},
             {"cute_monkey","Salvage Repair Organ"},
             {"dangerous_bunny","Market Reroll Chip"},

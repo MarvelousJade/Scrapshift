@@ -10373,6 +10373,770 @@ MonoBehaviour:
       recoilHalf: 0.15
       bounce: 0
       reloadEvery: -1
+    - id: torch
+      title: Torch
+      icon: 
+      tier: 1
+      value: 10
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 1
+      interval: 0.51666665
+      range: 1.75
+      spread: 0
+      crit: 0
+      knockback: 2
+      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
+      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
+      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
+      setIds:
+      - primitive
+      - fire
+      soundNames:
+      - starter_whoosh_weapon_knife_swing_01
+      - starter_whoosh_weapon_knife_swing_02
+      - starter_whoosh_weapon_knife_swing_03
+      scaling:
+      - key: melee_damage
+        value: 0.5
+      - key: elemental_damage
+        value: 0.5
+      traits:
+      - key: effect_burning
+        stat: 
+        sourceScript: burning_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 0
+        chance: 1
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 3
+        burnTicks: 3
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 1
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 1.5
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: torch
+      title: Torch II
+      icon: 
+      tier: 2
+      value: 22
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 1
+      interval: 0.45
+      range: 1.75
+      spread: 0
+      crit: 0
+      knockback: 2
+      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
+      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
+      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
+      setIds:
+      - primitive
+      - fire
+      soundNames:
+      - starter_whoosh_weapon_knife_swing_01
+      - starter_whoosh_weapon_knife_swing_02
+      - starter_whoosh_weapon_knife_swing_03
+      scaling:
+      - key: melee_damage
+        value: 0.65
+      - key: elemental_damage
+        value: 0.65
+      traits:
+      - key: effect_burning
+        stat: 
+        sourceScript: burning_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 0
+        chance: 1
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 5
+        burnTicks: 5
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 1
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 1.5
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: torch
+      title: Torch III
+      icon: 
+      tier: 3
+      value: 45
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 1
+      interval: 0.36666667
+      range: 1.75
+      spread: 0
+      crit: 0
+      knockback: 2
+      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
+      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
+      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
+      setIds:
+      - primitive
+      - fire
+      soundNames:
+      - starter_whoosh_weapon_knife_swing_01
+      - starter_whoosh_weapon_knife_swing_02
+      - starter_whoosh_weapon_knife_swing_03
+      scaling:
+      - key: melee_damage
+        value: 0.8
+      - key: elemental_damage
+        value: 0.8
+      traits:
+      - key: effect_burning
+        stat: 
+        sourceScript: burning_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 0
+        chance: 1
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 8
+        burnTicks: 6
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 1
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      - key: burning_spread
+        stat: 
+        sourceScript: effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 1
+        chance: 1
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 0
+        burnTicks: 0
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 0
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 1.5
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: torch
+      title: Torch IV
+      icon: 
+      tier: 4
+      value: 91
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 1
+      interval: 0.21666667
+      range: 1.75
+      spread: 0
+      crit: 0
+      knockback: 2
+      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
+      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
+      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
+      setIds:
+      - primitive
+      - fire
+      soundNames:
+      - starter_whoosh_weapon_knife_swing_01
+      - starter_whoosh_weapon_knife_swing_02
+      - starter_whoosh_weapon_knife_swing_03
+      scaling:
+      - key: melee_damage
+        value: 1
+      - key: elemental_damage
+        value: 1
+      traits:
+      - key: effect_burning
+        stat: 
+        sourceScript: burning_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 0
+        chance: 1
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 12
+        burnTicks: 9
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 1
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      - key: burning_spread
+        stat: 
+        sourceScript: effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 1
+        chance: 1
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 0
+        burnTicks: 0
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 0
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 1.5
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: plank
+      title: Plank
+      icon: 
+      tier: 1
+      value: 15
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 10
+      interval: 0.6666667
+      range: 1.5
+      spread: 0
+      crit: 0.03
+      knockback: 0.5
+      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
+      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
+      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
+      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
+      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
+      setIds:
+      - explosive
+      - fire
+      soundNames:
+      - starter_whoosh_swish_high_big_01
+      - starter_whoosh_swish_high_big_02
+      - starter_whoosh_swish_high_big_03
+      - starter_whoosh_swish_high_big_04
+      - starter_whoosh_swish_high_big_05
+      scaling:
+      - key: melee_damage
+        value: 0.6
+      - key: elemental_damage
+        value: 0.6
+      - key: engineering
+        value: 0.6
+      traits:
+      - key: effect_explode_melee
+        stat: 
+        sourceScript: exploding_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 1
+        chance: 0.25
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 0
+        burnTicks: 0
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 0
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 2
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: plank
+      title: Plank II
+      icon: 
+      tier: 2
+      value: 31
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 15
+      interval: 0.5833333
+      range: 1.5
+      spread: 0
+      crit: 0.03
+      knockback: 0.5
+      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
+      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
+      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
+      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
+      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
+      setIds:
+      - explosive
+      - fire
+      soundNames:
+      - starter_whoosh_swish_high_big_01
+      - starter_whoosh_swish_high_big_02
+      - starter_whoosh_swish_high_big_03
+      - starter_whoosh_swish_high_big_04
+      - starter_whoosh_swish_high_big_05
+      scaling:
+      - key: melee_damage
+        value: 0.7
+      - key: elemental_damage
+        value: 0.7
+      - key: engineering
+        value: 0.7
+      traits:
+      - key: effect_explode_melee
+        stat: 
+        sourceScript: exploding_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 1
+        chance: 0.3
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 0
+        burnTicks: 0
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 0
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 2
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: plank
+      title: Plank III
+      icon: 
+      tier: 3
+      value: 61
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 20
+      interval: 0.5
+      range: 1.5
+      spread: 0
+      crit: 0.03
+      knockback: 0.5
+      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
+      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
+      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
+      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
+      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
+      setIds:
+      - explosive
+      - fire
+      soundNames:
+      - starter_whoosh_swish_high_big_01
+      - starter_whoosh_swish_high_big_02
+      - starter_whoosh_swish_high_big_03
+      - starter_whoosh_swish_high_big_04
+      - starter_whoosh_swish_high_big_05
+      scaling:
+      - key: melee_damage
+        value: 0.8
+      - key: elemental_damage
+        value: 0.8
+      - key: engineering
+        value: 0.8
+      traits:
+      - key: effect_explode_melee
+        stat: 
+        sourceScript: exploding_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 1
+        chance: 0.4
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 0
+        burnTicks: 0
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 0
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 2
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
+    - id: plank
+      title: Plank IV
+      icon: 
+      tier: 4
+      value: 122
+      pellets: 1
+      piercing: 0
+      melee: 1
+      damage: 30
+      interval: 0.41666666
+      range: 1.5
+      spread: 0
+      crit: 0.03
+      knockback: 0.5
+      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
+      sounds:
+      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
+      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
+      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
+      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
+      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
+      setIds:
+      - explosive
+      - fire
+      soundNames:
+      - starter_whoosh_swish_high_big_01
+      - starter_whoosh_swish_high_big_02
+      - starter_whoosh_swish_high_big_03
+      - starter_whoosh_swish_high_big_04
+      - starter_whoosh_swish_high_big_05
+      scaling:
+      - key: melee_damage
+        value: 0.9
+      - key: elemental_damage
+        value: 0.9
+      - key: engineering
+        value: 0.9
+      traits:
+      - key: effect_explode_melee
+        stat: 
+        sourceScript: exploding_effect
+        customKey: 
+        interval: 0
+        spawnInterval: -1
+        animationSpeed: 1
+        resetOnHit: 0
+        value: 1
+        chance: 0.5
+        amount: 0
+        radius: 0.75
+        per: 0
+        burnDamage: 0
+        burnTicks: 0
+        burnInterval: 1
+        burnChance: 1
+        burnScale: 0
+        projectile:
+          damage: 0
+          interval: 0
+          range: 0
+          spread: 0
+          crit: 0
+          knockback: 0
+          critMultiplier: 2
+          lifesteal: 0
+          projectileSpeed: 30
+          pierceLoss: 0.5
+          bounceLoss: 0.5
+          reloadMultiplier: 1
+          recoil: 0.25
+          recoilHalf: 0.1
+          pellets: 1
+          piercing: 0
+          bounce: 0
+          reloadEvery: -1
+          scaling: []
+      available: 1
+      sourceAvailable: 1
+      implemented: 1
+      critMultiplier: 2
+      lifesteal: 0
+      projectileSpeed: 30
+      pierceLoss: 0.5
+      bounceLoss: 0.5
+      reloadMultiplier: -1
+      recoil: 0.25
+      recoilHalf: 0.1
+      bounce: 0
+      reloadEvery: -1
     - id: circular_saw
       title: Circular Saw II
       icon: 
@@ -11460,414 +12224,6 @@ MonoBehaviour:
       sourceAvailable: 1
       implemented: 1
       critMultiplier: 2
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: torch
-      title: Torch
-      icon: 
-      tier: 1
-      value: 10
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 1
-      interval: 0.51666665
-      range: 1.75
-      spread: 0
-      crit: 0
-      knockback: 2
-      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
-      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
-      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
-      setIds:
-      - primitive
-      - fire
-      soundNames:
-      - starter_whoosh_weapon_knife_swing_01
-      - starter_whoosh_weapon_knife_swing_02
-      - starter_whoosh_weapon_knife_swing_03
-      scaling:
-      - key: melee_damage
-        value: 0.5
-      - key: elemental_damage
-        value: 0.5
-      traits:
-      - key: effect_burning
-        stat: 
-        sourceScript: burning_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 0
-        chance: 1
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 3
-        burnTicks: 3
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 1
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 1.5
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: torch
-      title: Torch II
-      icon: 
-      tier: 2
-      value: 22
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 1
-      interval: 0.45
-      range: 1.75
-      spread: 0
-      crit: 0
-      knockback: 2
-      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
-      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
-      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
-      setIds:
-      - primitive
-      - fire
-      soundNames:
-      - starter_whoosh_weapon_knife_swing_01
-      - starter_whoosh_weapon_knife_swing_02
-      - starter_whoosh_weapon_knife_swing_03
-      scaling:
-      - key: melee_damage
-        value: 0.65
-      - key: elemental_damage
-        value: 0.65
-      traits:
-      - key: effect_burning
-        stat: 
-        sourceScript: burning_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 0
-        chance: 1
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 5
-        burnTicks: 5
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 1
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 1.5
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: torch
-      title: Torch III
-      icon: 
-      tier: 3
-      value: 45
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 1
-      interval: 0.36666667
-      range: 1.75
-      spread: 0
-      crit: 0
-      knockback: 2
-      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
-      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
-      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
-      setIds:
-      - primitive
-      - fire
-      soundNames:
-      - starter_whoosh_weapon_knife_swing_01
-      - starter_whoosh_weapon_knife_swing_02
-      - starter_whoosh_weapon_knife_swing_03
-      scaling:
-      - key: melee_damage
-        value: 0.8
-      - key: elemental_damage
-        value: 0.8
-      traits:
-      - key: effect_burning
-        stat: 
-        sourceScript: burning_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 0
-        chance: 1
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 8
-        burnTicks: 6
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 1
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      - key: burning_spread
-        stat: 
-        sourceScript: effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 1
-        chance: 1
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 0
-        burnTicks: 0
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 0
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 1.5
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: torch
-      title: Torch IV
-      icon: 
-      tier: 4
-      value: 91
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 1
-      interval: 0.21666667
-      range: 1.75
-      spread: 0
-      crit: 0
-      knockback: 2
-      image: {fileID: -5347775561880408100, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 4b5c8b0af9891d84bae2afc5ceff403d, type: 3}
-      - {fileID: 8300000, guid: ed244f50711c3a944a1a9abcdfa70953, type: 3}
-      - {fileID: 8300000, guid: eb7911aeb5f9eb6479756fcd400656c2, type: 3}
-      setIds:
-      - primitive
-      - fire
-      soundNames:
-      - starter_whoosh_weapon_knife_swing_01
-      - starter_whoosh_weapon_knife_swing_02
-      - starter_whoosh_weapon_knife_swing_03
-      scaling:
-      - key: melee_damage
-        value: 1
-      - key: elemental_damage
-        value: 1
-      traits:
-      - key: effect_burning
-        stat: 
-        sourceScript: burning_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 0
-        chance: 1
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 12
-        burnTicks: 9
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 1
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      - key: burning_spread
-        stat: 
-        sourceScript: effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 1
-        chance: 1
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 0
-        burnTicks: 0
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 0
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 1.5
       lifesteal: 0
       projectileSpeed: 30
       pierceLoss: 0.5
@@ -14806,362 +15162,6 @@ MonoBehaviour:
       recoilHalf: 0.2
       bounce: 0
       reloadEvery: -1
-    - id: plank
-      title: Plank
-      icon: 
-      tier: 1
-      value: 15
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 10
-      interval: 0.6666667
-      range: 1.5
-      spread: 0
-      crit: 0.03
-      knockback: 0.5
-      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
-      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
-      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
-      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
-      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
-      setIds:
-      - explosive
-      - fire
-      soundNames:
-      - starter_whoosh_swish_high_big_01
-      - starter_whoosh_swish_high_big_02
-      - starter_whoosh_swish_high_big_03
-      - starter_whoosh_swish_high_big_04
-      - starter_whoosh_swish_high_big_05
-      scaling:
-      - key: melee_damage
-        value: 0.6
-      - key: elemental_damage
-        value: 0.6
-      - key: engineering
-        value: 0.6
-      traits:
-      - key: effect_explode_melee
-        stat: 
-        sourceScript: exploding_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 1
-        chance: 0.25
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 0
-        burnTicks: 0
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 0
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 2
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: plank
-      title: Plank II
-      icon: 
-      tier: 2
-      value: 31
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 15
-      interval: 0.5833333
-      range: 1.5
-      spread: 0
-      crit: 0.03
-      knockback: 0.5
-      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
-      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
-      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
-      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
-      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
-      setIds:
-      - explosive
-      - fire
-      soundNames:
-      - starter_whoosh_swish_high_big_01
-      - starter_whoosh_swish_high_big_02
-      - starter_whoosh_swish_high_big_03
-      - starter_whoosh_swish_high_big_04
-      - starter_whoosh_swish_high_big_05
-      scaling:
-      - key: melee_damage
-        value: 0.7
-      - key: elemental_damage
-        value: 0.7
-      - key: engineering
-        value: 0.7
-      traits:
-      - key: effect_explode_melee
-        stat: 
-        sourceScript: exploding_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 1
-        chance: 0.3
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 0
-        burnTicks: 0
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 0
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 2
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: plank
-      title: Plank III
-      icon: 
-      tier: 3
-      value: 61
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 20
-      interval: 0.5
-      range: 1.5
-      spread: 0
-      crit: 0.03
-      knockback: 0.5
-      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
-      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
-      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
-      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
-      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
-      setIds:
-      - explosive
-      - fire
-      soundNames:
-      - starter_whoosh_swish_high_big_01
-      - starter_whoosh_swish_high_big_02
-      - starter_whoosh_swish_high_big_03
-      - starter_whoosh_swish_high_big_04
-      - starter_whoosh_swish_high_big_05
-      scaling:
-      - key: melee_damage
-        value: 0.8
-      - key: elemental_damage
-        value: 0.8
-      - key: engineering
-        value: 0.8
-      traits:
-      - key: effect_explode_melee
-        stat: 
-        sourceScript: exploding_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 1
-        chance: 0.4
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 0
-        burnTicks: 0
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 0
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 2
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
-    - id: plank
-      title: Plank IV
-      icon: 
-      tier: 4
-      value: 122
-      pellets: 1
-      piercing: 0
-      melee: 1
-      damage: 30
-      interval: 0.41666666
-      range: 1.5
-      spread: 0
-      crit: 0.03
-      knockback: 0.5
-      image: {fileID: 2836936291317142172, guid: af05e3c672d0a434f9bad5a33191e367, type: 3}
-      sounds:
-      - {fileID: 8300000, guid: 5f5b86e9382238345a9a36bc4b8148c4, type: 3}
-      - {fileID: 8300000, guid: 3fad3279b3d23c54190c2ace4fffee70, type: 3}
-      - {fileID: 8300000, guid: b02cba50efc1169449fdbc4867859f3c, type: 3}
-      - {fileID: 8300000, guid: ded2e8a541a48384899043ffdceb7455, type: 3}
-      - {fileID: 8300000, guid: 72901813ea075c44f83e3575775e2e20, type: 3}
-      setIds:
-      - explosive
-      - fire
-      soundNames:
-      - starter_whoosh_swish_high_big_01
-      - starter_whoosh_swish_high_big_02
-      - starter_whoosh_swish_high_big_03
-      - starter_whoosh_swish_high_big_04
-      - starter_whoosh_swish_high_big_05
-      scaling:
-      - key: melee_damage
-        value: 0.9
-      - key: elemental_damage
-        value: 0.9
-      - key: engineering
-        value: 0.9
-      traits:
-      - key: effect_explode_melee
-        stat: 
-        sourceScript: exploding_effect
-        customKey: 
-        interval: 0
-        spawnInterval: -1
-        animationSpeed: 1
-        resetOnHit: 0
-        value: 1
-        chance: 0.5
-        amount: 0
-        radius: 0.75
-        per: 0
-        burnDamage: 0
-        burnTicks: 0
-        burnInterval: 1
-        burnChance: 1
-        burnScale: 0
-        projectile:
-          damage: 0
-          interval: 0
-          range: 0
-          spread: 0
-          crit: 0
-          knockback: 0
-          critMultiplier: 2
-          lifesteal: 0
-          projectileSpeed: 30
-          pierceLoss: 0.5
-          bounceLoss: 0.5
-          reloadMultiplier: 1
-          recoil: 0.25
-          recoilHalf: 0.1
-          pellets: 1
-          piercing: 0
-          bounce: 0
-          reloadEvery: -1
-          scaling: []
-      available: 1
-      sourceAvailable: 1
-      implemented: 1
-      critMultiplier: 2
-      lifesteal: 0
-      projectileSpeed: 30
-      pierceLoss: 0.5
-      bounceLoss: 0.5
-      reloadMultiplier: -1
-      recoil: 0.25
-      recoilHalf: 0.1
-      bounce: 0
-      reloadEvery: -1
     - id: jousting_lance
       title: Jousting Lance
       icon: 
@@ -17502,6 +17502,43 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_dodge
+      groups:
+      - dodge
+      maxCount: 1
+      available: 1
+      id: adrenaline
+      title: Evasive Repair Injector
+      icon: 
+      tier: 3
+      value: 60
+      effects:
+      - key: stat_dodge
+        value: 5
+      conditionalEffects:
+      - key: 
+        customKey: heal_on_dodge
+        stat: 
+        per: 0
+        chance: 0.5
+        permanentOnly: 0
+        value: 5
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: -5672869595778636664, guid: a19b75abb96ea01479eb937df9f71202, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_max_hp
       groups: []
       maxCount: -1
@@ -17727,6 +17764,50 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_percent_damage
+      - stat_armor
+      - knockback
+      groups: []
+      maxCount: 1
+      available: 1
+      id: ball_and_chain
+      title: Inertial Governor
+      icon: 
+      tier: 3
+      value: 75
+      effects:
+      - key: stat_percent_damage
+        value: 15
+      - key: stat_armor
+        value: 3
+      - key: knockback
+        value: 5
+      - key: stat_speed
+        value: -3
+      conditionalEffects:
+      - key: minimum_weapon_cooldowns
+        customKey: minimum_weapon_cooldowns
+        stat: 
+        per: 0
+        chance: 0
+        permanentOnly: 0
+        value: 45
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: -1302949703750197070, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_ranged_damage
       groups: []
       maxCount: -1
@@ -17809,6 +17890,7 @@ MonoBehaviour:
         customKey: temp_stats_while_not_moving
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 8
         interval: 1
@@ -18104,6 +18186,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_lifesteal
         per: 1
+        chance: 0
         permanentOnly: 0
         value: 2
         interval: 1
@@ -18394,6 +18477,7 @@ MonoBehaviour:
         customKey: temp_stats_while_not_moving
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 20
         interval: 1
@@ -18475,6 +18559,36 @@ MonoBehaviour:
         scale: 0.7787611
         priority: 0
         order: 12
+    - tags:
+      - structure
+      - stat_speed
+      groups: []
+      maxCount: -1
+      available: 1
+      id: clockwork_wasp
+      title: Drone Tempo Oscillator
+      icon: 
+      tier: 2
+      value: 45
+      effects:
+      - key: structure_attack_speed
+        value: 10
+      - key: stat_speed
+        value: 5
+      conditionalEffects: []
+      image: {fileID: 7070639204220260317, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
     - tags:
       - stat_luck
       - stat_dodge
@@ -18588,6 +18702,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: knockback
         per: 1
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -18623,6 +18738,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: living_enemy
         per: 1
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -18829,6 +18945,7 @@ MonoBehaviour:
         customKey: stats_on_level_up
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -18837,6 +18954,7 @@ MonoBehaviour:
         customKey: stats_on_level_up
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: -1
         interval: 1
@@ -19030,6 +19148,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_speed
         per: -1
+        chance: 0
         permanentOnly: 1
         value: 2
         interval: 1
@@ -19151,6 +19270,41 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_max_hp
+      - stat_luck
+      groups: []
+      maxCount: 1
+      available: 1
+      id: extra_stomach
+      title: Nutrient Expansion Organ
+      icon: 
+      tier: 4
+      value: 100
+      effects: []
+      conditionalEffects:
+      - key: stat_max_hp
+        customKey: consumable_stats_while_max
+        stat: 
+        per: 8
+        chance: 0
+        permanentOnly: 0
+        value: 1
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_elemental_damage
       groups: []
       maxCount: 2
@@ -19198,6 +19352,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: common_item
         per: 1
+        chance: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -19206,6 +19361,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: legendary_item
         per: 1
+        chance: 0
         permanentOnly: 0
         value: -3
         interval: 1
@@ -19303,6 +19459,7 @@ MonoBehaviour:
         customKey: unique_weapon_effects
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: -3
         interval: 1
@@ -19367,11 +19524,54 @@ MonoBehaviour:
         customKey: stat_links
         stat: burning_enemy
         per: 1
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
         resetOnHit: 0
       image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_elemental_damage
+      - stat_crit_chance
+      groups:
+      - elemental_damage
+      maxCount: 1
+      available: 1
+      id: frozen_heart
+      title: Cryogenic Heart
+      icon: 
+      tier: 3
+      value: 90
+      effects:
+      - key: stat_elemental_damage
+        value: 8
+      - key: stat_crit_chance
+        value: 5
+      - key: burning_cooldown_reduction
+        value: -100
+      conditionalEffects:
+      - key: stat_elemental_damage
+        customKey: weapon_scaling_stats
+        stat: 
+        per: 0
+        chance: 0
+        permanentOnly: 0
+        value: 10
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 8519474197711240728, guid: a309f1d99058d1745b05ce43be6b59e2, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -19544,6 +19744,40 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_crit_chance
+      groups: []
+      maxCount: 1
+      available: 0
+      id: giant_belt
+      title: Vitality Severing Cortex
+      icon: 
+      tier: 4
+      value: 110
+      effects: []
+      conditionalEffects:
+      - key: giant_crit_damage
+        customKey: giant_crit_damage
+        stat: 
+        per: 1
+        chance: 0
+        permanentOnly: 0
+        value: 10
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_percent_damage
       groups: []
       maxCount: -1
@@ -19681,6 +19915,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -19689,6 +19924,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -19697,6 +19933,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -19770,6 +20007,7 @@ MonoBehaviour:
         customKey: stat_cap
         stat: stat_max_hp
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 0
         interval: 1
@@ -19953,6 +20191,77 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_crit_chance
+      groups: []
+      maxCount: 3
+      available: 0
+      id: hunting_trophy
+      title: Critical Salvage Chip
+      icon: 
+      tier: 3
+      value: 55
+      effects: []
+      conditionalEffects:
+      - key: gold_on_crit_kill
+        customKey: gold_on_crit_kill
+        stat: 
+        per: 0
+        chance: 0
+        permanentOnly: 0
+        value: 33
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - structure
+      - stat_attack_speed
+      groups: []
+      maxCount: 1
+      available: 0
+      id: improved_tools
+      title: Structure Overclock Link
+      icon: 
+      tier: 3
+      value: 70
+      effects:
+      - key: stat_attack_speed
+        value: 10
+      conditionalEffects:
+      - key: stat_attack_speed
+        customKey: structures_cooldown_reduction
+        stat: 
+        per: 0
+        chance: 0
+        permanentOnly: 0
+        value: 50
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 6548839812415577367, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_percent_damage
       groups: []
       maxCount: -1
@@ -20026,6 +20335,7 @@ MonoBehaviour:
         customKey: unique_weapon_effects
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -20310,6 +20620,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_crit_chance
         per: 1
+        chance: 0
         permanentOnly: 0
         value: 2
         interval: 1
@@ -20480,6 +20791,7 @@ MonoBehaviour:
         customKey: temp_stats_per_interval
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 2
         interval: 5
@@ -20687,6 +20999,45 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_engineering
+      groups:
+      - engineering
+      maxCount: 1
+      available: 1
+      id: nail
+      title: Engineering Coupler
+      icon: 
+      tier: 3
+      value: 65
+      effects:
+      - key: stat_engineering
+        value: 5
+      - key: stat_ranged_damage
+        value: -2
+      conditionalEffects:
+      - key: stat_engineering
+        customKey: weapon_scaling_stats
+        stat: 
+        per: 0
+        chance: 0
+        permanentOnly: 0
+        value: 20
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_crit_chance
       - stat_range
       groups: []
@@ -20773,6 +21124,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: materials
         per: 80
+        chance: 0
         permanentOnly: 0
         value: 1
         interval: 1
@@ -20898,6 +21250,38 @@ MonoBehaviour:
         value: 20
       conditionalEffects: []
       image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - stat_crit_chance
+      - stat_engineering
+      groups: []
+      maxCount: 1
+      available: 1
+      id: pile_of_books
+      title: Structure Critical Library
+      icon: 
+      tier: 2
+      value: 60
+      effects:
+      - key: structures_can_crit
+        value: 1
+      - key: stat_crit_chance
+        value: 5
+      - key: stat_engineering
+        value: 3
+      conditionalEffects: []
+      image: {fileID: 8193314173140209569, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -21050,6 +21434,43 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_hp_regeneration
+      groups:
+      - hp_regeneration
+      maxCount: 1
+      available: 1
+      id: potion
+      title: Emergency Regen Reservoir
+      icon: 
+      tier: 4
+      value: 90
+      effects:
+      - key: stat_hp_regeneration
+        value: 3
+      conditionalEffects:
+      - key: hp_regen_bonus
+        customKey: hp_regen_bonus
+        stat: 
+        per: 50
+        chance: 0
+        permanentOnly: 0
+        value: 1
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 6015168892897281963, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_speed
       - stat_percent_damage
       groups:
@@ -21069,6 +21490,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_speed
         per: 1
+        chance: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -21221,6 +21643,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_dodge
         per: 1
+        chance: 0
         permanentOnly: 0
         value: 2
         interval: 1
@@ -21316,6 +21739,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -21324,6 +21748,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -21332,6 +21757,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: -1
         interval: 1
@@ -21409,6 +21835,40 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_elemental_damage
+      groups: []
+      maxCount: 4
+      available: 1
+      id: scared_sausage
+      title: Ignition Gland
+      icon: 
+      tier: 1
+      value: 25
+      effects: []
+      conditionalEffects:
+      - key: burn_chance
+        customKey: global_burn
+        stat: 
+        per: 1
+        chance: 0.25
+        permanentOnly: 0
+        value: 1
+        interval: 3
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_ranged_damage
       - stat_range
       groups: []
@@ -21464,6 +21924,7 @@ MonoBehaviour:
         customKey: stat_cap
         stat: stat_speed
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 0
         interval: 1
@@ -21725,6 +22186,41 @@ MonoBehaviour:
         priority: 0
         order: 11
     - tags:
+      - stat_elemental_damage
+      groups:
+      - elemental_damage
+      maxCount: 1
+      available: 1
+      id: snowball
+      title: Elemental Learning Organ
+      icon: 
+      tier: 2
+      value: 50
+      effects: []
+      conditionalEffects:
+      - key: stat_elemental_damage
+        customKey: gain_stat_for_equipped_item_with_stat
+        stat: stat_elemental_damage
+        per: 0
+        chance: 0
+        permanentOnly: 0
+        value: 1
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 3657777677007185796, guid: 1bcbb42a62735764d8a116ffb07ff93e, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
       - stat_percent_damage
       - stat_attack_speed
       groups: []
@@ -21747,6 +22243,7 @@ MonoBehaviour:
         customKey: unique_weapon_effects
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 6
         interval: 1
@@ -21783,6 +22280,7 @@ MonoBehaviour:
         customKey: temp_stats_while_not_moving
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 40
         interval: 1
@@ -21820,6 +22318,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_armor
         per: 1
+        chance: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -21859,6 +22358,7 @@ MonoBehaviour:
         customKey: stat_links
         stat: stat_elemental_damage
         per: 1
+        chance: 0
         permanentOnly: 1
         value: 1
         interval: 1
@@ -22156,11 +22656,48 @@ MonoBehaviour:
         customKey: temp_stats_on_hit
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: -2
         interval: 1
         resetOnHit: 0
       image: {fileID: -1302949703750197070, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
+      wearSlot: 
+      wearOffset: {x: 0, y: 0}
+      wearScale: 0.2
+      wearOrder: 11
+      appearance:
+        id: 
+        slot: 
+        image: {fileID: 0}
+        offset: {x: 0, y: 0}
+        scale: 1
+        priority: 0
+        order: 11
+    - tags:
+      - less_enemy_speed
+      groups: []
+      maxCount: 1
+      available: 1
+      id: ugly_tooth
+      title: Mobility Corruption Spike
+      icon: 
+      tier: 1
+      value: 25
+      effects:
+      - key: stat_speed
+        value: -3
+      conditionalEffects:
+      - key: remove_speed
+        customKey: remove_speed
+        stat: 
+        per: 20
+        chance: 0
+        permanentOnly: 0
+        value: 5
+        interval: 1
+        resetOnHit: 0
+      image: {fileID: 7070639204220260317, guid: 0108cc4cd74a0394088853b1e597619a, type: 3}
       wearSlot: 
       wearOffset: {x: 0, y: 0}
       wearScale: 0.2
@@ -22189,6 +22726,7 @@ MonoBehaviour:
         customKey: stats_end_of_wave
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 3
         interval: 1
@@ -22472,6 +23010,7 @@ MonoBehaviour:
         customKey: temp_stats_per_interval
         stat: 
         per: 0
+        chance: 0
         permanentOnly: 0
         value: 5
         interval: 5
@@ -22600,6 +23139,7 @@ MonoBehaviour:
       - icicle
       - rail_gun
       bannedItemGroups: []
+      startingItems: []
       stats:
       - key: max_hp
         value: 5
@@ -22654,6 +23194,7 @@ MonoBehaviour:
       - claw
       bannedItemGroups:
       - ranged_damage
+      startingItems: []
       stats:
       - key: dodge
         value: 15
@@ -22719,6 +23260,7 @@ MonoBehaviour:
       - shuriken
       - icicle
       bannedItemGroups: []
+      startingItems: []
       stats:
       - key: attack_speed
         value: 25
@@ -22782,6 +23324,7 @@ MonoBehaviour:
       - rail_gun
       bannedItemGroups:
       - melee_damage
+      startingItems: []
       stats:
       - key: range
         value: 50
@@ -22792,6 +23335,74 @@ MonoBehaviour:
         value: -25
       classValue: 0
       noMelee: 1
+    - wantedTags:
+      - stat_elemental_damage
+      bannedItems: []
+      effectRows:
+      - kind: gain
+        key: elemental_damage
+        extra: 
+        value: 25
+      - kind: item
+        key: snake
+        extra: 
+        value: 1
+      - kind: item
+        key: scared_sausage
+        extra: 
+        value: 1
+      - kind: gain
+        key: melee_damage
+        extra: 
+        value: -100
+      - kind: gain
+        key: ranged_damage
+        extra: 
+        value: -100
+      - kind: gain
+        key: engineering
+        extra: 
+        value: -50
+      id: mage
+      title: Arc Weaver
+      description: 'Elemental Damage gains increased by 25%
+
+        Start with Thermal Relay and Ignition Gland
+
+        Melee and Ranged Damage gains reduced by 100%
+
+        Engineering gains reduced by 50%'
+      bonusWeapon: 
+      classSet: 
+      classStat: 
+      startingWeapons:
+      - wand
+      - torch
+      - plank
+      - taser
+      - lightning_shiv
+      - icicle
+      - smg
+      - double_barrel_shotgun
+      bannedItemGroups:
+      - melee_damage
+      - ranged_damage
+      - melee_and_ranged_damage
+      startingItems:
+      - snake
+      - scared_sausage
+      stats: []
+      gains:
+      - key: elemental_damage
+        value: 25
+      - key: melee_damage
+        value: -100
+      - key: ranged_damage
+        value: -100
+      - key: engineering
+        value: -50
+      classValue: 0
+      noMelee: 0
     sets:
     - id: precise
       name: Precise
@@ -23187,7 +23798,7 @@ MonoBehaviour:
     rosterSlots: 50
   referenceFont: {fileID: 12800000, guid: fb2a300c8ddf2e84b973aa07e3f66d77, type: 3}
   uiText: {fileID: 4900000, guid: 5acdf02615d55024ea808d1524d53adc, type: 3}
-  starterVersion: 8
+  starterVersion: 9
   warning: {fileID: -6236394787706765838, guid: 3b50fe84aca4ef448b631acc723c26d0, type: 3}
   extraStatIcons:
   - {fileID: 7123017666264362218, guid: 4a97ead259ba6634e83a5ba92d1da867, type: 3}

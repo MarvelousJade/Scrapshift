@@ -11,7 +11,7 @@ namespace Scrapshift.Editor
         static void EnsureStarterProfiles()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(Root+"/Definitions/ReferenceCatalog.asset");
-            if(catalog.starterVersion=="8"&&catalog.data.characters?.Length==4&&catalog.data.equipment.Length==205)return;
+            if(catalog.starterVersion=="9"&&catalog.data.characters?.Length==5&&catalog.data.equipment.Length==205)return;
             AssetDatabase.Refresh();
             var data=JsonUtility.FromJson<StarterData>(File.ReadAllText(Root+"/Reference/starter-profiles.json"));
             // Generated art is not a mechanically aligned grid: slice in the actual transparent gutters.
@@ -45,13 +45,14 @@ namespace Scrapshift.Editor
                 importer.defaultSampleSettings=settings;importer.SaveAndReimport();
             }
             catalog.data.equipment=data.equipment;catalog.data.characters=data.characters;catalog.data.sets=data.sets;catalog.data.rosterSlots=data.rosterSlots;
-            catalog.starterVersion="8";WeaponSets.Configure(data.sets);EditorUtility.SetDirty(catalog);
+            catalog.starterVersion="9";WeaponSets.Configure(data.sets);EditorUtility.SetDirty(catalog);
             string prefabPath=Root+"/Prefabs/ScavengerAnimated.prefab";
             var root=PrefabUtility.LoadPrefabContents(prefabPath);var animator=root.GetComponent<SpriteFrameAnimator>();
             var old=animator.looks;
             if(old.Length==3)animator.looks=new[]{new PlayerLook{name="Rookie",layers=old[0].layers},
                 new PlayerLook{name="Pugilist",layers=old[2].layers.Where(l=>l.slot!="head").ToArray()},
                 new PlayerLook{name="Hothead",layers=old[2].layers},new PlayerLook{name="Sharpshot",layers=old[1].layers}};
+            if(animator.looks.Length==4)animator.looks=animator.looks.Concat(new[]{new PlayerLook{name="Arc Weaver",layers=animator.looks[3].layers.Where(l=>l.slot!="head").ToArray()}}).ToArray();
             PrefabUtility.SaveAsPrefabAsset(root,prefabPath);PrefabUtility.UnloadPrefabContents(root);
             PlayerSettings.fullScreenMode=FullScreenMode.FullScreenWindow;
             AssetDatabase.SaveAssets();

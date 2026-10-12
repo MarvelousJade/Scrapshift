@@ -21,7 +21,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void ItemEyesReplaceCharacterEyesAndRemovingItemRestoresBase()
         {
-            var look=Prefab.GetComponent<SpriteFrameAnimator>().looks.Single(l=>l.layers.Any(a=>a.id=="beard"));
+            var look=Prefab.GetComponent<SpriteFrameAnimator>().looks.First(l=>l.layers.Any(a=>a.id=="beard"));
             var glasses=Item("glasses");
             var composed=AppearanceResolver.Resolve(look,new[]{glasses});
             Assert.AreSame(glasses.appearance,composed.Single(l=>l.slot=="eyes"));
@@ -46,10 +46,10 @@ namespace Scrapshift.Tests
             }
             finally {Object.DestroyImmediate(obj);}
         }
-        [Test] public void FourPresetsShareBodyAndLegsWithDistinctFaceHairCombinations()
+        [Test] public void FivePresetsShareBodyAndLegsWithDistinctFaceHairCombinations()
         {
             var animator=Prefab.GetComponent<SpriteFrameAnimator>();
-            Assert.AreEqual(4,animator.looks.Length);
+            Assert.AreEqual(5,animator.looks.Length);
             Assert.AreEqual(3,animator.looks.Select(l=>l.layers.Single(a=>a.slot=="eyes").image).Distinct().Count());
             Assert.AreEqual("player-parts_00",animator.bodyView.sprite.name);
             Assert.AreEqual("player-leg_00",animator.footSprite.name);

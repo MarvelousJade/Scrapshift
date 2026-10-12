@@ -141,6 +141,8 @@ namespace Scrapshift
                 if(character!=null)Inventory.Add(catalog.Weapon(character.DefaultWeapon,1));
             }
             if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
+            if(character?.startingItems!=null)foreach(var id in character.startingItems)
+            {var item=Array.Find(catalog.data.items,i=>i.id==id);if(item==null)throw new InvalidOperationException("Missing starting implant: "+id);ApplyItem(item);}
             Phase=RunPhase.Playing;
             Wave=1;
             Remaining=Durations[0];
@@ -176,7 +178,7 @@ namespace Scrapshift
         {
             if(Phase!=RunPhase.Playing||amount<=0)return;
             LastHitProtected=false;
-            if(random.NextDouble()<Mathf.Clamp(Stat("dodge")/100,0,DodgeLimit))return;
+            if(random.NextDouble()<Mathf.Clamp(Stat("dodge")/100,0,DodgeLimit)){DodgeTriggers();return;}
             if(HitProtection>0){HitProtection--;LastHitProtected=true;return;}
             float armor=Stat("armor");
             amount*=armor>=0?1/(1+armor/15):2-1/(1-armor/15);

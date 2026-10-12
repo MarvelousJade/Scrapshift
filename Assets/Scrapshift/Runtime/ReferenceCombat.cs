@@ -210,7 +210,7 @@ namespace Scrapshift
                         }
                     }
                 }
-                speed = Mathf.Max(0, speed*Mathf.Max(.01f,1+Rules.Stat("enemy_speed")/100) - e.contactSlow);
+                speed = Mathf.Max(0, speed*Mathf.Max(.01f,1+Rules.Stat("enemy_speed")/100) - e.contactSlow-e.itemSlow);
                 e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
                 if (role == "Buffer" && e.cooldown <= 0)
                 {
@@ -398,7 +398,7 @@ namespace Scrapshift
                         }
                         if (nearest < 0) break;
                         var victim=enemies[nearest];s.hit.Add(victim);
-                        bool critical=Damage(nearest,s.damage,s.crit,s.knockback,s.velocity,s.weapon,s.secondary);
+                        bool critical=Damage(nearest,s.damage,s.crit,s.knockback,s.velocity,s.weapon,s.secondary,false,s.structure);
                         int bounceBonus=critical?(int)(s.weapon?.Trait("bounce_on_crit")?.value??0):0;
                         if(s.bounces+bounceBonus>0)
                         {
@@ -414,23 +414,25 @@ namespace Scrapshift
                 { Destroy(s.obj); shots.RemoveAt(i); }
             }
         }
-        bool Damage(int index,float damage,float crit=0,float knockback=1,Vector2 attackDirection=default,Equipment weapon=null,bool secondary=false,bool bypassArmor=false)
+        bool Damage(int index,float damage,float crit=0,float knockback=1,Vector2 attackDirection=default,Equipment weapon=null,bool secondary=false,bool bypassArmor=false,bool structure=false)
         {
             if(index<0||index>=enemies.Count)return false;
             knockback+=Rules.Stat("knockback")/10;
-            var e=enemies[index];if(e.marker!=null)return false;bool critical=UnityEngine.Random.value<Mathf.Clamp01(Rules.CritChance+crit);if(critical)
+            var e=enemies[index];if(e.marker!=null)return false;bool critical=(!structure||Rules.Stat("structures_can_crit")>0)&&UnityEngine.Random.value<Mathf.Clamp01(Rules.CritChance+crit);if(critical)
             {
                 damage*=weapon?.critMultiplier??2;
             }
             damage=Mathf.Max(1,bypassArmor?damage:damage/(1+Mathf.Max(0,e.type.armor+e.type.armorGrowth*(Rules.Wave-1))/15));
             if(e.type.role=="Boss")damage=Rules.DamageToBoss(damage);
+            if(critical)damage+=Rules.CriticalCurrentHealthDamage(e.hp,e.type.role=="Boss");
+            if(weapon!=null&&e.type.role!="Tree")e.itemSlow=Rules.ItemSpeedReduction(e.itemSlow,e.speed);
             if(e.type.role=="Tree"&&Rules.Stat("one_shot_trees")>0&&weapon!=null)damage=e.hp;
             if(!secondary&&SpecialWeaponRules.Execute(weapon,UnityEngine.Random.value)){damage=Mathf.Max(damage,e.hp);Burst(e.pos,18,mint);}
             if(!secondary)e.contactSlow=SpecialWeaponRules.Slow(e.contactSlow,e.speed,SpecialWeaponRules.EngineeringSlow(weapon,Rules.Stat("engineering"),e.speed));
             e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
-            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary);return critical;}Rules.Kill();if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
+            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(Rules.TryLifeSteal(UnityEngine.Random.value,weapon?.lifesteal??0))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary);return critical;}Rules.Kill();Rules.CriticalKillMaterials(critical);if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<3;i++)births.Push(new Birth
             {
                 type=catalog.Enemy("junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)

@@ -23,13 +23,13 @@ namespace Scrapshift
         void BeginStarterReview(string folder)
         {
             starterReview=true;starterReviewPath=Path.GetFullPath(folder);Directory.CreateDirectory(starterReviewPath);starterUtc=DateTime.UtcNow;
-            starterNext=Time.realtimeSinceStartup+.7f;starterReport=new StarterReport{playable=4,locked=catalog.data.rosterSlots-4};
+            starterNext=Time.realtimeSinceStartup+.7f;starterReport=new StarterReport{playable=catalog.data.characters.Length,locked=catalog.data.rosterSlots-catalog.data.characters.Length};
             Begin();ReturnToSelection(1);sound.SetMuted(true);
         }
         void StarterReviewTick()
         {
             if(!starterReview||Time.realtimeSinceStartup<starterNext)return;
-            if(starterStage<8)
+            if(starterStage<catalog.data.characters.Length*2)
             {
                 int index=starterStage/2;
                 if(starterStage%2==0){ReturnToSelection(1);ChangeLook(index-playerAnimation.lookIndex);startingWeapon=0;randomCharacter=false;}
@@ -44,19 +44,19 @@ namespace Scrapshift
                 string name=SelectedCharacter.id+(starterStage%2==0?"-selection":"-loadout");
                 starterCaptures.Add(name);ScreenCapture.CaptureScreenshot(Path.Combine(starterReviewPath,name+".png"));
             }
-            else if(starterStage==8)
+            else if(starterStage==catalog.data.characters.Length*2)
             {
                 ReturnToSelection(1);randomCharacter=true;ConfirmMenu();
-                starterReport.randomSelectedPlayable=menuPage==2&&playerAnimation.lookIndex>=0&&playerAnimation.lookIndex<4;
+                starterReport.randomSelectedPlayable=menuPage==2&&playerAnimation.lookIndex>=0&&playerAnimation.lookIndex<catalog.data.characters.Length;
                 starterCaptures.Add("random-weapons");ScreenCapture.CaptureScreenshot(Path.Combine(starterReviewPath,"random-weapons.png"));
             }
-            else if(starterStage==9)CheckStarterCombat();
+            else if(starterStage==catalog.data.characters.Length*2+1)CheckStarterCombat();
             else
             {
                 starterReport.width=Screen.width;starterReport.height=Screen.height;
                 starterReport.fullViewport=gameCamera.rect==new Rect(0,0,1,1);
                 starterReport.capturesVerified=CaptureVerification.Fresh(starterReviewPath,starterUtc,starterCaptures.ToArray());
-                bool passed=starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==4
+                bool passed=starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==catalog.data.characters.Length
                     &&starterReport.weaponsDamagedTarget.Count==starterReport.availableWeapons&&starterReport.burning&&starterReport.slow
                     &&starterReport.secondaryProjectiles&&starterReport.turretFired&&starterReport.ghostProgress
                     &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution;

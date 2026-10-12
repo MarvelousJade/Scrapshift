@@ -28,6 +28,34 @@
       "conditionalEffects": []
     },
     {
+      "id": "adrenaline",
+      "title": "Adrenaline",
+      "available": true,
+      "tier": 3,
+      "value": 60,
+      "tags": [
+        "stat_dodge"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "dodge"
+      ],
+      "effects": [
+        {
+          "key": "stat_dodge",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "",
+          "value": 5,
+          "customKey": "heal_on_dodge",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
       "id": "alien_baby",
       "title": "Alien Baby",
       "available": true,
@@ -221,6 +249,45 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "ball_and_chain",
+      "title": "Ball And Chain",
+      "available": true,
+      "tier": 3,
+      "value": 75,
+      "tags": [
+        "stat_percent_damage",
+        "stat_armor",
+        "knockback"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 15
+        },
+        {
+          "key": "stat_armor",
+          "value": 3
+        },
+        {
+          "key": "knockback",
+          "value": 5
+        },
+        {
+          "key": "stat_speed",
+          "value": -3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "minimum_weapon_cooldowns",
+          "value": 45,
+          "customKey": "minimum_weapon_cooldowns"
+        }
+      ]
     },
     {
       "id": "bandana",
@@ -877,6 +944,30 @@
       "conditionalEffects": []
     },
     {
+      "id": "clockwork_wasp",
+      "title": "Clockwork Wasp",
+      "available": true,
+      "tier": 2,
+      "value": 45,
+      "tags": [
+        "structure",
+        "stat_speed"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "structure_attack_speed",
+          "value": 10
+        },
+        {
+          "key": "stat_speed",
+          "value": 5
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "clover",
       "title": "Clover",
       "available": true,
@@ -1440,6 +1531,28 @@
       "conditionalEffects": []
     },
     {
+      "id": "extra_stomach",
+      "title": "Extra Stomach",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_max_hp",
+        "stat_luck"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 1,
+          "customKey": "consumable_stats_while_max",
+          "per": 8
+        }
+      ]
+    },
+    {
       "id": "eyes_surgery",
       "title": "Eyes Surgery",
       "available": true,
@@ -1630,6 +1743,44 @@
       ]
     },
     {
+      "id": "frozen_heart",
+      "title": "Frozen Heart",
+      "available": true,
+      "tier": 3,
+      "value": 90,
+      "tags": [
+        "stat_elemental_damage",
+        "stat_crit_chance"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 8
+        },
+        {
+          "key": "stat_crit_chance",
+          "value": 5
+        },
+        {
+          "key": "burning_cooldown_reduction",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 10,
+          "customKey": "weapon_scaling_stats",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "fruit_basket",
       "title": "Fruit Basket",
       "available": false,
@@ -1769,6 +1920,27 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "giant_belt",
+      "title": "Giant Belt",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "stat_crit_chance"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "giant_crit_damage",
+          "value": 10,
+          "customKey": "giant_crit_damage",
+          "per": 1
+        }
+      ]
     },
     {
       "id": "glass_cannon",
@@ -2121,6 +2293,56 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "hunting_trophy",
+      "title": "Hunting Trophy",
+      "available": false,
+      "tier": 3,
+      "value": 55,
+      "tags": [
+        "stat_crit_chance"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "gold_on_crit_kill",
+          "value": 33,
+          "customKey": "gold_on_crit_kill",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "improved_tools",
+      "title": "Improved Tools",
+      "available": false,
+      "tier": 3,
+      "value": 70,
+      "tags": [
+        "structure",
+        "stat_attack_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 50,
+          "customKey": "structures_cooldown_reduction",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
     },
     {
       "id": "injection",
@@ -2747,6 +2969,39 @@
       "conditionalEffects": []
     },
     {
+      "id": "nail",
+      "title": "Nail",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_engineering"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "engineering"
+      ],
+      "effects": [
+        {
+          "key": "stat_engineering",
+          "value": 5
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": -2
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_engineering",
+          "value": 20,
+          "customKey": "weapon_scaling_stats",
+          "interval": 1,
+          "resetOnHit": false
+        }
+      ]
+    },
+    {
       "id": "night_goggles",
       "title": "Night Goggles",
       "available": false,
@@ -2938,6 +3193,34 @@
       "conditionalEffects": []
     },
     {
+      "id": "pile_of_books",
+      "title": "Pile Of Books",
+      "available": true,
+      "tier": 2,
+      "value": 60,
+      "tags": [
+        "stat_crit_chance",
+        "stat_engineering"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "structures_can_crit",
+          "value": 1
+        },
+        {
+          "key": "stat_crit_chance",
+          "value": 5
+        },
+        {
+          "key": "stat_engineering",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "plant",
       "title": "Plant",
       "available": true,
@@ -3068,6 +3351,34 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "potion",
+      "title": "Potion",
+      "available": true,
+      "tier": 4,
+      "value": 90,
+      "tags": [
+        "stat_hp_regeneration"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "hp_regeneration"
+      ],
+      "effects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "hp_regen_bonus",
+          "value": 1,
+          "customKey": "hp_regen_bonus",
+          "per": 50
+        }
+      ]
     },
     {
       "id": "power_generator",
@@ -3358,6 +3669,29 @@
       "conditionalEffects": []
     },
     {
+      "id": "scared_sausage",
+      "title": "Scared Sausage",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 4,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "burn_chance",
+          "customKey": "global_burn",
+          "value": 1,
+          "chance": 0.25,
+          "interval": 3,
+          "per": 1.0
+        }
+      ]
+    },
+    {
       "id": "scope",
       "title": "Scope",
       "available": true,
@@ -3623,6 +3957,30 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "snowball",
+      "title": "Snowball",
+      "available": true,
+      "tier": 2,
+      "value": 50,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [
+        "elemental_damage"
+      ],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 1,
+          "customKey": "gain_stat_for_equipped_item_with_stat",
+          "stat": "stat_elemental_damage",
+          "per": 0
+        }
+      ]
     },
     {
       "id": "spider",
@@ -3987,6 +4345,32 @@
           "customKey": "temp_stats_on_hit",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "ugly_tooth",
+      "title": "Ugly Tooth",
+      "available": true,
+      "tier": 1,
+      "value": 25,
+      "tags": [
+        "less_enemy_speed"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_speed",
+          "value": -3
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "remove_speed",
+          "value": 5,
+          "customKey": "remove_speed",
+          "per": 20
         }
       ]
     },
@@ -4426,6 +4810,51 @@
           "kind": "gain",
           "key": "max_hp",
           "value": -25,
+          "extra": ""
+        }
+      ]
+    },
+    {
+      "id": "mage",
+      "wantedTags": [
+        "stat_elemental_damage"
+      ],
+      "bannedItems": [],
+      "rows": [
+        {
+          "kind": "gain",
+          "key": "elemental_damage",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "snake",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "scared_sausage",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "melee_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "ranged_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "engineering",
+          "value": -50,
           "extra": ""
         }
       ]

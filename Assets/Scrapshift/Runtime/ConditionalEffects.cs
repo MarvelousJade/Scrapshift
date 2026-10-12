@@ -8,11 +8,32 @@ namespace Scrapshift
     {
         public string key,customKey;
         public string stat;
-        public float per;
+        public float per,chance;
         public bool permanentOnly;
         public float value,interval=1;
         public bool resetOnHit;
-        public string Description=>ItemEntry.FormatStat(key,value)+Suffix;
+        public string Description
+        {
+            get
+            {
+                switch(customKey)
+                {
+                    case "global_burn":return $"{chance*100:0.##}% chance to burn for {value:0.##} + {per*100:0.##}% Elemental Damage, {interval:0} times";
+                    case "remove_speed":return $"Hits reduce enemy speed by {value:0.##}%, up to {per:0.##}%";
+                    case "hp_regen_bonus":return $"+{value*100:0.##}% regeneration healing below {per:0.##}% HP";
+                    case "heal_on_dodge":return $"{chance*100:0.##}% chance to heal {value:0.##} HP when dodging";
+                    case "consumable_stats_while_max":return ItemEntry.FormatStat(key,value)+$" when collecting a consumable at full HP (maximum {per:0.##} per wave)";
+                    case "giant_crit_damage":return $"Critical hits deal an extra {value:0.##}% of current enemy HP ({per:0.##}% for bosses and elites)";
+                    case "gold_on_crit_kill":return $"{value:0.##}% chance to gain 1 material on a critical kill";
+                    case "weapon_scaling_stats":return $"Weapons gain {value:0.##}% {ItemEntry.StatName(key)} scaling";
+                    case "structures_cooldown_reduction":return $"Structures gain {value:0.##}% of your {ItemEntry.StatName(key)}";
+                    case "minimum_weapon_cooldowns":return $"Weapons cannot attack faster than once every {value/60:0.##} seconds";
+                    case "gain_stat_for_equipped_item_with_stat":return ItemEntry.FormatStat(key,value)+$" when obtaining an item that increases {ItemEntry.StatName(stat)}";
+                    default:return ItemEntry.FormatStat(key,value)+Suffix;
+                }
+            }
+        }
+        public bool HasCustomDescription=>customKey=="global_burn"||customKey=="remove_speed"||customKey=="hp_regen_bonus"||customKey=="heal_on_dodge"||customKey=="consumable_stats_while_max"||customKey=="giant_crit_damage"||customKey=="gold_on_crit_kill"||customKey=="weapon_scaling_stats"||customKey=="structures_cooldown_reduction"||customKey=="minimum_weapon_cooldowns"||customKey=="gain_stat_for_equipped_item_with_stat";
         public string Suffix
         {
             get

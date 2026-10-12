@@ -41,7 +41,7 @@ namespace Scrapshift
         }
         public string ItemDescription(ItemEntry item)=>string.Join("\n",item.effects.Select(e=>
             "<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>")
-            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Select(e=>e.customKey=="stat_cap"?(e.key=="hp_cap"?"Max HP":"Speed")+" is capped at its value when you obtain this implant":"<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"+e.Suffix)));
+            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Select(e=>e.HasCustomDescription?e.Description:e.customKey=="stat_cap"?(e.key=="hp_cap"?"Max HP":"Speed")+" is capped at its value when you obtain this implant":"<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"+e.Suffix)));
         public string Sets(Equipment weapon)=>string.Join(", ",WeaponSets.All.Where(s=>weapon.HasSet(s.Id)).Select(s=>s.Name));
         static string Compared(float current,float original,string shown)=>"<color="+(Mathf.Approximately(current,original)?"#FFFFFF":current>original?"#76FF40":"#FF4444")+">"+shown+"</color>";
         public string WeaponDescription(RunRules rules,Equipment w)

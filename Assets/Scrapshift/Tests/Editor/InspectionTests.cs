@@ -10,7 +10,7 @@ namespace Scrapshift.Tests
         [SetUp] public void Setup(){catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");text=new InspectionText(catalog.uiText);rules=new RunRules(42);rules.Configure(catalog);rules.Start();}
         [Test] public void SelectionHidesLockedWeaponsAndKeepsCharacterSpecificOrder()
         {
-            CollectionAssert.AreEqual(new[]{13,2,7,8},catalog.data.characters.Select(c=>StarterChoices.Available(catalog,c).Length));
+            CollectionAssert.AreEqual(new[]{13,2,7,8,8},catalog.data.characters.Select(c=>StarterChoices.Available(catalog,c).Length));
             CollectionAssert.AreEqual(new[]{"fist","hand"},StarterChoices.Available(catalog,catalog.data.characters[1]));
             foreach(var c in catalog.data.characters)
             {

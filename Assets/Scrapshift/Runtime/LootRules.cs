@@ -14,6 +14,7 @@ namespace Scrapshift
         public void CollectConsumable(ConsumableKind kind)
         {
             if(Phase!=RunPhase.Playing || kind==ConsumableKind.None)return;
+            ConsumableFullHealthTriggers();
             Heal(Math.Max(0,3+Stat("consumable_heal")));
             if(kind==ConsumableKind.Crate || kind==ConsumableKind.LegendaryCrate)
             {crates.Enqueue(kind==ConsumableKind.LegendaryCrate);Scrap+=Math.Max(0,(int)Stat("item_box_gold"));}
@@ -49,7 +50,7 @@ namespace Scrapshift
         void ApplyItem(ItemEntry item)
         {
             Items.Add(item);
-            foreach(var effect in item.effects)Add(effect.key.Replace("stat_",""),effect.value);
+            foreach(var effect in item.effects){Add(effect.key.Replace("stat_",""),effect.value);OnItemStatAdded(effect.key,effect.value);}
             if(Phase==RunPhase.Shop)UpdateShopRerolls();
             if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)if(effect.customKey=="stat_cap")
             {if(effect.key=="hp_cap")healthCap=MaxHealth;else if(effect.key=="speed_cap")speedCap=Stat("speed");}
