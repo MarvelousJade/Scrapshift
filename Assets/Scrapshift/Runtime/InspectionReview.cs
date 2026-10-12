@@ -12,7 +12,7 @@ namespace Scrapshift
         [Serializable] sealed class InspectionResult { public string name,phase,target,drawn;public bool panelOnScreen;public int banked,pendingLevels,pendingCrates;public float arrivalTime,canopyWidth,canopyHeight,remaining; }
         [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
         InspectionReport inspectionReport;
-        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south"};
+        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons"};
         void BeginInspectionReview(string path)
         {inspectionReview=true;inspectionPath=Path.GetFullPath(path);Directory.CreateDirectory(inspectionPath);inspectionUtc=DateTime.UtcNow;inspectionNext=Time.realtimeSinceStartup+.5f;inspectionReport=new InspectionReport();Begin();sound.SetMuted(true);}
         void InspectionReviewTick()
@@ -31,7 +31,13 @@ namespace Scrapshift
             if(inspectionStage==inspectionCases.Length){inspectionNext=Time.realtimeSinceStartup+.6f;return;}
             if(inspectionStage>inspectionCases.Length)return;
             forcedInspection=null;lastDrawnInspection=null;
-            if(inspectionStage>=37){Begin();ClearCombat();playerPos=new Vector2(8,inspectionStage==37?7:-7);player.transform.position=playerPos;playerShadow.Place(playerPos,ActorPresentation.PlayerScale);UpdateEquipment(0);gameCamera.transform.position=(Vector3)ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect)+Vector3.back*10;}
+            if(inspectionStage>=39)
+            {
+                Begin();ClearCombat();Rules.Tick(Rules.Remaining);
+                if(inspectionStage==39){string[] ids={"barricade","robot_arm","wisdom","triangle_of_power"};for(int i=0;i<4;i++)Rules.Shop[i]=new ShopOffer{item=Array.Find(catalog.data.items,a=>a.id==ids[i]),rolledWave=1};}
+                else {string[] ids={"drill","scythe","jousting_lance","excalibur"};for(int i=0;i<4;i++)Rules.Shop[i]=new ShopOffer{weapon=catalog.Weapon(ids[i],4),rolledWave=1};}
+            }
+            else if(inspectionStage>=37){Begin();ClearCombat();playerPos=new Vector2(8,inspectionStage==37?7:-7);player.transform.position=playerPos;playerShadow.Place(playerPos,ActorPresentation.PlayerScale);UpdateEquipment(0);gameCamera.transform.position=(Vector3)ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect)+Vector3.back*10;}
             else if(inspectionStage==35||inspectionStage==36)
             {
                 Begin();ClearCombat();Rules.Tick(Rules.Remaining);

@@ -89,5 +89,11 @@ namespace Scrapshift.Tests
             var item=catalog.data.items.Single(i=>i.id=="robot_arm");Assert.AreEqual("Growing Servo Arm",t.ItemName(item));
             StringAssert.Contains("end of every wave",t.ItemDescription(item));StringAssert.Contains("-1",t.ItemDescription(item));
         }
+        [Test] public void WeaponNamesDoNotAccumulateTierSuffixesAcrossMigrations()
+        {
+            var text=new InspectionText(catalog.uiText);
+            var weapon=new Equipment{id="circular_saw",title="Circular Saw II II",tier=2};
+            for(int i=0;i<4;i++){weapon.title=text.WeaponName(weapon);Assert.AreEqual("Circular Saw II",weapon.title);}
+        }
     }
 }

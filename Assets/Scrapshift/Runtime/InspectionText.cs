@@ -22,7 +22,8 @@ namespace Scrapshift
             string name=StatName(key);bool percent=name.StartsWith("%");
             return (value>0?"+":"")+N(value)+(percent?"%":"")+" "+name.TrimStart('%',' ');
         }
-        public string WeaponName(Equipment w)=>T("WEAPON_"+(w.id=="cactus_mace"?"CACTI_CLUB":w.id.ToUpperInvariant()),w.title)+(w.tier>1?" "+new[]{"","","II","III","IV"}[w.tier]:"");
+        // Derive fallback from the stable ID: title already contains a tier after editor migration.
+        public string WeaponName(Equipment w)=>T("WEAPON_"+(w.id=="cactus_mace"?"CACTI_CLUB":w.id.ToUpperInvariant()),CultureInfo.InvariantCulture.TextInfo.ToTitleCase(w.id.Replace('_',' ')))+(w.tier>1?" "+new[]{"","","II","III","IV"}[w.tier]:"");
         public string ItemName(ItemEntry i)=>CyberneticTheme.ItemName(i.id,T("ITEM_"+i.id.ToUpperInvariant(),i.title));
         public string StatDescription(RunRules rules,string stat)
         {

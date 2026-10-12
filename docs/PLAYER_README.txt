@@ -34,6 +34,6 @@ Full-run balance and player acceptance remain unverified.
 
 Combat update: distinct lower-body hitboxes, stronger pistol knockback, brief enemy slowing after contact, and clearer white impact flashes. Original artwork retained.
 
-October 12 cybernetic refresh: cream human-like mascot, implant names with reference values, footsteps/pickup feedback, tabbed options. 106 item definitions (91 available); 62 weapon families imported (40 available on this profile). Some special-effect weapons and 103 reference items remain unfinished and are not included in the shop. No DLC resources imported.
+Cybernetic presentation: cream human-like mascot, implant names with reference values, footsteps/pickup feedback and tabbed options. All 62 base weapon families are registered; only implemented, source-unlocked tiers can appear. No DLC resources imported.
 
 October 12 conditional implants: 119 item definitions (98 available), 43 available weapon families. Added standing/inventory bonuses, timed growth, damage-triggered growth and permanent wave/level gains. Drill, Scythe, Jousting Lance and Excalibur now have their reference special behaviors; Excalibur remains source-locked. 90 base items and six explicitly gated weapon families remain; locked Rail Gun also still lacks its special behavior.

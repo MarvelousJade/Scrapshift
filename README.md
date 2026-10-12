@@ -1,6 +1,6 @@
 # Scrapshift
 
-A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Seven active original AI-generated sheets provide clean player parts, wearable details, body-only enemies, weapons, pickups and UI icons. Three cosmetic looks share a smooth shell, swappable eyes/hair/beard and widely spaced, outward-curved tiny legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
+A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Original AI-generated sheets provide player parts, wearable details, body-only enemies, weapons, pickups and UI icons. The cream human-like mascot uses cybernetic implants, swappable eyes/hair/beard and rounded silver tiny legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
 
 ## Why this exists
 
@@ -12,9 +12,9 @@ The user requested close reference analysis before implementation. See [the sour
 
 Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Assets/Scrapshift/Content/Scenes/Deck.unity`. **Scrapshift > Generate Game Content** applies versioned content migrations while preserving existing asset GUIDs.
 
-- Title LOOK buttons: choose Rookie, Veteran or Punk (appearance only; identical starting stats).
+- Start: Random or Rookie / Pugilist / Hothead / Sharpshot, then an eligible starting weapon. Characters have distinct reference modifiers and a fixed weapon plus your chosen weapon. Remaining character slots are locked.
 - WASD / arrows: move. Weapons attack automatically.
-- Escape: pause/resume. M: mute. Pause menu: volume and reduced motion.
+- Escape: pause/resume. M: mute. Pause menu: Gameplay, Audio, Video and Controls tabs.
 - Collect materials for both spending and XP. Levels queue until the wave ends.
 - Crates heal 3 HP and queue a free item at wave end. Take with Enter or recycle with X; remaining crates are collected before level rewards.
 - 1–4 or mouse: choose a stat reward. R: paid reroll.
@@ -22,13 +22,15 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Ass
 - Weapon sets: duplicates count; tiers count equally. Gun adds Range, Precise adds Critical Chance, Primitive adds Max HP. Hover the set rows for all thresholds.
 - Enter or GO: start the next wave. Enter also starts/restarts a run.
 
-Run `Builds/Windows/Scrapshift.exe`; keep its entire Windows folder together. Archive: `Builds/Scrapshift-Windows.zip`.
+Run `Builds/ConditionalImplants/Scrapshift.exe`; keep its entire player folder together. Archive: `Builds/Scrapshift-Windows.zip`.
 
 Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor closed. If it is open, copy `Assets`, `Packages`, `ProjectSettings` and `scripts` to a separate validation project and run those scripts there. Do not start a second Editor on the same project folder. The October 11 checks used `E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity`; compare source hashes before attributing its results to this checkout. Binaries/raw logs are ignored; source, Unity metadata, test reports and selected visual evidence are tracked.
 
 ## Scope
 
-20 base-difficulty schedules; 18 enemy entries, including trees and a final boss; six weapon families in four tiers; eight offered stat-tradeoff items (24 retained catalog entries); eight upgrade stats using reference tier values; source-based crate drops and take-or-recycle rewards before level upgrades. Regeneration ticks and life-steal cooldowns follow the inspected source. Predator now switches from charging to random projectile bursts at half health or 45 seconds and carries its rotating projectile arm. Higher difficulties, alternate bosses, all characters/items, additional weapon sets, endless mode, DLC and full balance parity are not implemented. The reference culling threshold is 100 active regular enemies at group boundaries; pending births, trees and bosses are separate. The arena and collision model remain adapted to this presentation.
+20 base-difficulty schedules; 18 enemy entries, including trees and a final boss. All 62 base weapon families / 205 tier resources are registered; 43 families / 148 tiers are currently obtainable. 119 of 209 base item definitions are implemented, 98 obtainable under the source unlock flags. Fifteen weapon sets and four gameplay profiles are supported. Cybernetic aliases preserve reference gameplay values and IDs. No DLC content.
+
+90 items and six explicitly gated weapon families remain unfinished; the locked Rail Gun also lacks its special behavior. Incomplete shop pools cannot reproduce full-catalog probabilities. Difficulty progression, full character unlocks and human balance acceptance remain outside the current verified scope. See [conditional implants and special weapons](docs/conditional-implants.md) for this pass's reference comparison and limitations.
 
 ## Interview evidence
 

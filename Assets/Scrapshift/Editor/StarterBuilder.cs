@@ -11,7 +11,7 @@ namespace Scrapshift.Editor
         static void EnsureStarterProfiles()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(Root+"/Definitions/ReferenceCatalog.asset");
-            if(catalog.starterVersion=="6"&&catalog.data.characters?.Length==4&&catalog.data.equipment.Length==205)return;
+            if(catalog.starterVersion=="7"&&catalog.data.characters?.Length==4&&catalog.data.equipment.Length==205)return;
             AssetDatabase.Refresh();
             var data=JsonUtility.FromJson<StarterData>(File.ReadAllText(Root+"/Reference/starter-profiles.json"));
             // Generated art is not a mechanically aligned grid: slice in the actual transparent gutters.
@@ -24,6 +24,9 @@ namespace Scrapshift.Editor
             string[] ids={"stick","fist","cactus_mace","ghost_flint","wrench","slingshot","taser","wand","icicle","hand","dagger","scissors","lightning_shiv","sharp_tooth","shuriken","revolver","shredder","crossbow","chopper","fighting_stick","hatchet","spiky_shield","rail_gun","claw"};
             int[][] baseColumns={new[]{0,214,400,588,770,966,1150,1355,1536},new[]{0,218,400,574,756,973,1152,1344,1536},new[]{0,217,403,582,768,957,1151,1365,1536},new[]{0,220,395,589,780,970,1156,1330,1536}};int[] baseRows={0,280,520,745,1024};
             var baseRegions=new Rect[32];for(int row=0;row<4;row++)for(int col=0;col<8;col++)baseRegions[row*8+col]=Rect.MinMaxRect(baseColumns[row][col],baseRows[row],baseColumns[row][col+1],baseRows[row+1]);
+            // Exclude the neighboring gun stock/outline without changing the source artwork.
+            baseRegions[26]=Rect.MinMaxRect(395,745,574,1024);
+            baseRegions[12]=Rect.MinMaxRect(756,280,968,520);
             var baseArt=ImportSheet("base-weapons",baseRegions,220);
             string[] baseIds={"chain_gun","circular_saw","dextroyer","drill","excalibur","fireball","flamethrower","flaming_knuckles","gatling_laser","ghost_axe","ghost_scepter","hammer","jousting_lance","medical_gun","minigun","nuclear_launcher","obliterator","particle_accelerator","plank","plasma_sledgehammer","power_fist","potato_thrower","pruner","rock","rocket_launcher","screwdriver","scythe","sniper_gun","sword","thunder_sword","torch","vorpal_sword"};
             foreach(var w in data.equipment)
@@ -42,7 +45,7 @@ namespace Scrapshift.Editor
                 importer.defaultSampleSettings=settings;importer.SaveAndReimport();
             }
             catalog.data.equipment=data.equipment;catalog.data.characters=data.characters;catalog.data.sets=data.sets;catalog.data.rosterSlots=data.rosterSlots;
-            catalog.starterVersion="6";WeaponSets.Configure(data.sets);EditorUtility.SetDirty(catalog);
+            catalog.starterVersion="7";WeaponSets.Configure(data.sets);EditorUtility.SetDirty(catalog);
             string prefabPath=Root+"/Prefabs/ScavengerAnimated.prefab";
             var root=PrefabUtility.LoadPrefabContents(prefabPath);var animator=root.GetComponent<SpriteFrameAnimator>();
             var old=animator.looks;

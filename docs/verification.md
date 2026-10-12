@@ -1,5 +1,22 @@
 # Verification record
 
+## October 12 — conditional implants and special weapons
+
+Gameplay implementation `15c112b`; follow-up fixes and rendered evidence accompany this record. Reference comparison and real bug notes: [conditional-implants.md](conditional-implants.md).
+
+- Final Windows build succeeded, zero errors/warnings, 159,895,548 reported bytes.
+- **199/199 EditMode tests passed**, zero failed/skipped, 5.3496957 seconds. Covers standing/paused effects, distinct weapon counting across tiers, Excalibur self-counting, Drill timing/reset, Scythe lethal self-damage, wave/level permanence, hit resets, frame partitioning and repeated name migration. Import tests compare values and all conditional metadata.
+- **All 148 obtainable weapon tiers damaged their target** in the rendered combat fixture; burn, slow, secondary projectile, turret and ghost checks passed. Fixed high-HP targets and stepped combat are not a human balance test.
+- **41 rendered inspection cases passed** with fresh captures. Inspected new implant cards and final special-weapon cards. Fixed repeated tier suffixes and neighboring sprite pixels revealed during review. Scrolling contains long descriptions; native input and audio audition were not repeated.
+- **20-wave campaign passed:** Won, 47 purchases, one boss phase change, six fresh captures verified, 144.6409 wall seconds. Scripted movement, supplied gear and invulnerability make this integration evidence, not a human survival/balance result. Final result screenshot inspected.
+- **AssetScope: 311 assets, zero errors/findings.** All **918** Assets/Packages/ProjectSettings files match the validation project byte-for-byte. Digest `c5079e19716d8636fc9a17b99821e0fce66af6f02b5e86cdc921f1a94b8a1a2f`. Unsaved Editor state is outside that comparison.
+- Player: `Builds/ConditionalImplants/Scrapshift.exe`. ZIP: 55,452,847 bytes, 155 entries, CRC and every-file comparison passed; SHA-256 `466323d12d5f06ae0ad734b4e99e48a2673aabacf8a7393f4a81fb3a377c396b`.
+
+Catalog: 119/209 implemented base items, 98 obtainable; all 62 families / 205 tiers registered, 43 families / 148 tiers obtainable. Six explicitly gated families and the locked Rail Gun special remain unfinished. Full-catalog shop probabilities and human playtest acceptance remain open. Source unlocks and our original PNG artwork are retained.
+
+Evidence: `artifacts/conditional-implants-review`, `artifacts/conditional-combat-review`, `artifacts/conditional-campaign`, `artifacts/editmode.xml`, `artifacts/assetscope-report.json`, `artifacts/validation-copy.json`, `artifacts/package.json`. Reproduce with the build/verify scripts in the isolated project and `--inspection-review`, `--starter-review`, `--campaign-check`, each with a separate output folder. Never rebuild a player while its fixtures run.
+
+
 ## Latest results - October 11 combat feel and capture verification
 
 Implementation `b2404ce`; capture-validation correction `f7adcbf`. Source/live comparison, adaptations and remaining gaps are in combat-feel-comparison.md. Original PNG artwork is unchanged.
