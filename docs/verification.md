@@ -411,3 +411,10 @@ Runtime: artifacts/presentation-boss-review/inspection.json Passed all 51 fresh 
 Review: artifacts/presentation-boss-review/review.html. Source audit and debugging notes: presentation-and-final-bosses.md. The measurement artifact covers all 62 weapon families.
 
 Playable build: Builds/PresentationBosses/Scrapshift.exe. Package: Builds/Scrapshift-Windows.zip, 156 entries, 55563763 bytes; CRC and byte comparison passed. SHA-256 `4dfa4c27111cf3a924fba7e6766dde94102f68dc3ef2de03707ae272de8348d1`.
+
+
+## October 12 - upgrade, inventory and pause follow-up
+
+276/276 EditMode tests passed, none skipped. Windows build succeeded with zero errors and warnings. All 54 fresh staged runtime captures passed, including final-boss checks, mixed upgrade tiers, character ability inspection, the pause layout and Codex. Visually inspected shop, upgrade, pause and Codex captures. Native input and subjective audio were not certified by this scripted fixture. Assets/Packages/ProjectSettings: 1001 files match the validation checkout byte for byte.
+
+Review: artifacts/upgrade-reward-review/review.html. Playable build: Builds/UpgradeInventory/Scrapshift.exe. Package integrity and SHA are recorded in artifacts/package.json. Design and debugging notes: docs/upgrade-and-inventory-ui.md.

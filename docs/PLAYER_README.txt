@@ -46,3 +46,5 @@ Validation and limitations: see docs/verification.md and artifacts/base-release-
 
 
 October 12 presentation/boss update: rounded shop cards, reference tier colors/tints, currency icons, special-effect bullets, individual weapon dimensions, muted ground stones and spawn-warning sound. Invoker uses warned pillars and the corrected ring attack; Predator projectile placement corrected. Latest executable: Builds/PresentationBosses/Scrapshift.exe.
+
+Latest UI follow-up: Builds/UpgradeInventory/Scrapshift.exe. F or R rerolls. Shop item/weapon icons highlight white with a dedicated hover cue. Hover the character portrait in Items to inspect abilities. Level-up inventory removed; reward icons and inline effect symbols enlarged.
