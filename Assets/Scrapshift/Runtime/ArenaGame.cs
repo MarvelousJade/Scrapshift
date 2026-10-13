@@ -103,6 +103,7 @@ namespace Scrapshift
             if(scaleIndex>=0&&scaleIndex+1<args.Length)BeginScaleReview(args[scaleIndex+1]);
             int appearanceIndex=Array.IndexOf(args,"--appearance-review");
             if(appearanceIndex>=0&&appearanceIndex+1<args.Length)BeginAppearanceReview(args[appearanceIndex+1]);
+            if(Array.IndexOf(args,"--support-showcase")>=0)BeginSupportShowcase();
         }
 
         public void Begin()
@@ -122,6 +123,7 @@ namespace Scrapshift
 
         void Update()
         {
+            if(supportShowcase&&Input.GetKeyDown(KeyCode.F5))BeginSupportShowcase();
 #if UNITY_WEBGL && SCRAPSHIFT_WEB_REVIEW
             TickWebReview();
 #endif
@@ -214,7 +216,8 @@ namespace Scrapshift
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
             player.SetActive(true);
-            director.Tick(dt, QueueGroup, BeginSpawnGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);
+            if(supportShowcase)TickSupportShowcase(dt);else director.Tick(dt, QueueGroup, BeginSpawnGroup);
+            UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
             UpdateWeapons(dt); UpdateStarterEffects(dt); UpdateSlashes(dt);TickImplantAttacks(dt);
             TickPets(dt);TickNightmare(dt);UpdatePickups(dt);
@@ -224,6 +227,7 @@ namespace Scrapshift
             if (shakeTime <= 0) shake = 0;
             Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect);
             gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
+            if(supportShowcase)return;
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
             float healthBefore=Rules.Health;Rules.Tick(dt);
             if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}

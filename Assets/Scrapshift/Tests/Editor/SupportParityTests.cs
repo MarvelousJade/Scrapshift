@@ -43,20 +43,22 @@ namespace Scrapshift.Tests
             finally{Object.DestroyImmediate(catalog);}
         }
 
-        [Test] public void ArticulatedTurretTurnsWithoutMovingItsBase()
+        [Test] public void TurretStaysUprightAndRecoilsAsOneAssembly()
         {
             var root=new GameObject("test turret");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Structure("turret");
             try
             {
                 var rig=SupportRig.Create(root,"turret",true);var at=root.transform.position;var scale=root.transform.localScale;
                 rig.Aim(Vector2.up,.1f,.1f,false);
-                Assert.That(rig.AimingHead.eulerAngles.z,Is.InRange(40,60));
+                Assert.AreEqual(0,rig.AimingHead.eulerAngles.z);
+                Assert.AreEqual(new Vector3(.8f,1.2f,1),rig.AnimatedAssembly.localScale);
+                rig.Aim(Vector2.left,.1f,.3f,false);Assert.AreEqual(0,rig.AimingHead.eulerAngles.z);
                 Assert.AreEqual(at,root.transform.position);Assert.AreEqual(scale,root.transform.localScale);
                 rig.Aim(Vector2.up,.1f,.3f,true);Assert.AreEqual(Vector3.one,rig.AimingHead.localScale);
             }
             finally{Object.DestroyImmediate(root);}
         }
-        [TestCase("bonk_dog")][TestCase("catling_gun")][TestCase("blazemander")][TestCase("ratzilla")][TestCase("scapegoat")][TestCase("doc_moth")]
+        [TestCase("bonk_dog")][TestCase("blazemander")][TestCase("ratzilla")][TestCase("scapegoat")][TestCase("doc_moth")]
         public void PetLimbsAnimateAndReducedMotionRestoresRestPose(string kind)
         {
             var root=new GameObject("test pet");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet(kind);
@@ -66,6 +68,19 @@ namespace Scrapshift.Tests
                 rig.PetPose(.25f,true,false,false,false);Assert.Greater(Quaternion.Angle(first,rig.FirstLimb.localRotation),15);
                 rig.PetPose(.25f,true,false,true,false);Assert.Less(Quaternion.Angle(first,rig.FirstLimb.localRotation),.01f);
                 Assert.IsFalse(root.GetComponent<SpriteRenderer>().enabled);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
+        [Test] public void CatUsesConnectedBodySwayWithoutDetachedLegs()
+        {
+            var root=new GameObject("cat");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
+            try
+            {
+                var rig=SupportRig.Create(root,"catling_gun",false);Assert.IsNull(rig.FirstLimb);
+                var body=rig.AnimatedAssembly.Find("Pet body");var at=body.localPosition;
+                rig.PetPose(.5f,true,false,false,false);Assert.Greater(Quaternion.Angle(Quaternion.identity,body.localRotation),1);
+                Assert.AreEqual(at,body.localPosition);
+                rig.PetPose(.5f,true,false,true,false);Assert.AreEqual(Quaternion.identity,body.localRotation);
             }
             finally{Object.DestroyImmediate(root);}
         }

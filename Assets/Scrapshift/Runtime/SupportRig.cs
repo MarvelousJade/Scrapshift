@@ -12,8 +12,9 @@ namespace Scrapshift
         readonly List<Transform> limbs=new List<Transform>();
         SpriteRenderer source,headView;
         SpriteRenderer[] views;
-        string kind;float unit,angle;
+        string kind;float unit;
         public Transform AimingHead=>head;
+        public Transform AnimatedAssembly=>facing;
         public Transform FirstLimb=>limbs.Count>0?limbs[0]:null;
         public bool IsTurret=>head!=null;
         public static SupportRig Create(GameObject root,string kind,bool turret)
@@ -47,7 +48,7 @@ namespace Scrapshift
             else
             {
                 int leg=animal==0?13:animal==2?14:animal==3?15:12;
-                for(int i=0;i<4;i++)
+                for(int i=0;i<(kind=="catling_gun"?0:4);i++)
                 {
                     var pivot=new GameObject("Leg hip "+i).transform;pivot.SetParent(rig.facing,false);
                     pivot.localPosition=new Vector3(i%2==0?-.13f:.12f,-.09f+(i<2?.015f:0),0);
@@ -81,11 +82,13 @@ namespace Scrapshift
         public void Aim(Vector2 direction,float dt,float age,bool reduced)
         {
             if(head==null)return;
-            if(direction.sqrMagnitude>.0001f)angle=Mathf.MoveTowardsAngle(angle,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,dt*540);
-            head.localRotation=Quaternion.Euler(0,0,angle);headView.flipY=Mathf.Cos(angle*Mathf.Deg2Rad)<0;
+            // Reference turrets keep their sprite upright; projectile direction tracks targets.
+            // Recoil moves the connected assembly, never the head away from its tripod.
+            head.localRotation=Quaternion.identity;headView.flipY=false;
+            head.localScale=Vector3.one;head.localPosition=new Vector3(0,.055f,0);
             var pose=reduced?Vector2.one:SupportMotion.TurretScale(age);
-            head.localScale=new Vector3(pose.x,pose.y,1);
-            head.localPosition=new Vector3(0,.055f+(reduced?0:SupportMotion.TurretLift(age)*.5f),0);
+            facing.localScale=new Vector3(pose.x,pose.y,1)*unit;
+            facing.localPosition=Vector3.up*(reduced?0:SupportMotion.TurretLift(age))*unit;
         }
         public void PetPose(float phase,bool moving,bool flip,bool reduced,bool dead)
         {
@@ -96,6 +99,11 @@ namespace Scrapshift
                 float sign=i%2==0?1:-1;
                 float degrees=kind=="doc_moth"?(reduced?0:Mathf.Sin(phase*Mathf.PI*2)*30)*sign+(i<2?0:40*sign):stride*24*(i==0||i==3?1:-1);
                 limbs[i].localRotation=Quaternion.Euler(0,0,degrees);
+            }
+            if(kind=="catling_gun")
+            {
+                // Reference move cycle: 2 Hz bounce and +/-1.8 degree body sway, no leg tracks.
+                body.localRotation=Quaternion.Euler(0,0,reduced||!moving||dead?0:-1.8f*Mathf.Sin(phase*Mathf.PI));
             }
             if(kind=="doc_moth")body.localPosition=new Vector3(0,reduced?0:Mathf.Sin(phase*Mathf.PI/3)*.035f,0);
             foreach(var view in views){var c=dead?Color.gray:Color.white;c.a=view.color.a;view.color=c;}

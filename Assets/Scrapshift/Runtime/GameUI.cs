@@ -61,6 +61,7 @@ namespace Scrapshift
             DrawNightmareFog();DrawHud();
             var boss=enemies.Find(e=>(e.type.role=="Boss"||e.type.role=="Elite")&&e.marker==null); if(boss!=null&&GameSettings.Flag("bossHp")){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,boss.type.id.ToUpperInvariant(),center);}
             DrawFeedback();
+            DrawSupportShowcase();
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
             else if (Rules.Phase == RunPhase.Shop) ShopUI();
             else if (Rules.Phase == RunPhase.Paused) PauseUI();
@@ -100,7 +101,7 @@ namespace Scrapshift
             OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",new GUIStyle(center){fontSize=32});
             var timer=new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter };
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
-                OutlinedText(630,61,180,56,(waveSweeping?0:Mathf.CeilToInt(Rules.Remaining)).ToString(),timer);
+                OutlinedText(630,61,180,56,supportShowcase?"DEMO":(waveSweeping?0:Mathf.CeilToInt(Rules.Remaining)).ToString(),timer);
             DrawPendingRewards();
             GUI.matrix=hudMatrix;
         }
