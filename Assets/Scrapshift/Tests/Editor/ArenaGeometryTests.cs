@@ -33,7 +33,8 @@ namespace Scrapshift.Tests
             foreach(var weapon in catalog.data.equipment)
             {
                 float size=ActorPresentation.WeaponScale(weapon)*Mathf.Max(weapon.image.bounds.size.x,weapon.image.bounds.size.y);
-                Assert.That(size,Is.InRange(.63f,1.63f));
+                Assert.That(size,Is.InRange(.41f,1.63f));
+                Assert.That(size,Is.EqualTo(WeaponVisualMetrics.Length(weapon.id)).Within(.0001));
                 Assert.AreEqual(ActorPresentation.WeaponScale(System.Array.Find(catalog.data.equipment,w=>w.id==weapon.id)),ActorPresentation.WeaponScale(weapon));
             }
             Assert.AreEqual(new Vector2(0,-.3f),ActorPresentation.WeaponMount(1,0));

@@ -12,6 +12,18 @@ namespace Scrapshift
         float OfferX(int index)=>ContentLeft+index*(OfferWidth+8);
         readonly System.Collections.Generic.Dictionary<string,Vector2> detailScroll=new System.Collections.Generic.Dictionary<string,Vector2>();
         Vector2 itemScroll,weaponScroll;
+        bool MoneyButton(Rect r,string label,bool large=false)
+        {
+            bool pressed=Button(r,"");
+            var style=new GUIStyle(center){fontSize=large?36:24,wordWrap=false};
+            style.normal.textColor=GUI.enabled?(r.Contains(Event.current.mousePosition)?ink:paper):coral;
+            float iconSize=large?34:30;
+            float textWidth=Mathf.Min(r.width-iconSize-20,style.CalcSize(new GUIContent(label)).x+8);
+            float start=r.center.x-(textWidth+iconSize+8)/2;
+            Text(start,r.y,textWidth,r.height,label,style);
+            DrawIcon(catalog.scrapShapes[0],new Rect(start+textWidth+8,r.center.y-iconSize/2,iconSize,iconSize));
+            return pressed;
+        }
         void DrawIcon(Sprite sprite,Rect r)
         {
             if(sprite==null)return;
@@ -34,7 +46,7 @@ namespace Scrapshift
         {
             var previousMatrix=GUI.matrix;
             GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(summary?-1050:StatsLeft-1110,summary?80:Rules.Phase==RunPhase.Upgrade?143:0,0));
-            Box(new Rect(1110,24,336,summary?680:650),new Color(.065f,.06f,.05f,.93f));
+            RoundedBox(new Rect(1110,24,336,summary?680:650),new Color(.065f,.06f,.05f,.93f),8);
             Text(1130,43,296,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
             if(Button(new Rect(1125,94,133,35),"Primary"))secondaryStats=false;
             if(Button(new Rect(1266,94,135,35),"Secondary"))secondaryStats=true;
@@ -91,29 +103,29 @@ namespace Scrapshift
         {
             Box(FullCanvas,new Color(.19f,.175f,.15f,.76f));
             OutlinedText(ContentLeft,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
-            DrawIcon(catalog.scrapShapes[0],new Rect(558,34,34,40));
-            Text(604,26,170,58,Rules.ShopBalance.ToString("0")+(Rules.UsesHealthShop?" HP":""),number);
+            DrawIcon(catalog.scrapShapes[0],new Rect(550,30,42,48));
+            Text(602,24,180,62,Rules.ShopBalance.ToString("0")+(Rules.UsesHealthShop?" HP":""),new GUIStyle(number){fontSize=40});
             GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(StatsLeft-318,27,294,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
+            if(MoneyButton(new Rect(StatsLeft-318,27,294,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
             GUI.enabled=true;
             DrawStatsPanel();
             for(int i=0;i<4;i++)
             {
                 float x=OfferX(i),width=OfferWidth;var offer=Rules.Shop[i];
-                Frame(new Rect(x,118,width,402),ink,2);
+                Frame(new Rect(x,118,width,402),offer==null?ink:TierBackground(offer.Tier),2);
                 if(offer==null){Text(x+14,292,width-28,45,"Sold",center);continue;}
-                Box(new Rect(x+3,121,width-6,4),TierColor(offer.Tier));
-                Box(new Rect(x+14,132,68,74),new Color(.17f,.16f,.15f));
+                RoundedBox(new Rect(x+14,132,68,74),new Color(.17f,.16f,.15f),7);
                 DrawIcon(offer.Image,new Rect(x+18,137,60,64));
                 var offerTitle=offer.Title=="Smg"?"SMG":offer.Title;var offerStyle=new GUIStyle(body);offerStyle.normal.textColor=TierColor(offer.Tier);
                 foreach(var word in offerTitle.Split(' '))while(offerStyle.fontSize>16&&offerStyle.CalcSize(new GUIContent(word)).x>width-107)offerStyle.fontSize--;
-                Text(x+93,132,width-107,54,offerTitle,offerStyle);
-                Text(x+93,186,width-107,32,offer.weapon!=null?inspectionText.Sets(offer.weapon):"Item",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
+                float titleHeight=Mathf.Clamp(offerStyle.CalcHeight(new GUIContent(offerTitle),width-107),26,54);
+                Text(x+93,132,width-107,titleHeight,offerTitle,offerStyle);
+                Text(x+93,132+titleHeight,width-107,54,offer.weapon!=null?inspectionText.Sets(offer.weapon):"Item",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
                 if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,132,width-24,86));
                 DrawOfferDetail(offer,x+16,225,width-32);
                 GUI.enabled=Rules.CanBuy(i);
                 string price=offer.weapon!=null&&Rules.Inventory.Count==Rules.WeaponSlots&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
-                if(Button(new Rect(x+(width-154)/2,451,154,55),price))
+                if(MoneyButton(new Rect(x+(width-154)/2,451,154,55),price,true))
                 {Rules.Buy(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
                 GUI.enabled=true;
                 if(Button(new Rect(x+12,528,width-24,43),offer.locked?"Locked":"Lock"))
@@ -128,7 +140,7 @@ namespace Scrapshift
             for(int i=0;i<sortedItems.Length;i++)
             {
                 float x=i%columns*88,y=i/columns*88;
-                Frame(new Rect(x,y,80,80),new Color(.24f,.23f,.20f),2);
+                Frame(new Rect(x,y,80,80),Color.Lerp(new Color(.24f,.23f,.20f),TierColor(sortedItems[i].tier),sortedItems[i].tier>1?.22f:0),2);
                 DrawIcon(sortedItems[i].image,new Rect(x+7,y+6,66,66));
                 int owned=Rules.Items.Count(item=>item.id==sortedItems[i].id);if(owned>1)OutlinedText(x+50,y+54,28,24,owned.ToString(),tiny);
                 InspectItem("item:"+Rules.Items.IndexOf(sortedItems[i]),sortedItems[i],new Rect(x,y,80,80),itemViewport,itemScroll);
@@ -139,8 +151,7 @@ namespace Scrapshift
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
                 float x=2+i%3*84,y=2+i/3*86;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
-                Frame(new Rect(x,y,82,80),selectedWeapon==i?paper:w==null?panelColor:TierColor(w.tier),2);
-                Box(new Rect(x+4,y+4,74,72),new Color(.19f,.18f,.16f));
+                Frame(new Rect(x,y,82,80),selectedWeapon==i?paper:Color.Lerp(new Color(.19f,.18f,.16f),w==null?panelColor:TierColor(w.tier),w!=null&&w.tier>1?.22f:0),2);
                 if(w!=null)
                 {
                     DrawIcon(w.image,new Rect(x+8,y+8,66,64));

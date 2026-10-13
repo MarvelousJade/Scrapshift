@@ -33,9 +33,7 @@ namespace Scrapshift
             length/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y);
         public static float WeaponScale(Equipment weapon)
         {
-            float length=weapon.id=="spear"?1.62f:weapon.id=="knife"?.77f:
-                weapon.id=="double_barrel_shotgun"?.87f:weapon.id=="laser_gun"?.64f:.65f;
-            return SpriteLengthScale(weapon.image,length);
+            return SpriteLengthScale(weapon.image,WeaponVisualMetrics.Length(weapon.id));
         }
         static readonly Vector2[][] mounts={
             new[]{new Vector2(0,-.30f)},

@@ -34,8 +34,12 @@ namespace Scrapshift
             for(int i=0;i<bossRadii.Length;i++)
             {
                 // Reference projectiles extend along one rotating arm at 100 px/s.
-                Vector2 pos=e.pos+Vector2.down*.32f+direction*Mathf.Min(bossRadii[i],e.activeAge);
+                // Source sprite center is -88px, pivot -32px: 56px below our body center.
+                Vector2 pos=e.pos+Vector2.down*.56f+direction*Mathf.Min(bossRadii[i],e.activeAge);
                 e.orbitProjectiles[i].transform.position=new Vector3(pos.x,pos.y,-2);
+                var parentScale=e.obj.transform.lossyScale;
+                e.orbitProjectiles[i].transform.localScale=new Vector3(1/parentScale.x,1/parentScale.y,1);
+                e.orbitProjectiles[i].transform.rotation=Quaternion.identity;
                 if(RunRules.Touches(pos,PlayerHurtCenter,CombatGeometry.PlayerHurtRadius+CombatGeometry.HostileRadius))HurtPlayer(ProjectileDamage(e),e.type,e);
             }
         }

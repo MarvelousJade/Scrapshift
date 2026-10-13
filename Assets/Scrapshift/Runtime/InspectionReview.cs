@@ -10,9 +10,9 @@ namespace Scrapshift
         float inspectionNext;int inspectionStage=-1;DateTime inspectionUtc;
         readonly List<string> inspectionCaptures=new List<string>();
         [Serializable] sealed class InspectionResult { public string name,phase,target,drawn;public bool panelOnScreen;public int banked,pendingLevels,pendingCrates;public float arrivalTime,canopyWidth,canopyHeight,remaining; }
-        [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
+        [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool bossPillarsVerified,predatorVerified;public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
         InspectionReport inspectionReport;
-        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu"};
+        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu","pillar-warning","pillar-active","pillar-fade","invoker-ring","predator-arm","tier-shop"};
         void BeginInspectionReview(string path)
         {inspectionReview=true;inspectionPath=Path.GetFullPath(path);Directory.CreateDirectory(inspectionPath);inspectionUtc=DateTime.UtcNow;inspectionNext=Time.realtimeSinceStartup+.5f;inspectionReport=new InspectionReport();Begin();sound.SetMuted(true);}
         void InspectionReviewTick()
@@ -31,13 +31,42 @@ namespace Scrapshift
             if(inspectionStage==inspectionCases.Length){inspectionNext=Time.realtimeSinceStartup+.6f;return;}
             if(inspectionStage>inspectionCases.Length)return;
             forcedInspection=null;lastDrawnInspection=null;
-            if(inspectionStage>=41)
+            if(inspectionStage>=45&&inspectionStage<=49)
+            {
+                Begin();ClearCombat();Rules.Inventory.Clear();SyncEquipment();arrivalAge=2;playerPos=Vector2.zero;player.transform.position=playerPos;gameCamera.transform.position=Vector3.back*10;
+                Spawn(catalog.Enemy(inspectionStage==49?"predator":"invoker"),new Vector2(3,2));var boss=enemies[enemies.Count-1];Destroy(boss.marker);boss.marker=null;boss.obj.SetActive(true);UpdateEnemyPresentation(boss,Vector2.zero,0);
+                if(inspectionStage==49)
+                {
+                    invulnerable=1000;int charges=chargeReleases,bullets=rangedReleases;
+                    for(int step=0;step<130;step++)UpdateEnemies(.05f);
+                    bool charged=chargeReleases>charges;boss.hp=boss.maxHp*.4f;
+                    for(int step=0;step<80;step++)UpdateEnemies(.05f);
+                    inspectionReport.predatorVerified=charged&&boss.secondPhase&&rangedReleases>bullets&&boss.orbitProjectiles.Length==9&&shots.Count>=16&&shots.TrueForAll(p=>Mathf.Abs(p.velocity.magnitude-5)<.001f);
+                }
+                else
+                {
+                    if(inspectionStage==48){boss.activeAge=61;TickEncounterState(boss,0);}
+                    FireEncounter(boss);
+                    float age=inspectionStage==45?.3f:inspectionStage==46?.56f:inspectionStage==47?.84f:.3f;
+                    foreach(var shot in shots){shot.age=age;TickPillar(shot);}
+                    if(inspectionStage==45)
+                    {
+                        float hp=Rules.Health;UpdateWeapons(.01f);bool safe=Rules.Health==hp;
+                        var target=shots[0];foreach(var shot in shots)shot.age=.54f;UpdateWeapons(.01f);
+                        inspectionReport.bossPillarsVerified=safe&&Rules.Health<hp&&!shots.Contains(target);
+                        ClearCombat();Spawn(catalog.Enemy("invoker"),new Vector2(3,2));boss=enemies[enemies.Count-1];Destroy(boss.marker);boss.marker=null;boss.obj.SetActive(true);UpdateEnemyPresentation(boss,Vector2.zero,0);FireEncounter(boss);foreach(var shot in shots){shot.age=.3f;TickPillar(shot);}
+                    }
+                    if(inspectionStage==48)inspectionReport.bossPillarsVerified&=shots.Count==24&&Mathf.Approximately(boss.speed,boss.type.speed*2.5f)&&shots.TrueForAll(p=>Mathf.Abs(Vector2.Distance(p.pos,playerPos)-3)<.001f);
+                }
+            }
+            else if(inspectionStage>=41)
             {
                 Begin();ClearCombat();Rules.Inventory.Clear();foreach(string id in new[]{"knife","lightning_shiv","smg","wand"})Rules.Inventory.Add(catalog.Weapon(id,1));
                 foreach(string id in new[]{"coffee","bat","leather_vest","alien_tongue","lemonade","alien_worm"})Rules.Items.Add(Array.Find(catalog.data.items,a=>a.id==id));
                 Rules.GainWeaponStat("crit_chance",7);Rules.GainWeaponStat("attack_speed",10);Rules.GainWeaponStat("ranged_damage",2);Rules.GainWeaponStat("harvesting",12);Rules.Collect(110);Rules.Tick(Rules.Remaining);
                 if(inspectionStage==42){for(int i=0;i<Rules.Offers.Length;i++)Rules.Offers[i]=new UpgradeOffer(new[]{UpgradeKind.Range,UpgradeKind.Ranged,UpgradeKind.Melee,UpgradeKind.Engineering}[i],2,catalog.data.upgrades);}
                 else {while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);string[] ids={"wand","alien_tongue","lemonade","alien_worm"};Rules.Shop[0]=new ShopOffer{weapon=catalog.Weapon("wand",1),rolledWave=4};for(int i=1;i<4;i++)Rules.Shop[i]=new ShopOffer{item=Array.Find(catalog.data.items,a=>a.id==ids[i]),rolledWave=4};}
+                if(inspectionStage==50)for(int i=0;i<4;i++)Rules.Shop[i]=new ShopOffer{weapon=catalog.Weapon("pistol",i+1),rolledWave=4};
                 secondaryStats=inspectionStage==43;itemSortOpen=inspectionStage==44;
             }
             else if(inspectionStage>=39)
@@ -82,7 +111,7 @@ namespace Scrapshift
         {
             if(!inspectionReview||inspectionStage!=inspectionCases.Length||Time.realtimeSinceStartup<inspectionNext)return;
             inspectionReport.capturesVerified=CaptureVerification.Fresh(inspectionPath,inspectionUtc,inspectionCaptures.ToArray());
-            bool okay=inspectionReport.capturesVerified&&inspectionReport.checks.TrueForAll(c=>c.panelOnScreen&&(c.target==null||c.target==c.drawn));
+            bool okay=inspectionReport.predatorVerified&&inspectionReport.bossPillarsVerified&&inspectionReport.capturesVerified&&inspectionReport.checks.TrueForAll(c=>c.panelOnScreen&&(c.target==null||c.target==c.drawn));
             okay=okay&&inspectionReport.checks.TrueForAll(c=>c.name!="sweep-complete"||(c.banked==12&&c.phase=="Loot"&&c.pendingLevels>0&&c.pendingCrates==1));
             inspectionReport.status=okay?"Passed":"Failed";File.WriteAllText(Path.Combine(inspectionPath,"inspection.json"),JsonUtility.ToJson(inspectionReport,true));
             Application.Quit(okay?0:1);enabled=false;

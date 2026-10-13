@@ -62,16 +62,19 @@ namespace Scrapshift
         {
             var s=d.states[state];var a=s.attack;
             return new EnemyBehavior{canBoost=d.role!="Elite"&&d.role!="Boss"&&d.role!="Buffer",movement=(EnemyMovement)Enum.Parse(typeof(EnemyMovement),s.movement),spacing=s.spacing,offset=s.offset,
-                charge=a.charge,ranged=a.enabled&&!a.charge,cooldown=a.cooldown,jitter=a.jitter,initial=a.initial,windup=a.windup,active=a.charge?a.active:.1f,
+                charge=a.charge,ranged=a.enabled&&!a.charge,cooldown=a.cooldown,jitter=a.jitter,initial=a.initial,windup=a.windup,active=a.charge?a.active:0,
                 minRange=a.minRange,maxRange=a.spawn?9999:a.maxRange,chargeSpeed=a.chargeSpeed,projectileSpeed=a.projectileSpeed,projectileGrowth=a.growth};
         }
         void TickEncounterState(Enemy e,float dt)
         {
             if(!encounterDefinitions.TryGetValue(e.type.id,out var d))return;
             encounterStates.TryGetValue(e,out int current);int next=current;
-            for(int i=current+1;i<d.states.Length;i++)if(e.hp/e.maxHp<=d.states[i].hp||e.activeAge>=d.states[i].time)next=i;
+            bool checkState=e.type.role!="Boss"||Mathf.FloorToInt(e.activeAge)>e.phaseCheck;
+            if(checkState)e.phaseCheck=Mathf.FloorToInt(e.activeAge);
+            for(int i=current+1;checkState&&i<d.states.Length;i++)if(e.hp/e.maxHp<=d.states[i].hp||e.activeAge>=d.states[i].time)next=i;
             if(next!=current)
             {if(e.type.role=="Boss")bossMutations+=next-current;encounterStates[e]=next;e.behavior=EncounterBehavior(d,next);e.attack=MakeAttack(e.behavior);e.hasDestination=false;FloatText(e.pos,"MUTATION",coral,true);}
+            if(e.type.id=="invoker"&&next==2)e.speed=e.type.speed*2.5f;
             if(e.type.id=="healer")HealNearbyEnemies(e);
             if(e.type.id=="monk")e.speed=e.type.speed*(next==1||next==3?.5f:next==2?1.25f:1);
             if(d.extra.Length==0||e.attack==null)return;
@@ -104,9 +107,9 @@ namespace Scrapshift
             float baseAngle=a.randomDirection?UnityEngine.Random.Range(-Mathf.PI,Mathf.PI):Mathf.Atan2(aim.y,aim.x);
             for(int i=0;i<a.count;i++)
             {
-                float angle=baseAngle+(a.constant?(i-(a.count-1)/2f)*a.spread:UnityEngine.Random.Range(-a.spread,a.spread));
+                float angle=(a.randomDirection?UnityEngine.Random.Range(-Mathf.PI,Mathf.PI):baseAngle)+(a.constant&&a.count>1?-a.spread+i*2*a.spread/(a.count-1):UnityEngine.Random.Range(-a.spread,a.spread));
                 Vector2 dir=new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
-                Vector2 offset=a.borders?new Vector2(Mathf.Cos(i*Mathf.PI*2/a.count),Mathf.Sin(i*Mathf.PI*2/a.count))*a.spawnSpread:UnityEngine.Random.insideUnitCircle*a.spawnSpread;
+                Vector2 offset=BossPatterns.SpawnOffset(a.spawnSpread,a.borders,a.constant,i,a.count,UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f));
                 Vector2 pos=(a.onTarget?playerPos:e.pos)+offset;
                 if(a.onTargetOnce&&i==0)pos=playerPos;
                 if(a.away)dir=(pos-e.pos).normalized;
@@ -116,8 +119,9 @@ namespace Scrapshift
                     EnemySlash(e);var slash=slashes[slashes.Count-1];slash.pos=pos;slash.obj.transform.position=pos;slash.damage=damage;continue;
                 }
                 if(shots.Count>=1200)break;
-                var obj=PlasmaOrb(a.projectile.Contains("pillar")?"Cybernetic hazard":"Elite plasma");obj.transform.position=pos;
-                shots.Add(new Shot{obj=obj,pos=pos,velocity=dir*a.projectileSpeed,life=a.projectileSpeed==0?3:20,damage=damage,hostile=true,attacker=e.type,sourceEnemy=e});
+                bool pillar=a.projectile.Contains("pillar");
+                var obj=pillar?PillarWarning():PlasmaOrb("Elite plasma");obj.transform.position=pos;
+                shots.Add(new Shot{obj=obj,pos=pos,velocity=dir*a.projectileSpeed,life=pillar?BossPatterns.PillarEnd:a.projectileSpeed==0?3:20,pillar=pillar,damage=damage,hostile=true,attacker=e.type,sourceEnemy=e});
             }
         }
         void AddWaveEncounters()

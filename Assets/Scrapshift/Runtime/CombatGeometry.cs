@@ -24,7 +24,7 @@ namespace Scrapshift
             switch(id)
             {
                 case "bruiser": case "horned_bruiser": case "slasher": return Vector2.down*.4f;
-                case "predator": return Vector2.down*.72f;
+                case "predator": case "invoker": return Vector2.down*.72f;
                 case "charger": case "horned_charger": return Vector2.down*.12f;
                 case "junkie": case "spawner": return Vector2.down*.16f;
                 case "tree": return Vector2.down*.18f;
@@ -42,7 +42,7 @@ namespace Scrapshift
                 case "evil_mob": case "looter": return Vector2.down*.23f;
                 case "helmet_alien": return new Vector2(.03f,-.26f);
                 case "junkie": return new Vector2(.06f,-.22f);
-                case "predator": return Vector2.down*.72f;
+                case "predator": case "invoker": return Vector2.down*.72f;
                 case "pursuer": return new Vector2(-.01f,-.16f);
                 case "spawner": return new Vector2(.03f,-.3f);
                 case "spitter": return new Vector2(.05f,-.18f);

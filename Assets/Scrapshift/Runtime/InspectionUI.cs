@@ -34,7 +34,7 @@ namespace Scrapshift
             }
             var entry=new InspectEntry{id=id,title=name,description=description,image=image,category=category,anchor=root,color=TierColor(tier)};
             inspectionEntries.Add(entry);
-            bool over=root.Contains(lastInspectionMouse);
+            bool over=!inspectionReview&&root.Contains(lastInspectionMouse);
             if(over&&!keyboardInspection){hoveredInspection=entry;focusedInspection=id;}
             if(over&&!keyboardInspection||keyboardInspection&&focusedInspection==id)
             {

@@ -125,6 +125,7 @@ namespace Scrapshift
                 foreach(float sign in new[]{-1f,1f})
                 {var stroke=MakeLine("Green tree warning",marker.transform,RunFeedback.SpawnColor(true,1),.12f);stroke.positionCount=2;stroke.SetPosition(0,new Vector3(-.4f,-.4f*sign,0));stroke.SetPosition(1,new Vector3(.4f,.4f*sign,0));}
             }
+            sound.Play(SoundCue.Spawn,pos);
             marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Mathf.Max(.01f,1+Rules.Stat("enemy_health")/100)*Rules.DangerMultiplier;enemies.Add(new Enemy
             {
                 obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
@@ -278,19 +279,7 @@ namespace Scrapshift
             sprite.color = winding ? Color.Lerp(Color.white, new Color(1, .35f, .2f), e.attack.Progress) :
                 e.boosted || e.supportFlash > 0 ? new Color(.85f, .55f, 1) : Color.white;
             Flash(e, e.flash > 0 ? 1 : 0);
-            if (e.attack != null && e.behavior.charge)
-            {
-                if (e.telegraph == null) e.telegraph = MakeLine("Attack direction", e.obj.transform, new Color(1, .55f, .22f, .65f), .055f);
-                e.telegraph.enabled = winding;
-                if (winding)
-                {
-                    // World coordinates keep the cue stable while the body squashes or tilts.
-                    e.telegraph.useWorldSpace = true; e.telegraph.positionCount = 2;
-                    Vector2 end = RunRules.ClampPosition(e.pos + e.attack.Direction * (e.behavior.charge ? 3 : .95f));
-                    e.telegraph.SetPosition(0, new Vector3(e.pos.x, e.pos.y, -.8f));
-                    e.telegraph.SetPosition(1, new Vector3(end.x, end.y, -.8f));
-                }
-            }
+
         }
         void HurtPlayer(float amount,EnemyEntry attacker=null,Enemy sourceEnemy=null)
         {
@@ -311,7 +300,9 @@ namespace Scrapshift
             var core = MakeLine("Bright core", obj.transform, new Color(1, .9f, .55f), .09f);
             core.sortingOrder = 14; core.positionCount = 2;
             core.SetPosition(0, new Vector3(-.025f, 0, -.01f)); core.SetPosition(1, new Vector3(.025f, 0, -.01f));
-            shots.Add(new Shot { obj = obj, pos = e.pos, velocity = direction.normalized * e.behavior.projectileSpeed, life = 30,
+            Vector2 origin=e.pos+(e.type.id=="predator"?Vector2.down*.88f:Vector2.zero);
+            obj.transform.position=origin;
+            shots.Add(new Shot { obj = obj, pos = origin, velocity = direction.normalized * e.behavior.projectileSpeed, life = 30,
                 damage = ProjectileDamage(e), hostile = true, attacker=e.type,sourceEnemy=e });
         }
         void UpdateEquipment(float dt)
@@ -385,8 +376,10 @@ namespace Scrapshift
                 {if(SegmentDistance(PlayerHurtCenter,old,s.pos)<=CombatGeometry.PlayerHurtRadius+1.04f){float hp=Rules.Health;Rules.Heal(s.damage);if(Rules.Health>hp){FloatText(playerPos,$"+{Rules.Health-hp:0} HP",mint,false);sound.Play(SoundCue.Pickup);}s.life=0;}}
                 else if (s.hostile)
                 {
-                    if(PetBlocksProjectile(old,s.pos))s.life=0;
-                    else if (SegmentDistance(PlayerHurtCenter, old, s.pos) <= CombatGeometry.PlayerHurtRadius + CombatGeometry.HostileRadius)
+                    if(s.pillar)TickPillar(s);
+                    if(s.pillar&&!BossPatterns.PillarActive(s.age)){}
+                    else if(PetBlocksProjectile(old,s.pos))s.life=0;
+                    else if (SegmentDistance(PlayerHurtCenter, old+(s.pillar?Vector2.up*.04f:Vector2.zero), s.pos+(s.pillar?Vector2.up*.04f:Vector2.zero)) <= CombatGeometry.PlayerHurtRadius + (s.pillar?BossPatterns.PillarRadius:CombatGeometry.HostileRadius))
                     { float before=Rules.Health;HurtPlayer(s.damage,s.attacker,s.sourceEnemy);if(Rules.Health<before)Rules.RecordProjectileHit();s.life = 0; }
                 }
                 else

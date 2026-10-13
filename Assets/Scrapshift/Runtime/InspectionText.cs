@@ -91,7 +91,7 @@ namespace Scrapshift
                     case "landmine":effect=$"Spawns a landmine every {N(t.spawnInterval)} seconds ({N(SpecialWeaponRules.StructureDamage(rules,t.projectile.AsEquipment()))} damage)";break;
                     default:if(t.key.StartsWith("stat_"))effect=t.per>0?Format("EFFECT_GAIN_STAT_FOR_EVERY_PERCENT_PLAYER_MISSING_HEALTH","+"+N(t.value),StatName(t.key.Substring(5)),N(t.per)+"%","",N(Mathf.Floor((1-rules.Health/rules.MaxHealth)*100/t.per)*t.value)):"+"+N(t.value)+" "+StatName(t.key.Substring(5));break;
                 }
-                if(effect!=null)lines.Add(effect);
+                if(effect!=null)lines.Add("• "+effect);
             }
             return string.Join("\n",lines.Select((line,index)=>index<7&&line.Contains(":")?"<color=#E5DDAA>"+line.Substring(0,line.IndexOf(':')+1)+"</color>"+line.Substring(line.IndexOf(':')+1):line));
         }

@@ -83,10 +83,14 @@ namespace Scrapshift
                 if(child.name=="Stone highlight")child.gameObject.SetActive(false);
                 if(child.name!="Small stone")continue;
                 child.gameObject.SetActive(false);
-                var plate=new GameObject("Broken machine plate");plate.transform.position=child.position+new Vector3(0,0,-.05f);plate.transform.SetParent(yard.transform,true);
-                var line=MakeLine("Plate edge",plate.transform,new Color(.43f,.46f,.44f),.025f,true);line.positionCount=5;line.sortingOrder=-20;
-                line.SetPositions(new[]{new Vector3(-.09f,-.04f,0),new Vector3(.05f,-.06f,0),new Vector3(.11f,.01f,0),new Vector3(.04f,.065f,0),new Vector3(-.08f,.04f,0)});
-                plate.transform.rotation=Quaternion.Euler(0,0,child.position.x*27);
+                var rock=new GameObject("Small faceted stone");rock.transform.SetParent(yard.transform,false);rock.transform.localPosition=child.localPosition+new Vector3(0,0,-.05f);
+                var stone=new Mesh{name="Irregular stone"};
+                stone.vertices=new[]{new Vector3(-.11f,-.04f),new Vector3(.07f,-.06f),new Vector3(.13f,.015f),new Vector3(.025f,.09f),new Vector3(-.08f,.055f),new Vector3(0,.025f)};
+                stone.triangles=new[]{5,1,0,5,2,1,5,3,2,5,4,3,5,0,4};stone.uv=new Vector2[6];
+                stone.colors=new[]{new Color(.22f,.21f,.19f),new Color(.22f,.21f,.19f),new Color(.3f,.29f,.25f),new Color(.34f,.32f,.27f),new Color(.3f,.29f,.25f),new Color(.37f,.35f,.29f)};
+                rock.AddComponent<MeshFilter>().sharedMesh=stone;var renderer=rock.AddComponent<MeshRenderer>();renderer.sharedMaterial=catalog.spriteMaterial;renderer.sortingOrder=-20;
+                rock.transform.localRotation=Quaternion.Euler(0,0,child.localPosition.x*27);
+                rock.transform.localScale=Vector3.one*(.8f+Mathf.Abs(Mathf.Sin(child.localPosition.y))*1.2f);
             }
         }
         void DrawTabbedOptions(bool paused)

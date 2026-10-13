@@ -29,8 +29,8 @@ namespace Scrapshift
         void Text(float x, float y, float w, float h, string text, GUIStyle style) => GUI.Label(new Rect(x,y,w,h), text, style);
         void Frame(Rect r, Color color, float border = 4)
         {
-            Box(new Rect(r.x + 5, r.y + 6, r.width, r.height), new Color(.10f,.09f,.11f,.65f));
-            Box(r, ink); Box(new Rect(r.x+border,r.y+border,r.width-border*2,r.height-border*2), color);
+            RoundedBox(new Rect(r.x + 5, r.y + 6, r.width, r.height), new Color(.10f,.09f,.11f,.65f),8);
+            RoundedBox(r, ink,8); RoundedBox(new Rect(r.x+border,r.y+border,r.width-border*2,r.height-border*2), color,Mathf.Max(2,8-border));
         }
         bool Button(Rect r, string label)
         {
@@ -70,7 +70,8 @@ namespace Scrapshift
             playerAnimation.lookIndex=(playerAnimation.lookIndex+direction+looks.Length)%looks.Length;
             if(titleModel!=null)titleModel.GetComponent<SpriteFrameAnimator>().lookIndex=playerAnimation.lookIndex;
         }
-        Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.8f,.41f,1) : tier==2 ? new Color(.36f,.77f,1) : paper;
+        Color TierColor(int tier) => tier==4 ? new Color(1,59/255f,59/255f) : tier==3 ? new Color(173/255f,90/255f,1) : tier==2 ? new Color(90/255f,190/255f,1) : Color.white;
+        Color TierBackground(int tier) => tier==4 ? new Color(36/255f,9/255f,9/255f) : tier==3 ? new Color(16/255f,10/255f,27/255f) : tier==2 ? new Color(15/255f,32/255f,40/255f) : ink;
         void DrawHud()
         {
             var hudMatrix=GUI.matrix;GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(FullCanvas.xMin,FullCanvas.yMin,0));
@@ -107,8 +108,7 @@ namespace Scrapshift
             for(int i=0;i<Rules.Offers.Length;i++)
             {
                 var o=Rules.Offers[i];float x=OfferX(i),width=OfferWidth;
-                Frame(new Rect(x,320,width,270),TierColor(o.Tier),2);Box(new Rect(x+3,323,width-6,264),new Color(.02f,.04f,.05f,.92f));
-                Box(new Rect(x+3,323,width-6,4),TierColor(o.Tier));
+                Frame(new Rect(x,320,width,270),TierColor(o.Tier),2);RoundedBox(new Rect(x+3,323,width-6,264),TierBackground(o.Tier),6);
                 Box(new Rect(x+14,340,66,70),new Color(.17f,.16f,.15f));
                 DrawIcon(o.Image,new Rect(x+20,346,54,58));
                 Text(x+92,342,width-108,58,CyberneticTheme.UpgradeName(o.Stat)+(o.Tier>1?" "+new[]{"","","II","III","IV"}[o.Tier]:""),new GUIStyle(body){fontSize=20,normal={textColor=TierColor(o.Tier)}});
