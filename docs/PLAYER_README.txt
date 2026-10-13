@@ -44,3 +44,5 @@ Shop items appear bottom left; weapons use three columns and two rows for six sl
 
 Validation and limitations: see docs/verification.md and artifacts/base-release-ui/review.html in the project. Automated tests and staged rendered checks are not human balance/playtesting. Companion and elite presentation uses our existing art and Unity-specific movement adaptations.
 
+
+October 12 presentation/boss update: rounded shop cards, reference tier colors/tints, currency icons, special-effect bullets, individual weapon dimensions, muted ground stones and spawn-warning sound. Invoker uses warned pillars and the corrected ring attack; Predator projectile placement corrected. Latest executable: Builds/PresentationBosses/Scrapshift.exe.

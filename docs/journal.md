@@ -194,3 +194,8 @@ Implemented two-weapon starts for all four profiles, pre-range aiming, green tre
 ## October 12 - completed catalog and progression
 
 Completed the last 16 items, all 50 character profiles and saved challenge rewards, using the supplied Godot resources/scripts. Implemented companion actions, wave replay and difficulty encounters. User screenshots guided full-width shop/upgrade cards, inline icons, tier/buff colors, sorting, two-row weapons and Harvesting-only secondary HUD. Retained cream mascot and cybernetic presentation. Actual debugging and final evidence are in bugs.md and verification.md.
+
+
+## October 12 - measured presentation and final boss correction
+
+Audited both final bosses and all 62 weapon families from the supplied source. Replaced Invoker persistent orbs with animation-timed pillars, corrected diameter-based scatter, its 24-pillar ring and +150% speed mutation. Checked Predator charge/volley and restored body-relative projectile placement. Removed extra tier stripes/rims, rounded cards, added shop currency icons and special-effect bullets, replaced pale ground polygons with solid stones, and restored spawn-warning audio. Visual QA caught price wrapping; fixed before final capture. See presentation-and-final-bosses.md.

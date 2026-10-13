@@ -400,3 +400,14 @@ Final companion evidence: artifacts/base-release-pets/pets.json Passed all nine 
 Final UI follow-up: lowered only the level-up Stats panel so pending-upgrade icons remain visible. All 45 inspection cases passed again; final images/report replace the prior base-release-ui captures. Rebuilt and reran all 266 EditMode tests after that placement and the extended-boss telemetry correction.
 
 Final 20-wave rerun: artifacts/base-campaign-verified/campaign-check.json Passed, Won, 20 waves, 39 shop purchases, one boss phase transition, six fresh captures, 166.15 seconds. Invulnerable accelerated scripted play; no human balance claim. The first completed campaign with a missing Invoker telemetry count remains under artifacts/raw/completion-development/base-release-campaign.
+
+
+## October 12 - shop presentation and final bosses
+
+Windows build: zero errors/warnings; 275/275 EditMode tests passed, none skipped. AssetScope processed 312 content assets with no errors or findings. All 999 Assets/Packages/ProjectSettings files match the isolated validation checkout byte for byte.
+
+Runtime: artifacts/presentation-boss-review/inspection.json Passed all 51 fresh captures. Actual health/contact assertions passed for Invoker warning versus active pillars; its 24-pillar, three-unit ring and final +150% speed passed. Predator charge release, mutation, nine orbit projectiles and 16-shot volley passed. Visually reviewed the final shop, all four tiers and Invoker ring after fixing clipped prices and stray mouse-hover overlays. This is controlled runtime verification, not human survival testing.
+
+Review: artifacts/presentation-boss-review/review.html. Source audit and debugging notes: presentation-and-final-bosses.md. The measurement artifact covers all 62 weapon families.
+
+Playable build: Builds/PresentationBosses/Scrapshift.exe. Package: Builds/Scrapshift-Windows.zip, 156 entries, 55563763 bytes; CRC and byte comparison passed. SHA-256 `4dfa4c27111cf3a924fba7e6766dde94102f68dc3ef2de03707ae272de8348d1`.

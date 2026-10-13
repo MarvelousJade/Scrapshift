@@ -240,3 +240,8 @@ Use full-base-implementation.md, bugs.md and verification.md as evidence. Explai
 Concrete debugging example: visual weapon-edge lines led to alpha-border regression checks, exposing overlapping atlas cells. Shared clipping geometry fixes both world/UI rendering without repainting art. Tests then caught zero-sized sprites caused by Unity Rect serialization; explicit data-transfer fields fixed the schema. Scroll inspection exposed a separate coordinate-space mismatch.
 
 The user supplied direction, screenshots, play feedback and defect reports; Codex performed the recorded implementation/source comparisons/automated checks. Study and reproduce the reasoning before claiming personal execution. Do not claim frame-perfect parity, a human-balanced campaign or 50 bespoke portraits.
+
+
+## Evidence-backed comparison: final boss attack bug
+
+A visible difference led me to inspect the source animation rather than only compare damage numbers. Our stationary enemy shots were ordinary three-second damage orbs; the reference pillar enables its hitbox for just 0.14 seconds after a warning. I separated presentation lifetime from collision timing, corrected the source diameter/square-scatter semantics, and wrote boundary tests plus a runtime check that verifies health stays unchanged during warning and drops during the active phase. I also followed a speed-reset function into its implementation: its argument was a percentage modifier, not a speed. This prevented a plausible but incorrect port. The source study and our own procedural art are explicitly distinguished in presentation-and-final-bosses.md.

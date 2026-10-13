@@ -282,3 +282,10 @@ Runtime geometry verification was moved into the built-player fixture because Ed
 Final visual review found the level-up Stats panel covered the pending-level arrows. Offset that panel down on Upgrade only, matching the supplied screenshot while preserving the shop alignment.
 
 The first completed 20-wave campaign reported Failed despite Won/20 waves/47 purchases: boss-phase telemetry counted Predator only, but the new reference boss selection chose Invoker. Added phase-transition accounting to extended bosses and reran the campaign; the original failed report is retained separately.
+
+
+## October 12 - boss hazard and shop presentation fixes
+
+Invoker hazards damaged immediately for three seconds because all stationary projectiles shared a generic orb lifetime. A dedicated timed pillar now gates collision to 0.54–0.68 seconds, uses a 0.23 radius, and stops by 1.04 seconds or on contact. The spread field was treated as a radius and disk; source uses square width or circle diameter. Added boundary tests and actual built-player health/contact assertions. Final mutation speed is +150%, confirmed by following reset_speed_stat through EntityService; it is not an absolute 150 px/s.
+
+Shop money icons reduced the available number width and exposed IMGUI numeric wrapping. The first screenshot showed a clipped price; disabling wrapping and allowing text-measurement padding fixed it. Fixture-only mouse hover suppression prevents an unrelated real cursor from covering staged reference comparisons.
