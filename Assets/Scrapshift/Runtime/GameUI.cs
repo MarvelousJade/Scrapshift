@@ -54,7 +54,7 @@ namespace Scrapshift
             if (Rules.Phase == RunPhase.Shop) { GUI.enabled=selectedWeapon<0;ShopUI();GUI.enabled=true; if(selectedWeapon>=0)DrawWeaponActions();else EndInspection(); return; }
             if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); EndInspection(); return; }
             DrawNightmareFog();DrawHud();
-            var boss=enemies.Find(e=>(e.type.role=="Boss"||e.type.role=="Elite")&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,boss.type.id.ToUpperInvariant(),center);}
+            var boss=enemies.Find(e=>(e.type.role=="Boss"||e.type.role=="Elite")&&e.marker==null); if(boss!=null&&GameSettings.Flag("bossHp")){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,boss.type.id.ToUpperInvariant(),center);}
             DrawFeedback();
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
             else if (Rules.Phase == RunPhase.Shop) ShopUI();
@@ -62,7 +62,7 @@ namespace Scrapshift
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
             EndInspection();
         }
-        void Overlay() => Box(FullCanvas, new Color(0,0,0,.74f));
+        void Overlay() => Box(FullCanvas, new Color(0,0,0,GameSettings.Flag("darkening")?.74f:0));
         void TitleUI() => ReferenceTitleUI();
         void ChangeLook(int direction)
         {
@@ -98,6 +98,8 @@ namespace Scrapshift
                 OutlinedText(630,61,180,56,(waveSweeping?0:Mathf.CeilToInt(Rules.Remaining)).ToString(),timer);
             DrawPendingRewards();
             GUI.matrix=hudMatrix;
+            if(GameSettings.Flag("characterHp")&&(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused))
+            {var p=PresentationLayout.ViewportToCanvas(gameCamera.WorldToViewportPoint(playerPos+Vector2.down*.6f),Screen.width,Screen.height);RoundedBox(new Rect(p.x-27,p.y,54,10),Color.black,3);Box(new Rect(p.x-24,p.y+3,48*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),4),coral);}
         }
 
         void OutlinedText(float x,float y,float w,float h,string label,GUIStyle style)

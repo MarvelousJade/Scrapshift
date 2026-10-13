@@ -47,6 +47,7 @@ namespace Scrapshift
         public void RecordExplosionKills(int count)=>Progress?.Check("chal_fireworks",count);
         public void RecordEnemy(string id,bool tree,float aliveSeconds,bool boss)
         {
+            Progress?.Count("enemy:"+id);
             Progress?.Count(tree?"trees":"kills");if(id=="evil_mob")Progress?.Count("evil_mob");
             if(boss&&aliveSeconds<15)Progress?.Complete("chal_giant_slayer");
         }

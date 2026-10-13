@@ -118,6 +118,7 @@ namespace Scrapshift
         public string starterVersion;
         void OnEnable(){if(data!=null){WeaponSets.Configure(data.sets);RunRules.ConfigureShopItems(data.items);}}
         public Sprite warning;
+        public Sprite levelIcon;
         public Sprite[] extraStatIcons;
         public Sprite[] scrapShapes, muzzleFrames;
         public Sprite repairPickup, shadow;

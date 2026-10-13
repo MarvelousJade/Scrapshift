@@ -424,3 +424,13 @@ Dark-surface follow-up: Windows build again passed with zero warnings/errors; al
 Rounded hover fix: Windows build passed with no errors/warnings. All 54 fresh runtime checks passed with forced focus now exercising the shared outline path. Visually confirmed rounded white weapon focus in shop-weapon.png. The 1001-file validation comparison and packaged archive CRC/byte checks passed. This is rendering verification, not a native mouse-input test.
 
 Solid-focus follow-up: build passed with zero warnings/errors; all 55 runtime capture checks passed. Visually verified both shop weapon focus and the new pause-character capture have a solid rounded white background with no inner dark seam. Validation copy matches all 1001 files; archive CRC and byte comparison passed. Native input remains outside this staged fixture.
+
+## October 12 - progression and options
+
+281/281 EditMode tests passed, none skipped. Five new tests cover starting-weapon discovery, successful versus failed purchases, enemy species counters, unlock/discovery persistence, and every weapon inline stat icon. The icon audit initially failed on Fighting Stick level scaling and passed after the missing mascot icon was assigned.
+
+Windows build: zero errors/warnings. All 1007 Assets/Packages/ProjectSettings files match the validation copy byte for byte. Runtime results and fresh image checks are in artifacts/progression-options-review/inspection.json; the comparison page includes live Godot 3.6.2 reference captures. UI captures are staged and do not establish full human playtesting. The last build includes UI-only reward metadata and slider contrast fixes after the 281-test run.
+
+Playable build: Builds/ProgressionOptions/Scrapshift.exe. Design, debugging and explicit options omissions: docs/progression-and-options.md. Package checks: artifacts/package.json.
+
+Final runtime result: all 62 fresh capture checks passed. Native input follow-up on Builds/ProgressionOptions: title Codex opened by click, Weapons tab switched by click, Right Arrow changed the selected entry and its details, Escape returned to title, and focus-mute toggled Off then back On. The build was left at its title screen. Native testing did not include combat, every setting, or subjective audio.

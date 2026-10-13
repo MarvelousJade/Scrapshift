@@ -112,6 +112,14 @@ namespace Scrapshift
                 else if(row.kind=="noMelee")label="<color=#FF3B3B>You can't equip melee weapons</color>";
             return (image,label);
         }
+        string CharacterEffectDescription(CharacterProfile profile)
+        {
+            return string.Join("\n",profile.effectRows.Where(row=>row.kind!="weapon").Select(row=>
+            {
+                string key=row.kind=="item"?"item:"+row.key:row.key;
+                return (StatPresentation.Icon(catalog,key)!=null?"[["+key+"]] ":"• ")+CharacterEffectText(profile,row).label;
+            }));
+        }
         void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)
         {
             var style=new GUIStyle(inspectionBody){fontSize=18,richText=true};
@@ -126,7 +134,7 @@ namespace Scrapshift
             x=0;y=Mathf.Max(0,(245-height)/2);
             foreach(var line in lines)
             {
-                DrawIcon(line.image,new Rect(x,y+3,21,21));Text(x+30,y,width-30,line.height+4,line.label,style);y+=line.height+8;
+                if(line.image!=null)DrawIcon(line.image,new Rect(x,y+3,21,21));else RoundedBox(new Rect(x+8,y+11,6,6),paper,3);Text(x+30,y,width-30,line.height+4,line.label,style);y+=line.height+8;
             }
             GUI.EndScrollView();
         }

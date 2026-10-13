@@ -11,12 +11,22 @@ namespace Scrapshift.Editor
         static void EnsureYardPresentation()
         {
             var scene=EditorSceneManager.OpenScene(ScenePath);
-            bool hasFloor=false,hasParachute=false;
+            bool hasFloor=false,hasParachute=false,removedStones=false;
             foreach(var root in scene.GetRootGameObjects())
             {
-                if(root.name=="Deck art")hasFloor=root.transform.Find("Soft yard floor")!=null;
+                if(root.name=="Deck art")
+                {
+                    hasFloor=root.transform.Find("Soft yard floor")!=null;
+                    for(int i=root.transform.childCount-1;i>=0;i--)
+                    {
+                        var child=root.transform.GetChild(i);
+                        if(child.name!="Small stone"&&child.name!="Stone highlight"&&child.name!="Small faceted stone")continue;
+                        Object.DestroyImmediate(child.gameObject);removedStones=true;
+                    }
+                }
                 var game=root.GetComponent<ArenaGame>();if(game!=null)hasParachute=game.parachutePrefab!=null;
             }
+            if(removedStones){EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);}
             // A marker can survive a restored/older scene; validate the actual serialized result too.
             if(File.Exists(Root+"/YardPresentationV1.txt")&&hasFloor&&hasParachute)return;
             foreach(var guid in AssetDatabase.FindAssets("t:Material",new[]{Root}))
@@ -66,12 +76,7 @@ namespace Scrapshift.Editor
                     {
                         for(int k=-1;k<=1;k++)Shape(root,"Dry grass",quad,"Grid",x+k*.045f,y+.045f,4.9f,.025f,.12f-Mathf.Abs(k)*.02f,-k*26);
                     }
-                    else
-                    {
-                        float w=.08f+(float)random.NextDouble()*.18f;
-                        Shape(root,"Small stone",circle,"YardStone",x,y,4.9f,w,w*.48f);
-                        Shape(root,"Stone highlight",circle,"YardHighlight",x-.008f,y+.015f,4.88f,w*.7f,w*.18f);
-                    }
+
                 }
             }
             // Original native geometry: cream scalloped canopy, dark seams and suspension ropes.

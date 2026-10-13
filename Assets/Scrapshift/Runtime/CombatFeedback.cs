@@ -14,13 +14,14 @@ namespace Scrapshift
         readonly List<SpriteRenderer> playerFlashViews = new List<SpriteRenderer>();
         void Shake(float amount)
         {
+            if(!GameSettings.Flag("shake"))return;
             shake = Mathf.Max(shake, amount); shakeTime = .1f;
         }
         sealed class Impact { public GameObject obj; public float age, size; }
         readonly List<Impact> impacts = new List<Impact>();
         void ImpactBurst(Vector2 position, Vector2 direction, bool critical, bool playerHit = false)
         {
-            if (impacts.Count >= 80) return;
+            if (!GameSettings.Flag("effects") || impacts.Count >= 80) return;
             var obj = new GameObject("Impact star"); obj.transform.position = new Vector3(position.x, position.y, -3);
             obj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             if(playerHit)
@@ -57,6 +58,7 @@ namespace Scrapshift
         }
         void PlayerHitParticles()
         {
+            if(!GameSettings.Flag("effects"))return;
             // Source hit_particles: eight red fragments, 0.5 s, no gravity, 3-6 units/s.
             for(int i=0;i<8 && sparks.Count<200;i++)
             {
@@ -113,6 +115,7 @@ namespace Scrapshift
         }
         void DrawFeedback()
         {
+            if(!GameSettings.Flag("damage"))return;
             if (Rules.Phase == RunPhase.Title) return;
             foreach (var f in floaters)
             {

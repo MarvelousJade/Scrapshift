@@ -19,7 +19,7 @@ namespace Scrapshift
         }
         void AddFootDust(Vector2 pos,bool pickup)
         {
-            if(footDust.Count>=32)return;
+            if(!GameSettings.Flag("effects")||footDust.Count>=32)return;
             var root=new GameObject(pickup?"Material contact":"Foot dust");root.transform.position=new Vector3(pos.x,pos.y,-2);
             if(!pickup)
             {
@@ -80,43 +80,9 @@ namespace Scrapshift
             var obj=new GameObject("Dark blue to violet exterior");obj.transform.SetParent(yard.transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;obj.AddComponent<MeshRenderer>().sharedMaterial=catalog.spriteMaterial;
             foreach(Transform child in yard.transform)
             {
-                if(child.name=="Stone highlight")child.gameObject.SetActive(false);
-                if(child.name!="Small stone")continue;
-                child.gameObject.SetActive(false);
-                var rock=new GameObject("Small faceted stone");rock.transform.SetParent(yard.transform,false);rock.transform.localPosition=child.localPosition+new Vector3(0,0,-.05f);
-                var stone=new Mesh{name="Irregular stone"};
-                stone.vertices=new[]{new Vector3(-.11f,-.04f),new Vector3(.07f,-.06f),new Vector3(.13f,.015f),new Vector3(.025f,.09f),new Vector3(-.08f,.055f),new Vector3(0,.025f)};
-                stone.triangles=new[]{5,1,0,5,2,1,5,3,2,5,4,3,5,0,4};stone.uv=new Vector2[6];
-                stone.colors=new[]{new Color(.22f,.21f,.19f),new Color(.22f,.21f,.19f),new Color(.3f,.29f,.25f),new Color(.34f,.32f,.27f),new Color(.3f,.29f,.25f),new Color(.37f,.35f,.29f)};
-                rock.AddComponent<MeshFilter>().sharedMesh=stone;var renderer=rock.AddComponent<MeshRenderer>();renderer.sharedMaterial=catalog.spriteMaterial;renderer.sortingOrder=-20;
-                rock.transform.localRotation=Quaternion.Euler(0,0,child.localPosition.x*27);
-                rock.transform.localScale=Vector3.one*(.8f+Mathf.Abs(Mathf.Sin(child.localPosition.y))*1.2f);
+                // Keep older saved scenes free of the removed decorative stones too.
+                if(child.name=="Small stone"||child.name=="Stone highlight"||child.name=="Small faceted stone")child.gameObject.SetActive(false);
             }
-        }
-        void DrawTabbedOptions(bool paused)
-        {
-            Text(420,100,600,75,"Options",new GUIStyle(title){fontSize=58,alignment=TextAnchor.MiddleCenter});
-            string[] tabs={"Gameplay","Audio","Video","Controls"};
-            for(int i=0;i<tabs.Length;i++)if(MenuButton(new Rect(235+i*245,218,235,54),tabs[i],optionsTab==i))optionsTab=i;
-            RoundedBox(new Rect(235,285,970,430),panelColor,8);
-            if(optionsTab==0)
-            {
-                if(MenuButton(new Rect(390,345,660,60),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);}
-                Text(390,435,660,100,"Automatic attacks\n20 waves",center);
-            }
-            else if(optionsTab==1)
-            {
-                if(MenuButton(new Rect(390,340,660,60),muted?"Sound effects: Off":"Sound effects: On"))ToggleSound();
-                Text(390,445,660,40,$"Effects volume  {sound.Volume*100:0}%",center);
-                float v=GUI.HorizontalSlider(new Rect(420,510,600,30),sound.Volume,0,1);if(Mathf.Abs(v-sound.Volume)>.001f)sound.SetVolume(v);
-            }
-            else if(optionsTab==2)
-            {
-                if(MenuButton(new Rect(390,345,660,60),DisplayLabel))ToggleFullscreen();
-                Text(390,455,660,40,Screen.width+" × "+Screen.height,center);
-            }
-            else Text(390,335,660,290,"Move: WASD / Arrow keys\nPause / Back: Escape\nConfirm: Enter\nInspect: Tab / Shift+Tab\nWeapon actions: Left / Right click\nFullscreen: F11",center);
-            if(MenuButton(new Rect(470,760,500,60),"Back")){if(paused)pauseOptions=false;else menuPage=0;}
         }
     }
 }

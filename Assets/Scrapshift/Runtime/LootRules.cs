@@ -50,7 +50,7 @@ namespace Scrapshift
 
         void ApplyItem(ItemEntry item)
         {
-            Items.Add(item);QueueNextWaveEffects(item);
+            Items.Add(item);Progress?.Count("item:"+item.id);QueueNextWaveEffects(item);
             if(item.id=="bait"){queuedBaits++;}
             foreach(var effect in item.effects){Add(effect.key.Replace("stat_",""),effect.value);OnItemStatAdded(effect.key,effect.value);}
             if(Phase==RunPhase.Shop)UpdateShopRerolls();

@@ -92,7 +92,7 @@ namespace Scrapshift
                 float y=174+i*26;
                 DrawStatIcon(names[i],new Rect(1125,y+2,24,24));
                 var label=new GUIStyle(inspectionBody);
-                label.normal.textColor=value<0?coral:value>0?new Color(.39f,1,.29f):paper;
+                label.normal.textColor=value<0?GameSettings.Negative:value>0?GameSettings.Positive:paper;
                 Text(1157,y,188,32,inspectionText.StatName(names[i]),label);
                 right.normal.textColor=label.normal.textColor;
                 Text(1381,y,49,32,value.ToString("0"),right);

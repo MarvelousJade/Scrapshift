@@ -144,6 +144,7 @@ namespace Scrapshift
             if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
             if(character?.startingItems!=null)foreach(var id in character.startingItems)
             {var item=Array.Find(catalog.data.items,i=>i.id==id);if(item==null)throw new InvalidOperationException("Missing starting implant: "+id);ApplyItem(item);}
+            foreach(var acquired in Inventory)Progress?.Count("weapon:"+acquired.id);
             Phase=RunPhase.Playing;
             Wave=1;
             Remaining=Durations[0];
@@ -278,6 +279,7 @@ namespace Scrapshift
             if(Stat("destroy_weapons")>0)Inventory.Clear();
             UpgradeWeaponImplants();BeginShopRerolls();rerolls=0;
             RollShop();
+            if(!GameSettings.Flag("keepLock"))foreach(var offer in Shop)if(offer!=null)offer.locked=false;
         }
         void RollShop()
         {
@@ -338,6 +340,7 @@ namespace Scrapshift
         {
             if(!CanBuy(i))return false;
             var s=Shop[i];
+            if(s.weapon!=null)Progress?.Count("weapon:"+s.weapon.id);
             if(UsesHealthShop)Add("max_hp",-Price(s)/(Character?.Gain("max_hp")??1));else Scrap-=Price(s);
             if(s.weapon!=null)
             {

@@ -10,6 +10,10 @@ namespace Scrapshift
         public static string Unit(string key)=>key=="lifesteal"||key=="percent_damage"||key=="attack_speed"||key=="crit_chance"||key=="dodge"||key=="speed"?"%":"";
         public static Sprite Icon(ReferenceCatalog catalog,string key)
         {
+            key=key.StartsWith("stat_")?key.Substring(5):key;
+            if(key=="attack_speed_mod")key="attack_speed";
+            if(key=="levels")return catalog.levelIcon;
+            if(key.StartsWith("item:"))return System.Array.Find(catalog.data.items,i=>i.id==key.Substring(5))?.image;
             var upgrade=System.Array.Find(catalog.data.upgrades,u=>u.stat==key);
             if(upgrade!=null&&upgrade.image!=null)return upgrade.image;
             int i=System.Array.IndexOf(ExtraKeys,key);
@@ -58,7 +62,7 @@ namespace Scrapshift
             }
             var character=Rules.Character??SelectedCharacter;var cr=new Rect(items.Length%columns*88,items.Length/columns*88,80,80);
             Frame(cr,InventoryHover("character",cr,viewport,summaryScroll)?paper:InventoryTileColor(1),2);DrawHeroFace(new Rect(cr.x+13,cr.y+8,54,64));
-            string description=string.Join("\n",character.effectRows.Where(row=>row.kind!="weapon").Select(row=>(StatPresentation.Keys.Contains(row.key)?"[["+row.key+"]] ":"• ")+CharacterEffectText(character,row).label));
+            string description=CharacterEffectDescription(character);
             Inspect("character",cr,character.title,description,playerAnimation.idleFrames[0],"Character",1,viewport,new Rect(viewport.position+cr.position-summaryScroll,cr.size));
             GUI.EndScrollView();
             if(Event.current.type==EventType.Repaint&&!inventoryHoveredThisFrame)inventoryHover=null;
@@ -80,26 +84,6 @@ namespace Scrapshift
                 else RoundedBox(new Rect(x-9,y+23,18,18),color,9);
                 if(i%5==0)OutlinedText(x-25,y+60,50,27,i.ToString(),new GUIStyle(center){fontSize=22,normal={textColor=color}});
             }
-        }
-        Vector2 codexScroll;bool codexWeapons;
-        void DrawPauseCodex()
-        {
-            float left=FullCanvas.xMin+45,width=FullCanvas.width-90;
-            RoundedBox(new Rect(left,45,width,810),new Color(0,0,0,.93f),8);
-            Text(left+20,60,400,44,"Codex",heading);
-            if(Button(new Rect(left+20,116,180,45),"Items")){codexWeapons=false;codexScroll=Vector2.zero;}
-            if(Button(new Rect(left+210,116,180,45),"Weapons")){codexWeapons=true;codexScroll=Vector2.zero;}
-            if(Button(new Rect(left+width-200,116,180,45),"Back"))pauseCodex=false;
-            var viewport=new Rect(left+20,180,width-40,645);int columns=Mathf.Max(1,Mathf.FloorToInt((viewport.width-20)/100));
-            var weapons=catalog.data.equipment.Where(w=>w.tier==1).ToArray();int count=codexWeapons?weapons.Length:catalog.data.items.Length;
-            codexScroll=GUI.BeginScrollView(viewport,codexScroll,new Rect(0,0,viewport.width-20,Mathf.Ceil(count/(float)columns)*100));
-            for(int i=0;i<count;i++)
-            {
-                var r=new Rect(i%columns*100,i/columns*100,90,90);Frame(r,r.Contains(Event.current.mousePosition)?paper:InventoryTileColor(1),2);
-                if(codexWeapons){DrawIcon(weapons[i].image,new Rect(r.x+8,r.y+8,74,74));InspectWeapon("codex-weapon:"+i,weapons[i],r,viewport,codexScroll);}
-                else {var item=catalog.data.items[i];DrawIcon(item.image,new Rect(r.x+8,r.y+8,74,74));InspectItem("codex-item:"+i,item,r,viewport,codexScroll);}
-            }
-            GUI.EndScrollView();
         }
     }
 }

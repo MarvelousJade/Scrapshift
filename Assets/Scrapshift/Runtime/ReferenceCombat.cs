@@ -126,7 +126,7 @@ namespace Scrapshift
                 {var stroke=MakeLine("Green tree warning",marker.transform,RunFeedback.SpawnColor(true,1),.12f);stroke.positionCount=2;stroke.SetPosition(0,new Vector3(-.4f,-.4f*sign,0));stroke.SetPosition(1,new Vector3(.4f,.4f*sign,0));}
             }
             sound.Play(SoundCue.Spawn,pos);
-            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Mathf.Max(.01f,1+Rules.Stat("enemy_health")/100)*Rules.DangerMultiplier;enemies.Add(new Enemy
+            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Mathf.Max(.01f,1+Rules.Stat("enemy_health")/100)*Rules.DangerMultiplier*GameSettings.Value("enemyHealth");enemies.Add(new Enemy
             {
                 obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
             })
@@ -213,7 +213,7 @@ namespace Scrapshift
                         }
                     }
                 }
-                speed = Mathf.Max(0, speed*Mathf.Max(.01f,(1+Rules.Stat("enemy_speed")/100)*(Rules.Difficulty>=6?1.1f:1)) - e.contactSlow-e.itemSlow);
+                speed = Mathf.Max(0, speed*GameSettings.Value("enemySpeed")*Mathf.Max(.01f,(1+Rules.Stat("enemy_speed")/100)*(Rules.Difficulty>=6?1.1f:1)) - e.contactSlow-e.itemSlow);
                 e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
                 if (role == "Buffer" && e.cooldown <= 0)
                 {
@@ -319,8 +319,10 @@ namespace Scrapshift
                 bool shooting=swings[i]>0;
                 var aim=shooting?weaponTargets[i]:nearest;
                 Vector2 direction=aim!=null&&enemies.Contains(aim)?(aim.pos-mount).normalized:shooting?weaponDirections[i]:ActorPresentation.RestDirection(playerAnimation.FacingLeft);
+                bool manual=GameSettings.Flag("manualAim",false)&&(!GameSettings.Flag("aimPressed",false)||Input.GetMouseButton(0));
+                if(manual&&!shooting)direction=((Vector2)gameCamera.ScreenToWorldPoint(Input.mousePosition)-mount).normalized;
                 weaponDirections[i]=direction;
-                bool fire=Rules.CanAttack&&!shooting&&nearest!=null&&RunFeedback.CanAttack(range,distance)&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
+                bool fire=Rules.CanAttack&&!shooting&&(manual||nearest!=null&&RunFeedback.CanAttack(range,distance))&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
                 if(fire){weaponShots[i]++;weaponClocks[i]=Rules.WeaponCooldown(w)*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=nearest;}
                 var view=equipmentViews[i];if(view!=null)
                 {

@@ -137,6 +137,7 @@ namespace Scrapshift
         }
         void ReferenceTitleUI()
         {
+            if(menuPage==5){MenuBackdrop();DrawPauseCodex();return;}
             if(menuPage!=0){SelectionUI();return;}
             Box(FullCanvas,new Color(.25f,.24f,.22f));
             var old=GUI.color;GUI.color=new Color(.65f,.6f,.53f,.28f);
@@ -147,11 +148,13 @@ namespace Scrapshift
             Text(300,245,840,42,"THE SALVAGE YARD",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
             Portrait(new Vector2(780,575+Mathf.Sin(Time.unscaledTime*3)*3),275,playerAnimation.Look);
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
+            if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;
-            if(MenuButton(new Rect(30,705,200,58),"Quit"))Application.Quit();
+            if(MenuButton(new Rect(30,783,200,58),"Quit"))Application.Quit();
         }
         void ReferenceEndUI()
         {
+            if(DrawUnlockReward())return;
             if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
             if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
             else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});

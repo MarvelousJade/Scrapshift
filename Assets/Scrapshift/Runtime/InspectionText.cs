@@ -68,7 +68,7 @@ namespace Scrapshift
             if(w.traits!=null)foreach(var t in w.traits)
             {
                 string effect=null;
-                if(!string.IsNullOrEmpty(t.customKey)){lines.Add(StatEffect(t.key,t.value)+t.Conditional.Suffix);continue;}
+                if(!string.IsNullOrEmpty(t.customKey)){lines.Add(ItemStatRow(t.key,t.value)+t.Conditional.Suffix);continue;}
                 switch(t.key)
                 {
                     case "effect_burning":effect=Format(t.key.ToUpperInvariant(),N(t.burnDamage),N(t.burnTicks),N(t.burnScale*100)+"%[[elemental_damage]]");break;

@@ -26,6 +26,7 @@ namespace Scrapshift
                 catch(Exception e){Debug.LogWarning("Could not load progression; preserving the save for recovery: "+e.Message);this.path=null;}
             }
         }
+        public System.Collections.Generic.IReadOnlyList<UnlockDefinition> Definitions=>definitions;
         public bool Completed(string id)=>Data.completed.Contains(id);
         public bool Unlocked(string reward)=>definitions.Any(d=>d.reward==reward&&Completed(d.id));
         public int Difficulty=>Math.Max(0,definitions.Where(d=>d.id.StartsWith("unlock_difficulty_")&&Completed(d.id)).Select(d=>(int)d.value).DefaultIfEmpty(0).Max());

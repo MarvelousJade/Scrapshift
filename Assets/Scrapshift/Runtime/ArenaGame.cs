@@ -42,7 +42,7 @@ namespace Scrapshift
 
         void Start()
         {
-            InitializeProgression();Application.targetFrameRate = 120; Rules.Configure(catalog);
+            InitializeProgression();ApplyAudioSettings();Application.targetFrameRate = GameSettings.Flag("limitFps",false)?60:120; Rules.Configure(catalog);
             Rules.RandomDamageRequested+=QueueImplantDamage;
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
@@ -130,7 +130,7 @@ namespace Scrapshift
             gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
+            if (Input.GetKeyDown(KeyCode.Escape)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage>=4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
             if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {
@@ -162,7 +162,9 @@ namespace Scrapshift
                 audioPhase = Rules.Phase;
             }
             if (smoke) SmokeTick();
-            wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
+            foreach(var pet in pets)if(pet.obj!=null)foreach(var renderer in pet.obj.GetComponentsInChildren<SpriteRenderer>()){var c=renderer.color;c.a=GameSettings.Value("petOpacity");renderer.color=c;}
+            foreach(var shot in shots)if(shot.obj!=null){var renderer=shot.obj.GetComponent<SpriteRenderer>();if(renderer!=null){var c=renderer.color;c.a=GameSettings.Value("projectileOpacity");renderer.color=c;}}
+            wardrobe.Sync(GameSettings.Flag("hideItems",false)?(System.Collections.Generic.IReadOnlyList<ItemEntry>)Array.Empty<ItemEntry>():Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
             UpdatePlayerFlash(Rules.Phase == RunPhase.Playing ? Mathf.Min(Time.deltaTime, .05f) : 0);
             FinishInspectionReview();
             if(enabled)InspectionReviewTick();
@@ -187,6 +189,7 @@ namespace Scrapshift
             elapsed += dt; invulnerable = Mathf.Max(0, invulnerable - dt);
             Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
                 (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
+            if(GameSettings.Flag("mouseMove",false))movement=Input.GetMouseButton(0)?(Vector2)gameCamera.ScreenToWorldPoint(Input.mousePosition)-playerPos:Vector2.zero;
             if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
             if(worldReview) movement=WorldReviewMovement();
             if (artReview) movement = ArtReviewMovement();
@@ -243,6 +246,7 @@ namespace Scrapshift
         }
         void Burst(Vector2 pos, int count, Color tint)
         {
+            if(!GameSettings.Flag("effects"))return;
             for (int i = 0; i < count && sparks.Count < 200; i++)
             {
                 var obj = Instantiate(sparkPrefab); obj.transform.position = new Vector3(pos.x, pos.y, -3);

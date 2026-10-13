@@ -23,6 +23,7 @@ namespace Scrapshift.Editor
         static void EnsureStatIcons()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(Root+"/Definitions/ReferenceCatalog.asset");
+            if(catalog.levelIcon==null){catalog.levelIcon=AssetDatabase.LoadAssetAtPath<GameObject>(Root+"/Prefabs/ScavengerAnimated.prefab").GetComponent<SpriteFrameAnimator>().idleFrames[0];EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();}
             if(catalog.extraStatIcons!=null&&catalog.extraStatIcons.Length==StatPresentation.ExtraKeys.Length&&System.Array.TrueForAll(catalog.extraStatIcons,s=>s!=null))return;
             Directory.CreateDirectory(Root+"/StatIcons");
             catalog.extraStatIcons=new Sprite[StatPresentation.ExtraKeys.Length];

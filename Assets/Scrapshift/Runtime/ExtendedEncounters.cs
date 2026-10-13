@@ -160,7 +160,7 @@ namespace Scrapshift
     public sealed partial class RunRules
     {
         public float DangerMultiplier=>Difficulty==3?1.12f:Difficulty==4?1.26f:Difficulty==5?1.4f:Difficulty>=6?1.6f:1;
-        public float EnemyDamageFactor=>DangerMultiplier*Mathf.Max(0,1+Stat("enemy_damage")/100);
+        public float EnemyDamageFactor=>GameSettings.Value("enemyDamage")*DangerMultiplier*Mathf.Max(0,1+Stat("enemy_damage")/100);
         public string DifficultyDescription=>Difficulty==0?"No modifiers":Difficulty==1?"Additional enemies":Difficulty==2?"Additional enemies\nOne elite or horde wave":$"Additional enemies\n+{(DangerMultiplier-1)*100:0}% enemy HP and damage\n{(Difficulty>=4?3:1)} elite/horde waves"+(Difficulty>=5?"\nTwo final bosses":"")+(Difficulty>=6?"\n+10% enemy speed\nFog and projectile events":"");
     }
 }
