@@ -7,6 +7,17 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void TurretKeyframesReturnToRestAndPetsUseDifferentMovementStrengths()
+        {
+            Assert.AreEqual(new Vector2(1.1f,.9f),SupportMotion.TurretScale(0));
+            Assert.AreEqual(new Vector2(.8f,1.2f),SupportMotion.TurretScale(.1f));
+            Assert.AreEqual(new Vector2(1.2f,.8f),SupportMotion.TurretScale(.2f));
+            Assert.AreEqual(Vector2.one,SupportMotion.TurretScale(.3f));
+            Assert.AreEqual(0,SupportMotion.TurretLift(.3f));
+            Assert.AreEqual(new Vector2(1.2f,.8f),SupportMotion.PetScale("ratzilla",.5f,true,0));
+            Assert.AreEqual(new Vector2(1.15f,.85f),SupportMotion.PetScale("scapegoat",.5f,true,0));
+            Assert.Less(SupportMotion.PetScale("ratzilla",.5f,false,0).x,SupportMotion.PetScale("ratzilla",.5f,true,0).x);
+        }
         [Test] public void ManualPressModeWorksWithoutAlwaysOnAndReleasesToAuto()
         {
             Assert.IsTrue(CombatInput.ManualAim(false,true,true));

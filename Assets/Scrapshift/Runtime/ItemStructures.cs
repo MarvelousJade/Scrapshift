@@ -26,7 +26,7 @@ namespace Scrapshift
             var trait=new WeaponTrait{key=spec.kind,projectile=spec.stats,spawnInterval=spec.spawnInterval,animationSpeed=spec.animationSpeed,radius=spec.explosionRadius};
             var obj=SpriteObject("Cybernetic "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.6f);
             AddGroundShadow(obj,image.bounds.size.x,-.2f);
-            var structure=new StarterTurret{obj=obj,pos=pos,stats=spec.Equipment,trait=trait,spec=spec,clock=spec.kind=="garden"?.2f/spec.animationSpeed:0,firing=spec.kind=="garden",angle=UnityEngine.Random.Range(0,Mathf.PI*2),orbitRadius=UnityEngine.Random.Range(1f,2f),orbitSpeed=UnityEngine.Random.Range(2f,2.5f)};
+            var structure=new StarterTurret{obj=obj,pos=pos,baseScale=obj.transform.localScale.x,animationAge=spec.kind=="garden"?0:.3f,stats=spec.Equipment,trait=trait,spec=spec,clock=spec.kind=="garden"?.2f/spec.animationSpeed:0,firing=spec.kind=="garden",angle=UnityEngine.Random.Range(0,Mathf.PI*2),orbitRadius=UnityEngine.Random.Range(1f,2f),orbitSpeed=UnityEngine.Random.Range(2f,2.5f)};
             if(spec.kind=="landmine"){Destroy(obj);structure.obj=null;structure.clock=spec.spawnInterval;mineSpawners.Add(structure);SpawnMine(structure,image);}
             else starterTurrets.Add(structure);
             progress?.Check("chal_turrets",starterTurrets.FindAll(t=>t.spec.kind!="garden"&&t.spec.kind!="wandering_bot").Count);
@@ -36,6 +36,11 @@ namespace Scrapshift
         void TickStructure(StarterTurret turret,float dt)
         {
             var spec=turret.spec;
+            turret.animationAge=Mathf.Min(.3f,turret.animationAge+dt*StructureAnimationSpeed(turret));
+            var pose=reducedMotion?Vector2.one:SupportMotion.TurretScale(turret.animationAge);
+            turret.obj.transform.localScale=new Vector3(pose.x,pose.y,1)*turret.baseScale;
+            turret.obj.transform.position=turret.pos+Vector2.up*(reducedMotion?0:SupportMotion.TurretLift(turret.animationAge));
+            turret.obj.GetComponent<GroundShadow>().Place(turret.pos,turret.baseScale);
             if(spec.kind=="wandering_bot")
             {
                 turret.angle+=dt*turret.orbitSpeed;turret.pos=playerPos+new Vector2(Mathf.Cos(turret.angle),Mathf.Sin(turret.angle))*turret.orbitRadius;
@@ -49,7 +54,7 @@ namespace Scrapshift
             var target=spec.healing?null:NearestStarterTarget(turret.pos);
             bool inRange=spec.kind=="garden"||(spec.healing?Vector2.Distance(playerPos,turret.pos)<=turret.stats.range:target!=null&&Vector2.Distance(target.pos,turret.pos)<=turret.stats.range);
             if(!turret.firing)
-            {if(inRange){turret.firing=true;turret.clock=.2f/StructureAnimationSpeed(turret);}return;}
+            {if(inRange){turret.firing=true;turret.animationAge=0;turret.clock=.2f/StructureAnimationSpeed(turret);}return;}
             turret.firing=false;
             float interval=Rules.StructureCooldown(turret.stats.interval);
             turret.clock=UnityEngine.Random.Range(Mathf.Max(1f/60,interval*.7f),interval*1.3f)+.1f/StructureAnimationSpeed(turret);

@@ -21,6 +21,7 @@ namespace Scrapshift
         {
             if(mapChoice<0)ApplyMapTheme(new System.Random().Next(MapThemes.Names.Length));
             pauseOptions=pauseCodex=false;Begin();Rules.Progress=progress;Rules.Difficulty=selectedDifficulty;recordedFinish=false;Rules.Start(SelectedCharacter,SelectedWeapon?.id);ArenaGeometry.SetMapSize(Rules.Stat("map_size"));ScaleMapArt();PlanEncounters();StartWave();
+            music.StartOnce();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             gameCamera.transform.position=Vector3.back*20;PoseArrival(0);

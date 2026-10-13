@@ -68,3 +68,5 @@ Weapons have simple cream grip mittens with no arms or fingers. Fist/hand/claw w
 Support polish: turrets, landmines and companions now have distinct original sprites, including their inventory icons. Landmines arm on entry and explode on exit. Manual aiming fires automatically toward the cursor; mouse-press aiming works independently of always-on aiming. The new soundtrack is an original 146 BPM industrial EDM/metal synth loop.
 Validated catalog: 50 characters, 62 weapon identities / 205 tier entries and 209 base items (unlock availability differs by save). A fresh 4,918-field audit passed; this does not certify every runtime interaction or exact seeded shop sequence.
 Latest build: Builds/SupportPolish/Scrapshift.exe.
+
+Music revision: silent until the first Start after weapon selection; keeps playing without rewinding on later waves or restarts. Softer energetic EDM replaces the distorted metal synth texture. Turrets and companions have simplified clean art and reference-inspired squash/attack motion. Latest build: Builds/SupportMotion/Scrapshift.exe.

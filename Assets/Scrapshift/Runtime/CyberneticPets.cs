@@ -8,7 +8,7 @@ namespace Scrapshift
     {
         sealed class Pet
         {
-            public PetSpec spec;public GameObject obj;public Vector2 pos,destination,jumpStart;public float clock,secondaryClock,age,health,invulnerable,jump;
+            public PetSpec spec;public GameObject obj;public Vector2 pos,destination,jumpStart;public float clock,secondaryClock,age,health,invulnerable,jump,baseScale,posePhase,attackPose;
             public Equipment weapon,secondary;public bool dead;
         }
         readonly List<Pet> pets=new List<Pet>();
@@ -24,7 +24,7 @@ namespace Scrapshift
         {
             var image=SupportArt.Pet(spec.kind);var pos=playerPos+UnityEngine.Random.insideUnitCircle*2;
             var obj=SpriteObject("Cybernetic companion: "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.65f);AddGroundShadow(obj,image.bounds.size.x,-.2f);
-            var pet=new Pet{spec=spec,obj=obj,pos=pos,destination=pos,health=spec.health+spec.healthGrowth*(Rules.Wave-1)};
+            var pet=new Pet{spec=spec,obj=obj,baseScale=obj.transform.localScale.x,pos=pos,destination=pos,health=spec.health+spec.healthGrowth*(Rules.Wave-1)};
             if(spec.stats!=null&&spec.stats.interval>0){pet.weapon=Rules.PetWeapon(spec.stats,spec);pet.clock=spec.stats.interval;}
             if(spec.secondary!=null&&spec.secondary.interval>0){pet.secondary=Rules.PetWeapon(spec.secondary,spec);pet.secondaryClock=UnityEngine.Random.Range(spec.secondary.interval/4,spec.secondary.interval);}
             if(spec.kind=="bot_o_mine")pet.secondaryClock=spec.mineInterval;
@@ -35,6 +35,7 @@ namespace Scrapshift
             Rules.HealingDrones=0;int shieldIndex=0,shields=pets.Count(p=>p.spec.kind=="jellyshield");
             foreach(var p in pets)
             {
+                Vector2 previous=p.pos;p.attackPose=Mathf.Max(0,p.attackPose-dt);
                 p.age+=dt;p.clock-=dt;p.secondaryClock-=dt;p.invulnerable=Mathf.Max(0,p.invulnerable-dt);
                 var spec=p.spec;float speed=spec.speed*Mathf.Max(1,1+Rules.Stat("speed")/100);
                 if(spec.kind=="jellyshield")
@@ -56,10 +57,10 @@ namespace Scrapshift
                         drop.motion.position=Vector2.MoveTowards(drop.motion.position,p.pos,dt*9);
                         if(Vector2.Distance(drop.motion.position,p.pos)>.5f)continue;
                         if(UnityEngine.Random.value<spec.doubleChance)drop.value*=2;
-                        CollectPickup(drop);Destroy(drop.obj);pickups.Remove(drop);
+                        p.attackPose=.225f;CollectPickup(drop);Destroy(drop.obj);pickups.Remove(drop);
                     }
                     if(tree!=null&&Vector2.Distance(tree.pos,p.pos)<.6f&&p.clock<=0)
-                    {p.clock=spec.stats.interval;Damage(enemies.IndexOf(tree),Mathf.Max(Rules.WeaponDamage(p.weapon),tree.maxHp/5),p.weapon.crit,p.weapon.knockback,tree.pos-p.pos,p.weapon,true);}
+                    {p.attackPose=.3f;p.clock=spec.stats.interval;Damage(enemies.IndexOf(tree),Mathf.Max(Rules.WeaponDamage(p.weapon),tree.maxHp/5),p.weapon.crit,p.weapon.knockback,tree.pos-p.pos,p.weapon,true);}
                 }
                 else if(spec.kind=="doc_moth")
                 {
@@ -85,24 +86,33 @@ namespace Scrapshift
                     }
                     if(spec.kind=="bot_o_mine"&&p.secondaryClock<=0)
                     {
-                        p.secondaryClock=spec.mineInterval;
+                        p.attackPose=.3f;p.secondaryClock=spec.mineInterval;
                         var spawner=new StarterTurret{pos=p.pos+UnityEngine.Random.insideUnitCircle*.5f,stats=Rules.PetWeapon(spec.mine.stats,spec),trait=new WeaponTrait{radius=spec.mine.explosionRadius}};
                         SpawnMine(spawner,catalog.Weapon("screwdriver",1).image,p.pos);
                     }
                     if(target!=null&&p.jump<=0)
                     {
                         if(spec.kind=="blazemander"&&p.secondaryClock<=0&&Vector2.Distance(target.pos,p.pos)<1.5f)
-                        {for(int i=0;i<6;i++){float angle=Mathf.PI*2*i/6+UnityEngine.Random.Range(-p.secondary.spread,p.secondary.spread);StarterProjectile(p.pos,new Vector2(Mathf.Cos(angle),Mathf.Sin(angle)),p.secondary,true);}p.secondaryClock=spec.secondary.interval;}
+                        {p.attackPose=.3f;for(int i=0;i<6;i++){float angle=Mathf.PI*2*i/6+UnityEngine.Random.Range(-p.secondary.spread,p.secondary.spread);StarterProjectile(p.pos,new Vector2(Mathf.Cos(angle),Mathf.Sin(angle)),p.secondary,true);}p.secondaryClock=spec.secondary.interval;}
                         if(p.clock<=0&&Vector2.Distance(target.pos,p.pos)<(ranged?p.weapon.range:.7f))
                         {
-                            p.clock=(spec.structure?Rules.StructureCooldown(spec.stats.interval):Rules.PetCooldown(spec.stats.interval))*(spec.kind=="catling_gun"?(boosted?.25f:.5f):1);
+                            p.attackPose=.3f;p.clock=(spec.structure?Rules.StructureCooldown(spec.stats.interval):Rules.PetCooldown(spec.stats.interval))*(spec.kind=="catling_gun"?(boosted?.25f:.5f):1);
                             if(ranged)StarterProjectile(p.pos,(target.pos-p.pos).normalized,p.weapon,true,structure:spec.structure);
                             else foreach(var enemy in enemies.ToArray())if(enemy.marker==null&&Vector2.Distance(enemy.pos,p.pos)<.7f)Damage(enemies.IndexOf(enemy),Rules.WeaponDamage(p.weapon),p.weapon.crit,p.weapon.knockback,enemy.pos-p.pos,p.weapon,true);
                         }
                     }
                 }
-                p.obj.transform.position=(Vector3)(p.pos+Vector2.up*(p.jump>0?Mathf.Sin(p.jump/.5f*Mathf.PI)*.8f:Mathf.Sin(p.age*6)*.025f));
-                p.obj.GetComponent<GroundShadow>().Place(p.pos,p.obj.transform.localScale.x);
+                bool moving=(p.pos-previous).sqrMagnitude>.000001f;
+                p.posePhase+=dt*(spec.kind=="doc_moth"?6:moving?2:1);
+                var renderer=p.obj.GetComponent<SpriteRenderer>();
+                if(Mathf.Abs(p.pos.x-previous.x)>.001f)renderer.flipX=p.pos.x>previous.x;
+                var pose=reducedMotion?Vector2.one:SupportMotion.PetScale(spec.kind,p.posePhase,moving,p.attackPose);
+                if(p.dead)pose=new Vector2(1.12f,.65f);
+                p.obj.transform.localScale=new Vector3(pose.x,pose.y,1)*p.baseScale;
+                float jumpLift=p.jump>0&&!reducedMotion?Mathf.Sin(p.jump/.5f*Mathf.PI)*.8f:0;
+                p.obj.transform.position=p.pos+Vector2.up*(jumpLift+(pose.y-1)*renderer.sprite.bounds.size.y*p.baseScale*.5f);
+                p.obj.transform.rotation=Quaternion.Euler(0,0,p.dead?-18:!reducedMotion&&spec.kind=="lootworm"?Mathf.Sin(p.posePhase*Mathf.PI*2)*5:0);
+                p.obj.GetComponent<GroundShadow>().Place(p.pos,p.baseScale);
             }
             Rules.PetCount=pets.Count;
         }
