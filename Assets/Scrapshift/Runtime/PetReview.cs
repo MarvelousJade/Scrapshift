@@ -15,12 +15,12 @@ namespace Scrapshift
         void PetReviewTick()
         {
             if(!petReview||Time.realtimeSinceStartup<petReviewNext)return;
-            if(petReviewStage>=petCases.Length&&petReviewStage<petCases.Length+4)
+            if(petReviewStage>=petCases.Length&&petReviewStage<petCases.Length+6)
             {
                 int pose=petReviewStage++-petCases.Length;var p=SetUpPetCase("catling_gun");
                 player.SetActive(false);SyncEquipment();p.obj.transform.position=Vector3.zero;
-                p.rig.PetPose(.5f,true,pose>=2,false,false);
-                var dir=new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down}[pose];
+                p.rig.PetPose(pose>=4?pose==4?.25f:.75f:.5f,true,pose>=2&&pose<4,false,false);
+                var dir=new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down}[pose>=4?0:pose];
                 p.rig.AimGun(0,dir);p.rig.AimGun(1,dir);p.rig.TickGunRecoil(1,false);
                 gameCamera.orthographicSize=1.2f;gameCamera.transform.position=new Vector3(0,0,-20);
                 ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,"cat-aim-"+pose+".png"));

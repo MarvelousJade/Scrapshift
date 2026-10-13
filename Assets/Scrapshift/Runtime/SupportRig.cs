@@ -9,6 +9,7 @@ namespace Scrapshift
         static readonly Dictionary<int,Sprite> parts=new Dictionary<int,Sprite>();
         static Texture2D atlas;
         Transform facing,head,body;
+        CatLegGait catGait;
         readonly List<Transform> limbs=new List<Transform>();
         SpriteRenderer source,headView;
         SpriteRenderer[] views;
@@ -58,6 +59,7 @@ namespace Scrapshift
                 view.sprite=sprite;view.sortingOrder=7;
                 view.transform.localScale=Vector3.one*(.60f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
                 rig.body=view.transform;
+                if(kind=="catling_gun"){rig.catGait=view.gameObject.AddComponent<CatLegGait>();rig.catGait.Initialize(view);}
             }
             rig.views=rig.facing.GetComponentsInChildren<SpriteRenderer>();return rig;
         }
@@ -91,12 +93,28 @@ namespace Scrapshift
                 float bodyUnit=1/body.localScale.x;
                 pivot.localScale=Vector3.one*bodyUnit;
                 pivot.localPosition=new Vector3(i==0?.055f:.10f,i==0?.025f:.065f,0)*bodyUnit;guns[i]=pivot;
+                BackMount(i,bodyUnit,pivot.localPosition);
                 var view=new GameObject("Gun").AddComponent<SpriteRenderer>();view.transform.SetParent(pivot,false);
                 view.sprite=sprite;view.sortingOrder=i==0?9:6;
-                view.transform.localScale=Vector3.one*(.29f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
+                view.transform.localScale=Vector3.one*(.36f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
                 view.transform.localPosition=Vector3.zero;gunViews[i]=view;
             }
             views=facing.GetComponentsInChildren<SpriteRenderer>();
+        }
+        static Material mountMaterial;
+        void BackMount(int index,float scale,Vector3 joint)
+        {
+            if(mountMaterial==null)mountMaterial=new Material(Shader.Find("Sprites/Default"));
+            for(int layer=0;layer<2;layer++)
+            {
+                var go=new GameObject("Fixed back mount "+index+" "+layer);go.transform.SetParent(body,false);
+                var line=go.AddComponent<LineRenderer>();line.useWorldSpace=false;line.sharedMaterial=mountMaterial;
+                line.positionCount=2;line.SetPosition(0,new Vector3(index==0?.045f:.08f,-.015f,0)*scale);line.SetPosition(1,joint);
+                // LineRenderer widths are world units, even with local-space points.
+                line.startWidth=line.endWidth=layer==0?.055f:.033f;line.numCapVertices=6;
+                line.startColor=line.endColor=layer==0?new Color(.04f,.035f,.03f):new Color(.55f,.53f,.47f);
+                line.sortingOrder=8;line.sortingLayerID=source.sortingLayerID;
+            }
         }
         public Vector2 GunOrigin(int index)=>guns[index]!=null?gunViews[index].transform.TransformPoint(gunViews[index].sprite.bounds.max.x,.015f/gunViews[index].transform.localScale.x,0):transform.position;
         public Vector2 GunMount(int index)=>guns[index]!=null?guns[index].position:transform.position;
@@ -147,6 +165,7 @@ namespace Scrapshift
         }
         public void PetPose(float phase,bool moving,bool flip,bool reduced,bool dead)
         {
+            if(catGait!=null)catGait.Pose(phase,moving&&!reduced&&!dead,dead);
             facing.localScale=new Vector3(flip?-unit:unit,unit,unit);
             float stride=!reduced&&moving&&!dead?Mathf.Sin(phase*Mathf.PI*2):0;
             for(int i=0;i<limbs.Count;i++)

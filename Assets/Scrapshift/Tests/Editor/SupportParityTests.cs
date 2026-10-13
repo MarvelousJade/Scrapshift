@@ -153,6 +153,15 @@ namespace Scrapshift.Tests
             }
             finally{Object.DestroyImmediate(root);}
         }
+        [Test] public void CatStepsAlternateWithoutMovingHipAnchors()
+        {
+            var far=CatLegGait.StepOffset(.2f,.05f,.25f,true);
+            var near=CatLegGait.StepOffset(.6f,.05f,.25f,true);
+            Assert.Less(far.x,0);Assert.Greater(near.x,0);
+            Assert.AreEqual(Vector2.zero,CatLegGait.StepOffset(.6f,.3f,.25f,true));
+            Assert.AreEqual(Vector2.zero,CatLegGait.StepOffset(.6f,.05f,.25f,false));
+            Assert.Less(CatLegGait.StepOffset(.6f,.05f,.75f,true).x,0);
+        }
         [Test] public void ReferenceTargetReservationAndJumpRules()
         {
             Assert.IsFalse(SupportBehavior.MayReserve("ratzilla",true,false,false));
