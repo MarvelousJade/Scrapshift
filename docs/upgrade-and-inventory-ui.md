@@ -21,3 +21,7 @@ Pause now uses a wide left action column, a separate inventory area with sorting
 Health and experience share a 262-by-38 canvas-unit rectangle with four-unit dark borders. Removed the shared five-by-six-unit offset shadow from Frame: cards and inventory tiles now use a clean dark edge without the displaced grey slab. Original sprite artwork and its own drawn outlines remain intact.
 
 The first Codex build caught an incorrect catalog field name; corrected it to the existing equipment collection. Added a regression that ending a paused run cannot resume or count as victory, and that restarting restores the playing state.
+
+## Dark surfaces and clean tier borders
+
+Follow-up screenshot exposed a redundant black perimeter underneath colored upgrade borders. TierCard now draws exactly one outer tier-colored edge with an evenly inset fill; common cards keep a dark edge. Shop cards share this renderer. Inventory tiles and icon backplates use darker neutral fills, while hover still turns white. Menu buttons use translucent black instead of warm grey, and the scene dimmer uses black for a darker backdrop. Pause buttons are slightly wider and inventory rows contain at most six icons, with scrolling for overflow. HUD bars retain the same 262-by-38 outer size and now have six-unit black borders (previously four), with fill rectangles inset to match.

@@ -140,9 +140,9 @@ namespace Scrapshift
             for(int i=0;i<4;i++)
             {
                 float x=OfferX(i),width=OfferWidth;var offer=Rules.Shop[i];
-                Frame(new Rect(x,118,width,402),offer==null?ink:TierBackground(offer.Tier),2);
+                TierCard(new Rect(x,118,width,402),offer==null?1:offer.Tier);
                 if(offer==null){Text(x+14,292,width-28,45,"Sold",center);continue;}
-                RoundedBox(new Rect(x+14,132,68,74),new Color(.17f,.16f,.15f),7);
+                RoundedBox(new Rect(x+14,132,68,74),new Color(.075f,.072f,.065f),7);
                 DrawIcon(offer.Image,new Rect(x+18,137,60,64));
                 var offerTitle=offer.Title=="Smg"?"SMG":offer.Title;var offerStyle=new GUIStyle(body);offerStyle.normal.textColor=TierColor(offer.Tier);
                 foreach(var word in offerTitle.Split(' '))while(offerStyle.fontSize>16&&offerStyle.CalcSize(new GUIContent(word)).x>width-107)offerStyle.fontSize--;
@@ -169,7 +169,7 @@ namespace Scrapshift
             for(int i=0;i<sortedItems.Length;i++)
             {
                 float x=i%columns*88,y=i/columns*88;
-                Frame(new Rect(x,y,80,80),InventoryHover("item:"+Rules.Items.IndexOf(sortedItems[i]),new Rect(x,y,80,80),itemViewport,itemScroll)?paper:Color.Lerp(new Color(.24f,.23f,.20f),TierColor(sortedItems[i].tier),sortedItems[i].tier>1?.22f:0),2);
+                Frame(new Rect(x,y,80,80),InventoryHover("item:"+Rules.Items.IndexOf(sortedItems[i]),new Rect(x,y,80,80),itemViewport,itemScroll)?paper:InventoryTileColor(sortedItems[i].tier),2);
                 DrawIcon(sortedItems[i].image,new Rect(x+7,y+6,66,66));
                 int owned=Rules.Items.Count(item=>item.id==sortedItems[i].id);if(owned>1)OutlinedText(x+50,y+54,28,24,owned.ToString(),tiny);
                 InspectItem("item:"+Rules.Items.IndexOf(sortedItems[i]),sortedItems[i],new Rect(x,y,80,80),itemViewport,itemScroll);
@@ -177,7 +177,7 @@ namespace Scrapshift
             var character=Rules.Character??SelectedCharacter;
             float cx=sortedItems.Length%columns*88,cy=sortedItems.Length/columns*88;
             var characterRect=new Rect(cx,cy,80,80);
-            Frame(characterRect,InventoryHover("character",characterRect,itemViewport,itemScroll)?paper:new Color(.24f,.23f,.20f),2);
+            Frame(characterRect,InventoryHover("character",characterRect,itemViewport,itemScroll)?paper:InventoryTileColor(1),2);
             DrawHeroFace(new Rect(cx+13,cy+8,54,64));
             string description=string.Join("\n",character.effectRows.Where(row=>row.kind!="weapon").Select(row=>(StatPresentation.Keys.Contains(row.key)?"[["+row.key+"]] ":"• ")+CharacterEffectText(character,row).label));
             Inspect("character",characterRect,character.title,description,playerAnimation.idleFrames[0],"Character",1,itemViewport,new Rect(itemViewport.position+characterRect.position-itemScroll,characterRect.size));
@@ -187,7 +187,7 @@ namespace Scrapshift
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
                 float x=2+i%3*84,y=2+i/3*86;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
-                Frame(new Rect(x,y,82,80),selectedWeapon==i||InventoryHover("weapon:"+i,new Rect(x,y,82,80),weaponViewport,weaponScroll)?paper:Color.Lerp(new Color(.19f,.18f,.16f),w==null?panelColor:TierColor(w.tier),w!=null&&w.tier>1?.22f:0),2);
+                Frame(new Rect(x,y,82,80),selectedWeapon==i||InventoryHover("weapon:"+i,new Rect(x,y,82,80),weaponViewport,weaponScroll)?paper:InventoryTileColor(w==null?1:w.tier),2);
                 if(w!=null)
                 {
                     DrawIcon(w.image,new Rect(x+8,y+8,66,64));

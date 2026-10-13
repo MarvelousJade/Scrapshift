@@ -36,11 +36,11 @@ namespace Scrapshift
             if(Event.current.type==EventType.Repaint)inventoryHoveredThisFrame=false;
             Text(area.x,area.y,area.width,42,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
             Box(new Rect(area.x+245,area.y+22,Mathf.Max(0,area.width-245),2),new Color(.4f,.49f,.41f,.35f));
-            int columns=Mathf.Max(1,Mathf.FloorToInt(area.width/88));
+            int columns=Mathf.Clamp(Mathf.FloorToInt((area.width-18)/88),1,6);
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
                 var w=Rules.Inventory[i];var r=new Rect(area.x+i%columns*88,area.y+58+i/columns*88,80,80);
-                Frame(r,InventoryHover("weapon:"+i,new Rect(r.position-area.position,r.size),area,Vector2.zero)?paper:Color.Lerp(new Color(.19f,.18f,.16f),TierColor(w.tier),w.tier>1?.22f:0),2);
+                Frame(r,InventoryHover("weapon:"+i,new Rect(r.position-area.position,r.size),area,Vector2.zero)?paper:InventoryTileColor(w.tier),2);
                 DrawIcon(w.image,new Rect(r.x+7,r.y+7,66,66));InspectWeapon("weapon:"+i,w,r);
             }
             float itemY=area.y+58+Mathf.Max(1,Mathf.CeilToInt(Rules.Inventory.Count/(float)columns))*88+10;
@@ -52,12 +52,12 @@ namespace Scrapshift
             for(int i=0;i<items.Length;i++)
             {
                 var item=items[i];var r=new Rect(i%columns*88,i/columns*88,80,80);string id="item:"+Rules.Items.IndexOf(item);
-                Frame(r,InventoryHover(id,r,viewport,summaryScroll)?paper:Color.Lerp(new Color(.19f,.18f,.16f),TierColor(item.tier),item.tier>1?.22f:0),2);
+                Frame(r,InventoryHover(id,r,viewport,summaryScroll)?paper:InventoryTileColor(item.tier),2);
                 DrawIcon(item.image,new Rect(r.x+7,r.y+7,66,66));InspectItem(id,item,r,viewport,summaryScroll);
                 int count=Rules.Items.Count(e=>e.id==item.id);if(count>1)OutlinedText(r.x+50,r.y+54,28,24,count.ToString(),tiny);
             }
             var character=Rules.Character??SelectedCharacter;var cr=new Rect(items.Length%columns*88,items.Length/columns*88,80,80);
-            Frame(cr,InventoryHover("character",cr,viewport,summaryScroll)?paper:new Color(.19f,.18f,.16f),2);DrawHeroFace(new Rect(cr.x+13,cr.y+8,54,64));
+            Frame(cr,InventoryHover("character",cr,viewport,summaryScroll)?paper:InventoryTileColor(1),2);DrawHeroFace(new Rect(cr.x+13,cr.y+8,54,64));
             string description=string.Join("\n",character.effectRows.Where(row=>row.kind!="weapon").Select(row=>(StatPresentation.Keys.Contains(row.key)?"[["+row.key+"]] ":"• ")+CharacterEffectText(character,row).label));
             Inspect("character",cr,character.title,description,playerAnimation.idleFrames[0],"Character",1,viewport,new Rect(viewport.position+cr.position-summaryScroll,cr.size));
             GUI.EndScrollView();
@@ -95,7 +95,7 @@ namespace Scrapshift
             codexScroll=GUI.BeginScrollView(viewport,codexScroll,new Rect(0,0,viewport.width-20,Mathf.Ceil(count/(float)columns)*100));
             for(int i=0;i<count;i++)
             {
-                var r=new Rect(i%columns*100,i/columns*100,90,90);Frame(r,r.Contains(Event.current.mousePosition)?paper:new Color(.15f,.15f,.15f),2);
+                var r=new Rect(i%columns*100,i/columns*100,90,90);Frame(r,r.Contains(Event.current.mousePosition)?paper:InventoryTileColor(1),2);
                 if(codexWeapons){DrawIcon(weapons[i].image,new Rect(r.x+8,r.y+8,74,74));InspectWeapon("codex-weapon:"+i,weapons[i],r,viewport,codexScroll);}
                 else {var item=catalog.data.items[i];DrawIcon(item.image,new Rect(r.x+8,r.y+8,74,74));InspectItem("codex-item:"+i,item,r,viewport,codexScroll);}
             }
@@ -103,4 +103,3 @@ namespace Scrapshift
         }
     }
 }
-

@@ -5,7 +5,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         GUIStyle damageSmall, damageBig, cardTitle, center, icon;
-        readonly Color ink = new Color(.025f,.024f,.022f), paper = new Color(.96f,.96f,.94f), panelColor = new Color(.09f,.085f,.075f,.96f);
+        readonly Color ink = new Color(.025f,.024f,.022f), paper = new Color(.96f,.96f,.94f), panelColor = new Color(0,0,0,.82f);
         void EnsureStyles()
         {
             if (body != null) return;
@@ -60,7 +60,7 @@ namespace Scrapshift
             else if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) EndUI();
             EndInspection();
         }
-        void Overlay() => Box(FullCanvas, new Color(.055f,.05f,.045f,.78f));
+        void Overlay() => Box(FullCanvas, new Color(0,0,0,.74f));
         void TitleUI() => ReferenceTitleUI();
         void ChangeLook(int direction)
         {
@@ -71,14 +71,21 @@ namespace Scrapshift
         }
         Color TierColor(int tier) => tier==4 ? new Color(1,59/255f,59/255f) : tier==3 ? new Color(173/255f,90/255f,1) : tier==2 ? new Color(90/255f,190/255f,1) : Color.white;
         Color TierBackground(int tier) => tier==4 ? new Color(36/255f,9/255f,9/255f) : tier==3 ? new Color(16/255f,10/255f,27/255f) : tier==2 ? new Color(15/255f,32/255f,40/255f) : ink;
+        void TierCard(Rect r,int tier)
+        {
+            // A single colored perimeter: do not stack it inside Frame's black perimeter.
+            RoundedBox(r,tier>1?TierColor(tier):Color.black,8);
+            RoundedBox(new Rect(r.x+2,r.y+2,r.width-4,r.height-4),TierBackground(tier),6);
+        }
+        Color InventoryTileColor(int tier)=>Color.Lerp(new Color(.075f,.072f,.065f),TierColor(tier),tier>1?.16f:0);
         void DrawHud()
         {
             var hudMatrix=GUI.matrix;GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(FullCanvas.xMin,FullCanvas.yMin,0));
-            Frame(new Rect(24,22,262,38), new Color(.22f,.18f,.17f), 4);
-            Box(new Rect(28,26,254*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),30), new Color(.83f,.07f,.05f));
+            Frame(new Rect(24,22,262,38), new Color(.22f,.18f,.17f), 6);
+            Box(new Rect(30,28,250*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), new Color(.83f,.07f,.05f));
             Text(24,22,262,38,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
-            Frame(new Rect(24,64,262,38),new Color(.25f,.25f,.24f),4);
-            Box(new Rect(28,68,254*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),30),new Color(.2f,.8f,.18f));
+            Frame(new Rect(24,64,262,38),new Color(.25f,.25f,.24f),6);
+            Box(new Rect(30,70,250*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),26),new Color(.2f,.8f,.18f));
             Text(195,64,87,38,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
             DrawMoneyCounter();
             DrawStoredMaterials();
@@ -107,8 +114,8 @@ namespace Scrapshift
             for(int i=0;i<Rules.Offers.Length;i++)
             {
                 var o=Rules.Offers[i];float x=OfferX(i),width=OfferWidth;
-                Frame(new Rect(x,320,width,270),o.Tier==1?Color.black:TierColor(o.Tier),2);RoundedBox(new Rect(x+3,323,width-6,264),TierBackground(o.Tier),6);
-                RoundedBox(new Rect(x+14,340,66,70),new Color(.12f,.12f,.12f),6);
+                TierCard(new Rect(x,320,width,270),o.Tier);
+                RoundedBox(new Rect(x+14,340,66,70),new Color(.075f,.075f,.075f),6);
                 DrawIcon(o.Image,new Rect(x+20,346,54,58));
                 Text(x+92,342,width-108,58,CyberneticTheme.UpgradeName(o.Stat)+(o.Tier>1?" "+new[]{"","","II","III","IV"}[o.Tier]:""),new GUIStyle(body){fontSize=20,normal={textColor=TierColor(o.Tier)}});
                 Text(x+92,400,width-108,28,"Upgrade",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
@@ -132,14 +139,14 @@ namespace Scrapshift
             }
             if(pauseCodex){DrawPauseCodex();return;}
             DrawStatsPanel();
-            float left=FullCanvas.xMin+40,width=Mathf.Min(500,FullCanvas.width*.32f);
+            float left=FullCanvas.xMin+40,width=Mathf.Min(515,FullCanvas.width*.33f);
             if(Button(new Rect(left,203,width,55),"Resume"))Rules.Pause();
             if(Button(new Rect(left,278,width,55),"Restart"))StartSelectedRun();
             if(Button(new Rect(left,353,width,55),"End the run"))Rules.Abandon();
             if(Button(new Rect(left,428,width,55),"Codex"))pauseCodex=true;
             if(Button(new Rect(left,503,width,55),"Options"))pauseOptions=true;
             if(Button(new Rect(left,578,width,55),"Return to Main Menu"))ReturnToSelection(0);
-            float inventoryLeft=left+width+32;
+            float inventoryLeft=left+width+20;
             DrawRunInventory(new Rect(inventoryLeft,64,StatsLeft-inventoryLeft-18,640));
             DrawWaveTimeline(787);
             DrawInventoryTooltip();DrawSetTooltip();DrawItemSortMenu();

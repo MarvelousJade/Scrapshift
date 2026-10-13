@@ -206,3 +206,5 @@ Audited both final bosses and all 62 weapon families from the supplied source. R
 Applied the supplied screenshots: common upgrade borders, dark reroll buttons with F and currency, removal of level-up inventory, face/arrow and wooden-crate rewards, dedicated white inventory hover/audio, centered currency, plain Items heading, separator and an inspectable character tile. Shared character description formatting and enlarged inline effect icons/bullets. See upgrade-and-inventory-ui.md.
 
 October 12 follow-up: matched upgrade/reward, shop inventory, pause and HUD presentation against supplied screenshots. Removed offset card shadows; added character ability inspection, distinct inventory focus audio, a pause Codex and dot timeline. See upgrade-and-inventory-ui.md for decisions and verification limits.
+
+October 12 styling follow-up: removed the second black edge beneath tier borders, darkened menus and icon tiles, capped pause inventory at six columns, widened pause controls, and increased both HUD outlines from four to six units. Rebuilt and captured the normal runtime UI for visual review.
