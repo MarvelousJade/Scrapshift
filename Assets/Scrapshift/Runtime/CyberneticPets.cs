@@ -28,7 +28,7 @@ namespace Scrapshift
             var obj=SpriteObject("Cybernetic companion: "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.65f);AddGroundShadow(obj,image.bounds.size.x,-.2f);
             var pet=new Pet{spec=spec,obj=obj,baseScale=obj.transform.localScale.x,pos=pos,destination=pos,health=spec.health+spec.healthGrowth*(Rules.Wave-1)};
             pet.rig=SupportRig.Create(obj,spec.kind,false);
-            if(spec.kind=="catling_gun")pet.rig.ConfigureCatGuns(catalog.Weapon("smg",1).image);
+            if(spec.kind=="catling_gun")pet.rig.ConfigureCatGuns(SupportRig.GatlingGun());
             if(spec.kind=="doc_moth"){pet.zoneView=MakeLine("Healing zone",obj.transform,new Color(.25f,1,.4f,.2f),.035f,true);pet.zoneView.useWorldSpace=true;pet.zoneView.positionCount=64;pet.zoneView.sortingOrder=2;}
             if(spec.kind=="scapegoat")
             {

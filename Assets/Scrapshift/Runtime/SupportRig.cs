@@ -19,12 +19,13 @@ namespace Scrapshift
         public Transform AimingHead=>head;
         public Transform AnimatedAssembly=>facing;
         public Transform FirstLimb=>limbs.Count>0?limbs[0]:null;
+        public Transform Body=>body;
         public bool IsTurret=>head!=null;
         public static SupportRig Create(GameObject root,string kind,bool turret)
         {
             int animal=Array.IndexOf(new[]{"bonk_dog","catling_gun","blazemander","ratzilla","scapegoat"},kind);
             int gun=Array.IndexOf(new[]{"turret","flame","rocket","laser","healing"},kind);
-            if(turret?gun<0:animal<0&&kind!="doc_moth")return null;
+            if(turret?gun<0:animal<0&&Array.IndexOf(new[]{"doc_moth","bot_o_mine","lootworm","jellyshield"},kind)<0)return null;
             var rig=root.AddComponent<SupportRig>();rig.kind=kind;
             rig.source=root.GetComponent<SpriteRenderer>();rig.source.enabled=false;
             rig.unit=1/Mathf.Max(.0001f,root.transform.localScale.x);
@@ -50,25 +51,27 @@ namespace Scrapshift
             }
             else
             {
-                int leg=animal==0?13:animal==2?14:animal==3?15:12;
-                for(int i=0;i<(kind=="catling_gun"?0:4);i++)
-                {
-                    var pivot=new GameObject("Leg hip "+i).transform;pivot.SetParent(rig.facing,false);
-                    pivot.localPosition=new Vector3(i%2==0?-.13f:.12f,-.09f+(i<2?.015f:0),0);
-                    rig.Part(leg,"Paw",pivot,Vector2.zero,.19f,i<2?6:8);
-                    rig.limbs.Add(pivot);
-                }
-                rig.body=rig.Part(animal,"Pet body",rig.facing,new Vector2(0,.055f),.60f,7).transform;
-                if(kind=="catling_gun")
-                {
-                    foreach(Transform child in rig.body)DestroyImmediate(child.gameObject);
-                    var view=rig.body.GetComponent<SpriteRenderer>();view.sprite=CatBody();view.enabled=true;
-                    rig.body.localScale=Vector3.one*(.60f/Mathf.Max(view.sprite.bounds.size.x,view.sprite.bounds.size.y));
-                }
+                // Whole-body art keeps every paw, tail and attachment connected, as on the cat.
+                var sprite=kind=="catling_gun"?CatBody():SupportArt.Pet(kind);
+                var view=new GameObject("Pet body").AddComponent<SpriteRenderer>();
+                view.transform.SetParent(rig.facing,false);view.transform.localPosition=new Vector3(0,.055f,0);
+                view.sprite=sprite;view.sortingOrder=7;
+                view.transform.localScale=Vector3.one*(.60f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
+                rig.body=view.transform;
             }
             rig.views=rig.facing.GetComponentsInChildren<SpriteRenderer>();return rig;
         }
         static Sprite catBody;
+        public static Sprite GatlingGun()=>LoadStandalone("PetGatling");
+        static readonly Dictionary<string,Sprite> standalone=new Dictionary<string,Sprite>();
+        static Sprite LoadStandalone(string resource)
+        {
+            if(standalone.TryGetValue(resource,out var sprite))return sprite;
+            var texture=Resources.Load<Texture2D>(resource);var pixels=texture.GetPixels32();
+            int l=texture.width,b=texture.height,r=0,t=0;
+            for(int y=0;y<texture.height;y++)for(int x=0;x<texture.width;x++)if(pixels[y*texture.width+x].a>32){l=Mathf.Min(l,x);b=Mathf.Min(b,y);r=Mathf.Max(r,x+1);t=Mathf.Max(t,y+1);}
+            sprite=Sprite.Create(texture,Rect.MinMaxRect(l,b,r,t),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);sprite.name=resource;standalone[resource]=sprite;return sprite;
+        }
         static Sprite CatBody()
         {
             if(catBody!=null)return catBody;
@@ -145,12 +148,9 @@ namespace Scrapshift
                 float degrees=kind=="doc_moth"?(reduced?0:Mathf.Sin(phase*Mathf.PI*2)*30)*sign+(i<2?0:40*sign):stride*24*(i==0||i==3?1:-1);
                 limbs[i].localRotation=Quaternion.Euler(0,0,degrees);
             }
-            if(kind=="catling_gun")
-            {
-                // Reference move cycle: 2 Hz bounce and +/-1.8 degree body sway, no leg tracks.
-                body.localRotation=Quaternion.Euler(0,0,reduced||!moving||dead?0:-1.8f*Mathf.Sin(phase*Mathf.PI));
-            }
-            if(kind=="doc_moth")body.localPosition=new Vector3(0,reduced?0:Mathf.Sin(phase*Mathf.PI/3)*.035f,0);
+            if(body!=null)body.localRotation=Quaternion.Euler(0,0,reduced||!moving||dead?0:SupportMotion.PetSway(kind,phase));
+            float hover=!reduced&&!dead&&(kind=="doc_moth"||kind=="jellyshield")?Mathf.Sin(phase*Mathf.PI/3)*.035f:0;
+            facing.localPosition=Vector3.up*(hover*unit);
             foreach(var view in views){var c=dead?Color.gray:Color.white;c.a=view.color.a;view.color=c;}
         }
         public static Sprite GetPart(int index)

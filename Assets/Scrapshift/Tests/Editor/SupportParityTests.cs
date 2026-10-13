@@ -58,7 +58,7 @@ namespace Scrapshift.Tests
             }
             finally{Object.DestroyImmediate(root);}
         }
-        [TestCase("bonk_dog")][TestCase("blazemander")][TestCase("ratzilla")][TestCase("scapegoat")][TestCase("doc_moth")]
+        [TestCase("doc_moth")]
         public void PetLimbsAnimateAndReducedMotionRestoresRestPose(string kind)
         {
             var root=new GameObject("test pet");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet(kind);
@@ -68,6 +68,33 @@ namespace Scrapshift.Tests
                 rig.PetPose(.25f,true,false,false,false);Assert.Greater(Quaternion.Angle(first,rig.FirstLimb.localRotation),15);
                 rig.PetPose(.25f,true,false,true,false);Assert.Less(Quaternion.Angle(first,rig.FirstLimb.localRotation),.01f);
                 Assert.IsFalse(root.GetComponent<SpriteRenderer>().enabled);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
+        [TestCase("bonk_dog")][TestCase("blazemander")][TestCase("ratzilla")][TestCase("scapegoat")]
+        [TestCase("bot_o_mine")][TestCase("lootworm")][TestCase("jellyshield")]
+        public void CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(string kind)
+        {
+            var root=new GameObject(kind);root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet(kind);
+            try
+            {
+                var rig=SupportRig.Create(root,kind,false);Assert.IsNotNull(rig);Assert.IsNull(rig.FirstLimb);
+                Assert.AreSame(SupportArt.Pet(kind),rig.Body.GetComponent<SpriteRenderer>().sprite);
+                rig.PetPose(.5f,true,false,false,false);Assert.Greater(Quaternion.Angle(Quaternion.identity,rig.Body.localRotation),1);
+                rig.PetPose(.5f,true,true,true,false);Assert.AreEqual(Quaternion.identity,rig.Body.localRotation);
+                Assert.AreEqual(Vector3.zero,rig.AnimatedAssembly.localPosition);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
+        [Test] public void MothHoverMovesWingsAndBodyTogether()
+        {
+            var root=new GameObject("moth");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("doc_moth");
+            try
+            {
+                var rig=SupportRig.Create(root,"doc_moth",false);var bodyAt=rig.Body.localPosition;var wingAt=rig.FirstLimb.localPosition;
+                rig.PetPose(1,true,false,false,false);
+                Assert.AreEqual(bodyAt,rig.Body.localPosition);Assert.AreEqual(wingAt,rig.FirstLimb.localPosition);
+                Assert.Greater(rig.AnimatedAssembly.localPosition.y,0);
             }
             finally{Object.DestroyImmediate(root);}
         }
@@ -89,7 +116,7 @@ namespace Scrapshift.Tests
             var root=new GameObject("cat guns");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
             try
             {
-                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportArt.Structure("laser"));
+                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportRig.GatlingGun());
                 foreach(bool flip in new[]{false,true})
                 {
                     rig.PetPose(0,false,flip,false,false);rig.AimGun(0,Vector2.up);rig.AimGun(1,Vector2.left);
