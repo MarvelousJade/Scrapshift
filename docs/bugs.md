@@ -298,3 +298,5 @@ Removing the level-up inventory made its previous forced weapon-inspection test 
 UI follow-up: displaced grey Frame shadows made tiles look doubled/rough. Removed the shared offset shadow, retaining rounded dark borders. Pause menu lacked a complete inventory/timeline layout; now uses sorted tiles with a character entry and bottom dot progress. Codex compilation initially referenced a nonexistent weapons field; fixed to CatalogData.equipment.
 
 Colored card edge follow-up: Frame supplied a black outer perimeter before a colored inner border was added, leaving an unwanted black lip. Replaced the stacked construction with TierCard, one colored perimeter and a uniform inset fill.
+
+Rounded inventory focus: Inspect drew four white rectangular border strips over the rounded tile fill, creating square white corners. Replaced them with a rounded border-only draw (radius 8, width 2). The inspection fixture now applies forced focus to this outline too, so screenshot validation exercises the previously missed layer.

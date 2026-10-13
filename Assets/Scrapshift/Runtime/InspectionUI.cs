@@ -34,12 +34,12 @@ namespace Scrapshift
             }
             var entry=new InspectEntry{id=id,title=name,description=description,image=image,category=category,anchor=root,color=TierColor(tier)};
             inspectionEntries.Add(entry);
-            bool over=!inspectionReview&&root.Contains(lastInspectionMouse);
+            bool over=inspectionReview?forcedInspection==id:root.Contains(lastInspectionMouse);
             if(over&&!keyboardInspection){hoveredInspection=entry;focusedInspection=id;}
             if(over&&!keyboardInspection||keyboardInspection&&focusedInspection==id)
             {
-                var c=paper;Box(new Rect(local.x,local.y,local.width,2),c);Box(new Rect(local.x,local.yMax-2,local.width,2),c);
-                Box(new Rect(local.x,local.y,2,local.height),c);Box(new Rect(local.xMax-2,local.y,2,local.height),c);
+                // Match the tile corners; four rectangular strips left square white corners.
+                GUI.DrawTexture(local,Texture2D.whiteTexture,ScaleMode.StretchToFill,true,0,paper,2,8);
             }
         }
         void InspectWeapon(string id,Equipment w,Rect r,Rect? clip=null,Vector2 scroll=default)
