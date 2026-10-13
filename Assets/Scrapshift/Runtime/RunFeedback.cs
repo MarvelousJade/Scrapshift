@@ -16,7 +16,7 @@ namespace Scrapshift
         {
             waveSweepAge+=dt;
             float scale=PresentationLayout.CanvasScale(Screen.width,Screen.height);
-            Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-122.5f*scale,20));
+            Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-140.5f*scale,20));
             for(int i=pickups.Count-1;i>=0;i--)
             {
                 var pickup=pickups[i];Vector2 to=pickup.fruit?playerPos:(Vector2)target;
@@ -34,20 +34,20 @@ namespace Scrapshift
             float age=waveSweeping?waveSweepAge-moneyArrivalTime:10;
             float pulse=age<.32f?Mathf.Sin(age/.32f*Mathf.PI)*.16f:0;
             var matrix=GUI.matrix;
-            if(!reducedMotion)GUIUtility.ScaleAroundPivot(Vector2.one*(1+pulse),new Vector2(48,122));
-            DrawIcon(catalog.scrapShapes[0],new Rect(26,105,30,35));
-            OutlinedText(67,96,160,51,Rules.Scrap.ToString(),number);
+            if(!reducedMotion)GUIUtility.ScaleAroundPivot(Vector2.one*(1+pulse),new Vector2(48,140));
+            DrawIcon(catalog.scrapShapes[0],new Rect(26,123,30,35));
+            OutlinedText(67,114,160,51,Rules.Scrap.ToString(),number);
             GUI.matrix=matrix;
             if(age<.7f&&moneyArrivalAmount>0)
             {
                 var gain=new GUIStyle(body){fontSize=25,normal={textColor=new Color(.4f,1,.2f,1-age/.7f)}};
-                OutlinedText(180,122-(reducedMotion?0:age*38),180,36,"+"+moneyArrivalAmount,gain);
+                OutlinedText(180,140-(reducedMotion?0:age*38),180,36,"+"+moneyArrivalAmount,gain);
             }
         }
         void DrawStoredMaterials()
         {
-            DrawStatIcon("harvesting",new Rect(23,147,40,40));
-            OutlinedText(67,141,170,51,Rules.Stat("harvesting").ToString("0"),number);
+            DrawStatIcon("harvesting",new Rect(23,165,40,40));
+            OutlinedText(67,159,170,51,Rules.Stat("harvesting").ToString("0"),number);
             if(waveSweeping&&waveSweepAge>1.1f&&Rules.Stat("harvesting")!=0)
                 OutlinedText(28,245,280,38,"Harvesting "+Rules.Stat("harvesting").ToString("+0;-0"),body);
         }

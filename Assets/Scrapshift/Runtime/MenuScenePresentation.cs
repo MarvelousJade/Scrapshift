@@ -50,7 +50,7 @@ namespace Scrapshift
         {
             var old=GUI.color;GUI.color=new Color(0,0,0,.30f);
             DrawIcon(catalog.shadow,new Rect(origin.x-scale*.44f,origin.y+scale*.42f,scale*.88f,scale*.20f));GUI.color=old;
-            // The same idle pose as SpriteFrameAnimator: fixed feet, body-only spring.
+            // The same idle pose as SpriteFrameAnimator: body spring with small matching leg flex.
             Portrait(origin,scale,playerAnimation.Look,false,MenuTime);
         }
         void TitleScene()

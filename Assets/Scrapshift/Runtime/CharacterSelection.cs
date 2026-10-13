@@ -28,10 +28,10 @@ namespace Scrapshift
         void CharacterGrid()
         {
             string lockedDescription=null;
-            const int columns=13;const float step=70;
+            const int columns=17;float step=Mathf.Min(88,(FullCanvas.width-114)/columns);
             for(int slot=0;slot<=catalog.data.rosterSlots;slot++)
             {
-                var r=new Rect(265+slot%columns*step,598+slot/columns*66,60,58);
+                var r=new Rect(FullCanvas.xMin+57+slot%columns*step,603+slot/columns*88,step-8,80);
                 if(slot==0)
                 {
                     if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)randomCharacter=true;
@@ -76,18 +76,19 @@ namespace Scrapshift
         void CharacterDetails(float left)
         {
             string name=randomCharacter&&menuPage==1?"Random":SelectedCharacter.title;
-            Text(left+20,164,530,58,name,new GUIStyle(heading){fontSize=40,alignment=TextAnchor.MiddleCenter});
-            Frame(new Rect(left+20,244,180,245),new Color(.32f,.29f,.25f));
-            DrawMenuGround(new Rect(left+25,249,170,235),true);
-            if(randomCharacter&&menuPage==1)Text(left+20,300,180,120,"?",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
-            else AnimatedMenuPortrait(new Vector2(left+110,370),100);
+            Text(left+20,164,menuPage==1?597:530,58,name,new GUIStyle(heading){fontSize=40,alignment=TextAnchor.MiddleCenter});
+            float portraitWidth=menuPage==1?225:180,portraitHeight=menuPage==1?250:245;
+            Frame(new Rect(left+20,229,portraitWidth,portraitHeight),new Color(.32f,.29f,.25f));
+            DrawMenuGround(new Rect(left+25,234,portraitWidth-10,portraitHeight-10),true);
+            if(randomCharacter&&menuPage==1)Text(left+20,300,portraitWidth,120,"?",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
+            else AnimatedMenuPortrait(new Vector2(left+20+portraitWidth/2,354),menuPage==1?70:100);
             string details=randomCharacter&&menuPage==1?"Choose an unlocked\ncharacter at random.":SelectedCharacter.description;
-            if(randomCharacter&&menuPage==1)Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
-            else DrawCharacterEffects(SelectedCharacter,left+220,246,328);
+            if(randomCharacter&&menuPage==1)Text(left+portraitWidth+40,229,menuPage==1?357:326,300,details,new GUIStyle(body){fontSize=20});
+            else DrawCharacterEffects(SelectedCharacter,left+portraitWidth+40,229,menuPage==1?350:328);
             if(!(randomCharacter&&menuPage==1)&&SelectedCharacter.weaponSlots>1&&!string.IsNullOrEmpty(SelectedCharacter.DefaultWeapon))
             {
-                RoundedBox(new Rect(left+20,499,180,61),new Color(.35f,.32f,.29f),8);
-                var r=new Rect(left+146,505,48,49);RoundedBox(r,panelColor,5);
+                RoundedBox(new Rect(left+20,494,portraitWidth,66),new Color(.35f,.32f,.29f),8);
+                var r=new Rect(left+portraitWidth-34,501,48,49);RoundedBox(r,panelColor,5);
                 DrawIcon((catalog.Weapon(SelectedCharacter.DefaultWeapon,SelectedCharacter.bonusTier)??SelectedWeapon)?.image,new Rect(r.x+4,r.y+4,40,41));
             }
         }

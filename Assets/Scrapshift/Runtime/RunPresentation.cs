@@ -79,18 +79,18 @@ namespace Scrapshift
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false,float motionTime=-1)
         {
             var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>());
+            var spring=motionTime>=0?SpringMotion.Pose(motionTime,false,reducedMotion):new Vector3(1,1,0);
             if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
             {
                 var sprite=playerAnimation.footSprite;Vector2 size=sprite.bounds.size*(SpringMotion.LegHeight/sprite.bounds.size.y)*scale;
-                Vector2 p=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
+                Vector2 p=origin+new Vector2(side*SpringMotion.LegSpread*spring.x,-SpringMotion.LegY+spring.z*.3f)*scale;
                 var before=GUI.matrix;
-                GUI.matrix=before*SpringMotion.PortraitLegTransform(p,side);
+                GUI.matrix=before*Matrix4x4.TRS(p,Quaternion.Euler(0,0,side*(spring.x-1)*35),Vector3.one)*Matrix4x4.Translate(-p)*SpringMotion.PortraitLegTransform(p,side);
                 DrawIcon(sprite,new Rect(p-size*.5f,size));GUI.matrix=before;
             }
             var portraitMatrix=GUI.matrix;
             if(motionTime>=0)
             {
-                var spring=SpringMotion.Pose(motionTime,false,reducedMotion);
                 GUI.matrix=portraitMatrix*Matrix4x4.TRS(origin+Vector2.down*(-spring.z*scale),Quaternion.identity,new Vector3(spring.x,spring.y,1))*Matrix4x4.Translate(-origin);
             }
             foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,origin,scale);
@@ -108,18 +108,25 @@ namespace Scrapshift
             }
             OutlinedText(250,48,940,78,menuPage==1?"Character Selection":menuPage==2?"Weapon Selection":"Difficulty Selection",new GUIStyle(title){fontSize=49,alignment=TextAnchor.MiddleCenter});
             if(MenuButton(new Rect(24,24,178,44),"Back"))menuPage--;
-            float left=menuPage==1?335:menuPage==3?40:210;
-            float cardWidth=570;
+            float left=menuPage==1?97:menuPage==3?40:210;
+            float cardWidth=menuPage==1?637:570;
             RoundedBox(new Rect(left,155,cardWidth,420),new Color(.16f,.15f,.13f,.82f));
             CharacterDetails(left);
             if(menuPage==1)
             {
-                RoundedBox(new Rect(935,155,230,420),panelColor);
-                Text(955,184,190,40,"Run options",new GUIStyle(heading){fontSize=24,wordWrap=false});
-                Text(957,250,185,80,"Single player\n20 waves",body);
-                Text(955,345,190,35,"Map",body);
-                if(MenuButton(new Rect(950,390,200,65),MapChoiceName,fontSize:22))ChooseMap(mapChoice>=MapThemes.Names.Length-1?-1:mapChoice+1);
-                Text(955,470,190,65,"Click to change",new GUIStyle(body){fontSize=18});
+                RoundedBox(new Rect(737,155,300,417),panelColor);
+                RoundedBox(new Rect(864,250,48,57),paper,5);
+                RoundedBox(new Rect(858,246,60,12),paper,5);
+                for(int line=0;line<3;line++)RoundedBox(new Rect(874,269+line*10,28,3),Color.black,1);
+                Text(757,330,260,45,"Records",new GUIStyle(center){fontSize=26});
+                string record=randomCharacter?"Select a character":progress.Completed("chal_"+SelectedCharacter.id)?"Run completed":"None yet";
+                Text(757,399,260,75,record,new GUIStyle(center){fontSize=22});
+                RoundedBox(new Rect(1077,155,267,417),panelColor);
+                Text(1092,184,237,40,"Run Options",new GUIStyle(center){fontSize=24});
+                RoundedBox(new Rect(1102,240,217,65),Color.black,8);
+                Text(1112,250,197,45,"Single player",new GUIStyle(center){fontSize=23});
+                RoundedBox(new Rect(1102,315,217,65),Color.black,8);
+                Text(1112,325,197,45,"20 waves",new GUIStyle(center){fontSize=23});
                 CharacterGrid();
             }
             else
