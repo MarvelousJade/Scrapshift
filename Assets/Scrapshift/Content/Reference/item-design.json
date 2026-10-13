@@ -392,6 +392,32 @@
       "conditionalEffects": []
     },
     {
+      "id": "bait",
+      "title": "Bait",
+      "available": true,
+      "tier": 2,
+      "value": 25,
+      "tags": [
+        "stat_percent_damage",
+        "number_of_enemies"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 8
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "bait",
+          "value": 1,
+          "customKey": "extra_enemies_next_wave"
+        }
+      ]
+    },
+    {
       "id": "ball_and_chain",
       "title": "Ball And Chain",
       "available": true,
@@ -660,6 +686,96 @@
       "conditionalEffects": []
     },
     {
+      "id": "blazemander",
+      "title": "Blazemander",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_elemental_damage",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "blazemander",
+            "speed": 4.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 1,
+              "interval": 0.36666666666666664,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [
+                {
+                  "key": "elemental_damage",
+                  "value": 0.01
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "secondary": {
+              "damage": 1,
+              "interval": 4.0,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 99,
+              "spread": 3.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "elemental_damage",
+                  "value": 0.01
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 6.0,
+              "pierceLoss": 1.0,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.05,
+              "recoilHalf": 0.02
+            },
+            "burn": {
+              "burnDamage": 3,
+              "burnTicks": 5,
+              "burnChance": 1.0,
+              "burnScale": 0.5,
+              "burnStat": "elemental_damage"
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "blindfold",
       "title": "Blindfold",
       "available": true,
@@ -802,6 +918,91 @@
       "conditionalEffects": []
     },
     {
+      "id": "bonk_dog",
+      "title": "Bonk Dog",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_melee_damage",
+        "explosive",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "bonk_dog",
+            "speed": 4.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 10,
+              "interval": 0.4666666666666667,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [
+                {
+                  "key": "melee_damage",
+                  "value": 0.6
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "secondary": {
+              "damage": 8,
+              "interval": 5.0,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [
+                {
+                  "key": "melee_damage",
+                  "value": 0.4
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "explosionRadius": 2.2101
+          }
+        }
+      ]
+    },
+    {
       "id": "book",
       "title": "Book",
       "available": true,
@@ -830,6 +1031,101 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "bot_o_mine",
+      "title": "Bot O Mine",
+      "available": false,
+      "tier": 2,
+      "value": 55,
+      "tags": [
+        "stat_engineering",
+        "pet",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "bot_o_mine",
+            "speed": 2.0,
+            "health": 1,
+            "healthGrowth": 1.0,
+            "structure": true,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 10,
+              "interval": 0.5333333333333333,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.1,
+              "recoilHalf": 0.05
+            },
+            "mine": {
+              "kind": "landmine",
+              "stats": {
+                "damage": 10,
+                "interval": 0.03333333333333333,
+                "range": 0.0,
+                "pellets": 1,
+                "piercing": 0,
+                "spread": 0.0,
+                "crit": 0.0,
+                "critMultiplier": 2.0,
+                "knockback": 0.0,
+                "scaling": [
+                  {
+                    "key": "engineering",
+                    "value": 1.0
+                  }
+                ],
+                "lifesteal": 0.0,
+                "projectileSpeed": 30.0,
+                "pierceLoss": 0.5,
+                "bounce": 0,
+                "bounceLoss": 0.5,
+                "reloadEvery": -1,
+                "reloadMultiplier": -1.0,
+                "recoil": 0.25,
+                "recoilHalf": 0.1
+              },
+              "spawnInterval": 300,
+              "animationSpeed": 1,
+              "accuracy": 1.0,
+              "explosionRadius": 2.57845,
+              "delayed": false,
+              "healing": false,
+              "pet": true
+            },
+            "mineInterval": 5.0
+          }
+        }
+      ]
     },
     {
       "id": "bowler_hat",
@@ -959,6 +1255,99 @@
       "conditionalEffects": []
     },
     {
+      "id": "campfire",
+      "title": "Campfire",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_elemental_damage",
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 2
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2
+        },
+        {
+          "key": "stat_speed",
+          "value": -2
+        },
+        {
+          "key": "fog_visibility",
+          "value": 50
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "candle",
+      "title": "Candle",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_elemental_damage",
+        "stat_hp_regeneration",
+        "less_enemies"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 4
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1
+        },
+        {
+          "key": "number_of_enemies",
+          "value": -10
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        },
+        {
+          "key": "fog_visibility",
+          "value": 25
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "candy_bag",
+      "title": "Candy Bag",
+      "available": false,
+      "tier": 3,
+      "value": 70,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "extra_elite_next_wave_chance",
+          "value": 10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "gain_random_primary_stats_on_go_to_next_wave",
+          "value": 8,
+          "customKey": "gain_random_primary_stats_on_go_to_next_wave",
+          "per": 100
+        }
+      ]
+    },
+    {
       "id": "cape",
       "title": "Cape",
       "available": true,
@@ -993,6 +1382,63 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "catling_gun",
+      "title": "Catling Gun",
+      "available": false,
+      "tier": 2,
+      "value": 34,
+      "tags": [
+        "pet",
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "catling_gun",
+            "speed": 1.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 10,
+              "interval": 0.9166666666666666,
+              "range": 5.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "ranged_damage",
+                  "value": 0.6
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.1,
+              "recoilHalf": 0.05
+            }
+          }
+        }
+      ]
     },
     {
       "id": "celery_tea",
@@ -1522,6 +1968,38 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "doc_moth",
+      "title": "Doc Moth",
+      "available": false,
+      "tier": 2,
+      "value": 55,
+      "tags": [
+        "stat_hp_regeneration",
+        "stat_lifesteal",
+        "pet"
+      ],
+      "maxCount": 4,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "doc_moth",
+            "speed": 1.5,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2.0
+          }
+        }
+      ]
     },
     {
       "id": "duct_tape",
@@ -2292,6 +2770,32 @@
       "conditionalEffects": []
     },
     {
+      "id": "greek_fire",
+      "title": "Greek Fire",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "fog_visibility",
+          "value": 75
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "burning_enemy_hp_percent_damage",
+          "value": 10,
+          "customKey": "burning_enemy_hp_percent_damage",
+          "per": 1
+        }
+      ]
+    },
+    {
       "id": "grinds_magical_leaf",
       "title": "Grinds Magical Leaf",
       "available": true,
@@ -2545,6 +3049,48 @@
       "conditionalEffects": []
     },
     {
+      "id": "broken_hourglass",
+      "title": "Broken Hourglass",
+      "available": true,
+      "tier": 4,
+      "value": 1,
+      "tags": [],
+      "maxCount": 0,
+      "groups": [],
+      "effects": [
+        {
+          "key": "",
+          "value": 0
+        },
+        {
+          "key": "hp_start_next_wave",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "hourglass",
+      "title": "Hourglass",
+      "available": false,
+      "tier": 4,
+      "value": 100,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "item_hourglass",
+          "value": 1
+        },
+        {
+          "key": "hp_start_next_wave",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "hunting_trophy",
       "title": "Hunting Trophy",
       "available": false,
@@ -2682,6 +3228,31 @@
           "customKey": "unique_weapon_effects",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "jellyshield",
+      "title": "Jellyshield",
+      "available": false,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "pet"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "jellyshield_count",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 0,
+          "customKey": "pet"
         }
       ]
     },
@@ -2904,6 +3475,59 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "lootworm",
+      "title": "Lootworm",
+      "available": false,
+      "tier": 1,
+      "value": 30,
+      "tags": [
+        "economy",
+        "pickup",
+        "pet"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "lootworm",
+            "speed": 2.5,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0.1,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 1,
+              "interval": 0.08333333333333333,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            }
+          }
+        }
+      ]
     },
     {
       "id": "lost_duck",
@@ -3871,6 +4495,63 @@
       "conditionalEffects": []
     },
     {
+      "id": "ratzilla",
+      "title": "Ratzilla",
+      "available": true,
+      "tier": 1,
+      "value": 30,
+      "tags": [
+        "stat_max_hp",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "ratzilla",
+            "speed": 5.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 4,
+              "interval": 0.4166666666666667,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.1,
+              "scaling": [
+                {
+                  "key": "max_hp",
+                  "value": 0.1
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "recycling_machine",
       "title": "Recycling Machine",
       "available": true,
@@ -4140,6 +4821,36 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "scapegoat",
+      "title": "Scapegoat",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "pet"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "scapegoat",
+            "speed": 1.7,
+            "health": 40,
+            "healthGrowth": 0.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2.0,
+            "zone": 2
+          }
+        }
+      ]
     },
     {
       "id": "scar",

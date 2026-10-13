@@ -23,7 +23,7 @@ namespace Scrapshift
         {
             if(Phase!=RunPhase.Playing || lifeStealCooldown>1e-7 || roll>=Mathf.Clamp01(Stat("lifesteal")/100+weaponBonus))return false;
             lifeStealCooldown=.1;
-            float before=Health;Heal(1);return Health>before;
+            float before=Health;Heal(HealingDrones>0?2:1);return Health>before;
         }
     }
 }

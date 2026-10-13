@@ -1,5 +1,5 @@
 {
-  "supportedItems": 193,
+  "supportedItems": 209,
   "items": [
     {
       "id": "acid",
@@ -393,6 +393,32 @@
       "conditionalEffects": []
     },
     {
+      "id": "bait",
+      "title": "Bait",
+      "available": true,
+      "tier": 2,
+      "value": 25,
+      "tags": [
+        "stat_percent_damage",
+        "number_of_enemies"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 8
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "bait",
+          "value": 1,
+          "customKey": "extra_enemies_next_wave"
+        }
+      ]
+    },
+    {
       "id": "ball_and_chain",
       "title": "Ball And Chain",
       "available": true,
@@ -661,6 +687,96 @@
       "conditionalEffects": []
     },
     {
+      "id": "blazemander",
+      "title": "Blazemander",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_elemental_damage",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "blazemander",
+            "speed": 4.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 1,
+              "interval": 0.36666666666666664,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [
+                {
+                  "key": "elemental_damage",
+                  "value": 0.01
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "secondary": {
+              "damage": 1,
+              "interval": 4.0,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 99,
+              "spread": 3.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "elemental_damage",
+                  "value": 0.01
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 6.0,
+              "pierceLoss": 1.0,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.05,
+              "recoilHalf": 0.02
+            },
+            "burn": {
+              "burnDamage": 3,
+              "burnTicks": 5,
+              "burnChance": 1.0,
+              "burnScale": 0.5,
+              "burnStat": "elemental_damage"
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "blindfold",
       "title": "Blindfold",
       "available": true,
@@ -803,6 +919,91 @@
       "conditionalEffects": []
     },
     {
+      "id": "bonk_dog",
+      "title": "Bonk Dog",
+      "available": false,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_melee_damage",
+        "explosive",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "bonk_dog",
+            "speed": 4.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 10,
+              "interval": 0.4666666666666667,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [
+                {
+                  "key": "melee_damage",
+                  "value": 0.6
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "secondary": {
+              "damage": 8,
+              "interval": 5.0,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [
+                {
+                  "key": "melee_damage",
+                  "value": 0.4
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            },
+            "explosionRadius": 2.2101
+          }
+        }
+      ]
+    },
+    {
       "id": "book",
       "title": "Book",
       "available": true,
@@ -831,6 +1032,101 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "bot_o_mine",
+      "title": "Bot O Mine",
+      "available": false,
+      "tier": 2,
+      "value": 55,
+      "tags": [
+        "stat_engineering",
+        "pet",
+        "structure"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "bot_o_mine",
+            "speed": 2.0,
+            "health": 1,
+            "healthGrowth": 1.0,
+            "structure": true,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 10,
+              "interval": 0.5333333333333333,
+              "range": 3.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "engineering",
+                  "value": 1.0
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.1,
+              "recoilHalf": 0.05
+            },
+            "mine": {
+              "kind": "landmine",
+              "stats": {
+                "damage": 10,
+                "interval": 0.03333333333333333,
+                "range": 0.0,
+                "pellets": 1,
+                "piercing": 0,
+                "spread": 0.0,
+                "crit": 0.0,
+                "critMultiplier": 2.0,
+                "knockback": 0.0,
+                "scaling": [
+                  {
+                    "key": "engineering",
+                    "value": 1.0
+                  }
+                ],
+                "lifesteal": 0.0,
+                "projectileSpeed": 30.0,
+                "pierceLoss": 0.5,
+                "bounce": 0,
+                "bounceLoss": 0.5,
+                "reloadEvery": -1,
+                "reloadMultiplier": -1.0,
+                "recoil": 0.25,
+                "recoilHalf": 0.1
+              },
+              "spawnInterval": 300,
+              "animationSpeed": 1,
+              "accuracy": 1.0,
+              "explosionRadius": 2.57845,
+              "delayed": false,
+              "healing": false,
+              "pet": true
+            },
+            "mineInterval": 5.0
+          }
+        }
+      ]
     },
     {
       "id": "bowler_hat",
@@ -960,6 +1256,99 @@
       "conditionalEffects": []
     },
     {
+      "id": "campfire",
+      "title": "Campfire",
+      "available": true,
+      "tier": 2,
+      "value": 40,
+      "tags": [
+        "stat_elemental_damage",
+        "stat_hp_regeneration"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 2
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 2
+        },
+        {
+          "key": "stat_speed",
+          "value": -2
+        },
+        {
+          "key": "fog_visibility",
+          "value": 50
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "candle",
+      "title": "Candle",
+      "available": true,
+      "tier": 3,
+      "value": 65,
+      "tags": [
+        "stat_elemental_damage",
+        "stat_hp_regeneration",
+        "less_enemies"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "stat_elemental_damage",
+          "value": 4
+        },
+        {
+          "key": "stat_hp_regeneration",
+          "value": 1
+        },
+        {
+          "key": "number_of_enemies",
+          "value": -10
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -5
+        },
+        {
+          "key": "fog_visibility",
+          "value": 25
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "candy_bag",
+      "title": "Candy Bag",
+      "available": false,
+      "tier": 3,
+      "value": 70,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "extra_elite_next_wave_chance",
+          "value": 10
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "gain_random_primary_stats_on_go_to_next_wave",
+          "value": 8,
+          "customKey": "gain_random_primary_stats_on_go_to_next_wave",
+          "per": 100
+        }
+      ]
+    },
+    {
       "id": "cape",
       "title": "Cape",
       "available": true,
@@ -994,6 +1383,63 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "catling_gun",
+      "title": "Catling Gun",
+      "available": false,
+      "tier": 2,
+      "value": 34,
+      "tags": [
+        "pet",
+        "stat_ranged_damage"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "catling_gun",
+            "speed": 1.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 10,
+              "interval": 0.9166666666666666,
+              "range": 5.0,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0.0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.0,
+              "scaling": [
+                {
+                  "key": "ranged_damage",
+                  "value": 0.6
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.1,
+              "recoilHalf": 0.05
+            }
+          }
+        }
+      ]
     },
     {
       "id": "celery_tea",
@@ -1523,6 +1969,38 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "doc_moth",
+      "title": "Doc Moth",
+      "available": false,
+      "tier": 2,
+      "value": 55,
+      "tags": [
+        "stat_hp_regeneration",
+        "stat_lifesteal",
+        "pet"
+      ],
+      "maxCount": 4,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "doc_moth",
+            "speed": 1.5,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2.0
+          }
+        }
+      ]
     },
     {
       "id": "duct_tape",
@@ -2293,6 +2771,32 @@
       "conditionalEffects": []
     },
     {
+      "id": "greek_fire",
+      "title": "Greek Fire",
+      "available": true,
+      "tier": 4,
+      "value": 100,
+      "tags": [
+        "stat_elemental_damage"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "fog_visibility",
+          "value": 75
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "burning_enemy_hp_percent_damage",
+          "value": 10,
+          "customKey": "burning_enemy_hp_percent_damage",
+          "per": 1
+        }
+      ]
+    },
+    {
       "id": "grinds_magical_leaf",
       "title": "Grinds Magical Leaf",
       "available": true,
@@ -2546,6 +3050,48 @@
       "conditionalEffects": []
     },
     {
+      "id": "broken_hourglass",
+      "title": "Broken Hourglass",
+      "available": true,
+      "tier": 4,
+      "value": 1,
+      "tags": [],
+      "maxCount": 0,
+      "groups": [],
+      "effects": [
+        {
+          "key": "",
+          "value": 0
+        },
+        {
+          "key": "hp_start_next_wave",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
+      "id": "hourglass",
+      "title": "Hourglass",
+      "available": false,
+      "tier": 4,
+      "value": 100,
+      "tags": [],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [
+        {
+          "key": "item_hourglass",
+          "value": 1
+        },
+        {
+          "key": "hp_start_next_wave",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": []
+    },
+    {
       "id": "hunting_trophy",
       "title": "Hunting Trophy",
       "available": false,
@@ -2683,6 +3229,31 @@
           "customKey": "unique_weapon_effects",
           "interval": 1,
           "resetOnHit": false
+        }
+      ]
+    },
+    {
+      "id": "jellyshield",
+      "title": "Jellyshield",
+      "available": false,
+      "tier": 3,
+      "value": 50,
+      "tags": [
+        "pet"
+      ],
+      "maxCount": 3,
+      "groups": [],
+      "effects": [
+        {
+          "key": "jellyshield_count",
+          "value": 1
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 0,
+          "customKey": "pet"
         }
       ]
     },
@@ -2905,6 +3476,59 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "lootworm",
+      "title": "Lootworm",
+      "available": false,
+      "tier": 1,
+      "value": 30,
+      "tags": [
+        "economy",
+        "pickup",
+        "pet"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "lootworm",
+            "speed": 2.5,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0.1,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 1,
+              "interval": 0.08333333333333333,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.2,
+              "scaling": [],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            }
+          }
+        }
+      ]
     },
     {
       "id": "lost_duck",
@@ -3872,6 +4496,63 @@
       "conditionalEffects": []
     },
     {
+      "id": "ratzilla",
+      "title": "Ratzilla",
+      "available": true,
+      "tier": 1,
+      "value": 30,
+      "tags": [
+        "stat_max_hp",
+        "pet"
+      ],
+      "maxCount": -1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "ratzilla",
+            "speed": 5.0,
+            "health": 10,
+            "healthGrowth": 2.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2,
+            "zone": 2,
+            "stats": {
+              "damage": 4,
+              "interval": 0.4166666666666667,
+              "range": 1.5,
+              "pellets": 1,
+              "piercing": 0,
+              "spread": 0,
+              "crit": 0.0,
+              "critMultiplier": 1.5,
+              "knockback": 0.1,
+              "scaling": [
+                {
+                  "key": "max_hp",
+                  "value": 0.1
+                }
+              ],
+              "lifesteal": 0.0,
+              "projectileSpeed": 30.0,
+              "pierceLoss": 0.5,
+              "bounce": 0,
+              "bounceLoss": 0.5,
+              "reloadEvery": -1,
+              "reloadMultiplier": -1.0,
+              "recoil": 0.25,
+              "recoilHalf": 0.1
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "recycling_machine",
       "title": "Recycling Machine",
       "available": true,
@@ -4141,6 +4822,36 @@
         }
       ],
       "conditionalEffects": []
+    },
+    {
+      "id": "scapegoat",
+      "title": "Scapegoat",
+      "available": false,
+      "tier": 4,
+      "value": 110,
+      "tags": [
+        "pet"
+      ],
+      "maxCount": 1,
+      "groups": [],
+      "effects": [],
+      "conditionalEffects": [
+        {
+          "key": "pet",
+          "value": 1,
+          "customKey": "pet",
+          "pet": {
+            "kind": "scapegoat",
+            "speed": 1.7,
+            "health": 40,
+            "healthGrowth": 0.0,
+            "structure": false,
+            "doubleChance": 0,
+            "revive": 2.0,
+            "zone": 2
+          }
+        }
+      ]
     },
     {
       "id": "scar",
@@ -6075,6 +6786,18 @@
       "sha256": "30acd05f109020b7fa0c5c9c26c6d303600add7d56f9885d5274d70df83e720b"
     },
     {
+      "path": "items/all/bait/bait_data.tres",
+      "sha256": "3a57535977157732324f0ecfc5d8ea86f53326da1345c5ccf75a0185429ed7b7"
+    },
+    {
+      "path": "items/all/bait/bait_effect_1.tres",
+      "sha256": "ec505cf25c899f38cdc76f29ac6bf932e98beaf0fd11ea844498ba993d69278b"
+    },
+    {
+      "path": "items/all/bait/bait_effect_2.tres",
+      "sha256": "20a149a39dc361d299d2967e007f8265285d65cc14819c8b4e8a0af092050da0"
+    },
+    {
       "path": "items/all/ball_and_chain/ball_and_chain_data.tres",
       "sha256": "3b55a2eff171a96efff24b0d995642b8169cf05a69195a7a44076de930b476f4"
     },
@@ -6223,6 +6946,14 @@
       "sha256": "679aeabaa2af269f9e3de667c84379dc0f78523719ad915092d361af05be1b6f"
     },
     {
+      "path": "items/all/blazemander/blazemander.tres",
+      "sha256": "f5d3d3fbacff0b967655989585cdbdc2cde6b6e43243a32c54a577c1a0f3629a"
+    },
+    {
+      "path": "items/all/blazemander/blazemander_effect_0.tres",
+      "sha256": "df462bf94c8fc3943dc7f56963d7be09300db0ec17dbe1856052c82ea32dd1ac"
+    },
+    {
       "path": "items/all/blindfold/blindfold_data.tres",
       "sha256": "2ed610043b0aca40d344c253d3d9cd1bd4f9fea73dd1e4eb61fabc2e4dadbc55"
     },
@@ -6295,6 +7026,14 @@
       "sha256": "03418fa9dc34956f451d24d2f7aababa58addea63e2792aee584c1264e8ea6fa"
     },
     {
+      "path": "items/all/bonk_dog/bonk_dog.tres",
+      "sha256": "800f7b8bd0067c7cfbaacec22f9cbb7069b448d0812f951378ba852b80d430a8"
+    },
+    {
+      "path": "items/all/bonk_dog/bonk_dog_effect_0.tres",
+      "sha256": "197c708bf33b23ea947b259f28653482f79ec74066e2d6fd7577bae850f5137f"
+    },
+    {
       "path": "items/all/book/book_data.tres",
       "sha256": "432a5333021fd183694477dd899ccc66dd1b28ce500fac7a2e4415c7105debb0"
     },
@@ -6309,6 +7048,14 @@
     {
       "path": "items/all/book/book_effect_3.tres",
       "sha256": "8ab742d19727f2c6afd5cf48018668156a57e10a4475dac25abf2369e1804cee"
+    },
+    {
+      "path": "items/all/bot_o_mine/bot_o_mine.tres",
+      "sha256": "4d955ff87e1a6d9a7f9f3a128b7186806ef10556c60c183c73a8f6bed069b9a2"
+    },
+    {
+      "path": "items/all/bot_o_mine/bot_o_mine_effect_0.tres",
+      "sha256": "e0ae65621affe64bf49fdb16a9f0cc07f23408f4cb330d80fd3151b379b76734"
     },
     {
       "path": "items/all/bowler_hat/bowler_hat_data.tres",
@@ -6379,6 +7126,62 @@
       "sha256": "4d0ebd090545e4bd6c6760f358066ce79fbc9b5876c15f94fd85d81ca58e30df"
     },
     {
+      "path": "items/all/campfire/campfire_data.tres",
+      "sha256": "acc476f2aa449ca798298efe6a800a66216f30923057d9e879db3fe6c2e280d0"
+    },
+    {
+      "path": "items/all/campfire/campfire_effect_1.tres",
+      "sha256": "5b4e08bcd4299b37059fdae6c6bd5f610b9a8c0df7dbfb10f7296f6cae6f06f4"
+    },
+    {
+      "path": "items/all/campfire/campfire_effect_2.tres",
+      "sha256": "346061d8d417bc937288c35fde74f6e73f5e3382878eb255a46069be6ce71bf1"
+    },
+    {
+      "path": "items/all/campfire/campfire_effect_3.tres",
+      "sha256": "82d65e1ec4ba41e579cf86e1883f025d40accb53487eca56ca2fda14a8e92a57"
+    },
+    {
+      "path": "items/all/campfire/campfire_effect_4.tres",
+      "sha256": "011b01b0880f83942b648ffbc3ca9e6e208fa775aba5b26a793819f6757195b9"
+    },
+    {
+      "path": "items/all/candle/candle_data.tres",
+      "sha256": "89c74d4ff84875efd7f9c2616832dfcf7f58447457b4dc915fbb173c878a9572"
+    },
+    {
+      "path": "items/all/candle/candle_effect_1.tres",
+      "sha256": "90a9a58d2d105b658897544728e74964a919a7bfee6a4564ed8714bd0cc7eb08"
+    },
+    {
+      "path": "items/all/candle/candle_effect_2.tres",
+      "sha256": "3c212818f966fd0564e355f6de1bbd309aaf4f3faf32679f65cc40e3358bead6"
+    },
+    {
+      "path": "items/all/candle/candle_effect_3.tres",
+      "sha256": "7cd3627f865b27244dee229d0e9df313f47a2c3c20d451d33b7270caf7694412"
+    },
+    {
+      "path": "items/all/candle/candle_effect_4.tres",
+      "sha256": "34a88a6b25ccc935665196e8a99474a92ceea23caed51115e79633c3e56b187f"
+    },
+    {
+      "path": "items/all/candle/candle_effect_5.tres",
+      "sha256": "0b670c9deb1acc25758205e348cd4a0ccffbea66761f0f285ecbf3e631c4f41f"
+    },
+    {
+      "path": "items/all/candy_bag/candy_bag_data.tres",
+      "sha256": "165b4e2f1b9d11546c241ca1c5d1cb9110c91fc2e09dc32106d033f1b0353575"
+    },
+    {
+      "path": "items/all/candy_bag/candy_bag_effect_0.tres",
+      "sha256": "c2e636b93b2c878fe3f27007c2d47c7d3c2d7eadc9f694b03f49e0ba38d03153"
+    },
+    {
+      "path": "items/all/candy_bag/candy_bag_effect_1.tres",
+      "sha256": "46a86703b1eaecbcce0b2bfd16d0d7968c2aeda7a523effe74aa9b31d203cd96"
+    },
+    {
       "path": "items/all/cape/cape_data.tres",
       "sha256": "74df95fc3c57dd4cc5c09d30e1ceadfb9716caa5362a3b3fbf4b72a6c17a7177"
     },
@@ -6401,6 +7204,14 @@
     {
       "path": "items/all/cape/cape_effect_4.tres",
       "sha256": "91c93da8a7e995653ebfb97c5b34a78aa6d262861b10e701b5368f0888b0ff62"
+    },
+    {
+      "path": "items/all/catling_gun/catling_gun.tres",
+      "sha256": "9fc3f4b611c43548a9603474897ea9fe2ee102c58c4d01067a8af2a57ce67810"
+    },
+    {
+      "path": "items/all/catling_gun/catling_gun_effect_0.tres",
+      "sha256": "5d3caf96cc55f6a9a522f988d92a15a055ff988fa020c54692440a161e761f6e"
     },
     {
       "path": "items/all/celery_tea/celery_tea_data.tres",
@@ -6661,6 +7472,14 @@
     {
       "path": "items/all/diploma/diploma_effect_3.tres",
       "sha256": "e52d64ae88918c9289c8ff2fd43908375853bd98fda2c86cb1b3679ddeeeab68"
+    },
+    {
+      "path": "items/all/doc_moth/doc_moth.tres",
+      "sha256": "cd5ce501780b49950a5ac3abb0411c8e2732eaecfbf1abdbe91fb6ddffd5a320"
+    },
+    {
+      "path": "items/all/doc_moth/doc_moth_effect_0.tres",
+      "sha256": "2933b9c2372cc243c7fac98e0ed381baf4d5294bdf3c495029eff4d0e79fad95"
     },
     {
       "path": "items/all/duct_tape/duct_tape_data.tres",
@@ -7039,6 +7858,18 @@
       "sha256": "8748165fb836a7d5e4228de05416f008a49a4413ae7bc5c0721d33f082bc6a8d"
     },
     {
+      "path": "items/all/greek_fire/greek_fire_data.tres",
+      "sha256": "11195668a04a10c02dec9b60338bbda7314cc9c8d63374c46d2c459fe0100c8b"
+    },
+    {
+      "path": "items/all/greek_fire/effects/greek_fire_effect_0.tres",
+      "sha256": "7a2c6755014ef033a3c79521a36b74bd9ae4c6d716a1fe3bf33433eca1c392b0"
+    },
+    {
+      "path": "items/all/greek_fire/effects/greek_fire_effect_1.tres",
+      "sha256": "e3b66cef0f749fa0572c996af5d1b0c9b3eb0742f746951fd203b2475d201caa"
+    },
+    {
       "path": "items/all/grinds_magical_leaf/grinds_magical_leaf_data.tres",
       "sha256": "734b6997fad590f78d77e71ad9806ebb79b5c60b95cf4978c6bbe7dbd7ef8510"
     },
@@ -7179,6 +8010,30 @@
       "sha256": "b6476547a0d9abcf278b61cb7c3da74defc8cf1b07200a000076232f59f751a7"
     },
     {
+      "path": "items/all/hourglass/broken_hourglass_data.tres",
+      "sha256": "83fb4354f16d95a9d0e5907406963c2cad3a95e054660d48ddf628a83812cc6e"
+    },
+    {
+      "path": "items/all/hourglass/broken_hourglass_effect_1.tres",
+      "sha256": "bc86f61c22cdecd44bc2c4ade1da76a0afaa531c750a9f85f5e2ce6eefe76269"
+    },
+    {
+      "path": "items/all/hourglass/broken_hourglass_effect_2.tres",
+      "sha256": "ec3a4b76968b0202f34dda90c7abea979dea5c11ea2b686a1888b26debcd9b13"
+    },
+    {
+      "path": "items/all/hourglass/hourglass_data.tres",
+      "sha256": "45f5f3725affa764e3919ab00abef54fcbdd4b578b40a5e1292fcd795d527299"
+    },
+    {
+      "path": "items/all/hourglass/hourglass_effect_1.tres",
+      "sha256": "913a0090695ed6b31dfdce7999367a630d3759fdf20000e2b6711ab4012491ef"
+    },
+    {
+      "path": "items/all/hourglass/hourglass_effect_2.tres",
+      "sha256": "ec3a4b76968b0202f34dda90c7abea979dea5c11ea2b686a1888b26debcd9b13"
+    },
+    {
       "path": "items/all/hunting_trophy/hunting_trophy_data.tres",
       "sha256": "b56515580e0836de256e99bb4540c4a60077deabb615b5238a81dfc5df0d8e79"
     },
@@ -7237,6 +8092,18 @@
     {
       "path": "items/all/jelly/effects/jelly_effect_0.tres",
       "sha256": "50923e9966b8d7274afb1b2d6079f6e60aec846e65b8e1324272c47ce0601163"
+    },
+    {
+      "path": "items/all/jellyshield/jellyshield.tres",
+      "sha256": "b6692083de710194514058234e95b04c1c1c16522c65f471364d1726623fd3ac"
+    },
+    {
+      "path": "items/all/jellyshield/jellyshield_effect_0.tres",
+      "sha256": "0f83680a8b6bc0767ca102a880f47cd821582554e42965589716b44267b5ad41"
+    },
+    {
+      "path": "items/all/jellyshield/jellyshield_effect_1.tres",
+      "sha256": "3a9d34bc9cdb9a68f2ce20243f7bb277ce7d1513d06bd75f4d9e0ec9adf4cbaf"
     },
     {
       "path": "items/all/jetpack/jetpack_data.tres",
@@ -7333,6 +8200,14 @@
     {
       "path": "items/all/little_muscley_dude/little_muscley_dude_effect_3.tres",
       "sha256": "07c75729ef642cbb6e892fa8c97e3a5e52bafc2ca39a30b17935fd6755e5f1d5"
+    },
+    {
+      "path": "items/all/lootworm/lootworm.tres",
+      "sha256": "90464dc6d556b58b2ffec7e6bad58c7deabbb80f2b7b32f6ac0e841c2bdd0483"
+    },
+    {
+      "path": "items/all/lootworm/lootworm_effect_0.tres",
+      "sha256": "a18caae571b129629f03364e0851ab919e4c292cebf1c68fb6b20cae3d2fbe90"
     },
     {
       "path": "items/all/lost_duck/lost_duck_data.tres",
@@ -7851,6 +8726,14 @@
       "sha256": "2a63dbcc52ecd0759b9fa30660bd49664954d6e4d7b56c794cf21aaf099594a8"
     },
     {
+      "path": "items/all/ratzilla/ratzilla.tres",
+      "sha256": "f4c38ca607bd83bcedf505f8a6d3b351e4bc956219c4d1df9567f5cf9ed92a2e"
+    },
+    {
+      "path": "items/all/ratzilla/ratzilla_effect_0.tres",
+      "sha256": "06e0a9fd0f07cb36f73099e37a683dcccde6e4bdc8561ade2b751b11abc8a282"
+    },
+    {
       "path": "items/all/recycling_machine/recycling_machine_data.tres",
       "sha256": "a5a830a31d65911b27ce85225dd46f3a565c1049fe190699d1f6c5f1461592b1"
     },
@@ -7977,6 +8860,14 @@
     {
       "path": "items/all/sad_tomato/sad_tomato_effect_2.tres",
       "sha256": "f05e9d72d7ec56fa38b2239a1068ca5afc975c21fae30ab1ed101bc318866693"
+    },
+    {
+      "path": "items/all/scapegoat/scapegoat.tres",
+      "sha256": "883b6b54deb0ca33fbb4e6c97bbf0933089135abc61dc92d20e3e9c625441692"
+    },
+    {
+      "path": "items/all/scapegoat/scapegoat_effect_0.tres",
+      "sha256": "e967ae1085707d00414c0b865d7c72eb94e1b8185ef4de9f95432c092c0bc577"
     },
     {
       "path": "items/all/scar/scar_data.tres",
@@ -8715,117 +9606,7 @@
       "sha256": "6f5eb5fc8af0a4e3a68471f562a529319fb7ba78d0b8a134ebed6dcf7aadbd92"
     }
   ],
-  "unsupported": [
-    {
-      "id": "bait",
-      "effects": [
-        "stat_percent_damage",
-        "extra_enemies_next_wave"
-      ]
-    },
-    {
-      "id": "blazemander",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "bonk_dog",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "bot_o_mine",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "campfire",
-      "effects": [
-        "stat_elemental_damage",
-        "stat_hp_regeneration",
-        "stat_speed",
-        "fog_visibility"
-      ]
-    },
-    {
-      "id": "candle",
-      "effects": [
-        "stat_elemental_damage",
-        "stat_hp_regeneration",
-        "number_of_enemies",
-        "stat_percent_damage",
-        "fog_visibility"
-      ]
-    },
-    {
-      "id": "candy_bag",
-      "effects": [
-        "gain_random_primary_stats_on_go_to_next_wave",
-        "extra_elite_next_wave_chance"
-      ]
-    },
-    {
-      "id": "catling_gun",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "doc_moth",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "greek_fire",
-      "effects": [
-        "burning_enemy_hp_percent_damage",
-        "fog_visibility"
-      ]
-    },
-    {
-      "id": "hourglass",
-      "effects": [
-        "",
-        "hp_start_next_wave"
-      ]
-    },
-    {
-      "id": "hourglass",
-      "effects": [
-        "item_hourglass",
-        "hp_start_next_wave"
-      ]
-    },
-    {
-      "id": "jellyshield",
-      "effects": [
-        "jellyshield_count",
-        ""
-      ]
-    },
-    {
-      "id": "lootworm",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "ratzilla",
-      "effects": [
-        ""
-      ]
-    },
-    {
-      "id": "scapegoat",
-      "effects": [
-        ""
-      ]
-    }
-  ],
-  "availableItems": 155,
+  "unsupported": [],
+  "availableItems": 161,
   "scope": "Implemented primary/scalar stats and explicit standing, inventory, timed, damage, wave-end and level-up triggers from registered base resources; exact source data and metadata. Incomplete catalog does not reproduce full-game item distribution."
 }

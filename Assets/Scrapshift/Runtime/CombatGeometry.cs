@@ -53,6 +53,12 @@ namespace Scrapshift
         {
             switch (id)
             {
+                case "lamprey": return new EnemyCollision(.190263f,.480104f,.290172f);
+                case "butcher":case "croc":case "gargoyle":case "mantis":case "monk":case "rhino": return new EnemyCollision(.24f,.4f,.4f);
+                case "colossus": return new EnemyCollision(.4f,.48f,.48f);
+                case "mom":return new EnemyCollision(.4f,.64f,.56f);
+                case "invoker":return new EnemyCollision(.4f,.4f,.4f);
+                case "slasher_egg":case "tentacle":return new EnemyCollision(.24f,.4f,.24f);
                 case "baby_alien": return new EnemyCollision(.22f, .32f, .160312f);
                 case "bruiser": return new EnemyCollision(.162788f, .400125f, .270185f);
                 case "horned_bruiser": return new EnemyCollision(.162788f, .400125f, .27f);

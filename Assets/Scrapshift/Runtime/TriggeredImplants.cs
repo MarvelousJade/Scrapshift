@@ -9,7 +9,7 @@ namespace Scrapshift
         readonly Dictionary<string,float> consumableGains=new Dictionary<string,float>();
         float EffectTotal(string kind)=>ConditionalEffects().Where(e=>e.customKey==kind).Sum(e=>e.value);
         void DodgeTriggers()
-        {foreach(var e in ConditionalEffects())if(e.customKey=="heal_on_dodge"&&random.NextDouble()<e.chance)Heal(e.value);}
+        {foreach(var e in ConditionalEffects())if(e.customKey=="heal_on_dodge"&&random.NextDouble()<e.chance)Heal(e.value);else if(e.customKey=="temp_stats_on_dodge")AddTemporary(e.key,e.value);}
         void ConsumableFullHealthTriggers()
         {
             if(Health<MaxHealth)return;
@@ -28,7 +28,7 @@ namespace Scrapshift
         }
         public void CriticalKillMaterials(bool critical)
         {if(Phase==RunPhase.Playing&&critical)foreach(var e in ConditionalEffects())if(e.customKey=="gold_on_crit_kill"&&random.NextDouble()<e.value/100.0)Scrap++;}
-        public float RegenerationHealMultiplier=>1+ConditionalEffects().Where(e=>e.customKey=="hp_regen_bonus"&&Health<MaxHealth*e.per/100).Sum(e=>e.value);
+        public float RegenerationHealMultiplier=>1+HealingDrones+ConditionalEffects().Where(e=>e.customKey=="hp_regen_bonus"&&Health<MaxHealth*e.per/100).Sum(e=>e.value);
         public float ItemSpeedReduction(float previous,float baseSpeed)
         {
             var effects=ConditionalEffects().Where(e=>e.customKey=="remove_speed").ToArray();

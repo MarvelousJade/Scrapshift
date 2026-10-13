@@ -12,7 +12,7 @@ namespace Scrapshift
         [Serializable] sealed class InspectionResult { public string name,phase,target,drawn;public bool panelOnScreen;public int banked,pendingLevels,pendingCrates;public float arrivalTime,canopyWidth,canopyHeight,remaining; }
         [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
         InspectionReport inspectionReport;
-        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons"};
+        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-gameplay","options-audio","options-video","options-controls","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu"};
         void BeginInspectionReview(string path)
         {inspectionReview=true;inspectionPath=Path.GetFullPath(path);Directory.CreateDirectory(inspectionPath);inspectionUtc=DateTime.UtcNow;inspectionNext=Time.realtimeSinceStartup+.5f;inspectionReport=new InspectionReport();Begin();sound.SetMuted(true);}
         void InspectionReviewTick()
@@ -31,7 +31,16 @@ namespace Scrapshift
             if(inspectionStage==inspectionCases.Length){inspectionNext=Time.realtimeSinceStartup+.6f;return;}
             if(inspectionStage>inspectionCases.Length)return;
             forcedInspection=null;lastDrawnInspection=null;
-            if(inspectionStage>=39)
+            if(inspectionStage>=41)
+            {
+                Begin();ClearCombat();Rules.Inventory.Clear();foreach(string id in new[]{"knife","lightning_shiv","smg","wand"})Rules.Inventory.Add(catalog.Weapon(id,1));
+                foreach(string id in new[]{"coffee","bat","leather_vest","alien_tongue","lemonade","alien_worm"})Rules.Items.Add(Array.Find(catalog.data.items,a=>a.id==id));
+                Rules.GainWeaponStat("crit_chance",7);Rules.GainWeaponStat("attack_speed",10);Rules.GainWeaponStat("ranged_damage",2);Rules.GainWeaponStat("harvesting",12);Rules.Collect(110);Rules.Tick(Rules.Remaining);
+                if(inspectionStage==42){for(int i=0;i<Rules.Offers.Length;i++)Rules.Offers[i]=new UpgradeOffer(new[]{UpgradeKind.Range,UpgradeKind.Ranged,UpgradeKind.Melee,UpgradeKind.Engineering}[i],2,catalog.data.upgrades);}
+                else {while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);string[] ids={"wand","alien_tongue","lemonade","alien_worm"};Rules.Shop[0]=new ShopOffer{weapon=catalog.Weapon("wand",1),rolledWave=4};for(int i=1;i<4;i++)Rules.Shop[i]=new ShopOffer{item=Array.Find(catalog.data.items,a=>a.id==ids[i]),rolledWave=4};}
+                secondaryStats=inspectionStage==43;itemSortOpen=inspectionStage==44;
+            }
+            else if(inspectionStage>=39)
             {
                 Begin();ClearCombat();Rules.Tick(Rules.Remaining);
                 if(inspectionStage==39){string[] ids={"barricade","robot_arm","wisdom","triangle_of_power"};for(int i=0;i<4;i++)Rules.Shop[i]=new ShopOffer{item=Array.Find(catalog.data.items,a=>a.id==ids[i]),rolledWave=1};}

@@ -11,7 +11,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
-        void BeginWaveSweep(){RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
         void TickWaveSweep(float dt)
         {
             waveSweepAge+=dt;
@@ -46,12 +46,6 @@ namespace Scrapshift
         }
         void DrawStoredMaterials()
         {
-            if(Rules.Banked>0||waveSweeping)
-            {
-                RoundedBox(new Rect(28,201,29,28),new Color(.58f,.48f,.29f),10);
-                Box(new Rect(35,196,16,5),paper);
-                OutlinedText(67,192,170,42,Rules.Banked.ToString(),body);
-            }
             DrawStatIcon("harvesting",new Rect(23,147,40,40));
             OutlinedText(67,141,170,51,Rules.Stat("harvesting").ToString("0"),number);
             if(waveSweeping&&waveSweepAge>1.1f&&Rules.Stat("harvesting")!=0)
@@ -76,20 +70,21 @@ namespace Scrapshift
         {
             if(selectedWeapon<0||selectedWeapon>=Rules.Inventory.Count){selectedWeapon=-1;return;}
             var w=Rules.Inventory[selectedWeapon];Overlay();
-            const float x=345,y=125,width=460;
-            float textHeight=inspectionBody.CalcHeight(new GUIContent(inspectionText.WeaponDescription(Rules,w)),420);
-            float buttonsY=y+138+textHeight;
-            RoundedBox(new Rect(x,y,width,buttonsY-y+210),Color.black,10);
+            const float width=350;bool combine=Rules.CanCombine(selectedWeapon);
+            float textHeight=RichHeight(inspectionText.WeaponDescription(Rules,w),310),visibleHeight=Mathf.Min(350,textHeight);
+            float height=128+visibleHeight+(combine?126:84),x=FullCanvas.xMax-704,y=Mathf.Max(24,670-height);
+            float buttonsY=y+122+visibleHeight;
+            RoundedBox(new Rect(x,y,width,height),Color.black,10);
             DrawIcon(w.image,new Rect(x+18,y+18,82,82));
-            Text(x+115,y+18,325,48,inspectionText.WeaponName(w),new GUIStyle(inspectionTitle){normal={textColor=TierColor(w.tier)}});
-            Text(x+115,y+69,325,32,inspectionText.Sets(w),inspectionBody);
-            Text(x+20,y+123,420,textHeight+8,inspectionText.WeaponDescription(Rules,w),inspectionBody);
-            GUI.enabled=Rules.CanCombine(selectedWeapon);
-            if(Button(new Rect(x+15,buttonsY+10,width-30,49),"Combine")){Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
-            GUI.enabled=true;
-            if(Button(new Rect(x+15,buttonsY+72,width-30,49),"Recycle (+"+Rules.RecycleValue(w.value)+")"))
+            Text(x+115,y+18,215,54,inspectionText.WeaponName(w),new GUIStyle(inspectionTitle){normal={textColor=TierColor(w.tier)}});
+            Text(x+115,y+76,215,32,inspectionText.Sets(w),new GUIStyle(inspectionBody){normal={textColor=new Color(.89f,.85f,.62f)}});
+            detailScroll.TryGetValue("weapon-action",out var scroll);
+            scroll=GUI.BeginScrollView(new Rect(x+20,y+116,326,visibleHeight),scroll,new Rect(0,0,310,textHeight));
+            RichText(inspectionText.WeaponDescription(Rules,w),new Rect(0,0,310,textHeight));GUI.EndScrollView();detailScroll["weapon-action"]=scroll;
+            if(combine){if(Button(new Rect(x+15,buttonsY,width-30,34),"Combine")){Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}buttonsY+=42;}
+            if(Button(new Rect(x+15,buttonsY,width-30,34),"Recycle (+"+Rules.RecycleValue(w.value)+")"))
             {Rules.Recycle(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
-            if(Button(new Rect(x+15,buttonsY+134,width-30,49),"Cancel"))selectedWeapon=-1;
+            if(Button(new Rect(x+15,buttonsY+42,width-30,34),"Cancel"))selectedWeapon=-1;
             DrawInspectionSets(WeaponSets.All.Where(s=>w.HasSet(s.Id)).ToArray(),x+width+8,y);
         }
     }

@@ -107,4 +107,7 @@ for resource_id in re.findall(r'ExtResource\( (\d+) \)',line):weapon(refs[resour
 data=dict(characters=profiles,equipment=list(weapons.values()),sets=list(sets.values()),rosterSlots=50)
 (OUT/'starter-profiles.json').write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
 (PROJECT/'artifacts/starter-provenance.json').write_text(json.dumps(dict(referenceRoot=str(ROOT),sources=list({p['source']:p for p in provenance}.values())),indent=2)+'\n')
-print(f'{len(profiles)} characters; {len(weapons)} weapon tiers; {len(sets)} weapon sets')
+print(f'{len(profiles)} initial profiles; {len(weapons)} weapon tiers; {len(sets)} weapon sets')
+# Preserve the complete base roster whenever weapon data is refreshed.
+import runpy
+runpy.run_path(str(PROJECT/'scripts/import_full_roster.py'),run_name='__main__')

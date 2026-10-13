@@ -42,8 +42,8 @@ namespace Scrapshift
                 Box(new Rect(local.x,local.y,2,local.height),c);Box(new Rect(local.xMax-2,local.y,2,local.height),c);
             }
         }
-        void InspectWeapon(string id,Equipment w,Rect r,Rect? clip=null)
-        {Inspect(id,r,inspectionText.WeaponName(w),inspectionText.WeaponDescription(Rules,w),w.image,inspectionText.Sets(w),w.tier,clip);var entry=inspectionEntries.LastOrDefault(e=>e.id==id);if(entry!=null)entry.weapon=w;}
+        void InspectWeapon(string id,Equipment w,Rect r,Rect? clip=null,Vector2 scroll=default)
+        {Inspect(id,r,inspectionText.WeaponName(w),inspectionText.WeaponDescription(Rules,w),w.image,inspectionText.Sets(w),w.tier,clip,clip.HasValue?(Rect?)new Rect(clip.Value.position+r.position-scroll,r.size):null);var entry=inspectionEntries.LastOrDefault(e=>e.id==id);if(entry!=null)entry.weapon=w;}
         void InspectItem(string id,ItemEntry item,Rect r,Rect? clip=null,Vector2 scroll=default)=>Inspect(id,r,inspectionText.ItemName(item),inspectionText.ItemDescription(item),item.image,"Item",item.tier,clip,clip.HasValue?(Rect?)new Rect(clip.Value.position+r.position-scroll,r.size):null);
         void EndInspection()
         {
@@ -74,7 +74,7 @@ namespace Scrapshift
             if(entry==null)return;
             lastDrawnInspection=entry.id;
             float width=510,bodyWidth=width-130;
-            float textHeight=inspectionBody.CalcHeight(new GUIContent(entry.description),bodyWidth);
+            float textHeight=RichHeight(entry.description,bodyWidth);
             float titleHeight=inspectionTitle.CalcHeight(new GUIContent(entry.title),bodyWidth);
             float header=titleHeight+(string.IsNullOrEmpty(entry.category)?0:34);
             float height=Mathf.Max(122,header+textHeight+40);
@@ -89,8 +89,8 @@ namespace Scrapshift
             DrawIcon(entry.image,new Rect(x+18,y+20,88,88));
             var nameStyle=new GUIStyle(inspectionTitle);nameStyle.normal.textColor=entry.color;
             OutlinedText(x+118,y+16,bodyWidth,titleHeight,entry.title,nameStyle);
-            if(!string.IsNullOrEmpty(entry.category))Text(x+118,y+20+titleHeight,bodyWidth,32,entry.category,inspectionBody);
-            Text(x+118,y+22+header,bodyWidth,textHeight+8,entry.description,inspectionBody);
+            if(!string.IsNullOrEmpty(entry.category))Text(x+118,y+20+titleHeight,bodyWidth,32,entry.category,new GUIStyle(inspectionBody){normal={textColor=new Color(.89f,.85f,.62f)}});
+            RichText(entry.description,new Rect(x+118,y+22+header,bodyWidth,textHeight+8));
             DrawInspectionSets(sets,x+width+8,y);
         }
         float InspectionSetsHeight(WeaponSet[] sets)
@@ -121,11 +121,11 @@ namespace Scrapshift
         }
         void DrawIntermissionInventory()
         {
-            Text(24,747,340,30,"Weapons ("+Rules.Inventory.Count+"/6)",tiny);
+            Text(24,747,340,30,"Weapons ("+Rules.Inventory.Count+"/"+Rules.WeaponSlots+")",tiny);
             Text(385,747,690,30,"Items ("+Rules.Items.Count+")",tiny);
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                var r=new Rect(24+i*56,783,50,56);RoundedBox(r,panelColor,5);DrawIcon(Rules.Inventory[i].image,new Rect(r.x+4,r.y+4,42,48));
+                var r=new Rect(24+i%(Rules.Inventory.Count>6?12:6)*(Rules.Inventory.Count>6?29:56),783+i/(Rules.Inventory.Count>6?12:6)*43,Rules.Inventory.Count>6?27:50,40);RoundedBox(r,panelColor,5);DrawIcon(Rules.Inventory[i].image,new Rect(r.x+2,r.y+2,r.width-4,r.height-4));
                 InspectWeapon("weapon:"+i,Rules.Inventory[i],r);
             }
             var viewport=new Rect(385,782,700,91);

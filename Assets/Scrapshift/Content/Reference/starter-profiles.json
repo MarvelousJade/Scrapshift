@@ -3,7 +3,8 @@
     {
       "id": "well_rounded",
       "title": "Rookie",
-      "description": "+5 Max HP\n+5% Speed\n+8 Harvesting",
+      "description": "",
+      "available": true,
       "startingWeapons": [
         "knife",
         "stick",
@@ -24,6 +25,10 @@
         "icicle",
         "rail_gun"
       ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
       "stats": [
         {
           "key": "max_hp",
@@ -39,23 +44,58 @@
         }
       ],
       "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "max_hp",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "speed",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 8,
+          "extra": ""
+        }
+      ],
       "startingItems": [],
       "bonusWeapon": "",
+      "bonusTier": 1,
       "classSet": "",
       "classStat": "",
       "classValue": 0,
       "noMelee": false,
-      "bannedItemGroups": []
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
     },
     {
       "id": "brawler",
       "title": "Pugilist",
-      "description": "+50% Attack Speed with Unarmed weapons\nStart with 1 Fist\n+15% Dodge\n-50 Range\n-50 Ranged Damage",
+      "description": "",
+      "available": true,
       "startingWeapons": [
         "fist",
         "hand",
         "claw"
       ],
+      "wantedTags": [
+        "stat_melee_damage"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "ranged_damage"
+      ],
+      "bannedUpgrades": [],
       "stats": [
         {
           "key": "dodge",
@@ -71,20 +111,57 @@
         }
       ],
       "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "class",
+          "key": "attack_speed",
+          "value": 50,
+          "extra": "unarmed"
+        },
+        {
+          "kind": "weapon",
+          "key": "fist",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "dodge",
+          "value": 15,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "range",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "ranged_damage",
+          "value": -50,
+          "extra": ""
+        }
+      ],
       "startingItems": [],
       "bonusWeapon": "fist",
+      "bonusTier": 1,
       "classSet": "unarmed",
       "classStat": "attack_speed_mod",
       "classValue": 50,
       "noMelee": false,
-      "bannedItemGroups": [
-        "ranged_damage"
-      ]
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
     },
     {
       "id": "crazy",
       "title": "Hothead",
-      "description": "+100 Range with Precise weapons\n+25% Attack Speed\nStart with 1 Knife\n-30% Dodge\n-10 Engineering\n-10 Ranged Damage",
+      "description": "",
+      "available": true,
       "startingWeapons": [
         "knife",
         "dagger",
@@ -95,6 +172,13 @@
         "shuriken",
         "icicle"
       ],
+      "wantedTags": [
+        "stat_crit_chance",
+        "stat_melee_damage"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
       "stats": [
         {
           "key": "attack_speed",
@@ -114,18 +198,63 @@
         }
       ],
       "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "class",
+          "key": "range",
+          "value": 100,
+          "extra": "precise"
+        },
+        {
+          "kind": "stat",
+          "key": "attack_speed",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "weapon",
+          "key": "knife",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "dodge",
+          "value": -30,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "engineering",
+          "value": -10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "ranged_damage",
+          "value": -10,
+          "extra": ""
+        }
+      ],
       "startingItems": [],
       "bonusWeapon": "knife",
+      "bonusTier": 1,
       "classSet": "precise",
       "classStat": "max_range",
       "classValue": 100,
       "noMelee": false,
-      "bannedItemGroups": []
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
     },
     {
       "id": "ranger",
       "title": "Sharpshot",
-      "description": "+50 Range\nStart with 1 Pistol\nRanged Damage gains increased by 50%\nCannot equip melee weapons\nMax HP gains reduced by 25%",
+      "description": "",
+      "available": true,
       "startingWeapons": [
         "pistol",
         "smg",
@@ -137,6 +266,15 @@
         "slingshot",
         "rail_gun"
       ],
+      "wantedTags": [
+        "stat_ranged_damage",
+        "stat_range"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "melee_damage"
+      ],
+      "bannedUpgrades": [],
       "stats": [
         {
           "key": "range",
@@ -153,20 +291,57 @@
           "value": -25
         }
       ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "range",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "weapon",
+          "key": "pistol",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "ranged_damage",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "noMelee",
+          "key": "no_melee_weapons",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "max_hp",
+          "value": -25,
+          "extra": ""
+        }
+      ],
       "startingItems": [],
       "bonusWeapon": "pistol",
+      "bonusTier": 1,
       "classSet": "",
       "classStat": "",
       "classValue": 0,
       "noMelee": true,
-      "bannedItemGroups": [
-        "melee_damage"
-      ]
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
     },
     {
       "id": "mage",
       "title": "Arc Weaver",
-      "description": "Elemental Damage gains increased by 25%\nStart with Thermal Relay and Ignition Gland\nMelee and Ranged Damage gains reduced by 100%\nEngineering gains reduced by 50%",
+      "description": "",
+      "available": true,
       "startingWeapons": [
         "wand",
         "torch",
@@ -176,6 +351,19 @@
         "icicle",
         "smg",
         "double_barrel_shotgun"
+      ],
+      "wantedTags": [
+        "stat_elemental_damage"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "melee_damage",
+        "ranged_damage",
+        "melee_and_ranged_damage"
+      ],
+      "bannedUpgrades": [
+        "upgrade_melee_damage",
+        "upgrade_ranged_damage"
       ],
       "stats": [],
       "gains": [
@@ -196,20 +384,4934 @@
           "value": -50
         }
       ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "gain",
+          "key": "elemental_damage",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "snake",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "scared_sausage",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "melee_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "ranged_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "engineering",
+          "value": -50,
+          "extra": ""
+        }
+      ],
       "startingItems": [
         "snake",
         "scared_sausage"
       ],
       "bonusWeapon": "",
+      "bonusTier": 1,
       "classSet": "",
       "classStat": "",
       "classValue": 0,
       "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "chunky",
+      "title": "Bulkhead",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "cactus_mace",
+        "rock",
+        "stick",
+        "torch",
+        "plank",
+        "chopper",
+        "pruner",
+        "spiky_shield",
+        "double_barrel_shotgun",
+        "taser",
+        "ghost_scepter",
+        "shredder",
+        "revolver"
+      ],
+      "wantedTags": [
+        "stat_max_hp",
+        "consumable",
+        "stat_luck"
+      ],
+      "bannedItems": [
+        "fin"
+      ],
+      "bannedItemGroups": [
+        "lifesteal",
+        "lifesteal_and_hp_regeneration",
+        "speed"
+      ],
+      "bannedUpgrades": [
+        "upgrade_speed"
+      ],
+      "stats": [
+        {
+          "key": "consumable_heal",
+          "value": 3
+        },
+        {
+          "key": "lifesteal",
+          "value": -100
+        }
+      ],
+      "gains": [
+        {
+          "key": "max_hp",
+          "value": 25
+        },
+        {
+          "key": "hp_regeneration",
+          "value": -50
+        },
+        {
+          "key": "dodge",
+          "value": -50
+        },
+        {
+          "key": "speed",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_max_hp",
+          "per": 3,
+          "permanentOnly": true
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "gain",
+          "key": "max_hp",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "consumable_heal",
+          "value": 3,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "lifesteal",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "hp_regeneration",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "dodge",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "speed",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "old",
+      "title": "Veteran",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "scissors",
+        "screwdriver",
+        "wrench",
+        "rock",
+        "plank",
+        "chopper",
+        "pruner",
+        "double_barrel_shotgun",
+        "revolver",
+        "taser",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [
+        "less_enemies",
+        "less_enemy_speed"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "enemy_speed",
+          "value": -25
+        },
+        {
+          "key": "harvesting",
+          "value": 10
+        },
+        {
+          "key": "map_size",
+          "value": -33
+        },
+        {
+          "key": "number_of_enemies",
+          "value": -10
+        },
+        {
+          "key": "speed",
+          "value": -10
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "enemy_speed",
+          "value": -25,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "map_size",
+          "value": -33,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "number_of_enemies",
+          "value": -10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "speed",
+          "value": -10,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "lucky",
+      "title": "Probability Hacker",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "stick",
+        "rock",
+        "fist",
+        "chopper",
+        "plank",
+        "screwdriver",
+        "jousting_lance",
+        "torch",
+        "pruner",
+        "slingshot",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [
+        "stat_luck",
+        "pickup",
+        "exploration"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "luck",
+          "value": 100
+        },
+        {
+          "key": "attack_speed",
+          "value": -60
+        },
+        {
+          "key": "xp_gain",
+          "value": -50
+        }
+      ],
+      "gains": [
+        {
+          "key": "luck",
+          "value": 25
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_luck",
+          "value": 15,
+          "customKey": "dmg_when_pickup_gold",
+          "chance": 0.75
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "luck",
+          "value": 100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "luck",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "luck",
+          "value": 15,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "attack_speed",
+          "value": -60,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "xp_gain",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "mutant",
+      "title": "Splicer",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "cactus_mace",
+        "ghost_axe",
+        "stick",
+        "fighting_stick",
+        "rock",
+        "plank",
+        "lightning_shiv",
+        "double_barrel_shotgun",
+        "smg",
+        "revolver",
+        "shredder",
+        "crossbow",
+        "taser",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [
+        "xp_gain"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "next_level_xp_needed",
+          "value": -66
+        },
+        {
+          "key": "items_price",
+          "value": 50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "next_level_xp_needed",
+          "value": -66,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "items_price",
+          "value": 50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "generalist",
+      "title": "Hybrid",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "cactus_mace",
+        "ghost_axe",
+        "ghost_flint",
+        "lightning_shiv",
+        "knife",
+        "scissors",
+        "spear",
+        "shuriken",
+        "double_barrel_shotgun",
+        "smg",
+        "shredder",
+        "revolver",
+        "laser_gun",
+        "slingshot",
+        "ghost_scepter"
+      ],
+      "wantedTags": [
+        "stat_melee_damage",
+        "stat_ranged_damage"
+      ],
+      "bannedItems": [
+        "mastery"
+      ],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "max_melee_weapons",
+          "value": 3
+        },
+        {
+          "key": "max_ranged_weapons",
+          "value": 3
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_ranged_damage",
+          "per": 1,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_melee_damage",
+          "per": 2,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "melee_damage",
+          "value": 2,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "ranged_damage",
+          "value": 1,
+          "extra": "1"
+        },
+        {
+          "kind": "stat",
+          "key": "max_melee_weapons",
+          "value": 3,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "max_ranged_weapons",
+          "value": 3,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "loud",
+      "title": "Amplifier",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "cactus_mace",
+        "ghost_axe",
+        "ghost_flint",
+        "lightning_shiv",
+        "dagger",
+        "claw",
+        "spear",
+        "torch",
+        "rock",
+        "hatchet",
+        "plank",
+        "wrench",
+        "jousting_lance",
+        "fighting_stick",
+        "pruner",
+        "screwdriver",
+        "double_barrel_shotgun",
+        "pistol",
+        "smg",
+        "shredder",
+        "icicle",
+        "shuriken",
+        "slingshot",
+        "crossbow"
+      ],
+      "wantedTags": [
+        "more_enemies"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "percent_damage",
+          "value": 30
+        },
+        {
+          "key": "number_of_enemies",
+          "value": 50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_harvesting",
+          "value": -3,
+          "customKey": "stats_end_of_wave",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": 30,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "number_of_enemies",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "harvesting",
+          "value": -3,
+          "extra": "0"
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "multitasker",
+      "title": "Multicore",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "cactus_mace",
+        "fist",
+        "claw",
+        "knife",
+        "spear",
+        "stick",
+        "fighting_stick",
+        "lightning_shiv",
+        "screwdriver",
+        "wrench",
+        "ghost_flint",
+        "ghost_axe",
+        "plank",
+        "chopper",
+        "hatchet",
+        "jousting_lance",
+        "pruner",
+        "rock",
+        "spiky_shield",
+        "sharp_tooth",
+        "double_barrel_shotgun",
+        "smg",
+        "revolver",
+        "laser_gun",
+        "wand",
+        "icicle",
+        "slingshot",
+        "taser",
+        "shuriken",
+        "crossbow",
+        "rail_gun"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "percent_damage",
+          "value": 20
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": -5,
+          "customKey": "additional_weapon_effects",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": 20,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "weapon_slot",
+          "value": 12,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": -5,
+          "extra": "0"
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 12,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "wildling",
+      "title": "Feral",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "stick",
+        "spear",
+        "torch",
+        "rock",
+        "cactus_mace",
+        "hatchet",
+        "fighting_stick",
+        "sharp_tooth",
+        "slingshot"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "class",
+          "key": "lifesteal",
+          "value": 30,
+          "extra": "primitive"
+        },
+        {
+          "kind": "weapon",
+          "key": "stick",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "max_weapon_tier",
+          "value": 1,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "stick",
+      "bonusTier": 1,
+      "classSet": "primitive",
+      "classStat": "lifesteal",
+      "classValue": 30,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 2,
+      "canAttackMoving": true
+    },
+    {
+      "id": "pacifist",
+      "title": "Mediator",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "hand",
+        "taser",
+        "pruner"
+      ],
+      "wantedTags": [
+        "stat_max_hp",
+        "stat_hp_regeneration",
+        "stat_armor"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "engineering"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "pacifist",
+          "value": 65
+        },
+        {
+          "key": "percent_damage",
+          "value": -100
+        },
+        {
+          "key": "engineering",
+          "value": -100
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "pacifist",
+          "value": 65,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "lumberjack_shirt",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "engineering",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "lumberjack_shirt"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "gladiator",
+      "title": "Duelist",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "spear",
+        "jousting_lance",
+        "cactus_mace",
+        "torch",
+        "dagger",
+        "knife",
+        "plank",
+        "ghost_axe",
+        "ghost_flint",
+        "sharp_tooth",
+        "fist",
+        "claw",
+        "fighting_stick",
+        "hatchet",
+        "lightning_shiv"
+      ],
+      "wantedTags": [
+        "stat_melee_damage"
+      ],
+      "bannedItems": [
+        "seashell"
+      ],
+      "bannedItemGroups": [
+        "ranged_damage"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "melee_damage",
+          "value": 5
+        },
+        {
+          "key": "attack_speed",
+          "value": -40
+        },
+        {
+          "key": "luck",
+          "value": -30
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 20,
+          "customKey": "unique_weapon_effects",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "attack_speed",
+          "value": 20,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "melee_damage",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "noRanged",
+          "key": "no_ranged_weapons",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "attack_speed",
+          "value": -40,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "luck",
+          "value": -30,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": true,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "saver",
+      "title": "Vaultkeeper",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "chopper",
+        "dagger",
+        "ghost_flint",
+        "pruner",
+        "lightning_shiv",
+        "cactus_mace",
+        "spear",
+        "pistol",
+        "revolver",
+        "laser_gun",
+        "taser",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "harvesting",
+          "value": 15
+        },
+        {
+          "key": "items_price",
+          "value": 50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "materials",
+          "per": 25,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 15,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "item",
+          "key": "piggy_bank",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "items_price",
+          "value": 50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "piggy_bank"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "sick",
+      "title": "Hemovore",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "scissors",
+        "hatchet",
+        "ghost_flint",
+        "cactus_mace",
+        "lightning_shiv",
+        "sharp_tooth",
+        "pruner",
+        "ghost_scepter",
+        "slingshot",
+        "smg",
+        "medical_gun"
+      ],
+      "wantedTags": [
+        "stat_lifesteal"
+      ],
+      "bannedItems": [
+        "weird_ghost",
+        "tardigrade"
+      ],
+      "bannedItemGroups": [
+        "hp_regeneration"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "max_hp",
+          "value": 12
+        },
+        {
+          "key": "lifesteal",
+          "value": 25
+        },
+        {
+          "key": "lose_hp_per_second",
+          "value": 1
+        },
+        {
+          "key": "hp_regeneration",
+          "value": -100
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "max_hp",
+          "value": 12,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "lifesteal",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "lose_hp_per_second",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "hp_regeneration",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "farmer",
+      "title": "Cultivator",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "hand",
+        "spear",
+        "stick",
+        "torch",
+        "fighting_stick",
+        "screwdriver",
+        "pruner",
+        "dagger",
+        "wrench",
+        "taser",
+        "wand",
+        "double_barrel_shotgun",
+        "slingshot",
+        "potato_thrower"
+      ],
+      "wantedTags": [
+        "stat_harvesting",
+        "consumable"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "harvesting",
+          "value": 20
+        },
+        {
+          "key": "harvesting_growth",
+          "value": 3
+        },
+        {
+          "key": "gold_drops",
+          "value": -50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_harvesting",
+          "value": 1,
+          "customKey": "consumable_stats_while_max",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 20,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting_growth",
+          "value": 3,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "harvesting",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "gold_drops",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "ghost",
+      "title": "Phasewalker",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "ghost_flint",
+        "ghost_axe",
+        "ghost_scepter",
+        "rail_gun"
+      ],
+      "wantedTags": [
+        "stat_dodge"
+      ],
+      "bannedItems": [
+        "duct_tape",
+        "ghost_outfit"
+      ],
+      "bannedItemGroups": [
+        "armor"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "dodge",
+          "value": 30
+        },
+        {
+          "key": "dodge_cap",
+          "value": 90
+        },
+        {
+          "key": "armor",
+          "value": -100
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "class",
+          "key": "damage",
+          "value": 10,
+          "extra": "ethereal"
+        },
+        {
+          "kind": "stat",
+          "key": "dodge",
+          "value": 30,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "dodge_cap",
+          "value": 90,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "armor",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "ethereal",
+      "classStat": "damage",
+      "classValue": 10,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "speedy",
+      "title": "Courier",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "claw",
+        "knife",
+        "dagger",
+        "stick",
+        "spear",
+        "fighting_stick",
+        "jousting_lance",
+        "screwdriver",
+        "ghost_flint",
+        "pruner",
+        "shuriken"
+      ],
+      "wantedTags": [
+        "stat_speed"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "speed",
+          "value": 30
+        },
+        {
+          "key": "armor",
+          "value": -3
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_speed",
+          "per": 2,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_armor",
+          "value": -100,
+          "customKey": "temp_stats_while_not_moving",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "speed",
+          "value": 30,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "melee_damage",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "armor",
+          "value": -100,
+          "extra": "1"
+        },
+        {
+          "kind": "stat",
+          "key": "armor",
+          "value": -3,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "entrepreneur",
+      "title": "Broker",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "claw",
+        "hand",
+        "knife",
+        "dagger",
+        "pruner",
+        "fighting_stick",
+        "hatchet",
+        "ghost_flint",
+        "wrench",
+        "plank",
+        "pistol",
+        "double_barrel_shotgun",
+        "taser",
+        "shuriken",
+        "crossbow",
+        "icicle"
+      ],
+      "wantedTags": [
+        "stat_harvesting",
+        "economy"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "items_price",
+          "value": -25
+        },
+        {
+          "key": "recycling_gains",
+          "value": 25
+        },
+        {
+          "key": "gain_pct_gold_start_wave",
+          "value": -100
+        }
+      ],
+      "gains": [
+        {
+          "key": "harvesting",
+          "value": 50
+        },
+        {
+          "key": "percent_damage",
+          "value": -50
+        },
+        {
+          "key": "ranged_damage",
+          "value": -50
+        },
+        {
+          "key": "melee_damage",
+          "value": -50
+        },
+        {
+          "key": "elemental_damage",
+          "value": -50
+        },
+        {
+          "key": "explosion_damage",
+          "value": -50
+        },
+        {
+          "key": "bounce_damage",
+          "value": -50
+        },
+        {
+          "key": "piercing_damage",
+          "value": -50
+        },
+        {
+          "key": "damage_against_bosses",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "items_price",
+          "value": -25,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "harvesting",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "recycling_gains",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "gain_pct_gold_start_wave",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "damage",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "engineer",
+      "title": "Fabricator",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "wrench",
+        "screwdriver",
+        "plank",
+        "hammer"
+      ],
+      "wantedTags": [
+        "stat_engineering",
+        "structure"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "engineering",
+          "value": 10
+        },
+        {
+          "key": "group_structures",
+          "value": 1
+        }
+      ],
+      "gains": [
+        {
+          "key": "engineering",
+          "value": 25
+        },
+        {
+          "key": "percent_damage",
+          "value": -50
+        },
+        {
+          "key": "ranged_damage",
+          "value": -50
+        },
+        {
+          "key": "melee_damage",
+          "value": -50
+        },
+        {
+          "key": "elemental_damage",
+          "value": -50
+        },
+        {
+          "key": "piercing_damage",
+          "value": -50
+        },
+        {
+          "key": "explosion_damage",
+          "value": -50
+        },
+        {
+          "key": "bounce_damage",
+          "value": -50
+        },
+        {
+          "key": "damage_against_bosses",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "engineering",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "engineering",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "weapon",
+          "key": "wrench",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "group_structures",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "damage",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "wrench",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "explorer",
+      "title": "Surveyor",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "hand",
+        "cactus_mace",
+        "screwdriver",
+        "dagger",
+        "wrench",
+        "stick",
+        "torch",
+        "chopper",
+        "plank",
+        "hatchet",
+        "jousting_lance",
+        "ghost_axe",
+        "crossbow",
+        "shredder",
+        "taser",
+        "wand"
+      ],
+      "wantedTags": [
+        "stat_speed",
+        "exploration",
+        "consumable"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "trees",
+          "value": 12
+        },
+        {
+          "key": "speed",
+          "value": 10
+        },
+        {
+          "key": "pickup_range",
+          "value": 50
+        },
+        {
+          "key": "map_size",
+          "value": 33
+        },
+        {
+          "key": "number_of_enemies",
+          "value": 25
+        },
+        {
+          "key": "enemy_gold_drops",
+          "value": -50
+        },
+        {
+          "key": "enemy_speed",
+          "value": 10
+        },
+        {
+          "key": "percent_damage",
+          "value": -40
+        },
+        {
+          "key": "trees_start_wave",
+          "value": 1
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "trees",
+          "value": 12,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "lumberjack_shirt",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "speed",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "pickup_range",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "map_size",
+          "value": 33,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "number_of_enemies",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "enemy_gold_drops",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "enemy_speed",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": -40,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "trees_start_wave",
+          "value": 1,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "lumberjack_shirt"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "doctor",
+      "title": "Surgeon",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "scissors",
+        "medical_gun"
+      ],
+      "wantedTags": [
+        "stat_hp_regeneration"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "hp_regeneration",
+          "value": 5
+        },
+        {
+          "key": "harvesting",
+          "value": 5
+        },
+        {
+          "key": "attack_speed",
+          "value": -100
+        }
+      ],
+      "gains": [
+        {
+          "key": "hp_regeneration",
+          "value": 100
+        },
+        {
+          "key": "armor",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "class",
+          "key": "attack_speed",
+          "value": 200,
+          "extra": "medical"
+        },
+        {
+          "kind": "stat",
+          "key": "hp_regeneration",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "hp_regeneration",
+          "value": 100,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "attack_speed",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "armor",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "medical",
+      "classStat": "attack_speed_mod",
+      "classValue": 200,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "hunter",
+      "title": "Tracker",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "cactus_mace",
+        "dagger",
+        "spear",
+        "claw",
+        "scissors",
+        "shuriken",
+        "double_barrel_shotgun",
+        "crossbow",
+        "icicle",
+        "rail_gun",
+        "screwdriver",
+        "knife"
+      ],
+      "wantedTags": [
+        "stat_range",
+        "stat_crit_chance"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "harvesting"
+      ],
+      "bannedUpgrades": [
+        "upgrade_harvesting"
+      ],
+      "stats": [
+        {
+          "key": "range",
+          "value": 100
+        }
+      ],
+      "gains": [
+        {
+          "key": "crit_chance",
+          "value": 25
+        },
+        {
+          "key": "harvesting",
+          "value": -100
+        },
+        {
+          "key": "max_hp",
+          "value": -33
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "stat_range",
+          "per": 10,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "range",
+          "value": 100,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "gain",
+          "key": "crit_chance",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "harvesting",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "max_hp",
+          "value": -33,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "artificer",
+      "title": "Demolitionist",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "plank",
+        "screwdriver",
+        "wrench",
+        "shredder"
+      ],
+      "wantedTags": [
+        "explosive"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "explosion_damage",
+          "value": 175
+        },
+        {
+          "key": "percent_damage",
+          "value": -100
+        }
+      ],
+      "gains": [
+        {
+          "key": "armor",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "explosion_size",
+          "value": 4,
+          "customKey": "stat_links",
+          "stat": "stat_elemental_damage",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "explosion_damage",
+          "value": 175,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "explosion_size",
+          "value": 4,
+          "extra": "0"
+        },
+        {
+          "kind": "class",
+          "key": "percent_damage",
+          "value": 100,
+          "extra": "tool"
+        },
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "armor",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "tool",
+      "classStat": "stat_percent_damage",
+      "classValue": 100,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "arms_dealer",
+      "title": "Arms Broker",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "pistol"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "weapons_price",
+          "value": -95
+        },
+        {
+          "key": "harvesting",
+          "value": 30
+        },
+        {
+          "key": "minimum_weapons_in_shop",
+          "value": 1
+        },
+        {
+          "key": "destroy_weapons",
+          "value": 1
+        }
+      ],
+      "gains": [
+        {
+          "key": "percent_damage",
+          "value": 33
+        },
+        {
+          "key": "ranged_damage",
+          "value": 33
+        },
+        {
+          "key": "melee_damage",
+          "value": 33
+        },
+        {
+          "key": "elemental_damage",
+          "value": 33
+        },
+        {
+          "key": "explosion_damage",
+          "value": 33
+        },
+        {
+          "key": "piercing_damage",
+          "value": 33
+        },
+        {
+          "key": "bounce_damage",
+          "value": 33
+        },
+        {
+          "key": "damage_against_bosses",
+          "value": 33
+        }
+      ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "weapons_price",
+          "value": -95,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 30,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "damage",
+          "value": 33,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "dangerous_bunny",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "minimum_weapons_in_shop",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "destroy_weapons",
+          "value": 1,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "dangerous_bunny"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "streamer",
+      "title": "Broadcaster",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "stick",
+        "cactus_mace",
+        "ghost_flint",
+        "ghost_axe",
+        "scissors",
+        "screwdriver",
+        "wrench",
+        "spear",
+        "plank",
+        "pruner",
+        "spiky_shield",
+        "crossbow",
+        "double_barrel_shotgun",
+        "laser_gun",
+        "medical_gun",
+        "pistol",
+        "shredder",
+        "smg",
+        "revolver",
+        "slingshot",
+        "ghost_scepter",
+        "taser",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [
+        "structure"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "gold_drops",
+          "value": -50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "percent_materials",
+          "value": 3,
+          "customKey": "temp_stats_while_not_moving",
+          "per": 25
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": 40,
+          "customKey": "temp_stats_while_moving",
+          "per": 0
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": 40,
+          "customKey": "temp_stats_while_moving",
+          "per": 0
+        },
+        {
+          "key": "stat_armor",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "structure",
+          "per": 1,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -1,
+          "customKey": "stat_links",
+          "stat": "materials",
+          "per": 15,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_speed",
+          "value": -1,
+          "customKey": "stat_links",
+          "stat": "materials",
+          "per": 30,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "percent_materials",
+          "value": 3,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 40,
+          "extra": "1"
+        },
+        {
+          "kind": "effect",
+          "key": "attack_speed",
+          "value": 40,
+          "extra": "2"
+        },
+        {
+          "kind": "effect",
+          "key": "armor",
+          "value": 2,
+          "extra": "3"
+        },
+        {
+          "kind": "stat",
+          "key": "gold_drops",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": -1,
+          "extra": "4"
+        },
+        {
+          "kind": "effect",
+          "key": "speed",
+          "value": -1,
+          "extra": "5"
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "cyborg",
+      "title": "Augment",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "wrench",
+        "screwdriver",
+        "plank",
+        "pistol",
+        "smg",
+        "revolver",
+        "double_barrel_shotgun",
+        "crossbow"
+      ],
+      "wantedTags": [
+        "structure",
+        "stat_ranged_damage"
+      ],
+      "bannedItems": [
+        "charcoal",
+        "gnome"
+      ],
+      "bannedItemGroups": [
+        "melee_damage",
+        "elemental_damage"
+      ],
+      "bannedUpgrades": [
+        "upgrade_melee_damage",
+        "upgrade_elemental_damage"
+      ],
+      "stats": [],
+      "gains": [
+        {
+          "key": "ranged_damage",
+          "value": 200
+        },
+        {
+          "key": "engineering",
+          "value": -75
+        },
+        {
+          "key": "melee_damage",
+          "value": -100
+        },
+        {
+          "key": "elemental_damage",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_ranged_damage",
+          "value": 1,
+          "customKey": "convert_stats_half_wave",
+          "chance": 1.0,
+          "stat": "stat_engineering",
+          "per": 2
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "weapon",
+          "key": "minigun",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "ranged_damage",
+          "value": 200,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "ranged_damage",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "gain",
+          "key": "engineering",
+          "value": -75,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "melee_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "elemental_damage",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "minigun",
+      "bonusTier": 3,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "glutton",
+      "title": "Devourer",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "pruner",
+        "chopper",
+        "dagger",
+        "fist",
+        "jousting_lance",
+        "screwdriver",
+        "plank",
+        "shredder"
+      ],
+      "wantedTags": [
+        "explosive",
+        "stat_melee_damage",
+        "consumable"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "luck",
+          "value": 50
+        },
+        {
+          "key": "items_price",
+          "value": 25
+        },
+        {
+          "key": "xp_gain",
+          "value": -25
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "explosion_damage",
+          "value": 1,
+          "customKey": "consumable_stats_while_max",
+          "per": 0
+        },
+        {
+          "key": "explode_on_consumable",
+          "value": 1,
+          "customKey": "explode_on_consumable",
+          "chance": 1.0,
+          "radius": 2.9468,
+          "projectile": {
+            "damage": 10,
+            "interval": 1.0,
+            "range": 1.5,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0,
+            "crit": 0.03,
+            "critMultiplier": 1.5,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "melee_damage",
+                "value": 5.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "luck",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "explosion_damage",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "explode_on_consumable",
+          "value": 1,
+          "extra": "1"
+        },
+        {
+          "kind": "stat",
+          "key": "items_price",
+          "value": 25,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "xp_gain",
+          "value": -25,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "jack",
+      "title": "Titan Hunter",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "knife",
+        "jousting_lance",
+        "wrench",
+        "torch",
+        "hatchet",
+        "stick",
+        "spear",
+        "spiky_shield",
+        "shuriken",
+        "laser_gun",
+        "revolver",
+        "crossbow",
+        "taser",
+        "wand",
+        "icicle",
+        "rail_gun"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "damage_against_bosses",
+          "value": 125
+        },
+        {
+          "key": "gold_drops",
+          "value": 200
+        },
+        {
+          "key": "number_of_enemies",
+          "value": -70
+        },
+        {
+          "key": "enemy_health",
+          "value": 175
+        },
+        {
+          "key": "enemy_damage",
+          "value": 35
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "damage_against_bosses",
+          "value": 125,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "gold_drops",
+          "value": 200,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "number_of_enemies",
+          "value": -70,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "enemy_health",
+          "value": 175,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "enemy_damage",
+          "value": 35,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "lich",
+      "title": "Revenant",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "scissors",
+        "chopper",
+        "dagger",
+        "stick",
+        "knife",
+        "ghost_flint",
+        "sharp_tooth",
+        "pruner",
+        "hatchet",
+        "rock",
+        "spiky_shield",
+        "lightning_shiv",
+        "ghost_scepter",
+        "medical_gun",
+        "smg",
+        "wand",
+        "icicle",
+        "slingshot",
+        "crossbow"
+      ],
+      "wantedTags": [
+        "stat_max_hp",
+        "stat_hp_regeneration",
+        "stat_lifesteal"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "hp_regeneration",
+          "value": 10
+        },
+        {
+          "key": "lifesteal",
+          "value": 10
+        }
+      ],
+      "gains": [
+        {
+          "key": "percent_damage",
+          "value": -50
+        },
+        {
+          "key": "ranged_damage",
+          "value": -50
+        },
+        {
+          "key": "melee_damage",
+          "value": -50
+        },
+        {
+          "key": "elemental_damage",
+          "value": -50
+        },
+        {
+          "key": "piercing_damage",
+          "value": -50
+        },
+        {
+          "key": "explosion_damage",
+          "value": -50
+        },
+        {
+          "key": "bounce_damage",
+          "value": -50
+        },
+        {
+          "key": "damage_against_bosses",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_max_hp",
+          "value": 100,
+          "customKey": "dmg_when_heal",
+          "chance": 1.0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "hp_regeneration",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "lifesteal",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "max_hp",
+          "value": 100,
+          "extra": "0"
+        },
+        {
+          "kind": "gain",
+          "key": "damage",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "apprentice",
+      "title": "Intern",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "knife",
+        "lightning_shiv",
+        "cactus_mace",
+        "fighting_stick",
+        "ghost_flint",
+        "ghost_axe",
+        "hatchet",
+        "torch",
+        "plank",
+        "pruner",
+        "screwdriver",
+        "wrench",
+        "medical_gun",
+        "smg",
+        "double_barrel_shotgun",
+        "shredder",
+        "slingshot",
+        "taser",
+        "icicle",
+        "shuriken",
+        "ghost_scepter",
+        "rail_gun"
+      ],
+      "wantedTags": [
+        "xp_gain"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 2,
+          "customKey": "stats_on_level_up",
+          "per": 0
+        },
+        {
+          "key": "stat_ranged_damage",
+          "value": 1,
+          "customKey": "stats_on_level_up",
+          "per": 0
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 1,
+          "customKey": "stats_on_level_up",
+          "per": 0
+        },
+        {
+          "key": "stat_engineering",
+          "value": 1,
+          "customKey": "stats_on_level_up",
+          "per": 0
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -2,
+          "customKey": "stats_on_level_up",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "melee_damage",
+          "value": 2,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "ranged_damage",
+          "value": 1,
+          "extra": "1"
+        },
+        {
+          "kind": "effect",
+          "key": "elemental_damage",
+          "value": 1,
+          "extra": "2"
+        },
+        {
+          "kind": "effect",
+          "key": "engineering",
+          "value": 1,
+          "extra": "3"
+        },
+        {
+          "kind": "effect",
+          "key": "max_hp",
+          "value": -2,
+          "extra": "4"
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "cryptid",
+      "title": "Forest Phantom",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "hand",
+        "claw",
+        "knife",
+        "cactus_mace",
+        "pruner",
+        "chopper",
+        "ghost_axe",
+        "dagger",
+        "lightning_shiv",
+        "ghost_flint",
+        "rock",
+        "stick",
+        "hatchet",
+        "jousting_lance",
+        "screwdriver",
+        "plank",
+        "ghost_scepter",
+        "shredder",
+        "pistol",
+        "smg"
+      ],
+      "wantedTags": [
+        "exploration",
+        "stat_dodge"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "lifesteal"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "trees",
+          "value": 6
+        },
+        {
+          "key": "cryptid",
+          "value": 12
+        },
+        {
+          "key": "dodge_cap",
+          "value": 70
+        },
+        {
+          "key": "lifesteal",
+          "value": -100
+        },
+        {
+          "key": "range",
+          "value": -100
+        },
+        {
+          "key": "enemy_gold_drops",
+          "value": -50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_hp_regeneration",
+          "value": 3,
+          "customKey": "stat_links",
+          "stat": "living_tree",
+          "per": 1,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": 3,
+          "customKey": "temp_stats_on_dodge",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "trees",
+          "value": 6,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "cryptid",
+          "value": 12,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "hp_regeneration",
+          "value": 3,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "dodge_cap",
+          "value": 70,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "attack_speed",
+          "value": 3,
+          "extra": "1"
+        },
+        {
+          "kind": "stat",
+          "key": "lifesteal",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "range",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "enemy_gold_drops",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "fisherman",
+      "title": "Angler",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "knife",
+        "rock",
+        "spear",
+        "fighting_stick",
+        "spiky_shield",
+        "torch",
+        "stick",
+        "sharp_tooth",
+        "plank",
+        "pruner",
+        "scissors",
+        "pistol",
+        "smg",
+        "crossbow",
+        "double_barrel_shotgun",
+        "laser_gun",
+        "revolver",
+        "shredder",
+        "slingshot",
+        "icicle"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "max_hp",
+          "value": 5
+        },
+        {
+          "key": "harvesting",
+          "value": 20
+        },
+        {
+          "key": "upgraded_baits",
+          "value": 1
+        },
+        {
+          "key": "enemy_gold_drops",
+          "value": -50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "item_bait",
+          "value": 1,
+          "customKey": "guaranteed_shop_items",
+          "per": 0
+        },
+        {
+          "key": "item_bait",
+          "value": -100,
+          "customKey": "specific_items_price",
+          "per": 0
+        },
+        {
+          "key": "stat_harvesting",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "item_bait",
+          "per": 1,
+          "permanentOnly": true
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "max_hp",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 20,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "item_bait",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "item_bait",
+          "value": -100,
+          "extra": "1"
+        },
+        {
+          "kind": "effect",
+          "key": "harvesting",
+          "value": 2,
+          "extra": "2"
+        },
+        {
+          "kind": "stat",
+          "key": "upgraded_baits",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "enemy_gold_drops",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "golem",
+      "title": "Monolith",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "cactus_mace",
+        "chopper",
+        "fist",
+        "ghost_axe",
+        "hatchet",
+        "knife",
+        "plank",
+        "rock",
+        "spiky_shield",
+        "stick",
+        "torch",
+        "pistol",
+        "revolver",
+        "slingshot",
+        "crossbow",
+        "ghost_scepter"
+      ],
+      "wantedTags": [
+        "stat_max_hp",
+        "stat_armor"
+      ],
+      "bannedItems": [
+        "tentacle",
+        "goblet",
+        "cute_monkey",
+        "turret_healing",
+        "garden",
+        "extra_stomach",
+        "adrenaline",
+        "weird_ghost",
+        "doc_moth"
+      ],
+      "bannedItemGroups": [
+        "hp_regeneration",
+        "lifesteal",
+        "lifesteal_and_hp_regeneration",
+        "consumable_heal"
+      ],
+      "bannedUpgrades": [
+        "upgrade_hp_regeneration",
+        "upgrade_lifesteal"
+      ],
+      "stats": [
+        {
+          "key": "max_hp",
+          "value": 20
+        },
+        {
+          "key": "no_heal",
+          "value": 1
+        }
+      ],
+      "gains": [
+        {
+          "key": "max_hp",
+          "value": 33
+        },
+        {
+          "key": "armor",
+          "value": 33
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_attack_speed",
+          "value": 40,
+          "customKey": "stats_below_half_health",
+          "per": 0
+        },
+        {
+          "key": "stat_speed",
+          "value": 20,
+          "customKey": "stats_below_half_health",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "max_hp",
+          "value": 20,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "max_hp",
+          "value": 33,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "armor",
+          "value": 33,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "attack_speed",
+          "value": 40,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "speed",
+          "value": 20,
+          "extra": "1"
+        },
+        {
+          "kind": "stat",
+          "key": "no_heal",
+          "value": 1,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "king",
+      "title": "Sovereign",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "circular_saw",
+        "knife",
+        "hatchet",
+        "ghost_axe",
+        "lightning_shiv",
+        "torch",
+        "plank",
+        "spear",
+        "jousting_lance",
+        "sword",
+        "hammer",
+        "spiky_shield",
+        "pistol",
+        "smg",
+        "crossbow",
+        "double_barrel_shotgun",
+        "rocket_launcher",
+        "taser",
+        "fireball",
+        "vorpal_sword"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "luck",
+          "value": 50
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 25,
+          "customKey": "tier_iv_weapon_effects",
+          "per": 0
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": 25,
+          "customKey": "tier_iv_weapon_effects",
+          "per": 0
+        },
+        {
+          "key": "stat_max_hp",
+          "value": 5,
+          "customKey": "stat_links",
+          "stat": "legendary_item",
+          "per": 1,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_percent_damage",
+          "value": -15,
+          "customKey": "tier_i_weapon_effects",
+          "per": 0
+        },
+        {
+          "key": "stat_attack_speed",
+          "value": -15,
+          "customKey": "tier_i_weapon_effects",
+          "per": 0
+        },
+        {
+          "key": "stat_max_hp",
+          "value": -2,
+          "customKey": "stat_links",
+          "stat": "common_item",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "luck",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 25,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "attack_speed",
+          "value": 25,
+          "extra": "1"
+        },
+        {
+          "kind": "effect",
+          "key": "max_hp",
+          "value": 5,
+          "extra": "2"
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": -15,
+          "extra": "3"
+        },
+        {
+          "kind": "effect",
+          "key": "attack_speed",
+          "value": -15,
+          "extra": "4"
+        },
+        {
+          "kind": "effect",
+          "key": "max_hp",
+          "value": -2,
+          "extra": "5"
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "renegade",
+      "title": "Outlaw",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "pistol",
+        "revolver",
+        "shredder",
+        "smg",
+        "laser_gun",
+        "medical_gun",
+        "double_barrel_shotgun",
+        "taser",
+        "wand",
+        "icicle",
+        "ghost_scepter",
+        "crossbow",
+        "shuriken",
+        "slingshot",
+        "rail_gun"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "projectiles",
+          "value": 2
+        },
+        {
+          "key": "piercing",
+          "value": 1
+        },
+        {
+          "key": "percent_damage",
+          "value": -400
+        },
+        {
+          "key": "accuracy",
+          "value": -50
+        }
+      ],
+      "gains": [
+        {
+          "key": "percent_damage",
+          "value": -80
+        },
+        {
+          "key": "explosion_damage",
+          "value": -80
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 10,
+          "customKey": "stat_links",
+          "stat": "common_item",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "projectiles",
+          "value": 2,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "piercing",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 10,
+          "extra": "0"
+        },
+        {
+          "kind": "noMelee",
+          "key": "no_melee_weapons",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": -400,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "accuracy",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "percent_damage",
+          "value": -80,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": true,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "one_arm",
+      "title": "Monolimb",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "claw",
+        "dagger",
+        "ghost_axe",
+        "lightning_shiv",
+        "scissors",
+        "cactus_mace",
+        "torch",
+        "plank",
+        "hatchet",
+        "pruner",
+        "jousting_lance",
+        "double_barrel_shotgun",
+        "shredder",
+        "smg",
+        "taser",
+        "revolver",
+        "icicle",
+        "shuriken"
+      ],
+      "wantedTags": [
+        "stat_percent_damage"
+      ],
+      "bannedItems": [
+        "jelly"
+      ],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "attack_speed",
+          "value": 200
+        }
+      ],
+      "gains": [
+        {
+          "key": "percent_damage",
+          "value": 100
+        },
+        {
+          "key": "ranged_damage",
+          "value": 100
+        },
+        {
+          "key": "melee_damage",
+          "value": 100
+        },
+        {
+          "key": "elemental_damage",
+          "value": 100
+        },
+        {
+          "key": "explosion_damage",
+          "value": 100
+        },
+        {
+          "key": "piercing_damage",
+          "value": 100
+        },
+        {
+          "key": "bounce_damage",
+          "value": 100
+        },
+        {
+          "key": "damage_against_bosses",
+          "value": 100
+        }
+      ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "attack_speed",
+          "value": 200,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "damage",
+          "value": 100,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "weapon_slot",
+          "value": -5,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 1,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "bull",
+      "title": "Reactor",
+      "description": "",
+      "available": false,
+      "startingWeapons": [],
+      "wantedTags": [
+        "stat_armor",
+        "stat_hp_regeneration",
+        "explosive"
+      ],
+      "bannedItems": [
+        "jelly",
+        "nail",
+        "crystal",
+        "coffee",
+        "seashell",
+        "glasses",
+        "community_support",
+        "tardigrade"
+      ],
+      "bannedItemGroups": [
+        "lifesteal"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "max_hp",
+          "value": 20
+        },
+        {
+          "key": "hp_regeneration",
+          "value": 15
+        },
+        {
+          "key": "armor",
+          "value": 10
+        }
+      ],
+      "gains": [
+        {
+          "key": "hp_regeneration",
+          "value": 50
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "explode_on_hit",
+          "value": 1,
+          "customKey": "explode_on_hit",
+          "chance": 1.0,
+          "radius": 1.4734,
+          "projectile": {
+            "damage": 30,
+            "interval": 1.0,
+            "range": 1.5,
+            "pellets": 1,
+            "piercing": 0,
+            "spread": 0,
+            "crit": 0.03,
+            "critMultiplier": 1.5,
+            "knockback": 0.0,
+            "scaling": [
+              {
+                "key": "melee_damage",
+                "value": 3.0
+              },
+              {
+                "key": "ranged_damage",
+                "value": 3.0
+              },
+              {
+                "key": "elemental_damage",
+                "value": 3.0
+              }
+            ],
+            "lifesteal": 0.0,
+            "projectileSpeed": 30.0,
+            "pierceLoss": 0.5,
+            "bounce": 0,
+            "bounceLoss": 0.5,
+            "reloadEvery": -1,
+            "reloadMultiplier": -1.0,
+            "recoil": 0.25,
+            "recoilHalf": 0.1
+          }
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "max_hp",
+          "value": 20,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "hp_regeneration",
+          "value": 15,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "armor",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "hp_regeneration",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "explode_on_hit",
+          "value": 1,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "weapon_slot",
+          "value": 0,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 0,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "soldier",
+      "title": "Sentinel",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "knife",
+        "lightning_shiv",
+        "crossbow",
+        "double_barrel_shotgun",
+        "laser_gun",
+        "pistol",
+        "shredder",
+        "revolver",
+        "smg",
+        "taser",
+        "wand",
+        "icicle",
+        "rail_gun"
+      ],
+      "wantedTags": [
+        "stand_still"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "percent_damage",
+          "value": 50
+        },
+        {
+          "key": "attack_speed",
+          "value": 50
+        },
+        {
+          "key": "speed",
+          "value": 10
+        },
+        {
+          "key": "pickup_range",
+          "value": 200
+        },
+        {
+          "key": "knockback",
+          "value": 15
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "attack_speed",
+          "value": 50,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "speed",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "pickup_range",
+          "value": 200,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "knockback",
+          "value": 15,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "can_attack_while_moving",
+          "value": 0,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": false
+    },
+    {
+      "id": "masochist",
+      "title": "Pain Engine",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "rock",
+        "scissors",
+        "cactus_mace",
+        "ghost_axe",
+        "spiky_shield",
+        "sharp_tooth",
+        "torch",
+        "double_barrel_shotgun",
+        "medical_gun",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [
+        "stat_max_hp",
+        "stat_armor",
+        "stat_hp_regeneration",
+        "stat_lifesteal"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "max_hp",
+          "value": 10
+        },
+        {
+          "key": "hp_regeneration",
+          "value": 20
+        },
+        {
+          "key": "armor",
+          "value": 8
+        },
+        {
+          "key": "percent_damage",
+          "value": -100
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 5,
+          "customKey": "temp_stats_on_hit",
+          "per": 0
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 5,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "max_hp",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "hp_regeneration",
+          "value": 20,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "armor",
+          "value": 8,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "knight",
+      "title": "Paladin",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "sword",
+        "hammer",
+        "spear",
+        "torch",
+        "jousting_lance",
+        "fighting_stick",
+        "plank",
+        "rock",
+        "fist",
+        "knife",
+        "scissors",
+        "cactus_mace",
+        "vorpal_sword"
+      ],
+      "wantedTags": [
+        "stat_armor"
+      ],
+      "bannedItems": [
+        "seashell"
+      ],
+      "bannedItemGroups": [
+        "harvesting",
+        "ranged_damage"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "armor",
+          "value": 3
+        }
+      ],
+      "gains": [
+        {
+          "key": "attack_speed",
+          "value": -50
+        },
+        {
+          "key": "harvesting",
+          "value": -80
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_melee_damage",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "stat_armor",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "melee_damage",
+          "value": 2,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "armor",
+          "value": 3,
+          "extra": ""
+        },
+        {
+          "kind": "noRanged",
+          "key": "no_ranged_weapons",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "min_weapon_tier",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "attack_speed",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "harvesting",
+          "value": -80,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": true,
+      "weaponSlots": 6,
+      "minTier": 2,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "demon",
+      "title": "Blood Broker",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "dagger",
+        "lightning_shiv",
+        "ghost_axe",
+        "ghost_flint",
+        "torch",
+        "chopper",
+        "sharp_tooth",
+        "wrench",
+        "ghost_scepter",
+        "wand",
+        "taser",
+        "icicle"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "hp_shop",
+          "value": 1
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "materials",
+          "value": 13,
+          "customKey": "convert_stats_end_of_wave",
+          "chance": 0.5,
+          "stat": "stat_max_hp",
+          "per": 1
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "materials",
+          "value": 13,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "hp_shop",
+          "value": 1,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "baby",
+      "title": "Newborn",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "scissors",
+        "screwdriver",
+        "pruner",
+        "sharp_tooth",
+        "fighting_stick",
+        "knife",
+        "stick",
+        "plank",
+        "rock",
+        "wrench",
+        "shuriken",
+        "taser",
+        "wand",
+        "icicle",
+        "slingshot",
+        "pistol",
+        "rail_gun"
+      ],
+      "wantedTags": [
+        "xp_gain"
+      ],
+      "bannedItems": [
+        "barnacle"
+      ],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "harvesting",
+          "value": 12
+        },
+        {
+          "key": "items_price",
+          "value": -20
+        },
+        {
+          "key": "weapon_slot_upgrades",
+          "value": 24
+        },
+        {
+          "key": "minimum_weapons_in_shop",
+          "value": 1
+        },
+        {
+          "key": "next_level_xp_needed",
+          "value": 130
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 12,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "items_price",
+          "value": -20,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "weapon_slot_upgrades",
+          "value": 24,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "weapon_slot",
+          "value": -5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "minimum_weapons_in_shop",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "next_level_xp_needed",
+          "value": 130,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 1,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "vagabond",
+      "title": "Drifter",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "cactus_mace",
+        "chopper",
+        "dagger",
+        "spear",
+        "sharp_tooth",
+        "hand",
+        "claw",
+        "fighting_stick",
+        "hatchet",
+        "plank",
+        "ghost_flint",
+        "spiky_shield",
+        "lightning_shiv",
+        "torch",
+        "shuriken",
+        "crossbow",
+        "revolver",
+        "laser_gun",
+        "rail_gun"
+      ],
+      "wantedTags": [],
+      "bannedItems": [],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "all_weapons_count_for_sets",
+          "value": 1
+        },
+        {
+          "key": "no_duplicate_weapons",
+          "value": 1
+        },
+        {
+          "key": "armor",
+          "value": -5
+        },
+        {
+          "key": "dodge",
+          "value": -5
+        }
+      ],
+      "gains": [
+        {
+          "key": "luck",
+          "value": -50
+        },
+        {
+          "key": "harvesting",
+          "value": -50
+        }
+      ],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "all_weapons_count_for_sets",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "no_duplicate_weapons",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "armor",
+          "value": -5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "dodge",
+          "value": -5,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "luck",
+          "value": -50,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "harvesting",
+          "value": -50,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "technomage",
+      "title": "Circuit Witch",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "wrench",
+        "screwdriver",
+        "plank",
+        "torch",
+        "lightning_shiv",
+        "pruner",
+        "taser",
+        "wand",
+        "icicle"
+      ],
+      "wantedTags": [
+        "stat_elemental_damage",
+        "stat_engineering",
+        "structure"
+      ],
+      "bannedItems": [],
       "bannedItemGroups": [
         "melee_damage",
         "ranged_damage",
         "melee_and_ranged_damage"
-      ]
+      ],
+      "bannedUpgrades": [
+        "upgrade_melee_damage",
+        "upgrade_ranged_damage"
+      ],
+      "stats": [
+        {
+          "key": "next_level_xp_needed",
+          "value": 75
+        }
+      ],
+      "gains": [
+        {
+          "key": "melee_damage",
+          "value": -100
+        },
+        {
+          "key": "ranged_damage",
+          "value": -100
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "structure_attack_speed",
+          "value": 5,
+          "customKey": "stat_links",
+          "stat": "stat_elemental_damage",
+          "per": 1,
+          "permanentOnly": true
+        },
+        {
+          "key": "stat_elemental_damage",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "structure",
+          "per": 1,
+          "permanentOnly": false
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "item",
+          "key": "turret",
+          "value": 2,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "structure_attack_speed",
+          "value": 5,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "elemental_damage",
+          "value": 2,
+          "extra": "1"
+        },
+        {
+          "kind": "stat",
+          "key": "next_level_xp_needed",
+          "value": 75,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "melee_damage",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "gain",
+          "key": "ranged_damage",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "turret",
+        "turret"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "vampire",
+      "title": "Bloodline",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "fist",
+        "claw",
+        "sharp_tooth",
+        "ghost_flint",
+        "hatchet",
+        "knife",
+        "dagger",
+        "lightning_shiv",
+        "scissors",
+        "spiky_shield",
+        "stick",
+        "torch",
+        "screwdriver",
+        "wrench",
+        "shuriken",
+        "pistol",
+        "smg",
+        "double_barrel_shotgun",
+        "medical_gun",
+        "revolver",
+        "shredder",
+        "crossbow"
+      ],
+      "wantedTags": [
+        "stat_lifesteal"
+      ],
+      "bannedItems": [],
+      "bannedItemGroups": [
+        "hp_regeneration",
+        "consumable_heal"
+      ],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "percent_damage",
+          "value": -60
+        },
+        {
+          "key": "hp_regeneration",
+          "value": -100
+        },
+        {
+          "key": "consumable_heal",
+          "value": -100
+        }
+      ],
+      "gains": [
+        {
+          "key": "max_hp",
+          "value": -25
+        }
+      ],
+      "conditionalEffects": [
+        {
+          "key": "stat_percent_damage",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "percent_player_missing_health",
+          "per": 1,
+          "permanentOnly": true
+        },
+        {
+          "key": "stat_lifesteal",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "percent_player_missing_health",
+          "per": 3,
+          "permanentOnly": false
+        },
+        {
+          "key": "stat_armor",
+          "value": 1,
+          "customKey": "stat_links",
+          "stat": "percent_player_missing_health",
+          "per": 5,
+          "permanentOnly": true
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "effect",
+          "key": "percent_damage",
+          "value": 2,
+          "extra": "0"
+        },
+        {
+          "kind": "effect",
+          "key": "lifesteal",
+          "value": 1,
+          "extra": "1"
+        },
+        {
+          "kind": "effect",
+          "key": "armor",
+          "value": 1,
+          "extra": "2"
+        },
+        {
+          "kind": "gain",
+          "key": "max_hp",
+          "value": -25,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "percent_damage",
+          "value": -60,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "hp_regeneration",
+          "value": -100,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "consumable_heal",
+          "value": -100,
+          "extra": ""
+        }
+      ],
+      "startingItems": [],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "beast_master",
+      "title": "Drone Shepherd",
+      "description": "",
+      "available": false,
+      "startingWeapons": [],
+      "wantedTags": [
+        "pet"
+      ],
+      "bannedItems": [
+        "jelly",
+        "glasses"
+      ],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [],
+      "stats": [
+        {
+          "key": "beast_master_effect",
+          "value": 1
+        },
+        {
+          "key": "luck",
+          "value": 10
+        },
+        {
+          "key": "boosted_wanted_item_tag",
+          "value": 1
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [
+        {
+          "key": "stat_speed",
+          "value": 2,
+          "customKey": "stat_links",
+          "stat": "pet",
+          "per": 1,
+          "permanentOnly": true
+        }
+      ],
+      "effectRows": [
+        {
+          "kind": "item",
+          "key": "lootworm",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "weapon_slot",
+          "value": 0,
+          "extra": ""
+        },
+        {
+          "kind": "effect",
+          "key": "speed",
+          "value": 2,
+          "extra": "0"
+        },
+        {
+          "kind": "stat",
+          "key": "beast_master_effect",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "luck",
+          "value": 10,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "boosted_wanted_item_tag",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "bonk_dog",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "catling_gun",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "blazemander",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "bot_o_mine",
+          "value": 1,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "bonk_dog",
+        "catling_gun",
+        "blazemander",
+        "bot_o_mine",
+        "lootworm"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 0,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
+    },
+    {
+      "id": "wounded",
+      "title": "Glassheart",
+      "description": "",
+      "available": false,
+      "startingWeapons": [
+        "knife",
+        "stick",
+        "fist",
+        "chopper",
+        "fighting_stick",
+        "cactus_mace",
+        "hatchet",
+        "spiky_shield",
+        "ghost_flint",
+        "wrench",
+        "pistol",
+        "smg",
+        "double_barrel_shotgun",
+        "slingshot",
+        "taser",
+        "wand",
+        "icicle",
+        "rail_gun"
+      ],
+      "wantedTags": [],
+      "bannedItems": [
+        "acid",
+        "alien_baby",
+        "alien_magic",
+        "alien_worm",
+        "baby_squid",
+        "bat",
+        "blood_donation",
+        "blood_leech",
+        "bloody_hand",
+        "broken_mouth",
+        "butterfly",
+        "cake",
+        "coral",
+        "cute_monkey",
+        "decomposing_flesh",
+        "estys_couch",
+        "extra_stomach",
+        "fairy",
+        "fresh_meat",
+        "fried_rice",
+        "goblet",
+        "grinds_magical_leaf",
+        "helmet",
+        "jelly",
+        "jerky",
+        "krakens_eye",
+        "lemonade",
+        "medikit",
+        "metal_plate",
+        "mushroom",
+        "octopus",
+        "padding",
+        "penguin",
+        "plant",
+        "potion",
+        "sad_tomato",
+        "shmoop",
+        "spicy_sauce",
+        "stone_skin",
+        "sunken_bell",
+        "torture",
+        "warrior_helmet",
+        "weird_food",
+        "weird_ghost",
+        "whetstone",
+        "alien_eyes",
+        "garden",
+        "doc_moth",
+        "fruit_basket",
+        "turret_healing"
+      ],
+      "bannedItemGroups": [],
+      "bannedUpgrades": [
+        "upgrade_armor",
+        "upgrade_max_hp",
+        "upgrade_hp_regeneration",
+        "upgrade_lifesteal"
+      ],
+      "stats": [
+        {
+          "key": "die_in_one_hit",
+          "value": 1
+        },
+        {
+          "key": "speed",
+          "value": 5
+        },
+        {
+          "key": "harvesting",
+          "value": 8
+        }
+      ],
+      "gains": [],
+      "conditionalEffects": [],
+      "effectRows": [
+        {
+          "kind": "stat",
+          "key": "die_in_one_hit",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "item",
+          "key": "tardigrade",
+          "value": 1,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "speed",
+          "value": 5,
+          "extra": ""
+        },
+        {
+          "kind": "stat",
+          "key": "harvesting",
+          "value": 8,
+          "extra": ""
+        }
+      ],
+      "startingItems": [
+        "tardigrade"
+      ],
+      "bonusWeapon": "",
+      "bonusTier": 1,
+      "classSet": "",
+      "classStat": "",
+      "classValue": 0,
+      "noMelee": false,
+      "noRanged": false,
+      "weaponSlots": 6,
+      "minTier": 1,
+      "maxTier": 4,
+      "canAttackMoving": true
     }
   ],
   "equipment": [

@@ -18,7 +18,7 @@ namespace Scrapshift
             float damage=stats.damage;
             if(stats.scaling!=null)foreach(var s in stats.scaling)damage+=rules.Stat(s.key)*s.value;
             // Ordinary percentage Damage does not affect engineering structures.
-            return Mathf.Max(1,damage);
+            return Mathf.Max(1,stats.pet?rules.WeaponDamage(stats,rules.Stat("structure_percent_damage")):damage*(1+rules.Stat("structure_percent_damage")/100));
         }
     }
 }

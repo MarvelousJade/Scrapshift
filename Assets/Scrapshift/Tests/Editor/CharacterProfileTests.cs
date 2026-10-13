@@ -12,22 +12,23 @@ namespace Scrapshift.Tests
         RunRules Start(int character,string weapon){var r=new RunRules(42);r.Configure(catalog);r.Start(catalog.data.characters[character],weapon);return r;}
         [Test] public void FiveProfilesKeepReferenceOrderAndCompleteStartingLists()
         {
-            CollectionAssert.AreEqual(new[]{"well_rounded","brawler","crazy","ranger","mage"},catalog.data.characters.Select(c=>c.id));
-            CollectionAssert.AreEqual(new[]{18,3,8,9,8},catalog.data.characters.Select(c=>c.startingWeapons.Length));
+            CollectionAssert.AreEqual(new[]{"well_rounded","brawler","crazy","ranger","mage"},catalog.data.characters.Take(5).Select(c=>c.id));
+            CollectionAssert.AreEqual(new[]{18,3,8,9,8},catalog.data.characters.Take(5).Select(c=>c.startingWeapons.Length));
             Assert.AreEqual(50,catalog.data.rosterSlots);
-            foreach(var c in catalog.data.characters)foreach(var id in c.startingWeapons)
+            Assert.AreEqual(50,catalog.data.characters.Length);Assert.AreEqual(5,catalog.data.characters.Count(c=>c.available));
+            foreach(var c in catalog.data.characters.Take(5))foreach(var id in c.startingWeapons)
                 for(int tier=1;tier<=4;tier++){var w=catalog.Weapon(id,tier);Assert.NotNull(w,id);Assert.NotNull(w.image,id);Assert.IsNotEmpty(w.sounds,id);}
         }
         [Test] public void EveryUnlockedChoiceStartsWithSelectedWeaponAndReferenceBonus()
         {
             foreach(var c in catalog.data.characters)foreach(var id in c.startingWeapons)
             {
-                if(!catalog.Weapon(id,1).available)continue;
+                if(!(catalog.Weapon(id,c.minTier)?.available??false))continue;
                 var r=new RunRules(42);r.Configure(catalog);r.Start(c,id);
                 Assert.AreEqual(id,r.Inventory[0].id);
-                Assert.AreEqual(2,r.Inventory.Count,c.id);
+                Assert.AreEqual(System.Math.Min(2,r.WeaponSlots),r.Inventory.Count,c.id);
                 if(r.Inventory.Count==2)Assert.AreEqual(c.DefaultWeapon,r.Inventory[1].id);
-                Assert.AreEqual(r.MaxHealth,r.Health);
+                Assert.AreEqual(UnityEngine.Mathf.Floor(r.MaxHealth),r.Health,c.id);
             }
         }
         [Test] public void RookieHasReferenceStartingStats()

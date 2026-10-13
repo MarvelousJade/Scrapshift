@@ -13,6 +13,7 @@ namespace Scrapshift
         public float DodgeLimit=>Mathf.Clamp(Mathf.Max(60,Stat("dodge_cap")),0,100)/100;
         void BeginItemWave()
         {
+            burningKills=projectileHits=0;BeginCharacterWave();
             ExtraLootAliens=Math.Max(0,(int)PermanentStat("extra_loot_aliens_next_wave"));stats["extra_loot_aliens_next_wave"]=0;
             consumableGains.Clear();
             HitProtection=Math.Max(0,(int)Stat("hit_protection"));LastHitProtected=false;

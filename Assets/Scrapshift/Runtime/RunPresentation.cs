@@ -15,9 +15,11 @@ namespace Scrapshift
         static readonly string[] startingWeapons={"pistol","smg","double_barrel_shotgun","laser_gun","knife","spear"};
         bool Arriving => arrivalAge<ArrivalMotion.Duration;
 
+        void ScaleMapArt()
+        {var deck=GameObject.Find("Deck art");if(deck!=null)deck.transform.localScale=new Vector3(ArenaGeometry.HalfSize.x/ArenaGeometry.BaseHalfSize.x,ArenaGeometry.HalfSize.y/ArenaGeometry.BaseHalfSize.y,1);}
         void StartSelectedRun()
         {
-            pauseOptions=false;Begin();Rules.Start(SelectedCharacter,SelectedWeapon.id);StartWave();
+            pauseOptions=false;Begin();Rules.Progress=progress;Rules.Difficulty=selectedDifficulty;recordedFinish=false;Rules.Start(SelectedCharacter,SelectedWeapon?.id);ArenaGeometry.SetMapSize(Rules.Stat("map_size"));ScaleMapArt();PlanEncounters();StartWave();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             gameCamera.transform.position=Vector3.back*20;PoseArrival(0);
@@ -48,6 +50,7 @@ namespace Scrapshift
         }
         void ReturnToSelection(int page)
         {
+            if((Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)&&Rules.Wave<5)progress?.Complete("chal_hourglass");
             ClearCombat();if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;
             Rules.ReturnToTitle();menuPage=page;endSummary=false;player.SetActive(false);sound.StopAll();
         }
@@ -56,8 +59,9 @@ namespace Scrapshift
             sound.Play(SoundCue.UiPress);
             if(Rules.Phase==RunPhase.Title)
             {
-                if(menuPage==1&&randomCharacter){ChangeLook(UnityEngine.Random.Range(0,catalog.data.characters.Length)-playerAnimation.lookIndex);randomCharacter=false;}
-                if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();
+                if(menuPage==1&&randomCharacter){var unlocked=Array.FindAll(catalog.data.characters,c=>c.available);var chosen=unlocked[UnityEngine.Random.Range(0,unlocked.Length)];ChangeLook(Array.IndexOf(catalog.data.characters,chosen)-playerAnimation.lookIndex);randomCharacter=false;}
+                if(menuPage==1&&!SelectedCharacter.available)return;
+                if(menuPage==1&&SelectedCharacter.weaponSlots==0)menuPage=3;else if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();
             }
             else if(!endSummary)endSummary=true;else StartSelectedRun();
         }
@@ -66,7 +70,8 @@ namespace Scrapshift
         {
             bool lit=selected||r.Contains(Event.current.mousePosition);
             RoundedBox(r,lit?paper:panelColor,9);
-            var labelStyle=new GUIStyle(center){fontSize=27};labelStyle.normal.textColor=lit?ink:paper;
+            var labelStyle=new GUIStyle(center){fontSize=Mathf.Min(27,(int)(r.height*.58f)),wordWrap=false,font=catalog.referenceFont};
+            while(labelStyle.fontSize>12&&labelStyle.CalcSize(new GUIContent(label)).x>r.width-18)labelStyle.fontSize--;labelStyle.normal.textColor=lit?ink:paper;
             if(GUI.enabled&&r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
             bool clicked=GUI.Button(r,label,labelStyle);if(clicked)sound.Play(SoundCue.UiPress);return clicked;
         }
@@ -111,10 +116,10 @@ namespace Scrapshift
                 var w=SelectedWeapon;
                 float wx=menuPage==3?630:822;
                 RoundedBox(new Rect(wx,155,330,420),panelColor);
-                Text(wx+20,174,290,47,w.id=="smg"?"SMG":w.title,heading);
-                DrawIcon(w.image,new Rect(wx+20,246,86,83));
-                Text(wx+123,252,185,75,WeaponSets.For(w)?.Name??"Weapon",body);
-                DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290,PreviewRules());
+                Text(wx+20,174,290,47,w==null?"No weapons":w.id=="smg"?"SMG":w.title,heading);
+                DrawIcon(w?.image,new Rect(wx+20,246,86,83));
+                Text(wx+123,252,185,75,w==null?"Unarmed":WeaponSets.For(w)?.Name??"Weapon",body);
+                if(w!=null)DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290,PreviewRules());
                 if(menuPage==2)
                 {
                     WeaponGrid();
@@ -122,10 +127,11 @@ namespace Scrapshift
                 else
                 {
                     RoundedBox(new Rect(980,155,370,420),panelColor);
-                    Text(1000,183,330,45,"Danger 0",heading);
-                    Text(1000,270,330,110,"No modifiers\n20 waves",body);
-                    if(MenuButton(new Rect(678,633,84,84),"0",true))StartSelectedRun();
-                    Text(460,724,520,36,"Standard enemies · 20 waves",center);
+                    Text(1000,183,330,45,selectedDifficulty==6?"Nightmare":"Danger "+selectedDifficulty,heading);
+                    var difficultyPreview=new RunRules{Difficulty=selectedDifficulty};Text(1000,252,330,290,difficultyPreview.DifficultyDescription,new GUIStyle(body){fontSize=21});
+                    for(int d=0;d<=6;d++){GUI.enabled=d<=progress.Difficulty;if(MenuButton(new Rect(383+d*98,633,84,84),d==6?"N":d.ToString(),d==selectedDifficulty))selectedDifficulty=d;GUI.enabled=true;}
+                    Text(460,724,520,36,"20 waves",center);
+                    if(MenuButton(new Rect(565,794,310,62),"Start"))StartSelectedRun();
                 }
             }
         }
@@ -148,7 +154,7 @@ namespace Scrapshift
         {
             if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
             if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
-            else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger 0",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
+            else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
             if(!endSummary)
             {
                 if(won){Portrait(new Vector2(720,417),160,playerAnimation.Look,true);Text(460,625,520,45,"20 waves survived",center);}

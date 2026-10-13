@@ -3,6 +3,7 @@ import json, hashlib, re
 from pathlib import Path
 import analyze_reference as source
 from structure_specs import structure,stats_data
+from pet_specs import pet
 source.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 root=Path(__file__).resolve().parents[1]
 ids=['coffee','beanie','glasses','helmet','leather_vest','bat','fertilizer','cake']
@@ -15,7 +16,12 @@ supported.update({'number_of_enemies','trees'})
 supported.update({'structure_attack_speed','structures_can_crit'})
 supported.update({'enemy_damage','tree_turrets','extra_loot_aliens_next_wave'})
 conditional={'temp_stats_while_not_moving','temp_stats_while_moving','unique_weapon_effects','additional_weapon_effects','temp_stats_on_hit','stats_end_of_wave','stats_on_level_up','temp_stats_per_interval'}
+pet_scripts={'lootworm_effect','doc_moth_effect','bonk_dog_effect','catling_gun_effect','bot_o_mine_effect','blazemander_effect','ratzilla_effect','scapegoat_effect','pet_effect'}
+supported.update({'fog_visibility','item_hourglass','extra_elite_next_wave_chance','jellyshield_count',''})
 def implemented(e):
+    if Path(e.get('script','')).stem in pet_scripts:return True
+    if e.get('script')=='effects/items/extra_enemy_effect.gd':return True
+    if e.get('script')=='effects/items/double_value_effect.gd' and e.get('key') in {'gain_random_primary_stats_on_go_to_next_wave','burning_enemy_hp_percent_damage'}:return True
     if not isinstance(e.get('value'),(int,float)):return False
     if e.get('script')=='effects/items/burn_chance_effect.gd':return True
     if e.get('script') in {'effects/items/projectile_effect.gd','effects/items/item_exploding_effect.gd','effects/items/percent_damage_effect.gd'}:return True
@@ -47,6 +53,9 @@ def read(path):
 
 def special(e):
     script=e.get('script','')
+    if Path(script).stem in pet_scripts and 'scene' in e:return dict(key='pet',value=e['value'],customKey='pet',pet=pet(e))
+    if Path(script).stem=='pet_effect':return dict(key='pet',value=0,customKey='pet')
+    if script=='effects/items/extra_enemy_effect.gd':return dict(key='bait',value=e['value'],customKey='extra_enemies_next_wave')
     if script=='effects/items/projectile_effect.gd':
         return dict(key=e['key'],value=e['value'],customKey=e['key'],projectile=stats_data(read(e['weapon_stats'])),interval=e.get('cooldown',-1))
     if script=='effects/items/item_exploding_effect.gd':

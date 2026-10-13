@@ -5,26 +5,40 @@ namespace Scrapshift
     public static class PresentationPolish { public static Color BodyTint=>Color.white; }
     public sealed partial class ArenaGame
     {
-        Rect lastUiHover;int optionsTab;float stepClock;bool yardPolished;
-        sealed class Dust { public LineRenderer line;public Vector2 pos;public float age;public bool pickup; }
+        Rect lastUiHover;int optionsTab;float stepClock;bool yardPolished;float smokeClock;
+        sealed class Dust { public LineRenderer line;public SpriteRenderer smoke;public GameObject root;public Vector2 pos;public float age,rotation,scale=1;public Vector2 velocity;public bool pickup; }
+        Sprite smokeSprite;
         readonly List<Dust> footDust=new List<Dust>();
         void TickFootsteps(Vector2 movement,float dt)
         {
-            if(movement.sqrMagnitude<.01f){stepClock=0;return;}
+            if(movement.sqrMagnitude<.01f){stepClock=smokeClock=0;return;}
+            smokeClock-=dt;if(smokeClock<=0){smokeClock=.125f*UnityEngine.Random.Range(.65f,1.35f);if(!reducedMotion)AddFootDust(playerPos+new Vector2(UnityEngine.Random.Range(-.1f,.1f),-.24f),false);}
             stepClock-=dt;if(stepClock>0)return;stepClock=.28f;
             sound.Play(SoundCue.Step,playerPos);
-            if(!reducedMotion)AddFootDust(playerPos-new Vector2(movement.x,movement.y).normalized*.15f,false);
+
         }
         void AddFootDust(Vector2 pos,bool pickup)
         {
             if(footDust.Count>=32)return;
             var root=new GameObject(pickup?"Material contact":"Foot dust");root.transform.position=new Vector3(pos.x,pos.y,-2);
+            if(!pickup)
+            {
+                if(smokeSprite==null)
+                {
+                    var texture=new Texture2D(64,64,TextureFormat.RGBA32,false){filterMode=FilterMode.Bilinear,wrapMode=TextureWrapMode.Clamp};var colors=new Color[4096];
+                    for(int y=0;y<64;y++)for(int x=0;x<64;x++)
+                    {float r=Vector2.Distance(new Vector2(x,y),new Vector2(31.5f,31.5f))/31.5f;float angle=Mathf.Atan2(y-31.5f,x-31.5f);float edge=.73f+.14f*Mathf.Sin(angle*7)+.05f*Mathf.Sin(angle*11);float a=Mathf.SmoothStep(1,0,Mathf.InverseLerp(edge-.06f,edge,r));colors[y*64+x]=new Color(.44f,.45f,.43f,a*.8f);}
+                    texture.SetPixels(colors);texture.Apply();smokeSprite=Sprite.Create(texture,new Rect(0,0,64,64),Vector2.one*.5f,140);
+                }
+                var sprite=root.AddComponent<SpriteRenderer>();sprite.sprite=smokeSprite;sprite.sharedMaterial=catalog.spriteMaterial;sprite.sortingOrder=2;
+                root.transform.localScale=new Vector3(1,.7f,1);footDust.Add(new Dust{smoke=sprite,root=root,pos=pos,velocity=UnityEngine.Random.insideUnitCircle*.3f,rotation=UnityEngine.Random.Range(194f,1246f),scale=UnityEngine.Random.Range(.75f,1.25f)});return;
+            }
             var line=MakeLine("Puff",root.transform,pickup?mint:new Color(.6f,.65f,.7f,.25f),pickup?.025f:.13f,true);
             line.sortingOrder=pickup?15:1;line.positionCount=12;
             for(int i=0;i<12;i++){float a=i*Mathf.PI*2/12;line.SetPosition(i,new Vector3(Mathf.Cos(a)*.11f,Mathf.Sin(a)*.055f,0));}
-            footDust.Add(new Dust{line=line,pos=pos,pickup=pickup});
+            footDust.Add(new Dust{line=line,root=root,pos=pos,pickup=pickup});
         }
-        void ClearFootDust(){foreach(var d in footDust)if(d.line!=null)Destroy(d.line.transform.parent.gameObject);footDust.Clear();stepClock=0;}
+        void ClearFootDust(){foreach(var d in footDust)if(d.root!=null)Destroy(d.root);footDust.Clear();stepClock=0;}
         void PickupContactEffect(){AddFootDust(playerPos,true);}
         void RemoveWaveEnemies()
         {
@@ -44,10 +58,10 @@ namespace Scrapshift
             if(Rules.Phase==RunPhase.Paused||inspectionReview)return;
             for(int i=footDust.Count-1;i>=0;i--)
             {
-                var d=footDust[i];d.age+=dt;float t=d.age/.45f;
-                var c=d.pickup?mint:new Color(.6f,.65f,.7f,.25f);c.a*=1-t;d.line.startColor=d.line.endColor=c;
-                d.line.transform.parent.localScale=Vector3.one*(1+t*(d.pickup?1.7f:1.1f));
-                if(t>=1){Destroy(d.line.transform.parent.gameObject);footDust.RemoveAt(i);}
+                var d=footDust[i];d.age+=dt;float t=d.age/(d.pickup?.45f:.75f);
+                var c=d.pickup?mint:Color.white;c.a*=1-t;if(d.line!=null)d.line.startColor=d.line.endColor=c;else {d.smoke.color=Color.white;d.pos+=d.velocity*dt;d.root.transform.position=(Vector3)d.pos+Vector3.back*2;d.root.transform.Rotate(0,0,d.rotation*dt);}
+                d.root.transform.localScale=Vector3.one*(d.pickup?1+t*1.7f:Mathf.Max(0,1-t)*d.scale);
+                if(t>=1){Destroy(d.root);footDust.RemoveAt(i);}
             }
         }
         void PolishYard()
@@ -84,7 +98,7 @@ namespace Scrapshift
             if(optionsTab==0)
             {
                 if(MenuButton(new Rect(390,345,660,60),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);}
-                Text(390,435,660,100,"Automatic attacks\n20 waves Â· Danger 0",center);
+                Text(390,435,660,100,"Automatic attacks\n20 waves",center);
             }
             else if(optionsTab==1)
             {
@@ -95,7 +109,7 @@ namespace Scrapshift
             else if(optionsTab==2)
             {
                 if(MenuButton(new Rect(390,345,660,60),DisplayLabel))ToggleFullscreen();
-                Text(390,455,660,40,Screen.width+" Ã— "+Screen.height,center);
+                Text(390,455,660,40,Screen.width+" × "+Screen.height,center);
             }
             else Text(390,335,660,290,"Move: WASD / Arrow keys\nPause / Back: Escape\nConfirm: Enter\nInspect: Tab / Shift+Tab\nWeapon actions: Left / Right click\nFullscreen: F11",center);
             if(MenuButton(new Rect(470,760,500,60),"Back")){if(paused)pauseOptions=false;else menuPage=0;}

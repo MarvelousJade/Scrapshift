@@ -17,7 +17,7 @@ namespace Scrapshift
             icon = Style(56, paper, FontStyle.Bold); icon.alignment = TextAnchor.MiddleCenter;
             damageSmall = Style(22, Color.white, FontStyle.Bold); damageSmall.alignment = TextAnchor.MiddleCenter;
             damageBig = Style(30, amber, FontStyle.Bold); damageBig.alignment = TextAnchor.MiddleCenter;
-            body.font=tiny.font=catalog.referenceFont;
+            body.font=tiny.font=heading.font=title.font=number.font=cardTitle.font=center.font=catalog.referenceFont;
             inspectionBody=new GUIStyle(body){fontSize=18,richText=true,fontStyle=FontStyle.Normal};
             inspectionTitle=new GUIStyle(inspectionBody){fontSize=22};
             button = new GUIStyle { fontSize = 21, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter,
@@ -52,8 +52,8 @@ namespace Scrapshift
             if (Rules.Phase == RunPhase.Loot) { LootUI(); EndInspection(); return; }
             if (Rules.Phase == RunPhase.Shop) { GUI.enabled=selectedWeapon<0;ShopUI();GUI.enabled=true; if(selectedWeapon>=0)DrawWeaponActions();else EndInspection(); return; }
             if (Rules.Phase == RunPhase.Upgrade) { UpgradeUI(); EndInspection(); return; }
-            DrawHud();
-            var boss=enemies.Find(e=>e.type.role=="Boss"&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,"PREDATOR",center);}
+            DrawNightmareFog();DrawHud();
+            var boss=enemies.Find(e=>(e.type.role=="Boss"||e.type.role=="Elite")&&e.marker==null); if(boss!=null){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,boss.type.id.ToUpperInvariant(),center);}
             DrawFeedback();
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
             else if (Rules.Phase == RunPhase.Shop) ShopUI();
@@ -70,7 +70,7 @@ namespace Scrapshift
             playerAnimation.lookIndex=(playerAnimation.lookIndex+direction+looks.Length)%looks.Length;
             if(titleModel!=null)titleModel.GetComponent<SpriteFrameAnimator>().lookIndex=playerAnimation.lookIndex;
         }
-        Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.76f,.43f,1) : tier==2 ? new Color(.40f,.66f,1) : paper;
+        Color TierColor(int tier) => tier==4 ? new Color(1,.32f,.32f) : tier==3 ? new Color(.8f,.41f,1) : tier==2 ? new Color(.36f,.77f,1) : paper;
         void DrawHud()
         {
             var hudMatrix=GUI.matrix;GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(FullCanvas.xMin,FullCanvas.yMin,0));
@@ -101,24 +101,24 @@ namespace Scrapshift
 
         void UpgradeUI()
         {
-            Overlay(); DrawHud(); DrawStatsPanel();
-            OutlinedText(24,188,1062,64,"Level Up!",new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter });
-            Text(24,254,1062,32,$"Choose an upgrade  /  {Rules.PendingLevels} remaining",center);
+            Overlay(); DrawNightmareFog();DrawHud(); DrawStatsPanel();
+            OutlinedText(ContentLeft,220,ContentWidth,64,"Level Up!",new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter });
+            
             for(int i=0;i<Rules.Offers.Length;i++)
             {
-                var o=Rules.Offers[i];float x=24+i*268;
-                Frame(new Rect(x,320,252,300),ink,2);
-                Box(new Rect(x+3,323,246,4),TierColor(o.Tier));
+                var o=Rules.Offers[i];float x=OfferX(i),width=OfferWidth;
+                Frame(new Rect(x,320,width,270),TierColor(o.Tier),2);Box(new Rect(x+3,323,width-6,264),new Color(.02f,.04f,.05f,.92f));
+                Box(new Rect(x+3,323,width-6,4),TierColor(o.Tier));
                 Box(new Rect(x+14,340,66,70),new Color(.17f,.16f,.15f));
                 DrawIcon(o.Image,new Rect(x+20,346,54,58));
-                Text(x+92,342,144,58,CyberneticTheme.UpgradeName(o.Stat),body);
-                Text(x+92,400,144,28,o.Rarity,tiny);
+                Text(x+92,342,width-108,58,CyberneticTheme.UpgradeName(o.Stat)+(o.Tier>1?" "+new[]{"","","II","III","IV"}[o.Tier]:""),new GUIStyle(body){fontSize=20,normal={textColor=TierColor(o.Tier)}});
+                Text(x+92,400,width-108,28,"Upgrade",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
                 var gain=new GUIStyle(body);gain.normal.textColor=new Color(.38f,1,.25f);
-                Text(x+18,466,216,75,o.Detail,gain);
-                if(Button(new Rect(x+16,555,220,48),"Choose"))SelectUpgrade(i);
+                RichText(StatLine(o.Stat,o.Amount),new Rect(x+18,450,width-36,65),18);
+                if(Button(new Rect(x+16,530,width-32,44),"Choose"))SelectUpgrade(i);
             }
             GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(363,664,384,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
+            if(Button(new Rect(ContentLeft+(ContentWidth-384)/2,630,384,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
             GUI.enabled=true;
             DrawSetTooltip();DrawIntermissionInventory();
         }

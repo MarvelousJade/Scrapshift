@@ -6,7 +6,7 @@ Scope confirmed by the user: all 209 registered base items, all 62 weapon famili
 
 `scripts/audit_full_base.py` archives the 50 registered characters and 116 registered challenge records into `artifacts/base-roster-unlocks.json`, with resource hashes and resolved effect definitions. The existing item archive covers all 209 item identities. This inventory includes the newer base-game pets and characters in the supplied backup; it does not infer the roster from an older online count.
 
-## Work in progress
+## Original plan (historical; superseded by the completion entry below)
 
 - Special weapons: implementing Screwdriver mine deployment, Pruner gardens, Particle Accelerator's engineering-scaled decaying slow, Vorpal Sword's 1/2/3% execution chance, Thunder Sword's delayed slowing projectiles, Torch burning spread, and Rail Gun's damage-growth/reset timer.
 - Remaining 90 items: requires linked stats/caps, pickup/damage/dodge/death events, single-wave effects, structures, pets and economy/spawn hooks. They remain excluded until their complete effect set is supported.
@@ -78,3 +78,26 @@ Added Pocket Factory and Lure, reaching 193/209 items (155 initially available, 
 Source comparison: main.gd neutral-death handler; entity_spawner.gd / zone_service.gd area placement; zone_1/000_loot group and unit resources; wave_manager.gd extra-loot scheduling. This exposed a scheduler edge case: repeating=-1 means spawn once with no repeats, while our old left=repeats+1 skipped that group entirely. The scheduler now clamps the number of repeats before adding the initial spawn. Bait requires the additional Lamprey enemy behavior and is still excluded rather than importing a nonfunctional effect.
 
 Windows build succeeded with zero errors/warnings; 248/248 tests passed. Tests verify Lure consumption/re-purchase, its spawn window, count, and immunity to enemy-count scaling. The visible fixture passed the tree-to-turret conversion and actual turret damage plus all prior combat assertions: artifacts/wave-implants-review/starter-review.json. The full roster and saved unlock progression are still outstanding. Five starting profiles are implemented, as explicitly confirmed by the user; the other 45 visible locks are currently placeholders.
+
+
+## October 12 completion: full catalog, roster and saved unlocks
+
+The final 16 records are now implemented: Bait, Blazemander, Bonk Dog, Bot-o-Mine, Broken Hourglass, Campfire, Candle, Candy Bag, Catling Gun, Doc Moth, Greek Fire, Hourglass, Jellyshield, Lootworm, Ratzilla and Scapegoat. All **209 registered base items**, **62 weapon families / 205 tier records** and **50 character profiles** are included. Fresh saves expose five characters, 161 items and 46 weapon families / 160 tiers; the rest use real source challenge rewards. No DLC injection. This supersedes every smaller checkpoint count above.
+
+Nine companions have movement, attacks and secondary actions: jumping impact, accelerated twin guns, mines, contact/radial burning, HP-scaled attacks, healing amplification, material/tree collection, a revivable decoy and orbiting projectile shields. Hourglass consumes itself, repeats the current wave and grants Broken Hourglass's next-wave HP override. Candy Bag grants eight random primary-stat points and can add an elite. Bait queues Lamprey groups. Greek Fire uses current enemy HP with the reference boss reduction. Vision implants change Nightmare fog visibility.
+
+Character import now resolves every profile's effects, gain multipliers, starting eligibility, bonus loadouts, weapon capacity, tier limits, wanted item tags and banned items. Runtime hooks cover health-funded shops, stationary attacks/income, half-wave stat conversion, random stat gains, unusual weapon-set counting, weapon-slot growth and the other source effect families. The user's requested default weapon plus selected weapon is retained when the profile allows it; Bull remains unarmed and single-slot characters retain one weapon. Existing cream-body cosmetic layers are reused across the roster; 50 profiles do not mean 50 bespoke portraits.
+
+Progression imports 115 usable registered challenges (the source's additional ban-system reward is not a normal item/weapon/character reward). Counters, stat thresholds, per-wave conditions, character wins and difficulty wins award real resources and persist atomically with backup recovery. Nightmare requires ten distinct Danger-5 character wins. Run fixtures use memory-only progression. Save incompatibility/corruption is preserved rather than silently replaced. Explosive multi-kill tracking includes mines, structures and companion explosions. Pacifist income includes enemies removed by the population cap, rounds before halving on horde waves.
+
+Source comparisons: registered resources in item_service.tscn and challenge_service.tscn; player_run_data/run_data effect handling; main.gd wave-end, damage, healing and challenge hooks; entity_spawner.gd population cap; wave_manager/zone_service source wave selection; companion scenes/scripts; weapon_service scaling; character resource restrictions. Imported 20 full wave definitions, five horde groups, elite/final-boss selection and 12 Nightmare projectile-event patterns so related item/unlock rules have actual encounters.
+
+### Screenshot-driven presentation
+
+The supplied three screenshots guided the full-width four-card shop, bottom-left item inventory, bottom-right three-column/two-row weapon inventory, item sorting, gold type labels, tier colors, inline scaling/stat icons, green bonuses and red penalties. Level-up cards use the same icon/signed-value/white-label hierarchy. Weapon actions attach set descriptions and show Combine only when available. Harvesting is the only secondary currency-area readout; stored-material banking remains gameplay, with its bag hidden. Walking smoke uses our procedural lobed puffs with source-style emission, rotation and shrink timing.
+
+Weapon atlas boundary tests found neighboring artwork crossing multiple nominal grid cells. The fix derives connected-component clipping geometry from our existing PNG and imports complete sprite bounds; it does not repaint assets. UI and world renderers share those masks. A Unity JSON mismatch initially deserialized Rect values to zero; explicit serialized pixel-region fields fixed it. See bugs.md and the final verification entry for accepted evidence, rather than earlier failed runs.
+
+### Practical limits
+
+This is a completed catalog/character/unlock implementation, not a claim of frame-perfect equivalence to the entire original game. Extended elite attack timing, enemy contact geometry and some companion movement remain Unity adaptations. Many implants use existing stat glyphs and companions use existing weapon art. The requested two-weapon default differs from the source on ordinary characters. Automated deterministic checks do not establish a balanced human 20-wave survival run, native input acceptance or identical random outcomes across engines. The new UI preserves our artwork and cybernetic names, so it is a structural reference match rather than pixel-identical screenshots.

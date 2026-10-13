@@ -14,7 +14,7 @@ namespace Scrapshift
             var pool=items.Where(i=>i.tier==tier&&RunRules.IsShopItem(i.id)).ToArray();
             while(pool.Length==0&&tier>1){tier--;pool=items.Where(i=>i.tier==tier&&RunRules.IsShopItem(i.id)).ToArray();}
             // Empty tiers are a deliberate small-catalog fallback. Hard restrictions survive fallback.
-            pool=pool.Where(i=>!(character?.bannedItems??Array.Empty<string>()).Contains("item_"+i.id)&&
+            pool=pool.Where(i=>!(character?.bannedItems??Array.Empty<string>()).Any(id=>id==i.id||id=="item_"+i.id)&&
                 !(character?.bannedItemGroups??Array.Empty<string>()).Intersect(i.groups??Array.Empty<string>()).Any()&&
                 (i.maxCount<=0||owned.Count(a=>a.id==i.id)<i.maxCount)).ToArray();
             var fresh=pool.Where(i=>!excluded.Any(e=>e.id==i.id)).ToArray();

@@ -28,7 +28,7 @@ namespace Scrapshift
         public static void Configure(SetEntry[] entries)
         {
             if(entries==null)return;
-            All=entries.Select(e=>{var s=e.id=="gun"?Gun:e.id=="precise"?Precise:e.id=="primitive"?Primitive:new WeaponSet(e.id,e.name,e.bonuses[0].effects[0].key,0);s.Data=e;return s;}).ToArray();
+            All=entries.Select(e=>{var s=e.id=="gun"?Gun:e.id=="precise"?Precise:e.id=="primitive"?Primitive:new WeaponSet(e.id,e.id=="fire"?"Elemental":e.id=="unarmed"?"Unarmed":e.name,e.bonuses[0].effects[0].key,0);s.Data=e;return s;}).ToArray();
         }
         public static WeaponSet For(Equipment weapon)
         {

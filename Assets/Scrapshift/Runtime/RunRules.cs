@@ -75,7 +75,7 @@ namespace Scrapshift
             get;
             private set;
         }
-        public int NextLevel=>(Level+4)*(Level+4);
+        public int NextLevel=>Math.Max(1,(int)((Level+4)*(Level+4)*(1+Stat("next_level_xp_needed")/100)));
         public float DamageScale=>Math.Max(0,1+Stat("percent_damage")/100);
         public float FireRate=>Math.Max(.1f,1+Stat("attack_speed")/100);
         public float MoveSpeed=>4.5f*Math.Max(.2f,1+Math.Min(speedCap,Stat("speed"))/100);
@@ -116,8 +116,8 @@ namespace Scrapshift
             WeaponSets.Configure(source?.data.sets);
         }
         float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
-        public float Stat(string name)=>(PermanentStat(name)+WeaponSets.Bonus(Inventory,name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1)+LinkedStat(name);
-        public int SetCount(WeaponSet set)=>WeaponSets.Count(Inventory,set);
+        public float Stat(string name)=>(PermanentStat(name)+SetStat(name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1)+LinkedStat(name);
+        public int SetCount(WeaponSet set)=>StatWithoutSets("all_weapons_count_for_sets")>0?Inventory.Count:WeaponSets.Count(Inventory,set);
         public float WeaponRange(Equipment weapon)=>Mathf.Max(.25f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
         void Add(string name,float value)
         {
@@ -127,18 +127,19 @@ namespace Scrapshift
         public void ReturnToTitle() { Phase=RunPhase.Title; }
         public void Start(CharacterProfile character=null,string weaponId=null)
         {
-            stats.Clear();nextWaveStats.Clear();burnKillCounts.Clear();xpFraction=0;Character=character;
+            Level=0;burningKills=0;queuedBaits=0;ExtraElite=false;UsedLocks=false;runConsumables=runRecycles=projectileHits=0;runHealing=0;stats.Clear();nextWaveStats.Clear();burnKillCounts.Clear();xpFraction=0;Character=character;
             ResetConditionalEffects();
-            healthCap=speedCap=float.PositiveInfinity;LivingEnemies=LivingTrees=BurningEnemies=StructureCount=PetCount=0;
+            RemovedEnemies=0;IsHordeWave=false;healthCap=speedCap=float.PositiveInfinity;LivingEnemies=LivingTrees=BurningEnemies=StructureCount=PetCount=0;
             Inventory.Clear();
             Items.Clear();
             crates.Clear();CrateItem=null;regenElapsed=lifeStealCooldown=0;
-            if(catalog!=null)
+            if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
+            if(catalog!=null&&WeaponSlots>0)
             {
-                var starting=catalog.Weapon(weaponId??"pistol",1);
+                var starting=catalog.Weapon(weaponId??"pistol",MinimumWeaponTier)??catalog.Weapon(weaponId??"pistol",1);
                 if(!CanEquip(starting)||character!=null&&Array.IndexOf(character.startingWeapons,starting.id)<0)throw new ArgumentException("Invalid starting weapon for character");
                 Inventory.Add(starting);
-                if(character!=null)Inventory.Add(catalog.Weapon(character.DefaultWeapon,1));
+                if(character!=null&&WeaponSlots>1){var bonus=catalog.Weapon(character.DefaultWeapon,Math.Max(character.bonusTier,MinimumWeaponTier));if(!CanEquip(bonus))bonus=starting;Inventory.Add(bonus);}
             }
             if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
             if(character?.startingItems!=null)foreach(var id in character.startingItems)
@@ -155,11 +156,11 @@ namespace Scrapshift
         public void Tick(float seconds)
         {
             if(Phase!=RunPhase.Playing||seconds<=0)return;
-            TickConditionalEffects(Math.Min(seconds,Remaining));
+            TickCharacter(Math.Min(seconds,Remaining));TickConditionalEffects(Math.Min(seconds,Remaining));
             if(Phase!=RunPhase.Playing)return;
             Remaining=Math.Max(0,Remaining-seconds);
             if(Remaining>0)return;
-            PermanentTrigger("stats_end_of_wave");
+            PermanentTrigger("stats_end_of_wave");ConvertStats("convert_stats_end_of_wave",true);
             if(Wave==WaveCount)
             {
                 Phase=RunPhase.Won;
@@ -167,8 +168,9 @@ namespace Scrapshift
                 return;
             }
             int harvest=(int)Stat("harvesting");
-            Scrap=Math.Max(0,Scrap+harvest);
-            if(harvest>0)GainXP(harvest);
+            int income=harvest+(Mathf.FloorToInt((LivingEnemies+RemovedEnemies)*Stat("pacifist")/100+.5f)/(IsHordeWave?2:1))+LivingTrees*(int)Stat("cryptid");
+            Scrap=Math.Max(0,Scrap+income);
+            if(income>0)GainXP(income);
             if(harvest>0)Add("harvesting",Mathf.Ceil(harvest*Mathf.Max(0,5+Stat("harvesting_growth"))/100));
             rerolls=0;
             ResetConditionalEffects();
@@ -182,13 +184,15 @@ namespace Scrapshift
             if(HitProtection>0){HitProtection--;LastHitProtected=true;return;}
             float armor=Stat("armor");
             amount*=armor>=0?1/(1+armor/15):2-1/(1-armor/15);
-            Health=Math.Max(0,Health-Math.Max(1,amount));
+            Health=Stat("die_in_one_hit")>0?0:Math.Max(0,Health-Math.Max(1,amount));
             DamageTriggers();
             if(Health==0)Phase=RunPhase.Lost;
         }
         public void Heal(float amount,bool fromTorture=false)
         {
+            float before=Health;
             if(Phase==RunPhase.Playing&&amount>0&&Stat("no_heal")<=0&&(Stat("torture")<=0||fromTorture))Health=Math.Min(MaxHealth,Health+amount);
+            if(Health>before){runHealing+=Health-before;Progress?.Check("chal_medicine",runHealing);RandomDamageTrigger("dmg_when_heal");}
             if(Health>=MaxHealth)regenElapsed=0;
         }
         public void DefeatBoss()
@@ -218,7 +222,7 @@ namespace Scrapshift
             int bonus=Math.Min(value,banked);
             banked-=bonus;
             int boost=random.NextDouble()<Mathf.Clamp01(Stat("chance_double_gold")/100)?2:1;
-            Scrap+=(value+bonus)*boost;
+            Scrap+=(value+bonus)*boost;Progress?.Count("materials",(value+bonus)*boost);
             GainXP((value+bonus)*boost);
             if(random.NextDouble()<Mathf.Clamp01(Stat("heal_when_pickup_gold")/100))Heal(1);
             RandomDamageTrigger("dmg_when_pickup_gold");
@@ -227,16 +231,25 @@ namespace Scrapshift
         {
             banked+=Math.Max(0,value);
         }
-        public int Price(int value)=>Math.Max(1,(int)((value+Wave+value*Wave*.1f)*Mathf.Max(0,1+Stat("items_price")/100)));
+        public int Price(int value)=>Math.Max(1,(int)((value+Wave+value*Wave*(Difficulty>=6?.11f:.1f))*Mathf.Max(0,1+Stat("items_price")/100)));
         public int RecycleValue(int value)=>Math.Max(1,(int)(Price(value)*Mathf.Clamp(.25f+Stat("recycling_gains")/100,.01f,1)));
-        static int PriceAt(int value,int wave)=>Math.Max(1,(int)(value+wave+value*wave*.1f));
-        public int Price(ShopOffer offer){int wave=offer.rolledWave>0?offer.rolledWave:Wave;return Math.Max(1,(int)((offer.Value+wave+offer.Value*wave*.1f)*Mathf.Max(0,1+Stat("items_price")/100)));}
+        int PriceAt(int value,int wave)=>Math.Max(1,(int)(value+wave+value*wave*(Difficulty>=6?.11f:.1f)));
+        public int Price(ShopOffer offer)
+        {
+            int wave=offer.rolledWave>0?offer.rolledWave:Wave;
+            float value=offer.Value*(offer.weapon!=null?1+Stat("weapons_price")/100:1);
+            float specific=Effects("specific_items_price").Where(e=>e.key=="item_"+offer.item?.id).Sum(e=>e.value);
+            int cost=Math.Max(1,(int)((value+wave+value*wave*(Difficulty>=6?.11f:.1f))*Mathf.Max(0,1+(Stat("items_price")+specific)/100)));
+            return UsesHealthShop?Mathf.CeilToInt(cost/20f):cost;
+        }
         void Draft(bool reroll=false)
         {
             var pool=new List<UpgradeKind>
             {
-                UpgradeKind.Damage,UpgradeKind.Speed,UpgradeKind.Repair,UpgradeKind.Critical,UpgradeKind.Armor,UpgradeKind.Regeneration,UpgradeKind.Harvesting,UpgradeKind.Move
+                UpgradeKind.Damage,UpgradeKind.Speed,UpgradeKind.Repair,UpgradeKind.Critical,UpgradeKind.Armor,UpgradeKind.Regeneration,UpgradeKind.Harvesting,UpgradeKind.Move,
+                UpgradeKind.LifeSteal,UpgradeKind.Melee,UpgradeKind.Ranged,UpgradeKind.Elemental,UpgradeKind.Engineering,UpgradeKind.Range,UpgradeKind.Dodge,UpgradeKind.Luck
             };
+            pool.RemoveAll(kind=>(Character?.bannedUpgrades??Array.Empty<string>()).Contains("upgrade_"+new UpgradeOffer(kind,1).Stat));
             if(reroll) pool.RemoveAll(kind=>Offers.Any(o=>o.Kind==kind));
             int rewardLevel=Level-PendingLevels+1;
             Offers=new UpgradeOffer[4];
@@ -262,23 +275,27 @@ namespace Scrapshift
         void OpenShop()
         {
             Phase=RunPhase.Shop;
+            if(Stat("destroy_weapons")>0)Inventory.Clear();
             UpgradeWeaponImplants();BeginShopRerolls();rerolls=0;
             RollShop();
         }
         void RollShop()
         {
             if(catalog==null)return;
-            int guaranteed=Wave<=2?2:Wave<=5?1:0;
+            int guaranteed=Math.Max((int)Stat("minimum_weapons_in_shop"),Wave<=2?2:Wave<=5?1:0);
+            var guaranteedItems=new Queue<string>(Effects("guaranteed_shop_items").Select(e=>e.key.Replace("item_","")));
             int existing=Shop.Count(s=>s!=null&&s.locked&&s.weapon!=null);
             var excluded=Shop.Where(s=>s!=null).ToList();
             for(int i=0;i<4;i++)
             {
                 if(Shop[i]!=null&&Shop[i].locked)continue;
-                bool weapon=existing<guaranteed||(Wave>2&&random.NextDouble()<.35);
+                bool weapon=WeaponSlots>0&&(Wave<=2?existing<guaranteed:guaranteedItems.Count==0&&(existing<guaranteed||random.NextDouble()<.35));
                 int tier=ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 if(weapon)
                 {
+                    tier=Mathf.Clamp(tier,MinimumWeaponTier,MaximumWeaponTier);
                     var fallback=catalog.data.equipment.Where(w=>w.tier==tier&&CanEquip(w)).ToArray();
+                    if(fallback.Length==0){Shop[i]=null;continue;}
                     var pool=fallback.Where(w=>!excluded.Any(s=>s.weapon==w)).ToArray();
                     if(pool.Length==0)pool=fallback;
                     double wanted=random.NextDouble();
@@ -294,8 +311,9 @@ namespace Scrapshift
                 }
                 else
                 {
-                    var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<.05,
+                    var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<WantedTagChance,
                         excluded.Where(s=>s.item!=null).Select(s=>s.item),Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)));
+                    if(guaranteedItems.Count>0){string id=guaranteedItems.Dequeue();pool=catalog.data.items.Where(item=>item.id==id).ToArray();}
                     if(pool.Length==0){Shop[i]=null;continue;}
                     Shop[i]=new ShopOffer
                     {
@@ -307,23 +325,23 @@ namespace Scrapshift
         }
         public void ToggleLock(int index)
         {
-            if(Phase==RunPhase.Shop&&index>=0&&index<4&&Shop[index]!=null)Shop[index].locked=!Shop[index].locked;
+            if(Phase==RunPhase.Shop&&index>=0&&index<4&&Shop[index]!=null){Shop[index].locked=!Shop[index].locked;if(Shop[index].locked)UsedLocks=true;}
         }
-        int FindMatch(Equipment w)=>w.tier>=4?-1:Inventory.FindIndex(x=>x.id==w.id&&x.tier==w.tier);
+        int FindMatch(Equipment w)=>w.tier>=MaximumWeaponTier?-1:Inventory.FindIndex(x=>x.id==w.id&&x.tier==w.tier);
         public bool CanBuy(int i)
         {
             if(Phase!=RunPhase.Shop||i<0||i>=4||Shop[i]==null)return false;
             var s=Shop[i];
-            return Scrap>=Price(s)&&(s.weapon==null||CanEquip(s.weapon)&&(Inventory.Count<6||FindMatch(s.weapon)>=0));
+            return (UsesHealthShop?MaxHealth>Price(s):Scrap>=Price(s))&&(s.weapon==null||CanEquip(s.weapon)&&(Inventory.Count<WeaponSlots&&CanAddWeapon(s.weapon)||FindMatch(s.weapon)>=0));
         }
         public bool Buy(int i)
         {
             if(!CanBuy(i))return false;
             var s=Shop[i];
-            Scrap-=Price(s);
+            if(UsesHealthShop)Add("max_hp",-Price(s)/(Character?.Gain("max_hp")??1));else Scrap-=Price(s);
             if(s.weapon!=null)
             {
-                if(Inventory.Count==6)Inventory[FindMatch(s.weapon)]=catalog.Weapon(s.weapon.id,s.weapon.tier+1);
+                if(Inventory.Count>=WeaponSlots||!CanAddWeapon(s.weapon))Inventory[FindMatch(s.weapon)]=catalog.Weapon(s.weapon.id,s.weapon.tier+1);
                 else Inventory.Add(s.weapon);
             }
             else
@@ -334,7 +352,7 @@ namespace Scrapshift
             Shop[i]=null;
             return true;
         }
-        public bool CanCombine(int i)=>Phase==RunPhase.Shop&&i>=0&&i<Inventory.Count&&Inventory[i].tier<4&&Inventory.Where((w,j)=>j!=i&&w.id==Inventory[i].id&&w.tier==Inventory[i].tier).Any();
+        public bool CanCombine(int i)=>Phase==RunPhase.Shop&&i>=0&&i<Inventory.Count&&Inventory[i].tier<MaximumWeaponTier&&Inventory.Where((w,j)=>j!=i&&w.id==Inventory[i].id&&w.tier==Inventory[i].tier).Any();
         public void Combine(int index)
         {
             if(!CanCombine(index))return;
@@ -350,7 +368,7 @@ namespace Scrapshift
         public void Recycle(int i)
         {
             if(Phase!=RunPhase.Shop||i<0||i>=Inventory.Count)return;
-            Scrap+=RecycleValue(Inventory[i].value);
+            Scrap+=RecycleValue(Inventory[i].value);runRecycles++;Progress?.Check("chal_recycling",runRecycles);
             Inventory.RemoveAt(i);
             Health=Math.Min(Health,MaxHealth);
         }
@@ -365,7 +383,7 @@ namespace Scrapshift
         public void NextWave()
         {
             if(Phase!=RunPhase.Shop)return;
-            Wave++;
+            Wave=PrepareNextWave();
             Remaining=Durations[Wave-1];
             ResetConditionalEffects();
             Health=MaxHealth;

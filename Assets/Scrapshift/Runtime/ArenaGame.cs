@@ -14,9 +14,9 @@ namespace Scrapshift
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
         sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
-        sealed class Shot { public GameObject obj; public Vector2 pos, velocity; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure;public StructureSpec structureSpec; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
+        sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure;public StructureSpec structureSpec; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; public ConsumableKind consumable; }
-        sealed class Spark { public GameObject obj; public Vector2 pos, velocity; public float life, max; }
+        sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
         readonly List<Pickup> pickups = new List<Pickup>();
@@ -42,7 +42,7 @@ namespace Scrapshift
 
         void Start()
         {
-            Application.targetFrameRate = 120; Rules.Configure(catalog);
+            InitializeProgression();Application.targetFrameRate = 120; Rules.Configure(catalog);
             Rules.RandomDamageRequested+=QueueImplantDamage;
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
@@ -79,6 +79,7 @@ namespace Scrapshift
                 Directory.CreateDirectory(smokePath); smokeStart = Time.realtimeSinceStartup;
                 Begin();
             }
+            int petIndex=Array.IndexOf(args,"--pet-review");if(petIndex>=0&&petIndex+1<args.Length)BeginPetReview(args[petIndex+1]);
             int artIndex = Array.IndexOf(args, "--art-review");
             if (artIndex >= 0 && artIndex + 1 < args.Length) BeginArtReview(args[artIndex + 1]);
             int enemyIndex = Array.IndexOf(args, "--enemy-review");
@@ -103,7 +104,7 @@ namespace Scrapshift
 
         public void Begin()
         {
-            waveSweeping=false;selectedWeapon=-1;
+            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
             gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
@@ -118,6 +119,7 @@ namespace Scrapshift
 
         void Update()
         {
+            TickProgression(Time.unscaledDeltaTime);
             gameCamera.rect = PresentationLayout.Viewport(Screen.width, Screen.height);
             if (previewCapture && Time.realtimeSinceStartup > 3)
             {
@@ -143,7 +145,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !inspectionReview) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !inspectionReview) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
             if (Rules.Phase == RunPhase.Title)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -164,7 +166,7 @@ namespace Scrapshift
             UpdatePlayerFlash(Rules.Phase == RunPhase.Playing ? Mathf.Min(Time.deltaTime, .05f) : 0);
             FinishInspectionReview();
             if(enabled)InspectionReviewTick();
-            StarterReviewTick();
+            PetReviewTick();StarterReviewTick();
             ReviewTick();
             ArtReviewTick();
             EnemyReviewTick();
@@ -203,7 +205,7 @@ namespace Scrapshift
             director.Tick(dt, QueueGroup, BeginSpawnGroup); UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
             UpdateWeapons(dt); UpdateStarterEffects(dt); UpdateSlashes(dt);TickImplantAttacks(dt);
-            UpdatePickups(dt);
+            TickPets(dt);TickNightmare(dt);UpdatePickups(dt);
             ResolveImplantAttacks();ResolveImplantDamage();
             UpdateSparks(dt); UpdateCorpses(dt);
             shakeTime = Mathf.Max(0, shakeTime - dt);
@@ -262,6 +264,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
+            ClearPets();
             ClearReferenceCombat(); ClearImpacts(); ClearFootDust(); floaters.Clear();
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();
             foreach (var s in shots) Destroy(s.obj); shots.Clear();

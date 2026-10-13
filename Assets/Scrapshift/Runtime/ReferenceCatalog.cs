@@ -12,7 +12,8 @@ namespace Scrapshift
     {
         public float start,interval,reduce,minimum,chance,area,inset;
         public int repeats,bucket;
-        public bool edge;
+        public bool edge,preventElite,preventHorde,boss;
+        public int minDifficulty,maxDifficulty=9999,minWave,maxWave=9999;
         public UnitEntry[] units;
     }
     [Serializable] public sealed class WaveEntry
@@ -33,7 +34,7 @@ namespace Scrapshift
         public string id,title,icon;
         public int tier,value,pellets,piercing;
         public bool melee;
-        public bool specialSpawn;
+        public bool specialSpawn,pet;
         public float damage,interval,range,spread,crit,knockback;
         public Sprite image;
         public AudioClip[] sounds;

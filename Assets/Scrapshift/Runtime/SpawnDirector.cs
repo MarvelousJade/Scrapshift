@@ -36,6 +36,7 @@ namespace Scrapshift
             // Crash Zone loot group: one alien per copy, once between 5s and ten seconds before the end.
             for(int i=0;i<extraLootAliens;i++)Add(new SpawnGroup{start=5+(float)random.NextDouble()*Math.Max(0,wave.duration-15),interval=3,minimum=1,repeats=-1,chance=1,area=-1,inset=2,units=new[]{new UnitEntry{id="looter",min=1,max=1,chance=1}}});
         }
+        public void AddExtra(SpawnGroup g)=>Add(g);
         void Add(SpawnGroup g)
         {
             states.Add(new State

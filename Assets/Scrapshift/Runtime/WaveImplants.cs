@@ -21,7 +21,7 @@ namespace Scrapshift
         {
             foreach(var e in ConditionalEffects().Where(e=>e.customKey=="upgrade_random_weapon").ToArray())
             {
-                var candidates=Inventory.Where(w=>w.tier<4&&catalog.Weapon(w.id,w.tier+1)!=null).ToArray();
+                var candidates=Inventory.Where(w=>w.tier<MaximumWeaponTier&&catalog.Weapon(w.id,w.tier+1)!=null).ToArray();
                 if(candidates.Length==0){Add(e.key.Replace("stat_",""),e.value);continue;}
                 var chosen=candidates[random.Next(candidates.Length)];int index=Inventory.IndexOf(chosen);Inventory[index]=catalog.Weapon(chosen.id,chosen.tier+1);
             }
@@ -45,7 +45,7 @@ namespace Scrapshift
         {
             float total=0;
             foreach(var e in ConditionalEffects())if(e.customKey==trigger&&random.NextDouble()<e.chance)
-                total+=Mathf.Round(Mathf.Floor(Mathf.Max(1,e.value/100*Stat(e.key.Replace("stat_",""))))*DamageScale);
+                total+=Mathf.Round(Mathf.Floor(Mathf.Max(1,e.value/100*(e.key=="stat_max_hp"?MaxHealth:Stat(e.key.Replace("stat_","")))))*DamageScale);
             if(total>0)RandomDamageRequested?.Invoke(total);
         }
     }

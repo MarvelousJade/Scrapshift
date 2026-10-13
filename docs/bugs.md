@@ -268,3 +268,13 @@ The ranged pre-shot line was a custom telegraph, now removed. Aiming previously 
 ## October 12 - wrong collection destination
 
 Wave-end pickups targeted the bag at HUD y=166 instead of the money icon at y=122.5. Corrected the endpoint, added arrival pulse/rising amounts and removed the forced disappearance timeout. User identified the visual mismatch; Codex corrected and validated it.
+
+## October 12 - full catalog and screenshot-driven UI
+
+Actual failures: scrolling shop weapon inspection used the wrong GUI coordinate space; explicit viewport coordinates fixed the missing focus target. Atlas-border checks found neighboring artwork in multiple irregular weapon cells. Connected-component-derived bounds and shared UI/world clipping remove fragments without repainting the PNG. Imported sprites rejected OverrideGeometry, requiring separate runtime sprites. Unity Rect JSON serialization then produced zero-size imports; explicit pixel-region fields fixed the weapon-size test and rendered mesh errors. Failed runs are superseded by final verification evidence.
+
+Reference audits also corrected Vorpal reward identity, double-applied Fisherman Bait damage, and Nightmare requiring ten distinct Danger-5 wins. Pacifist now counts population-capped enemies and rounds before the horde divisor; 21 enemies in the regression distinguishes this from flooring.
+
+The final geometry test also caught a coordinate-contract error: OverrideGeometry accepts pixel coordinates relative to the sprite rectangle, not pivot-adjusted world units. Corrected against https://docs.unity3d.com/ScriptReference/Sprite.OverrideGeometry.html and retained the vertex-count regression.
+
+Runtime geometry verification was moved into the built-player fixture because EditMode disallows the native override call. EditMode still checks mask bounds/retained pixels. Visual inspection then exposed subpixel strip loss in IMGUI; render each masked icon at native resolution into a cached render target before scaling it once. This is a rendering correction, not a replacement of the original artwork.

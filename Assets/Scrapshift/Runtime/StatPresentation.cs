@@ -33,12 +33,12 @@ namespace Scrapshift
         void DrawRunInventory(Rect area)
         {
             RoundedBox(area,panelColor);
-            Text(area.x+20,area.y+14,area.width-40,45,$"Weapons ({Rules.Inventory.Count}/6)",heading);
+            Text(area.x+20,area.y+14,area.width-40,45,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                var w=Rules.Inventory[i];var r=new Rect(area.x+20+i*109,area.y+76,96,90);
+                var w=Rules.Inventory[i];var r=new Rect(area.x+20+i%(Rules.Inventory.Count>6?12:6)*(area.width-40)/(Rules.Inventory.Count>6?12:6),area.y+76+i/(Rules.Inventory.Count>6?12:6)*54,(area.width-48)/(Rules.Inventory.Count>6?12:6),Rules.Inventory.Count>6?50:90);
                 Frame(r,TierColor(w.tier),2);Box(new Rect(r.x+3,r.y+3,r.width-6,r.height-6),panelColor);
-                DrawIcon(w.image,new Rect(r.x+9,r.y+9,78,72));
+                DrawIcon(w.image,new Rect(r.x+4,r.y+4,r.width-8,r.height-8));
                 InspectWeapon("weapon:"+i,w,r);
             }
             Text(area.x+20,area.y+200,area.width-40,45,$"Items ({Rules.Items.Count})",heading);

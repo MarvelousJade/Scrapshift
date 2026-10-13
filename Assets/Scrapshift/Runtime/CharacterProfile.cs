@@ -7,22 +7,25 @@ namespace Scrapshift
     public static class StarterChoices
     {
         public static string[] Available(ReferenceCatalog catalog,CharacterProfile profile)=>profile.startingWeapons
-            .Select(id=>catalog.Weapon(id,1)).Where(w=>w!=null&&w.available&&profile.Allows(w))
+            .Select(id=>catalog.Weapon(id,profile.minTier)).Where(w=>w!=null&&w.available&&profile.Allows(w))
             .OrderBy(w=>w.melee?0:1).Select(w=>w.id).ToArray();
     }
     [Serializable] public sealed class CharacterProfile
     {
-        public string[] wantedTags,bannedItems;
+        public string[] wantedTags,bannedItems,bannedUpgrades;
+        public bool available=true,noRanged,canAttackMoving=true;
+        public int weaponSlots=6,minTier=1,maxTier=4,bonusTier=1;
+        public ConditionalEffect[] conditionalEffects=Array.Empty<ConditionalEffect>();
         public CharacterEffectRow[] effectRows;
         public string id,title,description,bonusWeapon,classSet,classStat;
         public string[] startingWeapons,bannedItemGroups,startingItems;
         public StatEffect[] stats,gains;
         public float classValue;
         public bool noMelee;
-        public string DefaultWeapon=>!string.IsNullOrEmpty(bonusWeapon)?bonusWeapon:"pistol";
-        public float Gain(string stat)=>1+(Array.Find(gains,g=>g.key==stat)?.value??0)/100;
+        public string DefaultWeapon=>!string.IsNullOrEmpty(bonusWeapon)?bonusWeapon:noRanged&&startingWeapons.Length>0?startingWeapons[0]:"pistol";
+        public float Gain(string stat)=>1+(gains?.Where(g=>g.key==stat).Sum(g=>g.value)??0)/100;
         public float WeaponBonus(Equipment w,string stat)=>classStat==stat&&w.HasSet(classSet)?classValue:0;
-        public bool Allows(Equipment w)=>w!=null&&(!noMelee||!w.melee);
+        public bool Allows(Equipment w)=>w!=null&&(!noMelee||!w.melee)&&(!noRanged||w.melee);
     }
     [Serializable] public sealed class WeaponTrait
     {
@@ -61,19 +64,19 @@ namespace Scrapshift
     public sealed partial class RunRules
     {
         public CharacterProfile Character {get;private set;}
-        public bool CanEquip(Equipment w)=>w!=null&&w.available&&(Character==null||Character.Allows(w));
+        public bool CanEquip(Equipment w)=>w!=null&&w.available&&WeaponSlots>0&&(Character==null||Character.Allows(w))&&w.tier>=MinimumWeaponTier&&w.tier<=MaximumWeaponTier;
         public float WeaponAttackSpeed(Equipment w)=>(Stat("attack_speed")+(Character?.WeaponBonus(w,"attack_speed_mod")??0))/100;
         public float WeaponFireRate(Equipment w){float speed=WeaponAttackSpeed(w);return speed>=0?1+speed:1/(1-speed);}
         public float WeaponCooldown(Equipment w)=>Mathf.Max(MinimumWeaponCooldown-WeaponAnimationDuration(w),Mathf.Max(2,Mathf.Floor(Mathf.Max(2,w.interval*60)/WeaponFireRate(w)+.0001f))/60);
         public float WeaponAnimationDuration(Equipment w)=>WeaponMotion.ReferenceDuration(w,WeaponAttackSpeed(w),WeaponRange(w));
         public float WeaponDamage(Equipment w,float additionalPercent=0)
         {
-            float damage=w.damage+NoHitWeaponBonus(w)+(w.specialSpawn?0:AddedWeaponScaling);
+            float damage=w.damage+(Character?.WeaponBonus(w,"damage")??0)+NoHitWeaponBonus(w)+(w.specialSpawn?0:AddedWeaponScaling);
             if(w.scaling!=null)foreach(var s in w.scaling)damage+=(s.key=="max_hp"?MaxHealth:s.key=="levels"?Level:Stat(s.key))*s.value;
             else damage+=Stat(w.melee?"melee_damage":"ranged_damage");
             var stack=w.Trait("effect_weapon_stack");
             if(stack!=null)damage+=stack.value*Mathf.Max(0,Inventory.Count(a=>a.id==w.id)-1);
-            return Mathf.Max(1,damage*Mathf.Max(0,1+(Stat("percent_damage")+additionalPercent)/100));
+            return Mathf.Max(1,damage*Mathf.Max(0,1+(Stat("percent_damage")+(Character?.WeaponBonus(w,"stat_percent_damage")??0)+additionalPercent)/100));
         }
         float EquipmentStat(string key)
         {

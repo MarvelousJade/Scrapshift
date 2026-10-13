@@ -55,7 +55,7 @@ namespace Scrapshift.Editor
             importer.mipmapEnabled = false;
             importer.maxTextureSize = 2048;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.filterMode = FilterMode.Bilinear;
+            importer.filterMode = FilterMode.Bilinear;importer.wrapMode=TextureWrapMode.Clamp;
 #pragma warning disable CS0618
             importer.spritesheet = meta;
 #pragma warning restore CS0618

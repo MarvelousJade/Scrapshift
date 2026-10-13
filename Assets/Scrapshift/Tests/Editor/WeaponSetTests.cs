@@ -48,11 +48,11 @@ namespace Scrapshift.Tests
         }
         [Test] public void PurchasingThenCombiningAndRecyclingUpdatesCountsImmediately()
         {
-            var r=Run(true);r.Inventory.Clear();r.Inventory.Add(catalog.Weapon("pistol",1));
+            var r=Run(true);r.Inventory.Clear();r.Inventory.Add(catalog.Weapon("pistol",1));float baselineRange=r.Stat("range");
             r.Shop[0]=new ShopOffer {weapon=catalog.Weapon("pistol",1)};
-            Assert.IsTrue(r.Buy(0));Assert.AreEqual(10,r.Stat("range"));
+            Assert.IsTrue(r.Buy(0));Assert.AreEqual(baselineRange+10,r.Stat("range"));
             r.Combine(0);Assert.AreEqual(1,r.Inventory.Count);Assert.AreEqual(2,r.Inventory[0].tier);
-            Assert.AreEqual(0,r.Stat("range"));
+            Assert.AreEqual(baselineRange,r.Stat("range"));
             r.Recycle(0);Assert.AreEqual(0,r.SetCount(WeaponSets.Gun));
         }
         [Test] public void FullSlotMatchingPurchaseRetainsSetCount()

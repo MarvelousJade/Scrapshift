@@ -14,6 +14,7 @@ namespace Scrapshift
         public void CollectConsumable(ConsumableKind kind)
         {
             if(Phase!=RunPhase.Playing || kind==ConsumableKind.None)return;
+            runConsumables++;Progress?.Check("chal_hungry",runConsumables);if(kind==ConsumableKind.Fruit&&Health>=MaxHealth)Progress?.Count("full_health_fruit");
             ConsumableFullHealthTriggers();
             Heal(Math.Max(0,3+Stat("consumable_heal")));
             if(kind==ConsumableKind.Crate || kind==ConsumableKind.LegendaryCrate)
@@ -26,7 +27,7 @@ namespace Scrapshift
             {
                 int tier=crates.Peek()?4:ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 // Same intentionally small catalog and empty-tier fallback as our shop.
-                var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<.05,Array.Empty<ItemEntry>(),
+                var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<WantedTagChance,Array.Empty<ItemEntry>(),
                     Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)));
                 if(pool.Length>0)
                 {
@@ -50,6 +51,7 @@ namespace Scrapshift
         void ApplyItem(ItemEntry item)
         {
             Items.Add(item);QueueNextWaveEffects(item);
+            if(item.id=="bait"){queuedBaits++;}
             foreach(var effect in item.effects){Add(effect.key.Replace("stat_",""),effect.value);OnItemStatAdded(effect.key,effect.value);}
             if(Phase==RunPhase.Shop)UpdateShopRerolls();
             if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)if(effect.customKey=="stat_cap")

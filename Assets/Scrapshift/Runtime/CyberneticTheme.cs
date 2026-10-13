@@ -6,6 +6,22 @@ namespace Scrapshift
     {
         static readonly Dictionary<string,string> names=new Dictionary<string,string>
         {
+            {"bait","Threat Beacon Implant"},
+            {"blazemander","Thermal Companion Socket"},
+            {"bonk_dog","Impact Companion Socket"},
+            {"bot_o_mine","Engineering Companion Socket"},
+            {"broken_hourglass","Spent Temporal Organ"},
+            {"campfire","Broadband Vision Organ"},
+            {"candle","Low-Light Optic"},
+            {"candy_bag","Unstable Augmentation Cache"},
+            {"catling_gun","Twin-Gun Companion Socket"},
+            {"doc_moth","Repair Companion Socket"},
+            {"greek_fire","Plasma Combustion Gland"},
+            {"hourglass","Temporal Replay Organ"},
+            {"jellyshield","Orbital Shield Organ"},
+            {"lootworm","Salvage Companion Socket"},
+            {"ratzilla","Assault Companion Socket"},
+            {"scapegoat","Decoy Companion Socket"},
             {"lure","Salvage Beacon Gland"},
             {"pocket_factory","Arbor Fabrication Organ"},
             {"alien_eyes","Radial Optic Array"},

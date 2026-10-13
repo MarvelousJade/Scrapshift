@@ -18,15 +18,18 @@ namespace Scrapshift
             string id=kind=="garden"?"pruner":kind=="landmine"?"screwdriver":kind=="healing"?"medical_gun":kind=="flame"?"flamethrower":kind=="rocket"?"rocket_launcher":kind=="laser"?"laser_gun":kind=="tyler"?"thunder_sword":kind=="wandering_bot"?"taser":"wrench";
             return Array.Find(catalog.data.equipment,w=>w.id==id).image;
         }
+        Vector2 structureGroupCenter;
         void DeployStructure(StructureSpec spec,Sprite image,Vector2? position=null)
         {
-            var pos=position??RandomPosition(playerPos,0);
+            float span=Mathf.Min(6,4+Rules.OwnedStructures*.1f);
+            var pos=position??(Rules.Stat("group_structures")>0&&spec.kind!="wandering_bot"?RunRules.ClampPosition(structureGroupCenter+new Vector2(UnityEngine.Random.Range(-span/2,span/2),UnityEngine.Random.Range(-span/2,span/2))):RandomPosition(playerPos,0));
             var trait=new WeaponTrait{key=spec.kind,projectile=spec.stats,spawnInterval=spec.spawnInterval,animationSpeed=spec.animationSpeed,radius=spec.explosionRadius};
             var obj=SpriteObject("Cybernetic "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.6f);
             AddGroundShadow(obj,image.bounds.size.x,-.2f);
             var structure=new StarterTurret{obj=obj,pos=pos,stats=spec.Equipment,trait=trait,spec=spec,clock=spec.kind=="garden"?.2f/spec.animationSpeed:0,firing=spec.kind=="garden",angle=UnityEngine.Random.Range(0,Mathf.PI*2),orbitRadius=UnityEngine.Random.Range(1f,2f),orbitSpeed=UnityEngine.Random.Range(2f,2.5f)};
             if(spec.kind=="landmine"){Destroy(obj);structure.obj=null;structure.clock=spec.spawnInterval;mineSpawners.Add(structure);SpawnMine(structure,image);}
             else starterTurrets.Add(structure);
+            progress?.Check("chal_turrets",starterTurrets.FindAll(t=>t.spec.kind!="garden"&&t.spec.kind!="wandering_bot").Count);
         }
         float StructureAnimationSpeed(StarterTurret turret)
         {float cooldown=Rules.StructureCooldown(turret.stats.interval);return Mathf.Max(turret.spec.animationSpeed,Mathf.Min(3,.3f/Mathf.Max(.001f,cooldown)));}
@@ -63,11 +66,12 @@ namespace Scrapshift
         }
         void StructureExplosion(Vector2 position,StructureSpec spec,Enemy directHit)
         {
+            int explosionKillsBefore=Rules.Kills;
             float radius=spec.explosionRadius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
             float damage=SpecialWeaponRules.StructureDamage(Rules,spec.Equipment)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100);
             foreach(var enemy in enemies.ToArray())if(enemy!=directHit&&enemy.marker==null&&Vector2.Distance(enemy.pos,position)<=radius)
                 Damage(enemies.IndexOf(enemy),damage,spec.stats.crit,0,enemy.pos-position,spec.Equipment,true,false,true);
-            Burst(position,16,amber);sound.Play(SoundCue.Impact,position);
+            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(position,16,amber);sound.Play(SoundCue.Impact,position);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Scrapshift
@@ -52,6 +53,7 @@ namespace Scrapshift
 
         void FinishWavePickups()
         {
+            Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));
             // Source cleanup collects harmless consumables and banks unclaimed materials.
             // Do this while Playing, before RunRules selects the first reward phase.
             foreach(var pickup in pickups)

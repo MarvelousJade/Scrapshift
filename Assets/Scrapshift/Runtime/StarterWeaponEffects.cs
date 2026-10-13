@@ -58,10 +58,11 @@ namespace Scrapshift
                     case "effect_explode":case "effect_explode_melee":case "effect_explode_custom":
                         if(UnityEngine.Random.value<trait.chance)
                         {
-                            float radius=trait.radius*(1+Rules.Stat("explosion_size")/100);
+                            float radius=trait.radius*(1+Rules.Stat("explosion_size")/100);int before=Rules.Kills;
                             Burst(victim.pos,12,amber);
                             foreach(var e in enemies.ToArray())if(e!=victim&&e.marker==null&&Vector2.Distance(e.pos,victim.pos)<radius)
                                 Damage(enemies.IndexOf(e),Rules.WeaponDamage(weapon)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),weapon.crit,weapon.knockback,e.pos-victim.pos,weapon,true);
+                            Rules.RecordExplosionKills(Rules.Kills-before);
                         }
                         break;
                     case "gold_on_crit_kill":
@@ -79,7 +80,7 @@ namespace Scrapshift
         }
         void ResetStructures()
         {
-            ClearStarterEffects();
+            ClearStarterEffects();ResetPets();float groupWidth=ArenaGeometry.HalfSize.x*2/3;structureGroupCenter=new Vector2(UnityEngine.Random.Range(-groupWidth/2,groupWidth/2),UnityEngine.Random.Range(-groupWidth/2,groupWidth/2));
             foreach(var w in Rules.Inventory)
             {
                 var trait=w.Trait("turret")??w.Trait("garden")??w.Trait("landmine");if(trait?.projectile==null)continue;
@@ -101,9 +102,10 @@ namespace Scrapshift
                 foreach(var e in enemies)if(e.marker==null&&Vector2.Distance(e.pos,center)<.24f+HurtRadius(e))mine.occupants.Add(e);
                 if(mine.occupants.Count>0||mine.playerOn)mine.obj.GetComponent<SpriteRenderer>().color=coral;
                 if(!left)continue;
-                foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,mine.pos)<mine.radius)
+                int explosionKillsBefore=Rules.Kills;
+            foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,mine.pos)<mine.radius)
                     Damage(enemies.IndexOf(e),SpecialWeaponRules.StructureDamage(Rules,mine.stats)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),0,0,e.pos-mine.pos,mine.stats,true,false,true);
-                Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos);Destroy(mine.obj);mines.RemoveAt(i);
+                Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos);Destroy(mine.obj);mines.RemoveAt(i);
             }
             foreach(var e in enemies.ToArray())if(e.burnTicks>0&&e.marker==null)
             {
@@ -122,9 +124,9 @@ namespace Scrapshift
         }
         void ApplyBurn(Enemy target,float damage,int ticks,int spread,string stat="elemental_damage")
         {stat=string.IsNullOrEmpty(stat)?"elemental_damage":stat;target.burnStat=stat;TryVulnerability(target,stat);if(target.burnTicks<=0)target.burnClock=Rules.BurningInterval;target.burnDamage=Mathf.Max(target.burnTicks>0?target.burnDamage:0,damage);target.burnTicks=Mathf.Max(target.burnTicks,ticks);target.burnSpread=Mathf.Max(target.burnSpread,spread);}
-        void SpawnMine(StarterTurret spawner,Sprite image)
+        void SpawnMine(StarterTurret spawner,Sprite image,Vector2? near=null)
         {
-            var pos=new Vector2(UnityEngine.Random.Range(-7f,7f),UnityEngine.Random.Range(-5f,5f));
+            var pos=near.HasValue?RunRules.ClampPosition(near.Value+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f))):RandomPosition(playerPos,0);
             var obj=SpriteObject("Cybernetic proximity charge",image,pos,6);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.4f);
             mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,radius=spawner.trait.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100)});
         }

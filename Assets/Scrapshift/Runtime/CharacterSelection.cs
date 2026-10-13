@@ -7,14 +7,15 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool randomCharacter;
+        Vector2 characterEffectScroll;
         CharacterProfile SelectedCharacter=>catalog.data.characters[playerAnimation.lookIndex];
         string[] CharacterWeapons=>StarterChoices.Available(catalog,SelectedCharacter);
-        Equipment SelectedWeapon=>catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],1);
+        Equipment SelectedWeapon=>CharacterWeapons.Length==0?null:catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],SelectedCharacter.minTier)??catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],1);
         RunRules previewRules;
         RunRules PreviewRules()
         {
             if(previewRules==null){previewRules=new RunRules(42);previewRules.Configure(catalog);}
-            previewRules.Start(SelectedCharacter,SelectedWeapon.id);return previewRules;
+            previewRules.Start(SelectedCharacter,SelectedWeapon?.id);return previewRules;
         }
         void DrawLock(Rect r)
         {
@@ -26,6 +27,7 @@ namespace Scrapshift
         }
         void CharacterGrid()
         {
+            string lockedDescription=null;
             const int columns=13;const float step=70;
             for(int slot=0;slot<=catalog.data.rosterSlots;slot++)
             {
@@ -35,7 +37,7 @@ namespace Scrapshift
                     if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)randomCharacter=true;
                     if(MenuButton(r,"?",randomCharacter)){randomCharacter=true;ConfirmMenu();}
                 }
-                else if(slot<=catalog.data.characters.Length)
+                else if(slot<=catalog.data.characters.Length&&CharacterUnlocked(catalog.data.characters[slot-1]))
                 {
                     int i=slot-1;
                     if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint){randomCharacter=false;ChangeLook(i-playerAnimation.lookIndex);}
@@ -45,9 +47,10 @@ namespace Scrapshift
                 else
                 {
                     RoundedBox(r,panelColor,7);DrawLock(r);
-                    GUI.Label(r,new GUIContent("","Locked"));
+                    if(r.Contains(Event.current.mousePosition)&&slot<=catalog.data.characters.Length)lockedDescription=progress.Requirement("character_"+catalog.data.characters[slot-1].id);
                 }
             }
+            if(lockedDescription!=null){RoundedBox(new Rect(360,490,720,78),Color.black,8);Text(380,505,680,55,lockedDescription,new GUIStyle(body){alignment=TextAnchor.MiddleCenter});}
         }
         void WeaponGrid()
         {
@@ -64,7 +67,7 @@ namespace Scrapshift
                     }
                     continue;
                 }
-                int i=slot-1;var weapon=catalog.Weapon(choices[i],1);
+                int i=slot-1;var weapon=catalog.Weapon(choices[i],SelectedCharacter.minTier);
                 if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)startingWeapon=i;
                 if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
                 DrawIcon(weapon.image,new Rect(r.x+5,r.y+7,r.width-10,54));
@@ -80,11 +83,11 @@ namespace Scrapshift
             string details=randomCharacter&&menuPage==1?"Choose an unlocked\ncharacter at random.":SelectedCharacter.description;
             if(randomCharacter&&menuPage==1)Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
             else DrawCharacterEffects(SelectedCharacter,left+220,246,328);
-            if(!(randomCharacter&&menuPage==1)&&!string.IsNullOrEmpty(SelectedCharacter.DefaultWeapon))
+            if(!(randomCharacter&&menuPage==1)&&SelectedCharacter.weaponSlots>1&&!string.IsNullOrEmpty(SelectedCharacter.DefaultWeapon))
             {
                 RoundedBox(new Rect(left+20,499,180,61),new Color(.35f,.32f,.29f),8);
                 var r=new Rect(left+146,505,48,49);RoundedBox(r,panelColor,5);
-                DrawIcon(catalog.Weapon(SelectedCharacter.DefaultWeapon,1).image,new Rect(r.x+4,r.y+4,40,41));
+                DrawIcon((catalog.Weapon(SelectedCharacter.DefaultWeapon,SelectedCharacter.bonusTier)??SelectedWeapon)?.image,new Rect(r.x+4,r.y+4,40,41));
             }
         }
         void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)
@@ -106,15 +109,21 @@ namespace Scrapshift
                 else if(row.kind=="item")
                 {var item=Array.Find(catalog.data.items,i=>i.id==row.key);image=item.image;label="Start with <color=#76FF40>"+row.value.ToString("0")+" "+inspectionText.ItemName(item)+"</color>";}
                 else if(row.kind=="gain")label=stat+" modifications are "+(row.value<0?"reduced":"increased")+" by <color="+color+">"+Mathf.Abs(row.value).ToString("0")+"%</color>";
+                else if(row.kind=="effect")label=System.Text.RegularExpressions.Regex.Replace(profile.conditionalEffects[int.Parse(row.extra)].Description,@"(?<![\w])[+-]\d+(?:\.\d+)?%?",m=>"<color="+(m.Value.StartsWith("-")?"#FF3333":"#00FF00")+">"+m.Value+"</color>");
+                else if(row.key=="weapon_slot")label="Can equip <color=#00FF00>"+profile.weaponSlots+"</color> weapons";
+                else if(row.kind=="stat"&&SpecialItemEffects.IsSecondary(row.key))label=SpecialItemEffects.Description(row.key,row.value);
+                else if(row.kind=="noRanged")label="<color=#FF3B3B>You cannot equip ranged weapons</color>";
                 else if(row.kind=="noMelee")label="<color=#FF3B3B>You can't equip melee weapons</color>";
                 float h=style.CalcHeight(new GUIContent(label),width-30);
                 lines.Add((image,label,h));
             }
-            y+=Mathf.Max(0,(245-lines.Sum(l=>l.height+8))/2);
+            float height=lines.Sum(l=>l.height+8);characterEffectScroll=GUI.BeginScrollView(new Rect(x,y,width+20,245),characterEffectScroll,new Rect(0,0,width,Mathf.Max(245,height)));
+            x=0;y=Mathf.Max(0,(245-height)/2);
             foreach(var line in lines)
             {
                 DrawIcon(line.image,new Rect(x,y+3,21,21));Text(x+30,y,width-30,line.height+4,line.label,style);y+=line.height+8;
             }
+            GUI.EndScrollView();
         }
     }
 }

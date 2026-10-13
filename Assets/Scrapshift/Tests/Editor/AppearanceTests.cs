@@ -49,7 +49,7 @@ namespace Scrapshift.Tests
         [Test] public void FivePresetsShareBodyAndLegsWithDistinctFaceHairCombinations()
         {
             var animator=Prefab.GetComponent<SpriteFrameAnimator>();
-            Assert.AreEqual(5,animator.looks.Length);
+            Assert.AreEqual(50,animator.looks.Length);
             Assert.AreEqual(3,animator.looks.Select(l=>l.layers.Single(a=>a.slot=="eyes").image).Distinct().Count());
             Assert.AreEqual("player-parts_00",animator.bodyView.sprite.name);
             Assert.AreEqual("player-leg_00",animator.footSprite.name);
@@ -72,9 +72,17 @@ namespace Scrapshift.Tests
                 Assert.AreEqual(SpringMotion.LegRestAngle,SpringMotion.LegAngle(t,1,true,true));
             }
         }
+        [Test] public void TorchMaskRemovesNeighborFragmentButKeepsTorchArtwork()
+        {
+            var sprite=AssetDatabase.LoadAllAssetsAtPath(ContentBuilder.ArtRoot+"/base-weapons-v1.png").OfType<Sprite>().Single(s=>s.name=="base-weapons_30");
+            Assert.IsFalse(AtlasIconMask.Visible(sprite,1160,200));
+            Assert.IsTrue(AtlasIconMask.Visible(sprite,1280,200));
+            Assert.IsTrue(AtlasIconMask.Visible(sprite,1305,250));
+            foreach(var region in AtlasIconMask.Regions(sprite,sprite.rect)){Assert.Greater(region.width,0);Assert.Greater(region.height,0);Assert.IsTrue(sprite.rect.Contains(region.center));}
+        }
         [Test] public void ModularAtlasSpritesHaveTransparentBorders()
         {
-            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v3","starter-weapons-v1"})
+            foreach(string sheet in new[]{"player-parts-v2","wearables-v2","enemies-v5","items-v2","equipment-v2","stats-v2","player-leg-v3","starter-weapons-v1","base-weapons-v1"})
             {
                 string path=ContentBuilder.ArtRoot+"/"+sheet+".png";
                 var source=new Texture2D(2,2);
@@ -85,9 +93,9 @@ namespace Scrapshift.Tests
                     {
                         Rect r=sprite.rect;
                         for(int x=(int)r.x;x<(int)r.xMax;x++)
-                        {Assert.Less(source.GetPixel(x,(int)r.y).a,.12f,sprite.name+" bottom");Assert.Less(source.GetPixel(x,(int)r.yMax-1).a,.12f,sprite.name+" top");}
+                        {if(AtlasIconMask.Visible(sprite,x,(int)r.y))Assert.Less(source.GetPixel(x,(int)r.y).a,.12f,sprite.name+" bottom");if(AtlasIconMask.Visible(sprite,x,(int)r.yMax-1))Assert.Less(source.GetPixel(x,(int)r.yMax-1).a,.12f,sprite.name+" top");}
                         for(int y=(int)r.y;y<(int)r.yMax;y++)
-                        {Assert.Less(source.GetPixel((int)r.x,y).a,.12f,sprite.name+" left");Assert.Less(source.GetPixel((int)r.xMax-1,y).a,.12f,sprite.name+" right");}
+                        {if(AtlasIconMask.Visible(sprite,(int)r.x,y))Assert.Less(source.GetPixel((int)r.x,y).a,.12f,sprite.name+" left");if(AtlasIconMask.Visible(sprite,(int)r.xMax-1,y))Assert.Less(source.GetPixel((int)r.xMax-1,y).a,.12f,sprite.name+" right");}
                     }
                 }
                 finally {Object.DestroyImmediate(source);}

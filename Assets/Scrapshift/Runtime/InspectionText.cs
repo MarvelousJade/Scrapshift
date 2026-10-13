@@ -39,9 +39,14 @@ namespace Scrapshift
             if(StatPresentation.Unit(stat)=="%"||stat=="luck")number+="%";
             return Format(key,number);
         }
-        public string ItemDescription(ItemEntry item)=>string.Join("\n",item.effects.Select(e=>
-            "<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>")
-            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Select(e=>e.HasCustomDescription?e.Description:e.customKey=="stat_cap"?(e.key=="hp_cap"?"Max HP":"Speed")+" is capped at its value when you obtain this implant":"<color="+(SpecialItemEffects.IsPenalty(e.key,e.value)?"#FF4444":"#76FF40")+">"+StatEffect(e.key,e.value)+"</color>"+e.Suffix)));
+        public string ItemDescription(ItemEntry item)=>string.Join("\n",item.effects.Select(e=>ItemStatRow(e.key,e.value))
+            .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Where(e=>!(e.customKey=="pet"&&e.value==0)).Select(e=>e.HasCustomDescription?"• "+e.Description:e.customKey=="stat_cap"?"• "+(e.key=="hp_cap"?"Max HP":"Speed")+" is capped at its value when you obtain this implant":ItemStatRow(e.key,e.value)+e.Suffix)));
+        string ItemStatRow(string key,float value)
+        {
+            string stat=key.Replace("stat_","");string icon=StatPresentation.Keys.Contains(stat)?"[["+stat+"]] ":"• ";
+            string text=StatEffect(key,value),color=SpecialItemEffects.IsPenalty(key,value)?"#FF3333":"#00FF00";
+            return icon+System.Text.RegularExpressions.Regex.Replace(text,@"(?<![\w])[+-]?\d+(?:\.\d+)?%?",m=>"<color="+color+">"+m.Value+"</color>");
+        }
         public string Sets(Equipment weapon)=>string.Join(", ",WeaponSets.All.Where(s=>weapon.HasSet(s.Id)).Select(s=>s.Name));
         static string Compared(float current,float original,string shown)=>"<color="+(Mathf.Approximately(current,original)?"#FFFFFF":current>original?"#76FF40":"#FF4444")+">"+shown+"</color>";
         public string WeaponDescription(RunRules rules,Equipment w)
@@ -49,10 +54,10 @@ namespace Scrapshift
             float damage=rules.WeaponDamage(w),range=rules.WeaponRange(w)*100;
             float cd=rules.WeaponCooldown(w)+rules.WeaponAnimationDuration(w);
             float baseCd=w.interval+WeaponMotion.ReferenceDuration(w,0,w.range);
-            string scaled=w.scaling==null?"":string.Join(" + ",w.scaling.Select(s=>N(s.value*100)+"% "+StatName(s.key).TrimStart('%',' ')));
+            string scaled=w.scaling==null?"":string.Join(" + ",w.scaling.Select(s=>"+"+N(s.value*100)+"%[["+s.key+"]]"));
             string dmg=Compared(damage,w.damage,N(damage))+(w.pellets>1?"x"+w.pellets:"")+(Mathf.Approximately(damage,w.damage)?"":" ["+N(w.damage)+"]")+(scaled.Length>0?" ("+scaled+")":"");
             var lines=new List<string>{Format("DAMAGE_FORMATTED",T("STAT_DAMAGE"),dmg),
-                Format("CRITICAL_FORMATTED",T("CRITICAL"),"x"+N(w.critMultiplier),N(Mathf.Clamp01(rules.CritChance+w.crit)*100)),
+                Format("CRITICAL_FORMATTED",T("CRITICAL"),"x"+N(w.critMultiplier),Compared(Mathf.Clamp01(rules.CritChance+w.crit),w.crit,N(Mathf.Clamp01(rules.CritChance+w.crit)*100))),
                 Format("STAT_FORMATTED",T("COOLDOWN"),Compared(-cd,-baseCd,cd.ToString(cd<.2f?"0.000":"0.00",CultureInfo.InvariantCulture)+"s"))};
             if(w.knockback!=0)lines.Add(Format("STAT_FORMATTED",T("KNOCKBACK"),N(w.knockback*10)));
             lines.Add(Format("RANGE_FORMATTED",StatName("range"),Compared(range,w.range*100,N(range))+(Mathf.Approximately(range,w.range*100)?"":" ["+N(w.range*100)+"]"),T(w.melee?"MELEE":"RANGED")));
@@ -66,10 +71,10 @@ namespace Scrapshift
                 if(!string.IsNullOrEmpty(t.customKey)){lines.Add(StatEffect(t.key,t.value)+t.Conditional.Suffix);continue;}
                 switch(t.key)
                 {
-                    case "effect_burning":effect=Format(t.key.ToUpperInvariant(),N(t.burnDamage),N(t.burnTicks),N(t.burnScale*100)+"% "+StatName("elemental_damage"));break;
+                    case "effect_burning":effect=Format(t.key.ToUpperInvariant(),N(t.burnDamage),N(t.burnTicks),N(t.burnScale*100)+"%[[elemental_damage]]");break;
                     case "effect_slow_in_zone":effect=T(t.key.ToUpperInvariant());break;
                     case "effect_explode":case "effect_explode_melee":case "effect_explode_custom":effect=N(t.chance*100)+"% chance to explode on hit";break;
-                    case "effect_projectiles_on_hit":case "effect_lightning_on_hit":effect=Format(t.key.ToUpperInvariant(),N(t.value),N(rules.WeaponDamage(t.projectile.AsEquipment())),N(t.projectile.bounce),string.Join(" + ",t.projectile.scaling.Select(s=>N(s.value*100)+"% "+StatName(s.key))));break;
+                    case "effect_projectiles_on_hit":case "effect_lightning_on_hit":effect=Format(t.key.ToUpperInvariant(),N(t.value),N(rules.WeaponDamage(t.projectile.AsEquipment())),N(t.projectile.bounce),string.Join(" + ",t.projectile.scaling.Select(s=>N(s.value*100)+"%[["+s.key+"]]")));break;
                     case "effect_weapon_stack":effect=Format(t.key.ToUpperInvariant(),"+"+N(t.value),T("STAT_DAMAGE"),WeaponName(w),N(t.value*Mathf.Max(0,rules.Inventory.Count(a=>a.id==w.id)-1)));break;
                     case "effect_gain_stat_every_killed_enemies":effect=Format(t.key.ToUpperInvariant(),"+"+N(t.amount),StatName(t.stat),N(t.value));break;
                     case "turret":effect=Format("EFFECT_TURRET",N(t.projectile.damage),t.projectile.scaling.Length>0?string.Join(" + ",t.projectile.scaling.Select(a=>N(a.value*100)+"% "+StatName(a.key))):"0% Engineering");break;
@@ -88,7 +93,7 @@ namespace Scrapshift
                 }
                 if(effect!=null)lines.Add(effect);
             }
-            return string.Join("\n",lines);
+            return string.Join("\n",lines.Select((line,index)=>index<7&&line.Contains(":")?"<color=#E5DDAA>"+line.Substring(0,line.IndexOf(':')+1)+"</color>"+line.Substring(line.IndexOf(':')+1):line));
         }
     }
 }

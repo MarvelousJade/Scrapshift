@@ -190,3 +190,7 @@ Expanded the obtainable pool from 8 to 64, preserving original art and documenti
 ## October 11 - run feedback and rewards
 
 Implemented two-weapon starts for all four profiles, pre-range aiming, green tree warnings, removed ranged warning lines, animated material banking and exposed pending rewards/harvesting. Reworked weapon actions and crate cards. See run-feedback-and-rewards.md.
+
+## October 12 - completed catalog and progression
+
+Completed the last 16 items, all 50 character profiles and saved challenge rewards, using the supplied Godot resources/scripts. Implemented companion actions, wave replay and difficulty encounters. User screenshots guided full-width shop/upgrade cards, inline icons, tier/buff colors, sorting, two-row weapons and Harvesting-only secondary HUD. Retained cream mascot and cybernetic presentation. Actual debugging and final evidence are in bugs.md and verification.md.

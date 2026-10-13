@@ -38,9 +38,10 @@ namespace Scrapshift
             {
                 var explosion=implantExplosions.Dequeue();var effect=explosion.effect;var stats=effect.projectile.AsEquipment();
                 float damage=Rules.WeaponDamage(stats,Rules.Stat("explosion_damage")),radius=effect.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
+                int before=Rules.Kills;
                 foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(target.pos,explosion.position)<=radius)
                     Damage(enemies.IndexOf(target),damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true);
-                Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position);
+                Rules.RecordExplosionKills(Rules.Kills-before);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position);
             }
         }
         void TryVulnerability(Enemy target,string scalingStat)

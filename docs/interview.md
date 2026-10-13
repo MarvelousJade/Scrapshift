@@ -232,3 +232,11 @@ The four-character pass offers two further examples: replacing cosmetic-only cho
 ## Inspection UI: data filtering, coordinate spaces and evidence quality
 
 See [inspection-and-weapon-selection.md](inspection-and-weapon-selection.md). Useful questions include why eligibility should be filtered before rendering/Random selection, why nested scrolling breaks naive hit testing, how current-value descriptions avoid stale UI, and why a fresh screenshot can still capture the wrong logical state. The document records actual failures and tests rather than inventing a debugging story. Codex performed the implementation/checks; study and reproduce the reasoning before claiming personal execution.
+
+## Catalog and unlock integration discussion
+
+Use full-base-implementation.md, bugs.md and verification.md as evidence. Explain why catalog identity, display alias, availability and runtime behavior are separate. Imported rows alone do not implement event-driven implants: companions, death chains, next-wave effects and progression need runtime hooks. Unlock persistence needs idempotence and recovery; fixtures must not alter the player's save.
+
+Concrete debugging example: visual weapon-edge lines led to alpha-border regression checks, exposing overlapping atlas cells. Shared clipping geometry fixes both world/UI rendering without repainting art. Tests then caught zero-sized sprites caused by Unity Rect serialization; explicit data-transfer fields fixed the schema. Scroll inspection exposed a separate coordinate-space mismatch.
+
+The user supplied direction, screenshots, play feedback and defect reports; Codex performed the recorded implementation/source comparisons/automated checks. Study and reproduce the reasoning before claiming personal execution. Do not claim frame-perfect parity, a human-balanced campaign or 50 bespoke portraits.

@@ -16,7 +16,7 @@ namespace Scrapshift
             public int width,height,playable,locked;public bool fullViewport,randomSelectedPlayable,capturesVerified;
             public List<StarterResult> characters=new List<StarterResult>();
             public List<string> weaponsDamagedTarget=new List<string>();
-            public int availableWeapons; public bool burning,slow,secondaryProjectiles,turretFired,ghostProgress;
+            public bool weaponGeometry;public int availableWeapons; public bool burning,slow,secondaryProjectiles,turretFired,ghostProgress;
             public bool gardenFruit,mineExplosion,burningSpread,engineeringSlow,thunderProjectiles,vorpalExecution;
             public List<string> attackImplantsPassed=new List<string>();
             public List<string> deployableImplantsPassed=new List<string>();
@@ -25,7 +25,7 @@ namespace Scrapshift
         void BeginStarterReview(string folder)
         {
             starterReview=true;starterReviewPath=Path.GetFullPath(folder);Directory.CreateDirectory(starterReviewPath);starterUtc=DateTime.UtcNow;
-            starterNext=Time.realtimeSinceStartup+.7f;starterReport=new StarterReport{playable=catalog.data.characters.Length,locked=catalog.data.rosterSlots-catalog.data.characters.Length};
+            starterNext=Time.realtimeSinceStartup+.7f;starterReport=new StarterReport{playable=Array.FindAll(catalog.data.characters,c=>c.available).Length,locked=Array.FindAll(catalog.data.characters,c=>!c.available).Length};
             Begin();ReturnToSelection(1);sound.SetMuted(true);
         }
         void StarterReviewTick()
@@ -33,7 +33,7 @@ namespace Scrapshift
             if(!starterReview||Time.realtimeSinceStartup<starterNext)return;
             if(starterStage<catalog.data.characters.Length*2)
             {
-                int index=starterStage/2;
+                int index=starterStage/2;Debug.Log("Roster review stage "+starterStage+" "+catalog.data.characters[index].id);
                 if(starterStage%2==0){ReturnToSelection(1);ChangeLook(index-playerAnimation.lookIndex);startingWeapon=0;randomCharacter=false;}
                 else
                 {
@@ -58,7 +58,8 @@ namespace Scrapshift
                 starterReport.width=Screen.width;starterReport.height=Screen.height;
                 starterReport.fullViewport=gameCamera.rect==new Rect(0,0,1,1);
                 starterReport.capturesVerified=CaptureVerification.Fresh(starterReviewPath,starterUtc,starterCaptures.ToArray());
-                bool passed=starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==catalog.data.characters.Length
+                starterReport.weaponGeometry=Array.TrueForAll(catalog.data.equipment,w=>!w.image.name.StartsWith("base-weapons_")||w.image.vertices.Length==AtlasIconMask.Regions(w.image,w.image.rect).Length*4);
+                bool passed=starterReport.weaponGeometry&&starterReport.fullViewport&&starterReport.randomSelectedPlayable&&starterReport.capturesVerified&&starterReport.characters.Count==catalog.data.characters.Length
                     &&starterReport.weaponsDamagedTarget.Count==starterReport.availableWeapons&&starterReport.burning&&starterReport.slow
                     &&starterReport.secondaryProjectiles&&starterReport.turretFired&&starterReport.ghostProgress
                     &&starterReport.gardenFruit&&starterReport.mineExplosion&&starterReport.burningSpread&&starterReport.engineeringSlow&&starterReport.thunderProjectiles&&starterReport.vorpalExecution&&starterReport.deployableImplantsPassed.Count==10&&starterReport.attackImplantsPassed.Count==6;

@@ -10,6 +10,9 @@ namespace Scrapshift.Editor
             catalog.uiText=AssetDatabase.LoadAssetAtPath<UnityEngine.TextAsset>(Root+"/Reference/ui-text.json");
             if(catalog.referenceFont==null||catalog.uiText==null)throw new System.Exception("Missing reference UI font/text.");
             var text=new InspectionText(catalog.uiText);
+            var upgrades=UnityEngine.JsonUtility.FromJson<CatalogData>(System.IO.File.ReadAllText("Assets/Scrapshift/Resources/base-upgrades.json")).upgrades;
+            foreach(var upgrade in upgrades)upgrade.image=StatPresentation.Icon(catalog,upgrade.stat);
+            catalog.data.upgrades=upgrades;
             var design=UnityEngine.JsonUtility.FromJson<ItemDesignData>(System.IO.File.ReadAllText(Root+"/Reference/item-design.json"));
             var expanded=new System.Collections.Generic.List<ItemEntry>();
             foreach(var item in design.items)

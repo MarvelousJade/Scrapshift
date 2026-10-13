@@ -5,7 +5,7 @@ namespace Scrapshift
 {
     public static class SpawnPlacement
     {
-        public static readonly Vector2 Bounds = ArenaGeometry.HalfSize;
+        public static Vector2 Bounds => ArenaGeometry.HalfSize;
         static float Range(System.Random random, float min, float max) => min + (float)random.NextDouble() * (max - min);
         static Vector2 InRect(System.Random random, Vector2 center, Vector2 half) => center +
             new Vector2(Range(random, -half.x, half.x), Range(random, -half.y, half.y));

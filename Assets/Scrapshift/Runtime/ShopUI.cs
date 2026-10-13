@@ -1,43 +1,65 @@
 using UnityEngine;
+using System.Linq;
 namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
         int selectedWeapon=-1;
+        float ContentLeft=>FullCanvas.xMin+24;
+        float StatsLeft=>FullCanvas.xMax-360;
+        float ContentWidth=>StatsLeft-24-ContentLeft;
+        float OfferWidth=>(ContentWidth-24)/4;
+        float OfferX(int index)=>ContentLeft+index*(OfferWidth+8);
         readonly System.Collections.Generic.Dictionary<string,Vector2> detailScroll=new System.Collections.Generic.Dictionary<string,Vector2>();
-        Vector2 itemScroll;
+        Vector2 itemScroll,weaponScroll;
         void DrawIcon(Sprite sprite,Rect r)
         {
             if(sprite==null)return;
+            var preview=AtlasIconMask.Preview(sprite);if(preview!=null){GUI.DrawTexture(r,preview,ScaleMode.ScaleToFit,true);return;}
             Rect source = sprite.rect;
+            // Half-texel inset prevents bilinear sampling of neighboring atlas cells.
+            source=Rect.MinMaxRect(source.xMin+.5f,source.yMin+.5f,source.xMax-.5f,source.yMax-.5f);
             float scale = Mathf.Min(r.width / source.width, r.height / source.height);
             Rect target = new Rect(r.center.x - source.width * scale / 2, r.center.y - source.height * scale / 2,
                 source.width * scale, source.height * scale);
-            GUI.DrawTextureWithTexCoords(target, sprite.texture, new Rect(source.x / sprite.texture.width,
-                source.y / sprite.texture.height, source.width / sprite.texture.width, source.height / sprite.texture.height), true);
+            foreach(var region in AtlasIconMask.Regions(sprite,source))
+            {
+                var section=new Rect(target.x+(region.x-source.x)*scale,target.y+(source.yMax-region.yMax)*scale,region.width*scale,region.height*scale);
+                GUI.DrawTextureWithTexCoords(section,sprite.texture,new Rect(region.x/sprite.texture.width,region.y/sprite.texture.height,region.width/sprite.texture.width,region.height/sprite.texture.height),true);
+            }
         }
+        bool secondaryStats;Vector2 secondaryStatsScroll;
+        static readonly string[] secondaryStatKeys={"pickup_range","consumable_heal","xp_gain","items_price","weapons_price","recycling_gains","harvesting_growth","explosion_damage","explosion_size","piercing","piercing_damage","bounce","knockback","enemy_health","enemy_damage","enemy_speed","number_of_enemies","gold_drops","trees","structure_attack_speed","burning_spread","fog_visibility"};
         void DrawStatsPanel(bool summary=false)
         {
             var previousMatrix=GUI.matrix;
-            if(summary)GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(-1050,80,0));
-            Box(new Rect(1110,24,306,summary?680:770),new Color(.065f,.06f,.05f,.93f));
-            Text(1130,43,266,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
-            Text(1133,90,250,30,$"Level {Rules.Level}",body);
+            GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(summary?-1050:StatsLeft-1110,summary?80:0,0));
+            Box(new Rect(1110,24,336,summary?680:650),new Color(.065f,.06f,.05f,.93f));
+            Text(1130,43,296,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
+            if(Button(new Rect(1125,94,133,35),"Primary"))secondaryStats=false;
+            if(Button(new Rect(1266,94,135,35),"Secondary"))secondaryStats=true;
+            if(secondaryStats)
+            {
+                var viewport=new Rect(1124,143,310,505);secondaryStatsScroll=GUI.BeginScrollView(viewport,secondaryStatsScroll,new Rect(0,0,290,secondaryStatKeys.Length*57));
+                for(int i=0;i<secondaryStatKeys.Length;i++){string key=secondaryStatKeys[i];RichText(SpecialItemEffects.Description(key,Rules.Stat(key)),new Rect(7,i*57,272,55),17);}
+                GUI.EndScrollView();GUI.matrix=previousMatrix;return;
+            }
+            Text(1133,138,250,30,$"Current Level                         {Rules.Level}",new GUIStyle(body){fontSize=17});
             var names=StatPresentation.Keys;
             var right=new GUIStyle(inspectionBody) { alignment=TextAnchor.MiddleRight };
             for(int i=0;i<names.Length;i++)
             {
                 float value=names[i]=="max_hp"?Rules.MaxHealth:Rules.Stat(names[i]);
-                float y=122+i*25;
+                float y=174+i*26;
                 DrawStatIcon(names[i],new Rect(1125,y+2,24,24));
                 var label=new GUIStyle(inspectionBody);
                 label.normal.textColor=value<0?coral:value>0?new Color(.39f,1,.29f):paper;
                 Text(1157,y,188,32,inspectionText.StatName(names[i]),label);
                 right.normal.textColor=label.normal.textColor;
-                Text(1351,y,49,32,value.ToString("0"),right);
-                Inspect("stat:"+names[i],new Rect(1120,y,282,25),inspectionText.StatName(names[i]),inspectionText.StatDescription(Rules,names[i]),StatPresentation.Icon(catalog,names[i]));
+                Text(1381,y,49,32,value.ToString("0"),right);
+                Inspect("stat:"+names[i],new Rect(1120,y,312,25),inspectionText.StatName(names[i]),inspectionText.StatDescription(Rules,names[i]),StatPresentation.Icon(catalog,names[i]));
             }
-            if(!summary)DrawWardrobePreview();
+            
             GUI.matrix=previousMatrix;
         }
 
@@ -48,88 +70,94 @@ namespace Scrapshift
                 var w=offer.weapon;
                 var style=new GUIStyle(inspectionBody){fontSize=18};
                 var content=new GUIContent(inspectionText.WeaponDescription(preview??Rules,w));
-                float height=style.CalcHeight(content,width-18);
+                float height=RichHeight(content.text,width-18,style.fontSize);
                 var key=w.id+":"+x;
                 detailScroll.TryGetValue(key,out var scroll);
                 scroll=GUI.BeginScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
-                GUI.Label(new Rect(0,0,width-18,height+4),content,style);GUI.EndScrollView();detailScroll[key]=scroll;
+                RichText(content.text,new Rect(0,0,width-18,height+4),style.fontSize);GUI.EndScrollView();detailScroll[key]=scroll;
             }
             else
             {
                 var style=new GUIStyle(inspectionBody){fontSize=19,richText=true};
                 var content=new GUIContent(inspectionText.ItemDescription(offer.item));
-                float height=style.CalcHeight(content,width-18);
+                float height=RichHeight(content.text,width-18,style.fontSize);
                 var key="item:"+offer.item.id+":"+x;detailScroll.TryGetValue(key,out var scroll);
                 scroll=GUI.BeginScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
-                GUI.Label(new Rect(0,0,width-18,height+4),content,style);GUI.EndScrollView();detailScroll[key]=scroll;
+                RichText(content.text,new Rect(0,0,width-18,height+4),style.fontSize);GUI.EndScrollView();detailScroll[key]=scroll;
             }
         }
 
         void ShopUI()
         {
-            Box(FullCanvas,new Color(.19f,.175f,.15f,.97f));
-            OutlinedText(24,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
+            Box(FullCanvas,new Color(.19f,.175f,.15f,.76f));
+            OutlinedText(ContentLeft,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
             DrawIcon(catalog.scrapShapes[0],new Rect(558,34,34,40));
-            Text(604,26,170,58,Rules.Scrap.ToString(),number);
+            Text(604,26,170,58,Rules.ShopBalance.ToString("0")+(Rules.UsesHealthShop?" HP":""),number);
             GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(804,27,282,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
+            if(Button(new Rect(StatsLeft-318,27,294,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
             GUI.enabled=true;
             DrawStatsPanel();
             for(int i=0;i<4;i++)
             {
-                float x=24+i*268;var offer=Rules.Shop[i];
-                Frame(new Rect(x,124,252,432),ink,2);
-                if(offer==null){Text(x+14,292,224,45,"Sold",center);continue;}
-                Box(new Rect(x+3,127,246,4),TierColor(offer.Tier));
-                Box(new Rect(x+14,143,68,74),new Color(.17f,.16f,.15f));
-                DrawIcon(offer.Image,new Rect(x+18,148,60,64));
-                var offerTitle=offer.Title=="Smg"?"SMG":offer.Title;var offerStyle=new GUIStyle(body);
-                foreach(var word in offerTitle.Split(' '))while(offerStyle.fontSize>16&&offerStyle.CalcSize(new GUIContent(word)).x>145)offerStyle.fontSize--;
-                Text(x+93,141,145,76,offerTitle,offerStyle);
-                Text(x+16,224,220,27,offer.weapon!=null?(WeaponSets.For(offer.weapon)?.Name??"Weapon")+"  /  Tier "+offer.Tier:"Item",tiny);
-                if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,140,228,110));
-                DrawOfferDetail(offer,x+16,270,220);
+                float x=OfferX(i),width=OfferWidth;var offer=Rules.Shop[i];
+                Frame(new Rect(x,118,width,402),ink,2);
+                if(offer==null){Text(x+14,292,width-28,45,"Sold",center);continue;}
+                Box(new Rect(x+3,121,width-6,4),TierColor(offer.Tier));
+                Box(new Rect(x+14,132,68,74),new Color(.17f,.16f,.15f));
+                DrawIcon(offer.Image,new Rect(x+18,137,60,64));
+                var offerTitle=offer.Title=="Smg"?"SMG":offer.Title;var offerStyle=new GUIStyle(body);offerStyle.normal.textColor=TierColor(offer.Tier);
+                foreach(var word in offerTitle.Split(' '))while(offerStyle.fontSize>16&&offerStyle.CalcSize(new GUIContent(word)).x>width-107)offerStyle.fontSize--;
+                Text(x+93,132,width-107,54,offerTitle,offerStyle);
+                Text(x+93,186,width-107,32,offer.weapon!=null?inspectionText.Sets(offer.weapon):"Item",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
+                if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,132,width-24,86));
+                DrawOfferDetail(offer,x+16,225,width-32);
                 GUI.enabled=Rules.CanBuy(i);
-                string price=offer.weapon!=null&&Rules.Inventory.Count==6&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
-                if(Button(new Rect(x+49,491,154,49),price))
+                string price=offer.weapon!=null&&Rules.Inventory.Count==Rules.WeaponSlots&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
+                if(Button(new Rect(x+(width-154)/2,451,154,55),price))
                 {Rules.Buy(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
                 GUI.enabled=true;
-                if(Button(new Rect(x+12,568,228,40),offer.locked?"Locked":"Lock"))
+                if(Button(new Rect(x+12,528,width-24,43),offer.locked?"Locked":"Lock"))
                 {Rules.ToggleLock(i);sound.Play(SoundCue.Reroll);}
             }
-            Text(24,635,470,40,$"Items ({Rules.Items.Count})",heading);
-            Text(556,635,530,40,$"Weapons ({Rules.Inventory.Count}/6)",heading);
-            Box(new Rect(24,681,1062,2),new Color(.38f,.36f,.31f));
-            itemScroll=GUI.BeginScrollView(new Rect(24,698,510,155),itemScroll,new Rect(0,0,490,Mathf.Max(132,Mathf.Ceil(Rules.Items.Count/7f)*66)));
-            for(int i=0;i<Rules.Items.Count;i++)
+            float weaponLeft=StatsLeft-292,itemWidth=weaponLeft-ContentLeft-24;
+            Text(ContentLeft,618,250,40,$"Items ({Rules.Items.Count})",heading);DrawItemSorting(new Rect(weaponLeft-318,618,290,38));
+            Text(weaponLeft,618,280,40,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
+            int columns=Mathf.Max(1,Mathf.FloorToInt((itemWidth-16)/88));
+            var itemViewport=new Rect(ContentLeft,670,itemWidth,180);var sortedItems=SortedItems();
+            itemScroll=GUI.BeginScrollView(itemViewport,itemScroll,new Rect(0,0,itemWidth-18,Mathf.Max(160,Mathf.Ceil(sortedItems.Length/(float)columns)*88)));
+            for(int i=0;i<sortedItems.Length;i++)
             {
-                float x=i%7*69,y=i/7*66;
-                Frame(new Rect(x,y,60,58),new Color(.24f,.23f,.20f),2);
-                DrawIcon(Rules.Items[i].image,new Rect(x+7,y+6,46,46));
-                InspectItem("item:"+i,Rules.Items[i],new Rect(x,y,60,58),new Rect(24,698,510,155),itemScroll);
+                float x=i%columns*88,y=i/columns*88;
+                Frame(new Rect(x,y,80,80),new Color(.24f,.23f,.20f),2);
+                DrawIcon(sortedItems[i].image,new Rect(x+7,y+6,66,66));
+                int owned=Rules.Items.Count(item=>item.id==sortedItems[i].id);if(owned>1)OutlinedText(x+50,y+54,28,24,owned.ToString(),tiny);
+                InspectItem("item:"+Rules.Items.IndexOf(sortedItems[i]),sortedItems[i],new Rect(x,y,80,80),itemViewport,itemScroll);
             }
             GUI.EndScrollView();
-            for(int i=0;i<6;i++)
+            var weaponViewport=new Rect(weaponLeft,670,270,180);
+            weaponScroll=GUI.BeginScrollView(weaponViewport,weaponScroll,new Rect(0,0,254,Mathf.Max(174,Mathf.Ceil(Rules.Inventory.Count/3f)*86)));
+            for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                float x=556+i*89;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
-                Frame(new Rect(x,700,82,80),selectedWeapon==i?paper:w==null?panelColor:TierColor(w.tier),2);
-                Box(new Rect(x+4,704,74,72),new Color(.19f,.18f,.16f));
+                float x=2+i%3*84,y=2+i/3*86;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
+                Frame(new Rect(x,y,82,80),selectedWeapon==i?paper:w==null?panelColor:TierColor(w.tier),2);
+                Box(new Rect(x+4,y+4,74,72),new Color(.19f,.18f,.16f));
                 if(w!=null)
                 {
-                    DrawIcon(w.image,new Rect(x+8,712,66,47));
-                    Text(x+9,753,64,25,$"Tier {w.tier}",tiny);
-                    InspectWeapon("weapon:"+i,w,new Rect(x,700,82,80));
+                    DrawIcon(w.image,new Rect(x+8,y+8,66,64));
+                    
+                    InspectWeapon("weapon:"+i,w,new Rect(x,y,82,80),weaponViewport,weaponScroll);
                 }
-                if(w!=null&&GUI.enabled&&Event.current.type==EventType.MouseDown&&Event.current.button==1&&new Rect(x,700,82,80).Contains(Event.current.mousePosition)){selectedWeapon=i;Event.current.Use();}
-                if(w!=null&&GUI.Button(new Rect(x,700,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=i;
+                if(w!=null&&GUI.enabled&&Event.current.type==EventType.MouseDown&&Event.current.button==1&&new Rect(x,y,82,80).Contains(Event.current.mousePosition)){selectedWeapon=i;Event.current.Use();}
+                if(w!=null&&GUI.Button(new Rect(x,y,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=i;
             }
-            if(Button(new Rect(1110,806,306,61),$"Go (Wave {Rules.Wave+1})")) {selectedWeapon=-1;AdvanceWave();}
+            GUI.EndScrollView();
+            if(Button(new Rect(StatsLeft,686,336,56),$"Go (Wave {Mathf.Max(1,Rules.Wave+1-(int)Rules.Stat("item_hourglass"))})")) {selectedWeapon=-1;AdvanceWave();}
             if(!string.IsNullOrEmpty(GUI.tooltip))
             {
                 Frame(new Rect(30,469,335,172),ink);
                 Text(47,484,303,142,GUI.tooltip,body);
             }
-            DrawSetTooltip();
+            DrawSetTooltip();DrawItemSortMenu();
         }
 
         WeaponSet hoveredSet;
