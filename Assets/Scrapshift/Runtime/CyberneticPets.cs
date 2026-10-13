@@ -34,6 +34,7 @@ namespace Scrapshift
             {
                 pet.healthBack=MakeLine("Decoy health background",obj.transform,Color.black,.10f);pet.healthView=MakeLine("Decoy health",obj.transform,mint,.06f);
                 foreach(var line in new[]{pet.healthBack,pet.healthView}){line.useWorldSpace=true;line.positionCount=2;line.sortingOrder=15;}
+                pet.healthView.sortingOrder=16;
             }
             if(spec.stats!=null&&spec.stats.interval>0){pet.weapon=Rules.PetWeapon(spec.stats,spec);pet.clock=spec.stats.interval;}
             if(spec.secondary!=null&&spec.secondary.interval>0){pet.secondary=Rules.PetWeapon(spec.secondary,spec);pet.secondaryClock=UnityEngine.Random.Range(spec.secondary.interval/4,spec.secondary.interval);}
