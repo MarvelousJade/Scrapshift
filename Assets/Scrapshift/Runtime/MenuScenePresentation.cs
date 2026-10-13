@@ -5,7 +5,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         RenderTexture menuGround;
-        Texture2D titleBackdrop;
+        Texture2D titleBackdrop,titleHero;
         float menuPoseTime=-1;
         float MenuTime=>reducedMotion?0:menuPoseTime>=0?menuPoseTime:Time.unscaledTime;
 
@@ -55,8 +55,37 @@ namespace Scrapshift
         }
         void TitleScene()
         {
-            if(titleBackdrop==null)titleBackdrop=Resources.Load<Texture2D>("Menu/SalvageTitleEquipped");
-            if(titleBackdrop!=null)GUI.DrawTexture(FullCanvas,titleBackdrop,ScaleMode.ScaleAndCrop);else DrawMenuGround(FullCanvas);
+            if(titleBackdrop==null)titleBackdrop=Resources.Load<Texture2D>("Menu/TitlePlate");
+            if(titleHero==null)titleHero=Resources.Load<Texture2D>("Menu/TitleHero");
+            if(titleBackdrop==null){DrawMenuGround(FullCanvas);return;}
+            // All layers share the same aspect-preserving crop, including ultrawide screens.
+            float scale=Mathf.Max(FullCanvas.width/1672,FullCanvas.height/941);
+            var scene=new Rect(FullCanvas.center.x-836*scale,FullCanvas.center.y-470.5f*scale,1672*scale,941*scale);
+            GUI.DrawTexture(scene,titleBackdrop,ScaleMode.StretchToFill);
+            MenuEnemy(scene,"horned_bruiser",new Rect(65,20,285,310),0);
+            MenuEnemy(scene,"spitter",new Rect(1470,35,225,270),1);
+            MenuEnemy(scene,"helmet_alien",new Rect(100,330,365,300),2);
+            MenuEnemy(scene,"charger",new Rect(550,335,280,275),3);
+            MenuEnemy(scene,"horned_bruiser",new Rect(1260,325,280,270),4);
+            MenuEnemy(scene,"helmet_alien",new Rect(1400,410,365,355),5);
+            MenuEnemy(scene,"horned_bruiser",new Rect(1380,710,360,350),6);
+            RoundedBox(MenuRect(scene,new Rect(810,756,400,40)),new Color(0,0,0,.30f),20*scale);
+            if(titleHero!=null)
+            {
+                var pose=SpringMotion.Pose(MenuTime,false,reducedMotion);
+                // Same one-second spring curve as gameplay, restrained for the large title actor.
+                float sx=1+(pose.x-1)*.3f,sy=1+(pose.y-1)*.3f;
+                var rect=new Rect(1000-410*sx,823-460*sy+pose.z*65,820*sx,460*sy);
+                GUI.DrawTexture(MenuRect(scene,rect),titleHero,ScaleMode.ScaleToFit,true);
+            }
+        }
+        static Rect MenuRect(Rect scene,Rect local)=>new Rect(scene.x+local.x*scene.width/1672,scene.y+local.y*scene.height/941,local.width*scene.width/1672,local.height*scene.height/941);
+        void MenuEnemy(Rect scene,string id,Rect local,int index)
+        {
+            var rect=MenuRect(scene,local);var matrix=GUI.matrix;var color=GUI.color;
+            GUIUtility.RotateAroundPivot(reducedMotion?0:Mathf.Sin(MenuTime*.85f+index*.72f)*4,rect.center);
+            GUI.color=new Color(.45f,.34f,.51f,.52f);DrawIcon(catalog.Enemy(id).image,rect);
+            GUI.matrix=matrix;GUI.color=color;
         }
         void OnDestroy()
         {

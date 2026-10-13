@@ -9,7 +9,7 @@ namespace Scrapshift
         sealed class Pet
         {
             public PetSpec spec;public GameObject obj;public Vector2 pos,destination,jumpStart;public float clock,secondaryClock,age,health,invulnerable,jump,baseScale,posePhase,attackPose;
-            public Equipment weapon,secondary;public bool dead;
+            public Equipment weapon,secondary;public bool dead;public SupportRig rig;
         }
         readonly List<Pet> pets=new List<Pet>();
         void ClearPets(){foreach(var pet in pets)Destroy(pet.obj);pets.Clear();Rules.HealingDrones=0;Rules.PetCount=0;}
@@ -25,6 +25,7 @@ namespace Scrapshift
             var image=SupportArt.Pet(spec.kind);var pos=playerPos+UnityEngine.Random.insideUnitCircle*2;
             var obj=SpriteObject("Cybernetic companion: "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.65f);AddGroundShadow(obj,image.bounds.size.x,-.2f);
             var pet=new Pet{spec=spec,obj=obj,baseScale=obj.transform.localScale.x,pos=pos,destination=pos,health=spec.health+spec.healthGrowth*(Rules.Wave-1)};
+            pet.rig=SupportRig.Create(obj,spec.kind,false);
             if(spec.stats!=null&&spec.stats.interval>0){pet.weapon=Rules.PetWeapon(spec.stats,spec);pet.clock=spec.stats.interval;}
             if(spec.secondary!=null&&spec.secondary.interval>0){pet.secondary=Rules.PetWeapon(spec.secondary,spec);pet.secondaryClock=UnityEngine.Random.Range(spec.secondary.interval/4,spec.secondary.interval);}
             if(spec.kind=="bot_o_mine")pet.secondaryClock=spec.mineInterval;
@@ -106,6 +107,7 @@ namespace Scrapshift
                 p.posePhase+=dt*(spec.kind=="doc_moth"?6:moving?2:1);
                 var renderer=p.obj.GetComponent<SpriteRenderer>();
                 if(Mathf.Abs(p.pos.x-previous.x)>.001f)renderer.flipX=p.pos.x>previous.x;
+                if(p.rig!=null)p.rig.PetPose(p.posePhase,moving,renderer.flipX,reducedMotion,p.dead);
                 var pose=reducedMotion?Vector2.one:SupportMotion.PetScale(spec.kind,p.posePhase,moving,p.attackPose);
                 if(p.dead)pose=new Vector2(1.12f,.65f);
                 p.obj.transform.localScale=new Vector3(pose.x,pose.y,1)*p.baseScale;

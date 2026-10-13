@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><title>Scrapshift — approved art and motion</title>
+<style>body{background:#17171e;color:#eee;max-width:1200px;margin:32px auto;font:18px system-ui}img{width:100%;border-radius:12px}a{color:#91d6fb}button,audio{margin:12px 0}button{padding:10px;font:inherit}p{line-height:1.5;color:#ccc}</style>
+<h1>Approved icons, menu and support motion</h1>
+<p>The new flatter icons are integrated. <a href="../icon-cleanup-review/review.html">Compare the previous and approved item sheets</a>.</p>
+<h2>Main menu</h2><p>Small gameplay-style spring bounce, gently swaying enemies, stationary title and buttons. Captures come from the built game; the achievement toast is produced by the test run.</p>
+<img id="menu" src="motion/menu-00.png"><button onclick="playing=!playing">Play / pause motion</button>
+<h2>Walking companions and aiming turrets</h2><img id="support" src="motion/frame-01.png">
+<h2>New icons in the shop</h2><img src="ui/reference-shop-layout.png">
+<h2>Softer music lead</h2><p>The repeated high lead is replaced with sparse lower notes. Music begins only after the first weapon-selection Start.</p><audio controls src="../../Assets/Scrapshift/Resources/Music/NeonSalvage.wav"></audio>
+<h2>Validation</h2><p>300 tests passed; Windows build succeeded; all nine companion checks and the final support-motion/music checks passed. Staged tests do not replace a full manual survival run.</p>
+<p><a href="../../Builds/AnimatedMenu/Scrapshift.exe">Playable executable (uncompressed folder)</a> · <a href="../../docs/clean-icons-and-articulated-menu.md">Implementation and bug notes</a></p>
+<script>let playing=true,i=0;setInterval(()=>{if(!playing)return;i++;document.getElementById('menu').src='motion/menu-'+String(i%32).padStart(2,'0')+'.png';document.getElementById('support').src='motion/frame-'+String(i%10+1).padStart(2,'0')+'.png'},200)</script>

@@ -5,7 +5,7 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        sealed class StarterTurret { public GameObject obj; public Vector2 pos; public Equipment stats; public float clock; public WeaponTrait trait; public StructureSpec spec;public float angle,orbitRadius,orbitSpeed,animationAge=.3f,baseScale;public bool firing;public readonly HashSet<Enemy> touched=new HashSet<Enemy>(); }
+        sealed class StarterTurret { public GameObject obj; public Vector2 pos; public Equipment stats; public float clock; public WeaponTrait trait; public StructureSpec spec;public SupportRig rig;public float angle,orbitRadius,orbitSpeed,animationAge=.3f,baseScale;public bool firing;public readonly HashSet<Enemy> touched=new HashSet<Enemy>(); }
         sealed class Mine { public GameObject obj; public Vector2 pos; public Equipment stats; public float radius; public readonly HashSet<Enemy> occupants=new HashSet<Enemy>(); public bool playerOn; }
         readonly List<Mine> mines=new List<Mine>();
         readonly List<StarterTurret> mineSpawners=new List<StarterTurret>();

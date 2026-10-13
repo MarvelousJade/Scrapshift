@@ -7,6 +7,32 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void ArticulatedTurretTurnsWithoutMovingItsBase()
+        {
+            var root=new GameObject("test turret");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Structure("turret");
+            try
+            {
+                var rig=SupportRig.Create(root,"turret",true);var at=root.transform.position;var scale=root.transform.localScale;
+                rig.Aim(Vector2.up,.1f,.1f,false);
+                Assert.That(rig.AimingHead.eulerAngles.z,Is.InRange(40,60));
+                Assert.AreEqual(at,root.transform.position);Assert.AreEqual(scale,root.transform.localScale);
+                rig.Aim(Vector2.up,.1f,.3f,true);Assert.AreEqual(Vector3.one,rig.AimingHead.localScale);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
+        [TestCase("bonk_dog")][TestCase("catling_gun")][TestCase("blazemander")][TestCase("ratzilla")][TestCase("scapegoat")][TestCase("doc_moth")]
+        public void PetLimbsAnimateAndReducedMotionRestoresRestPose(string kind)
+        {
+            var root=new GameObject("test pet");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet(kind);
+            try
+            {
+                var rig=SupportRig.Create(root,kind,false);rig.PetPose(0,true,false,false,false);var first=rig.FirstLimb.localRotation;
+                rig.PetPose(.25f,true,false,false,false);Assert.Greater(Quaternion.Angle(first,rig.FirstLimb.localRotation),15);
+                rig.PetPose(.25f,true,false,true,false);Assert.Less(Quaternion.Angle(first,rig.FirstLimb.localRotation),.01f);
+                Assert.IsFalse(root.GetComponent<SpriteRenderer>().enabled);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
         [Test] public void TurretKeyframesReturnToRestAndPetsUseDifferentMovementStrengths()
         {
             Assert.AreEqual(new Vector2(1.1f,.9f),SupportMotion.TurretScale(0));

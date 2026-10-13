@@ -62,10 +62,12 @@ for bar in range(64):
             add(synth(root+degree,length,'chord'),at,.12 if drop else .08,-.65)
             add(synth(root+degree+.07,length,'chord'),at+.018,.12 if drop else .08,.65)
     if bar%16>=8 or breakdown:
-        degrees=[0,7,12,10,7,3,5,7]
+        # Replace the high, repeated eighth-note pluck with a lower, spacious phrase.
+        # Two mellow notes per bar leave the rhythmic energy to bass and drums.
+        degrees=[0,3] if bar%2==0 else [5,7]
         for j,degree in enumerate(degrees):
-            signal=synth(root+24+degree,BEAT*.65,'pluck')
-            add(signal,b+j*.5,.055,.2);add(signal,b+j*.5+.75,.025,-.5)
+            signal=synth(root+12+degree,BEAT*1.5,'pluck')
+            add(signal,b+.5+j*2,.038,.2);add(signal,b+1.5+j*2,.010,-.5)
     if bar%8==7:
         for step in range(4):add(snare(),b+3+step*.25,.10+step*.035,step*.15-.2)
     if bar in (0,8,28,32,52,56):

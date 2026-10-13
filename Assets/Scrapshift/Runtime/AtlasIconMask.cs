@@ -10,8 +10,13 @@ namespace Scrapshift
     public static class AtlasIconMask
     {
         static WeaponIconMasks data;
+        static WeaponIconMasks cleanData;
         public static WeaponIconMask[] Masks=>(data??(data=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("weapon-icon-masks").text))).masks;
-        static WeaponIconMask Find(Sprite sprite)=>sprite.name.StartsWith("base-weapons_")?Array.Find(Masks,m=>m.name==sprite.name):null;
+        static WeaponIconMask Find(Sprite sprite)
+        {
+            if(cleanData==null)cleanData=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("clean-icon-masks").text);
+            return Array.Find(cleanData.masks,m=>m.name==sprite.name)??(sprite.name.StartsWith("base-weapons_")?Array.Find(Masks,m=>m.name==sprite.name):null);
+        }
         public static Rect[] Regions(Sprite sprite,Rect source)
         {
             var mask=Find(sprite);if(mask==null)return new[]{source};var result=new List<Rect>();
@@ -37,7 +42,7 @@ namespace Scrapshift
         public static Sprite CreateWorldSprite(Sprite original)
         {
             if(Find(original)==null)return original;
-            var sprite=Sprite.Create(original.texture,original.rect,original.pivot/original.rect.size,original.pixelsPerUnit,0,SpriteMeshType.FullRect);sprite.name=original.name;
+            var sprite=Sprite.Create(original.texture,original.rect,original.pivot/original.rect.size,original.pixelsPerUnit,0,SpriteMeshType.Tight);sprite.name=original.name;
             var vertices=new List<Vector2>();var indices=new List<ushort>();Rect source=sprite.rect;
             foreach(var r in Regions(sprite,source))
             {
