@@ -77,14 +77,20 @@ namespace Scrapshift
             for(int i=0;i<entries.Length;i++)
             {
                 var e=entries[i];var r=new Rect(i%cols*cell,i/cols*cell,cell-8,cell-8);
-                Frame(r,i==codexSelected?paper:InventoryTileColor(e.tier),2);
+                if(i==codexSelected)RoundedBox(r,paper,8);
+                else
+                {
+                    RoundedBox(r,new Color(0,0,0,.22f),8);
+                    var tile=InventoryTileColor(e.tier);tile.a=.30f;
+                    RoundedBox(new Rect(r.x+2,r.y+2,r.width-4,r.height-4),tile,6);
+                }
                 if(e.locked)DrawLock(new Rect(r.x+12,r.y+12,r.width-24,r.height-24));
                 else {var old=GUI.color;if(!e.known)GUI.color=Color.black;if(e.character!=null)DrawCodexFace(e.character,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else DrawIcon(e.image,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));GUI.color=old;}
                 if(GUI.Button(r,GUIContent.none,GUIStyle.none)){codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
             }
             GUI.EndScrollView();
             var selected=entries[codexSelected];float x=left+gridW+40,w=width-gridW-65;
-            RoundedBox(new Rect(x,140,w,585),new Color(0,0,0,.72f),10);
+            if(selected.challenge==null)RoundedBox(new Rect(x,140,w,585),new Color(0,0,0,.72f),10);
             DrawCodexDetails(selected,new Rect(x+20,158,w-40,550));
             float completion=entries.Count(e=>e.known)/(float)entries.Length;
             RoundedBox(new Rect(left+25,749,width-50,30),Color.black,8);RoundedBox(new Rect(left+28,752,(width-56)*completion,24),new Color(.4f,.65f,.3f),6);
@@ -93,18 +99,11 @@ namespace Scrapshift
         }
         void DrawCodexDetails(CodexEntry entry,Rect r,bool reward=false)
         {
+            if(entry.challenge!=null){DrawChallengeDetails(entry,r);return;}
             string label=entry.title,description=entry.description;
-            bool reveal=entry.known||entry.challenge!=null;
+            bool reveal=entry.known;
             if(entry.weapon!=null&&reveal&&entry.challenge==null){var selected=catalog.Weapon(entry.id,codexTier)??entry.weapon;label=inspectionText.WeaponName(selected);entry.tier=selected.tier;}
-            if(entry.challenge!=null)
-            {
-                label=inspectionText.T(entry.challenge.name,entry.challenge.id.Substring(5).Replace('_',' '));
-                // Some reference names are format templates; never display raw translation placeholders.
-                if(entry.challenge.name=="DIFFICULTY_NB")label="Danger "+entry.challenge.value;
-                else if(label.Contains("{")||label.StartsWith("CHAL_"))label=System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(entry.challenge.id.Substring(5).Replace('_',' '));
-                description=(entry.known?"<color=#76FF40>Completed</color>":"Not completed")+"\n"+progress.Requirement(entry.challenge.reward)+"\n\nReward: "+entry.title+"\n"+entry.description;
-            }
-            else if(entry.locked){label="???";description=progress.Requirement((codexTab==1?"item_":"weapon_")+entry.id);}
+            if(entry.locked){label="???";description=progress.Requirement((codexTab==1?"item_":"weapon_")+entry.id);}
             else if(!entry.known){label="???";description=codexTab==3?"Defeat this enemy to unlock more information.":"Acquire this "+(codexTab==1?"item":"weapon")+" to unlock more information.";}
             Text(r.x,r.y,r.width,75,label,new GUIStyle(heading){fontSize=27,normal={textColor=TierColor(entry.tier)}});
             if(entry.locked&&entry.challenge==null)DrawLock(new Rect(r.x,r.y+82,92,92));else {var old=GUI.color;if(!reveal)GUI.color=Color.black;if(entry.character!=null)DrawCodexFace(entry.character,new Rect(r.x,r.y+82,92,92));else DrawIcon(entry.image,new Rect(r.x,r.y+82,92,92));GUI.color=old;}
@@ -121,6 +120,40 @@ namespace Scrapshift
             var viewport=new Rect(r.x,y,r.width,r.yMax-y);float h=RichHeight(description,r.width-24)+20;
             codexDetailScroll=GUI.BeginScrollView(viewport,codexDetailScroll,new Rect(0,0,r.width-20,Mathf.Max(h,viewport.height-1)));
             RichText(description,new Rect(0,0,r.width-24,h));GUI.EndScrollView();
+        }
+        void DrawChallengeDetails(CodexEntry entry,Rect r)
+        {
+            bool completed=progress.Completed(entry.challenge.id);
+            var banner=new Rect(r.x,r.y,r.width,100);
+            RoundedBox(banner,new Color(0,0,0,.86f),8);
+            // Our alien silhouette echoes the reference banner without revealing the reward.
+            var old=GUI.color;GUI.color=new Color(.4f,.55f,.35f,.12f);
+            DrawIcon(catalog.Enemy("baby_alien").image,new Rect(banner.xMax-140,banner.y,140,100));GUI.color=old;
+            if(!completed)DrawLock(new Rect(r.x+14,r.y+18,60,60));
+            else DrawIcon(catalog.Enemy("baby_alien").image,new Rect(r.x+14,r.y+18,60,60));
+            string name=inspectionText.T(entry.challenge.name,entry.challenge.id.Substring(5).Replace('_',' '));
+            if(entry.challenge.name=="DIFFICULTY_NB")name="Danger "+entry.challenge.value;
+            else if(name.Contains("{")||name.StartsWith("CHAL_"))name=System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(entry.challenge.id.Substring(5).Replace('_',' '));
+            Text(r.x+90,r.y+13,r.width-105,29,completed?name:"???",new GUIStyle(body){fontSize=22,normal={textColor=new Color(.88f,.84f,.57f)}});
+            Text(r.x+90,r.y+43,r.width-105,52,progress.Requirement(entry.challenge.reward),new GUIStyle(body){fontSize=21,wordWrap=true});
+            // Return before drawing any reward name, portrait, type or effects while locked.
+            if(!completed)return;
+            Text(r.x,r.y+116,r.width,44,"Reward",new GUIStyle(heading){fontSize=32,alignment=TextAnchor.MiddleCenter});
+            float width=Mathf.Min(330,r.width-30);
+            var card=new Rect(r.center.x-width/2,r.y+174,width,r.height-174);
+            RoundedBox(card,new Color(0,0,0,.9f),8);
+            var icon=new Rect(card.x+16,card.y+16,80,80);
+            RoundedBox(icon,new Color(.16f,.17f,.16f),6);
+            if(entry.character!=null)DrawCodexFace(entry.character,new Rect(icon.x+5,icon.y+5,70,70));else DrawIcon(entry.image,new Rect(icon.x+5,icon.y+5,70,70));
+            var nameStyle=new GUIStyle(body){fontSize=23,wordWrap=true,normal={textColor=TierColor(entry.tier)}};
+            float nameHeight=Mathf.Max(28,nameStyle.CalcHeight(new GUIContent(entry.title),width-124));
+            Text(card.x+108,card.y+16,width-124,nameHeight,entry.title,nameStyle);
+            Text(card.x+108,card.y+18+nameHeight,width-124,52,entry.category,new GUIStyle(body){fontSize=21,wordWrap=true,normal={textColor=new Color(.88f,.84f,.57f)}});
+            float top=Mathf.Max(116,nameHeight+78);
+            var viewport=new Rect(card.x+16,card.y+top,width-32,card.height-top-16);
+            float height=RichHeight(entry.description,viewport.width-24)+20;
+            codexDetailScroll=GUI.BeginScrollView(viewport,codexDetailScroll,new Rect(0,0,viewport.width-20,Mathf.Max(height,viewport.height-1)));
+            RichText(entry.description,new Rect(0,0,viewport.width-24,height));GUI.EndScrollView();
         }
         bool DrawUnlockReward()
         {

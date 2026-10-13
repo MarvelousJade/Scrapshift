@@ -12,7 +12,7 @@ namespace Scrapshift
         [Serializable] sealed class InspectionResult { public string name,phase,target,drawn;public bool panelOnScreen;public int banked,pendingLevels,pendingCrates;public float arrivalTime,canopyWidth,canopyHeight,remaining; }
         [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool bossPillarsVerified,predatorVerified;public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
         InspectionReport inspectionReport;
-        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-sound","options-video","options-gameplay","options-accessibility","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu","pillar-warning","pillar-active","pillar-fade","invoker-ring","predator-arm","tier-shop","shop-character","pause-layout","pause-codex","pause-character","codex-challenges","codex-items","codex-weapons","codex-enemies","unlock-reward","elemental-details","conditional-details","achievement-toast","crate-icons","pickup-burst","title-idle","title-complete","selection-idle","selection-squash","selection-reduced-motion","map-salvage","map-rust","map-overgrown","map-cryo","map-ash","map-neon","grips-right","grips-left","map-options","support-art"};
+        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-sound","options-video","options-gameplay","options-accessibility","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu","pillar-warning","pillar-active","pillar-fade","invoker-ring","predator-arm","tier-shop","shop-character","pause-layout","pause-codex","pause-character","codex-challenges","codex-items","codex-weapons","codex-enemies","unlock-reward","elemental-details","conditional-details","achievement-toast","crate-icons","pickup-burst","title-idle","title-complete","selection-idle","selection-squash","selection-reduced-motion","map-salvage","map-rust","map-overgrown","map-cryo","map-ash","map-neon","grips-right","grips-left","map-options","support-art","achievement-locked","achievement-unlocked"};
         void BeginInspectionReview(string path)
         {inspectionReview=true;inspectionPath=Path.GetFullPath(path);Directory.CreateDirectory(inspectionPath);inspectionUtc=DateTime.UtcNow;inspectionNext=Time.realtimeSinceStartup+.5f;inspectionReport=new InspectionReport();Begin();sound.SetMuted(true);}
         void InspectionReviewTick()
@@ -31,7 +31,14 @@ namespace Scrapshift
             if(inspectionStage==inspectionCases.Length){inspectionNext=Time.realtimeSinceStartup+.6f;return;}
             if(inspectionStage>inspectionCases.Length)return;
             forcedInspection=null;lastDrawnInspection=null;
-            if(inspectionStage==79)
+            if(inspectionStage>=80)
+            {
+                Begin();ClearCombat();Rules.Pause();pauseOptions=false;pauseCodex=true;codexTab=0;codexScroll=codexDetailScroll=Vector2.zero;
+                progress.Data.completed.Remove("chal_gatherer_2");
+                if(inspectionStage==81)progress.Complete("chal_gatherer_2");
+                codexSelected=Array.FindIndex(CodexEntries(),e=>e.challenge.id=="chal_gatherer_2");
+            }
+            else if(inspectionStage==79)
             {
                 Begin();ClearCombat();player.SetActive(false);Rules.Inventory.Clear();SyncEquipment();
                 var kinds=new[]{"turret","flame","rocket","laser","healing","landmine","garden","tyler","wandering_bot"};
@@ -162,4 +169,5 @@ namespace Scrapshift
         }
     }
 }
+
 
