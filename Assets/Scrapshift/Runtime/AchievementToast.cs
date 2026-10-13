@@ -33,9 +33,10 @@ namespace Scrapshift
             var old=GUI.color;GUI.color=new Color(1,1,1,fade);
             RoundedBox(r,Color.black,10);RoundedBox(new Rect(r.x+2,r.y+2,r.width-4,r.height-4),new Color(.13f,.15f,.13f),8);
             var imageRect=new Rect(r.x+12,r.y+15,62,62);
-            if(reward.character!=null)DrawCodexFace(reward.character,imageRect);else DrawIcon(reward.image,imageRect);
+            DrawAchievementIcon(achievement,imageRect);
             Text(r.x+86,r.y+9,260,26,"Achievement unlocked!",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.6f,1,.35f)}});
             Text(r.x+86,r.y+36,260,50,reward.title,new GUIStyle(body){fontSize=20});GUI.color=old;
         }
     }
 }
+

@@ -14,6 +14,7 @@ namespace Scrapshift
         public static WeaponIconMask[] Masks=>(data??(data=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("weapon-icon-masks").text))).masks;
         static WeaponIconMask Find(Sprite sprite)
         {
+            if(sprite.name.StartsWith("Achievement_"))return AchievementArt.Mask(sprite.name);
             if(cleanData==null)cleanData=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("clean-icon-masks").text);
             return Array.Find(cleanData.masks,m=>m.name==sprite.name)??(sprite.name.StartsWith("base-weapons_")?Array.Find(Masks,m=>m.name==sprite.name):null);
         }

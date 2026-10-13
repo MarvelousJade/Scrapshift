@@ -7,6 +7,21 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void EveryAchievementHasExplicitArtIndependentOfItsReward()
+        {
+            var definitions=JsonUtility.FromJson<UnlockCatalog>(Resources.Load<TextAsset>("base-unlocks").text);
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+            foreach(var challenge in definitions.challenges)
+            {
+                var key=AchievementArt.Key(challenge);
+                if(key.StartsWith("character:"))Assert.IsTrue(catalog.data.characters.Any(c=>"character:"+c.id==key),challenge.id);
+                else{Assert.IsTrue(AchievementArt.HasSymbol(key),challenge.id);Assert.Greater(AchievementArt.Icon(key).rect.width,20,challenge.id);}
+            }
+            Assert.AreEqual("gatherer",AchievementArt.Key(definitions.challenges.Single(d=>d.id=="chal_gatherer_2")));
+            Assert.AreEqual("character:well_rounded",AchievementArt.Key(definitions.challenges.Single(d=>d.id=="chal_well_rounded")));
+            Assert.AreEqual(AchievementArt.Symbols.Length,AchievementArt.Symbols.Select(AchievementArt.Icon).Distinct().Count());
+        }
+
         [Test] public void SerializedCatalogUsesMatchingSupportIconsAndPreservesOtherItems()
         {
             var source=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");

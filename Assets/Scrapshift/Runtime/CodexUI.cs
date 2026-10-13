@@ -85,7 +85,7 @@ namespace Scrapshift
                     RoundedBox(new Rect(r.x+2,r.y+2,r.width-4,r.height-4),tile,6);
                 }
                 if(e.locked)DrawLock(new Rect(r.x+12,r.y+12,r.width-24,r.height-24));
-                else {var old=GUI.color;if(!e.known)GUI.color=Color.black;if(e.character!=null)DrawCodexFace(e.character,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else DrawIcon(e.image,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));GUI.color=old;}
+                else {var old=GUI.color;if(!e.known)GUI.color=Color.black;if(e.challenge!=null)DrawAchievementIcon(e.challenge,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else if(e.character!=null)DrawCodexFace(e.character,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else DrawIcon(e.image,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));GUI.color=old;}
                 if(GUI.Button(r,GUIContent.none,GUIStyle.none)){codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
             }
             GUI.EndScrollView();
@@ -130,7 +130,7 @@ namespace Scrapshift
             var old=GUI.color;GUI.color=new Color(.4f,.55f,.35f,.12f);
             DrawIcon(catalog.Enemy("baby_alien").image,new Rect(banner.xMax-140,banner.y,140,100));GUI.color=old;
             if(!completed)DrawLock(new Rect(r.x+14,r.y+18,60,60));
-            else DrawIcon(catalog.Enemy("baby_alien").image,new Rect(r.x+14,r.y+18,60,60));
+            else DrawAchievementIcon(entry.challenge,new Rect(r.x+14,r.y+18,60,60));
             string name=inspectionText.T(entry.challenge.name,entry.challenge.id.Substring(5).Replace('_',' '));
             if(entry.challenge.name=="DIFFICULTY_NB")name="Danger "+entry.challenge.value;
             else if(name.Contains("{")||name.StartsWith("CHAL_"))name=System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(entry.challenge.id.Substring(5).Replace('_',' '));
@@ -167,3 +167,4 @@ namespace Scrapshift
         }
     }
 }
+
