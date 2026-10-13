@@ -43,16 +43,20 @@ namespace Scrapshift.Tests
             finally{Object.DestroyImmediate(catalog);}
         }
 
-        [Test] public void TurretStaysUprightAndRecoilsAsOneAssembly()
+        [TestCase("turret")][TestCase("flame")][TestCase("rocket")][TestCase("laser")][TestCase("healing")]
+        public void TurretHeadTracksWhileTripodStaysFixed(string kind)
         {
             var root=new GameObject("test turret");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Structure("turret");
             try
             {
-                var rig=SupportRig.Create(root,"turret",true);var at=root.transform.position;var scale=root.transform.localScale;
+                var rig=SupportRig.Create(root,kind,true);var at=root.transform.position;var scale=root.transform.localScale;
                 rig.Aim(Vector2.up,.1f,.1f,false);
-                Assert.AreEqual(0,rig.AimingHead.eulerAngles.z);
-                Assert.AreEqual(new Vector3(.8f,1.2f,1),rig.AnimatedAssembly.localScale);
-                rig.Aim(Vector2.left,.1f,.3f,false);Assert.AreEqual(0,rig.AimingHead.eulerAngles.z);
+                Assert.That(rig.AimingHead.eulerAngles.z,Is.EqualTo(90).Within(.001f));
+                Assert.AreEqual(new Vector3(.8f,1.2f,1),rig.AimingHead.localScale);
+                Assert.AreEqual(Vector3.one,rig.AnimatedAssembly.localScale);
+                Assert.AreEqual(Vector3.zero,rig.AnimatedAssembly.localPosition);
+                rig.Aim(Vector2.left,.1f,.3f,false);Assert.That(rig.AimingHead.eulerAngles.z,Is.EqualTo(180).Within(.001f));
+                var rotation=rig.AimingHead.localRotation;rig.Aim(Vector2.zero,.1f,.3f,false);Assert.AreEqual(rotation,rig.AimingHead.localRotation);
                 Assert.AreEqual(at,root.transform.position);Assert.AreEqual(scale,root.transform.localScale);
                 rig.Aim(Vector2.up,.1f,.3f,true);Assert.AreEqual(Vector3.one,rig.AimingHead.localScale);
             }
@@ -146,6 +150,9 @@ namespace Scrapshift.Tests
                         Assert.AreEqual(mount,pivot.position);
                         Assert.Greater(Vector2.Dot(pivot.TransformVector(Vector3.right).normalized,direction),.999f);
                         var view=pivot.GetComponentInChildren<SpriteRenderer>();
+                        Assert.AreEqual(Vector3.zero,view.transform.localPosition);
+                        Assert.AreEqual("PetGatlingUpper",view.sprite.texture.name);
+                        Assert.AreEqual(Quaternion.identity,rig.Body.Find("Fixed back platform 0").localRotation);
                         bool forward=rig.Body.InverseTransformVector(direction).x>=0;
                         Assert.AreEqual((i==0)==forward?9:6,view.sortingOrder);
                     }

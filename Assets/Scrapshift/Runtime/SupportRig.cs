@@ -64,7 +64,7 @@ namespace Scrapshift
             rig.views=rig.facing.GetComponentsInChildren<SpriteRenderer>();return rig;
         }
         static Sprite catBody;
-        public static Sprite GatlingGun()=>LoadStandalone("PetGatling");
+        public static Sprite GatlingGun()=>LoadStandalone("PetGatlingUpper");
         static readonly Dictionary<string,Sprite> standalone=new Dictionary<string,Sprite>();
         static Sprite LoadStandalone(string resource)
         {
@@ -72,7 +72,7 @@ namespace Scrapshift
             var texture=Resources.Load<Texture2D>(resource);var pixels=texture.GetPixels32();
             int l=texture.width,b=texture.height,r=0,t=0;
             for(int y=0;y<texture.height;y++)for(int x=0;x<texture.width;x++)if(pixels[y*texture.width+x].a>32){l=Mathf.Min(l,x);b=Mathf.Min(b,y);r=Mathf.Max(r,x+1);t=Mathf.Max(t,y+1);}
-            var pivot=resource=="PetGatling"?new Vector2(.10f,.42f):new Vector2(.5f,.5f);
+            var pivot=resource=="PetGatlingUpper"?new Vector2(.10f,.42f):new Vector2(.5f,.5f);
             sprite=Sprite.Create(texture,Rect.MinMaxRect(l,b,r,t),pivot,100,0,SpriteMeshType.FullRect);sprite.name=resource;standalone[resource]=sprite;return sprite;
         }
         static Sprite CatBody()
@@ -99,7 +99,20 @@ namespace Scrapshift
                 view.transform.localScale=Vector3.one*(.36f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
                 view.transform.localPosition=Vector3.zero;gunViews[i]=view;
             }
-            views=facing.GetComponentsInChildren<SpriteRenderer>();
+            BackPlatform();views=facing.GetComponentsInChildren<SpriteRenderer>();
+        }
+        void BackPlatform()
+        {
+            float scale=1/body.localScale.x;
+            for(int layer=0;layer<2;layer++)
+            {
+                var go=new GameObject("Fixed back platform "+layer);go.transform.SetParent(body,false);
+                var line=go.AddComponent<LineRenderer>();line.useWorldSpace=false;line.sharedMaterial=mountMaterial;
+                line.positionCount=2;line.SetPosition(0,new Vector3(.01f,-.015f,0)*scale);line.SetPosition(1,new Vector3(.14f,-.015f,0)*scale);
+                line.startWidth=line.endWidth=layer==0?.045f:.025f;line.numCapVertices=4;
+                line.startColor=line.endColor=layer==0?new Color(.04f,.035f,.03f):new Color(.55f,.53f,.47f);
+                line.sortingOrder=7+layer;
+            }
         }
         static Material mountMaterial;
         void BackMount(int index,float scale,Vector3 joint)
@@ -113,7 +126,7 @@ namespace Scrapshift
                 // LineRenderer widths are world units, even with local-space points.
                 line.startWidth=line.endWidth=layer==0?.055f:.033f;line.numCapVertices=6;
                 line.startColor=line.endColor=layer==0?new Color(.04f,.035f,.03f):new Color(.55f,.53f,.47f);
-                line.sortingOrder=8;line.sortingLayerID=source.sortingLayerID;
+                line.sortingOrder=7+layer;line.sortingLayerID=source.sortingLayerID;
             }
         }
         public Vector2 GunOrigin(int index)=>guns[index]!=null?gunViews[index].transform.TransformPoint(gunViews[index].sprite.bounds.max.x,.015f/gunViews[index].transform.localScale.x,0):transform.position;
@@ -130,7 +143,7 @@ namespace Scrapshift
         public void TickGunRecoil(float dt,bool reduced)
         {
             for(int i=0;i<2;i++)if(guns[i]!=null)
-            {gunRecoil[i]=Mathf.Max(0,gunRecoil[i]-dt);gunViews[i].transform.localPosition=Vector3.left*(reduced?0:gunRecoil[i]*.15f);}
+            {gunRecoil[i]=Mathf.Max(0,gunRecoil[i]-dt);var view=gunViews[i];float size=.36f/Mathf.Max(view.sprite.bounds.size.x,view.sprite.bounds.size.y);view.transform.localPosition=Vector3.zero;view.transform.localScale=new Vector3(size*(1-(reduced?0:gunRecoil[i]*.5f)),size,size);}
         }
         SpriteRenderer Part(int index,string name,Transform parent,Vector2 pos,float length,int order)
         {
@@ -155,13 +168,17 @@ namespace Scrapshift
         public void Aim(Vector2 direction,float dt,float age,bool reduced)
         {
             if(head==null)return;
-            // Reference turrets keep their sprite upright; projectile direction tracks targets.
-            // Recoil moves the connected assembly, never the head away from its tripod.
-            head.localRotation=Quaternion.identity;headView.flipY=false;
-            head.localScale=Vector3.one;head.localPosition=new Vector3(0,.055f,0);
+            // Visible tracking is intentional: only the head turns, never the tripod.
+            facing.localScale=Vector3.one*unit;facing.localPosition=Vector3.zero;
+            if(direction.sqrMagnitude>.000001f)
+            {
+                var local=facing.InverseTransformVector(direction);
+                head.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(local.y,local.x)*Mathf.Rad2Deg);
+                headView.flipY=local.x<0;
+            }
+            head.localPosition=new Vector3(0,.055f,0);
             var pose=reduced?Vector2.one:SupportMotion.TurretScale(age);
-            facing.localScale=new Vector3(pose.x,pose.y,1)*unit;
-            facing.localPosition=Vector3.up*(reduced?0:SupportMotion.TurretLift(age))*unit;
+            head.localScale=new Vector3(pose.x,pose.y,1);
         }
         public void PetPose(float phase,bool moving,bool flip,bool reduced,bool dead)
         {

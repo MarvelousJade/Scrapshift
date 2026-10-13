@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Passed" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.9276184">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="344" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.927618" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1402" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="314" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.892355" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37440" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1403" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="314" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.887718" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1404" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="314" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.878423" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1330" name="SupportParityTests" fullname="Scrapshift.Tests.SupportParityTests" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.867262" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1357" name="AllSupportActorsHaveSeparateNonemptyTransparentSprites" fullname="Scrapshift.Tests.SupportParityTests.AllSupportActorsHaveSeparateNonemptyTransparentSprites" methodname="AllSupportActorsHaveSeparateNonemptyTransparentSprites" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1158962713" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.110306" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1352" name="CatBackMountsFollowSwayAndVisibleGunsTurnThroughAllDirections" fullname="Scrapshift.Tests.SupportParityTests.CatBackMountsFollowSwayAndVisibleGunsTurnThroughAllDirections" methodname="CatBackMountsFollowSwayAndVisibleGunsTurnThroughAllDirections" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1453248353" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.228215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1351" name="CatGunsAimIndependentlyEvenWhenBodyMirrors" fullname="Scrapshift.Tests.SupportParityTests.CatGunsAimIndependentlyEvenWhenBodyMirrors" methodname="CatGunsAimIndependentlyEvenWhenBodyMirrors" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="217114996" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.003036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1353" name="CatStepsAlternateWithoutMovingHipAnchors" fullname="Scrapshift.Tests.SupportParityTests.CatStepsAlternateWithoutMovingHipAnchors" methodname="CatStepsAlternateWithoutMovingHipAnchors" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1184480875" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000790" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1350" name="CatUsesConnectedBodySwayWithoutDetachedLegs" fullname="Scrapshift.Tests.SupportParityTests.CatUsesConnectedBodySwayWithoutDetachedLegs" methodname="CatUsesConnectedBodySwayWithoutDetachedLegs" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="704091119" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.003268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1348" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.012690" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1341" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;bonk_dog&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;bonk_dog&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="681453302" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.005029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1342" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;blazemander&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;blazemander&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1464522783" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1343" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;ratzilla&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;ratzilla&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="2111029908" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1344" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;scapegoat&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;scapegoat&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1680486701" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1345" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;bot_o_mine&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;bot_o_mine&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="995186592" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1346" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;lootworm&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;lootworm&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1855501514" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1347" name="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;jellyshield&quot;)" fullname="Scrapshift.Tests.SupportParityTests.CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate(&quot;jellyshield&quot;)" methodname="CompletePetBodiesKeepTheirAuthoredLimbsAndAnimate" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1794533994" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:52Z" duration="0.000269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1331" name="EveryAchievementHasExplicitArtIndependentOfItsReward" fullname="Scrapshift.Tests.SupportParityTests.EveryAchievementHasExplicitArtIndependentOfItsReward" methodname="EveryAchievementHasExplicitArtIndependentOfItsReward" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1880837018" result="Passed" start-time="2026-10-13 22:06:52Z" end-time="2026-10-13 22:06:53Z" duration="0.255538" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1356" name="ManualPressModeWorksWithoutAlwaysOnAndReleasesToAuto" fullname="Scrapshift.Tests.SupportParityTests.ManualPressModeWorksWithoutAlwaysOnAndReleasesToAuto" methodname="ManualPressModeWorksWithoutAlwaysOnAndReleasesToAuto" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1419409320" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.000662" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1349" name="MothHoverMovesWingsAndBodyTogether" fullname="Scrapshift.Tests.SupportParityTests.MothHoverMovesWingsAndBodyTogether" methodname="MothHoverMovesWingsAndBodyTogether" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="132539461" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.039493" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1340" name="PetLimbsAnimateAndReducedMotionRestoresRestPose" fullname="Scrapshift.Tests.SupportParityTests.PetLimbsAnimateAndReducedMotionRestoresRestPose" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.002953" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1339" name="PetLimbsAnimateAndReducedMotionRestoresRestPose(&quot;doc_moth&quot;)" fullname="Scrapshift.Tests.SupportParityTests.PetLimbsAnimateAndReducedMotionRestoresRestPose(&quot;doc_moth&quot;)" methodname="PetLimbsAnimateAndReducedMotionRestoresRestPose" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="2084286596" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.001264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1354" name="ReferenceTargetReservationAndJumpRules" fullname="Scrapshift.Tests.SupportParityTests.ReferenceTargetReservationAndJumpRules" methodname="ReferenceTargetReservationAndJumpRules" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1906852943" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.001558" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1332" name="SerializedCatalogUsesMatchingSupportIconsAndPreservesOtherItems" fullname="Scrapshift.Tests.SupportParityTests.SerializedCatalogUsesMatchingSupportIconsAndPreservesOtherItems" methodname="SerializedCatalogUsesMatchingSupportIconsAndPreservesOtherItems" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1564077109" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.028564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1338" name="TurretHeadTracksWhileTripodStaysFixed" fullname="Scrapshift.Tests.SupportParityTests.TurretHeadTracksWhileTripodStaysFixed" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.068291" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1333" name="TurretHeadTracksWhileTripodStaysFixed(&quot;turret&quot;)" fullname="Scrapshift.Tests.SupportParityTests.TurretHeadTracksWhileTripodStaysFixed(&quot;turret&quot;)" methodname="TurretHeadTracksWhileTripodStaysFixed" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1900585580" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.019774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1334" name="TurretHeadTracksWhileTripodStaysFixed(&quot;flame&quot;)" fullname="Scrapshift.Tests.SupportParityTests.TurretHeadTracksWhileTripodStaysFixed(&quot;flame&quot;)" methodname="TurretHeadTracksWhileTripodStaysFixed" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1651933486" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.006655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1335" name="TurretHeadTracksWhileTripodStaysFixed(&quot;rocket&quot;)" fullname="Scrapshift.Tests.SupportParityTests.TurretHeadTracksWhileTripodStaysFixed(&quot;rocket&quot;)" methodname="TurretHeadTracksWhileTripodStaysFixed" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1465183662" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.015678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1336" name="TurretHeadTracksWhileTripodStaysFixed(&quot;laser&quot;)" fullname="Scrapshift.Tests.SupportParityTests.TurretHeadTracksWhileTripodStaysFixed(&quot;laser&quot;)" methodname="TurretHeadTracksWhileTripodStaysFixed" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1676650878" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.007961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1337" name="TurretHeadTracksWhileTripodStaysFixed(&quot;healing&quot;)" fullname="Scrapshift.Tests.SupportParityTests.TurretHeadTracksWhileTripodStaysFixed(&quot;healing&quot;)" methodname="TurretHeadTracksWhileTripodStaysFixed" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1273172437" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.015811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1355" name="TurretKeyframesReturnToRestAndPetsUseDifferentMovementStrengths" fullname="Scrapshift.Tests.SupportParityTests.TurretKeyframesReturnToRestAndPetsUseDifferentMovementStrengths" methodname="TurretKeyframesReturnToRestAndPetsUseDifferentMovementStrengths" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1866962770" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.001356" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1359" name="UniqueWeaponShopRejectsDowngradesAndFinalTierDuplicates" fullname="Scrapshift.Tests.SupportParityTests.UniqueWeaponShopRejectsDowngradesAndFinalTierDuplicates" methodname="UniqueWeaponShopRejectsDowngradesAndFinalTierDuplicates" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1770225051" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.013961" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1358" name="WaveSixPricesAndRerollModifierMatchReference" fullname="Scrapshift.Tests.SupportParityTests.WaveSixPricesAndRerollModifierMatchReference" methodname="WaveSixPricesAndRerollModifierMatchReference" classname="Scrapshift.Tests.SupportParityTests" runstate="Runnable" seed="1372707066" result="Passed" start-time="2026-10-13 22:06:53Z" end-time="2026-10-13 22:06:53Z" duration="0.058152" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/artifacts/turret-aim-tests.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
