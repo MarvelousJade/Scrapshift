@@ -381,3 +381,22 @@ HudRefresh validation: 180/180 tests passed; build has zero errors/warnings. All
 - Final runtime inspection: 39 fresh 1920x1080 captures passed. Implant penalties, long-title wrapping, new weapon slices, options and top/bottom border gradient visually checked. No runtime script exceptions found.
 - Final 20-wave campaign fixture: Passed, 20 waves, 47 purchases, 1 boss phase change, 128.2 seconds. Scripted invulnerable play; not a human balance test. The first overlapping capture run is superseded by this completed post-build run.
 - Final package: 55448578 bytes / 155 entries, CRC and every file match; SHA-256 `c95c676aec6e3eb7e9760b86e68c657eddd793858c75079d30e0f1398c0f88a9`.
+
+
+## October 12 - completed base catalog and screenshot-driven UI
+
+Implementation commit: 0624657. Windows build succeeds with zero errors/warnings (160598548 bytes). Final EditMode suite: 266/266 passed, none skipped. AssetScope: 311 content assets, zero findings/errors. All 991 Assets/Packages/ProjectSettings files match the isolated validation copy byte for byte, including Unity metadata.
+
+Final UI evidence: artifacts/base-release-ui/inspection.json, all 45 cases passed with fresh 1920x1080 captures. Visually inspected the populated shop, tier-II upgrades, weapon actions/set panel, walking smoke and corrected weapon icons. Review: artifacts/base-release-ui/review.html, including the user's supplied references. Earlier failed or superseded development captures are retained under artifacts/raw/completion-development and are not accepted final evidence.
+
+Final built-player roster/combat evidence: artifacts/base-release-runtime/starter-review.json Passed. All 50 character start/loadout records, five initially available plus 45 locked, full viewport, Random eligibility, all 160 initially obtainable weapon tiers damaging a target, special weapon effects, ten deployable implant checks and six attack implant checks passed. Actual runtime vertex counts confirm the clipped sprite geometry was installed; EditMode checks mask bounds/retained art pixels instead of calling the play-loop-only override.
+
+Playable build: Builds/BaseComplete/Scrapshift.exe. Archive: Builds/Scrapshift-Windows.zip, 156 entries, 55552970 bytes. CRC and every archived file match the build. SHA-256 68cce82395a470498d5f8afedf02e5bfdaf16902da00681907e6756f37893b3b.
+
+Scope: deterministic fixtures, staged screens and source-derived resource coverage; not a native-input acceptance session or human survival balance test. All 209 items/62 families/50 profiles are implemented, but full engine-level combat parity is not claimed. See full-base-implementation.md for adaptations and preserved two-weapon-start differences.
+
+Final companion evidence: artifacts/base-release-pets/pets.json Passed all nine behaviors (damage, mining, burn projectiles, healing amplification, collection/tree damage, decoy revival and projectile blocking). No failures.
+
+Final UI follow-up: lowered only the level-up Stats panel so pending-upgrade icons remain visible. All 45 inspection cases passed again; final images/report replace the prior base-release-ui captures. Rebuilt and reran all 266 EditMode tests after that placement and the extended-boss telemetry correction.
+
+Final 20-wave rerun: artifacts/base-campaign-verified/campaign-check.json Passed, Won, 20 waves, 39 shop purchases, one boss phase transition, six fresh captures, 166.15 seconds. Invulnerable accelerated scripted play; no human balance claim. The first completed campaign with a missing Invoker telemetry count remains under artifacts/raw/completion-development/base-release-campaign.

@@ -1,0 +1,950 @@
+{
+    "status": "Passed",
+    "scope": "Staged character-selection/start checks with normal UI and run methods, frozen AI. Not a human survival run.",
+    "width": 1920,
+    "height": 1080,
+    "playable": 5,
+    "locked": 45,
+    "fullViewport": true,
+    "randomSelectedPlayable": true,
+    "capturesVerified": true,
+    "characters": [
+        {
+            "id": "well_rounded",
+            "maxHealth": 15.0,
+            "speed": 5.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 8.0,
+            "weapons": [
+                "knife",
+                "pistol"
+            ]
+        },
+        {
+            "id": "brawler",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": -50.0,
+            "dodge": 18.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": -50.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "fist"
+            ]
+        },
+        {
+            "id": "crazy",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": -30.0,
+            "attackSpeed": 25.0,
+            "rangedDamage": -10.0,
+            "engineering": -10.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "knife",
+                "knife"
+            ]
+        },
+        {
+            "id": "ranger",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 60.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "pistol",
+                "pistol"
+            ]
+        },
+        {
+            "id": "mage",
+            "maxHealth": 9.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "torch",
+                "pistol"
+            ]
+        },
+        {
+            "id": "chunky",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "old",
+            "maxHealth": 10.0,
+            "speed": -10.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 10.0,
+            "weapons": [
+                "scissors",
+                "pistol"
+            ]
+        },
+        {
+            "id": "lucky",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": -60.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "stick",
+                "pistol"
+            ]
+        },
+        {
+            "id": "mutant",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "cactus_mace",
+                "pistol"
+            ]
+        },
+        {
+            "id": "generalist",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "loud",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "cactus_mace",
+                "pistol"
+            ]
+        },
+        {
+            "id": "multitasker",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "cactus_mace",
+                "pistol"
+            ]
+        },
+        {
+            "id": "wildling",
+            "maxHealth": 13.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "stick",
+                "stick"
+            ]
+        },
+        {
+            "id": "pacifist",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": -100.0,
+            "harvesting": 3.0,
+            "weapons": [
+                "hand",
+                "pistol"
+            ]
+        },
+        {
+            "id": "gladiator",
+            "maxHealth": 13.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": -20.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "spear",
+                "spear"
+            ]
+        },
+        {
+            "id": "saver",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 15.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "sick",
+            "maxHealth": 22.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "farmer",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 23.0,
+            "weapons": [
+                "hand",
+                "pistol"
+            ]
+        },
+        {
+            "id": "ghost",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 30.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "ghost_flint",
+                "pistol"
+            ]
+        },
+        {
+            "id": "speedy",
+            "maxHealth": 10.0,
+            "speed": 30.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "entrepreneur",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "engineer",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 13.75,
+            "harvesting": 0.0,
+            "weapons": [
+                "wrench",
+                "wrench"
+            ]
+        },
+        {
+            "id": "explorer",
+            "maxHealth": 10.0,
+            "speed": 10.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 3.0,
+            "weapons": [
+                "hand",
+                "pistol"
+            ]
+        },
+        {
+            "id": "doctor",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": -100.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 5.0,
+            "weapons": [
+                "scissors",
+                "pistol"
+            ]
+        },
+        {
+            "id": "hunter",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 100.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "cactus_mace",
+                "pistol"
+            ]
+        },
+        {
+            "id": "artificer",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "plank",
+                "pistol"
+            ]
+        },
+        {
+            "id": "arms_dealer",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 10.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 30.0,
+            "weapons": [
+                "pistol",
+                "pistol"
+            ]
+        },
+        {
+            "id": "streamer",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "cyborg",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "wrench",
+                "minigun"
+            ]
+        },
+        {
+            "id": "glutton",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "pruner",
+                "pistol"
+            ]
+        },
+        {
+            "id": "jack",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "knife",
+                "pistol"
+            ]
+        },
+        {
+            "id": "lich",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "scissors",
+                "pistol"
+            ]
+        },
+        {
+            "id": "apprentice",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "cryptid",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": -100.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "fisherman",
+            "maxHealth": 15.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 20.0,
+            "weapons": [
+                "knife",
+                "pistol"
+            ]
+        },
+        {
+            "id": "golem",
+            "maxHealth": 36.599998474121094,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "cactus_mace",
+                "pistol"
+            ]
+        },
+        {
+            "id": "king",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": -30.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "renegade",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 10.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "pistol",
+                "pistol"
+            ]
+        },
+        {
+            "id": "one_arm",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 200.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "dagger"
+            ]
+        },
+        {
+            "id": "bull",
+            "maxHealth": 30.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": []
+        },
+        {
+            "id": "soldier",
+            "maxHealth": 10.0,
+            "speed": 10.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 50.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "knife",
+                "pistol"
+            ]
+        },
+        {
+            "id": "masochist",
+            "maxHealth": 20.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "rock",
+                "pistol"
+            ]
+        },
+        {
+            "id": "knight",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "sword",
+                "sword"
+            ]
+        },
+        {
+            "id": "demon",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "dagger",
+                "pistol"
+            ]
+        },
+        {
+            "id": "baby",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 12.0,
+            "weapons": [
+                "fist"
+            ]
+        },
+        {
+            "id": "vagabond",
+            "maxHealth": 1.0,
+            "speed": -2.0,
+            "range": 10.0,
+            "dodge": 4.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 1.0,
+            "harvesting": 2.5,
+            "weapons": [
+                "cactus_mace",
+                "pistol"
+            ]
+        },
+        {
+            "id": "technomage",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "wrench",
+                "pistol"
+            ]
+        },
+        {
+            "id": "vampire",
+            "maxHealth": 10.0,
+            "speed": 0.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": [
+                "fist",
+                "pistol"
+            ]
+        },
+        {
+            "id": "beast_master",
+            "maxHealth": 10.0,
+            "speed": 10.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 0.0,
+            "weapons": []
+        },
+        {
+            "id": "wounded",
+            "maxHealth": 10.0,
+            "speed": 5.0,
+            "range": 0.0,
+            "dodge": 0.0,
+            "attackSpeed": 0.0,
+            "rangedDamage": 0.0,
+            "engineering": 0.0,
+            "harvesting": 8.0,
+            "weapons": [
+                "knife",
+                "pistol"
+            ]
+        }
+    ],
+    "weaponsDamagedTarget": [
+        "knife/1",
+        "knife/2",
+        "knife/3",
+        "knife/4",
+        "stick/1",
+        "stick/2",
+        "stick/3",
+        "stick/4",
+        "fist/1",
+        "fist/2",
+        "fist/3",
+        "fist/4",
+        "cactus_mace/1",
+        "cactus_mace/2",
+        "cactus_mace/3",
+        "cactus_mace/4",
+        "ghost_flint/1",
+        "ghost_flint/2",
+        "ghost_flint/3",
+        "ghost_flint/4",
+        "wrench/1",
+        "wrench/2",
+        "wrench/3",
+        "wrench/4",
+        "pistol/1",
+        "pistol/2",
+        "pistol/3",
+        "pistol/4",
+        "smg/1",
+        "smg/2",
+        "smg/3",
+        "smg/4",
+        "double_barrel_shotgun/1",
+        "double_barrel_shotgun/2",
+        "double_barrel_shotgun/3",
+        "double_barrel_shotgun/4",
+        "slingshot/1",
+        "slingshot/2",
+        "slingshot/3",
+        "slingshot/4",
+        "taser/1",
+        "taser/2",
+        "taser/3",
+        "taser/4",
+        "wand/1",
+        "wand/2",
+        "wand/3",
+        "wand/4",
+        "icicle/1",
+        "icicle/2",
+        "icicle/3",
+        "icicle/4",
+        "hand/1",
+        "hand/2",
+        "hand/3",
+        "hand/4",
+        "dagger/1",
+        "dagger/2",
+        "dagger/3",
+        "dagger/4",
+        "scissors/1",
+        "scissors/2",
+        "scissors/3",
+        "scissors/4",
+        "lightning_shiv/1",
+        "lightning_shiv/2",
+        "lightning_shiv/3",
+        "lightning_shiv/4",
+        "sharp_tooth/1",
+        "sharp_tooth/2",
+        "sharp_tooth/3",
+        "sharp_tooth/4",
+        "shuriken/1",
+        "shuriken/2",
+        "shuriken/3",
+        "shuriken/4",
+        "revolver/1",
+        "revolver/2",
+        "revolver/3",
+        "revolver/4",
+        "laser_gun/1",
+        "laser_gun/2",
+        "laser_gun/3",
+        "laser_gun/4",
+        "shredder/1",
+        "shredder/2",
+        "shredder/3",
+        "shredder/4",
+        "crossbow/1",
+        "crossbow/2",
+        "crossbow/3",
+        "crossbow/4",
+        "torch/1",
+        "torch/2",
+        "torch/3",
+        "torch/4",
+        "plank/1",
+        "plank/2",
+        "plank/3",
+        "plank/4",
+        "circular_saw/2",
+        "circular_saw/3",
+        "circular_saw/4",
+        "flaming_knuckles/3",
+        "flaming_knuckles/4",
+        "hammer/2",
+        "hammer/3",
+        "hammer/4",
+        "rock/1",
+        "rock/2",
+        "rock/3",
+        "rock/4",
+        "spear/1",
+        "spear/2",
+        "spear/3",
+        "spear/4",
+        "minigun/3",
+        "minigun/4",
+        "rocket_launcher/2",
+        "rocket_launcher/3",
+        "rocket_launcher/4",
+        "flamethrower/3",
+        "flamethrower/4",
+        "screwdriver/1",
+        "screwdriver/2",
+        "screwdriver/3",
+        "screwdriver/4",
+        "sword/2",
+        "sword/3",
+        "sword/4",
+        "medical_gun/1",
+        "medical_gun/2",
+        "medical_gun/3",
+        "medical_gun/4",
+        "ghost_axe/1",
+        "ghost_axe/2",
+        "ghost_axe/3",
+        "ghost_axe/4",
+        "ghost_scepter/1",
+        "ghost_scepter/2",
+        "ghost_scepter/3",
+        "ghost_scepter/4",
+        "flaming_knuckles/2",
+        "jousting_lance/1",
+        "jousting_lance/2",
+        "jousting_lance/3",
+        "jousting_lance/4",
+        "pruner/1",
+        "pruner/2",
+        "pruner/3",
+        "pruner/4",
+        "gatling_laser/4",
+        "chain_gun/4",
+        "drill/4",
+        "scythe/4",
+        "fireball/2",
+        "fireball/3",
+        "fireball/4",
+        "flamethrower/2",
+        "dextroyer/4"
+    ],
+    "weaponGeometry": true,
+    "availableWeapons": 160,
+    "burning": true,
+    "slow": true,
+    "secondaryProjectiles": true,
+    "turretFired": true,
+    "ghostProgress": true,
+    "gardenFruit": true,
+    "mineExplosion": true,
+    "burningSpread": true,
+    "engineeringSlow": true,
+    "thunderProjectiles": true,
+    "vorpalExecution": true,
+    "attackImplantsPassed": [
+        "alien_eyes",
+        "baby_with_a_beard",
+        "rip_and_tear",
+        "spicy_sauce",
+        "ice_cube",
+        "riposte"
+    ],
+    "deployableImplantsPassed": [
+        "turret",
+        "turret_flame",
+        "turret_healing",
+        "turret_laser",
+        "turret_rocket",
+        "tyler",
+        "garden",
+        "landmines",
+        "wandering_bot",
+        "pocket_factory"
+    ]
+}

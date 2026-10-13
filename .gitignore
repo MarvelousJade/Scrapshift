@@ -24,3 +24,22 @@
 
 # Intermediate oversized-window request was clamped to the monitor; retain its JSON, not duplicate images.
 /artifacts/starter-review-ultrawide/*.png
+
+# Full roster/UI fixtures remain local; keep curated screenshots and JSON reports in Git.
+/artifacts/base-release-runtime/*.png
+!/artifacts/base-release-runtime/well_rounded-selection.png
+!/artifacts/base-release-runtime/mage-selection.png
+!/artifacts/base-release-runtime/golem-selection.png
+!/artifacts/base-release-runtime/demon-loadout.png
+/artifacts/base-release-ui/*.png
+!/artifacts/base-release-ui/reference-1.png
+!/artifacts/base-release-ui/reference-2.png
+!/artifacts/base-release-ui/reference-3.png
+!/artifacts/base-release-ui/reference-shop-layout.png
+!/artifacts/base-release-ui/reference-level-layout.png
+!/artifacts/base-release-ui/weapon-actions.png
+!/artifacts/base-release-ui/expanded-weapons.png
+!/artifacts/base-release-ui/movement-dust.png
+!/artifacts/base-release-ui/item-sort-menu.png
+!/artifacts/base-release-ui/secondary-stats.png
+!/artifacts/base-release-ui/harvest.png
