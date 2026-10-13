@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scrapshift
 {
-    // Bounded voices: combat cannot steal the four reserved notification/damage voices.
+    // Bounded voices: twelve combat, one pickup, three notification/damage voices.
     public sealed class GameAudio : MonoBehaviour
     {
         public const int CombatVoices = 12, VoiceCount = 16;
@@ -46,12 +46,14 @@ namespace Scrapshift
             if (entry == null || entry.variants == null || entry.variants.Length == 0) return;
             if (now - last[key] < entry.cooldown) { Suppressed++; return; }
             bool important = entry.priority >= 2;
-            int min = important ? CombatVoices : 0, max = important ? VoiceCount : CombatVoices;
+            // One pickup voice survives dense combat without stealing damage/unlock cues.
+            bool pickup=cue==SoundCue.Pickup;
+            int min = pickup?CombatVoices:important ? CombatVoices+1 : 0, max = pickup?CombatVoices+1:important ? VoiceCount : CombatVoices;
             int index = -1;
             for (int i=min;i<max;i++) if (!voices[i].isPlaying) { index=i; break; }
             if (index < 0)
             {
-                if (!important) { Suppressed++; return; }
+                if (!important&&!pickup) { Suppressed++; return; }
                 index = min;
                 for (int i=min+1;i<max;i++) if (started[i] < started[index]) index = i;
             }
@@ -68,7 +70,7 @@ namespace Scrapshift
             voice.panStereo = important ? 0 : Mathf.Clamp(position.x / 18, -.6f, .6f);
             gains[index] = entry.gain; started[index] = now;
             if (important) duckUntil = now + .22f;
-            voice.volume = entry.gain * Volume * (!important && now < duckUntil ? .4f : 1);
+            voice.volume = entry.gain * Volume * (!important && !pickup && now < duckUntil ? .4f : 1);
             voice.Play(); Played++;
         }
         void Update()

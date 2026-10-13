@@ -63,7 +63,7 @@ namespace Scrapshift
             if(healed>0)FloatText(playerPos,$"+{healed:0} HP",mint,true);
             if(pickup.consumable==ConsumableKind.Crate || pickup.consumable==ConsumableKind.LegendaryCrate)
             { FloatText(playerPos,"ITEM CRATE!",amber,true);sound.Play(SoundCue.Install); }
-            else sound.Play(SoundCue.Pickup,pickup.motion.position);
+            else sound.Play(pickup.fruit?SoundCue.Consume:SoundCue.Pickup,pickup.motion.position);
             PickupContactEffect();
             if(Rules.Level>levelBefore){sound.Play(SoundCue.LevelUp);FloatText(playerPos,"LEVEL UP!",mint,true);}
         }
@@ -94,10 +94,9 @@ namespace Scrapshift
             DrawIcon(item.image,new Rect(r.x+18,r.y+20,78,78));
             Text(r.x+112,r.y+20,305,60,inspectionText.ItemName(item),new GUIStyle(inspectionTitle){normal={textColor=TierColor(item.tier)}});
             Text(r.x+112,r.y+85,305,28,"Item",inspectionBody);
-            Text(r.x+25,r.y+138,390,200,inspectionText.ItemDescription(item),inspectionBody);
+            RichText(inspectionText.ItemDescription(item),new Rect(r.x+25,r.y+138,390,200),18);
             if(Button(new Rect(335,586,440,56),"Take"))ResolveCrate(true);
             if(Button(new Rect(335,654,440,56),$"Recycle (+{Rules.CrateRecycleValue})"))ResolveCrate(false);
-            DrawIntermissionInventory();
             DrawSetTooltip();
         }
     }

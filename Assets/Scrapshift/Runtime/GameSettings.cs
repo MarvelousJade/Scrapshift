@@ -58,6 +58,7 @@ namespace Scrapshift
             if(optionsTab==0)
             {
                 OptionSlider("Master volume","master",ref y,0,1,.5f);
+                OptionSlider("Music volume","music",ref y,0,1,.35f);
                 Text(15,y+8,450,45,"Sound effects volume",body);float v=OptionsSlider(new Rect(500,y+27,290,25),sound.Volume,0,1);Text(817,y+7,100,40,$"{sound.Volume*100:0}%",center);
                 if(Mathf.Abs(v-sound.Volume)>.005f)sound.SetVolume(v);y+=74;
                 if(Button(new Rect(0,y,940,53),muted?"Sound effects: Off":"Sound effects: On"))ToggleSound();y+=62;
@@ -76,7 +77,7 @@ namespace Scrapshift
                 OptionToggle("Manual aiming","manualAim",ref y,false);
                 OptionToggle("Manual aiming only while mouse is pressed","aimPressed",ref y,false);
                 OptionToggle("Pause when focus is lost","pauseFocus",ref y);
-                OptionToggle("Character HP bar","characterHp",ref y);OptionToggle("Boss HP bar","bossHp",ref y);
+                OptionToggle("Boss HP bar","bossHp",ref y);
                 OptionToggle("Keep items locked between shops","keepLock",ref y);
                 OptionToggle("Hide item appearance","hideItems",ref y,false);
                 Text(15,y+15,910,210,"Move: WASD / Arrow keys (or hold left mouse)\nPause / Back: Escape     Confirm: Enter\nInspect: Tab / Shift+Tab\nWeapon actions: Left / Right click\nManual aiming keeps automatic firing.",body);

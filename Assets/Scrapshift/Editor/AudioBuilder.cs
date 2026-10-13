@@ -23,7 +23,7 @@ namespace Scrapshift.Editor
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
             var entries=bank.entries.ToList();
-            foreach(var cue in new[]{SoundCue.Step,SoundCue.UiFocus,SoundCue.UiPress,SoundCue.Spawn,SoundCue.InventoryFocus})
+            foreach(var cue in new[]{SoundCue.Step,SoundCue.UiFocus,SoundCue.UiPress,SoundCue.Spawn,SoundCue.InventoryFocus,SoundCue.Consume})
             {
                 var paths=Directory.GetFiles(Root+"/Audio",cue+"_*").Where(p=>p.EndsWith(".wav")||p.EndsWith(".mp3")).OrderBy(p=>p).ToArray();
                 foreach(var path in paths){var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));if(!importer.forceToMono){importer.forceToMono=true;importer.SaveAndReimport();}}
@@ -31,7 +31,7 @@ namespace Scrapshift.Editor
                 if(clips.Length==0||clips.Any(c=>c==null))throw new Exception("Missing presentation cue "+cue);
                 entries.RemoveAll(e=>e.cue==cue);entries.Add(new SoundEntry{cue=cue,variants=clips,gain=cue==SoundCue.Step?.18f:.35f,cooldown=cue==SoundCue.Step?.15f:.06f,pitchVariation=cue==SoundCue.Spawn?.2f:cue==SoundCue.Step?.1f:0,priority=cue==SoundCue.Step?0:2});
             }
-            bank.entries=entries.ToArray();EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+            bank.entries=entries.ToArray();bank.Find(SoundCue.Pickup).gain=.42f;EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
         }
         static void EnsureAudio()
         {
@@ -51,7 +51,7 @@ namespace Scrapshift.Editor
                 }).ToArray();
                 if (clips.Length == 0) throw new Exception("Missing generated audio for " + cue);
                 bool important = cue == SoundCue.Hurt || cue == SoundCue.LevelUp || cue == SoundCue.Install || cue == SoundCue.Reroll || cue == SoundCue.Win || cue == SoundCue.Lose || cue == SoundCue.WaveClear;
-                return new SoundEntry { cue=cue, variants=clips, gain=cue == SoundCue.Fire ? .28f : cue == SoundCue.Pickup ? .22f : important ? .52f : cue == SoundCue.Pulse ? .43f : .30f,
+                return new SoundEntry { cue=cue, variants=clips, gain=cue == SoundCue.Fire ? .28f : cue == SoundCue.Pickup ? .42f : important ? .52f : cue == SoundCue.Pulse ? .43f : .30f,
                     cooldown=cue == SoundCue.Fire ? .025f : cue == SoundCue.Pickup ? .045f : cue == SoundCue.Impact || cue == SoundCue.Kill ? .06f : .1f,
                     pitchVariation=important ? 0 : .06f, priority=important ? 2 : 0 };
             }).ToArray();

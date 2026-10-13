@@ -16,6 +16,7 @@ namespace Scrapshift
             var definitions=JsonUtility.FromJson<UnlockCatalog>(Resources.Load<TextAsset>("base-unlocks").text);
             bool fixture=Environment.GetCommandLineArgs().Any(a=>a.StartsWith("--"));
             progress=new Progression(definitions.challenges,fixture?null:Path.Combine(Application.persistentDataPath,"progress-v1.json"));
+            progress.ChallengeCompleted+=achievementToasts.Enqueue;
             ApplyUnlocks();InitializeEncounters();
         }
         void ApplyUnlocks()
@@ -28,6 +29,7 @@ namespace Scrapshift
         bool CharacterUnlocked(CharacterProfile character)=>character.available;
         void TickProgression(float dt)
         {
+            achievementToasts.Tick(dt);
             if(progress==null||Rules.Progress==null)return;
             progressClock+=dt;if(progressClock>=.5f){progressClock=0;progress.CheckStats(Rules);ApplyUnlocks();}
             if(!recordedFinish&&(Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost))

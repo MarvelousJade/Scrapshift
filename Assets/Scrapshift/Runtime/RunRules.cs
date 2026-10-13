@@ -395,10 +395,12 @@ namespace Scrapshift
             for(int i=0;i<4;i++)if(Shop[i]!=null&&!Shop[i].locked)Shop[i]=null;
         }
         public void Abandon() { if(Phase==RunPhase.Paused){Health=0;Phase=RunPhase.Lost;} }
+        RunPhase pausedFrom=RunPhase.Playing;
         public void Pause()
         {
-            if(Phase==RunPhase.Playing)Phase=RunPhase.Paused;
-            else if(Phase==RunPhase.Paused)Phase=RunPhase.Playing;
+            if(Phase==RunPhase.Paused)Phase=pausedFrom;
+            else if(Phase==RunPhase.Playing||Phase==RunPhase.Shop||Phase==RunPhase.Upgrade||Phase==RunPhase.Loot)
+            {pausedFrom=Phase;Phase=RunPhase.Paused;}
         }
         public static Vector2 ClampPosition(Vector2 p)=>ArenaGeometry.Clamp(p);
         public static bool Touches(Vector2 a,Vector2 b,float r)=>(a-b).sqrMagnitude<=r*r;

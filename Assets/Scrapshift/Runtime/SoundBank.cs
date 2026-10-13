@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scrapshift
 {
-    public enum SoundCue { Fire, Impact, Kill, Hurt, Critical, Pickup, LevelUp, Install, Pulse, Swing, Reroll, Win, Lose, WaveClear, Charge, Step, UiFocus, UiPress, Spawn, InventoryFocus }
+    public enum SoundCue { Fire, Impact, Kill, Hurt, Critical, Pickup, LevelUp, Install, Pulse, Swing, Reroll, Win, Lose, WaveClear, Charge, Step, UiFocus, UiPress, Spawn, InventoryFocus, Consume }
     [Serializable] public sealed class SoundEntry
     {
         public SoundCue cue;

@@ -14,7 +14,7 @@ Fifteen weapon sets count duplicates, regardless of tier; some weapons belong to
 Start -> Random or Rookie / Pugilist / Hothead / Sharpshot / Arc Weaver -> starting weapon -> Danger 0.
 The five initial profiles have distinct modifiers and starting choices. Forty-five further profiles have real challenge unlocks saved between sessions. Ordinary profiles retain the requested default weapon plus your chosen weapon; special zero/one-slot restrictions take precedence.
 Weapon selection shows only unlocked choices eligible for that character, plus Random.
-Pause/shop/level-up/crates: hover stats, owned items or weapons to inspect descriptions.
+Pause/shop: hover owned items or weapons to inspect descriptions. Stats remain inspectable on reward screens.
 Tab / Shift+Tab cycle inspection targets; arrow keys move the selector. Move the mouse to return to hover.
 Fullscreen is the default. F11 or Options > Video toggles fullscreen/windowed; your choice is saved.
 New runs enter with a 1.2-second parachute landing before the wave timer starts.
@@ -45,11 +45,15 @@ Shop items appear bottom left; weapons use three columns and two rows for six sl
 Validation and limitations: see docs/verification.md and artifacts/base-release-ui/review.html in the project. Automated tests and staged rendered checks are not human balance/playtesting. Companion and elite presentation uses our existing art and Unity-specific movement adaptations.
 
 
-October 12 presentation/boss update: rounded shop cards, reference tier colors/tints, currency icons, special-effect bullets, individual weapon dimensions, muted ground stones and spawn-warning sound. Invoker uses warned pillars and the corrected ring attack; Predator projectile placement corrected. Latest executable: Builds/PresentationBosses/Scrapshift.exe.
+October 12 presentation/boss update: rounded shop cards, reference tier colors/tints, currency icons, special-effect bullets, individual weapon dimensions, muted ground stones and spawn-warning sound. Invoker uses warned pillars and the corrected ring attack; Predator projectile placement corrected. Historical build: Builds/PresentationBosses/Scrapshift.exe.
 
-Latest UI follow-up: Builds/UpgradeInventory/Scrapshift.exe. F or R rerolls. Shop item/weapon icons highlight white with a dedicated hover cue. Hover the character portrait in Items to inspect abilities. Level-up inventory removed; reward icons and inline effect symbols enlarged.
+Previous UI follow-up: Builds/UpgradeInventory/Scrapshift.exe. F or R rerolls. Shop item/weapon icons highlight white with a dedicated hover cue. Hover the character portrait in Items to inspect abilities. Level-up inventory removed; reward icons and inline effect symbols enlarged.
 
-Latest build: Builds/ProgressionOptions/Scrapshift.exe. Run the EXE with its data folder; the ZIP is only a sharing copy.
+Latest build: Builds/FeedbackPolish/Scrapshift.exe. Run the EXE with its data folder; the ZIP is only a sharing copy.
 Codex is available from the title and pause menus: Challenges, Items, Weapons and Enemies. Locked rewards and undiscovered entries differ; acquire items/weapons or defeat enemies to reveal details. Newly earned rewards appear after a run.
-Options now have Sound, Video, Gameplay and Accessibility tabs. Includes manual aiming, mouse movement, focus behavior, HP bars, shop lock retention, implant appearance, enemy difficulty multipliers and readable-effect controls. See docs/progression-and-options.md for the exact supported scope and remaining differences.
-Decorative stones removed; elemental/conditional/level-scaling description icons repaired.
+Options now have Sound, Video, Gameplay and Accessibility tabs. Includes manual aiming, mouse movement, focus behavior, boss HP bar, shop lock retention, implant appearance, enemy difficulty multipliers and readable-effect controls. See docs/progression-and-options.md for the exact supported scope and remaining differences.
+Large old stone/scrap fragments replaced with small grass and pebble motifs; elemental/conditional/level-scaling and crate description icons repaired.
+
+Feedback polish: Escape pauses combat, shop, level-up and crate rewards, then resumes the same screen. Unlock notifications appear bottom left. Choose/price buttons are gray. Crate pages no longer show inventory. The small player health bar is removed.
+Music: original Neon Salvage loop, with independent Options > Sound > Music volume. M toggles sound effects only. Consumables use three eating/crunch samples; material pickups use a six-particle green burst and an audible reserved sound voice.
+Review and previews: artifacts/feedback-polish-review/review.html.

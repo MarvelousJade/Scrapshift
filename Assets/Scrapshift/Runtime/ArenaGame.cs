@@ -55,6 +55,7 @@ namespace Scrapshift
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
             muted = PlayerPrefs.GetInt("muted", 0) != 0;
             sound = gameObject.AddComponent<GameAudio>(); sound.Initialize(soundBank, muted);
+            music=gameObject.AddComponent<GameMusic>();music.Initialize();
             reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
             InitializeDisplay(args);
@@ -120,6 +121,7 @@ namespace Scrapshift
         void Update()
         {
             TickProgression(Time.unscaledDeltaTime);
+            music.SetPhase(Rules.Phase);
             gameCamera.rect = PresentationLayout.Viewport(Screen.width, Screen.height);
             if (previewCapture && Time.realtimeSinceStartup > 3)
             {

@@ -66,10 +66,10 @@ namespace Scrapshift
             else if(!endSummary)endSummary=true;else StartSelectedRun();
         }
         static void RoundedBox(Rect r,Color color,float radius=12) => GUI.DrawTexture(r,Texture2D.whiteTexture,ScaleMode.StretchToFill,true,0,color,0,radius);
-        bool MenuButton(Rect r,string label,bool selected=false)
+        bool MenuButton(Rect r,string label,bool selected=false,bool cardAction=false)
         {
             bool lit=selected||r.Contains(Event.current.mousePosition);
-            RoundedBox(r,lit?paper:panelColor,9);
+            RoundedBox(r,lit?paper:cardAction?new Color(.16f,.16f,.16f):panelColor,9);
             var labelStyle=new GUIStyle(center){fontSize=Mathf.Min(27,(int)(r.height*.58f)),wordWrap=false,font=catalog.referenceFont};
             while(labelStyle.fontSize>12&&labelStyle.CalcSize(new GUIContent(label)).x>r.width-18)labelStyle.fontSize--;labelStyle.normal.textColor=lit?ink:paper;
             if(GUI.enabled&&r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}

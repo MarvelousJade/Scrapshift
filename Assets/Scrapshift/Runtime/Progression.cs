@@ -17,6 +17,7 @@ namespace Scrapshift
         readonly string path;
         public ProgressSave Data {get;private set;}=new ProgressSave();
         public readonly List<string> NewlyUnlocked=new List<string>();
+        public event Action<UnlockDefinition> ChallengeCompleted;
         public Progression(UnlockDefinition[] definitions,string path=null)
         {
             this.definitions=definitions;this.path=path;
@@ -82,7 +83,7 @@ namespace Scrapshift
         public void Complete(string id)
         {
             var d=definitions.FirstOrDefault(x=>x.id==id);if(d==null||Completed(id))return;
-            Data.completed.Add(id);NewlyUnlocked.Add(d.reward);Save();
+            Data.completed.Add(id);NewlyUnlocked.Add(d.reward);Save();ChallengeCompleted?.Invoke(d);
         }
         public void Check(string id,float value,bool below=false)
         {var d=definitions.FirstOrDefault(x=>x.id==id);if(d!=null&&(below?value<=d.value:value>=d.value))Complete(id);}

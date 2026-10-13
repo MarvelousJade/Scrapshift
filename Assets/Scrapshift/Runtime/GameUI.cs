@@ -41,6 +41,11 @@ namespace Scrapshift
         {
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
+            DrawGameScreen();
+            DrawAchievementToast();
+        }
+        void DrawGameScreen()
+        {
             BeginInspection();
             if(appearanceReview&&appearanceStage>=2&&appearanceStage<6){AppearanceReviewUI();return;}
             if(scaleReview)
@@ -98,8 +103,6 @@ namespace Scrapshift
                 OutlinedText(630,61,180,56,(waveSweeping?0:Mathf.CeilToInt(Rules.Remaining)).ToString(),timer);
             DrawPendingRewards();
             GUI.matrix=hudMatrix;
-            if(GameSettings.Flag("characterHp")&&(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused))
-            {var p=PresentationLayout.ViewportToCanvas(gameCamera.WorldToViewportPoint(playerPos+Vector2.down*.6f),Screen.width,Screen.height);RoundedBox(new Rect(p.x-27,p.y,54,10),Color.black,3);Box(new Rect(p.x-24,p.y+3,48*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),4),coral);}
         }
 
         void OutlinedText(float x,float y,float w,float h,string label,GUIStyle style)
@@ -125,7 +128,7 @@ namespace Scrapshift
                 Text(x+92,400,width-108,28,"Upgrade",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
                 var gain=new GUIStyle(body);gain.normal.textColor=new Color(.38f,1,.25f);
                 RichText(StatLine(o.Stat,o.Amount),new Rect(x+18,450,width-36,65),18);
-                if(Button(new Rect(x+16,530,width-32,44),"Choose"))SelectUpgrade(i);
+                if(MenuButton(new Rect(x+16,530,width-32,44),"Choose",cardAction:true))SelectUpgrade(i);
             }
             GUI.enabled=Rules.CanReroll;
             if(RerollButton(new Rect(ContentLeft+(ContentWidth-406)/2,630,406,56)))RerollUpgrade();

@@ -39,7 +39,18 @@ namespace Scrapshift
             footDust.Add(new Dust{line=line,root=root,pos=pos,pickup=pickup});
         }
         void ClearFootDust(){foreach(var d in footDust)if(d.root!=null)Destroy(d.root);footDust.Clear();stepClock=0;}
-        void PickupContactEffect(){AddFootDust(playerPos,true);}
+        void PickupContactEffect()
+        {
+            if(!GameSettings.Flag("effects")||reducedMotion||footDust.Count>56)return;
+            for(int i=0;i<6;i++)
+            {
+                var root=new GameObject("Material pickup particle");
+                var p=playerPos+UnityEngine.Random.insideUnitCircle*.15f;root.transform.position=(Vector3)p+Vector3.back*2;
+                var line=MakeLine("Spark",root.transform,new Color(.46f,1,.46f),.08f);line.sortingOrder=15;line.numCapVertices=4;line.positionCount=2;
+                line.SetPosition(0,new Vector3(-.025f,0,0));line.SetPosition(1,new Vector3(.025f,0,0));
+                footDust.Add(new Dust{root=root,line=line,pos=p,pickup=true,velocity=UnityEngine.Random.insideUnitCircle.normalized*UnityEngine.Random.Range(3f,6f)});
+            }
+        }
         void RemoveWaveEnemies()
         {
             births.Clear();foreach(var e in enemies.ToArray())if(e.type.role!="Tree"||e.marker!=null){Destroy(e.obj);if(e.marker!=null)Destroy(e.marker);enemies.Remove(e);}
@@ -58,9 +69,10 @@ namespace Scrapshift
             if(Rules.Phase==RunPhase.Paused||inspectionReview)return;
             for(int i=footDust.Count-1;i>=0;i--)
             {
-                var d=footDust[i];d.age+=dt;float t=d.age/(d.pickup?.45f:.75f);
+                var d=footDust[i];d.age+=dt;float t=d.age/(d.pickup?.3f:.75f);
                 var c=d.pickup?mint:Color.white;c.a*=1-t;if(d.line!=null)d.line.startColor=d.line.endColor=c;else {d.smoke.color=Color.white;d.pos+=d.velocity*dt;d.root.transform.position=(Vector3)d.pos+Vector3.back*2;d.root.transform.Rotate(0,0,d.rotation*dt);}
-                d.root.transform.localScale=Vector3.one*(d.pickup?1+t*1.7f:Mathf.Max(0,1-t)*d.scale);
+                if(d.pickup){d.pos+=d.velocity*dt;d.root.transform.position=(Vector3)d.pos+Vector3.back*2;}
+                d.root.transform.localScale=Vector3.one*Mathf.Max(0,1-t)*d.scale;
                 if(t>=1){Destroy(d.root);footDust.RemoveAt(i);}
             }
         }
@@ -81,8 +93,9 @@ namespace Scrapshift
             foreach(Transform child in yard.transform)
             {
                 // Keep older saved scenes free of the removed decorative stones too.
-                if(child.name=="Small stone"||child.name=="Stone highlight"||child.name=="Small faceted stone")child.gameObject.SetActive(false);
+                if(child.name=="Small stone"||child.name=="Stone highlight"||child.name=="Small faceted stone"||child.name=="Buried scrap"||child.name=="Scrap glint"||child.name=="Dry grass")child.gameObject.SetActive(false);
             }
+            AddYardDetails(yard.transform);
         }
     }
 }

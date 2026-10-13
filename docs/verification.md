@@ -434,3 +434,14 @@ Windows build: zero errors/warnings. All 1007 Assets/Packages/ProjectSettings fi
 Playable build: Builds/ProgressionOptions/Scrapshift.exe. Design, debugging and explicit options omissions: docs/progression-and-options.md. Package checks: artifacts/package.json.
 
 Final runtime result: all 62 fresh capture checks passed. Native input follow-up on Builds/ProgressionOptions: title Codex opened by click, Weapons tab switched by click, Right Arrow changed the selected entry and its details, Escape returned to title, and focus-mute toggled Off then back On. The build was left at its title screen. Native testing did not include combat, every setting, or subjective audio.
+
+## October 12 - reward feedback, pause and music
+
+288/288 EditMode tests passed, none skipped. New checks cover pause/resume from combat, shop, upgrades and crates without changing offers or economy; one-time queued achievement events independent of end rewards; stereo music duration/sample headroom; and the consumable variants/material gain migration.
+
+Windows build succeeded with zero errors and zero warnings (163224800 bytes). All 1024 Assets/Packages/ProjectSettings files match the validation copy byte for byte. All 65 fresh staged UI capture checks passed in artifacts/feedback-polish-review/inspection.json, including gray Choose/price surfaces, bottom-left unlock notification, icon-aware crate description and six-particle pickup burst. The first capture run correctly failed its obsolete loot-inventory inspection target after that inventory strip was removed; the fixture now checks the actual current screen.
+
+Current playable build: Builds/FeedbackPolish/Scrapshift.exe. ZIP is a sharing alternative, not required to play. Package CRC and every-file comparison passed (157 entries); see artifacts/package.json. Source comparison, bugs and interview explanation: docs/feedback-polish.md. Screenshots and music/crunch previews: artifacts/feedback-polish-review/review.html.
+Final audio output check passed: all 21 cues produced sampled mixer output, mute suppression passed, peak 0.100993640720844, peak concurrent voices 2. The first attempt had intermittent silence while focus mute could apply; rerunning with the test window explicitly foregrounded passed. This checks signal output, not subjective music or mix approval.
+
+Native follow-up: opened Builds/FeedbackPolish/Scrapshift.exe, clicked Options, verified the Music volume control at 35% alongside master/SFX controls, and pressed Escape back to title. Left the new build open. Pause preservation is covered by the four state regression tests; no full run or subjective listening approval is claimed.

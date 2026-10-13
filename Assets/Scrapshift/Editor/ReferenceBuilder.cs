@@ -67,7 +67,7 @@ namespace Scrapshift.Editor
             {
                 var clips=Directory.GetFiles(folder,(entry.cue==SoundCue.Hurt?SoundCue.Impact:entry.cue)+"_*.wav").OrderBy(p=>p).Select(p=>AssetDatabase.LoadAssetAtPath<AudioClip>(p.Replace('\\','/'))).ToArray();
                 if(clips.Length>0)entry.variants=clips;
-                entry.gain=entry.cue==SoundCue.Fire?.2f:entry.cue==SoundCue.Pickup?.18f:.35f;
+                entry.gain=entry.cue==SoundCue.Fire?.2f:entry.cue==SoundCue.Pickup?.42f:.35f;
             }
             EditorUtility.SetDirty(bank);
             var scene=EditorSceneManager.OpenScene(ScenePath);

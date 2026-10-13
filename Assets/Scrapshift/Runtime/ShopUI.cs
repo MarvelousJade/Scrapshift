@@ -41,7 +41,7 @@ namespace Scrapshift
         }
         bool MoneyButton(Rect r,string label,bool large=false)
         {
-            bool pressed=Button(r,"");
+            bool pressed=MenuButton(r,"",cardAction:true);
             var style=new GUIStyle(center){fontSize=large?36:24,wordWrap=false};
             style.normal.textColor=GUI.enabled?(r.Contains(Event.current.mousePosition)?ink:paper):coral;
             float iconSize=large?34:30;
