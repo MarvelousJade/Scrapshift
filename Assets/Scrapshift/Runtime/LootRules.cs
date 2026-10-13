@@ -25,8 +25,9 @@ namespace Scrapshift
         {
             if(crates.Count>0 && catalog!=null)
             {
-                int tier=crates.Peek()?4:ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
-                // Same intentionally small catalog and empty-tier fallback as our shop.
+                random.NextDouble(); // The reference draws its weapon-preference value for every item roll.
+                int rolledTier=ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
+                int tier=crates.Peek()?4:rolledTier;
                 var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<WantedTagChance,Array.Empty<ItemEntry>(),
                     Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)));
                 if(pool.Length>0)

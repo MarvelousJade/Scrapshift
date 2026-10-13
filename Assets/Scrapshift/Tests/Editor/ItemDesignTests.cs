@@ -20,7 +20,7 @@ namespace Scrapshift.Tests
             {
                 var actual=Array.Find(catalog.data.items,i=>i.id==source.id);
                 Assert.AreEqual(source.value,actual.value,source.id);Assert.AreEqual(source.tier,actual.tier,source.id);
-                Assert.AreEqual(source.available,RunRules.IsShopItem(actual.id),source.id);Assert.AreEqual(source.maxCount,actual.maxCount);
+                Assert.AreEqual(source.available&&source.maxCount!=0,RunRules.IsShopItem(actual.id),source.id);Assert.AreEqual(source.maxCount,actual.maxCount);
                 CollectionAssert.AreEqual(source.tags,actual.tags);CollectionAssert.AreEqual(source.groups,actual.groups);
                 CollectionAssert.AreEqual(source.effects.Select(e=>e.key+":"+e.value),actual.effects.Select(e=>e.key+":"+e.value));
                 Assert.AreEqual(JsonUtility.ToJson(new ConditionalRows{rows=source.conditionalEffects}),JsonUtility.ToJson(new ConditionalRows{rows=actual.conditionalEffects}),source.id);
@@ -54,6 +54,19 @@ namespace Scrapshift.Tests
         {
             Run();var limited=new ItemEntry{id="coffee",tier=1,maxCount=1,tags=new[]{"stat_attack_speed"}};
             Assert.IsEmpty(ShopSelection.ItemPool(new[]{limited},null,1,true,Array.Empty<ItemEntry>(),new[]{limited}));
+        }
+        [Test] public void ItemRollNeverSubstitutesALowerTier()
+        {
+            Run();
+            var common=new ItemEntry{id="coffee",tier=1,available=true};
+            Assert.IsEmpty(ShopSelection.ItemPool(new[]{common},null,4,false,Array.Empty<ItemEntry>(),Array.Empty<ItemEntry>()));
+        }
+        [Test] public void ZeroMaximumCountIsNeverRandomLoot()
+        {
+            Run();
+            Assert.IsFalse(RunRules.IsShopItem("broken_hourglass"));
+            Assert.IsFalse(ShopSelection.ItemPool(catalog.data.items,null,1,false,Array.Empty<ItemEntry>(),Array.Empty<ItemEntry>())
+                .Any(i=>i.id=="broken_hourglass"));
         }
         [Test] public void ItemPenaltiesAndMeleeCadenceUseReferenceBoundaries()
         {

@@ -120,6 +120,32 @@ namespace Scrapshift.Tests
             Assert.AreSame(offer,r.Shop[0]);
             Assert.IsTrue(offer.locked);
         }
+        [Test] public void FreshShopMayRepeatPreviousOffersButRerollExcludesThem()
+        {
+            var fixture=ScriptableObject.CreateInstance<ReferenceCatalog>();
+            fixture.data=new CatalogData{items=Enumerable.Range(0,8).Select(i=>new ItemEntry
+                {id="fixture_"+i,tier=1,available=true,maxCount=-1,effects=Array.Empty<StatEffect>()}).ToArray()};
+            try
+            {
+                int repeated=0;
+                for(int seed=1;seed<=32;seed++)
+                {
+                    var run=new RunRules(seed);run.Configure(fixture);run.Start(new CharacterProfile{weaponSlots=0,stats=Array.Empty<StatEffect>()});
+                    run.Collect(100);run.Tick(run.Remaining);
+                    while(run.Phase==RunPhase.Upgrade)run.Choose(0);
+                    var first=run.Shop.Where(s=>s?.item!=null).Select(s=>s.item.id).ToArray();
+                    Assert.AreEqual(4,first.Length);
+                    run.Reroll();
+                    Assert.IsFalse(run.Shop.Where(s=>s?.item!=null).Any(s=>first.Contains(s.item.id)),"reroll/"+seed);
+                    var previous=run.Shop.Where(s=>s?.item!=null).Select(s=>s.item.id).ToArray();
+                    run.NextWave();run.Tick(run.Remaining);
+                    while(run.Phase==RunPhase.Upgrade)run.Choose(0);
+                    repeated+=run.Shop.Count(s=>s?.item!=null&&previous.Contains(s.item.id));
+                }
+                Assert.Greater(repeated,0,"A new shop must not exclude the previous wave's offers.");
+            }
+            finally {RunRules.ConfigureShopItems(catalog.data.items);UnityEngine.Object.DestroyImmediate(fixture);}
+        }
         [Test] public void PurchasingConsumesCurrencyOnceAndRemovesOffer()
         {
             var r=Run();
