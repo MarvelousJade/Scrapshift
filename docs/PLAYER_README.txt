@@ -64,3 +64,7 @@ Menu presentation: one complete title illustration with an equipped mascot. Char
 
 Options > Video > Background: Random or one of six visual map themes. Background selection is saved and applies immediately; Random selects again when starting a run. These are visual arenas with unchanged combat rules and bounds.
 Weapons have simple cream grip mittens with no arms or fingers. Fist/hand/claw weapons keep their existing art.
+
+Support polish: turrets, landmines and companions now have distinct original sprites, including their inventory icons. Landmines arm on entry and explode on exit. Manual aiming fires automatically toward the cursor; mouse-press aiming works independently of always-on aiming. The new soundtrack is an original 146 BPM industrial EDM/metal synth loop.
+Validated catalog: 50 characters, 62 weapon identities / 205 tier entries and 209 base items (unlock availability differs by save). A fresh 4,918-field audit passed; this does not certify every runtime interaction or exact seeded shop sequence.
+Latest build: Builds/SupportPolish/Scrapshift.exe.
