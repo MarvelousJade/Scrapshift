@@ -13,6 +13,9 @@ namespace Scrapshift
         SpriteRenderer source,headView;
         SpriteRenderer[] views;
         string kind;float unit;
+        readonly Transform[] guns=new Transform[2];
+        readonly SpriteRenderer[] gunViews=new SpriteRenderer[2];
+        readonly float[] gunRecoil=new float[2];
         public Transform AimingHead=>head;
         public Transform AnimatedAssembly=>facing;
         public Transform FirstLimb=>limbs.Count>0?limbs[0]:null;
@@ -56,8 +59,50 @@ namespace Scrapshift
                     rig.limbs.Add(pivot);
                 }
                 rig.body=rig.Part(animal,"Pet body",rig.facing,new Vector2(0,.055f),.60f,7).transform;
+                if(kind=="catling_gun")
+                {
+                    foreach(Transform child in rig.body)DestroyImmediate(child.gameObject);
+                    var view=rig.body.GetComponent<SpriteRenderer>();view.sprite=CatBody();view.enabled=true;
+                    rig.body.localScale=Vector3.one*(.60f/Mathf.Max(view.sprite.bounds.size.x,view.sprite.bounds.size.y));
+                }
             }
             rig.views=rig.facing.GetComponentsInChildren<SpriteRenderer>();return rig;
+        }
+        static Sprite catBody;
+        static Sprite CatBody()
+        {
+            if(catBody!=null)return catBody;
+            var texture=Resources.Load<Texture2D>("CatBodyV2");var pixels=texture.GetPixels32();
+            int l=texture.width,b=texture.height,r=0,t=0;
+            for(int y=0;y<texture.height;y++)for(int x=0;x<texture.width;x++)if(pixels[y*texture.width+x].a>32){l=Mathf.Min(l,x);b=Mathf.Min(b,y);r=Mathf.Max(r,x+1);t=Mathf.Max(t,y+1);}
+            catBody=Sprite.Create(texture,Rect.MinMaxRect(l,b,r,t),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);return catBody;
+        }
+        public void ConfigureCatGuns(Sprite sprite)
+        {
+            for(int i=0;i<2;i++)
+            {
+                var pivot=new GameObject("Independent gun "+i).transform;pivot.SetParent(facing,false);
+                pivot.localPosition=new Vector3(i==0?-.075f:.10f,i==0?-.035f:.12f,0);guns[i]=pivot;
+                var view=new GameObject("Gun").AddComponent<SpriteRenderer>();view.transform.SetParent(pivot,false);
+                view.sprite=sprite;view.sortingOrder=i==0?9:6;
+                view.transform.localScale=Vector3.one*(.27f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
+                view.transform.localPosition=Vector3.right*.075f;gunViews[i]=view;
+            }
+            views=facing.GetComponentsInChildren<SpriteRenderer>();
+        }
+        public Vector2 GunOrigin(int index)=>guns[index]!=null?guns[index].TransformPoint(.20f,0,0):transform.position;
+        public Vector2 GunMount(int index)=>guns[index]!=null?guns[index].position:transform.position;
+        public void AimGun(int index,Vector2 direction)
+        {
+            if(guns[index]==null)return;
+            var local=facing.InverseTransformVector(direction);guns[index].localRotation=Quaternion.Euler(0,0,Mathf.Atan2(local.y,local.x)*Mathf.Rad2Deg);
+            gunViews[index].flipY=local.x<0;
+        }
+        public void GunKick(int index){gunRecoil[index]=.10f;}
+        public void TickGunRecoil(float dt,bool reduced)
+        {
+            for(int i=0;i<2;i++)if(guns[i]!=null)
+            {gunRecoil[i]=Mathf.Max(0,gunRecoil[i]-dt);gunViews[i].transform.localPosition=Vector3.right*(.075f-(reduced?0:gunRecoil[i]*.3f));}
         }
         SpriteRenderer Part(int index,string name,Transform parent,Vector2 pos,float length,int order)
         {

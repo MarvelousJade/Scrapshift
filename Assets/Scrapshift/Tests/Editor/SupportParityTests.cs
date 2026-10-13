@@ -84,6 +84,36 @@ namespace Scrapshift.Tests
             }
             finally{Object.DestroyImmediate(root);}
         }
+        [Test] public void CatGunsAimIndependentlyEvenWhenBodyMirrors()
+        {
+            var root=new GameObject("cat guns");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
+            try
+            {
+                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportArt.Structure("laser"));
+                foreach(bool flip in new[]{false,true})
+                {
+                    rig.PetPose(0,false,flip,false,false);rig.AimGun(0,Vector2.up);rig.AimGun(1,Vector2.left);
+                    var a=rig.AnimatedAssembly.Find("Independent gun 0");var b=rig.AnimatedAssembly.Find("Independent gun 1");
+                    Assert.Greater(Vector2.Dot(a.TransformVector(Vector3.right).normalized,Vector2.up),.999f);
+                    Assert.Greater(Vector2.Dot(b.TransformVector(Vector3.right).normalized,Vector2.left),.999f);
+                    Assert.AreEqual(Quaternion.identity,rig.AnimatedAssembly.Find("Pet body").localRotation);
+                }
+                Assert.AreEqual("CatBodyV2",rig.AnimatedAssembly.Find("Pet body").GetComponent<SpriteRenderer>().sprite.texture.name);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
+        [Test] public void ReferenceTargetReservationAndJumpRules()
+        {
+            Assert.IsFalse(SupportBehavior.MayReserve("ratzilla",true,false,false));
+            Assert.IsFalse(SupportBehavior.MayReserve("bonk_dog",false,false,true));
+            Assert.IsTrue(SupportBehavior.MayReserve("bonk_dog",true,false,true));
+            Assert.IsTrue(SupportBehavior.MayReserve("blazemander",true,true,true));
+            Assert.IsFalse(SupportBehavior.MayReserve("blazemander",true,false,true));
+            Assert.AreEqual(.5f,SupportBehavior.JumpProgress(.5f));
+            Assert.Less(SupportBehavior.JumpProgress(.25f),.05f);
+            Assert.Greater(SupportBehavior.JumpProgress(.75f),.95f);
+            Assert.AreEqual(.25f,SupportBehavior.CatInterval(.5f,true));
+        }
         [Test] public void TurretKeyframesReturnToRestAndPetsUseDifferentMovementStrengths()
         {
             Assert.AreEqual(new Vector2(1.1f,.9f),SupportMotion.TurretScale(0));

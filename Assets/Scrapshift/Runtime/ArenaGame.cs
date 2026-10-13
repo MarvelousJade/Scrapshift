@@ -15,7 +15,7 @@ namespace Scrapshift
         public RunRules Rules { get; } = new RunRules();
         sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
-        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public int value; public bool fruit; public ConsumableKind consumable; }
+        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public float petAttractSpeed=5; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
@@ -246,7 +246,7 @@ namespace Scrapshift
             for (int i = pickups.Count - 1; i >= 0; i--)
             {
                 var p = pickups[i];
-                p.motion.Step(dt, playerPos, p.fruit && Rules.Health>=Rules.MaxHealth ? -1 : Rules.PickupRadius, reducedMotion);
+                if(p.petCollector==null)p.motion.Step(dt, playerPos, p.fruit && Rules.Health>=Rules.MaxHealth ? -1 : Rules.PickupRadius, reducedMotion);
                 Vector2 position = p.motion.position;
                 p.obj.transform.position = new Vector3(position.x, position.y + p.motion.height, -1.5f);
                 p.obj.transform.rotation = Quaternion.Euler(0, 0, p.motion.angle);

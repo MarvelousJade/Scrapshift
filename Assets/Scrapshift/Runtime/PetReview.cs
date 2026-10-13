@@ -15,7 +15,7 @@ namespace Scrapshift
         void PetReviewTick()
         {
             if(!petReview||Time.realtimeSinceStartup<petReviewNext)return;
-            if(petReviewStage>=petCases.Length){petReport.status=petReport.failed.Count==0?"Passed":"Failed";File.WriteAllText(Path.Combine(petReviewPath,"pets.json"),JsonUtility.ToJson(petReport,true));petReview=false;Application.Quit(petReport.failed.Count==0?0:1);return;}
+            if(petReviewStage>=petCases.Length){CheckMultipleSupports();petReport.status=petReport.failed.Count==0?"Passed":"Failed";File.WriteAllText(Path.Combine(petReviewPath,"pets.json"),JsonUtility.ToJson(petReport,true));petReview=false;Application.Quit(petReport.failed.Count==0?0:1);return;}
             string id=petCases[petReviewStage++];bool okay=false;Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.zero;
             var item=catalog.data.items.Single(i=>i.id==id);Rules.Items.Add(item);foreach(var effect in item.effects)Rules.GainWeaponStat(effect.key.Replace("stat_",""),effect.value);ResetPets();
             try
@@ -43,7 +43,45 @@ namespace Scrapshift
                 }
             }
             catch(Exception e){Debug.LogException(e);}
-            (okay?petReport.passed:petReport.failed).Add(id);Debug.Log("Companion fixture "+id+": "+okay);ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,id+".png"));petReviewNext=Time.realtimeSinceStartup+.8f;
+            (okay?petReport.passed:petReport.failed).Add(id);Debug.Log("Companion fixture "+id+": "+okay);
+            ClearImpacts();floaters.Clear();foreach(var spark in sparks)Destroy(spark.obj);sparks.Clear();
+            foreach(var enemy in enemies)enemy.obj.SetActive(false);foreach(var shot in shots)shot.obj.SetActive(false);
+            player.SetActive(false);SyncEquipment();gameCamera.orthographicSize=2.5f;gameCamera.transform.position=new Vector3(pets[0].pos.x,pets[0].pos.y,-20);
+            ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,id+".png"));petReviewNext=Time.realtimeSinceStartup+.8f;
+        }
+        Pet SetUpPetCase(string kind,int count=1)
+        {
+            Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.one*8;
+            var item=catalog.data.items.Single(i=>i.id==kind);for(int i=0;i<count;i++)Rules.Items.Add(item);ResetPets();
+            foreach(var p in pets){p.pos=Vector2.zero;p.obj.transform.position=p.pos;p.destination=Vector2.right*3;}
+            return pets[0];
+        }
+        void PetCheck(string name,bool okay)
+        {(okay?petReport.passed:petReport.failed).Add(name);Debug.Log("Support behavior fixture "+name+": "+okay);}
+        void CheckMultipleSupports()
+        {
+            try
+            {
+                var p=SetUpPetCase("ratzilla",2);var a=FeelEnemy(Vector2.right);var b=FeelEnemy(Vector2.right*2);
+                SelectPetTarget(p);SelectPetTarget(pets[1]);PetCheck("same-kind target reservations",p.target!=pets[1].target&&p.target!=null&&pets[1].target!=null);
+                p=SetUpPetCase("catling_gun",2);TickPets(.1f);PetCheck("cats wander and do not boost each other",!pets.Any(x=>x.boosted)&&p.pos.x>0);
+                playerPos=p.pos;Vector2 at=p.pos;TickPets(.01f);PetCheck("cat proximity stops movement and boosts fire",p.boosted&&p.pos==at);
+                ClearPets();p=SetUpPetCase("catling_gun");p.clock=p.rightClock=0;playerPos=p.pos;
+                a=FeelEnemy(Vector2.left);b=FeelEnemy(Vector2.right);TickPets(.01f);int fired=shots.Count;
+                TickPets(p.spec.stats.interval/4+.001f);PetCheck("cat alternate independent guns",fired>0&&shots.Count>fired&&shots.Any(x=>x.velocity.x<0)&&shots.Any(x=>x.velocity.x>0));
+                p=SetUpPetCase("doc_moth",2);playerPos=Vector2.zero;TickPets(.001f);PetCheck("overlapping moth zones stack regeneration",Rules.HealingDrones==2&&Rules.RegenerationHealMultiplier==3);
+                p=SetUpPetCase("lootworm");Drop(Vector2.left,1,false);Spawn(catalog.Enemy("tree"),Vector2.right*3);var tree=enemies.Last();Destroy(tree.marker);tree.marker=null;
+                TickPets(.02f);PetCheck("lootworm prioritizes tree over material",p.pos.x>0);
+                p=SetUpPetCase("scapegoat");p.maxHealth=80;p.health=0;p.dead=true;playerPos=Vector2.zero;
+                TickPets(p.spec.revive/2);float partial=p.health;playerPos=Vector2.one*8;TickPets(.5f);
+                bool held=p.health==partial&&p.dead;playerPos=p.pos;TickPets(p.spec.revive/2+.01f);PetCheck("decoy revival retains progress and grown max HP",held&&!p.dead&&p.health==80);
+                Begin();ClearCombat();Rules.Items.Clear();Rules.Inventory.Clear();starterReport=new StarterReport();CheckDeployableImplants();
+                foreach(var id in new[]{"turret","turret_flame","turret_healing","turret_laser","turret_rocket","tyler","garden","landmines","wandering_bot","pocket_factory"})PetCheck("structure: "+id,starterReport.deployableImplantsPassed.Contains(id));
+                Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();Rules.Items.Add(catalog.data.items.Single(i=>i.id=="landmines"));ResetStructures();
+                var mine=mines[0];playerPos=mine.pos;UpdateStarterEffects(.01f);bool pressed=mine.playerOn&&mines.Contains(mine);
+                playerPos=mine.pos+Vector2.right*2;UpdateStarterEffects(.01f);PetCheck("player presses mine; leaving detonates",pressed&&!mines.Contains(mine));
+            }
+            catch(Exception e){petReport.failed.Add("extended fixture exception: "+e.Message);Debug.LogException(e);}
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Scrapshift
         void TickStructure(StarterTurret turret,float dt)
         {
             var spec=turret.spec;
-            var target=spec.healing?null:NearestStarterTarget(turret.pos);
+            var target=spec.healing?null:spec.kind=="tyler"?PetRangedTarget(turret.pos,turret.stats.range):NearestStarterTarget(turret.pos);
             turret.animationAge=Mathf.Min(.3f,turret.animationAge+dt*StructureAnimationSpeed(turret));
             var pose=reducedMotion||turret.rig!=null?Vector2.one:SupportMotion.TurretScale(turret.animationAge);
             turret.obj.transform.localScale=new Vector3(pose.x,pose.y,1)*turret.baseScale;
@@ -59,7 +59,9 @@ namespace Scrapshift
             {if(inRange){turret.firing=true;turret.animationAge=0;turret.clock=.2f/StructureAnimationSpeed(turret);}return;}
             turret.firing=false;
             float interval=Rules.StructureCooldown(turret.stats.interval);
-            turret.clock=UnityEngine.Random.Range(Mathf.Max(1f/60,interval*.7f),interval*1.3f)+.1f/StructureAnimationSpeed(turret);
+            turret.shotsTaken++;
+            bool reload=turret.stats.reloadEvery>0&&turret.shotsTaken%turret.stats.reloadEvery==0;
+            turret.clock=(reload?interval*turret.stats.reloadMultiplier:UnityEngine.Random.Range(Mathf.Max(1f/60,interval*.7f),interval*1.3f))+.1f/StructureAnimationSpeed(turret);
             if(!inRange)return;
             if(spec.kind=="garden"){DropConsumable(turret.pos,ConsumableKind.Fruit);sound.Play(SoundCue.Pickup,turret.pos);return;}
             Vector2 aim=spec.healing?playerPos-turret.pos:target.pos-turret.pos;

@@ -154,7 +154,7 @@ namespace Scrapshift
                 e.activeAge += dt;TickEncounterState(e,dt);
                 Vector2 targetPosition=playerPos;foreach(var p in pets)if(!p.dead&&p.spec.kind=="scapegoat"&&(p.pos-e.pos).sqrMagnitude<(targetPosition-e.pos).sqrMagnitude)targetPosition=p.pos;
                 Vector2 toward = (targetPosition - e.pos).normalized;
-                float distance = Vector2.Distance(e.pos, playerPos), speed = e.speed;
+                float distance = Vector2.Distance(e.pos, targetPosition), speed = e.speed;
                 e.cooldown -= dt; e.action += dt;
                 string role = e.type.role;
                 if (e.type.id=="predator" && !e.secondPhase && Mathf.Floor(e.activeAge)>e.phaseCheck)
@@ -170,7 +170,7 @@ namespace Scrapshift
                         toward *= Mathf.Sign(distance-e.spacing);
                         speed = Mathf.Min(speed, Mathf.Abs(distance-e.spacing)/dt); break;
                     case EnemyMovement.Offset:
-                        toward=(playerPos+e.wander-e.pos).normalized; break;
+                        toward=(targetPosition+e.wander-e.pos).normalized; break;
                     case EnemyMovement.Destination: case EnemyMovement.AroundPlayer: case EnemyMovement.Materials:
                         if(!e.hasDestination || Vector2.Distance(e.pos,e.destination)<.1f)
                         {
