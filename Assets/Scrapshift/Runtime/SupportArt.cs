@@ -16,8 +16,12 @@ namespace Scrapshift
                 if(item.id=="jellyshield"){item.image=Pet(item.id);continue;}
                 foreach(var effect in item.conditionalEffects??System.Array.Empty<ConditionalEffect>())
                 {
-                    if(effect.structure!=null)item.image=Structure(effect.structure.kind);
-                    else if(effect.pet!=null)item.image=Pet(effect.pet.kind);
+                    // Unity materializes unused nested classes as empty objects.
+                    // Only an active, recognized support effect may replace authored art.
+                    if(effect.customKey=="structure"&&effect.structure!=null&&System.Array.IndexOf(structures,effect.structure.kind)>=0)
+                        item.image=Structure(effect.structure.kind);
+                    else if(effect.customKey=="pet"&&effect.pet!=null&&System.Array.IndexOf(pets,effect.pet.kind)>=0)
+                        item.image=Pet(effect.pet.kind);
                 }
             }
         }

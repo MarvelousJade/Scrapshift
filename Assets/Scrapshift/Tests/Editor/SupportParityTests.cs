@@ -7,6 +7,27 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void SerializedCatalogUsesMatchingSupportIconsAndPreservesOtherItems()
+        {
+            var source=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+            var catalog=Object.Instantiate(source);
+            try
+            {
+                var before=catalog.data.items.ToDictionary(i=>i.id,i=>i.image);
+                SupportArt.Apply(catalog);
+                foreach(var item in catalog.data.items)
+                {
+                    var support=(item.conditionalEffects??System.Array.Empty<ConditionalEffect>()).LastOrDefault(e=>e.customKey=="pet"||e.customKey=="structure");
+                    if(item.id=="jellyshield")Assert.AreSame(SupportArt.Pet(item.id),item.image,item.id);
+                    else if(support?.customKey=="pet")Assert.AreEqual("Support_"+support.pet.kind,item.image.name,item.id);
+                    else if(support?.customKey=="structure")Assert.AreEqual("Support_"+support.structure.kind,item.image.name,item.id);
+                    else Assert.AreSame(before[item.id],item.image,item.id+" must retain authored art");
+                }
+                Assert.AreEqual("Support_ratzilla",catalog.data.items.Single(i=>i.id=="ratzilla").image.name);
+            }
+            finally{Object.DestroyImmediate(catalog);}
+        }
+
         [Test] public void ArticulatedTurretTurnsWithoutMovingItsBase()
         {
             var root=new GameObject("test turret");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Structure("turret");
