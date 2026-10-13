@@ -39,12 +39,12 @@ namespace Scrapshift
             int selected = Mathf.Abs(roll % (count - 1));
             return previous < 0 ? Mathf.Abs(roll % count) : selected >= previous ? selected + 1 : selected;
         }
-        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null, float? overrideGain = null, float? overridePitchVariation = null)
+        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null, float? overrideGain = null, float? overridePitchVariation = null, bool independent = false)
         {
             if (Bank == null || Muted || Volume <= 0) return;
             var entry = Bank.Find(cue); int key = (int)cue; float now = Time.unscaledTime;
             if (entry == null || entry.variants == null || entry.variants.Length == 0) return;
-            if (now - last[key] < entry.cooldown) { Suppressed++; return; }
+            if (!independent && now - last[key] < entry.cooldown) { Suppressed++; return; }
             bool important = entry.priority >= 2;
             // One pickup voice survives dense combat without stealing damage/unlock cues.
             bool pickup=cue==SoundCue.Pickup;

@@ -1,0 +1,5932 @@
+{
+  "weapons": [
+    {
+      "id": "circular_saw",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.56,
+        0.245
+      ],
+      "hitOffset": [
+        -0.24,
+        0.01
+      ]
+    },
+    {
+      "id": "fist",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.2
+      ],
+      "hitOffset": [
+        -0.16,
+        0.0
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "flaming_knuckles",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.64,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "hammer",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "knife",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "rock",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.5,
+        0.25
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "spear",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.83,
+        0.18
+      ],
+      "hitOffset": [
+        -0.29,
+        0.0
+      ]
+    },
+    {
+      "id": "torch",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.2
+      ],
+      "hitOffset": [
+        -0.21,
+        0.0
+      ]
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 1,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "minigun",
+      "tier": 3,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.85,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "pistol",
+      "tier": 1,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rocket_launcher",
+      "tier": 2,
+      "scene": "projectiles/rocket/rocket_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.8,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "smg",
+      "tier": 1,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.7,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 1,
+      "scene": "projectiles/bullet_taser/taser_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "fist",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.2
+      ],
+      "hitOffset": [
+        -0.16,
+        0.0
+      ]
+    },
+    {
+      "id": "fist",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.2
+      ],
+      "hitOffset": [
+        -0.16,
+        0.0
+      ]
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 2,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.95,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 3,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "flamethrower",
+      "tier": 3,
+      "scene": "projectiles/flames/flame_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.6,
+      "soundDb": -5,
+      "speedWithRange": true,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "pistol",
+      "tier": 2,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "pistol",
+      "tier": 3,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rocket_launcher",
+      "tier": 3,
+      "scene": "projectiles/rocket/rocket_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "smg",
+      "tier": 2,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.75,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "smg",
+      "tier": 3,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.8,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 2,
+      "scene": "projectiles/bullet_taser/taser_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 3,
+      "scene": "projectiles/bullet_taser/taser_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "circular_saw",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.56,
+        0.245
+      ],
+      "hitOffset": [
+        -0.24,
+        0.01
+      ]
+    },
+    {
+      "id": "hammer",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "knife",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "knife",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "rock",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.5,
+        0.25
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "rock",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.5,
+        0.25
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "spear",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "spear",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.83,
+        0.18
+      ],
+      "hitOffset": [
+        -0.29,
+        0.0
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.83,
+        0.18
+      ],
+      "hitOffset": [
+        -0.29,
+        0.0
+      ]
+    },
+    {
+      "id": "torch",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.2
+      ],
+      "hitOffset": [
+        -0.21,
+        0.0
+      ]
+    },
+    {
+      "id": "torch",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.2
+      ],
+      "hitOffset": [
+        -0.21,
+        0.0
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 1,
+      "scene": "projectiles/bullet_wand/bullet_wand.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 2,
+      "scene": "projectiles/bullet_wand/bullet_wand.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 3,
+      "scene": "projectiles/bullet_wand/bullet_wand.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 1,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_lightning/lightning_projectile.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.68,
+        0.16
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 2,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_lightning/lightning_projectile.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.68,
+        0.16
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 3,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_lightning/lightning_projectile.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.68,
+        0.16
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 1,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/spike/bullet_spike.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 2,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/spike/bullet_spike.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 3,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/spike/bullet_spike.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "scissors",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "scissors",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "scissors",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "screwdriver",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        -0.03
+      ]
+    },
+    {
+      "id": "screwdriver",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        -0.03
+      ]
+    },
+    {
+      "id": "screwdriver",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        -0.03
+      ]
+    },
+    {
+      "id": "sword",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.12,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "sword",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.12,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "laser_gun",
+      "tier": 1,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "laser_gun",
+      "tier": 2,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "laser_gun",
+      "tier": 3,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "medical_gun",
+      "tier": 1,
+      "scene": "projectiles/bullet_medical/bullet_medical.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "medical_gun",
+      "tier": 2,
+      "scene": "projectiles/bullet_medical/bullet_medical.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "medical_gun",
+      "tier": 3,
+      "scene": "projectiles/bullet_medical/bullet_medical.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 1,
+      "scene": "projectiles/bullet_shredder/bullet_shredder.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -15,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 2,
+      "scene": "projectiles/bullet_shredder/bullet_shredder.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -15,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 3,
+      "scene": "projectiles/bullet_shredder/bullet_shredder.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -15,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 1,
+      "scene": "projectiles/shuriken/shuriken_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 2,
+      "scene": "projectiles/shuriken/shuriken_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 3,
+      "scene": "projectiles/shuriken/shuriken_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "slingshot",
+      "tier": 1,
+      "scene": "projectiles/bullet_slingshot/slingshot_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "slingshot",
+      "tier": 2,
+      "scene": "projectiles/bullet_slingshot/slingshot_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "slingshot",
+      "tier": 3,
+      "scene": "projectiles/bullet_slingshot/slingshot_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "cactus_mace",
+      "tier": 4,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/spike/bullet_spike.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "circular_saw",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.56,
+        0.245
+      ],
+      "hitOffset": [
+        -0.24,
+        0.01
+      ]
+    },
+    {
+      "id": "dagger",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "fist",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.2
+      ],
+      "hitOffset": [
+        -0.16,
+        0.0
+      ]
+    },
+    {
+      "id": "flaming_knuckles",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.64,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_flint",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "hammer",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "hand",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "knife",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "rock",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.5,
+        0.25
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "scissors",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "screwdriver",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        -0.03
+      ]
+    },
+    {
+      "id": "spear",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "stick",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.83,
+        0.18
+      ],
+      "hitOffset": [
+        -0.29,
+        0.0
+      ]
+    },
+    {
+      "id": "sword",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.12,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "lightning_shiv",
+      "tier": 4,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_lightning/lightning_projectile.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.68,
+        0.16
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "torch",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.8,
+        0.2
+      ],
+      "hitOffset": [
+        -0.21,
+        0.0
+      ]
+    },
+    {
+      "id": "wrench",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "double_barrel_shotgun",
+      "tier": 4,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "flamethrower",
+      "tier": 4,
+      "scene": "projectiles/flames/flame_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.6,
+      "soundDb": -5,
+      "speedWithRange": true,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "laser_gun",
+      "tier": 4,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "medical_gun",
+      "tier": 4,
+      "scene": "projectiles/bullet_medical/bullet_medical.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "minigun",
+      "tier": 4,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "pistol",
+      "tier": 4,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rocket_launcher",
+      "tier": 4,
+      "scene": "projectiles/rocket/rocket_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shredder",
+      "tier": 4,
+      "scene": "projectiles/bullet_shredder/bullet_shredder.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -15,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "shuriken",
+      "tier": 4,
+      "scene": "projectiles/shuriken/shuriken_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "slingshot",
+      "tier": 4,
+      "scene": "projectiles/bullet_slingshot/slingshot_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "smg",
+      "tier": 4,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.85,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "taser",
+      "tier": 4,
+      "scene": "projectiles/bullet_taser/taser_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "wand",
+      "tier": 4,
+      "scene": "projectiles/bullet_wand/bullet_wand.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_axe",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_axe",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_axe",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_axe",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.88,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_scepter",
+      "tier": 1,
+      "scene": "projectiles/bullet_ghost_scepter/bullet_ghost_scepter.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_scepter",
+      "tier": 2,
+      "scene": "projectiles/bullet_ghost_scepter/bullet_ghost_scepter.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_scepter",
+      "tier": 3,
+      "scene": "projectiles/bullet_ghost_scepter/bullet_ghost_scepter.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "ghost_scepter",
+      "tier": 4,
+      "scene": "projectiles/bullet_ghost_scepter/bullet_ghost_scepter.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "hatchet",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.74,
+        0.28
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "hatchet",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.74,
+        0.28
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "hatchet",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.74,
+        0.28
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "hatchet",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.74,
+        0.28
+      ],
+      "hitOffset": [
+        0.08,
+        0.0
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        -0.05
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        -0.05
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        -0.05
+      ]
+    },
+    {
+      "id": "chopper",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        0.08,
+        -0.05
+      ]
+    },
+    {
+      "id": "plasma_sledgehammer",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.89,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "plasma_sledgehammer",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.89,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "power_fist",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.2
+      ],
+      "hitOffset": [
+        -0.16,
+        0.0
+      ]
+    },
+    {
+      "id": "power_fist",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.48,
+        0.2
+      ],
+      "hitOffset": [
+        -0.16,
+        0.0
+      ]
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.67,
+        0.52
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.67,
+        0.52
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.67,
+        0.52
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "spiky_shield",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.67,
+        0.52
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "thunder_sword",
+      "tier": 3,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_taser/delayed_taser_projectile.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.12,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "thunder_sword",
+      "tier": 4,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_taser/delayed_taser_projectile.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.12,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "nuclear_launcher",
+      "tier": 3,
+      "scene": "projectiles/nuclear_launcher/nuclear_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "nuclear_launcher",
+      "tier": 4,
+      "scene": "projectiles/nuclear_launcher/nuclear_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -10,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "potato_thrower",
+      "tier": 2,
+      "scene": "projectiles/potato/potato_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "potato_thrower",
+      "tier": 3,
+      "scene": "projectiles/potato/potato_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "potato_thrower",
+      "tier": 4,
+      "scene": "projectiles/potato/potato_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -8,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "obliterator",
+      "tier": 3,
+      "scene": "projectiles/obliterator/obliterator_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "obliterator",
+      "tier": 4,
+      "scene": "projectiles/obliterator/obliterator_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "flaming_knuckles",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.64,
+        0.24
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 1,
+      "scene": "projectiles/bolt/bolt_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 2,
+      "scene": "projectiles/bolt/bolt_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 3,
+      "scene": "projectiles/bolt/bolt_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "crossbow",
+      "tier": 4,
+      "scene": "projectiles/bolt/bolt_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "sniper_gun",
+      "tier": 3,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_laser/delayed_bullet_laser.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "sniper_gun",
+      "tier": 4,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [
+        {
+          "index": 0,
+          "scene": "projectiles/bullet_laser/delayed_bullet_laser.tscn"
+        }
+      ],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -12,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "plank",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -20,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.76,
+        0.2
+      ],
+      "hitOffset": [
+        0.08,
+        -0.03
+      ]
+    },
+    {
+      "id": "plank",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -20,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.76,
+        0.2
+      ],
+      "hitOffset": [
+        0.08,
+        -0.03
+      ]
+    },
+    {
+      "id": "plank",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -20,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.76,
+        0.2
+      ],
+      "hitOffset": [
+        0.08,
+        -0.03
+      ]
+    },
+    {
+      "id": "plank",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -20,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.76,
+        0.2
+      ],
+      "hitOffset": [
+        0.08,
+        -0.03
+      ]
+    },
+    {
+      "id": "jousting_lance",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "jousting_lance",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "jousting_lance",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "jousting_lance",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.4,
+        0.16
+      ],
+      "hitOffset": [
+        -0.56,
+        0.0
+      ]
+    },
+    {
+      "id": "pruner",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "pruner",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "pruner",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "pruner",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "revolver",
+      "tier": 1,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "revolver",
+      "tier": 2,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "revolver",
+      "tier": 3,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "revolver",
+      "tier": 4,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "gatling_laser",
+      "tier": 4,
+      "scene": "projectiles/bullet_laser/bullet_laser.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.75,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "chain_gun",
+      "tier": 4,
+      "scene": "projectiles/bullet/bullet_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.8,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "claw",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.6,
+        0.2
+      ],
+      "hitOffset": [
+        -0.04,
+        0.0
+      ]
+    },
+    {
+      "id": "claw",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.6,
+        0.2
+      ],
+      "hitOffset": [
+        -0.04,
+        0.0
+      ]
+    },
+    {
+      "id": "claw",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.6,
+        0.2
+      ],
+      "hitOffset": [
+        -0.04,
+        0.0
+      ]
+    },
+    {
+      "id": "claw",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.6,
+        0.2
+      ],
+      "hitOffset": [
+        -0.04,
+        0.0
+      ]
+    },
+    {
+      "id": "excalibur",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.12,
+        0.32
+      ],
+      "hitOffset": [
+        -0.32,
+        0.0
+      ]
+    },
+    {
+      "id": "drill",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.805,
+        0.24
+      ],
+      "hitOffset": [
+        -0.155,
+        -0.03
+      ]
+    },
+    {
+      "id": "scythe",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 1,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.765,
+        0.52
+      ],
+      "hitOffset": [
+        0.105,
+        -0.19
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.92,
+        0.205
+      ],
+      "hitOffset": [
+        -0.2,
+        0.025
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.92,
+        0.205
+      ],
+      "hitOffset": [
+        -0.2,
+        0.025
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.92,
+        0.205
+      ],
+      "hitOffset": [
+        -0.2,
+        0.025
+      ]
+    },
+    {
+      "id": "fighting_stick",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.92,
+        0.205
+      ],
+      "hitOffset": [
+        -0.2,
+        0.025
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 1,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "sharp_tooth",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.72,
+        0.16
+      ],
+      "hitOffset": [
+        -0.24,
+        0.0
+      ]
+    },
+    {
+      "id": "particle_accelerator",
+      "tier": 3,
+      "scene": "projectiles/bullet_particle_accelerator/particle_accelerator_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": false,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "particle_accelerator",
+      "tier": 4,
+      "scene": "projectiles/bullet_particle_accelerator/particle_accelerator_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": false,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "icicle",
+      "tier": 1,
+      "scene": "projectiles/icicle/icicle_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.85,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "icicle",
+      "tier": 2,
+      "scene": "projectiles/icicle/icicle_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "icicle",
+      "tier": 3,
+      "scene": "projectiles/icicle/icicle_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.95,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "icicle",
+      "tier": 4,
+      "scene": "projectiles/icicle/icicle_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -10,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "fireball",
+      "tier": 2,
+      "scene": "projectiles/fireball_projectile/fireball_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -999,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.9,
+      "soundDb": 0,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "fireball",
+      "tier": 3,
+      "scene": "projectiles/fireball_projectile/fireball_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -999,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.95,
+      "soundDb": 0,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "fireball",
+      "tier": 4,
+      "scene": "projectiles/fireball_projectile/fireball_projectile.tscn",
+      "secondary": [],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -999,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": 0,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "flamethrower",
+      "tier": 2,
+      "scene": "projectiles/flames/flame_projectile.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 0.6,
+      "soundDb": -5,
+      "speedWithRange": true,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "dextroyer",
+      "tier": 4,
+      "scene": "",
+      "secondary": [
+        {
+          "index": 1,
+          "scene": "projectiles/bullet_lightning/lightning_projectile.tscn"
+        }
+      ],
+      "explosions": [
+        {
+          "index": 0,
+          "texture": "WeaponReference/explosion_4e312bc4",
+          "clips": [
+            "WeaponReference/explosion_small_no_tail_01_9596bbfd",
+            "WeaponReference/explosion_small_no_tail_02_22a09ea7",
+            "WeaponReference/explosion_small_no_tail_03_ed21cea8",
+            "WeaponReference/explosion_small_short_01_45129eb9"
+          ],
+          "soundDb": -20,
+          "radius": 1.4734
+        }
+      ],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        1.47,
+        0.245
+      ],
+      "hitOffset": [
+        -0.49,
+        -0.005
+      ]
+    },
+    {
+      "id": "vorpal_sword",
+      "tier": 2,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.75,
+        0.16
+      ],
+      "hitOffset": [
+        0.11,
+        0.0
+      ]
+    },
+    {
+      "id": "vorpal_sword",
+      "tier": 3,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.75,
+        0.16
+      ],
+      "hitOffset": [
+        0.11,
+        0.0
+      ]
+    },
+    {
+      "id": "vorpal_sword",
+      "tier": 4,
+      "scene": "",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": true,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -5,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.75,
+        0.16
+      ],
+      "hitOffset": [
+        0.11,
+        0.0
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 2,
+      "scene": "projectiles/bullet_rail_gun/rail_gun_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 3,
+      "scene": "projectiles/bullet_rail_gun/rail_gun_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 4,
+      "scene": "projectiles/bullet_rail_gun/rail_gun_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rail_gun",
+      "tier": 1,
+      "scene": "projectiles/bullet_rail_gun/rail_gun_bullet.tscn",
+      "secondary": [],
+      "explosions": [],
+      "attackType": 0,
+      "alternate": false,
+      "returnDamage": false,
+      "accuracy": 1.0,
+      "soundDb": -15,
+      "speedWithRange": false,
+      "canBounce": true,
+      "half": [
+        0.32,
+        0.1
+      ],
+      "hitOffset": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "projectiles": [
+    {
+      "id": "projectiles/bullet/bullet_projectile.tscn",
+      "frames": [
+        "WeaponReference/frame0000_f29290ae",
+        "WeaponReference/frame0001_a728a067"
+      ],
+      "times": [
+        0,
+        0.02
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/rocket/rocket_projectile.tscn",
+      "frames": [
+        "WeaponReference/rocket_301d105f"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.21,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_taser/taser_projectile.tscn",
+      "frames": [
+        "WeaponReference/bullet_taser_0001_cc4c2a61",
+        "WeaponReference/bullet_taser_0000_45236638",
+        "WeaponReference/bullet_taser_0003_ef991d62",
+        "WeaponReference/bullet_taser_0002_5b3090b7",
+        "WeaponReference/bullet_taser_0004_2eb53267"
+      ],
+      "times": [
+        0,
+        0.02,
+        0.04,
+        0.06,
+        0.08
+      ],
+      "loop": true,
+      "duration": 0.08,
+      "stop": 0,
+      "offset": [
+        2,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.01,
+        0.0
+      ],
+      "slow": true,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/flames/flame_projectile.tscn",
+      "frames": [
+        "WeaponReference/bullet_flame_0000_180a0687",
+        "WeaponReference/bullet_flame_0001_eb86f4c2",
+        "WeaponReference/bullet_flame_0002_c4473734",
+        "WeaponReference/bullet_flame_0003_d046147e",
+        "WeaponReference/bullet_flame_0004_89e1180e",
+        "WeaponReference/bullet_flame_0005_fb44f546",
+        "WeaponReference/bullet_flame_0006_d3d0f64b",
+        "WeaponReference/bullet_flame_0007_7ad671e2"
+      ],
+      "times": [
+        0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35
+      ],
+      "loop": false,
+      "duration": 0.35,
+      "stop": 0.35,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.24,
+        -0.04
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_wand/bullet_wand.tscn",
+      "frames": [
+        "WeaponReference/bullet_wand_e15b6017"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.23,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_lightning/lightning_projectile.tscn",
+      "frames": [
+        "WeaponReference/bullet_lightning_0000_60d674df",
+        "WeaponReference/bullet_lightning_0001_4e388e95",
+        "WeaponReference/bullet_lightning_0002_87ab5590",
+        "WeaponReference/bullet_lightning_0003_ab1e58a8",
+        "WeaponReference/bullet_lightning_0002_87ab5590",
+        "WeaponReference/bullet_lightning_0001_4e388e95"
+      ],
+      "times": [
+        0,
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.1
+      ],
+      "loop": true,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        4,
+        -1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.03,
+        0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/spike/bullet_spike.tscn",
+      "frames": [
+        "WeaponReference/spike_8f6b8dd6"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.24,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_laser/bullet_laser.tscn",
+      "frames": [
+        "WeaponReference/bullet_laser_0000_e4f869e8",
+        "WeaponReference/bullet_laser_0001_ea07f811"
+      ],
+      "times": [
+        0,
+        0.02
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_medical/bullet_medical.tscn",
+      "frames": [
+        "WeaponReference/bullet_medical_0000_c4607d9e",
+        "WeaponReference/bullet_medical_0001_17dafc0d"
+      ],
+      "times": [
+        0,
+        0.02
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.03,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_shredder/bullet_shredder.tscn",
+      "frames": [
+        "WeaponReference/frame0000_f29290ae",
+        "WeaponReference/bullet_shredder_0001_44a1ed49"
+      ],
+      "times": [
+        0,
+        0.02
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/shuriken/shuriken_projectile.tscn",
+      "frames": [
+        "WeaponReference/shuriken_babc71c2"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        1,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 1500,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.01,
+        0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_slingshot/slingshot_projectile.tscn",
+      "frames": [
+        "WeaponReference/slingshot_projectile_a9ca3253"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.21,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_ghost_scepter/bullet_ghost_scepter.tscn",
+      "frames": [
+        "WeaponReference/bullet_scepter_0000_434f9252",
+        "WeaponReference/bullet_scepter_0001_eb2270fa"
+      ],
+      "times": [
+        0,
+        0.02
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.23,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_taser/delayed_taser_projectile.tscn",
+      "frames": [
+        "WeaponReference/bullet_taser_0001_cc4c2a61",
+        "WeaponReference/bullet_taser_0000_45236638",
+        "WeaponReference/bullet_taser_0003_ef991d62",
+        "WeaponReference/bullet_taser_0002_5b3090b7",
+        "WeaponReference/bullet_taser_0004_2eb53267"
+      ],
+      "times": [
+        0,
+        0.02,
+        0.04,
+        0.06,
+        0.08
+      ],
+      "loop": true,
+      "duration": 0.08,
+      "stop": 0,
+      "offset": [
+        2,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.01,
+        0.0
+      ],
+      "slow": true,
+      "delayed": true,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/nuclear_launcher/nuclear_projectile.tscn",
+      "frames": [
+        "WeaponReference/nuclear_rocket_578784c2"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        24,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.21,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/potato/potato_bullet.tscn",
+      "frames": [
+        "WeaponReference/potato_a1e6adfc"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/obliterator/obliterator_bullet.tscn",
+      "frames": [
+        "WeaponReference/obliterator_bullet_3e82a085"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bolt/bolt_projectile.tscn",
+      "frames": [
+        "WeaponReference/crossbow_projectile_a6bdae49"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        20,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.21,
+        0.0
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_laser/delayed_bullet_laser.tscn",
+      "frames": [
+        "WeaponReference/bullet_laser_0000_e4f869e8",
+        "WeaponReference/bullet_laser_0001_ea07f811"
+      ],
+      "times": [
+        0,
+        0.02
+      ],
+      "loop": false,
+      "duration": 0.1,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": true,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/bullet_particle_accelerator/particle_accelerator_projectile.tscn",
+      "frames": [
+        "WeaponReference/particle_accelerator_projectile_7d16fdea"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0.4,
+      "stop": 0.2,
+      "offset": [
+        0,
+        -16
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.0,
+      "half": [
+        0.5,
+        0.225
+      ],
+      "hitOffset": [
+        0.5,
+        -0.005
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": true,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0,
+      "start": "WeaponReference/particle_accelerator_projectile_start_1463cded",
+      "end": "WeaponReference/particle_accelerator_projectile_end_4db8ac06"
+    },
+    {
+      "id": "projectiles/icicle/icicle_projectile.tscn",
+      "frames": [
+        "WeaponReference/icicle_projectile_0e023b31"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        1,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.01,
+        0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0
+    },
+    {
+      "id": "projectiles/fireball_projectile/fireball_projectile.tscn",
+      "frames": [
+        "WeaponReference/fireball_projectile_dbdc8512"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        1,
+        0
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.01,
+        0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": false,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.3333333333333333,
+      "trail": "WeaponReference/particle_fire_animation_34067995"
+    },
+    {
+      "id": "projectiles/bullet_rail_gun/rail_gun_bullet.tscn",
+      "frames": [
+        "WeaponReference/rail_gun_bullet_0526a041"
+      ],
+      "times": [
+        0
+      ],
+      "loop": false,
+      "duration": 0,
+      "stop": 0,
+      "offset": [
+        1,
+        1
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "spin": 0,
+      "radius": 0.44,
+      "half": [
+        0.44,
+        0.44
+      ],
+      "hitOffset": [
+        0.0,
+        -0.01
+      ],
+      "slow": false,
+      "delayed": false,
+      "beam": false,
+      "rail": true,
+      "sinusoidal": [
+        0.0,
+        0.0
+      ],
+      "sinSpeed": [
+        5,
+        5
+      ],
+      "stopDelay": 0.0,
+      "trail": "WeaponReference/particle_28_cbb63890"
+    }
+  ],
+  "audio": [
+    {
+      "id": "hurt",
+      "clips": [
+        "WeaponReference/punch_general_body_impact_01_b8737a40",
+        "WeaponReference/punch_general_body_impact_02_ce12cc97",
+        "WeaponReference/punch_general_body_impact_03_1e68b521",
+        "WeaponReference/punch_general_body_impact_04_bd4e0a8f",
+        "WeaponReference/punch_general_body_impact_05_1c15daec",
+        "WeaponReference/punch_general_body_impact_06_b19166d3",
+        "WeaponReference/punch_general_body_impact_07_eb7d2303",
+        "WeaponReference/punch_general_body_impact_08_54ae346c"
+      ]
+    },
+    {
+      "id": "crit",
+      "clips": [
+        "WeaponReference/bullet_impact_metal_light_01_c05fe3f7",
+        "WeaponReference/bullet_impact_metal_light_02_ff55743d",
+        "WeaponReference/bullet_impact_metal_light_03_e6b3ba1f",
+        "WeaponReference/bullet_impact_metal_light_05_1dab658e"
+      ]
+    },
+    {
+      "id": "burn",
+      "clips": [
+        "WeaponReference/fireball_impact_burn_01_95705404",
+        "WeaponReference/fireball_impact_burn_02_1cee6541",
+        "WeaponReference/fireball_impact_burn_03_8cbb5f0f",
+        "WeaponReference/fireball_impact_burn_04_bc9b1a53"
+      ]
+    }
+  ]
+}

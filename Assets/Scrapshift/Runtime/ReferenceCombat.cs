@@ -80,17 +80,12 @@ namespace Scrapshift
                 if (equipmentViews[i] != null) Destroy(equipmentViews[i]);
                 muzzleViews[i] = null;weaponHands[i]=null;
                 equipmentViews[i] = i < Rules.Inventory.Count ? SpriteObject(Rules.Inventory[i].title, Rules.Inventory[i].image, playerPos, 12) : null;
-                swings[i] = 0;weaponShots[i]=0;weaponTargets[i]=null;weaponDirections[i]=Vector2.right;
+                swings[i] = 0;meleeAttacks[i]=null;weaponShots[i]=0;weaponTargets[i]=null;weaponDirections[i]=Vector2.right;
                 if (equipmentViews[i] == null) continue;
                 equipmentViews[i].transform.localScale = Vector3.one * ActorPresentation.WeaponScale(Rules.Inventory[i]);
                 AddWeaponHand(i,Rules.Inventory[i]);
                 if (Rules.Inventory[i].melee) continue;
-                var flash = SpriteObject("Muzzle flash", catalog.muzzleFrames[0], Vector2.zero, 14);
-                flash.transform.SetParent(equipmentViews[i].transform, false);
-                flash.transform.localPosition = new Vector3(Rules.Inventory[i].image.bounds.max.x + .14f, 0, -.1f);
-                flash.transform.localScale = Vector3.one * .48f;
-                muzzleViews[i] = flash.GetComponent<SpriteRenderer>();
-                muzzleViews[i].enabled = false;
+
             }
         }
         void SetEquipmentVisible(bool value)
@@ -324,7 +319,16 @@ namespace Scrapshift
                 if(manual&&!shooting)direction=((Vector2)gameCamera.ScreenToWorldPoint(Input.mousePosition)-mount).normalized;
                 weaponDirections[i]=direction;
                 bool fire=Rules.CanAttack&&!shooting&&(manual||nearest!=null&&RunFeedback.CanAttack(range,distance))&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
-                if(fire){weaponShots[i]++;weaponClocks[i]=Rules.WeaponCooldown(w)*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=manual?null:nearest;}
+                if(fire)
+                {
+                    weaponShots[i]++;float basis=Rules.WeaponCooldown(w)*60;int count=Mathf.Min(6,Rules.Inventory.Count);
+                    float variation=Mathf.Min(count*basis/5,count*5);
+                    weaponClocks[i]=w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?basis*w.reloadMultiplier/60:UnityEngine.Random.Range(Mathf.Max(1,basis-variation),basis+variation)/60;
+                    float accuracy=Mathf.Clamp01((WeaponReference.Profile(w)?.accuracy??1)+Rules.Stat("accuracy")/100);
+                    direction=Quaternion.Euler(0,0,UnityEngine.Random.Range(-1+accuracy,1-accuracy)*Mathf.Rad2Deg)*direction;
+                    weaponDirections[i]=direction;swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=manual?null:nearest;
+                    if(w.melee)BeginMeleeAttack(i,w,direction,manual?range:Mathf.Sqrt(distance));
+                }
                 var view=equipmentViews[i];if(view!=null)
                 {
                     float age = Rules.WeaponAnimationDuration(w) - swings[i];
@@ -342,40 +346,38 @@ namespace Scrapshift
                         muzzleViews[i].sprite = catalog.muzzleFrames[Mathf.Clamp((int)(age / .022f), 0, 2)];
                     }
                 }
+                if(w.melee){TickMeleeAttack(i,w,mount,dt);continue;}
                 if(!fire||!Rules.CanAttack)continue;float damage=Rules.WeaponDamage(w);
-                if(w.melee)
-                {
-                    Vector2 end=playerPos+direction*range;foreach(var target in enemies.ToArray())if(enemies.Contains(target)&&target.marker==null&&SegmentDistance(HurtCenter(target),playerPos,end)<HurtRadius(target)+.45f)
-                    {
-                        Damage(enemies.IndexOf(target),damage,w.crit,w.knockback,direction,w);orbitHits++;
-                    }
-                    Burst(end,4,paper);sound.Play(SoundCue.Swing,playerPos,w.sounds);
-                }
-                else
                 {
                     Vector2 muzzle = view != null ? (Vector2)view.transform.position + direction * (w.image.bounds.max.x * ActorPresentation.WeaponScale(w)) : mount;
                     if (muzzleViews[i] != null) { muzzleViews[i].enabled = true; muzzleViews[i].sprite = catalog.muzzleFrames[0]; }
                     int pellets=Mathf.Max(1,w.pellets+(int)Rules.Stat("projectiles"));
                     for(int p=0;p<pellets;p++)
                     {
-                        Vector2 dir=Quaternion.Euler(0,0,(p-(pellets-1)/2f)*Mathf.Max(5,(w.spread+Rules.Stat("projectiles")*.1f)*Mathf.Rad2Deg)+UnityEngine.Random.Range(-1f,1f)*Mathf.Max(0,-Rules.Stat("accuracy"))*.01f*Mathf.Rad2Deg) * direction;var obj=SpriteObject("Rivet tracer",catalog.muzzleFrames[2],muzzle,13);obj.transform.localScale=Vector3.one*.45f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
+                        Vector2 dir=Quaternion.Euler(0,0,WeaponReference.Spread(w,Rules.Stat("projectiles"),UnityEngine.Random.value)*Mathf.Rad2Deg) * direction;var obj=SpriteObject("Rivet tracer",catalog.muzzleFrames[2],muzzle,13);obj.transform.localScale=Vector3.one*.45f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
                         {
-                            obj=obj,pos=muzzle,velocity=dir*w.projectileSpeed,life=(range+1)/w.projectileSpeed,damage=damage,crit=w.crit,pierce=w.piercing+(int)Rules.Stat("piercing"),knockback=w.knockback,weapon=w,bounces=w.bounce+(int)Rules.Stat("bounce")
+                            obj=obj,pos=muzzle,velocity=dir*WeaponReference.Speed(w,Rules.Stat("range")),life=WeaponReference.Lifetime(range,WeaponReference.Speed(w,Rules.Stat("range")),manual),damage=damage,crit=w.crit,pierce=w.piercing+(int)Rules.Stat("piercing"),knockback=w.knockback,weapon=w,bounces=w.bounce+(int)Rules.Stat("bounce")
                         })
-                        ;shotsFired++;
+                        ;ConfigureReferenceShot(shots[shots.Count-1],manual);shotsFired++;
                     }
-                    sound.Play(SoundCue.Fire,playerPos,w.sounds);
+                    WeaponReference.Fire(sound,w,playerPos);
                 }
             }
         }
         void UpdateWeapons(float dt)
         {
+            TickReferenceExplosions(dt);
             for (int i = shots.Count - 1; i >= 0; i--)
             {
                 var s = shots[i]; Vector2 old = s.pos;
+                if(s.projectileStopped)
+                {
+                    s.age+=dt;s.life-=dt;s.pos+=s.velocity*dt;s.obj.transform.position=s.pos;s.projectileView?.Pose(s.age);
+                    if(s.life<=0){Destroy(s.obj);shots.RemoveAt(i);}continue;
+                }
                 if(s.structureSpec!=null)SupportProjectileArt.Pose(s.obj.GetComponent<SpriteRenderer>(),s.structureSpec.kind,s.age);
-                s.age+=dt;Vector2 waveVelocity=new Vector2(Mathf.Sin(s.age*s.sinSpeed.x)*s.sinusoidal.x,Mathf.Sin(s.age*s.sinSpeed.y)*s.sinusoidal.y)*.5f;
-                s.pos += (s.velocity+waveVelocity) * Mathf.Min(dt, Mathf.Max(0, s.life)); s.life -= dt;
+                s.age+=dt;s.projectileView?.Pose(s.age);if(s.projectileRef!=null&&s.projectileRef.spin!=0)s.obj.transform.Rotate(0,0,-s.projectileRef.spin*dt);Vector2 waveVelocity=new Vector2(Mathf.Sin(s.age*s.sinSpeed.x)*s.sinusoidal.x,Mathf.Sin(s.age*s.sinSpeed.y)*s.sinusoidal.y)*.5f;
+                if(s.projectileRef?.beam!=true)s.pos += (s.velocity+waveVelocity) * Mathf.Min(dt, Mathf.Max(0, s.life)); s.life -= dt;
                 s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -2);
                 if(s.structureSpec?.healing==true)
                 {if(SegmentDistance(PlayerHurtCenter,old,s.pos)<=CombatGeometry.PlayerHurtRadius+1.04f){float hp=Rules.Health;Rules.Heal(s.damage);if(Rules.Health>hp){FloatText(playerPos,$"+{Rules.Health-hp:0} HP",mint,false);sound.Play(SoundCue.Pickup);}s.life=0;}}
@@ -399,31 +401,42 @@ namespace Scrapshift
                         for (int j = 0; j < enemies.Count; j++)
                         {
                             var e = enemies[j]; if (s.hitDelay>0 || e.marker != null || s.hit.Contains(e)) continue;
-                            float t = CombatGeometry.SweepFraction(HurtCenter(e), HurtRadius(e) + CombatGeometry.BulletRadius, old, s.pos);
+                            Vector2 offset=ProjectileHitOffset(s);float radius=s.projectileRef?.radius??CombatGeometry.BulletRadius;
+                            Vector2 hitEnd=s.projectileRef?.beam==true?old+s.velocity.normalized*(Rules.WeaponRange(s.weapon)+2):s.pos;
+                            if(s.projectileRef?.beam==true)radius=.225f;
+                            float t = CombatGeometry.SweepFraction(HurtCenter(e), HurtRadius(e) + radius, old+offset, hitEnd+offset);
                             if (t < first) { first = t; nearest = j; }
                         }
                         if (nearest < 0) break;
                         var victim=enemies[nearest];s.hit.Add(victim);
                         bool critical=Damage(nearest,s.damage,s.crit,s.knockback,s.velocity,s.weapon,s.secondary,false,s.structure);
                         if(s.structureSpec!=null&&s.structureSpec.explosionRadius>0)StructureExplosion(victim.pos,s.structureSpec,victim);
-                        int bounceBonus=critical?(int)(s.weapon?.Trait("bounce_on_crit")?.value??0):0;
-                        if(s.bounces+bounceBonus>0)
+                        if(critical&&s.critBounces>0){s.bounces++;s.critBounces--;}
+                        if(critical&&s.critPierces>0){s.pierce++;s.critPierces--;}
+                        if(s.bounces>0)
                         {
-                            var target=NearestStarterTarget(victim.pos,s.hit);
-                            if(target!=null){s.bounces=Mathf.Max(0,s.bounces-1);s.pos=victim.pos;s.velocity=(target.pos-s.pos).normalized*s.velocity.magnitude;s.life=2;s.damage*=1-(s.weapon?.bounceLoss??.5f);break;}
+                            var candidates=enemies.FindAll(e=>e!=victim&&e.marker==null&&e.hp>0);
+                            var target=candidates.Count>0?candidates[UnityEngine.Random.Range(0,candidates.Count)]:null;
+                            Vector2 bounceDirection=target!=null?(target.pos-s.pos).normalized:UnityEngine.Random.insideUnitCircle.normalized;
+                            s.bounces--;s.velocity=bounceDirection*s.velocity.magnitude;s.life=101/Mathf.Max(.001f,s.velocity.magnitude);s.knockback=0;
+                            s.obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(bounceDirection.y,bounceDirection.x)*Mathf.Rad2Deg);
+                            s.damage=WeaponReference.DamageAfterHit(s.damage,s.weapon?.bounceLoss??.5f,Rules.Stat("bounce_damage"));break;
                         }
-                        int pierceBonus=critical?(int)(s.weapon?.Trait("pierce_on_crit")?.value??0):0;
-                        if(s.pierce--+pierceBonus<=0){s.life=0;break;}
-                        s.damage*=Mathf.Clamp01(1-(s.weapon?.pierceLoss??.5f)+Rules.Stat("piercing_damage")/100);
+                        if(s.pierce--<=0){s.life=0;break;}
+                        s.damage=WeaponReference.DamageAfterHit(s.damage,s.weapon?.pierceLoss??.5f,Rules.Stat("piercing_damage"));
                     }
                 }
                 if (s.life <= 0 || CombatGeometry.ProjectileOutside(s.pos))
-                { Destroy(s.obj); shots.RemoveAt(i); }
+                {
+                    if(s.projectileRef!=null&&s.projectileRef.stopDelay>0){s.projectileStopped=true;s.life=s.projectileRef.stopDelay;s.projectileView?.StopEmission();}
+                    else {Destroy(s.obj); shots.RemoveAt(i);}
+                }
             }
         }
         bool Damage(int index,float damage,float crit=0,float knockback=1,Vector2 attackDirection=default,Equipment weapon=null,bool secondary=false,bool bypassArmor=false,bool structure=false)
         {
             if(index<0||index>=enemies.Count)return false;
+            float sourceDamage=damage;
             knockback+=Rules.Stat("knockback")/10;
             var e=enemies[index];if(e.marker!=null)return false;bool critical=(!structure||Rules.Stat("structures_can_crit")>0)&&UnityEngine.Random.value<Mathf.Clamp01(Rules.CritChance+crit);if(critical)
             {
@@ -442,11 +455,11 @@ namespace Scrapshift
             e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
-            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);sound.Play(critical?SoundCue.Critical:e.hp<=0?SoundCue.Kill:SoundCue.Impact,e.pos);if(!structure&&Rules.TryLifeSteal(UnityEngine.Random.value,(weapon?.lifesteal??0)+(weapon!=null?(Rules.Character?.WeaponBonus(weapon,"lifesteal")??0)/100:0)))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary,structure);return critical;}if(bypassArmor)Rules.RecordBurnKill();Rules.RecordEnemy(e.type.id,e.type.role=="Tree",e.activeAge,e.type.role=="Boss"||e.type.role=="Elite");Rules.Kill();Rules.CriticalKillMaterials(critical);if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ if(enemies.FindAll(x=>x.type.role=="Boss"&&x.hp>0).Count==0)Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;if(e.type.role=="Elite")consumable=ConsumableKind.LegendaryCrate;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<(e.type.id=="bloated_spawner"?5:3);i++)births.Push(new Birth
+            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);WeaponReference.Impact(sound,e.pos,critical,bypassArmor);if(!structure&&Rules.TryLifeSteal(UnityEngine.Random.value,(weapon?.lifesteal??0)+(weapon!=null?(Rules.Character?.WeaponBonus(weapon,"lifesteal")??0)/100:0)))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary,structure,sourceDamage);return critical;}if(bypassArmor)Rules.RecordBurnKill();Rules.RecordEnemy(e.type.id,e.type.role=="Tree",e.activeAge,e.type.role=="Boss"||e.type.role=="Elite");Rules.Kill();Rules.CriticalKillMaterials(critical);if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ if(enemies.FindAll(x=>x.type.role=="Boss"&&x.hp>0).Count==0)Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;if(e.type.role=="Elite")consumable=ConsumableKind.LegendaryCrate;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<(e.type.id=="bloated_spawner"?5:3);i++)births.Push(new Birth
             {
                 type=catalog.Enemy(e.type.id=="bloated_spawner"?"dire_junkie":"junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))
             }, BirthLane.Summon)
-            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure);if(e.type.role!="Tree"){EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0||bypassArmor);}else DeployTreeTurrets(e.pos);return critical;
+            ;ApplyStarterHit(e,weapon,critical,true,secondary,structure,sourceDamage);if(e.type.role!="Tree"){EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0||bypassArmor);}else DeployTreeTurrets(e.pos);return critical;
         }
         void Drop(Vector2 p,int value,bool fruit)
         {

@@ -42,15 +42,16 @@ namespace Scrapshift
     // Leaf schema: projectile data must not recursively contain weapon traits in Unity serialization.
     [Serializable] public sealed class ProjectileStats
     {
+        [NonSerialized] public string projectileScene;
         public float damage,interval,range,spread,crit,knockback,critMultiplier=2,lifesteal,projectileSpeed=30,
             pierceLoss=.5f,bounceLoss=.5f,reloadMultiplier=1,recoil=.25f,recoilHalf=.1f;
         public int pellets=1,piercing,bounce,reloadEvery=-1;
         public StatEffect[] scaling;
         [NonSerialized] Equipment cached;
-        public Equipment AsEquipment()=>cached??(cached=new Equipment{specialSpawn=true,damage=damage,interval=interval,range=range,
+        public Equipment AsEquipment(){var result=cached??(cached=new Equipment{projectileScene=projectileScene,specialSpawn=true,damage=damage,interval=interval,range=range,
             spread=spread,crit=crit,knockback=knockback,critMultiplier=critMultiplier,lifesteal=lifesteal,
             projectileSpeed=projectileSpeed,pierceLoss=pierceLoss,bounceLoss=bounceLoss,reloadMultiplier=reloadMultiplier,
-            recoil=recoil,recoilHalf=recoilHalf,pellets=pellets,piercing=piercing,bounce=bounce,reloadEvery=reloadEvery,scaling=scaling});
+            recoil=recoil,recoilHalf=recoilHalf,pellets=pellets,piercing=piercing,bounce=bounce,reloadEvery=reloadEvery,scaling=scaling});result.projectileScene=projectileScene;return result;}
     }
     [Serializable] public sealed class SetBonusEntry { public int count; public StatEffect[] effects; }
     [Serializable] public sealed class SetEntry { public string id,name; public SetBonusEntry[] bonuses; }

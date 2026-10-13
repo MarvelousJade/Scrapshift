@@ -33,9 +33,9 @@ namespace Scrapshift
             if(structureSpec?.kind=="flame")shot.damage=1;
             if(structureSpec!=null)SupportProjectileArt.Pose(obj.GetComponent<SpriteRenderer>(),structureSpec.kind,0);
             if(delayedSlow){shot.hitDelay=UnityEngine.Random.Range(0,.05f);shot.slow=2;}
-            if(exclude!=null)shot.hit.Add(exclude);shots.Add(shot);shotsFired++;
+            ConfigureReferenceShot(shot);if(exclude!=null)shot.hit.Add(exclude);shots.Add(shot);shotsFired++;
         }
-        void ApplyStarterHit(Enemy victim,Equipment weapon,bool critical,bool killed,bool secondary,bool structure=false)
+        void ApplyStarterHit(Enemy victim,Equipment weapon,bool critical,bool killed,bool secondary,bool structure=false,float hitDamage=-1)
         {
             if(weapon!=null&&!killed&&Rules.RollBurn(weapon,UnityEngine.Random.value,out float burnDamage,out int burnTicks,structure))
                 ApplyBurn(victim,burnDamage,burnTicks,(int)Rules.Stat("burning_spread"),weapon.Trait("effect_burning")?.burnStat??"elemental_damage");
@@ -59,11 +59,7 @@ namespace Scrapshift
                     case "effect_explode":case "effect_explode_melee":case "effect_explode_custom":
                         if(UnityEngine.Random.value<trait.chance)
                         {
-                            float radius=trait.radius*(1+Rules.Stat("explosion_size")/100);int before=Rules.Kills;
-                            Burst(victim.pos,12,amber);
-                            foreach(var e in enemies.ToArray())if(e!=victim&&e.marker==null&&Vector2.Distance(e.pos,victim.pos)<radius)
-                                Damage(enemies.IndexOf(e),Rules.WeaponDamage(weapon)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),weapon.crit,weapon.knockback,e.pos-victim.pos,weapon,true);
-                            Rules.RecordExplosionKills(Rules.Kills-before);
+                            SpawnReferenceExplosion(victim,weapon,trait,hitDamage>=0?hitDamage:Rules.WeaponDamage(weapon));
                         }
                         break;
                     case "gold_on_crit_kill":
@@ -124,6 +120,8 @@ namespace Scrapshift
         }
         void ClearStarterEffects()
         {
+            foreach(var explosion in weaponExplosions)if(explosion.obj!=null)Destroy(explosion.obj);weaponExplosions.Clear();
+            System.Array.Clear(meleeAttacks,0,meleeAttacks.Length);
             foreach(var t in starterTurrets)Destroy(t.obj);starterTurrets.Clear();
             foreach(var mine in mines)Destroy(mine.obj);mines.Clear();mineSpawners.Clear();
         }

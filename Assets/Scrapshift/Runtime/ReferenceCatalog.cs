@@ -32,6 +32,7 @@ namespace Scrapshift
     [Serializable] public sealed class Equipment
     {
         public string id,title,icon;
+        [NonSerialized] public string projectileScene;
         public int tier,value,pellets,piercing;
         public bool melee;
         public bool specialSpawn,pet;
