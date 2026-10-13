@@ -9,7 +9,7 @@ namespace Scrapshift
         sealed class Pet
         {
             public PetSpec spec;public GameObject obj;public Vector2 pos,destination,jumpStart;public float clock,secondaryClock,age,health,invulnerable,jump,baseScale,posePhase,attackPose;
-            public Equipment weapon,secondary;public bool dead,boosted;public SupportRig rig;
+            public float boostAge;public Equipment weapon,secondary;public bool dead,boosted;public SupportRig rig;
             public Enemy target;public float rightClock,patrolAngle,maxHealth,meleeDelay;public bool pendingMelee;
             public AudioSource reviveSound;public LineRenderer zoneView,healthView,healthBack;public bool inHealingZone;
         }
@@ -93,7 +93,7 @@ namespace Scrapshift
                     var target=ranged?PetRangedTarget(p.pos,p.weapon.range):SelectPetTarget(p);
                     bool wasBoosted=p.boosted;
                     p.boosted=cat&&(Vector2.Distance(playerPos,p.pos)<=1.5f||pets.Any(o=>o!=p&&!o.dead&&o.spec.kind!="catling_gun"&&o.spec.kind!="jellyshield"&&Vector2.Distance(o.pos,p.pos)<=1.5f));
-                    if(p.boosted&&!wasBoosted)OriginalSupportAudio.Play(sound,"cat_boost",p.pos);
+                    if(p.boosted&&!wasBoosted){p.boostAge=0;OriginalSupportAudio.Play(sound,"cat_boost",p.pos);}else if(p.boosted)p.boostAge+=dt;
                     if(p.jump>0)
                     {
                         p.jump=Mathf.Max(0,p.jump-dt);float t=1-p.jump/.5f;
@@ -138,6 +138,7 @@ namespace Scrapshift
                 if(Mathf.Abs(p.pos.x-previous.x)>.001f)renderer.flipX=p.pos.x>previous.x;
                 if(p.rig!=null)p.rig.PetPose(p.posePhase,moving,renderer.flipX,reducedMotion,p.dead);
                 var pose=reducedMotion?Vector2.one:SupportMotion.PetScale(spec.kind,p.posePhase,moving,p.attackPose);
+                if(spec.kind=="catling_gun"&&p.boosted&&!reducedMotion)pose=SupportMotion.CatBoostScale(p.boostAge,p.posePhase);
                 if(p.dead)pose=new Vector2(1.12f,.65f);
                 p.obj.transform.localScale=new Vector3(pose.x,pose.y,1)*p.baseScale;
                 float jumpLift=p.jump>0&&!reducedMotion?Mathf.Sin(p.jump/.5f*Mathf.PI)*.8f:0;

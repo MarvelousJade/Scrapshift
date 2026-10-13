@@ -7,6 +7,13 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void CatMadEntryTransitionsIntoDistinctBoostedPose()
+        {
+            Assert.AreEqual(new Vector2(1.101f,.953f),SupportMotion.CatBoostScale(0,0));
+            Assert.AreEqual(new Vector2(.9911f,1.0169f),SupportMotion.CatBoostScale(.2f,0));
+            Assert.AreNotEqual(SupportMotion.CatBoostScale(.3f,0),SupportMotion.CatBoostScale(.3f,.5f));
+            Assert.AreEqual(.5f,SupportBehavior.CatInterval(1,true));
+        }
         [Test] public void OriginalSupportAttackSoundsResolveToClips()
         {
             foreach(var kind in new[]{"turret","flame","rocket","laser","healing","garden","tyler","wandering_bot","catling_gun","bot_o_mine","blazemander"})

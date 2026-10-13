@@ -37,6 +37,12 @@ namespace Scrapshift
                 ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,turretKind+"-aim-"+pose+".png"));
                 petReviewNext=Time.realtimeSinceStartup+.8f;return;
             }
+            if(petReviewStage>=petCases.Length+26&&petReviewStage<petCases.Length+28)
+            {
+                int pose=petReviewStage++-petCases.Length-26;var cat=SetUpPetCase("catling_gun");playerPos=cat.pos;TickPets(.01f);if(pose==1)TickPets(.25f);
+                player.SetActive(false);SyncEquipment();gameCamera.orthographicSize=1.2f;gameCamera.transform.position=new Vector3(cat.pos.x,cat.pos.y,-20);
+                ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,"cat-boost-"+pose+".png"));petReviewNext=Time.realtimeSinceStartup+.8f;return;
+            }
             if(petReviewStage>=petCases.Length){CheckMultipleSupports();petReport.status=petReport.failed.Count==0?"Passed":"Failed";File.WriteAllText(Path.Combine(petReviewPath,"pets.json"),JsonUtility.ToJson(petReport,true));petReview=false;Application.Quit(petReport.failed.Count==0?0:1);return;}
             string id=petCases[petReviewStage++];bool okay=false;Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.zero;
             var item=catalog.data.items.Single(i=>i.id==id);Rules.Items.Add(item);foreach(var effect in item.effects)Rules.GainWeaponStat(effect.key.Replace("stat_",""),effect.value);ResetPets();
