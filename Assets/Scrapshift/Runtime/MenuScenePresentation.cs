@@ -46,53 +46,22 @@ namespace Scrapshift
             }
             Box(rect,new Color(0,0,0,close?.16f:.28f));
         }
-        void AnimatedMenuPortrait(Vector2 origin,float scale,bool armed=false)
+        void AnimatedMenuPortrait(Vector2 origin,float scale)
         {
-            float time=MenuTime;
-            float stunt=Mathf.Clamp01((Mathf.Repeat(time,7)-5.8f)/1.2f);
-            float jump=Mathf.Sin(stunt*Mathf.PI);
-            float bounce=reducedMotion?0:Mathf.Abs(Mathf.Sin(time*Mathf.PI/ .95f))*scale*.035f;
-            RoundedBox(new Rect(origin.x-scale*.44f,origin.y+scale*.47f,scale*.88f,scale*.16f),new Color(0,0,0,.28f),scale*.08f);
-            var center=origin+Vector2.up*(-bounce-jump*scale*.24f);
-            var before=GUI.matrix;
-            float angle=stunt>0?Mathf.SmoothStep(0,360,stunt):0;
-
-            float squash=reducedMotion?0:Mathf.Cos(time*Mathf.PI*2/.95f)*.025f;
-            GUI.matrix=before*Matrix4x4.TRS(center,Quaternion.Euler(0,0,angle),new Vector3(1+squash,1-squash,1))*Matrix4x4.Translate(-center);
-            Portrait(center,scale,playerAnimation.Look,false,time);
-            if(armed)
-            {
-                foreach(int side in new[]{-1,1})
-                {
-                    var weapon=catalog.Weapon(side<0?"smg":"pistol",1);
-                    var at=center+new Vector2(side*scale*.60f,-scale*.09f);
-                    var pose=GUI.matrix;
-                    GUI.matrix=pose*Matrix4x4.TRS(at,Quaternion.Euler(0,0,(side<0?-145:-35)+Mathf.Sin(time*3)*4),Vector3.one)*Matrix4x4.Translate(-at);
-                    DrawIcon(weapon?.image,new Rect(at.x-scale*.25f,at.y-scale*.15f,scale*.5f,scale*.3f));GUI.matrix=pose;
-                }
-            }
-            GUI.matrix=before;
+            var old=GUI.color;GUI.color=new Color(0,0,0,.30f);
+            DrawIcon(catalog.shadow,new Rect(origin.x-scale*.44f,origin.y+scale*.42f,scale*.88f,scale*.20f));GUI.color=old;
+            // The same idle pose as SpriteFrameAnimator: fixed feet, body-only spring.
+            Portrait(origin,scale,playerAnimation.Look,false,MenuTime);
         }
         void TitleScene()
         {
-            if(titleBackdrop==null)titleBackdrop=Resources.Load<Texture2D>("Menu/SalvageTitle");
+            if(titleBackdrop==null)titleBackdrop=Resources.Load<Texture2D>("Menu/SalvageTitleEquipped");
             if(titleBackdrop!=null)GUI.DrawTexture(FullCanvas,titleBackdrop,ScaleMode.ScaleAndCrop);else DrawMenuGround(FullCanvas);
-            float time=MenuTime;
-            var old=GUI.color;
-            for(int i=0;i<8;i++)
-            {
-                float a=i*Mathf.PI*2/8+time*.025f;
-                var center=new Vector2(790+Mathf.Cos(a)*660,525+Mathf.Sin(a)*365);
-                GUI.color=new Color(.60f,.57f,.68f,.18f);
-                var matrix=GUI.matrix;GUI.matrix=matrix*Matrix4x4.TRS(center,Quaternion.Euler(0,0,Mathf.Sin(time*.5f+i)*9),Vector3.one)*Matrix4x4.Translate(-center);
-                DrawIcon(catalog.data.enemies[i%catalog.data.enemies.Length].image,new Rect(center.x-95,center.y-95,190,190));GUI.matrix=matrix;
-            }
-            GUI.color=old;
-            AnimatedMenuPortrait(new Vector2(790,570),265,true);
         }
         void OnDestroy()
         {
             if(menuGround!=null){menuGround.Release();Destroy(menuGround);}
+            if(mittenMesh!=null)Destroy(mittenMesh);
         }
     }
 }

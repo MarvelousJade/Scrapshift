@@ -78,11 +78,12 @@ namespace Scrapshift
             for(int i=0;i<equipmentViews.Length;i++)
             {
                 if (equipmentViews[i] != null) Destroy(equipmentViews[i]);
-                muzzleViews[i] = null;
+                muzzleViews[i] = null;weaponHands[i]=null;
                 equipmentViews[i] = i < Rules.Inventory.Count ? SpriteObject(Rules.Inventory[i].title, Rules.Inventory[i].image, playerPos, 12) : null;
                 swings[i] = 0;weaponShots[i]=0;weaponTargets[i]=null;weaponDirections[i]=Vector2.right;
                 if (equipmentViews[i] == null) continue;
                 equipmentViews[i].transform.localScale = Vector3.one * ActorPresentation.WeaponScale(Rules.Inventory[i]);
+                AddWeaponHand(i,Rules.Inventory[i]);
                 if (Rules.Inventory[i].melee) continue;
                 var flash = SpriteObject("Muzzle flash", catalog.muzzleFrames[0], Vector2.zero, 14);
                 flash.transform.SetParent(equipmentViews[i].transform, false);
@@ -334,6 +335,7 @@ namespace Scrapshift
                     view.transform.rotation = Quaternion.Euler(0, 0, angle);
                     view.GetComponent<SpriteRenderer>().flipY = direction.x < 0;
                     view.GetComponent<SpriteRenderer>().sortingOrder=ActorPresentation.WeaponOrder(Rules.Inventory.Count,i);
+                    PoseWeaponHand(i,direction.x<0,ActorPresentation.WeaponOrder(Rules.Inventory.Count,i));
                     if (muzzleViews[i] != null)
                     {
                         muzzleViews[i].enabled = age < .066f;

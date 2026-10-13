@@ -95,7 +95,8 @@ namespace Scrapshift
                 // Keep older saved scenes free of the removed decorative stones too.
                 if(child.name=="Small stone"||child.name=="Stone highlight"||child.name=="Small faceted stone"||child.name=="Buried scrap"||child.name=="Scrap glint"||child.name=="Dry grass")child.gameObject.SetActive(false);
             }
-            AddYardDetails(yard.transform);
+            mapChoice=Mathf.Clamp((int)GameSettings.Value("mapTheme",0),-1,MapThemes.Names.Length-1);
+            ApplyMapTheme(mapChoice<0?new System.Random().Next(MapThemes.Names.Length):mapChoice);
         }
     }
 }

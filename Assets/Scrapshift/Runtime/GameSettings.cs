@@ -57,7 +57,7 @@ namespace Scrapshift
             settingsValue=new GUIStyle(center){fontSize=27};
             string[] tabs={"Sound","Video","Gameplay","Accessibility"};
             for(int i=0;i<4;i++)if(SettingsButton(new Rect(160+i*282,55,272,65),tabs[i],optionsTab==i)){optionsTab=i;optionsScroll=Vector2.zero;}
-            var view=new Rect(235,155,970,570);float content=optionsTab==2?545:optionsTab==3?1050:545;
+            var view=new Rect(235,155,970,570);float content=optionsTab==2?545:optionsTab==3?1050:optionsTab==1&&mapPicker?1010:545;
             optionsScroll=GUI.BeginScrollView(view,optionsScroll,new Rect(0,0,947,content));float y=0;
             if(optionsTab==0)
             {
@@ -72,6 +72,7 @@ namespace Scrapshift
             else if(optionsTab==1)
             {
                 if(SettingsButton(new Rect(0,y,940,53),DisplayLabel))ToggleFullscreen();y+=62;
+                DrawMapOption(ref y);
                 OptionToggle("Screen shake","shake",ref y);OptionToggle("Visual effects","effects",ref y);OptionToggle("Damage display","damage",ref y);
                 OptionToggle("Limit FPS to 60","limitFps",ref y,false);Application.targetFrameRate=GameSettings.Flag("limitFps",false)?60:120;
             }

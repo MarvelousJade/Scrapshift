@@ -19,6 +19,7 @@ namespace Scrapshift
         {var deck=GameObject.Find("Deck art");if(deck!=null)deck.transform.localScale=new Vector3(ArenaGeometry.HalfSize.x/ArenaGeometry.BaseHalfSize.x,ArenaGeometry.HalfSize.y/ArenaGeometry.BaseHalfSize.y,1);}
         void StartSelectedRun()
         {
+            if(mapChoice<0)ApplyMapTheme(new System.Random().Next(MapThemes.Names.Length));
             pauseOptions=pauseCodex=false;Begin();Rules.Progress=progress;Rules.Difficulty=selectedDifficulty;recordedFinish=false;Rules.Start(SelectedCharacter,SelectedWeapon?.id);ArenaGeometry.SetMapSize(Rules.Stat("map_size"));ScaleMapArt();PlanEncounters();StartWave();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
@@ -78,19 +79,25 @@ namespace Scrapshift
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false,float motionTime=-1)
         {
             var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>());
-            foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,origin,scale);
             if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
             {
                 var sprite=playerAnimation.footSprite;Vector2 size=sprite.bounds.size*(SpringMotion.LegHeight/sprite.bounds.size.y)*scale;
                 Vector2 p=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
                 var before=GUI.matrix;
                 GUI.matrix=before*SpringMotion.PortraitLegTransform(p,side);
-                if(motionTime>=0&&!reducedMotion)GUI.matrix=before*Matrix4x4.TRS(p,Quaternion.Euler(0,0,Mathf.Sin(motionTime*6)*side*12),Vector3.one)*Matrix4x4.Translate(-p)*SpringMotion.PortraitLegTransform(p,side);
                 DrawIcon(sprite,new Rect(p-size*.5f,size));GUI.matrix=before;
             }
+            var portraitMatrix=GUI.matrix;
+            if(motionTime>=0)
+            {
+                var spring=SpringMotion.Pose(motionTime,false,reducedMotion);
+                GUI.matrix=portraitMatrix*Matrix4x4.TRS(origin+Vector2.down*(-spring.z*scale),Quaternion.identity,new Vector3(spring.x,spring.y,1))*Matrix4x4.Translate(-origin);
+            }
+            foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,origin,scale);
             var hero=playerAnimation.idleFrames[0];Vector2 bodySize=(Vector2)hero.bounds.size*scale;
             var bodyColor=GUI.color;GUI.color=PresentationPolish.BodyTint;DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));GUI.color=bodyColor;
             foreach(var layer in layers)if(layer.order>=10)DrawAppearance(layer,origin,scale);
+            GUI.matrix=portraitMatrix;
         }
         void SelectionUI()
         {
@@ -109,7 +116,10 @@ namespace Scrapshift
             {
                 RoundedBox(new Rect(935,155,230,420),panelColor);
                 Text(955,184,190,40,"Run options",new GUIStyle(heading){fontSize=24,wordWrap=false});
-                Text(957,265,185,150,"Single player\n20 waves\nThe salvage yard",body);
+                Text(957,250,185,80,"Single player\n20 waves",body);
+                Text(955,345,190,35,"Map",body);
+                if(MenuButton(new Rect(950,390,200,65),MapChoiceName,fontSize:22))ChooseMap(mapChoice>=MapThemes.Names.Length-1?-1:mapChoice+1);
+                Text(955,470,190,65,"Click to change",new GUIStyle(body){fontSize=18});
                 CharacterGrid();
             }
             else
@@ -141,9 +151,6 @@ namespace Scrapshift
             if(menuPage==5){MenuBackdrop();DrawPauseCodex();return;}
             if(menuPage!=0){SelectionUI();return;}
             TitleScene();
-            var brand=new GUIStyle(title){fontSize=142,alignment=TextAnchor.MiddleCenter};
-            OutlinedText(125,72,1190,175,"SCRAPSHIFT",brand);
-            Text(300,245,840,42,"THE SALVAGE YARD",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
             if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;

@@ -49,7 +49,7 @@ October 12 presentation/boss update: rounded shop cards, reference tier colors/t
 
 Previous UI follow-up: Builds/UpgradeInventory/Scrapshift.exe. F or R rerolls. Shop item/weapon icons highlight white with a dedicated hover cue. Hover the character portrait in Items to inspect abilities. Level-up inventory removed; reward icons and inline effect symbols enlarged.
 
-Latest build: Builds/MenuScene/Scrapshift.exe. Run the EXE with its data folder; the ZIP is only a sharing copy.
+Latest build: Builds/MapThemes/Scrapshift.exe. Run the EXE with its data folder; the ZIP is only a sharing copy.
 Codex is available from the title and pause menus: Challenges, Items, Weapons and Enemies. Locked rewards and undiscovered entries differ; acquire items/weapons or defeat enemies to reveal details. Newly earned rewards appear after a run.
 Options now have Sound, Video, Gameplay and Accessibility tabs. Includes manual aiming, mouse movement, focus behavior, boss HP bar, shop lock retention, implant appearance, enemy difficulty multipliers and readable-effect controls. See docs/progression-and-options.md for the exact supported scope and remaining differences.
 Large old stone/scrap fragments replaced with small grass and pebble motifs; elemental/conditional/level-scaling and crate description icons repaired.
@@ -60,4 +60,7 @@ Review and previews: artifacts/feedback-polish-review/review.html.
 
 Settings text now matches the main-menu Options button size. Native controller support is not implemented; use keyboard/mouse.
 
-Menu presentation: original illustrated title backdrop, two animated weapons, and slowly orbiting enemies. Character selection uses a zoomed crop of the actual yard; the preview bounces, wiggles its legs and occasionally spins. Reduced Motion disables menu motion too.
+Menu presentation: one complete title illustration with an equipped mascot. Character selection uses a zoomed crop of the actual yard and the same body squash/stretch idle as gameplay; feet remain planted. Reduced Motion disables the spring.
+
+Options > Video > Background: Random or one of six visual map themes. Character Selection also has a Map shortcut. Background selection is saved and applies immediately; Random selects again when starting a run. These are visual arenas with unchanged combat rules and bounds.
+Weapons have simple cream grip mittens with no arms or fingers. Fist/hand/claw weapons keep their existing art.
