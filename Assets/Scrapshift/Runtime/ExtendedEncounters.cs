@@ -71,7 +71,7 @@ namespace Scrapshift
             encounterStates.TryGetValue(e,out int current);int next=current;
             for(int i=current+1;i<d.states.Length;i++)if(e.hp/e.maxHp<=d.states[i].hp||e.activeAge>=d.states[i].time)next=i;
             if(next!=current)
-            {encounterStates[e]=next;e.behavior=EncounterBehavior(d,next);e.attack=MakeAttack(e.behavior);e.hasDestination=false;FloatText(e.pos,"MUTATION",coral,true);}
+            {if(e.type.role=="Boss")bossMutations+=next-current;encounterStates[e]=next;e.behavior=EncounterBehavior(d,next);e.attack=MakeAttack(e.behavior);e.hasDestination=false;FloatText(e.pos,"MUTATION",coral,true);}
             if(e.type.id=="healer")HealNearbyEnemies(e);
             if(e.type.id=="monk")e.speed=e.type.speed*(next==1||next==3?.5f:next==2?1.25f:1);
             if(d.extra.Length==0||e.attack==null)return;

@@ -42,4 +42,5 @@ Harvesting grants materials and XP at wave end. Positive Harvesting normally inc
 
 Shop items appear bottom left; weapons use three columns and two rows for six slots. Sort items by obtaining order, name, tier or category and reverse the order. White/blue/purple/red indicate tiers I/II/III/IV. Green values are beneficial changes, red values penalties; gold labels show weapon types. Hover or select equipment to inspect its live stats and weapon sets.
 
-Validation and limitations: see docs/verification.md and artifacts/base-completion-review/review.html in the project. Automated tests and staged rendered checks are not human balance/playtesting. Companion and elite presentation uses our existing art and Unity-specific movement adaptations.
+Validation and limitations: see docs/verification.md and artifacts/base-release-ui/review.html in the project. Automated tests and staged rendered checks are not human balance/playtesting. Companion and elite presentation uses our existing art and Unity-specific movement adaptations.
+

@@ -278,3 +278,7 @@ Reference audits also corrected Vorpal reward identity, double-applied Fisherman
 The final geometry test also caught a coordinate-contract error: OverrideGeometry accepts pixel coordinates relative to the sprite rectangle, not pivot-adjusted world units. Corrected against https://docs.unity3d.com/ScriptReference/Sprite.OverrideGeometry.html and retained the vertex-count regression.
 
 Runtime geometry verification was moved into the built-player fixture because EditMode disallows the native override call. EditMode still checks mask bounds/retained pixels. Visual inspection then exposed subpixel strip loss in IMGUI; render each masked icon at native resolution into a cached render target before scaling it once. This is a rendering correction, not a replacement of the original artwork.
+
+Final visual review found the level-up Stats panel covered the pending-level arrows. Offset that panel down on Upgrade only, matching the supplied screenshot while preserving the shop alignment.
+
+The first completed 20-wave campaign reported Failed despite Won/20 waves/47 purchases: boss-phase telemetry counted Predator only, but the new reference boss selection chose Invoker. Added phase-transition accounting to extended bosses and reran the campaign; the original failed report is retained separately.

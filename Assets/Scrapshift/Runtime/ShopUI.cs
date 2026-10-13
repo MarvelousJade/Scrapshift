@@ -33,7 +33,7 @@ namespace Scrapshift
         void DrawStatsPanel(bool summary=false)
         {
             var previousMatrix=GUI.matrix;
-            GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(summary?-1050:StatsLeft-1110,summary?80:0,0));
+            GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(summary?-1050:StatsLeft-1110,summary?80:Rules.Phase==RunPhase.Upgrade?143:0,0));
             Box(new Rect(1110,24,336,summary?680:650),new Color(.065f,.06f,.05f,.93f));
             Text(1130,43,296,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
             if(Button(new Rect(1125,94,133,35),"Primary"))secondaryStats=false;
