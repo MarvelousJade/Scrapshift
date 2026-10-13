@@ -373,6 +373,7 @@ namespace Scrapshift
             for (int i = shots.Count - 1; i >= 0; i--)
             {
                 var s = shots[i]; Vector2 old = s.pos;
+                if(s.structureSpec!=null)SupportProjectileArt.Pose(s.obj.GetComponent<SpriteRenderer>(),s.structureSpec.kind,s.age);
                 s.age+=dt;Vector2 waveVelocity=new Vector2(Mathf.Sin(s.age*s.sinSpeed.x)*s.sinusoidal.x,Mathf.Sin(s.age*s.sinSpeed.y)*s.sinusoidal.y)*.5f;
                 s.pos += (s.velocity+waveVelocity) * Mathf.Min(dt, Mathf.Max(0, s.life)); s.life -= dt;
                 s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -2);

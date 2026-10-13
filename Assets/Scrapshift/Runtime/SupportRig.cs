@@ -78,7 +78,9 @@ namespace Scrapshift
                 line.startColor=line.endColor=layer==0?Color.black:new Color(.45f,.45f,.42f);line.sortingOrder=6+layer;
             }
         }
-        static Sprite catBody;
+        static Sprite catBody,catBoostBody;
+        public void CatBoost(bool boosted)
+        {if(kind=="catling_gun"&&body!=null)body.GetComponent<SpriteRenderer>().sprite=CatBody(boosted);}
         public static Sprite GatlingGun()=>LoadStandalone("PetGatlingUpper");
         static readonly Dictionary<string,Sprite> standalone=new Dictionary<string,Sprite>();
         static Sprite LoadStandalone(string resource)
@@ -90,8 +92,16 @@ namespace Scrapshift
             var pivot=resource=="PetGatlingUpper"?new Vector2(.10f,.42f):new Vector2(.5f,.5f);
             sprite=Sprite.Create(texture,Rect.MinMaxRect(l,b,r,t),pivot,100,0,SpriteMeshType.FullRect);sprite.name=resource;standalone[resource]=sprite;return sprite;
         }
-        static Sprite CatBody()
+        static Sprite CatBody(bool boosted=false)
         {
+            if(boosted)
+            {
+                if(catBoostBody!=null)return catBoostBody;
+                var normal=CatBody();var red=Resources.Load<Texture2D>("CatBodyBoost");
+                var rect=normal.rect;rect.xMin-=32;rect.yMin-=32;rect.xMax+=32;rect.yMax+=32;
+                var pivot=(normal.rect.center-rect.position)/rect.size;
+                catBoostBody=Sprite.Create(red,rect,pivot,100,0,SpriteMeshType.FullRect);catBoostBody.name="CatBodyBoost";return catBoostBody;
+            }
             if(catBody!=null)return catBody;
             var texture=Resources.Load<Texture2D>("CatBodyV2");var pixels=texture.GetPixels32();
             int l=texture.width,b=texture.height,r=0,t=0;

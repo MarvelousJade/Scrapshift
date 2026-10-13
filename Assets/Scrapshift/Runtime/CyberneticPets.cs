@@ -136,7 +136,7 @@ namespace Scrapshift
                 p.posePhase+=dt*(spec.kind=="doc_moth"?6:moving?2:1);
                 var renderer=p.obj.GetComponent<SpriteRenderer>();
                 if(Mathf.Abs(p.pos.x-previous.x)>.001f)renderer.flipX=p.pos.x>previous.x;
-                if(p.rig!=null)p.rig.PetPose(p.posePhase,moving,renderer.flipX,reducedMotion,p.dead);
+                if(p.rig!=null){p.rig.PetPose(p.posePhase,moving,renderer.flipX,reducedMotion,p.dead);p.rig.CatBoost(p.boosted&&!p.dead);}
                 var pose=reducedMotion?Vector2.one:SupportMotion.PetScale(spec.kind,p.posePhase,moving,p.attackPose);
                 if(spec.kind=="catling_gun"&&p.boosted&&!reducedMotion)pose=SupportMotion.CatBoostScale(p.boostAge,p.posePhase);
                 if(p.dead)pose=new Vector2(1.12f,.65f);

@@ -33,6 +33,12 @@ namespace Scrapshift
                 var turretItem=catalog.data.items.Single(i=>i.conditionalEffects.Any(e=>e.customKey=="structure"&&e.structure!=null&&e.structure.kind==turretKind));var spec=turretItem.conditionalEffects.First(e=>e.customKey=="structure"&&e.structure!=null&&e.structure.kind==turretKind).structure;
                 DeployStructure(spec,StructureImage(spec.kind),Vector2.zero);
                 starterTurrets.Last().rig.Aim(new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down}[pose],.1f,.3f,false);
+                if(pose==0)
+                {
+                    var sample=SpriteObject("Reference projectile sample",SupportProjectileArt.Frame(turretKind,.1f),new Vector2(.7f,.055f),10);
+                    SupportProjectileArt.Pose(sample.GetComponent<SpriteRenderer>(),turretKind,.1f);
+                    Destroy(sample,1);
+                }
                 gameCamera.orthographicSize=1.2f;gameCamera.transform.position=new Vector3(0,0,-20);
                 ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,turretKind+"-aim-"+pose+".png"));
                 petReviewNext=Time.realtimeSinceStartup+.8f;return;
@@ -115,3 +121,4 @@ namespace Scrapshift
         }
     }
 }
+

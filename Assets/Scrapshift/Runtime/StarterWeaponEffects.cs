@@ -31,7 +31,7 @@ namespace Scrapshift
                 crit=stats.crit,pierce=stats.piercing+(int)Rules.Stat("piercing"),bounces=stats.bounce+(int)Rules.Stat("bounce"),knockback=stats.knockback,weapon=stats,secondary=secondary,structure=structure,structureSpec=structureSpec};
             if(structureSpec?.delayed==true)shot.hitDelay=UnityEngine.Random.Range(0,.05f);
             if(structureSpec?.kind=="flame")shot.damage=1;
-            if(structureSpec?.healing==true)obj.GetComponent<SpriteRenderer>().color=mint;
+            if(structureSpec!=null)SupportProjectileArt.Pose(obj.GetComponent<SpriteRenderer>(),structureSpec.kind,0);
             if(delayedSlow){shot.hitDelay=UnityEngine.Random.Range(0,.05f);shot.slow=2;}
             if(exclude!=null)shot.hit.Add(exclude);shots.Add(shot);shotsFired++;
         }

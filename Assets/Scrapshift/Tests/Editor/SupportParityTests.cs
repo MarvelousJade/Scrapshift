@@ -7,6 +7,27 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void CatBoostChangesFaceAndRestoresWithoutMovingMounts()
+        {
+            var root=new GameObject("boost test");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
+            try
+            {
+                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportRig.GatlingGun());
+                var view=rig.Body.GetComponent<SpriteRenderer>();var normal=view.sprite;var position=rig.Body.position;var scale=rig.Body.localScale;
+                rig.CatBoost(true);Assert.AreEqual("CatBodyBoost",view.sprite.name);Assert.IsTrue(view.sprite.rect.Contains(normal.rect.min));Assert.IsTrue(view.sprite.rect.Contains(normal.rect.max));
+                rig.PetPose(0,false,false,true,false);Assert.AreEqual("CatBodyBoost",view.sprite.name);
+                Assert.AreEqual(position,rig.Body.position);Assert.AreEqual(scale,rig.Body.localScale);
+                rig.CatBoost(false);Assert.AreSame(normal,view.sprite);
+            }finally{Object.DestroyImmediate(root);}
+        }
+        [Test] public void TurretProjectilesUseDistinctReferenceFrames()
+        {
+            var kinds=new[]{"turret","flame","rocket","laser","healing"};
+            Assert.AreEqual(5,kinds.Select(k=>SupportProjectileArt.Frame(k,0).texture).Distinct().Count());
+            Assert.AreEqual(8,Enumerable.Range(0,8).Select(i=>SupportProjectileArt.Frame("flame",i*.05f+.001f).texture).Distinct().Count());
+            foreach(var kind in new[]{"laser","healing"})Assert.AreNotSame(SupportProjectileArt.Frame(kind,0),SupportProjectileArt.Frame(kind,.02f));
+            Assert.AreSame(SupportProjectileArt.Frame("rocket",0),SupportProjectileArt.Frame("rocket",1));
+        }
         [Test] public void CatMadEntryTransitionsIntoDistinctBoostedPose()
         {
             Assert.AreEqual(new Vector2(1.101f,.953f),SupportMotion.CatBoostScale(0,0));
