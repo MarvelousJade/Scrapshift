@@ -72,8 +72,8 @@ namespace Scrapshift
             RoundedBox(MenuRect(scene,new Rect(810,756,400,40)),new Color(0,0,0,.30f),20*scale);
             if(titleHero!=null)
             {
-                var pose=SpringMotion.Pose(MenuTime,false,reducedMotion);
-                // Same one-second spring curve as gameplay, restrained for the large title actor.
+                var pose=SpringMotion.Pose(MenuTime*.5f,false,reducedMotion);
+                // Gameplay spring curve at half speed: a relaxed two-second title bounce.
                 float sx=1+(pose.x-1)*.3f,sy=1+(pose.y-1)*.3f;
                 var rect=new Rect(1000-410*sx,823-460*sy+pose.z*65,820*sx,460*sy);
                 GUI.DrawTexture(MenuRect(scene,rect),titleHero,ScaleMode.ScaleToFit,true);
