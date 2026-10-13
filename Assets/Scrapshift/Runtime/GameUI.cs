@@ -29,6 +29,8 @@ namespace Scrapshift
         void Text(float x, float y, float w, float h, string text, GUIStyle style) => GUI.Label(new Rect(x,y,w,h), text, style);
         void Frame(Rect r, Color color, float border = 4)
         {
+            // Focus is one solid surface, not a white inset over a dark frame.
+            if(color==paper){RoundedBox(r,paper,8);return;}
             RoundedBox(r, ink,8); RoundedBox(new Rect(r.x+border,r.y+border,r.width-border*2,r.height-border*2), color,Mathf.Max(2,8-border));
         }
         bool Button(Rect r, string label)

@@ -210,3 +210,5 @@ October 12 follow-up: matched upgrade/reward, shop inventory, pause and HUD pres
 October 12 styling follow-up: removed the second black edge beneath tier borders, darkened menus and icon tiles, capped pause inventory at six columns, widened pause controls, and increased both HUD outlines from four to six units. Rebuilt and captured the normal runtime UI for visual review.
 
 October 12: fixed square white inventory hover corners without changing sprites or tile dimensions. Shared inspection outline now follows the rounded tile for pointer and keyboard focus.
+
+October 12: user screenshot revealed a thin dark seam remained inside rounded selected tiles. Removed the dark base and duplicate border for white focus surfaces; added pause-character coverage. No running Scrapshift process was available to confirm the user executable path.

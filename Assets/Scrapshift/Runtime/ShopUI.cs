@@ -16,7 +16,7 @@ namespace Scrapshift
         bool InventoryHover(string id,Rect local,Rect viewport,Vector2 scroll)
         {
             var root=new Rect(viewport.position+local.position-scroll,local.size);
-            bool over=inspectionReview?forcedInspection==id:viewport.Contains(lastInspectionMouse)&&root.Contains(lastInspectionMouse);
+            bool over=inspectionReview?forcedInspection==id:keyboardInspection?focusedInspection==id:viewport.Contains(lastInspectionMouse)&&root.Contains(lastInspectionMouse);
             if(over&&Event.current.type==EventType.Repaint)
             {
                 inventoryHoveredThisFrame=true;

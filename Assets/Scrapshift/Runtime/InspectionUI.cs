@@ -36,7 +36,8 @@ namespace Scrapshift
             inspectionEntries.Add(entry);
             bool over=inspectionReview?forcedInspection==id:root.Contains(lastInspectionMouse);
             if(over&&!keyboardInspection){hoveredInspection=entry;focusedInspection=id;}
-            if(over&&!keyboardInspection||keyboardInspection&&focusedInspection==id)
+            bool inventoryTile=(id=="character"||id.StartsWith("weapon:")||id.StartsWith("item:"))&&(Rules.Phase==RunPhase.Shop||Rules.Phase==RunPhase.Paused||Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost);
+            if(!inventoryTile&&(over&&!keyboardInspection||keyboardInspection&&focusedInspection==id))
             {
                 // Match the tile corners; four rectangular strips left square white corners.
                 GUI.DrawTexture(local,Texture2D.whiteTexture,ScaleMode.StretchToFill,true,0,paper,2,8);
