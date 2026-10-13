@@ -15,6 +15,17 @@ namespace Scrapshift
         void PetReviewTick()
         {
             if(!petReview||Time.realtimeSinceStartup<petReviewNext)return;
+            if(petReviewStage>=petCases.Length&&petReviewStage<petCases.Length+4)
+            {
+                int pose=petReviewStage++-petCases.Length;var p=SetUpPetCase("catling_gun");
+                player.SetActive(false);SyncEquipment();p.obj.transform.position=Vector3.zero;
+                p.rig.PetPose(.5f,true,pose>=2,false,false);
+                var dir=new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down}[pose];
+                p.rig.AimGun(0,dir);p.rig.AimGun(1,dir);p.rig.TickGunRecoil(1,false);
+                gameCamera.orthographicSize=1.2f;gameCamera.transform.position=new Vector3(0,0,-20);
+                ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,"cat-aim-"+pose+".png"));
+                petReviewNext=Time.realtimeSinceStartup+.8f;return;
+            }
             if(petReviewStage>=petCases.Length){CheckMultipleSupports();petReport.status=petReport.failed.Count==0?"Passed":"Failed";File.WriteAllText(Path.Combine(petReviewPath,"pets.json"),JsonUtility.ToJson(petReport,true));petReview=false;Application.Quit(petReport.failed.Count==0?0:1);return;}
             string id=petCases[petReviewStage++];bool okay=false;Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.zero;
             var item=catalog.data.items.Single(i=>i.id==id);Rules.Items.Add(item);foreach(var effect in item.effects)Rules.GainWeaponStat(effect.key.Replace("stat_",""),effect.value);ResetPets();
@@ -67,7 +78,9 @@ namespace Scrapshift
                 p=SetUpPetCase("catling_gun",2);TickPets(.1f);PetCheck("cats wander and do not boost each other",!pets.Any(x=>x.boosted)&&p.pos.x>0);
                 playerPos=p.pos;Vector2 at=p.pos;TickPets(.01f);PetCheck("cat proximity stops movement and boosts fire",p.boosted&&p.pos==at);
                 ClearPets();p=SetUpPetCase("catling_gun");p.clock=p.rightClock=0;playerPos=p.pos;
-                a=FeelEnemy(Vector2.left);b=FeelEnemy(Vector2.right);TickPets(.01f);int fired=shots.Count;
+                // Place targets around the actual back mounts, not the old belly-mounted origin.
+                Vector2 midpoint=(p.rig.GunMount(0)+p.rig.GunMount(1))*.5f;
+                a=FeelEnemy(midpoint+Vector2.left);b=FeelEnemy(midpoint+Vector2.right);TickPets(.01f);int fired=shots.Count;
                 TickPets(p.spec.stats.interval/4+.001f);PetCheck("cat alternate independent guns",fired>0&&shots.Count>fired&&shots.Any(x=>x.velocity.x<0)&&shots.Any(x=>x.velocity.x>0));
                 p=SetUpPetCase("doc_moth",2);playerPos=Vector2.zero;TickPets(.001f);PetCheck("overlapping moth zones stack regeneration",Rules.HealingDrones==2&&Rules.RegenerationHealMultiplier==3);
                 p=SetUpPetCase("lootworm");Drop(Vector2.left,1,false);Spawn(catalog.Enemy("tree"),Vector2.right*3);var tree=enemies.Last();Destroy(tree.marker);tree.marker=null;

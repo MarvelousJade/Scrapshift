@@ -120,12 +120,36 @@ namespace Scrapshift.Tests
                 foreach(bool flip in new[]{false,true})
                 {
                     rig.PetPose(0,false,flip,false,false);rig.AimGun(0,Vector2.up);rig.AimGun(1,Vector2.left);
-                    var a=rig.AnimatedAssembly.Find("Independent gun 0");var b=rig.AnimatedAssembly.Find("Independent gun 1");
+                    var a=rig.Body.Find("Independent gun 0");var b=rig.Body.Find("Independent gun 1");
                     Assert.Greater(Vector2.Dot(a.TransformVector(Vector3.right).normalized,Vector2.up),.999f);
                     Assert.Greater(Vector2.Dot(b.TransformVector(Vector3.right).normalized,Vector2.left),.999f);
                     Assert.AreEqual(Quaternion.identity,rig.AnimatedAssembly.Find("Pet body").localRotation);
                 }
                 Assert.AreEqual("CatBodyV2",rig.AnimatedAssembly.Find("Pet body").GetComponent<SpriteRenderer>().sprite.texture.name);
+            }
+            finally{Object.DestroyImmediate(root);}
+        }
+        [Test] public void CatBackMountsFollowSwayAndVisibleGunsTurnThroughAllDirections()
+        {
+            var root=new GameObject("back mounts");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
+            try
+            {
+                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportRig.GatlingGun());
+                root.transform.localScale=new Vector3(1.12f,.88f,1);
+                foreach(bool flip in new[]{false,true})foreach(var direction in new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down})
+                {
+                    rig.PetPose(.5f,true,flip,false,false);
+                    for(int i=0;i<2;i++)
+                    {
+                        var pivot=rig.Body.Find("Independent gun "+i);Assert.Greater(pivot.localPosition.y,0);
+                        var mount=pivot.position;rig.AimGun(i,direction);rig.GunKick(i);rig.TickGunRecoil(.01f,false);
+                        Assert.AreEqual(mount,pivot.position);
+                        Assert.Greater(Vector2.Dot(pivot.TransformVector(Vector3.right).normalized,direction),.999f);
+                        var view=pivot.GetComponentInChildren<SpriteRenderer>();
+                        bool forward=rig.Body.InverseTransformVector(direction).x>=0;
+                        Assert.AreEqual((i==0)==forward?9:6,view.sortingOrder);
+                    }
+                }
             }
             finally{Object.DestroyImmediate(root);}
         }
