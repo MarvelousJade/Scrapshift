@@ -9,7 +9,7 @@ namespace Scrapshift
         static readonly Dictionary<int,Sprite> parts=new Dictionary<int,Sprite>();
         static Texture2D atlas;
         Transform facing,head,body;
-        CatLegGait catGait;
+
         readonly List<Transform> limbs=new List<Transform>();
         SpriteRenderer source,headView;
         SpriteRenderer[] views;
@@ -36,7 +36,10 @@ namespace Scrapshift
                 rig.Part(6,"Fixed tripod",rig.facing,new Vector2(0,-.14f),.49f,7);
                 rig.head=new GameObject("Aiming head pivot").transform;rig.head.SetParent(rig.facing,false);rig.head.localPosition=new Vector3(0,.055f,0);
                 rig.headView=rig.Part(7+gun,"Gun head",rig.head,Vector2.zero,.47f,8);
-                rig.headView.flipX=gun==0;
+                rig.headView.sprite=TurretHeadArt.Get(gun);
+                rig.headView.transform.localScale=Vector3.one*(.47f/rig.headView.sprite.bounds.size.x);
+                rig.headView.flipX=false;
+                rig.TurretNeck();
             }
             else if(kind=="doc_moth")
             {
@@ -59,9 +62,21 @@ namespace Scrapshift
                 view.sprite=sprite;view.sortingOrder=7;
                 view.transform.localScale=Vector3.one*(.60f/Mathf.Max(sprite.bounds.size.x,sprite.bounds.size.y));
                 rig.body=view.transform;
-                if(kind=="catling_gun"){rig.catGait=view.gameObject.AddComponent<CatLegGait>();rig.catGait.Initialize(view);}
+
             }
             rig.views=rig.facing.GetComponentsInChildren<SpriteRenderer>();return rig;
+        }
+        void TurretNeck()
+        {
+            if(mountMaterial==null)mountMaterial=new Material(Shader.Find("Sprites/Default"));
+            for(int layer=0;layer<2;layer++)
+            {
+                var line=new GameObject("Fixed turret neck "+layer).AddComponent<LineRenderer>();line.transform.SetParent(facing,false);
+                line.useWorldSpace=false;line.sharedMaterial=mountMaterial;line.positionCount=2;
+                line.SetPosition(0,new Vector3(0,-.045f,0));line.SetPosition(1,new Vector3(0,.055f,0));
+                line.startWidth=line.endWidth=layer==0?.075f:.045f;line.numCapVertices=6;
+                line.startColor=line.endColor=layer==0?Color.black:new Color(.45f,.45f,.42f);line.sortingOrder=6+layer;
+            }
         }
         static Sprite catBody;
         public static Sprite GatlingGun()=>LoadStandalone("PetGatlingUpper");
@@ -182,7 +197,7 @@ namespace Scrapshift
         }
         public void PetPose(float phase,bool moving,bool flip,bool reduced,bool dead)
         {
-            if(catGait!=null)catGait.Pose(phase,moving&&!reduced&&!dead,dead);
+
             facing.localScale=new Vector3(flip?-unit:unit,unit,unit);
             float stride=!reduced&&moving&&!dead?Mathf.Sin(phase*Mathf.PI*2):0;
             for(int i=0;i<limbs.Count;i++)

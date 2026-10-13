@@ -11,7 +11,7 @@ namespace Scrapshift
             public PetSpec spec;public GameObject obj;public Vector2 pos,destination,jumpStart;public float clock,secondaryClock,age,health,invulnerable,jump,baseScale,posePhase,attackPose;
             public Equipment weapon,secondary;public bool dead,boosted;public SupportRig rig;
             public Enemy target;public float rightClock,patrolAngle,maxHealth,meleeDelay;public bool pendingMelee;
-            public LineRenderer zoneView,healthView,healthBack;public bool inHealingZone;
+            public AudioSource reviveSound;public LineRenderer zoneView,healthView,healthBack;public bool inHealingZone;
         }
         readonly List<Pet> pets=new List<Pet>();
         void ClearPets(){foreach(var pet in pets)Destroy(pet.obj);pets.Clear();Rules.HealingDrones=0;Rules.PetCount=0;}
@@ -32,6 +32,7 @@ namespace Scrapshift
             if(spec.kind=="doc_moth"){pet.zoneView=MakeLine("Healing zone",obj.transform,new Color(.25f,1,.4f,.2f),.035f,true);pet.zoneView.useWorldSpace=true;pet.zoneView.positionCount=64;pet.zoneView.sortingOrder=2;}
             if(spec.kind=="scapegoat")
             {
+                pet.reviveSound=obj.AddComponent<AudioSource>();pet.reviveSound.playOnAwake=false;pet.reviveSound.loop=true;pet.reviveSound.clip=Resources.Load<AudioClip>("OriginalSupportAudio/scapegoat_heal_loop");
                 pet.healthBack=MakeLine("Decoy health background",obj.transform,Color.black,.10f);pet.healthView=MakeLine("Decoy health",obj.transform,mint,.06f);
                 foreach(var line in new[]{pet.healthBack,pet.healthView}){line.useWorldSpace=true;line.positionCount=2;line.sortingOrder=15;}
                 pet.healthView.sortingOrder=16;
@@ -53,8 +54,11 @@ namespace Scrapshift
                 {float angle=p.age+Mathf.PI*2*shieldIndex++/shields;p.pos=playerPos+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));}
                 else if(spec.kind=="scapegoat")
                 {
+                    bool reviving=p.dead&&Vector2.Distance(playerPos,p.pos)<=1;
+                    p.reviveSound.volume=sound.Muted?0:sound.Volume;
+                    if(reviving&&!p.reviveSound.isPlaying)p.reviveSound.Play();else if(!reviving&&p.reviveSound.isPlaying)p.reviveSound.Stop();
                     if(p.dead)
-                    {if(Vector2.Distance(playerPos,p.pos)<=1){p.health+=p.maxHealth/spec.revive*dt;if(p.health>=p.maxHealth){p.health=p.maxHealth;p.dead=false;p.obj.GetComponent<SpriteRenderer>().color=Color.white;}}}
+                    {if(Vector2.Distance(playerPos,p.pos)<=1){p.health+=p.maxHealth/spec.revive*dt;if(p.health>=p.maxHealth){p.health=p.maxHealth;p.dead=false;OriginalSupportAudio.Play(sound,"goat_revive",p.pos);p.obj.GetComponent<SpriteRenderer>().color=Color.white;}}}
                     else WanderPet(p,speed,dt);
                 }
                 else if(spec.kind=="lootworm")
@@ -80,14 +84,16 @@ namespace Scrapshift
                     p.destination=new Vector2(Mathf.Cos(p.patrolAngle),Mathf.Sin(p.patrolAngle))*radius;
                     p.pos=Vector2.MoveTowards(p.pos,p.destination,speed*dt);
                     bool inside=Vector2.Distance(playerPos,p.pos)<spec.zone;if(inside)Rules.HealingDrones++;
-                    if(inside!=p.inHealingZone){sound.Play(SoundCue.Pickup,p.pos);p.inHealingZone=inside;}
+                    if(inside!=p.inHealingZone){OriginalSupportAudio.Play(sound,inside?"moth_enter":"moth_exit",p.pos);p.inHealingZone=inside;}
                     for(int i=0;i<64;i++){float a=i*Mathf.PI*2/64;p.zoneView.SetPosition(i,p.pos+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*spec.zone);}
                 }
                 else
                 {
                     bool cat=spec.kind=="catling_gun",ranged=cat||spec.kind=="bot_o_mine";
                     var target=ranged?PetRangedTarget(p.pos,p.weapon.range):SelectPetTarget(p);
+                    bool wasBoosted=p.boosted;
                     p.boosted=cat&&(Vector2.Distance(playerPos,p.pos)<=1.5f||pets.Any(o=>o!=p&&!o.dead&&o.spec.kind!="catling_gun"&&o.spec.kind!="jellyshield"&&Vector2.Distance(o.pos,p.pos)<=1.5f));
+                    if(p.boosted&&!wasBoosted)OriginalSupportAudio.Play(sound,"cat_boost",p.pos);
                     if(p.jump>0)
                     {
                         p.jump=Mathf.Max(0,p.jump-dt);float t=1-p.jump/.5f;
@@ -100,7 +106,7 @@ namespace Scrapshift
                     if(spec.kind=="bonk_dog"&&p.jump<=0&&p.secondaryClock<=0)
                     {
                         var jumpTarget=enemies.Where(e=>e.marker==null&&e.type.role!="Tree"&&(e.pos-p.pos).sqrMagnitude>.025f).OrderByDescending(e=>e.maxHp).FirstOrDefault();
-                        if(jumpTarget!=null){p.jump=.5f;p.jumpStart=p.pos;p.destination=jumpTarget.pos;}
+                        if(jumpTarget!=null){OriginalSupportAudio.Play(sound,"dog_attack",p.pos);p.jump=.5f;p.jumpStart=p.pos;p.destination=jumpTarget.pos;}
                         else p.secondaryClock=spec.secondary.interval*.4f;
                     }
                     if(spec.kind=="bot_o_mine"&&p.secondaryClock<=0)
@@ -114,7 +120,7 @@ namespace Scrapshift
                     {
                         bool fireZone=enemies.Any(e=>e.marker==null&&e.type.role!="Tree"&&Vector2.Distance(e.pos,p.pos)<.8228f+HurtRadius(e));
                         if(spec.kind=="blazemander"&&p.secondaryClock<=0&&fireZone&&!p.pendingMelee)
-                        {p.attackPose=.3f;for(int i=0;i<6;i++){float angle=Mathf.PI*2*i/6+UnityEngine.Random.Range(-p.secondary.spread,p.secondary.spread);StarterProjectile(p.pos,new Vector2(Mathf.Cos(angle),Mathf.Sin(angle)),p.secondary,true);}p.secondaryClock=spec.secondary.interval;}
+                        {OriginalSupportAudio.Play(sound,"shot:blazemander",p.pos);p.attackPose=.3f;for(int i=0;i<6;i++){float angle=Mathf.PI*2*i/6+UnityEngine.Random.Range(-p.secondary.spread,p.secondary.spread);StarterProjectile(p.pos,new Vector2(Mathf.Cos(angle),Mathf.Sin(angle)),p.secondary,true);}p.secondaryClock=spec.secondary.interval;}
                         else if(spec.kind=="blazemander"&&p.clock<=0&&fireZone&&!p.pendingMelee)
                         {p.pendingMelee=true;p.meleeDelay=.15f;p.attackPose=.3f;}
                         if(p.pendingMelee){p.meleeDelay-=dt;if(p.meleeDelay<=0){PetMelee(p);p.pendingMelee=false;p.clock=spec.stats.interval;}}
@@ -153,18 +159,18 @@ namespace Scrapshift
             int explosionKillsBefore=Rules.Kills;
             float radius=pet.spec.explosionRadius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
             foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,pet.pos)<radius)Damage(enemies.IndexOf(e),Rules.WeaponDamage(pet.secondary,Rules.Stat("explosion_damage")),pet.secondary.crit,pet.secondary.knockback,e.pos-pet.pos,pet.secondary,true);
-            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(pet.pos,20,amber);sound.Play(SoundCue.Impact,pet.pos);
+            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(pet.pos,20,amber);
         }
         bool PetBlocksProjectile(Vector2 from,Vector2 to)
         {
             foreach(var p in pets)if(!p.dead&&(p.spec.kind=="jellyshield"||p.spec.kind=="scapegoat")&&SegmentDistance(p.pos,from,to)<.4f)
-            {DamageScapegoat(p);p.attackPose=.3f;Burst(p.pos,4,mint);return true;}
+            {if(p.spec.kind=="jellyshield")OriginalSupportAudio.Play(sound,"shield_hit",p.pos);DamageScapegoat(p);p.attackPose=.3f;Burst(p.pos,4,mint);return true;}
             return false;
         }
         void DamageScapegoat(Pet pet)
         {
             if(pet.spec.kind!="scapegoat"||pet.invulnerable>0)return;
-            pet.health--;pet.invulnerable=.6f;if(pet.health<=0){pet.health=0;pet.dead=true;pet.obj.GetComponent<SpriteRenderer>().color=Color.gray;}
+            pet.health--;pet.invulnerable=.6f;if(pet.health<=0){pet.health=0;pet.dead=true;OriginalSupportAudio.Play(sound,"goat_die",pet.pos);pet.obj.GetComponent<SpriteRenderer>().color=Color.gray;}
         }
     }
 }

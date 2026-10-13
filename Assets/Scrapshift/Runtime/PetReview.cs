@@ -26,15 +26,15 @@ namespace Scrapshift
                 ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,"cat-aim-"+pose+".png"));
                 petReviewNext=Time.realtimeSinceStartup+.8f;return;
             }
-            if(petReviewStage>=petCases.Length+6&&petReviewStage<petCases.Length+10)
+            if(petReviewStage>=petCases.Length+6&&petReviewStage<petCases.Length+26)
             {
-                int pose=petReviewStage++-petCases.Length-6;Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();
+                int capture=petReviewStage++-petCases.Length-6;int pose=capture%4;string turretKind=new[]{"turret","flame","rocket","laser","healing"}[capture/4];Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();
                 player.SetActive(false);SyncEquipment();
-                var turretItem=catalog.data.items.Single(i=>i.id=="turret");var spec=turretItem.conditionalEffects.First(e=>e.structure!=null).structure;
+                var turretItem=catalog.data.items.Single(i=>i.conditionalEffects.Any(e=>e.customKey=="structure"&&e.structure!=null&&e.structure.kind==turretKind));var spec=turretItem.conditionalEffects.First(e=>e.customKey=="structure"&&e.structure!=null&&e.structure.kind==turretKind).structure;
                 DeployStructure(spec,StructureImage(spec.kind),Vector2.zero);
                 starterTurrets.Last().rig.Aim(new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down}[pose],.1f,.3f,false);
                 gameCamera.orthographicSize=1.2f;gameCamera.transform.position=new Vector3(0,0,-20);
-                ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,"turret-aim-"+pose+".png"));
+                ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,turretKind+"-aim-"+pose+".png"));
                 petReviewNext=Time.realtimeSinceStartup+.8f;return;
             }
             if(petReviewStage>=petCases.Length){CheckMultipleSupports();petReport.status=petReport.failed.Count==0?"Passed":"Failed";File.WriteAllText(Path.Combine(petReviewPath,"pets.json"),JsonUtility.ToJson(petReport,true));petReview=false;Application.Quit(petReport.failed.Count==0?0:1);return;}

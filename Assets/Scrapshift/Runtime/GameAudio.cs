@@ -39,7 +39,7 @@ namespace Scrapshift
             int selected = Mathf.Abs(roll % (count - 1));
             return previous < 0 ? Mathf.Abs(roll % count) : selected >= previous ? selected + 1 : selected;
         }
-        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null)
+        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null, float? overrideGain = null, float? overridePitchVariation = null)
         {
             if (Bank == null || Muted || Volume <= 0) return;
             var entry = Bank.Find(cue); int key = (int)cue; float now = Time.unscaledTime;
@@ -61,16 +61,17 @@ namespace Scrapshift
             int variant = VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
             previous[key] = variant; last[key] = now;
             var voice = voices[index]; voice.Stop(); voice.clip = clips[variant];
-            voice.pitch = 1 + Random.Range(-entry.pitchVariation, entry.pitchVariation);
+            float pitchVariation=overridePitchVariation??entry.pitchVariation;
+            voice.pitch = 1 + Random.Range(-pitchVariation, pitchVariation);
             if (cue == SoundCue.Pickup)
             {
                 pickupChain = now - lastPickup < .45f ? (pickupChain + 1) % 5 : 0;
                 lastPickup = now; voice.pitch *= Mathf.Pow(2, pickupChain/12f);
             }
             voice.panStereo = important ? 0 : Mathf.Clamp(position.x / 18, -.6f, .6f);
-            gains[index] = entry.gain; started[index] = now;
+            gains[index] = overrideGain??entry.gain; started[index] = now;
             if (important) duckUntil = now + .22f;
-            voice.volume = entry.gain * Volume * (!important && !pickup && now < duckUntil ? .4f : 1);
+            voice.volume = gains[index] * Volume * (!important && !pickup && now < duckUntil ? .4f : 1);
             voice.Play(); Played++;
         }
         void Update()

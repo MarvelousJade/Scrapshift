@@ -104,7 +104,7 @@ namespace Scrapshift
                 if(mine.occupants.Count>0||mine.playerOn)
                 {
                     var renderer=mine.obj.GetComponent<SpriteRenderer>();
-                    if(renderer.color!=coral){sound.Play(SoundCue.UiPress,mine.pos);mine.obj.transform.localScale*=.9f;renderer.color=coral;}
+                    if(renderer.color!=coral){OriginalSupportAudio.Play(sound,"mine_press",mine.pos);mine.obj.transform.localScale*=.9f;renderer.color=coral;}
                 }
                 if(!left)continue;
                 int explosionKillsBefore=Rules.Kills;

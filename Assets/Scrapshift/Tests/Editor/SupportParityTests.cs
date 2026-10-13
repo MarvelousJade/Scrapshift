@@ -7,6 +7,14 @@ namespace Scrapshift.Tests
 {
     public sealed class SupportParityTests
     {
+        [Test] public void OriginalSupportAttackSoundsResolveToClips()
+        {
+            foreach(var kind in new[]{"turret","flame","rocket","laser","healing","garden","tyler","wandering_bot","catling_gun","bot_o_mine","blazemander"})
+            {
+                var entry=OriginalSupportAudio.Find("shot:"+kind);Assert.IsNotNull(entry,kind);Assert.IsNotEmpty(entry.loaded,kind);
+                foreach(var clip in entry.loaded){Assert.IsNotNull(clip,kind);Assert.Greater(clip.samples,0);}
+            }
+        }
         [Test] public void EveryAchievementHasExplicitArtIndependentOfItsReward()
         {
             var definitions=JsonUtility.FromJson<UnlockCatalog>(Resources.Load<TextAsset>("base-unlocks").text);
@@ -120,7 +128,7 @@ namespace Scrapshift.Tests
             var root=new GameObject("cat guns");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
             try
             {
-                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportRig.GatlingGun());
+                var rig=SupportRig.Create(root,"catling_gun",false);Assert.IsTrue(rig.Body.GetComponent<SpriteRenderer>().enabled);Assert.IsNull(rig.Body.GetComponent<CatLegGait>());rig.ConfigureCatGuns(SupportRig.GatlingGun());
                 foreach(bool flip in new[]{false,true})
                 {
                     rig.PetPose(0,false,flip,false,false);rig.AimGun(0,Vector2.up);rig.AimGun(1,Vector2.left);
@@ -138,7 +146,7 @@ namespace Scrapshift.Tests
             var root=new GameObject("back mounts");root.AddComponent<SpriteRenderer>().sprite=SupportArt.Pet("catling_gun");
             try
             {
-                var rig=SupportRig.Create(root,"catling_gun",false);rig.ConfigureCatGuns(SupportRig.GatlingGun());
+                var rig=SupportRig.Create(root,"catling_gun",false);Assert.IsTrue(rig.Body.GetComponent<SpriteRenderer>().enabled);Assert.IsNull(rig.Body.GetComponent<CatLegGait>());rig.ConfigureCatGuns(SupportRig.GatlingGun());
                 root.transform.localScale=new Vector3(1.12f,.88f,1);
                 foreach(bool flip in new[]{false,true})foreach(var direction in new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down})
                 {

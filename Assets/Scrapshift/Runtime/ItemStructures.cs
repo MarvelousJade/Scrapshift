@@ -64,7 +64,7 @@ namespace Scrapshift
             bool reload=turret.stats.reloadEvery>0&&turret.shotsTaken%turret.stats.reloadEvery==0;
             turret.clock=(reload?interval*turret.stats.reloadMultiplier:UnityEngine.Random.Range(Mathf.Max(1f/60,interval*.7f),interval*1.3f))+.1f/StructureAnimationSpeed(turret);
             if(!inRange)return;
-            if(spec.kind=="garden"){DropConsumable(turret.pos,ConsumableKind.Fruit);sound.Play(SoundCue.Pickup,turret.pos);return;}
+            if(spec.kind=="garden"){DropConsumable(turret.pos,ConsumableKind.Fruit);OriginalSupportAudio.Play(sound,"shot:garden",turret.pos);return;}
             Vector2 aim=spec.healing?playerPos-turret.pos:target.pos-turret.pos;
             float angle=Mathf.Atan2(aim.y,aim.x)+UnityEngine.Random.Range(-1+spec.accuracy,1-spec.accuracy);
             for(int i=0;i<turret.stats.pellets;i++)
@@ -72,7 +72,7 @@ namespace Scrapshift
                 float direction=angle+UnityEngine.Random.Range(-turret.stats.spread,turret.stats.spread);
                 StarterProjectile(turret.pos,new Vector2(Mathf.Cos(direction),Mathf.Sin(direction)),turret.stats,true,structure:true,structureSpec:spec);
             }
-            sound.Play(SoundCue.Fire,turret.pos);
+            OriginalSupportAudio.Play(sound,"shot:"+spec.kind,turret.pos);
         }
         void StructureExplosion(Vector2 position,StructureSpec spec,Enemy directHit)
         {

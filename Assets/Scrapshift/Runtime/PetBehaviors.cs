@@ -43,7 +43,7 @@ namespace Scrapshift
             float angle=Mathf.Atan2(target.y-origin.y,target.x-origin.x);
             for(int i=0;i<weapon.pellets;i++)
             {float a=angle+UnityEngine.Random.Range(-weapon.spread,weapon.spread);StarterProjectile(origin,new Vector2(Mathf.Cos(a),Mathf.Sin(a)),weapon,true,structure:p.spec.structure);}
-            p.attackPose=.3f;sound.Play(SoundCue.Fire,origin);
+            p.attackPose=.3f;OriginalSupportAudio.Play(sound,"shot:"+p.spec.kind,origin);
         }
         void TickCatGuns(Pet p,float dt)
         {

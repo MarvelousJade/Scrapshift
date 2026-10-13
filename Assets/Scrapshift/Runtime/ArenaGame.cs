@@ -173,6 +173,7 @@ namespace Scrapshift
                 audioPhase = Rules.Phase;
             }
             if (smoke) SmokeTick();
+            foreach(var pet in pets)if(pet.reviveSound!=null){pet.reviveSound.volume=sound.Muted?0:sound.Volume;if(Rules.Phase!=RunPhase.Playing)pet.reviveSound.Stop();}
             foreach(var pet in pets)if(pet.obj!=null)foreach(var renderer in pet.obj.GetComponentsInChildren<SpriteRenderer>()){var c=renderer.color;c.a=GameSettings.Value("petOpacity");renderer.color=c;}
             foreach(var shot in shots)if(shot.obj!=null){var renderer=shot.obj.GetComponent<SpriteRenderer>();if(renderer!=null){var c=renderer.color;c.a=GameSettings.Value("projectileOpacity");renderer.color=c;}}
             wardrobe.Sync(GameSettings.Flag("hideItems",false)?(System.Collections.Generic.IReadOnlyList<ItemEntry>)Array.Empty<ItemEntry>():Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
