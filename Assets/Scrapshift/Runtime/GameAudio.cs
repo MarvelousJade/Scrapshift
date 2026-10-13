@@ -87,6 +87,6 @@ namespace Scrapshift
         public void StopCombat() { for (int i=0;i<CombatVoices;i++) voices[i].Stop(); }
         public void StopAll() { foreach (var voice in voices) voice.Stop(); }
         public void SetMuted(bool muted) { Muted=muted; if (muted) StopAll(); }
-        public void SetVolume(float value) { Volume=Mathf.Clamp01(value); PlayerPrefs.SetFloat("sfxVolume",Volume); }
+        public void SetVolume(float value) { Volume=Mathf.Clamp01(value); PlayerPrefs.SetFloat("sfxVolume",Volume);PlayerPrefs.Save(); }
     }
 }

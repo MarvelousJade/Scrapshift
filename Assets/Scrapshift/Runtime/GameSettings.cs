@@ -19,9 +19,14 @@ namespace Scrapshift
         GUIStyle settingsLabel,settingsValue;
         bool SettingsButton(Rect r,string label,bool selected=false)=>MenuButton(r,label,selected,fontSize:27);
         bool focused=true;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        // DOM visibility events also cover browser tabs and embedded player frames.
+        public void BrowserFocus(string value)=>OnApplicationFocus(value=="1");
+#endif
         void OnApplicationFocus(bool focus)
         {
             focused=focus;
+            if(!focus){progress?.Save();PlayerPrefs.Save();}
             if(!focus&&GameSettings.Flag("pauseFocus")&&Rules.Phase==RunPhase.Playing)Rules.Pause();
             ApplyAudioSettings();
         }
@@ -74,7 +79,7 @@ namespace Scrapshift
                 if(SettingsButton(new Rect(0,y,940,53),DisplayLabel))ToggleFullscreen();y+=62;
                 DrawMapOption(ref y);
                 OptionToggle("Screen shake","shake",ref y);OptionToggle("Visual effects","effects",ref y);OptionToggle("Damage display","damage",ref y);
-                OptionToggle("Limit FPS to 60","limitFps",ref y,false);Application.targetFrameRate=GameSettings.Flag("limitFps",false)?60:120;
+                OptionToggle("Limit FPS to 60","limitFps",ref y,false);Application.targetFrameRate=GameSettings.Flag("limitFps",false)?60:(Application.platform==RuntimePlatform.WebGLPlayer?-1:120);
             }
             else if(optionsTab==2)
             {

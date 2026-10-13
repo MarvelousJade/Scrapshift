@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scrapshift</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#0b0c10;color:#eee;font:16px system-ui}body{display:flex;flex-direction:column}#stage{flex:1;min-height:0;position:relative;display:grid;place-items:center}canvas{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none}#loading{position:absolute;background:#151820;padding:24px;border-radius:12px;text-align:center}progress{display:block;margin-top:12px;width:260px}footer{display:flex;align-items:center;gap:16px;padding:8px 16px;background:#151820;font-size:13px}button{border:0;border-radius:6px;padding:8px 16px;background:#ddd;color:#111;cursor:pointer}#status{flex:1}#diagnostics{white-space:pre-wrap;font:12px monospace;max-height:170px;overflow:auto;margin:0}#exit-fullscreen{display:none;position:absolute;top:8px;right:8px;opacity:.65;z-index:2}#stage:fullscreen #exit-fullscreen{display:block}#stage:fullscreen{width:100vw;height:100vh;background:#0b0c10}
+</style></head><body>
+<div id="stage"><button id="exit-fullscreen">Exit fullscreen</button><canvas id="unity-canvas" tabindex="0" aria-label="Scrapshift game"></canvas><div id="loading">Loading Scrapshift…<progress max="1" value="0"></progress></div></div>
+<footer><span id="status">WASD / arrows: move · P / Esc: pause · M: sound</span><button id="fullscreen" disabled>Fullscreen</button></footer><pre id="diagnostics" hidden></pre>
+<script src="Build/{{{ LOADER_FILENAME }}}"></script><script>
+const canvas=document.querySelector('canvas'),stage=document.querySelector('#stage'),status=document.querySelector('#status');
+const startedAt=performance.now();
+window.scrapshiftReport=json=>{
+ const el=document.querySelector('#diagnostics');el.hidden=false;el.textContent=json;
+ if(!document.querySelector('#review-controls')){
+  const bar=document.createElement('div');bar.id='review-controls';
+  for(const [label,command] of [['Save test','save'],['200-enemy benchmark','crowd']]){
+   const b=document.createElement('button');b.textContent=label;b.onclick=()=>{window.game.SendMessage('Scrapshift','WebReview',command);canvas.focus();};bar.appendChild(b);
+  }document.body.appendChild(bar);
+ }
+};
+document.querySelector('#exit-fullscreen').onclick=()=>document.exitFullscreen();
+canvas.addEventListener('pointerdown',()=>canvas.focus());
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+canvas.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','Tab'].includes(e.key))e.preventDefault();});
+const notifyFocus=focused=>{if(window.game)window.game.SendMessage('Scrapshift','BrowserFocus',focused?'1':'0');};
+canvas.addEventListener('blur',()=>notifyFocus(false));
+canvas.addEventListener('focus',()=>notifyFocus(!document.hidden));
+document.addEventListener('visibilitychange',()=>notifyFocus(!document.hidden));
+window.addEventListener('blur',()=>notifyFocus(false));
+window.addEventListener('focus',()=>notifyFocus(!document.hidden));
+createUnityInstance(canvas,{
+dataUrl:'Build/{{{ DATA_FILENAME }}}',frameworkUrl:'Build/{{{ FRAMEWORK_FILENAME }}}',codeUrl:'Build/{{{ CODE_FILENAME }}}',
+streamingAssetsUrl:'StreamingAssets',companyName:{{{ JSON.stringify(COMPANY_NAME) }}},productName:{{{ JSON.stringify(PRODUCT_NAME) }}},productVersion:{{{ JSON.stringify(PRODUCT_VERSION) }}},
+devicePixelRatio:1,autoSyncPersistentDataPath:true,
+showBanner:(message,type)=>{if(type==='error'){status.textContent=message;status.style.color='#ff9898';}}
+},p=>document.querySelector('progress').value=p).then(instance=>{
+window.game=instance;window.loadSeconds=(performance.now()-startedAt)/1000;canvas.dataset.loadSeconds=window.loadSeconds.toFixed(2);
+document.querySelector('#loading').remove();canvas.focus();
+const fs=document.querySelector('#fullscreen');fs.disabled=!document.fullscreenEnabled;
+fs.onclick=async()=>{try{await stage.requestFullscreen();canvas.focus();}catch(e){status.textContent='Fullscreen unavailable here; use the embedded player fullscreen control.';}};
+document.addEventListener('fullscreenchange',()=>canvas.focus());
+}).catch(e=>{document.querySelector('#loading').textContent='Unable to load game: '+e;});
+</script></body></html>

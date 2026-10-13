@@ -15,17 +15,29 @@ namespace Scrapshift
     {
         readonly UnlockDefinition[] definitions;
         readonly string path;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string lastSaved;
+        const string BrowserSaveKey="scrapshift.progress.v1";
+#endif
         public ProgressSave Data {get;private set;}=new ProgressSave();
         public readonly List<string> NewlyUnlocked=new List<string>();
         public event Action<UnlockDefinition> ChallengeCompleted;
         public Progression(UnlockDefinition[] definitions,string path=null)
         {
             this.definitions=definitions;this.path=path;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if(path!=null&&PlayerPrefs.HasKey(BrowserSaveKey))
+            {
+                try {var saved=JsonUtility.FromJson<ProgressSave>(PlayerPrefs.GetString(BrowserSaveKey));if(saved==null||saved.version!=1||saved.completed==null||saved.counters==null)throw new InvalidDataException("Unsupported progression save");Data=saved;}
+                catch(Exception e){Debug.LogWarning("Could not load browser progression; preserving save: "+e.Message);this.path=null;}
+            }
+#else
             if(path!=null&&File.Exists(path))
             {
                 try {var saved=JsonUtility.FromJson<ProgressSave>(File.ReadAllText(path));if(saved==null||saved.version!=1||saved.completed==null||saved.counters==null)throw new InvalidDataException("Unsupported progression save");Data=saved;}
                 catch(Exception e){Debug.LogWarning("Could not load progression; preserving the save for recovery: "+e.Message);this.path=null;}
             }
+ #endif
         }
         public System.Collections.Generic.IReadOnlyList<UnlockDefinition> Definitions=>definitions;
         public bool Completed(string id)=>Data.completed.Contains(id);
@@ -125,9 +137,16 @@ namespace Scrapshift
         }
         public void Save()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if(path==null)return;
+            string json=JsonUtility.ToJson(Data);
+            if(json==lastSaved)return;
+            PlayerPrefs.SetString(BrowserSaveKey,json);PlayerPrefs.Save();lastSaved=json;
+#else
             if(path==null)return;Directory.CreateDirectory(Path.GetDirectoryName(path));string temporary=path+".tmp";
             File.WriteAllText(temporary,JsonUtility.ToJson(Data,true));
             if(File.Exists(path))File.Replace(temporary,path,path+".bak");else File.Move(temporary,path);
+#endif
         }
     }
 }

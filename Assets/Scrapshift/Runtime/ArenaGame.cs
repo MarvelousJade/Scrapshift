@@ -122,6 +122,9 @@ namespace Scrapshift
 
         void Update()
         {
+#if UNITY_WEBGL && SCRAPSHIFT_WEB_REVIEW
+            TickWebReview();
+#endif
             TickProgression(Time.unscaledDeltaTime);
             music.SetPhase(Rules.Phase);
             gameCamera.rect = PresentationLayout.Viewport(Screen.width, Screen.height);
@@ -132,9 +135,11 @@ namespace Scrapshift
             TickAmbientPresentation();
             if (titleModel != null) titleModel.SetActive(false);
             gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
+#if !UNITY_WEBGL || UNITY_EDITOR
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
+#endif
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage>=4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
+            if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.P)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage>=4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
             if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {
@@ -199,9 +204,9 @@ namespace Scrapshift
             if (artReview) movement = ArtReviewMovement();
             if (enemyReview || lootReview) movement = Vector2.zero;
             Rules.SetMoving(movement.sqrMagnitude>0);
-            Rules.LivingEnemies=enemies.FindAll(e=>e.marker==null&&e.type.role!="Tree").Count;
-            Rules.LivingTrees=enemies.FindAll(e=>e.marker==null&&e.type.role=="Tree").Count;
-            Rules.BurningEnemies=enemies.FindAll(e=>e.burnTicks>0).Count;Rules.StructureCount=starterTurrets.Count+mines.Count;
+            int livingEnemies=0,livingTrees=0,burningEnemies=0;
+            foreach(var e in enemies){if(e.marker==null){if(e.type.role=="Tree")livingTrees++;else livingEnemies++;}if(e.burnTicks>0)burningEnemies++;}
+            Rules.LivingEnemies=livingEnemies;Rules.LivingTrees=livingTrees;Rules.BurningEnemies=burningEnemies;Rules.StructureCount=starterTurrets.Count+mines.Count;
             playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(movement,dt);
@@ -280,7 +285,7 @@ namespace Scrapshift
             foreach (var s in sparks) Destroy(s.obj); sparks.Clear();
         }
         void SelectUpgrade(int choice) { Rules.Choose(choice); FloatText(playerPos, "UPGRADED!", mint, true); Burst(playerPos, 24, mint); invulnerable = 1; player.SetActive(true); sound.Play(SoundCue.Install); }
-        void ToggleSound() { muted = !muted; sound.SetMuted(muted); PlayerPrefs.SetInt("muted", muted ? 1 : 0); }
+        void ToggleSound() { muted = !muted; sound.SetMuted(muted); PlayerPrefs.SetInt("muted", muted ? 1 : 0);PlayerPrefs.Save(); }
         void RerollUpgrade() { if (Rules.CanReroll) { Rules.Reroll(); sound.Play(SoundCue.Reroll); } }
 
         [Serializable] sealed class SmokeReport

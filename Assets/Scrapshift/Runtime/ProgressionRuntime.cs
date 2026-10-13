@@ -9,6 +9,9 @@ namespace Scrapshift
         Progression progress;
         int selectedDifficulty;
         float progressClock;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        float browserSaveClock;
+#endif
         bool recordedFinish;
         void InitializeProgression()
         {
@@ -30,6 +33,9 @@ namespace Scrapshift
         void TickProgression(float dt)
         {
             achievementToasts.Tick(dt);
+#if UNITY_WEBGL && !UNITY_EDITOR
+            browserSaveClock+=dt;if(browserSaveClock>=5){browserSaveClock=0;progress?.Save();}
+#endif
             if(progress==null||Rules.Progress==null)return;
             progressClock+=dt;if(progressClock>=.5f){progressClock=0;progress.CheckStats(Rules);ApplyUnlocks();}
             if(!recordedFinish&&(Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost))

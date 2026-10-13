@@ -162,7 +162,9 @@ namespace Scrapshift
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
             if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;
+#if !UNITY_WEBGL || UNITY_EDITOR
             if(MenuButton(new Rect(30,783,200,58),"Quit"))Application.Quit();
+#endif
         }
         void ReferenceEndUI()
         {

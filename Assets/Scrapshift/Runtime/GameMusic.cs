@@ -7,6 +7,8 @@ namespace Scrapshift
         AudioSource source;
         float phaseGain=1;
         bool started;
+        public bool IsPlaying=>source!=null&&source.isPlaying;
+        public float PlaybackTime=>source==null?0:source.time;
         public void Initialize()
         {
             source=gameObject.AddComponent<AudioSource>();source.playOnAwake=false;source.loop=true;source.spatialBlend=0;source.priority=64;
