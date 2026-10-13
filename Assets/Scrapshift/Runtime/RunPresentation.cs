@@ -75,7 +75,7 @@ namespace Scrapshift
             if(GUI.enabled&&r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
             bool clicked=GUI.Button(r,label,labelStyle);if(clicked)sound.Play(SoundCue.UiPress);return clicked;
         }
-        void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false)
+        void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false,float motionTime=-1)
         {
             var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>());
             foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,origin,scale);
@@ -85,6 +85,7 @@ namespace Scrapshift
                 Vector2 p=origin+new Vector2(side*SpringMotion.LegSpread,-SpringMotion.LegY)*scale;
                 var before=GUI.matrix;
                 GUI.matrix=before*SpringMotion.PortraitLegTransform(p,side);
+                if(motionTime>=0&&!reducedMotion)GUI.matrix=before*Matrix4x4.TRS(p,Quaternion.Euler(0,0,Mathf.Sin(motionTime*6)*side*12),Vector3.one)*Matrix4x4.Translate(-p)*SpringMotion.PortraitLegTransform(p,side);
                 DrawIcon(sprite,new Rect(p-size*.5f,size));GUI.matrix=before;
             }
             var hero=playerAnimation.idleFrames[0];Vector2 bodySize=(Vector2)hero.bounds.size*scale;
@@ -107,7 +108,7 @@ namespace Scrapshift
             if(menuPage==1)
             {
                 RoundedBox(new Rect(935,155,230,420),panelColor);
-                Text(955,184,190,40,"Run options",heading);
+                Text(955,184,190,40,"Run options",new GUIStyle(heading){fontSize=24,wordWrap=false});
                 Text(957,265,185,150,"Single player\n20 waves\nThe salvage yard",body);
                 CharacterGrid();
             }
@@ -139,14 +140,10 @@ namespace Scrapshift
         {
             if(menuPage==5){MenuBackdrop();DrawPauseCodex();return;}
             if(menuPage!=0){SelectionUI();return;}
-            Box(FullCanvas,new Color(.25f,.24f,.22f));
-            var old=GUI.color;GUI.color=new Color(.65f,.6f,.53f,.28f);
-            for(int i=0;i<20;i++)DrawIcon(catalog.data.enemies[i%catalog.data.enemies.Length].image,new Rect((i%5)*320-90+(i/5%2)*65,(i/5)*260-55,240,235));
-            GUI.color=old;
+            TitleScene();
             var brand=new GUIStyle(title){fontSize=142,alignment=TextAnchor.MiddleCenter};
             OutlinedText(125,72,1190,175,"SCRAPSHIFT",brand);
             Text(300,245,840,42,"THE SALVAGE YARD",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
-            Portrait(new Vector2(780,575+Mathf.Sin(Time.unscaledTime*3)*3),275,playerAnimation.Look);
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
             if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;

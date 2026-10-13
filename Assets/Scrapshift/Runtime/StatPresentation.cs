@@ -24,15 +24,7 @@ namespace Scrapshift
     {
         void MenuBackdrop()
         {
-            Box(FullCanvas,new Color(.31f,.30f,.27f));
-            var before=GUI.color;GUI.color=new Color(.65f,.63f,.55f,.14f);
-            for(int i=0;i<22;i++)
-            {
-                float x=i<11?i*145-50:i%11*145-50;
-                float y=i<11?-25:780;
-                DrawIcon(catalog.data.items[i%catalog.data.items.Length].image,new Rect(x,y,115,120));
-            }
-            GUI.color=before;
+            DrawMenuGround(FullCanvas);
         }
         void DrawStatIcon(string key,Rect rect)=>DrawIcon(StatPresentation.Icon(catalog,key),rect);
         void DrawRunInventory(Rect area)

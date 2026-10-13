@@ -57,12 +57,13 @@ namespace Scrapshift
             settingsValue=new GUIStyle(center){fontSize=27};
             string[] tabs={"Sound","Video","Gameplay","Accessibility"};
             for(int i=0;i<4;i++)if(SettingsButton(new Rect(160+i*282,55,272,65),tabs[i],optionsTab==i)){optionsTab=i;optionsScroll=Vector2.zero;}
-            var view=new Rect(235,155,970,570);float content=optionsTab==2?805:optionsTab==3?1050:545;
+            var view=new Rect(235,155,970,570);float content=optionsTab==2?545:optionsTab==3?1050:545;
             optionsScroll=GUI.BeginScrollView(view,optionsScroll,new Rect(0,0,947,content));float y=0;
             if(optionsTab==0)
             {
                 OptionSlider("Master volume","master",ref y,0,1,.5f);
                 OptionSlider("Music volume","music",ref y,0,1,.35f);
+                RoundedBox(new Rect(0,y,940,65),new Color(0,0,0,.82f),8);
                 Text(15,y+8,450,45,"Sound effects volume",settingsLabel);float v=OptionsSlider(new Rect(500,y+27,290,25),sound.Volume,0,1);Text(817,y+7,100,40,$"{sound.Volume*100:0}%",settingsValue);
                 if(Mathf.Abs(v-sound.Volume)>.005f)sound.SetVolume(v);y+=74;
                 if(SettingsButton(new Rect(0,y,940,53),muted?"Sound effects: Off":"Sound effects: On"))ToggleSound();y+=62;
@@ -73,7 +74,6 @@ namespace Scrapshift
                 if(SettingsButton(new Rect(0,y,940,53),DisplayLabel))ToggleFullscreen();y+=62;
                 OptionToggle("Screen shake","shake",ref y);OptionToggle("Visual effects","effects",ref y);OptionToggle("Damage display","damage",ref y);
                 OptionToggle("Limit FPS to 60","limitFps",ref y,false);Application.targetFrameRate=GameSettings.Flag("limitFps",false)?60:120;
-                Text(15,y+12,910,45,Screen.width+" × "+Screen.height+"    F11: toggle fullscreen",settingsLabel);
             }
             else if(optionsTab==2)
             {
@@ -84,7 +84,6 @@ namespace Scrapshift
                 OptionToggle("Boss HP bar","bossHp",ref y);
                 OptionToggle("Keep items locked between shops","keepLock",ref y);
                 OptionToggle("Hide item appearance","hideItems",ref y,false);
-                Text(15,y+15,910,210,"Move: WASD / Arrow keys (or hold left mouse)\nPause / Back: Escape     Confirm: Enter\nInspect: Tab / Shift+Tab\nWeapon actions: Left / Right click\nManual aiming keeps automatic firing.",settingsLabel);
             }
             else
             {

@@ -78,8 +78,9 @@ namespace Scrapshift
             string name=randomCharacter&&menuPage==1?"Random":SelectedCharacter.title;
             Text(left+20,164,530,58,name,new GUIStyle(heading){fontSize=40,alignment=TextAnchor.MiddleCenter});
             Frame(new Rect(left+20,244,180,245),new Color(.32f,.29f,.25f));
+            DrawMenuGround(new Rect(left+25,249,170,235),true);
             if(randomCharacter&&menuPage==1)Text(left+20,300,180,120,"?",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
-            else Portrait(new Vector2(left+110,365),100,playerAnimation.Look);
+            else AnimatedMenuPortrait(new Vector2(left+110,370),100);
             string details=randomCharacter&&menuPage==1?"Choose an unlocked\ncharacter at random.":SelectedCharacter.description;
             if(randomCharacter&&menuPage==1)Text(left+222,246,326,263,details,new GUIStyle(body){fontSize=20});
             else DrawCharacterEffects(SelectedCharacter,left+220,246,328);
