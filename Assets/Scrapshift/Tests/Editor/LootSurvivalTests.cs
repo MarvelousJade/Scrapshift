@@ -59,6 +59,17 @@ namespace Scrapshift.Tests
             Assert.IsTrue(r.ResolveCrate(true));Assert.IsFalse(r.ResolveCrate(true));
             for(int i=0;i<before.Length;i++)Assert.AreEqual(before[i]+item.effects[i].value,r.Stat(item.effects[i].key.Replace("stat_","")));
         }
+        [Test] public void LegendaryCrateDrawsOnlyEligibleLegendaryItems()
+        {
+            for(int seed=0;seed<32;seed++)
+            {
+                var r=new RunRules(seed);r.Configure(catalog);r.Start();
+                r.CollectConsumable(ConsumableKind.LegendaryCrate);r.Tick(r.Remaining);
+                Assert.AreEqual(RunPhase.Loot,r.Phase);
+                Assert.AreEqual(4,r.CrateItem.tier);
+                Assert.AreNotEqual("broken_hourglass",r.CrateItem.id);
+            }
+        }
         [Test] public void RestartAndLossCannotLeakCrateRewards()
         {
             var r=Run();r.CollectConsumable(ConsumableKind.Crate);r.Pause();r.CollectConsumable(ConsumableKind.Crate);

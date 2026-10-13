@@ -16,7 +16,7 @@ namespace Scrapshift
         { "coffee", "beanie", "glasses", "helmet", "leather_vest", "bat", "fertilizer", "cake" };
         public static bool IsShopItem(string id) => shopItems.Contains(id);
         public static void ConfigureShopItems(ItemEntry[] items)
-        {if(items==null||!items.Any(i=>i.available))return;shopItems.Clear();foreach(var i in items)if(i.available)shopItems.Add(i.id);}
+        {if(items==null)return;shopItems.Clear();foreach(var i in items)if(i.available&&i.maxCount!=0)shopItems.Add(i.id);}
         public static readonly int[] Durations=
         {
             20,25,30,35,40,45,50,55,60,60,60,60,60,60,60,60,60,60,60,90
@@ -256,8 +256,8 @@ namespace Scrapshift
             Offers=new UpgradeOffer[4];
             for(int i=0;i<4;i++)
             {
-                int p=random.Next(pool.Count);
                 int tier=ReferenceRarity.Upgrade(rewardLevel,Stat("luck"),random.NextDouble());
+                int p=random.Next(pool.Count);
                 Offers[i]=new UpgradeOffer(pool[p],tier,catalog?.data.upgrades);
                 pool.RemoveAt(p);
             }
@@ -281,18 +281,24 @@ namespace Scrapshift
             RollShop();
             if(!GameSettings.Flag("keepLock"))foreach(var offer in Shop)if(offer!=null)offer.locked=false;
         }
-        void RollShop()
+        void RollShop(bool reroll=false)
         {
             if(catalog==null)return;
             int guaranteed=Math.Max((int)Stat("minimum_weapons_in_shop"),Wave<=2?2:Wave<=5?1:0);
             var guaranteedItems=new Queue<string>(Effects("guaranteed_shop_items").Select(e=>e.key.Replace("item_","")));
             int existing=Shop.Count(s=>s!=null&&s.locked&&s.weapon!=null);
-            var excluded=Shop.Where(s=>s!=null).ToList();
+            // The reference starts a new shop with only locked offers in the exclusion list.
+            // A reroll excludes the offers it replaces as well as the new offers in this roll.
+            var excluded=Shop.Where(s=>s!=null&&(reroll||s.locked)).ToList();
+            var ownedItems=Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)).ToList();
             for(int i=0;i<4;i++)
             {
                 if(Shop[i]!=null&&Shop[i].locked)continue;
-                bool weapon=WeaponSlots>0&&(Wave<=2?existing<guaranteed:guaranteedItems.Count==0&&(existing<guaranteed||random.NextDouble()<.35));
-                int tier=ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
+                bool weapon=WeaponSlots>0&&(Wave<=2?existing<guaranteed:guaranteedItems.Count==0&&(random.NextDouble()<.35||existing<guaranteed));
+                bool guaranteedItem=!weapon&&guaranteedItems.Count>0;
+                // _get_rand_item_for_wave draws this value before rarity, even for items.
+                double wanted=guaranteedItem?0:random.NextDouble();
+                int tier=guaranteedItem?0:ReferenceRarity.Roll(Wave,Stat("luck"),random.NextDouble());
                 if(weapon)
                 {
                     tier=Mathf.Clamp(tier,MinimumWeaponTier,MaximumWeaponTier);
@@ -300,7 +306,6 @@ namespace Scrapshift
                     if(fallback.Length==0){Shop[i]=null;continue;}
                     var pool=fallback.Where(w=>!excluded.Any(s=>s.weapon==w)).ToArray();
                     if(pool.Length==0)pool=fallback;
-                    double wanted=random.NextDouble();
                     float early=Math.Max(0,6-Wave);
                     var preferred=wanted<.2+early*.01 ? pool.Where(w=>Inventory.Any(owned=>owned.id==w.id)).ToArray() :
                         wanted<.35+early*.04 ? pool.Where(w=>Inventory.Any(owned=>ShopSelection.SharesSet(owned,w))).ToArray() : pool;
@@ -313,9 +318,10 @@ namespace Scrapshift
                 }
                 else
                 {
-                    var pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<WantedTagChance,
-                        excluded.Where(s=>s.item!=null).Select(s=>s.item),Items.Concat(Shop.Where(s=>s?.item!=null&&s.locked).Select(s=>s.item)));
-                    if(guaranteedItems.Count>0){string id=guaranteedItems.Dequeue();pool=catalog.data.items.Where(item=>item.id==id).ToArray();}
+                    ItemEntry[] pool;
+                    if(guaranteedItem){string id=guaranteedItems.Dequeue();pool=catalog.data.items.Where(item=>item.id==id).ToArray();}
+                    else pool=ShopSelection.ItemPool(catalog.data.items,Character,tier,random.NextDouble()<WantedTagChance,
+                        excluded.Where(s=>s.item!=null).Select(s=>s.item),ownedItems);
                     if(pool.Length==0){Shop[i]=null;continue;}
                     Shop[i]=new ShopOffer
                     {
@@ -381,7 +387,7 @@ namespace Scrapshift
             int cost=RerollPrice;Scrap-=cost;
             if(Phase==RunPhase.Shop&&freeShopRerolls>0)freeShopRerolls--;else rerolls++;
             if(Phase==RunPhase.Upgrade)Draft(true);
-            else RollShop();
+            else RollShop(true);
         }
         public void NextWave()
         {
