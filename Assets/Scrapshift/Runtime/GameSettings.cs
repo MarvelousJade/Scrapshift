@@ -16,6 +16,8 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         Vector2 optionsScroll;
+        GUIStyle settingsLabel,settingsValue;
+        bool SettingsButton(Rect r,string label,bool selected=false)=>MenuButton(r,label,selected,fontSize:27);
         bool focused=true;
         void OnApplicationFocus(bool focus)
         {
@@ -37,39 +39,41 @@ namespace Scrapshift
         {
             bool value=GameSettings.Flag(key,fallback);
             RoundedBox(new Rect(0,y,940,53),new Color(0,0,0,.82f),8);
-            Text(15,y+5,765,43,label,body);
-            if(Button(new Rect(803,y+7,118,39),value?"On":"Off"))GameSettings.Set(key,!value);
+            Text(15,y+5,765,43,label,settingsLabel);
+            if(SettingsButton(new Rect(803,y+7,118,39),value?"On":"Off"))GameSettings.Set(key,!value);
             y+=62;
         }
         void OptionSlider(string label,string key,ref float y,float min,float max,float fallback=1)
         {
             float value=GameSettings.Value(key,fallback);
             RoundedBox(new Rect(0,y,940,65),new Color(0,0,0,.82f),8);
-            Text(15,y+6,480,45,label,body);Text(817,y+7,100,40,$"{value*100:0}%",center);
+            Text(15,y+6,480,45,label,settingsLabel);Text(817,y+7,100,40,$"{value*100:0}%",settingsValue);
             float next=OptionsSlider(new Rect(500,y+27,290,25),value,min,max);
             if(Mathf.Abs(next-value)>.005f)GameSettings.Set(key,Mathf.Round(next*100)/100);y+=74;
         }
         void DrawTabbedOptions(bool paused)
         {
+            settingsLabel=new GUIStyle(body){fontSize=27,alignment=TextAnchor.MiddleLeft};
+            settingsValue=new GUIStyle(center){fontSize=27};
             string[] tabs={"Sound","Video","Gameplay","Accessibility"};
-            for(int i=0;i<4;i++)if(MenuButton(new Rect(160+i*282,55,272,65),tabs[i],optionsTab==i)){optionsTab=i;optionsScroll=Vector2.zero;}
+            for(int i=0;i<4;i++)if(SettingsButton(new Rect(160+i*282,55,272,65),tabs[i],optionsTab==i)){optionsTab=i;optionsScroll=Vector2.zero;}
             var view=new Rect(235,155,970,570);float content=optionsTab==2?805:optionsTab==3?1050:545;
             optionsScroll=GUI.BeginScrollView(view,optionsScroll,new Rect(0,0,947,content));float y=0;
             if(optionsTab==0)
             {
                 OptionSlider("Master volume","master",ref y,0,1,.5f);
                 OptionSlider("Music volume","music",ref y,0,1,.35f);
-                Text(15,y+8,450,45,"Sound effects volume",body);float v=OptionsSlider(new Rect(500,y+27,290,25),sound.Volume,0,1);Text(817,y+7,100,40,$"{sound.Volume*100:0}%",center);
+                Text(15,y+8,450,45,"Sound effects volume",settingsLabel);float v=OptionsSlider(new Rect(500,y+27,290,25),sound.Volume,0,1);Text(817,y+7,100,40,$"{sound.Volume*100:0}%",settingsValue);
                 if(Mathf.Abs(v-sound.Volume)>.005f)sound.SetVolume(v);y+=74;
-                if(Button(new Rect(0,y,940,53),muted?"Sound effects: Off":"Sound effects: On"))ToggleSound();y+=62;
+                if(SettingsButton(new Rect(0,y,940,53),muted?"Sound effects: Off":"Sound effects: On"))ToggleSound();y+=62;
                 OptionToggle("Mute when focus is lost","muteFocus",ref y);ApplyAudioSettings();
             }
             else if(optionsTab==1)
             {
-                if(Button(new Rect(0,y,940,53),DisplayLabel))ToggleFullscreen();y+=62;
+                if(SettingsButton(new Rect(0,y,940,53),DisplayLabel))ToggleFullscreen();y+=62;
                 OptionToggle("Screen shake","shake",ref y);OptionToggle("Visual effects","effects",ref y);OptionToggle("Damage display","damage",ref y);
                 OptionToggle("Limit FPS to 60","limitFps",ref y,false);Application.targetFrameRate=GameSettings.Flag("limitFps",false)?60:120;
-                Text(15,y+12,910,45,Screen.width+" × "+Screen.height+"    F11: toggle fullscreen",body);
+                Text(15,y+12,910,45,Screen.width+" × "+Screen.height+"    F11: toggle fullscreen",settingsLabel);
             }
             else if(optionsTab==2)
             {
@@ -80,7 +84,7 @@ namespace Scrapshift
                 OptionToggle("Boss HP bar","bossHp",ref y);
                 OptionToggle("Keep items locked between shops","keepLock",ref y);
                 OptionToggle("Hide item appearance","hideItems",ref y,false);
-                Text(15,y+15,910,210,"Move: WASD / Arrow keys (or hold left mouse)\nPause / Back: Escape     Confirm: Enter\nInspect: Tab / Shift+Tab\nWeapon actions: Left / Right click\nManual aiming keeps automatic firing.",body);
+                Text(15,y+15,910,210,"Move: WASD / Arrow keys (or hold left mouse)\nPause / Back: Escape     Confirm: Enter\nInspect: Tab / Shift+Tab\nWeapon actions: Left / Right click\nManual aiming keeps automatic firing.",settingsLabel);
             }
             else
             {
@@ -92,11 +96,11 @@ namespace Scrapshift
                 OptionSlider("Pet opacity","petOpacity",ref y,.2f,1);
                 OptionToggle("Screen darkening","darkening",ref y);
                 OptionToggle("Show effect icons","effectIcons",ref y);
-                if(Button(new Rect(0,y,940,53),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);PlayerPrefs.Save();}y+=62;
-                foreach(var key in new[]{"positiveColor","negativeColor"}){int value=(int)GameSettings.Value(key,0);if(Button(new Rect(0,y,940,53),(key=="positiveColor"?"Positive text: ":"Negative text: ")+(key=="positiveColor"?new[]{"Green","Cyan","Yellow"}:new[]{"Red","Magenta","Orange"})[value%3]))GameSettings.Set(key,(float)((value+1)%3));y+=62;}
+                if(SettingsButton(new Rect(0,y,940,53),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);PlayerPrefs.Save();}y+=62;
+                foreach(var key in new[]{"positiveColor","negativeColor"}){int value=(int)GameSettings.Value(key,0);if(SettingsButton(new Rect(0,y,940,53),(key=="positiveColor"?"Positive text: ":"Negative text: ")+(key=="positiveColor"?new[]{"Green","Cyan","Yellow"}:new[]{"Red","Magenta","Orange"})[value%3]))GameSettings.Set(key,(float)((value+1)%3));y+=62;}
             }
             GUI.EndScrollView();
-            if(MenuButton(new Rect(470,770,500,60),"Back")){if(paused)pauseOptions=false;else menuPage=0;}
+            if(SettingsButton(new Rect(470,770,500,60),"Back")){if(paused)pauseOptions=false;else menuPage=0;}
         }
     }
 }

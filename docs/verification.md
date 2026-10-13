@@ -445,3 +445,9 @@ Current playable build: Builds/FeedbackPolish/Scrapshift.exe. ZIP is a sharing a
 Final audio output check passed: all 21 cues produced sampled mixer output, mute suppression passed, peak 0.100993640720844, peak concurrent voices 2. The first attempt had intermittent silence while focus mute could apply; rerunning with the test window explicitly foregrounded passed. This checks signal output, not subjective music or mix approval.
 
 Native follow-up: opened Builds/FeedbackPolish/Scrapshift.exe, clicked Options, verified the Music volume control at 35% alongside master/SFX controls, and pressed Escape back to title. Left the new build open. Pause preservation is covered by the four state regression tests; no full run or subjective listening approval is claimed.
+
+## October 12 - settings text size
+
+Settings labels, slider percentages, On/Off controls, tabs and Back now use font size 27 in the shared 1440x900 UI coordinate space, matching the main menu Options button (labels/values previously 21; short toggle buttons about 22). Settings retain their existing layout and scrolling. Controller audit found keyboard/mouse movement and menu handling only; no native gamepad axis/button mapping or menu navigation is implemented. This change does not add controller support.
+
+Builds/SettingsText/Scrapshift.exe built with zero errors/warnings; all 1024 source/config/metadata files match validation. Native visual checks at 1920x1080 covered Sound, Video, Gameplay (including longest label), Accessibility and its lower scrolled controls. Captures: artifacts/settings-font-review. No preference values were changed. This typography-only change used build and visual verification; the prior 288-test results were not rerun or relabeled. Left the new build open on Sound settings.
