@@ -100,7 +100,11 @@ namespace Scrapshift
                 bool playerOn=Vector2.Distance(PlayerHurtCenter,center)<.24f+CombatGeometry.PlayerHurtRadius;
                 if(mine.playerOn&&!playerOn)left=true;mine.playerOn=playerOn;
                 foreach(var e in enemies)if(e.marker==null&&Vector2.Distance(e.pos,center)<.24f+HurtRadius(e))mine.occupants.Add(e);
-                if(mine.occupants.Count>0||mine.playerOn)mine.obj.GetComponent<SpriteRenderer>().color=coral;
+                if(mine.occupants.Count>0||mine.playerOn)
+                {
+                    var renderer=mine.obj.GetComponent<SpriteRenderer>();
+                    if(renderer.color!=coral){sound.Play(SoundCue.UiPress,mine.pos);mine.obj.transform.localScale*=.9f;renderer.color=coral;}
+                }
                 if(!left)continue;
                 int explosionKillsBefore=Rules.Kills;
             foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,mine.pos)<mine.radius)
@@ -126,6 +130,7 @@ namespace Scrapshift
         {stat=string.IsNullOrEmpty(stat)?"elemental_damage":stat;target.burnStat=stat;TryVulnerability(target,stat);if(target.burnTicks<=0)target.burnClock=Rules.BurningInterval;target.burnDamage=Mathf.Max(target.burnTicks>0?target.burnDamage:0,damage);target.burnTicks=Mathf.Max(target.burnTicks,ticks);target.burnSpread=Mathf.Max(target.burnSpread,spread);}
         void SpawnMine(StarterTurret spawner,Sprite image,Vector2? near=null)
         {
+            image=SupportArt.Structure("landmine");
             var pos=near.HasValue?RunRules.ClampPosition(near.Value+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f))):RandomPosition(playerPos,0);
             var obj=SpriteObject("Cybernetic proximity charge",image,pos,6);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.4f);
             mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,radius=spawner.trait.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100)});

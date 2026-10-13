@@ -12,7 +12,7 @@ namespace Scrapshift
         [Serializable] sealed class InspectionResult { public string name,phase,target,drawn;public bool panelOnScreen;public int banked,pendingLevels,pendingCrates;public float arrivalTime,canopyWidth,canopyHeight,remaining; }
         [Serializable] sealed class InspectionReport { public string status,scope="Staged UI using normal screen renderers and forced inspection focus. Frozen simulation; this fixture does not validate native mouse/keyboard input.";public bool bossPillarsVerified,predatorVerified;public bool capturesVerified;public List<InspectionResult> checks=new List<InspectionResult>(); }
         InspectionReport inspectionReport;
-        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-sound","options-video","options-gameplay","options-accessibility","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu","pillar-warning","pillar-active","pillar-fade","invoker-ring","predator-arm","tier-shop","shop-character","pause-layout","pause-codex","pause-character","codex-challenges","codex-items","codex-weapons","codex-enemies","unlock-reward","elemental-details","conditional-details","achievement-toast","crate-icons","pickup-burst","title-idle","title-complete","selection-idle","selection-squash","selection-reduced-motion","map-salvage","map-rust","map-overgrown","map-cryo","map-ash","map-neon","grips-right","grips-left","map-options"};
+        static readonly string[] inspectionCases={"rookie-weapons","pugilist-weapons","hothead-weapons","sharpshot-weapons","pause-stat","pause-weapon","pause-item","shop-stat","shop-weapon","shop-item","upgrade-weapon","loot-item","rookie-character","pugilist-character","hothead-character","sharpshot-character","canopy-enter","canopy-open","canopy-sway","canopy-stretch","canopy-fold","canopy-gone","landing-finished","weapon-actions","pending-rewards","tree-warning","wave-sweep","harvest","sweep-complete","options-sound","options-video","options-gameplay","options-accessibility","movement-dust","intermission-tree","expanded-weapons","implant-shop","map-north","map-south","conditional-implants","special-weapons","reference-shop-layout","reference-level-layout","secondary-stats","item-sort-menu","pillar-warning","pillar-active","pillar-fade","invoker-ring","predator-arm","tier-shop","shop-character","pause-layout","pause-codex","pause-character","codex-challenges","codex-items","codex-weapons","codex-enemies","unlock-reward","elemental-details","conditional-details","achievement-toast","crate-icons","pickup-burst","title-idle","title-complete","selection-idle","selection-squash","selection-reduced-motion","map-salvage","map-rust","map-overgrown","map-cryo","map-ash","map-neon","grips-right","grips-left","map-options","support-art"};
         void BeginInspectionReview(string path)
         {inspectionReview=true;inspectionPath=Path.GetFullPath(path);Directory.CreateDirectory(inspectionPath);inspectionUtc=DateTime.UtcNow;inspectionNext=Time.realtimeSinceStartup+.5f;inspectionReport=new InspectionReport();Begin();sound.SetMuted(true);}
         void InspectionReviewTick()
@@ -31,7 +31,21 @@ namespace Scrapshift
             if(inspectionStage==inspectionCases.Length){inspectionNext=Time.realtimeSinceStartup+.6f;return;}
             if(inspectionStage>inspectionCases.Length)return;
             forcedInspection=null;lastDrawnInspection=null;
-            if(inspectionStage==78){ChooseMap(5);ReturnToSelection(4);optionsTab=1;optionsScroll=Vector2.zero;mapPicker=true;}
+            if(inspectionStage==79)
+            {
+                Begin();ClearCombat();player.SetActive(false);Rules.Inventory.Clear();SyncEquipment();
+                var kinds=new[]{"turret","flame","rocket","laser","healing","landmine","garden","tyler","wandering_bot"};
+                var companions=new[]{"bonk_dog","catling_gun","bot_o_mine","blazemander","ratzilla","doc_moth","lootworm","scapegoat","jellyshield"};
+                for(int i=0;i<9;i++)
+                {
+                    var left=SpriteObject(kinds[i],SupportArt.Structure(kinds[i]),new Vector2(-8+i%3*2.8f,3-i/3*2.7f),7);
+                    left.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(SupportArt.Structure(kinds[i]),1.8f);
+                    var right=SpriteObject(companions[i],SupportArt.Pet(companions[i]),new Vector2(2+i%3*2.8f,3-i/3*2.7f),7);
+                    right.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(SupportArt.Pet(companions[i]),1.8f);
+                }
+                gameCamera.orthographicSize=6;gameCamera.transform.position=Vector3.back*20;
+            }
+            else if(inspectionStage==78){ChooseMap(5);ReturnToSelection(4);optionsTab=1;optionsScroll=Vector2.zero;mapPicker=true;}
             else if(inspectionStage>=70)
             {
                 ApplyMapTheme(Mathf.Min(inspectionStage-70,5));Begin();ClearCombat();playerPos=Vector2.zero;player.transform.position=playerPos;player.SetActive(true);playerShadow.Place(playerPos,ActorPresentation.PlayerScale);

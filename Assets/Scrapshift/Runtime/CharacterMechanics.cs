@@ -9,6 +9,9 @@ namespace Scrapshift
         public int MinimumWeaponTier=>Character?.minTier??1;
         public int MaximumWeaponTier=>Character?.maxTier??4;
         public bool CanAttack=>Character==null||Character.canAttackMoving||!moving;
+        // item_service.gd excludes lower tiers and max-tier duplicates for unique-weapon characters.
+        public bool CanOfferWeapon(Equipment w)=>CanEquip(w)&&(Stat("no_duplicate_weapons")<=0||
+            !Inventory.Any(owned=>owned.id==w.id&&(w.tier<owned.tier||w.tier==owned.tier&&catalog.Weapon(w.id,w.tier+1)==null)));
         public bool CanAddWeapon(Equipment w)=>CanEquip(w)&&
             (Stat("no_duplicate_weapons")<=0||!Inventory.Any(x=>x.id==w.id))&&
             (Stat(w.melee?"max_melee_weapons":"max_ranged_weapons")<=0||Inventory.Count(x=>x.melee==w.melee)<Stat(w.melee?"max_melee_weapons":"max_ranged_weapons"));

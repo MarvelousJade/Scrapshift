@@ -42,6 +42,7 @@ namespace Scrapshift
 
         void Start()
         {
+            SupportArt.Apply(catalog);
             InitializeProgression();ApplyAudioSettings();Application.targetFrameRate = GameSettings.Flag("limitFps",false)?60:120; Rules.Configure(catalog);
             Rules.RandomDamageRequested+=QueueImplantDamage;
 

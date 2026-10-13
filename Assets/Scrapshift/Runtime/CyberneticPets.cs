@@ -22,8 +22,7 @@ namespace Scrapshift
         }
         void SpawnPet(PetSpec spec)
         {
-            string art=spec.kind=="catling_gun"?"minigun":spec.kind=="bot_o_mine"?"screwdriver":spec.kind=="blazemander"?"flamethrower":spec.kind=="bonk_dog"?"hammer":spec.kind=="doc_moth"?"medical_gun":spec.kind=="scapegoat"?"spiky_shield":spec.kind=="jellyshield"?"taser":spec.kind=="lootworm"?"hand":"claw";
-            var image=catalog.data.equipment.First(w=>w.id==art).image;var pos=playerPos+UnityEngine.Random.insideUnitCircle*2;
+            var image=SupportArt.Pet(spec.kind);var pos=playerPos+UnityEngine.Random.insideUnitCircle*2;
             var obj=SpriteObject("Cybernetic companion: "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.65f);AddGroundShadow(obj,image.bounds.size.x,-.2f);
             var pet=new Pet{spec=spec,obj=obj,pos=pos,destination=pos,health=spec.health+spec.healthGrowth*(Rules.Wave-1)};
             if(spec.stats!=null&&spec.stats.interval>0){pet.weapon=Rules.PetWeapon(spec.stats,spec);pet.clock=spec.stats.interval;}

@@ -103,7 +103,7 @@ namespace Scrapshift
         ReferenceCatalog catalog;
         int rerolls,banked;float xpFraction;
         public int Banked=>banked;
-        public int RerollPrice=>Phase==RunPhase.Shop&&freeShopRerolls>0?0:(int)(Wave*.75f)+Math.Max(1,(int)(Wave*.4f))*(rerolls+1);
+        public int RerollPrice=>Phase==RunPhase.Shop&&freeShopRerolls>0?0:Mathf.CeilToInt(((int)(Wave*.75f)+Math.Max(1,(int)(Wave*.4f))*(rerolls+1))*Mathf.Max(.1f,1+Stat("reroll_price")/100));
         public bool CanReroll=>(Phase==RunPhase.Upgrade||Phase==RunPhase.Shop)&&Scrap>=RerollPrice;
         public RunRules(int seed=-1)
         {
@@ -296,7 +296,7 @@ namespace Scrapshift
                 if(weapon)
                 {
                     tier=Mathf.Clamp(tier,MinimumWeaponTier,MaximumWeaponTier);
-                    var fallback=catalog.data.equipment.Where(w=>w.tier==tier&&CanEquip(w)).ToArray();
+                    var fallback=catalog.data.equipment.Where(w=>w.tier==tier&&CanOfferWeapon(w)).ToArray();
                     if(fallback.Length==0){Shop[i]=null;continue;}
                     var pool=fallback.Where(w=>!excluded.Any(s=>s.weapon==w)).ToArray();
                     if(pool.Length==0)pool=fallback;

@@ -320,11 +320,11 @@ namespace Scrapshift
                 bool shooting=swings[i]>0;
                 var aim=shooting?weaponTargets[i]:nearest;
                 Vector2 direction=aim!=null&&enemies.Contains(aim)?(aim.pos-mount).normalized:shooting?weaponDirections[i]:ActorPresentation.RestDirection(playerAnimation.FacingLeft);
-                bool manual=GameSettings.Flag("manualAim",false)&&(!GameSettings.Flag("aimPressed",false)||Input.GetMouseButton(0));
+                bool manual=CombatInput.ManualAim(GameSettings.Flag("manualAim",false),GameSettings.Flag("aimPressed",false),Input.GetMouseButton(0));
                 if(manual&&!shooting)direction=((Vector2)gameCamera.ScreenToWorldPoint(Input.mousePosition)-mount).normalized;
                 weaponDirections[i]=direction;
                 bool fire=Rules.CanAttack&&!shooting&&(manual||nearest!=null&&RunFeedback.CanAttack(range,distance))&&weaponClocks[i]<=0&&Rules.Phase==RunPhase.Playing&&!Arriving;
-                if(fire){weaponShots[i]++;weaponClocks[i]=Rules.WeaponCooldown(w)*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=nearest;}
+                if(fire){weaponShots[i]++;weaponClocks[i]=Rules.WeaponCooldown(w)*(w.reloadEvery>0&&weaponShots[i]%w.reloadEvery==0?w.reloadMultiplier:1);swings[i]=Rules.WeaponAnimationDuration(w);weaponTargets[i]=manual?null:nearest;}
                 var view=equipmentViews[i];if(view!=null)
                 {
                     float age = Rules.WeaponAnimationDuration(w) - swings[i];

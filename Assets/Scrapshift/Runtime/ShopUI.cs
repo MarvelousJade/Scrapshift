@@ -152,10 +152,12 @@ namespace Scrapshift
                 if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,132,width-24,86));
                 DrawOfferDetail(offer,x+16,225,width-32);
                 GUI.enabled=Rules.CanBuy(i);
-                string price=offer.weapon!=null&&Rules.Inventory.Count==Rules.WeaponSlots&&!Rules.CanBuy(i)&&Rules.Scrap>=Rules.Price(offer)?"Slots full":Rules.Price(offer).ToString();
+                string price=Rules.Price(offer).ToString();
                 if(MoneyButton(new Rect(x+(width-154)/2,451,154,55),price,true))
                 {Rules.Buy(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
                 GUI.enabled=true;
+                if(offer.weapon!=null&&Rules.Inventory.Count>=Rules.WeaponSlots&&!Rules.CanBuy(i)&&!Rules.Inventory.Any(w=>w.id==offer.weapon.id&&w.tier==offer.weapon.tier&&w.tier<Rules.MaximumWeaponTier))
+                    Text(x+16,423,width-32,25,"Weapon slots full",new GUIStyle(body){fontSize=16,alignment=TextAnchor.MiddleCenter,normal={textColor=coral}});
                 if(Button(new Rect(x+12,528,width-24,43),offer.locked?"Locked":"Lock"))
                 {Rules.ToggleLock(i);sound.Play(SoundCue.Reroll);}
             }

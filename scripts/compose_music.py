@@ -1,13 +1,13 @@
 """Render the original Neon Salvage score. No sampled/reference melodies or audio.
-32 bars, 126 BPM, E minor; deterministic subtractive/FM voices and synthesized drums.
+64 bars, 146 BPM, D minor; original EDM/industrial-metal arrangement with synthesized chugs.
 """
 from pathlib import Path
 import json, wave
 import numpy as np
 
 RATE=44100
-BEAT=60/126
-N=round(32*4*BEAT*RATE)
+BEAT=60/146
+N=round(64*4*BEAT*RATE)
 mix=np.zeros((N,2),np.float64)
 rng=np.random.default_rng(7126)
 def add(signal, beat, gain=1, pan=0):
@@ -18,9 +18,19 @@ def time(seconds): return np.arange(round(seconds*RATE))/RATE
 def note(midi): return 440*2**((midi-69)/12)
 def synth(midi,length,kind):
     t=time(length);f=note(midi)
-    if kind=='bass':
-        s=np.sin(2*np.pi*f*t)+.32*np.sin(4*np.pi*f*t)+.12*np.sin(6*np.pi*f*t)
-        env=np.minimum(t/.006,1)*np.exp(-t*5)*np.minimum((length-t)/.025,1)
+    if kind=='guitar':
+        # Band-limited detuned power chord, hard distortion then cabinet-like roll-off.
+        s=np.zeros_like(t)
+        for ratio in (1,1.003,1.5,2):
+            for h in range(1,19):
+                s+=np.sin(2*np.pi*f*ratio*h*t)/(h*4)
+        s=np.tanh(s*7)
+        spectrum=np.fft.rfft(s);freq=np.fft.rfftfreq(len(s),1/RATE)
+        s=np.fft.irfft(spectrum/(1+(freq/4200)**4),n=len(s))
+        env=np.minimum(t/.003,1)*np.exp(-t*(14 if length<BEAT*.6 else 3))*np.minimum((length-t)/.018,1)
+    elif kind=='bass':
+        s=np.sin(2*np.pi*f*t)+.4*np.sin(4*np.pi*f*t)+.2*np.sin(6*np.pi*f*t)
+        env=np.minimum(t/.003,1)*np.exp(-t*3)*np.minimum((length-t)/.02,1)
     else:
         s=np.sin(2*np.pi*f*t+1.5*np.sin(2*np.pi*f*2*t)*np.exp(-t*18))+.18*np.sin(2*np.pi*f*1.002*t)
         env=np.minimum(t/.008,1)*np.exp(-t*7)*np.minimum((length-t)/.035,1)
@@ -32,32 +42,35 @@ def snare():
     return (.28*noise+.5*np.sin(2*np.pi*185*t))*np.exp(-t*24)*np.minimum(t/.002,1)
 def hat():
     t=time(.075);noise=rng.standard_normal(len(t));return (noise-np.roll(noise,1))*np.exp(-t*65)*np.minimum(t/.001,1)
-roots=[40,36,43,38]
-for bar in range(32):
-    root=roots[(bar//2)%4];b=bar*4;breakdown=16<=bar<20
-    # Sustained minor/major pads, gently pulsed; progression Em / C / G / D.
-    t=time(4*BEAT);major=root in (36,43,38);chord=[root+24,root+24+(4 if major else 3),root+31]
-    pad=sum(np.sin(2*np.pi*note(m)*t)+.3*np.sin(2*np.pi*note(m)*1.003*t) for m in chord)
-    env=np.minimum(t/.15,1)*np.minimum((4*BEAT-t)/.18,1)*(.65+.35*np.sin(np.pi*t/BEAT)**2)
-    add(pad*env,b,.045)
-    for step in range(8):
-        if not breakdown or step%2==0:
-            add(synth(root+(12 if step in (3,7) else 0),BEAT*.46,'bass'),b+step*.5,.23)
-        if not breakdown:
-            add(hat(),b+step*.5,.065 if step%2 else .04,(-1 if step%2 else 1)*.45)
-    for beat in ([0,2] if breakdown else [0,1.5,2,3.5]):add(kick(),b+beat,.5)
-    if not breakdown:
-        for beat in [1,3]:add(snare(),b+beat,.24)
-    if bar>=4:
-        degrees=[0,7,12,10,7,3,5,7] if root==40 else [0,7,12,7,4,7,14,12]
-        for j,degree in enumerate(degrees):
-            if breakdown and j%2:continue
-            signal=synth(root+24+degree,BEAT*.8,'pluck')
-            gain=.075 if bar<24 else .10
-            add(signal,b+j*.5,gain,.25)
-            add(signal,b+j*.5+.75,gain*.26,-.5)
+roots=[38,38,41,36,38,38,34,36]
+for bar in range(64):
+    root=roots[bar%8];b=bar*4;breakdown=24<=bar<28 or 48<=bar<52
+    drop=bar>=8 and not breakdown
+    # Four-on-floor kicks and backbeat snare, occasional double-kick fills.
+    for beat in ([0,2] if breakdown else [0,1,2,3]):add(kick(),b+beat,.72)
     if bar%8==7:
-        for step in range(4):add(snare(),b+3+step*.25,.09+step*.02,step*.15-.2)
+        for beat in [2.5,3.25,3.5,3.75]:add(kick(),b+beat,.42)
+    for beat in [1,3]:add(snare(),b+beat,.32 if drop else .2)
+    for step in range(16 if drop else 8):
+        add(hat(),b+step*(.25 if drop else .5),.028 if step%2 else .065,(-1 if step%2 else 1)*.55)
+    pattern=[0,0,12,0,7,0,1,0] if bar%4<2 else [0,0,3,0,5,3,1,0]
+    for step,degree in enumerate(pattern):
+        if breakdown and step%2:continue
+        at=b+step*.5
+        add(synth(root-12,BEAT*.43,'bass'),at,.27)
+        if not breakdown:
+            length=BEAT*(.42 if step<6 else .7)
+            add(synth(root+degree,length,'guitar'),at,.16 if drop else .10,-.65)
+            add(synth(root+degree+.07,length,'guitar'),at+.018,.16 if drop else .10,.65)
+    if bar%16>=8 or breakdown:
+        degrees=[0,7,12,10,7,3,5,1]
+        for j,degree in enumerate(degrees):
+            signal=synth(root+24+degree,BEAT*.65,'pluck')
+            add(signal,b+j*.5,.08,.2);add(signal,b+j*.5+.75,.025,-.5)
+    if bar%8==7:
+        for step in range(4):add(snare(),b+3+step*.25,.10+step*.035,step*.15-.2)
+    if bar in (0,8,28,32,52,56):
+        t=time(1.2);noise=rng.standard_normal(len(t));add((noise-np.roll(noise,1))*np.exp(-t*5),b,.065)
 # Soft saturation, DC removal, and deterministic peak headroom. Notes wrap at the loop seam.
 mix-=mix.mean(axis=0)
 mix=np.tanh(mix*1.15)

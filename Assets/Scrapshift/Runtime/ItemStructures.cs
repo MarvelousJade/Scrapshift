@@ -15,12 +15,12 @@ namespace Scrapshift
         }
         Sprite StructureImage(string kind)
         {
-            string id=kind=="garden"?"pruner":kind=="landmine"?"screwdriver":kind=="healing"?"medical_gun":kind=="flame"?"flamethrower":kind=="rocket"?"rocket_launcher":kind=="laser"?"laser_gun":kind=="tyler"?"thunder_sword":kind=="wandering_bot"?"taser":"wrench";
-            return Array.Find(catalog.data.equipment,w=>w.id==id).image;
+            return SupportArt.Structure(kind);
         }
         Vector2 structureGroupCenter;
         void DeployStructure(StructureSpec spec,Sprite image,Vector2? position=null)
         {
+            image=StructureImage(spec.kind);
             float span=Mathf.Min(6,4+Rules.OwnedStructures*.1f);
             var pos=position??(Rules.Stat("group_structures")>0&&spec.kind!="wandering_bot"?RunRules.ClampPosition(structureGroupCenter+new Vector2(UnityEngine.Random.Range(-span/2,span/2),UnityEngine.Random.Range(-span/2,span/2))):RandomPosition(playerPos,0));
             var trait=new WeaponTrait{key=spec.kind,projectile=spec.stats,spawnInterval=spec.spawnInterval,animationSpeed=spec.animationSpeed,radius=spec.explosionRadius};

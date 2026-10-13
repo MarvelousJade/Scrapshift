@@ -30,7 +30,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void MusicHasStereoLoopAndHeadroom()
         {
-            var clip=Resources.Load<AudioClip>("Music/NeonSalvage");Assert.NotNull(clip);Assert.AreEqual(2,clip.channels);Assert.That(clip.length,Is.InRange(60f,62f));
+            var clip=Resources.Load<AudioClip>("Music/NeonSalvage");Assert.NotNull(clip);Assert.AreEqual(2,clip.channels);Assert.That(clip.length,Is.InRange(105f,106f));
             var samples=new float[clip.samples*clip.channels];Assert.IsTrue(clip.GetData(samples,0));float peak=0;double power=0;
             foreach(float s in samples){Assert.IsFalse(float.IsNaN(s));peak=Mathf.Max(peak,Mathf.Abs(s));power+=s*s;}
             Assert.That(peak,Is.InRange(.5f,.99f));Assert.Greater(power/samples.Length,.001);
