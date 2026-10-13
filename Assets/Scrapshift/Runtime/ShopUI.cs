@@ -12,6 +12,33 @@ namespace Scrapshift
         float OfferX(int index)=>ContentLeft+index*(OfferWidth+8);
         readonly System.Collections.Generic.Dictionary<string,Vector2> detailScroll=new System.Collections.Generic.Dictionary<string,Vector2>();
         Vector2 itemScroll,weaponScroll;
+        string inventoryHover;bool inventoryHoveredThisFrame;
+        bool InventoryHover(string id,Rect local,Rect viewport,Vector2 scroll)
+        {
+            var root=new Rect(viewport.position+local.position-scroll,local.size);
+            bool over=inspectionReview?forcedInspection==id:viewport.Contains(lastInspectionMouse)&&root.Contains(lastInspectionMouse);
+            if(over&&Event.current.type==EventType.Repaint)
+            {
+                inventoryHoveredThisFrame=true;
+                if(inventoryHover!=id){inventoryHover=id;sound.Play(SoundCue.InventoryFocus);}
+            }
+            return over;
+        }
+        bool RerollButton(Rect r)
+        {
+            bool hover=r.Contains(Event.current.mousePosition);
+            RoundedBox(r,hover?paper:Color.black,9);
+            Rect key=new Rect(r.x+18,r.center.y-14,28,28);
+            RoundedBox(key,new Color(.18f,.18f,.18f),3);RoundedBox(new Rect(key.x+3,key.y+3,22,22),new Color(.35f,.35f,.35f),2);
+            Text(key.x,key.y,28,28,"F",new GUIStyle(center){fontSize=18});
+            var text=new GUIStyle(center){fontSize=27,wordWrap=false};text.normal.textColor=hover?ink:paper;
+            string label="REROLL - "+Rules.RerollPrice;
+            while(text.fontSize>16&&text.CalcSize(new GUIContent(label)).x>r.width-120)text.fontSize--;
+            Text(r.x+55,r.y,r.width-108,r.height,label,text);
+            DrawIcon(catalog.scrapShapes[0],new Rect(r.xMax-49,r.center.y-17,34,34));
+            if(GUI.enabled&&hover&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
+            bool clicked=GUI.Button(r,GUIContent.none,GUIStyle.none);if(clicked)sound.Play(SoundCue.UiPress);return clicked;
+        }
         bool MoneyButton(Rect r,string label,bool large=false)
         {
             bool pressed=Button(r,"");
@@ -45,8 +72,8 @@ namespace Scrapshift
         void DrawStatsPanel(bool summary=false)
         {
             var previousMatrix=GUI.matrix;
-            GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(summary?-1050:StatsLeft-1110,summary?80:Rules.Phase==RunPhase.Upgrade?143:0,0));
-            RoundedBox(new Rect(1110,24,336,summary?680:650),new Color(.065f,.06f,.05f,.93f),8);
+            GUI.matrix=previousMatrix*Matrix4x4.Translate(new Vector3(summary?-1050:StatsLeft-1110,summary?80:Rules.Phase==RunPhase.Upgrade?143:Rules.Phase==RunPhase.Paused?40:0,0));
+            RoundedBox(new Rect(1110,24,336,summary?680:Rules.Phase==RunPhase.Paused?708:650),new Color(.065f,.06f,.05f,.93f),8);
             Text(1130,43,296,43,"Stats",new GUIStyle(heading) { alignment=TextAnchor.MiddleCenter });
             if(Button(new Rect(1125,94,133,35),"Primary"))secondaryStats=false;
             if(Button(new Rect(1266,94,135,35),"Secondary"))secondaryStats=true;
@@ -101,12 +128,13 @@ namespace Scrapshift
 
         void ShopUI()
         {
+            if(Event.current.type==EventType.Repaint)inventoryHoveredThisFrame=false;
             Box(FullCanvas,new Color(.19f,.175f,.15f,.76f));
             OutlinedText(ContentLeft,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
             DrawIcon(catalog.scrapShapes[0],new Rect(550,30,42,48));
-            Text(602,24,180,62,Rules.ShopBalance.ToString("0")+(Rules.UsesHealthShop?" HP":""),new GUIStyle(number){fontSize=40});
+            Text(602,30,180,48,Rules.ShopBalance.ToString("0")+(Rules.UsesHealthShop?" HP":""),new GUIStyle(number){fontSize=40,alignment=TextAnchor.MiddleLeft});
             GUI.enabled=Rules.CanReroll;
-            if(MoneyButton(new Rect(StatsLeft-318,27,294,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
+            if(RerollButton(new Rect(StatsLeft-318,27,294,56)))RerollUpgrade();
             GUI.enabled=true;
             DrawStatsPanel();
             for(int i=0;i<4;i++)
@@ -132,26 +160,34 @@ namespace Scrapshift
                 {Rules.ToggleLock(i);sound.Play(SoundCue.Reroll);}
             }
             float weaponLeft=StatsLeft-292,itemWidth=weaponLeft-ContentLeft-24;
-            Text(ContentLeft,618,250,40,$"Items ({Rules.Items.Count})",heading);DrawItemSorting(new Rect(weaponLeft-318,618,290,38));
+            Text(ContentLeft,618,100,40,"Items",heading);
+            Box(new Rect(ContentLeft+105,637,Mathf.Max(0,weaponLeft-318-ContentLeft-113),2),new Color(.4f,.49f,.41f,.45f));DrawItemSorting(new Rect(weaponLeft-318,618,290,38));
             Text(weaponLeft,618,280,40,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
             int columns=Mathf.Max(1,Mathf.FloorToInt((itemWidth-16)/88));
             var itemViewport=new Rect(ContentLeft,670,itemWidth,180);var sortedItems=SortedItems();
-            itemScroll=GUI.BeginScrollView(itemViewport,itemScroll,new Rect(0,0,itemWidth-18,Mathf.Max(160,Mathf.Ceil(sortedItems.Length/(float)columns)*88)));
+            itemScroll=GUI.BeginScrollView(itemViewport,itemScroll,new Rect(0,0,itemWidth-18,Mathf.Max(160,Mathf.Ceil((sortedItems.Length+1)/(float)columns)*88)));
             for(int i=0;i<sortedItems.Length;i++)
             {
                 float x=i%columns*88,y=i/columns*88;
-                Frame(new Rect(x,y,80,80),Color.Lerp(new Color(.24f,.23f,.20f),TierColor(sortedItems[i].tier),sortedItems[i].tier>1?.22f:0),2);
+                Frame(new Rect(x,y,80,80),InventoryHover("item:"+Rules.Items.IndexOf(sortedItems[i]),new Rect(x,y,80,80),itemViewport,itemScroll)?paper:Color.Lerp(new Color(.24f,.23f,.20f),TierColor(sortedItems[i].tier),sortedItems[i].tier>1?.22f:0),2);
                 DrawIcon(sortedItems[i].image,new Rect(x+7,y+6,66,66));
                 int owned=Rules.Items.Count(item=>item.id==sortedItems[i].id);if(owned>1)OutlinedText(x+50,y+54,28,24,owned.ToString(),tiny);
                 InspectItem("item:"+Rules.Items.IndexOf(sortedItems[i]),sortedItems[i],new Rect(x,y,80,80),itemViewport,itemScroll);
             }
+            var character=Rules.Character??SelectedCharacter;
+            float cx=sortedItems.Length%columns*88,cy=sortedItems.Length/columns*88;
+            var characterRect=new Rect(cx,cy,80,80);
+            Frame(characterRect,InventoryHover("character",characterRect,itemViewport,itemScroll)?paper:new Color(.24f,.23f,.20f),2);
+            DrawHeroFace(new Rect(cx+13,cy+8,54,64));
+            string description=string.Join("\n",character.effectRows.Where(row=>row.kind!="weapon").Select(row=>(StatPresentation.Keys.Contains(row.key)?"[["+row.key+"]] ":"• ")+CharacterEffectText(character,row).label));
+            Inspect("character",characterRect,character.title,description,playerAnimation.idleFrames[0],"Character",1,itemViewport,new Rect(itemViewport.position+characterRect.position-itemScroll,characterRect.size));
             GUI.EndScrollView();
             var weaponViewport=new Rect(weaponLeft,670,270,180);
             weaponScroll=GUI.BeginScrollView(weaponViewport,weaponScroll,new Rect(0,0,254,Mathf.Max(174,Mathf.Ceil(Rules.Inventory.Count/3f)*86)));
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
                 float x=2+i%3*84,y=2+i/3*86;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
-                Frame(new Rect(x,y,82,80),selectedWeapon==i?paper:Color.Lerp(new Color(.19f,.18f,.16f),w==null?panelColor:TierColor(w.tier),w!=null&&w.tier>1?.22f:0),2);
+                Frame(new Rect(x,y,82,80),selectedWeapon==i||InventoryHover("weapon:"+i,new Rect(x,y,82,80),weaponViewport,weaponScroll)?paper:Color.Lerp(new Color(.19f,.18f,.16f),w==null?panelColor:TierColor(w.tier),w!=null&&w.tier>1?.22f:0),2);
                 if(w!=null)
                 {
                     DrawIcon(w.image,new Rect(x+8,y+8,66,64));
@@ -169,6 +205,7 @@ namespace Scrapshift
                 Text(47,484,303,142,GUI.tooltip,body);
             }
             DrawSetTooltip();DrawItemSortMenu();
+            if(Event.current.type==EventType.Repaint&&!inventoryHoveredThisFrame)inventoryHover=null;
         }
 
         WeaponSet hoveredSet;

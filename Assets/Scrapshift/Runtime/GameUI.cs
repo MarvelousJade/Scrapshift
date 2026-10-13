@@ -29,7 +29,6 @@ namespace Scrapshift
         void Text(float x, float y, float w, float h, string text, GUIStyle style) => GUI.Label(new Rect(x,y,w,h), text, style);
         void Frame(Rect r, Color color, float border = 4)
         {
-            RoundedBox(new Rect(r.x + 5, r.y + 6, r.width, r.height), new Color(.10f,.09f,.11f,.65f),8);
             RoundedBox(r, ink,8); RoundedBox(new Rect(r.x+border,r.y+border,r.width-border*2,r.height-border*2), color,Mathf.Max(2,8-border));
         }
         bool Button(Rect r, string label)
@@ -75,12 +74,12 @@ namespace Scrapshift
         void DrawHud()
         {
             var hudMatrix=GUI.matrix;GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(FullCanvas.xMin,FullCanvas.yMin,0));
-            Frame(new Rect(24,22,246,34), new Color(.22f,.18f,.17f), 4);
-            Box(new Rect(28,26,238*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), new Color(.83f,.07f,.05f));
-            Text(24,22,246,34,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
-            Frame(new Rect(24,64,246,27),new Color(.25f,.25f,.24f),3);
-            Box(new Rect(27,67,240*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),21),new Color(.2f,.8f,.18f));
-            Text(179,62,87,29,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
+            Frame(new Rect(24,22,262,38), new Color(.22f,.18f,.17f), 4);
+            Box(new Rect(28,26,254*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),30), new Color(.83f,.07f,.05f));
+            Text(24,22,262,38,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
+            Frame(new Rect(24,64,262,38),new Color(.25f,.25f,.24f),4);
+            Box(new Rect(28,68,254*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),30),new Color(.2f,.8f,.18f));
+            Text(195,64,87,38,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
             DrawMoneyCounter();
             DrawStoredMaterials();
             GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(0,FullCanvas.yMin,0));
@@ -108,8 +107,8 @@ namespace Scrapshift
             for(int i=0;i<Rules.Offers.Length;i++)
             {
                 var o=Rules.Offers[i];float x=OfferX(i),width=OfferWidth;
-                Frame(new Rect(x,320,width,270),TierColor(o.Tier),2);RoundedBox(new Rect(x+3,323,width-6,264),TierBackground(o.Tier),6);
-                Box(new Rect(x+14,340,66,70),new Color(.17f,.16f,.15f));
+                Frame(new Rect(x,320,width,270),o.Tier==1?Color.black:TierColor(o.Tier),2);RoundedBox(new Rect(x+3,323,width-6,264),TierBackground(o.Tier),6);
+                RoundedBox(new Rect(x+14,340,66,70),new Color(.12f,.12f,.12f),6);
                 DrawIcon(o.Image,new Rect(x+20,346,54,58));
                 Text(x+92,342,width-108,58,CyberneticTheme.UpgradeName(o.Stat)+(o.Tier>1?" "+new[]{"","","II","III","IV"}[o.Tier]:""),new GUIStyle(body){fontSize=20,normal={textColor=TierColor(o.Tier)}});
                 Text(x+92,400,width-108,28,"Upgrade",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
@@ -118,11 +117,11 @@ namespace Scrapshift
                 if(Button(new Rect(x+16,530,width-32,44),"Choose"))SelectUpgrade(i);
             }
             GUI.enabled=Rules.CanReroll;
-            if(Button(new Rect(ContentLeft+(ContentWidth-384)/2,630,384,56),$"Reroll - {Rules.RerollPrice}"))RerollUpgrade();
+            if(RerollButton(new Rect(ContentLeft+(ContentWidth-406)/2,630,406,56)))RerollUpgrade();
             GUI.enabled=true;
-            DrawSetTooltip();DrawIntermissionInventory();
+            DrawSetTooltip();
         }
-        bool pauseOptions;
+        bool pauseOptions,pauseCodex;
         void PauseUI()
         {
             Overlay();
@@ -131,14 +130,19 @@ namespace Scrapshift
                 DrawTabbedOptions(true);
                 return;
             }
+            if(pauseCodex){DrawPauseCodex();return;}
             DrawStatsPanel();
-            if(Button(new Rect(30,270,265,62),"Resume"))Rules.Pause();
-            if(Button(new Rect(30,352,265,62),"Restart"))StartSelectedRun();
-            if(Button(new Rect(30,434,265,62),"Options"))pauseOptions=true;
-            if(Button(new Rect(30,516,265,62),"Main Menu"))ReturnToSelection(0);
-            DrawRunInventory(new Rect(335,150,720,490));
-            DrawWaveTimeline(665);
-            DrawInventoryTooltip();DrawSetTooltip();
+            float left=FullCanvas.xMin+40,width=Mathf.Min(500,FullCanvas.width*.32f);
+            if(Button(new Rect(left,203,width,55),"Resume"))Rules.Pause();
+            if(Button(new Rect(left,278,width,55),"Restart"))StartSelectedRun();
+            if(Button(new Rect(left,353,width,55),"End the run"))Rules.Abandon();
+            if(Button(new Rect(left,428,width,55),"Codex"))pauseCodex=true;
+            if(Button(new Rect(left,503,width,55),"Options"))pauseOptions=true;
+            if(Button(new Rect(left,578,width,55),"Return to Main Menu"))ReturnToSelection(0);
+            float inventoryLeft=left+width+32;
+            DrawRunInventory(new Rect(inventoryLeft,64,StatsLeft-inventoryLeft-18,640));
+            DrawWaveTimeline(787);
+            DrawInventoryTooltip();DrawSetTooltip();DrawItemSortMenu();
         }
         void EndUI() => ReferenceEndUI();
     }

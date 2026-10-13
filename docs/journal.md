@@ -199,3 +199,10 @@ Completed the last 16 items, all 50 character profiles and saved challenge rewar
 ## October 12 - measured presentation and final boss correction
 
 Audited both final bosses and all 62 weapon families from the supplied source. Replaced Invoker persistent orbs with animation-timed pillars, corrected diameter-based scatter, its 24-pillar ring and +150% speed mutation. Checked Predator charge/volley and restored body-relative projectile placement. Removed extra tier stripes/rims, rounded cards, added shop currency icons and special-effect bullets, replaced pale ground polygons with solid stones, and restored spawn-warning audio. Visual QA caught price wrapping; fixed before final capture. See presentation-and-final-bosses.md.
+
+
+## October 12 - upgrade and inventory feedback
+
+Applied the supplied screenshots: common upgrade borders, dark reroll buttons with F and currency, removal of level-up inventory, face/arrow and wooden-crate rewards, dedicated white inventory hover/audio, centered currency, plain Items heading, separator and an inspectable character tile. Shared character description formatting and enlarged inline effect icons/bullets. See upgrade-and-inventory-ui.md.
+
+October 12 follow-up: matched upgrade/reward, shop inventory, pause and HUD presentation against supplied screenshots. Removed offset card shadows; added character ability inspection, distinct inventory focus audio, a pause Codex and dot timeline. See upgrade-and-inventory-ui.md for decisions and verification limits.

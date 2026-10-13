@@ -86,7 +86,7 @@ namespace Scrapshift
             y=Mathf.Clamp(y,FullCanvas.yMin+12,FullCanvas.yMax-groupHeight-12);
             lastInspectionPanel=new Rect(x,y,groupWidth,groupHeight);
             RoundedBox(new Rect(x,y,width,height),new Color(0,0,0,1),10);
-            DrawIcon(entry.image,new Rect(x+18,y+20,88,88));
+            if(entry.id=="character")DrawHeroFace(new Rect(x+18,y+20,88,88));else DrawIcon(entry.image,new Rect(x+18,y+20,88,88));
             var nameStyle=new GUIStyle(inspectionTitle);nameStyle.normal.textColor=entry.color;
             OutlinedText(x+118,y+16,bodyWidth,titleHeight,entry.title,nameStyle);
             if(!string.IsNullOrEmpty(entry.category))Text(x+118,y+20+titleHeight,bodyWidth,32,entry.category,new GUIStyle(inspectionBody){normal={textColor=new Color(.89f,.85f,.62f)}});

@@ -6,6 +6,19 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int cratesSpawned;
+        void DrawCrateIcon(Rect r)
+        {
+            RoundedBox(r,ink,4);
+            Rect face=new Rect(r.x+3,r.y+9,r.width-6,r.height-12);
+            Box(face,new Color(.45f,.27f,.12f));
+            Box(new Rect(r.x+3,r.y+3,r.width-6,6),new Color(.75f,.52f,.28f));
+            for(int i=1;i<3;i++)Box(new Rect(face.x,face.y+i*face.height/3,face.width,2),new Color(.22f,.13f,.065f));
+            Box(new Rect(face.x+2,face.y,4,face.height),new Color(.72f,.48f,.24f));
+            Box(new Rect(face.xMax-6,face.y,4,face.height),new Color(.72f,.48f,.24f));
+            var matrix=GUI.matrix;GUIUtility.RotateAroundPivot(-32,face.center);
+            Box(new Rect(face.center.x-face.width*.45f,face.center.y-2,face.width*.9f,5),new Color(.85f,.61f,.34f));GUI.matrix=matrix;
+            foreach(float x in new[]{face.x+3,face.xMax-5})foreach(float y in new[]{face.y+3,face.yMax-5})Box(new Rect(x,y,2,2),ink);
+        }
         GameObject CrateObject(Vector2 position, bool legendary)
         {
             var obj=new GameObject(legendary?"Legendary salvage crate":"Salvage crate");
@@ -17,10 +30,14 @@ namespace Scrapshift
             rim.sortingOrder=4;rim.positionCount=4;
             rim.SetPosition(0,new Vector3(-.29f,-.24f,0));rim.SetPosition(1,new Vector3(.29f,-.24f,0));
             rim.SetPosition(2,new Vector3(.29f,.24f,0));rim.SetPosition(3,new Vector3(-.29f,.24f,0));
-            var strap=MakeLine("Straps",obj.transform,legendary?coral:amber,.065f);
-            strap.sortingOrder=5;strap.positionCount=4;
+            for(int i=0;i<2;i++)
+            {
+                var seam=MakeLine("Wood plank seam",obj.transform,new Color(.22f,.13f,.065f),.025f);seam.sortingOrder=5;seam.positionCount=2;
+                seam.SetPosition(0,new Vector3(-.26f,-.08f+i*.16f));seam.SetPosition(1,new Vector3(.26f,-.08f+i*.16f));
+            }
+            var strap=MakeLine("Wooden brace",obj.transform,legendary?coral:new Color(.85f,.61f,.34f),.065f);
+            strap.sortingOrder=6;strap.positionCount=2;
             strap.SetPosition(0,new Vector3(-.22f,-.18f,0));strap.SetPosition(1,new Vector3(.22f,.18f,0));
-            strap.SetPosition(2,new Vector3(-.22f,.18f,0));strap.SetPosition(3,new Vector3(.22f,-.18f,0));
             return obj;
         }
 

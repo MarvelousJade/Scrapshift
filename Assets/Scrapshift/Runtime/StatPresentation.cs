@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 namespace Scrapshift
 {
@@ -32,24 +33,35 @@ namespace Scrapshift
         void DrawStatIcon(string key,Rect rect)=>DrawIcon(StatPresentation.Icon(catalog,key),rect);
         void DrawRunInventory(Rect area)
         {
-            RoundedBox(area,panelColor);
-            Text(area.x+20,area.y+14,area.width-40,45,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
+            if(Event.current.type==EventType.Repaint)inventoryHoveredThisFrame=false;
+            Text(area.x,area.y,area.width,42,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
+            Box(new Rect(area.x+245,area.y+22,Mathf.Max(0,area.width-245),2),new Color(.4f,.49f,.41f,.35f));
+            int columns=Mathf.Max(1,Mathf.FloorToInt(area.width/88));
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
-                var w=Rules.Inventory[i];var r=new Rect(area.x+20+i%(Rules.Inventory.Count>6?12:6)*(area.width-40)/(Rules.Inventory.Count>6?12:6),area.y+76+i/(Rules.Inventory.Count>6?12:6)*54,(area.width-48)/(Rules.Inventory.Count>6?12:6),Rules.Inventory.Count>6?50:90);
-                Frame(r,TierColor(w.tier),2);Box(new Rect(r.x+3,r.y+3,r.width-6,r.height-6),panelColor);
-                DrawIcon(w.image,new Rect(r.x+4,r.y+4,r.width-8,r.height-8));
-                InspectWeapon("weapon:"+i,w,r);
+                var w=Rules.Inventory[i];var r=new Rect(area.x+i%columns*88,area.y+58+i/columns*88,80,80);
+                Frame(r,InventoryHover("weapon:"+i,new Rect(r.position-area.position,r.size),area,Vector2.zero)?paper:Color.Lerp(new Color(.19f,.18f,.16f),TierColor(w.tier),w.tier>1?.22f:0),2);
+                DrawIcon(w.image,new Rect(r.x+7,r.y+7,66,66));InspectWeapon("weapon:"+i,w,r);
             }
-            Text(area.x+20,area.y+200,area.width-40,45,$"Items ({Rules.Items.Count})",heading);
-            summaryScroll=GUI.BeginScrollView(new Rect(area.x+20,area.y+257,area.width-40,area.height-275),summaryScroll,new Rect(0,0,area.width-65,Mathf.Max(area.height-295,Mathf.Ceil(Rules.Items.Count/9f)*68)));
-            for(int i=0;i<Rules.Items.Count;i++)
+            float itemY=area.y+58+Mathf.Max(1,Mathf.CeilToInt(Rules.Inventory.Count/(float)columns))*88+10;
+            Text(area.x,itemY,100,42,"Items",heading);
+            Box(new Rect(area.x+105,itemY+22,Mathf.Max(0,area.width-400),2),new Color(.4f,.49f,.41f,.35f));
+            DrawItemSorting(new Rect(area.xMax-290,itemY,290,38));
+            var viewport=new Rect(area.x,itemY+58,area.width,Mathf.Max(88,area.yMax-itemY-58));var items=SortedItems();
+            summaryScroll=GUI.BeginScrollView(viewport,summaryScroll,new Rect(0,0,area.width-18,Mathf.Max(viewport.height-1,Mathf.Ceil((items.Length+1)/(float)columns)*88)));
+            for(int i=0;i<items.Length;i++)
             {
-                var item=Rules.Items[i];var r=new Rect(i%9*73,i/9*68,62,60);
-                RoundedBox(r,new Color(.23f,.22f,.2f),5);DrawIcon(item.image,new Rect(r.x+6,r.y+5,50,50));
-                InspectItem("item:"+i,item,r,new Rect(area.x+20,area.y+257,area.width-40,area.height-275),summaryScroll);
+                var item=items[i];var r=new Rect(i%columns*88,i/columns*88,80,80);string id="item:"+Rules.Items.IndexOf(item);
+                Frame(r,InventoryHover(id,r,viewport,summaryScroll)?paper:Color.Lerp(new Color(.19f,.18f,.16f),TierColor(item.tier),item.tier>1?.22f:0),2);
+                DrawIcon(item.image,new Rect(r.x+7,r.y+7,66,66));InspectItem(id,item,r,viewport,summaryScroll);
+                int count=Rules.Items.Count(e=>e.id==item.id);if(count>1)OutlinedText(r.x+50,r.y+54,28,24,count.ToString(),tiny);
             }
+            var character=Rules.Character??SelectedCharacter;var cr=new Rect(items.Length%columns*88,items.Length/columns*88,80,80);
+            Frame(cr,InventoryHover("character",cr,viewport,summaryScroll)?paper:new Color(.19f,.18f,.16f),2);DrawHeroFace(new Rect(cr.x+13,cr.y+8,54,64));
+            string description=string.Join("\n",character.effectRows.Where(row=>row.kind!="weapon").Select(row=>(StatPresentation.Keys.Contains(row.key)?"[["+row.key+"]] ":"• ")+CharacterEffectText(character,row).label));
+            Inspect("character",cr,character.title,description,playerAnimation.idleFrames[0],"Character",1,viewport,new Rect(viewport.position+cr.position-summaryScroll,cr.size));
             GUI.EndScrollView();
+            if(Event.current.type==EventType.Repaint&&!inventoryHoveredThisFrame)inventoryHover=null;
         }
         void DrawInventoryTooltip()
         {
@@ -57,12 +69,38 @@ namespace Scrapshift
         }
         void DrawWaveTimeline(float y)
         {
+            float left=FullCanvas.xMin+40,width=FullCanvas.width-80;
+            OutlinedText(left,y-42,width,38,$"Danger {Rules.Difficulty} - Wave {Rules.Wave}",new GUIStyle(body){fontSize=29});
+            RoundedBox(new Rect(left,y,width,90),new Color(0,0,0,.7f),7);
             for(int i=1;i<=20;i++)
             {
-                var r=new Rect(335+(i-1)*36,y,31,36);RoundedBox(r,i==Rules.Wave?paper:panelColor,4);
-                var style=new GUIStyle(center){fontSize=17};style.normal.textColor=i==Rules.Wave?ink:i<Rules.Wave?new Color(.55f,.78f,.4f):paper;
-                Text(r.x,r.y,r.width,r.height,i.ToString(),style);
+                float x=left+38+(i-1)*(width-76)/19f;Color color=i<=Rules.Wave?Color.yellow:paper;
+                if(i==Rules.Wave){RoundedBox(new Rect(x-24,y+7,48,54),Color.yellow,24);RoundedBox(new Rect(x-21,y+10,42,48),ink,21);DrawHeroFace(new Rect(x-19,y+12,38,44));}
+                else if(i==20){DrawIcon(catalog.Enemy("predator").image,new Rect(x-24,y+9,48,48));}
+                else RoundedBox(new Rect(x-9,y+23,18,18),color,9);
+                if(i%5==0)OutlinedText(x-25,y+60,50,27,i.ToString(),new GUIStyle(center){fontSize=22,normal={textColor=color}});
             }
+        }
+        Vector2 codexScroll;bool codexWeapons;
+        void DrawPauseCodex()
+        {
+            float left=FullCanvas.xMin+45,width=FullCanvas.width-90;
+            RoundedBox(new Rect(left,45,width,810),new Color(0,0,0,.93f),8);
+            Text(left+20,60,400,44,"Codex",heading);
+            if(Button(new Rect(left+20,116,180,45),"Items")){codexWeapons=false;codexScroll=Vector2.zero;}
+            if(Button(new Rect(left+210,116,180,45),"Weapons")){codexWeapons=true;codexScroll=Vector2.zero;}
+            if(Button(new Rect(left+width-200,116,180,45),"Back"))pauseCodex=false;
+            var viewport=new Rect(left+20,180,width-40,645);int columns=Mathf.Max(1,Mathf.FloorToInt((viewport.width-20)/100));
+            var weapons=catalog.data.equipment.Where(w=>w.tier==1).ToArray();int count=codexWeapons?weapons.Length:catalog.data.items.Length;
+            codexScroll=GUI.BeginScrollView(viewport,codexScroll,new Rect(0,0,viewport.width-20,Mathf.Ceil(count/(float)columns)*100));
+            for(int i=0;i<count;i++)
+            {
+                var r=new Rect(i%columns*100,i/columns*100,90,90);Frame(r,r.Contains(Event.current.mousePosition)?paper:new Color(.15f,.15f,.15f),2);
+                if(codexWeapons){DrawIcon(weapons[i].image,new Rect(r.x+8,r.y+8,74,74));InspectWeapon("codex-weapon:"+i,weapons[i],r,viewport,codexScroll);}
+                else {var item=catalog.data.items[i];DrawIcon(item.image,new Rect(r.x+8,r.y+8,74,74));InspectItem("codex-item:"+i,item,r,viewport,codexScroll);}
+            }
+            GUI.EndScrollView();
         }
     }
 }
+

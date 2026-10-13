@@ -130,7 +130,7 @@ namespace Scrapshift
             gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
+            if (Input.GetKeyDown(KeyCode.Escape)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage==4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
             if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {
@@ -138,10 +138,10 @@ namespace Scrapshift
                 if (Input.GetKeyDown(KeyCode.Alpha2)) SelectUpgrade(1);
                 if (Input.GetKeyDown(KeyCode.Alpha3)) SelectUpgrade(2);
                 if (Input.GetKeyDown(KeyCode.Alpha4)) SelectUpgrade(3);
-                if (Input.GetKeyDown(KeyCode.R)) RerollUpgrade();
+                if ((Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.F))) RerollUpgrade();
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
-            if (Rules.Phase == RunPhase.Shop && selectedWeapon<0) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if(Input.GetKeyDown(KeyCode.R)) RerollUpgrade(); }
+            if (Rules.Phase == RunPhase.Shop && selectedWeapon<0) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if((Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.F))) RerollUpgrade(); }
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }

@@ -10,7 +10,7 @@ namespace Scrapshift
     {
         float RichText(string text,Rect area,int fontSize=19,bool draw=true)
         {
-            var style=new GUIStyle(inspectionBody){fontSize=fontSize,richText=false,wordWrap=false,padding=new RectOffset()};
+            var style=new GUIStyle(inspectionBody){fontSize=fontSize,richText=false,wordWrap=false,alignment=TextAnchor.MiddleLeft,padding=new RectOffset()};
             var colors=new Stack<Color>();colors.Push(Color.white);var sizes=new Stack<int>();sizes.Push(fontSize);
             float x=0,y=0,line=fontSize*1.22f;
             foreach(Match match in Regex.Matches(text??"",@"<[^>]+>|\[\[([^\]]+)\]\]|\r?\n|[^\S\r\n]+|[^\s<\[]+|[\[<]"))
@@ -23,13 +23,15 @@ namespace Scrapshift
                 if(token.StartsWith("<"))continue;
                 style.fontSize=sizes.Peek();style.normal.textColor=colors.Peek();
                 if(token.Contains("\n")){x=0;y+=line;line=fontSize*1.22f;continue;}
-                bool icon=token.StartsWith("[[");float w=icon?style.fontSize+4:style.CalcSize(new GUIContent(token)).x;
+                bool icon=token.StartsWith("[["),bullet=token=="•";float iconSize=style.fontSize*(x==0?1.55f:1.1f);
+                float w=icon?iconSize+5:bullet?style.fontSize*.65f:style.CalcSize(new GUIContent(token)).x;
                 if(x+w>area.width&&x>0){x=0;y+=line;line=fontSize*1.22f;}
                 if(x==0&&string.IsNullOrWhiteSpace(token))continue;
-                line=Mathf.Max(line,style.fontSize*1.22f);
+                line=Mathf.Max(line,icon?iconSize+3:style.fontSize*1.22f);
                 if(draw)
                 {
-                    if(icon){string key=token.Substring(2,token.Length-4);var sprite=StatPresentation.Icon(catalog,key);if(sprite!=null)DrawIcon(sprite,new Rect(area.x+x,area.y+y+2,style.fontSize,style.fontSize));else GUI.Label(new Rect(area.x+x,area.y+y,w,line),"•",style);}
+                    if(icon){string key=token.Substring(2,token.Length-4);var sprite=StatPresentation.Icon(catalog,key);if(sprite!=null)DrawIcon(sprite,new Rect(area.x+x,area.y+y+(line-iconSize)/2,iconSize,iconSize));else GUI.Label(new Rect(area.x+x,area.y+y,w,line),"•",style);}
+                    else if(bullet){float diameter=style.fontSize*.32f;RoundedBox(new Rect(area.x+x+2,area.y+y+(line-diameter)/2,diameter,diameter),colors.Peek(),diameter/2);}
                     else GUI.Label(new Rect(area.x+x,area.y+y,w+2,line),token,style);
                 }
                 x+=w;

@@ -51,19 +51,25 @@ namespace Scrapshift
             if(waveSweeping&&waveSweepAge>1.1f&&Rules.Stat("harvesting")!=0)
                 OutlinedText(28,245,280,38,"Harvesting "+Rules.Stat("harvesting").ToString("+0;-0"),body);
         }
+        void DrawHeroFace(Rect r)
+        {
+            var hero=playerAnimation.idleFrames[0];float scale=Mathf.Min(r.width/hero.bounds.size.x,r.height/hero.bounds.size.y);
+            Vector2 size=(Vector2)hero.bounds.size*scale;DrawIcon(hero,new Rect(r.center-size*.5f,size));
+            foreach(var layer in AppearanceResolver.Resolve(playerAnimation.Look,System.Array.Empty<ItemEntry>()))if(layer.order>=10)DrawAppearance(layer,r.center,scale);
+        }
         void DrawPendingRewards()
         {
             float right=FullCanvas.xMax-30;
             for(int i=0;i<Rules.PendingLevels;i++)
             {
-                float x=right-58*(i%12+1);RoundedBox(new Rect(x,28+(i/12)*55,49,49),new Color(.12f,.16f,.09f,.9f),7);
-                Text(x+3,25+(i/12)*55,44,49,"\u2191",new GUIStyle(center){fontSize=40,normal={textColor=new Color(.4f,1,.2f)}});
+                float x=right-64*(i%12+1),y=25+(i/12)*59;
+                OutlinedText(x+29,y-4,31,52,"\u2191",new GUIStyle(center){fontSize=46,normal={textColor=new Color(.3f,1,.08f)}});
+                DrawHeroFace(new Rect(x+2,y+2,40,52));
             }
             for(int i=0;i<Mathf.Min(8,Rules.PendingCrates);i++)
             {
                 float y=28+Mathf.Max(1,Mathf.CeilToInt(Rules.PendingLevels/12f))*55;
-                float x=right-58*(i+1);RoundedBox(new Rect(x,y,44,40),new Color(.48f,.29f,.12f),3);
-                Box(new Rect(x+18,y+2,7,36),amber);Box(new Rect(x+2,y+16,40,6),amber);
+                float x=right-58*(i+1);DrawCrateIcon(new Rect(x,y,46,42));
             }
         }
         void DrawWeaponActions()

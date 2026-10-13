@@ -391,6 +391,7 @@ namespace Scrapshift
             Phase=RunPhase.Playing;ApplyNextWaveEffects();BeginItemWave();
             for(int i=0;i<4;i++)if(Shop[i]!=null&&!Shop[i].locked)Shop[i]=null;
         }
+        public void Abandon() { if(Phase==RunPhase.Paused){Health=0;Phase=RunPhase.Lost;} }
         public void Pause()
         {
             if(Phase==RunPhase.Playing)Phase=RunPhase.Paused;

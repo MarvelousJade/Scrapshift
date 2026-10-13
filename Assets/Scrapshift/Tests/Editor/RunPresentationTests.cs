@@ -39,6 +39,13 @@ namespace Scrapshift.Tests
             Assert.That(Vector2.Distance(Vector2.one,ArrivalMotion.BodyScale(ArrivalMotion.Duration)),Is.LessThan(.00001f));
             Assert.AreEqual(Vector2.zero,ArrivalMotion.CanopyScale(1));
         }
+        [Test] public void EndingPausedRunCannotResumeOrCountAsVictory()
+        {
+            var rules=new RunRules(3);rules.Start();rules.Pause();rules.Abandon();
+            Assert.AreEqual(RunPhase.Lost,rules.Phase);Assert.AreEqual(0,rules.Health);
+            rules.Pause();rules.Tick(100);Assert.AreEqual(RunPhase.Lost,rules.Phase);
+            rules.Start();Assert.AreEqual(RunPhase.Playing,rules.Phase);Assert.AreEqual(rules.MaxHealth,rules.Health);
+        }
         [Test] public void ReturningToMenuFreezesRulesAndNewRunResetsLoss()
         {
             var rules=new RunRules(3);rules.Start();rules.Hurt(10000);Assert.AreEqual(RunPhase.Lost,rules.Phase);

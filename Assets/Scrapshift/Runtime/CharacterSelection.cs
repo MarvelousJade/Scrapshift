@@ -90,12 +90,8 @@ namespace Scrapshift
                 DrawIcon((catalog.Weapon(SelectedCharacter.DefaultWeapon,SelectedCharacter.bonusTier)??SelectedWeapon)?.image,new Rect(r.x+4,r.y+4,40,41));
             }
         }
-        void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)
+        (Sprite image,string label) CharacterEffectText(CharacterProfile profile,CharacterEffectRow row)
         {
-            var style=new GUIStyle(inspectionBody){fontSize=18,richText=true};
-            var lines=new System.Collections.Generic.List<(Sprite image,string label,float height)>();
-            foreach(var row in profile.effectRows.Where(r=>r.kind!="weapon"))
-            {
                 string value=(row.value>0?"+":"")+row.value.ToString("0.##");
                 string color=row.value<0?"#FF3B3B":"#76FF40";
                 string stat=inspectionText.StatName(row.key).TrimStart('%',' ');
@@ -114,6 +110,15 @@ namespace Scrapshift
                 else if(row.kind=="stat"&&SpecialItemEffects.IsSecondary(row.key))label=SpecialItemEffects.Description(row.key,row.value);
                 else if(row.kind=="noRanged")label="<color=#FF3B3B>You cannot equip ranged weapons</color>";
                 else if(row.kind=="noMelee")label="<color=#FF3B3B>You can't equip melee weapons</color>";
+            return (image,label);
+        }
+        void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)
+        {
+            var style=new GUIStyle(inspectionBody){fontSize=18,richText=true};
+            var lines=new System.Collections.Generic.List<(Sprite image,string label,float height)>();
+            foreach(var row in profile.effectRows.Where(r=>r.kind!="weapon"))
+            {
+                var effect=CharacterEffectText(profile,row);var image=effect.image;string label=effect.label;
                 float h=style.CalcHeight(new GUIContent(label),width-30);
                 lines.Add((image,label,h));
             }

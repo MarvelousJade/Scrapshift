@@ -289,3 +289,10 @@ The first completed 20-wave campaign reported Failed despite Won/20 waves/47 pur
 Invoker hazards damaged immediately for three seconds because all stationary projectiles shared a generic orb lifetime. A dedicated timed pillar now gates collision to 0.54–0.68 seconds, uses a 0.23 radius, and stops by 1.04 seconds or on contact. The spread field was treated as a radius and disk; source uses square width or circle diameter. Added boundary tests and actual built-player health/contact assertions. Final mutation speed is +150%, confirmed by following reset_speed_stat through EntityService; it is not an absolute 150 px/s.
 
 Shop money icons reduced the available number width and exposed IMGUI numeric wrapping. The first screenshot showed a clipped price; disabling wrapping and allowing text-measurement padding fixed it. Fixture-only mouse hover suppression prevents an unrelated real cursor from covering staged reference comparisons.
+
+
+## October 12 - upgrade inspection expectation
+
+Removing the level-up inventory made its previous forced weapon-inspection test obsolete. Removed that target and retained weapon inspection checks on pause/shop. Added character inspection as a separate shop capture. Character portraits are presentation entries only; they do not enter the item collection or change rolls/stats.
+
+UI follow-up: displaced grey Frame shadows made tiles look doubled/rough. Removed the shared offset shadow, retaining rounded dark borders. Pause menu lacked a complete inventory/timeline layout; now uses sorted tiles with a character entry and bottom dot progress. Codex compilation initially referenced a nonexistent weapons field; fixed to CatalogData.equipment.

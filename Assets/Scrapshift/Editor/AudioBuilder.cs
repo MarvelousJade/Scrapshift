@@ -23,7 +23,7 @@ namespace Scrapshift.Editor
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
             var entries=bank.entries.ToList();
-            foreach(var cue in new[]{SoundCue.Step,SoundCue.UiFocus,SoundCue.UiPress,SoundCue.Spawn})
+            foreach(var cue in new[]{SoundCue.Step,SoundCue.UiFocus,SoundCue.UiPress,SoundCue.Spawn,SoundCue.InventoryFocus})
             {
                 var paths=Directory.GetFiles(Root+"/Audio",cue+"_*").Where(p=>p.EndsWith(".wav")||p.EndsWith(".mp3")).OrderBy(p=>p).ToArray();
                 foreach(var path in paths){var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));if(!importer.forceToMono){importer.forceToMono=true;importer.SaveAndReimport();}}
