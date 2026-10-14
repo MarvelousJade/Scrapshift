@@ -1,5 +1,10 @@
 """Convert source structure effects into the shared Unity structure schema; no artwork copied."""
+import math
 import analyze_reference as source
+
+def smoke_amount(effect):
+    # Godot round() rounds positive half values up; Python round() uses ties to even.
+    return math.floor(effect.get('scale',1)*effect.get('base_smoke_amount',0)+.5)
 
 def stats_data(s):
     return dict(damage=s.get('damage',1),interval=s.get('cooldown',60)/60,range=s.get('max_range',200)/100,
@@ -20,5 +25,8 @@ def structure(e):
         if 'burning_data' in effect:
             b=source.resource(effect['burning_data']);scaling=b.get('scaling_stats',[['stat_engineering',.33]])
             result['burn']=dict(key='effect_burning',burnDamage=b['damage'],burnChance=b['chance'],burnTicks=b['duration'],burnScale=scaling[0][1],burnStat=scaling[0][0].removeprefix('stat_'))
-        if 'explosion_scene' in effect:result['explosionRadius']=effect.get('scale',1)*1.4734
+        if 'explosion_scene' in effect:
+            result['explosionRadius']=effect.get('scale',1)*1.4734
+            result['explosionSmokeAmount']=smoke_amount(effect)
+            result['explosionSoundDb']=effect.get('sound_db_mod',-10)
     return result

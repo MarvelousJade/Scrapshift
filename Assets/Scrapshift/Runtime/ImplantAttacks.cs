@@ -7,7 +7,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         float alienClock;
-        readonly Queue<(Vector2 position,ConditionalEffect effect)> implantExplosions=new Queue<(Vector2,ConditionalEffect)>();
+        readonly Queue<(Vector2 position,ConditionalEffect effect,float damage)> implantExplosions=new Queue<(Vector2,ConditionalEffect,float)>();
         readonly Queue<(Enemy target,float damage)> implantRetaliations=new Queue<(Enemy,float)>();
         void TickImplantAttacks(float dt)
         {
@@ -28,7 +28,15 @@ namespace Scrapshift
             QueueImplantExplosions("explode_on_death",victim.pos);
         }
         void QueueImplantExplosions(string trigger,Vector2 position)
-        {foreach(var effect in Rules.Effects(trigger))if(UnityEngine.Random.value<effect.chance)implantExplosions.Enqueue((position,effect));}
+        {
+            var effects=Rules.Effects(trigger).ToArray();
+            if(effects.Length==0||UnityEngine.Random.value>=Mathf.Min(1,effects.Sum(e=>e.chance)))return;
+            float damage=effects.Sum(e=>Rules.WeaponDamage(e.projectile.AsEquipment(),Rules.Stat("explosion_damage")));
+            // RunData.handle_explode_effect rolls once for the summed chance and damage,
+            // then places one explosion within a 10-pixel square around the event.
+            position+=new Vector2(UnityEngine.Random.Range(-10,11),UnityEngine.Random.Range(-10,11))*.01f;
+            implantExplosions.Enqueue((position,effects[0],damage));
+        }
         void ResolveImplantAttacks()
         {
             while(implantRetaliations.Count>0)
@@ -37,11 +45,13 @@ namespace Scrapshift
             while(implantExplosions.Count>0)
             {
                 var explosion=implantExplosions.Dequeue();var effect=explosion.effect;var stats=effect.projectile.AsEquipment();
-                float damage=Rules.WeaponDamage(stats,Rules.Stat("explosion_damage")),radius=effect.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
+                float scale=Mathf.Max(.1f,effect.radius/1.4734f*(1+Rules.Stat("explosion_size")/100));
+                float radius=1.4734f*scale;
+                SpawnReferenceExplosionVisual(explosion.position,scale,effect.smokeAmount,effect.soundDb,effect.fleshExplosion);
                 int before=Rules.Kills;
-                foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(target.pos,explosion.position)<=radius)
-                    Damage(enemies.IndexOf(target),damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true);
-                Rules.RecordExplosionKills(Rules.Kills-before);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position);
+                foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(HurtCenter(target),explosion.position+Vector2.down*.03f*scale)<radius+HurtRadius(target))
+                    Damage(enemies.IndexOf(target),explosion.damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true);
+                Rules.RecordExplosionKills(Rules.Kills-before);
             }
         }
         void TryVulnerability(Enemy target,string scalingStat)

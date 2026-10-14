@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 import analyze_reference as source
-from structure_specs import stats_data
+from structure_specs import stats_data,smoke_amount
 
 ROOT=Path(__file__).resolve().parents[1]
 source.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
@@ -40,7 +40,8 @@ for i,c in enumerate(archive['characters']):
             effect=dict(key=key,value=value,customKey='stat_links',stat=e['stat_scaled'],per=e['nb_stat_scaled'],permanentOnly=e.get('perm_stats_only',True))
         elif script=='chance_stat_damage_effect':effect=dict(key=key,value=value,customKey=custom,chance=e['chance']/100)
         elif script=='convert_stat_effect':effect=dict(key=key,value=value,customKey=custom,chance=e['pct_converted']/100,stat=e['to_stat'],per=e['to_value'])
-        elif script=='item_exploding_effect':effect=dict(key=key,value=value,customKey=key,chance=e['chance'],radius=e['scale']*1.4734,projectile=stats_data(source.resource(e['stats'])))
+        elif script=='item_exploding_effect':effect=dict(key=key,value=value,customKey=key,chance=e['chance'],radius=e['scale']*1.4734,projectile=stats_data(source.resource(e['stats'])),
+            smokeAmount=smoke_amount(e),soundDb=e.get('sound_db_mod',-10),fleshExplosion='flesh_explosion' in e.get('explosion_scene',''))
         elif key=='weapon_slot':p['weaponSlots']=int(value if e['storage_method']==2 else 6+value)
         elif key in ['min_weapon_tier','max_weapon_tier']:p['minTier' if key.startswith('min') else 'maxTier']=int(value)+1
         elif key=='no_melee_weapons':p['noMelee']=True;row['kind']='noMelee'

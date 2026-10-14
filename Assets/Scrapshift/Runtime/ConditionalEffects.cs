@@ -13,7 +13,9 @@ namespace Scrapshift
         public StructureSpec structure;
         public PetSpec pet;
         public ProjectileStats projectile;
-        public float radius;
+        public float radius,soundDb=-10;
+        public int smokeAmount;
+        public bool fleshExplosion;
         public float value,interval=1;
         public bool resetOnHit;
         public string Description

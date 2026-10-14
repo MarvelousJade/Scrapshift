@@ -2,7 +2,7 @@
 import json, hashlib, re
 from pathlib import Path
 import analyze_reference as source
-from structure_specs import structure,stats_data
+from structure_specs import structure,stats_data,smoke_amount
 from pet_specs import pet
 source.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 root=Path(__file__).resolve().parents[1]
@@ -59,7 +59,8 @@ def special(e):
     if script=='effects/items/projectile_effect.gd':
         return dict(key=e['key'],value=e['value'],customKey=e['key'],projectile=stats_data(read(e['weapon_stats'])),interval=e.get('cooldown',-1))
     if script=='effects/items/item_exploding_effect.gd':
-        return dict(key=e['key'],value=e['value'],customKey=e['key'],projectile=stats_data(read(e['stats'])),chance=e.get('chance',1),radius=e.get('scale',1)*1.4734)
+        return dict(key=e['key'],value=e['value'],customKey=e['key'],projectile=stats_data(read(e['stats'])),chance=e.get('chance',1),radius=e.get('scale',1)*1.4734,
+            smokeAmount=smoke_amount(e),soundDb=e.get('sound_db_mod',-10),fleshExplosion='flesh_explosion' in e.get('explosion_scene',''))
     if script=='effects/items/percent_damage_effect.gd':
         return dict(key=e['key'],value=e['value'],customKey=e['custom_key'],interval=e['duration_secs'],per=e['max_stacks'],limit=e['max_procs'])
     if script in {'effects/items/structure_effect.gd','effects/items/turret_effect.gd'}:

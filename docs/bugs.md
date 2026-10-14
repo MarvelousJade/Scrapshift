@@ -349,3 +349,12 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Fix:** Imported the original `particle_3.png`; added 48 dark smoke particles for rocket tiers with the source emission radius, offset, speed, rotation, fade, and 0.75-second lifetime. The flash and damage window remain 0.05 seconds, and the effect cleans up at 1 second. The radius is 1.76808 world units before explosion-size bonuses. A floating-point threshold tolerance prevents the smoke from slipping one frame late at exactly 0.05 seconds. See `rocket-explosion-parity.md`.
 
 **Verification and limit:** Windows build succeeded with zero errors and warnings. A Direct3D 11 built-player fixture passed flash, area, smoke count/radius/lifetime, and cleanup checks. Visible screenshots were inspected for the flash and smoke sequence. Unity and Godot random particle motion and rasterization are not asserted to be pixel-identical.
+## October 13 - other explosions and Baby With A Beard projectile parity
+
+**User report:** After the rocket fix, Shaoyu asked whether other weapons and items use explosions, how piercing works, and which item fires a projectile when an enemy dies.
+
+**Cause:** The rocket smoke fix covered only its three tiers. Twenty-one weapon/tier profiles reference the source explosion, but the other eighteen had no source smoke count in Scrapshift. Rip and Tear, Spicy Sauce, Bull, Glutton, mines, Rocket Turret, and Bonk Dog still used generic impact bursts. Item stacks were rolled separately instead of the source's combined chance and damage. Baby With A Beard already spawned a death projectile, but its default bullet scene was absent from the imported projectile selection.
+
+**Fix:** Import source smoke counts, radii, sound levels, and flesh-explosion art/audio for all weapon and item paths; use source-style overlap for item, structure, and pet explosions. Aggregate item stacks into one roll and one effect. Resolve special-spawn projectiles without a declared scene to the source default bullet. Preserve the existing travel-ordered piercing and bounce sequence.
+
+**Verification and limit:** Windows build passed with zero errors/warnings. Direct3D 11 built-player checks passed 21 weapon profiles, Shredder and Nuclear smoke, red Rip and Tear smoke, Baby's bullet scene and two-target piercing (100 then 50), and source structure metadata. Existing rocket and full starter/item/deployable reviews passed. Captures were inspected. See explosion-and-piercing-parity.md. Pixel-identical particle motion is not claimed.

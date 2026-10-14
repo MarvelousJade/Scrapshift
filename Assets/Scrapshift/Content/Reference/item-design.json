@@ -997,7 +997,9 @@
               "recoil": 0.25,
               "recoilHalf": 0.1
             },
-            "explosionRadius": 2.2101
+            "explosionRadius": 2.2101,
+            "explosionSmokeAmount": 60,
+            "explosionSoundDb": -10
           }
         }
       ]
@@ -1120,7 +1122,9 @@
               "explosionRadius": 2.57845,
               "delayed": false,
               "healing": false,
-              "pet": true
+              "pet": true,
+              "explosionSmokeAmount": 70,
+              "explosionSoundDb": -10
             },
             "mineInterval": 5.0
           }
@@ -3341,7 +3345,9 @@
             "explosionRadius": 2.57845,
             "delayed": false,
             "healing": false,
-            "pet": false
+            "pet": false,
+            "explosionSmokeAmount": 70,
+            "explosionSoundDb": -10
           }
         }
       ]
@@ -4699,7 +4705,10 @@
             "recoilHalf": 0.1
           },
           "chance": 0.2,
-          "radius": 0.9577100000000001
+          "radius": 0.9577100000000001,
+          "smokeAmount": 1,
+          "soundDb": -13,
+          "fleshExplosion": true
         }
       ]
     },
@@ -5240,7 +5249,10 @@
             "recoilHalf": 0.1
           },
           "chance": 0.5,
-          "radius": 1.84175
+          "radius": 1.84175,
+          "smokeAmount": 25,
+          "soundDb": -13,
+          "fleshExplosion": false
         }
       ]
     },
@@ -5893,7 +5905,9 @@
             "explosionRadius": 1.4734,
             "delayed": false,
             "healing": false,
-            "pet": false
+            "pet": false,
+            "explosionSmokeAmount": 20,
+            "explosionSoundDb": -10
           }
         }
       ]

@@ -6,7 +6,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         sealed class StarterTurret { public GameObject obj; public Vector2 pos; public Equipment stats; public float clock,boostClock; public int shotsTaken;public WeaponTrait trait; public StructureSpec spec;public SupportRig rig;public float angle,orbitRadius,orbitSpeed,animationAge=.3f,baseScale;public bool firing;public readonly HashSet<Enemy> touched=new HashSet<Enemy>(); }
-        sealed class Mine { public GameObject obj; public Vector2 pos; public Equipment stats; public float radius; public readonly HashSet<Enemy> occupants=new HashSet<Enemy>(); public bool playerOn; }
+        sealed class Mine { public GameObject obj; public Vector2 pos; public Equipment stats; public StructureSpec spec; public float radius; public readonly HashSet<Enemy> occupants=new HashSet<Enemy>(); public bool playerOn; }
         readonly List<Mine> mines=new List<Mine>();
         readonly List<StarterTurret> mineSpawners=new List<StarterTurret>();
         readonly List<StarterTurret> starterTurrets=new List<StarterTurret>();
@@ -104,9 +104,12 @@ namespace Scrapshift
                 }
                 if(!left)continue;
                 int explosionKillsBefore=Rules.Kills;
-            foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,mine.pos)<mine.radius)
+                float scale=mine.radius/1.4734f;
+                foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(HurtCenter(e),mine.pos+Vector2.down*.03f*scale)<mine.radius+HurtRadius(e))
                     Damage(enemies.IndexOf(e),SpecialWeaponRules.StructureDamage(Rules,mine.stats)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),mine.stats.crit,mine.stats.knockback,e.pos-mine.pos,mine.stats,true,false,true);
-                Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos);Destroy(mine.obj);mines.RemoveAt(i);
+                Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);
+                SpawnReferenceExplosionVisual(mine.pos,scale,mine.spec.explosionSmokeAmount,mine.spec.explosionSoundDb);
+                Destroy(mine.obj);mines.RemoveAt(i);
             }
             foreach(var e in enemies.ToArray())if(e.burnTicks>0&&e.marker==null)
             {
@@ -132,7 +135,7 @@ namespace Scrapshift
             image=SupportArt.Structure("landmine");
             var pos=near.HasValue?RunRules.ClampPosition(near.Value+new Vector2(UnityEngine.Random.Range(-.5f,.5f),UnityEngine.Random.Range(-.5f,.5f))):RandomPosition(playerPos,0);
             var obj=SpriteObject("Cybernetic proximity charge",image,pos,6);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.4f);
-            mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,radius=spawner.trait.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100)});
+            mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,spec=spawner.spec,radius=spawner.trait.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100)});
         }
     }
 }

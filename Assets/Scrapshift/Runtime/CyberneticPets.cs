@@ -112,7 +112,7 @@ namespace Scrapshift
                     if(spec.kind=="bot_o_mine"&&p.secondaryClock<=0)
                     {
                         p.attackPose=.3f;p.secondaryClock=spec.mineInterval;
-                        var spawner=new StarterTurret{pos=p.pos,stats=Rules.PetWeapon(spec.mine.stats,spec),trait=new WeaponTrait{radius=spec.mine.explosionRadius}};
+                        var spawner=new StarterTurret{pos=p.pos,stats=Rules.PetWeapon(spec.mine.stats,spec),spec=spec.mine,trait=new WeaponTrait{radius=spec.mine.explosionRadius}};
                         SpawnMine(spawner,SupportArt.Structure("landmine"),p.pos);
                     }
                     if(cat){p.obj.transform.position=p.pos;PoseCatGuns(p);TickCatGuns(p,dt);}
@@ -159,8 +159,10 @@ namespace Scrapshift
         {
             int explosionKillsBefore=Rules.Kills;
             float radius=pet.spec.explosionRadius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
-            foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,pet.pos)<radius)Damage(enemies.IndexOf(e),Rules.WeaponDamage(pet.secondary,Rules.Stat("explosion_damage")),pet.secondary.crit,pet.secondary.knockback,e.pos-pet.pos,pet.secondary,true);
-            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(pet.pos,20,amber);
+            float scale=radius/1.4734f;
+            foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(HurtCenter(e),pet.pos+Vector2.down*.03f*scale)<radius+HurtRadius(e))Damage(enemies.IndexOf(e),Rules.WeaponDamage(pet.secondary,Rules.Stat("explosion_damage")),pet.secondary.crit,pet.secondary.knockback,e.pos-pet.pos,pet.secondary,true);
+            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);
+            SpawnReferenceExplosionVisual(pet.pos,scale,pet.spec.explosionSmokeAmount,pet.spec.explosionSoundDb);
         }
         bool PetBlocksProjectile(Vector2 from,Vector2 to)
         {

@@ -80,9 +80,11 @@ namespace Scrapshift
             int explosionKillsBefore=Rules.Kills;
             float radius=spec.explosionRadius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
             float damage=SpecialWeaponRules.StructureDamage(Rules,spec.Equipment)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100);
-            foreach(var enemy in enemies.ToArray())if(enemy!=directHit&&enemy.marker==null&&Vector2.Distance(enemy.pos,position)<=radius)
+            float scale=radius/1.4734f;
+            foreach(var enemy in enemies.ToArray())if(enemy!=directHit&&enemy.marker==null&&Vector2.Distance(HurtCenter(enemy),position+Vector2.down*.03f*scale)<radius+HurtRadius(enemy))
                 Damage(enemies.IndexOf(enemy),damage,spec.stats.crit,0,enemy.pos-position,spec.Equipment,true,false,true);
-            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(position,16,amber);sound.Play(SoundCue.Impact,position);
+            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);
+            SpawnReferenceExplosionVisual(position,scale,spec.explosionSmokeAmount,spec.explosionSoundDb);
         }
     }
 }

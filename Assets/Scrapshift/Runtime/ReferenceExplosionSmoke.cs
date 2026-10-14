@@ -3,19 +3,22 @@ using UnityEngine;
 namespace Scrapshift
 {
     // Values transcribed from Brotato's explosion_smoke.tscn (100 source pixels per world unit).
-    public static class RocketExplosionSmoke
+    public static class ReferenceExplosionSmoke
     {
-        static Material material;
-        public static ParticleSystem Emit(Vector2 impact,float explosionScale,int amount)
+        static Material dirtMaterial,fleshMaterial;
+        public static ParticleSystem Emit(Vector2 impact,float explosionScale,int amount,bool flesh=false)
         {
-            var texture=Resources.Load<Texture2D>("WeaponReference/particle_3");
+            if(amount<=0)return null;
+            var texture=Resources.Load<Texture2D>(flesh?"WeaponReference/particle_1":"WeaponReference/particle_3");
             if(texture==null)return null;
+            var material=flesh?fleshMaterial:dirtMaterial;
             if(material==null)
             {
                 material=new Material(Shader.Find("Sprites/Default"));
                 material.mainTexture=texture;
+                if(flesh)fleshMaterial=material;else dirtMaterial=material;
             }
-            var obj=new GameObject("Explosion smoke");
+            var obj=new GameObject(flesh?"Flesh explosion smoke":"Explosion smoke");
             obj.transform.position=new Vector3(impact.x,impact.y-.24f*explosionScale,-1);
             var particles=obj.AddComponent<ParticleSystem>();
             particles.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -28,8 +31,8 @@ namespace Scrapshift
             main.startSpeed=new ParticleSystem.MinMaxCurve(.15f*explosionScale,.3f*explosionScale);
             main.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);
             main.startSize=new ParticleSystem.MinMaxCurve(.24f*explosionScale,.4f*explosionScale);
-            // RunningSmoke._ready() replaces the scene tint with the dirt arena's outline color.
-            main.startColor=new Color(.470588f,.403922f,.345098f,1);
+            // FleshExplosion disables the background tint override; other explosions use the dirt outline.
+            main.startColor=flesh?new Color(.607843f,.266667f,.266667f,1):new Color(.470588f,.403922f,.345098f,1);
             var shape=particles.shape;
             shape.enabled=true;
             shape.shapeType=ParticleSystemShapeType.Circle;

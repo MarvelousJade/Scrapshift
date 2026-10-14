@@ -1,5 +1,5 @@
 """Import source scene presentation and omitted weapon mechanics, with inherited node fields."""
-import copy, hashlib, json, re, shutil, uuid
+import copy, hashlib, json, math, re, shutil, uuid
 from pathlib import Path
 import analyze_reference as src
 ROOT=src.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
@@ -91,7 +91,7 @@ for i in re.findall(r'ExtResource\( (\d+) \)',line):
     for index,effect in enumerate(d.get('effects',[])):
         e=src.resource(effect)
         if 'explosion_scene' in e:
-            ex=scene(e['explosion_scene']);explosions.append(dict(index=index,texture=asset(ex['Sprite']['texture']),clips=[asset(v) for v in ex['.'].get('explosion_sounds',[])],soundDb=e.get('sound_db_mod',-10),radius=ex['Hitbox/Collision']['shape'].get('radius',147.34)/100,smokeAmount=round(e.get('scale',1)*e.get('base_smoke_amount',0))))
+            ex=scene(e['explosion_scene']);explosions.append(dict(index=index,texture=asset(ex['Sprite']['texture']),clips=[asset(v) for v in ex['.'].get('explosion_sounds',[])],soundDb=e.get('sound_db_mod',-10),radius=ex['Hitbox/Collision']['shape'].get('radius',147.34)/100,smokeAmount=math.floor(e.get('scale',1)*e.get('base_smoke_amount',0)+.5)))
         if 'weapon_stats' in e:secondary.append(dict(index=index,scene=projectile(src.resource(e['weapon_stats']).get('projectile_scene'))))
     weapons.append(dict(id=wid,tier=int(Path(path).parts[-2]),scene='' if melee else projectile(s.get('projectile_scene')),secondary=secondary,explosions=explosions,
         attackType=s.get('attack_type',0),alternate=s.get('alternate_attack_type',False),returnDamage=s.get('deal_dmg_on_return',False),

@@ -43,7 +43,7 @@ namespace Scrapshift
         public static WeaponReferenceProfile Profile(Equipment w)
         {Load();if(w==null)return null;weapons.TryGetValue(w.id+":"+w.tier,out var p);return p;}
         public static ProjectileReference Projectile(Equipment w)
-        {Load();string path=w?.projectileScene??Profile(w)?.scene;if(string.IsNullOrEmpty(path))return null;projectiles.TryGetValue(path,out var p);return p;}
+        {Load();string path=w?.projectileScene??Profile(w)?.scene;if(string.IsNullOrEmpty(path)&&w?.specialSpawn==true)path="projectiles/bullet/bullet_projectile.tscn";if(string.IsNullOrEmpty(path))return null;projectiles.TryGetValue(path,out var p);return p;}
         public static ProjectileReference[] Projectiles {get{Load();return data.projectiles;}}
         public static WeaponReferenceProfile[] Profiles {get{Load();return data.weapons;}}
         public static void Apply(ReferenceCatalog catalog)

@@ -108,8 +108,35 @@ namespace Scrapshift
             if(WeaponReference.Profile(shot.weapon)?.canBounce==false)shot.bounces=0;
         }
         sealed class ReferenceExplosion
-        {public Vector2 position;public float age,radius,scale,damage;public Equipment weapon;public GameObject obj;public ParticleSystem smoke;public int smokeAmount;public bool finished;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();}
+        {public Vector2 position;public float age,radius,scale,damage;public Equipment weapon;public GameObject obj;public ParticleSystem smoke;public int smokeAmount;public bool finished,visualOnly,flesh;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();}
         readonly List<ReferenceExplosion> weaponExplosions=new List<ReferenceExplosion>();
+        AudioClip[] fleshExplosionClips;
+        void SpawnReferenceExplosionVisual(Vector2 position,float scale,int smokeAmount,float soundDb=-10,bool flesh=false)
+        {
+            scale=Mathf.Max(.1f,scale);
+            var reference=WeaponReference.Profile(catalog.Weapon("rocket_launcher",2)).explosions[0];
+            if(reference.sprite==null)reference.sprite=ProjectileReference.MakeSprite(reference.texture);
+            var explosion=new ReferenceExplosion{position=position,scale=scale,radius=reference.radius*scale,smokeAmount=smokeAmount,visualOnly=true,flesh=flesh};
+            explosion.obj=SpriteObject(flesh?"Flesh explosion":"Explosion",reference.sprite,position,14);
+            explosion.obj.transform.localScale=Vector3.one*scale*1.36719f;
+            explosion.obj.GetComponent<SpriteRenderer>().color=new Color(.788235f,.788235f,.788235f,.392157f);
+            if(soundDb>-50)
+            {
+                AudioClip[] clips;
+                if(flesh)
+                {
+                    if(fleshExplosionClips==null)fleshExplosionClips=new[]{Resources.Load<AudioClip>("WeaponReference/flesh_impact_01"),Resources.Load<AudioClip>("WeaponReference/flesh_impact_02")};
+                    clips=fleshExplosionClips;
+                }
+                else
+                {
+                    if(reference.audio==null)reference.audio=System.Array.ConvertAll(reference.clips,path=>Resources.Load<AudioClip>(path));
+                    clips=reference.audio;
+                }
+                sound.Play(SoundCue.Impact,position,clips,Mathf.Pow(10,soundDb/20),.2f,true);
+            }
+            weaponExplosions.Add(explosion);
+        }
         void SpawnReferenceExplosion(Enemy victim,Equipment weapon,WeaponTrait trait,float damage)
         {
             var profile=WeaponReference.Profile(weapon);int index=System.Array.IndexOf(weapon.traits,trait);
@@ -134,7 +161,7 @@ namespace Scrapshift
         {
             foreach(var explosion in weaponExplosions.ToArray())
             {
-                if(!explosion.finished)
+                if(!explosion.finished&&!explosion.visualOnly)
                 {
                     int before=Rules.Kills;
                     foreach(var e in enemies.ToArray())if(e.marker==null&&!explosion.hit.Contains(e)&&Vector2.Distance(HurtCenter(e),explosion.position+Vector2.down*.03f*explosion.scale)<explosion.radius+HurtRadius(e))
@@ -148,7 +175,7 @@ namespace Scrapshift
                     if(explosion.obj!=null)explosion.obj.GetComponent<SpriteRenderer>().enabled=false;
                     if(explosion.smokeAmount>0&&GameSettings.Flag("effects"))
                     {
-                        explosion.smoke=RocketExplosionSmoke.Emit(explosion.position,explosion.scale,explosion.smokeAmount);
+                        explosion.smoke=ReferenceExplosionSmoke.Emit(explosion.position,explosion.scale,explosion.smokeAmount,explosion.flesh);
                     }
                 }
                 if(explosion.age>=1f)
