@@ -12,8 +12,9 @@ namespace Scrapshift.Editor
         // the alpha bounds into a slot or stretches a garment.
         static void ApplyTemplateWearables(ReferenceCatalog catalog)
         {
-            string[] ids={"beanie","leather_vest","glasses","coffee"};
-            float[] bodyY={627f,718.5f,669f,699.5f}; // top-down pixels on the 1254 canvas
+            string[] ids={"beanie","leather_vest","glasses","coffee","blindfold"};
+            float[] bodyY={627f,718.5f,669f,699.5f,690f}; // top-down pixels on the 1254 canvas
+            float[] pixelsPerUnit={627f,627f,627f,627f,860f};
             for(int i=0;i<ids.Length;i++)
             {
                 string path=ArtRoot+"/TemplateWearables/"+ids[i]+".png";
@@ -23,7 +24,7 @@ namespace Scrapshift.Editor
                 importer.spriteImportMode=SpriteImportMode.Single;
                 importer.alphaIsTransparency=true;importer.isReadable=true;importer.mipmapEnabled=false;
                 importer.maxTextureSize=2048;importer.textureCompression=TextureImporterCompression.Uncompressed;
-                importer.spritePixelsPerUnit=627;importer.filterMode=FilterMode.Bilinear;
+                importer.spritePixelsPerUnit=pixelsPerUnit[i];importer.filterMode=FilterMode.Bilinear;
                 var settings=new TextureImporterSettings();importer.ReadTextureSettings(settings);
                 settings.spriteAlignment=(int)SpriteAlignment.Custom;
                 settings.spritePivot=new Vector2(.5f,1-bodyY[i]/1254f);

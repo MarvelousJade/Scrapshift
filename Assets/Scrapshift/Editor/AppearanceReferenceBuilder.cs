@@ -19,7 +19,7 @@ namespace Scrapshift.Editor
         {
             var manifest=JsonUtility.FromJson<FittedManifest>(File.ReadAllText(ArtRoot+"/FittedWearables/manifest.json"));
             var registrations=JsonUtility.FromJson<WearableRegistrations>(File.ReadAllText(ArtRoot+"/FittedWearables/registrations.json")).entries.ToDictionary(e=>e.key);
-            if(registrations.Count!=181||registrations.Values.Any(e=>!e.reviewed||e.width<=0||e.height<=0))throw new InvalidOperationException("Incomplete wearable registration table.");
+            if(registrations.Count!=180||registrations.Values.Any(e=>!e.reviewed||e.width<=0||e.height<=0))throw new InvalidOperationException("Incomplete wearable registration table.");
             var result=new System.Collections.Generic.Dictionary<string,AppearanceLayer>();
             foreach(var sheet in manifest.sheets)
             {
