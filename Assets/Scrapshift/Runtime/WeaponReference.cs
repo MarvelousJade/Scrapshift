@@ -7,7 +7,7 @@ namespace Scrapshift
     [Serializable] public sealed class WeaponReferenceProfile
     {
         public string id,scene;public int tier,attackType;public bool alternate,returnDamage,speedWithRange,canBounce=true;
-        public float accuracy=1,soundDb=-5;public float[] half,hitOffset;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
+        public float accuracy=1,soundDb=-5,effectScale=1;public float[] half,hitOffset;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
     }
     [Serializable] public sealed class ExplosionReference
     {public int index;public string texture;public string[] clips;public float soundDb,radius;[NonSerialized] public Sprite sprite;[NonSerialized] public AudioClip[] audio;}

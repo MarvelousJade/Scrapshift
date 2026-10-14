@@ -3,6 +3,52 @@ using UnityEngine;
 
 namespace Scrapshift
 {
+    // Port of global/screenshaker.gd. The source only accepts a stronger shake
+    // while its requested duration is longer than the time still remaining.
+    public static class ReferenceScreenShake
+    {
+        public const float Duration = .1f;
+        public static void Begin(ref float intensity, ref float remaining, float amount)
+        {
+            if (amount > intensity && Duration > remaining)
+            {
+                intensity = amount;
+                remaining = Duration;
+            }
+        }
+        public static Vector2 Tick(ref float intensity, ref float remaining, float dt, Vector2 random)
+        {
+            if (remaining <= 0)
+            {
+                intensity = remaining = 0;
+                return Vector2.zero;
+            }
+            remaining -= dt;
+            return random * intensity;
+        }
+    }
+
+    // The original CPUParticles2D hit emitter uses eight particles, a 15 px
+    // sphere, 180 degree spread, 600 px/s with .5 randomness, and .5 scale
+    // with .25 randomness. World art is imported at 100 px per Unity unit.
+    public static class ReferenceBloodSpray
+    {
+        public const float Lifetime = .5f;
+        public static int Count(float effectScale) => effectScale <= 0 ? 0 : Mathf.Max(1, Mathf.FloorToInt(8 * effectScale));
+        public static Vector2 EmissionOffset(float radiusRoll, float angleRoll)
+        {
+            float radius = .15f * Mathf.Sqrt(1 - radiusRoll * radiusRoll);
+            float angle = angleRoll * Mathf.PI * 2;
+            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        }
+        public static Vector2 Velocity(Vector2 direction, float angleRoll, float speedRoll)
+        {
+            float angle = (angleRoll * 2 - 1) * 180;
+            return Quaternion.Euler(0, 0, angle) * -direction * (6 * (.5f + .5f * speedRoll));
+        }
+        public static float Scale(float roll) => Mathf.Lerp(.5f, 1, roll * .25f);
+    }
+
     public sealed partial class ArenaGame
     {
         sealed class Floater { public Vector2 pos; public string text; public Color color; public float age; public bool big; }
@@ -14,10 +60,11 @@ namespace Scrapshift
         readonly List<SpriteRenderer> playerFlashViews = new List<SpriteRenderer>();
         Sprite enemyBloodSprite;
         bool enemyBloodSpriteLoaded;
+        readonly List<float> bloodBurstEndTimes = new List<float>();
         void Shake(float amount)
         {
             if(!GameSettings.Flag("shake"))return;
-            shake = Mathf.Max(shake, amount); shakeTime = .1f;
+            ReferenceScreenShake.Begin(ref shake, ref shakeTime, amount);
         }
         sealed class Impact { public GameObject obj; public float age, size; }
         readonly List<Impact> impacts = new List<Impact>();
@@ -73,16 +120,21 @@ namespace Scrapshift
                 sparks.Add(new Spark{obj=obj,pos=pos,velocity=UnityEngine.Random.insideUnitCircle.normalized*UnityEngine.Random.Range(3f,6f),life=.5f,max=.5f});
             }
         }
-        void EnemyBloodParticles(Enemy enemy, Vector2 knockbackDirection)
+        void EnemyBloodParticles(Enemy enemy, Vector2 knockbackDirection, float effectScale)
         {
-            if (!GameSettings.Flag("effects") || sparks.Count >= 200) return;
+            if (!GameSettings.Flag("effects")) return;
+            bloodBurstEndTimes.RemoveAll(end => end <= elapsed);
+            // Godot limits live particle emitters, rather than individual sprites.
+            if (bloodBurstEndTimes.Count > 100) return;
+            int amount = ReferenceBloodSpray.Count(effectScale);
+            if (amount == 0) return;
             if (!enemyBloodSpriteLoaded)
             {
                 enemyBloodSpriteLoaded = true;
                 var texture = Resources.Load<Texture2D>("EnemyBloodParticle");
                 if (texture != null)
                 {
-                    texture.filterMode = FilterMode.Point;
+                    texture.filterMode = FilterMode.Bilinear;
                     enemyBloodSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
                         new Vector2(.5f, .5f), 100, 0, SpriteMeshType.FullRect);
                     enemyBloodSprite.name = "Original hit particle";
@@ -97,20 +149,22 @@ namespace Scrapshift
             float edge = body != null && body.sprite != null
                 ? body.sprite.bounds.size.x * Mathf.Abs(enemy.obj.transform.lossyScale.x) * .25f : 0;
             Vector2 origin = enemy.pos + direction * edge;
-            for (int i = 0; i < 8 && sparks.Count < 200; i++)
+            bloodBurstEndTimes.Add(elapsed + ReferenceBloodSpray.Lifetime);
+            for (int i = 0; i < amount; i++)
             {
-                Vector2 pos = origin + UnityEngine.Random.insideUnitCircle * .15f;
+                Vector2 pos = origin + ReferenceBloodSpray.EmissionOffset(UnityEngine.Random.value, UnityEngine.Random.value);
                 var obj = new GameObject("Enemy blood particle");
                 obj.transform.position = new Vector3(pos.x, pos.y, -3);
-                obj.transform.rotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 360f));
+                obj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180);
                 var view = obj.AddComponent<SpriteRenderer>();
                 view.sprite = enemyBloodSprite;
                 view.color = new Color(.623529f, .152941f, .152941f);
                 view.sortingOrder = 22;
-                float angle = UnityEngine.Random.Range(-90f, 90f);
-                Vector2 spray = Quaternion.Euler(0, 0, angle) * -direction;
-                sparks.Add(new Spark { obj = obj, pos = pos, velocity = spray * UnityEngine.Random.Range(3f, 6f),
-                    life = .5f, max = .5f, scale = UnityEngine.Random.Range(.375f, .625f) });
+                float scale = ReferenceBloodSpray.Scale(UnityEngine.Random.value);
+                obj.transform.localScale = Vector3.one * scale;
+                sparks.Add(new Spark { obj = obj, pos = pos,
+                    velocity = ReferenceBloodSpray.Velocity(direction, UnityEngine.Random.value, UnityEngine.Random.value),
+                    life = ReferenceBloodSpray.Lifetime, max = ReferenceBloodSpray.Lifetime, scale = scale });
             }
         }
         void UpdatePlayerFlash(float dt)
@@ -124,7 +178,7 @@ namespace Scrapshift
         void ClearImpacts()
         {
             foreach (var impact in impacts) Destroy(impact.obj);
-            impacts.Clear(); playerFlash = 0; shake = shakeTime = 0;
+            impacts.Clear(); bloodBurstEndTimes.Clear(); playerFlash = 0; shake = shakeTime = 0;
             if (player != null) UpdatePlayerFlash(0);
         }
         void Flash(Enemy e, float amount)

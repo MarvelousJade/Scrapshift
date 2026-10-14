@@ -92,7 +92,7 @@ for i in re.findall(r'ExtResource\( (\d+) \)',line):
         if 'weapon_stats' in e:secondary.append(dict(index=index,scene=projectile(src.resource(e['weapon_stats']).get('projectile_scene'))))
     weapons.append(dict(id=wid,tier=int(Path(path).parts[-2]),scene='' if melee else projectile(s.get('projectile_scene')),secondary=secondary,explosions=explosions,
         attackType=s.get('attack_type',0),alternate=s.get('alternate_attack_type',False),returnDamage=s.get('deal_dmg_on_return',False),
-        accuracy=s.get('accuracy',1),soundDb=s.get('sound_db_mod',-5),speedWithRange=s.get('increase_projectile_speed_with_range',False),canBounce=s.get('can_bounce',True),
+        accuracy=s.get('accuracy',1),soundDb=s.get('sound_db_mod',-5),effectScale=s.get('effect_scale',1),speedWithRange=s.get('increase_projectile_speed_with_range',False),canBounce=s.get('can_bounce',True),
         half=[v/100 for v in shape.get('extents',[shape.get('radius',32)]*2)],hitOffset=[(p[0]+q[0])/100,-(p[1]+q[1])/100]))
 unit=scene('entities/units/unit/unit.tscn')['.']
 audio=[dict(id=key,clips=[asset(p) for p in unit[key+'_sounds']]) for key in ['hurt','crit','burn']]
