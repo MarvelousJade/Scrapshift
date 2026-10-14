@@ -45,6 +45,7 @@ namespace Scrapshift
             SupportArt.Apply(catalog);
             InitializeProgression();WeaponReference.Apply(catalog);ApplyAudioSettings();Application.targetFrameRate = GameSettings.Flag("limitFps",false)?60:120; Rules.Configure(catalog);
             Rules.RandomDamageRequested+=QueueImplantDamage;
+            gameObject.AddComponent<GameCursor>().Initialize(this);
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
             playerAnimation = player.GetComponent<SpriteFrameAnimator>();
