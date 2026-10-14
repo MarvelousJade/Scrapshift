@@ -10,7 +10,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 folder = root / 'Assets/Scrapshift/Content/OriginalArt/FittedWearables'
 source = json.loads((folder / 'manifest.json').read_text())
-approved = {'beanie', 'leather_vest', 'glasses', 'coffee'}
+approved = {'beanie', 'leather_vest', 'glasses', 'coffee', 'blindfold'}
 # key: width, height, centerX, centerY. Deliberately retain good silhouettes.
 corrections = {
     'adrenaline_0': (.24,.38,-.38,.40),
@@ -86,7 +86,7 @@ for sheet in source['sheets']:
         values=corrections.get(e['key'],(e['width'],e['height'],e['offsetX'],e['offsetY']))
         entries.append(dict(key=e['key'],width=values[0],height=values[1],centerX=values[2],centerY=values[3],
                             reviewed=True,changed=e['key'] in corrections))
-assert len(entries)==181
+assert len(entries)==180
 assert set(corrections)<=set(e['key'] for e in entries)
 (folder/'registrations.json').write_text(json.dumps(dict(entries=entries),indent=2)+'\n')
-print(f'{len(entries)} reviewed registrations; {len(corrections)} individual fit corrections; four approved canvases preserved.')
+print(f'{len(entries)} reviewed registrations; {len(corrections)} individual fit corrections; five full-canvas wearables preserved.')

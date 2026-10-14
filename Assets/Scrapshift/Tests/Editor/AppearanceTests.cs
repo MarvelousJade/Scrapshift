@@ -84,7 +84,7 @@ namespace Scrapshift.Tests
         [Test] public void EveryAtlasWearableUsesItsAuthoredBodyOriginInWorldAndPortraits()
         {
             var fits=JsonUtility.FromJson<RegisteredWearables>(System.IO.File.ReadAllText(ContentBuilder.ArtRoot+"/FittedWearables/registrations.json")).entries;
-            Assert.AreEqual(181,fits.Length);
+            Assert.AreEqual(180,fits.Length);
             foreach(var fit in fits)
             {
                 int split=fit.key.LastIndexOf('_');var layer=Item(fit.key.Substring(0,split)).appearances[int.Parse(fit.key.Substring(split+1))];
@@ -104,12 +104,12 @@ namespace Scrapshift.Tests
             {
                 var animator=obj.GetComponent<SpriteFrameAnimator>();animator.lookIndex=0;
                 var wardrobe=obj.AddComponent<CharacterWardrobe>();
-                foreach(string id in new[]{"beanie","leather_vest","glasses","coffee"})
+                foreach(string id in new[]{"beanie","leather_vest","glasses","coffee","blindfold"})
                 {
                     wardrobe.Reset();var item=Item(id);wardrobe.Sync(new[]{item},Catalog.spriteMaterial,false);
                     var layer=item.appearances.Single();var sprite=layer.image;
                     Assert.AreEqual(new Vector2(1254,1254),sprite.rect.size,id);
-                    Assert.AreEqual(627,sprite.pixelsPerUnit,id);
+                    Assert.AreEqual(id=="blindfold"?860:627,sprite.pixelsPerUnit,id);
                     Assert.AreEqual(Vector2.zero,layer.offset,id);
                     Assert.AreEqual(Vector2.one,layer.Stretch,id);Assert.AreEqual(1,layer.scale,id);
                     var view=obj.GetComponentsInChildren<SpriteRenderer>().Single(v=>v.enabled&&v.name=="Appearance "+layer.id);

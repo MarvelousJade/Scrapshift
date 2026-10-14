@@ -15,6 +15,13 @@ namespace Scrapshift
         readonly string[][] parityOutfits={new[]{"beanie"},new[]{"pumpkin"},new[]{"glasses","helmet"},new[]{"goat_skull"},new[]{"ghost_outfit"},new[]{"anvil"},new[]{"propeller_hat","alien_tongue"},new[]{"coffee","leather_vest"},new[]{"exoskeleton"},new[]{"cute_monkey"},new[]{"potato","blindfold"},new[]{"bait","torture"}};
         void BeginAppearanceParityReview(string folder)
         {
+            if(Environment.GetCommandLineArgs().Contains("--blind-optics-review"))
+            {
+                string[][] outfits={new[]{"blindfold"},new[]{"beanie","blindfold"},new[]{"blindfold","leather_vest"},new[]{"coffee","blindfold"},
+                    new[]{"blindfold"},new[]{"blindfold"},new[]{"blindfold"},new[]{"blindfold"},
+                    new[]{"blindfold"},new[]{"beanie","blindfold"},new[]{"blindfold","leather_vest"},new[]{"coffee","blindfold"}};
+                for(int i=0;i<outfits.Length;i++)parityOutfits[i]=outfits[i];
+            }
             if(Environment.GetCommandLineArgs().Contains("--remaining-wearable-review"))
             {
                 string[][] outfits={new[]{"bandana"},new[]{"cyclops_worm"},new[]{"strange_book"},new[]{"warrior_helmet"},
@@ -39,8 +46,10 @@ namespace Scrapshift
             {
                 var obj=Instantiate(playerPrefab);obj.transform.position=new Vector3(-6+i%4*4,3.5f-i/4*3.5f,0);obj.transform.localScale=Vector3.one*1.3f;
                 bool template=Environment.GetCommandLineArgs().Contains("--template-wearable-review");
-                if(template&&i>=8)obj.transform.localScale=Vector3.one*.65f;
+                bool blind=Environment.GetCommandLineArgs().Contains("--blind-optics-review");
+                if((template||blind)&&i>=8)obj.transform.localScale=Vector3.one*.65f;
                 var animation=obj.GetComponent<SpriteFrameAnimator>();animation.lookIndex=!template&&!Environment.GetCommandLineArgs().Contains("--remaining-wearable-review")&&i==4?18:0;animation.Tick(Vector2.right,0,false);
+                if(blind){animation.lookIndex=i>=4&&i<8?i-3:0;animation.Tick(Vector2.right,0,false);}
                 var worn=obj.AddComponent<CharacterWardrobe>();var items=parityOutfits[i].Select(id=>catalog.data.items.Single(x=>x.id==id)).ToArray();worn.Sync(items,catalog.spriteMaterial,false);
                 var expected=AppearanceResolver.Resolve(animation.Look,items);
                 if(!worn.Layers.SequenceEqual(expected))parityIssues.Add("World layer mismatch: "+i);
