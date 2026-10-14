@@ -41,8 +41,8 @@ namespace Scrapshift
         void FirePet(Pet p,Vector2 origin,Vector2 target,Equipment weapon)
         {
             float angle=Mathf.Atan2(target.y-origin.y,target.x-origin.x);
-            for(int i=0;i<weapon.pellets;i++)
-            {float a=angle+UnityEngine.Random.Range(-weapon.spread,weapon.spread);StarterProjectile(origin,new Vector2(Mathf.Cos(a),Mathf.Sin(a)),weapon,true,structure:p.spec.structure);}
+            for(int i=0;i<WeaponReference.ProjectileCount(weapon.pellets,(int)Rules.Stat("projectiles"));i++)
+            {float a=angle+WeaponReference.Spread(weapon,Rules.Stat("projectiles"),UnityEngine.Random.value);StarterProjectile(origin,new Vector2(Mathf.Cos(a),Mathf.Sin(a)),weapon,true,structure:p.spec.structure);}
             p.attackPose=.3f;OriginalSupportAudio.Play(sound,"shot:"+p.spec.kind,origin);
         }
         void TickCatGuns(Pet p,float dt)

@@ -350,7 +350,7 @@ namespace Scrapshift
                 {
                     Vector2 muzzle = view != null ? (Vector2)view.transform.position + direction * (w.image.bounds.max.x * ActorPresentation.WeaponScale(w)) : mount;
                     if (muzzleViews[i] != null) { muzzleViews[i].enabled = true; muzzleViews[i].sprite = catalog.muzzleFrames[0]; }
-                    int pellets=Mathf.Max(1,w.pellets+(int)Rules.Stat("projectiles"));
+                    int pellets=WeaponReference.ProjectileCount(w.pellets,(int)Rules.Stat("projectiles"));
                     for(int p=0;p<pellets;p++)
                     {
                         Vector2 dir=Quaternion.Euler(0,0,WeaponReference.Spread(w,Rules.Stat("projectiles"),UnityEngine.Random.value)*Mathf.Rad2Deg) * direction;var obj=SpriteObject("Rivet tracer",catalog.muzzleFrames[2],muzzle,13);obj.transform.localScale=Vector3.one*.45f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
@@ -415,7 +415,10 @@ namespace Scrapshift
                         if(critical&&s.critPierces>0){s.pierce++;s.critPierces--;}
                         if(s.bounces>0)
                         {
-                            var candidates=enemies.FindAll(e=>e!=victim&&e.marker==null&&e.hp>0);
+                            // Godot redirects at the collision point, before the remaining frame travel.
+                            s.pos=Vector2.Lerp(old,s.pos,first);s.obj.transform.position=new Vector3(s.pos.x,s.pos.y,-2);
+                            // EntitySpawner.get_rand_enemy chooses from ordinary enemies, excluding bosses and neutral trees.
+                            var candidates=enemies.FindAll(e=>e!=victim&&e.marker==null&&e.hp>0&&e.type.role!="Boss"&&e.type.role!="Elite"&&e.type.role!="Tree");
                             var target=candidates.Count>0?candidates[UnityEngine.Random.Range(0,candidates.Count)]:null;
                             Vector2 bounceDirection=target!=null?(target.pos-s.pos).normalized:UnityEngine.Random.insideUnitCircle.normalized;
                             s.bounces--;s.velocity=bounceDirection*s.velocity.magnitude;s.life=101/Mathf.Max(.001f,s.velocity.magnitude);s.knockback=0;

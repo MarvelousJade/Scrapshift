@@ -65,8 +65,9 @@ namespace Scrapshift
         {return Profile(w)?.speedWithRange==true?Mathf.Clamp(w.projectileSpeed*(1+rangeStat/300),.5f,60):w.projectileSpeed;}
         public static float Spread(Equipment w,float addedProjectiles,float roll)
         {return Mathf.Lerp(-1,1,roll)*Mathf.Max(0,w.spread+addedProjectiles*.1f);}
+        public static int ProjectileCount(int baseCount,int addedProjectiles)=>baseCount>0?Mathf.Max(0,baseCount+addedProjectiles):baseCount;
         public static float Lifetime(float range,float speed,bool manual)=> (range+(manual?.5f:1))/Mathf.Max(.001f,speed);
-        public static float DamageAfterHit(float damage,float reduction,float bonus)=>damage<=0?0:Mathf.Max(1,damage*(1-Mathf.Clamp01(reduction-bonus/100)));
+        public static float DamageAfterHit(float damage,float reduction,float bonus)=>damage<=0?0:Mathf.Max(1,Mathf.FloorToInt(damage*(1-Mathf.Clamp01(reduction-bonus/100))));
         public static int AttackType(Equipment w,int shot)
         {var p=Profile(w);return p==null?0:p.alternate?(p.attackType+shot-1)%2:p.attackType;}
     }

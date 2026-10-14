@@ -67,9 +67,9 @@ namespace Scrapshift
             if(spec.kind=="garden"){DropConsumable(turret.pos,ConsumableKind.Fruit);OriginalSupportAudio.Play(sound,"shot:garden",turret.pos);return;}
             Vector2 aim=spec.healing?playerPos-turret.pos:target.pos-turret.pos;
             float angle=Mathf.Atan2(aim.y,aim.x)+UnityEngine.Random.Range(-1+spec.accuracy,1-spec.accuracy);
-            for(int i=0;i<turret.stats.pellets;i++)
+            for(int i=0;i<WeaponReference.ProjectileCount(turret.stats.pellets,(int)Rules.Stat("projectiles"));i++)
             {
-                float direction=angle+UnityEngine.Random.Range(-turret.stats.spread,turret.stats.spread);
+                float direction=angle+WeaponReference.Spread(turret.stats,Rules.Stat("projectiles"),UnityEngine.Random.value);
                 StarterProjectile(turret.pos,new Vector2(Mathf.Cos(direction),Mathf.Sin(direction)),turret.stats,true,structure:true,structureSpec:spec);
                 if(turret.boostClock>0&&shots.Count>0)shots[shots.Count-1].damage+=turret.stats.damage*.2f*Mathf.Max(0,1+Rules.Stat("structure_percent_damage")/100);
             }
