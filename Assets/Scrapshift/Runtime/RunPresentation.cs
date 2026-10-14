@@ -190,7 +190,7 @@ namespace Scrapshift
                 if(MenuButton(new Rect(495,550,450,57),"Ok"))endSummary=true;return;
             }
             DrawStatsPanel(true);
-            DrawRunInventory(new Rect(390,104,990,680));
+            DrawRunInventory(new Rect(440,104,610,680));
             Text(1090,123,260,45,"Progress",heading);
             Text(1090,188,260,80,$"Level {Rules.Level}\n{Rules.Kills} enemies defeated",body);
             DrawInventoryTooltip();
