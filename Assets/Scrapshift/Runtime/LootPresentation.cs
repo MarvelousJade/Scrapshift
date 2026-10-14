@@ -47,7 +47,7 @@ namespace Scrapshift
             float healed=Rules.Health-healthBefore;
             if(healed>0)FloatText(playerPos,$"+{healed:0} HP",mint,true);
             if(pickup.consumable==ConsumableKind.Crate || pickup.consumable==ConsumableKind.LegendaryCrate)
-            { FloatText(playerPos,"ITEM CRATE!",amber,true);sound.Play(SoundCue.Install); }
+            { FloatText(playerPos,"ITEM CRATE!",amber,true);sound.Play(SoundCue.CratePickup); }
             else sound.Play(pickup.fruit?SoundCue.Consume:SoundCue.Pickup,pickup.motion.position);
             PickupContactEffect();
             if(Rules.Level>levelBefore){sound.Play(SoundCue.LevelUp);FloatText(playerPos,"LEVEL UP!",mint,true);}

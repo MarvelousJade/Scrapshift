@@ -20,7 +20,13 @@ Game tests check complete playable cue assets, non-repeating selection and actua
 
 ## Supplied reference audio revision
 
-The user's later request explicitly permitted use of the supplied game's sounds. Current playback uses reference files for Fire, Impact, Kill, Critical, Pickup, LevelUp, Install, WaveClear, Swing, Charge, Hurt and Reroll. SMG, shotgun and laser use their own equipment sound arrays. Win/Lose and the unused legacy pulse cue retain original clips. Earlier original-audio descriptions are historical. The bounded mixer, cooldowns, non-repeating variants, volume, mute and priority ducking remain in use. The provenance manifest identifies each copied WAV and its hash. Numerical output checks are not a claim that the user likes the mix.
+The user's later request explicitly permitted use of the supplied game's sounds. Current playback uses reference files for Fire, Impact, Kill, Critical, Pickup, LevelUp, Install, WaveClear, Swing, Charge, Hurt and Reroll. SMG, shotgun and laser use their own equipment sound arrays. The unused legacy pulse cue retains its generated clip. Earlier original-audio descriptions are historical. The bounded mixer, volume, mute and priority ducking remain in use. The provenance manifest identifies each copied file and its hash. Numerical output checks are not a claim that the user likes the mix.
+
+## Crate pickup and run endings - October 13
+
+The supplied game's normal and legendary item boxes both use `item_box_pickup.wav`; Scrapshift now plays that file on ground crate collection instead of the shop's install cue. `end_wave.wav` remains the wave-end cue and is imported in stereo without normalization. Wave completion also plays the original two bubble clips once per letter at 0.1-second intervals, random variant and +/-0.2 pitch variation, at -10 dB relative to the end-wave cue.
+
+The supplied game plays one of nine `Madness` clips at -5 dB on death, followed by `end_wave.wav`; Scrapshift uses the same files and order. The win sequence uses `Fear 10.mp3` at -5 dB, approximately 2.4 seconds after wave cleanup starts. The audio bank records the source files and relative gains; `scripts/import_feedback_audio.py` and `artifacts/audio-parity-provenance.json` record their exact bytes and hashes. Unity's saved effects volume and bounded voice mixer still affect the final output. The Unity wave label appears as a whole rather than typing letter by letter, so the letter sounds reproduce the original cadence without a matching text animation.
 
 ## Player damage mapping correction - October 11
 

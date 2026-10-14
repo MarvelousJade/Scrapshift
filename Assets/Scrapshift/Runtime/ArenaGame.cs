@@ -119,7 +119,7 @@ namespace Scrapshift
 
         public void Begin()
         {
-            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
+            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;waveSweepAge=0;waveLettersRemaining=0;winSoundDelay=-1;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
             gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
@@ -186,10 +186,11 @@ namespace Scrapshift
             if (audioPhase != Rules.Phase)
             {
                 if (Rules.Phase != RunPhase.Playing) sound.StopCombat();
-                if (Rules.Phase == RunPhase.Won) sound.Play(SoundCue.Win);
-                if (Rules.Phase == RunPhase.Lost) sound.Play(SoundCue.Lose);
+                if (Rules.Phase == RunPhase.Won) winSoundDelay=Mathf.Max(0,2.4f-waveSweepAge);
+                if (Rules.Phase == RunPhase.Lost) { sound.Play(SoundCue.Lose); sound.Play(SoundCue.WaveClear); BeginWaveLetters(8); }
                 audioPhase = Rules.Phase;
             }
+            TickEndAudio(Time.deltaTime);
             if (smoke) SmokeTick();
             foreach(var pet in pets)if(pet.reviveSound!=null){pet.reviveSound.volume=sound.Muted?0:sound.Volume;if(Rules.Phase!=RunPhase.Playing)pet.reviveSound.Stop();}
             foreach(var pet in pets)if(pet.obj!=null)foreach(var renderer in pet.obj.GetComponentsInChildren<SpriteRenderer>()){var c=renderer.color;c.a=GameSettings.Value("petOpacity");renderer.color=c;}
@@ -262,7 +263,7 @@ namespace Scrapshift
             float healthBefore=Rules.Health;Rules.Tick(dt);
             if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
-            if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); }
+            if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); BeginWaveLetters(14); }
             if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) player.SetActive(true);
         }
 

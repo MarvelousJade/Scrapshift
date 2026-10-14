@@ -58,7 +58,9 @@ namespace Scrapshift
                 for (int i=min+1;i<max;i++) if (started[i] < started[index]) index = i;
             }
             var clips = overrideClips != null && overrideClips.Length > 0 ? overrideClips : entry.variants;
-            int variant = VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
+            int variant = cue == SoundCue.Lose || cue == SoundCue.WaveLetter
+                ? Random.Range(0, clips.Length)
+                : VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
             previous[key] = variant; last[key] = now;
             var voice = voices[index]; voice.Stop(); voice.clip = clips[variant];
             float pitchVariation=overridePitchVariation??entry.pitchVariation;

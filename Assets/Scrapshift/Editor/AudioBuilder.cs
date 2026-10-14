@@ -33,13 +33,31 @@ namespace Scrapshift.Editor
             }
             bank.entries=entries.ToArray();bank.Find(SoundCue.Pickup).gain=.42f;EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
         }
+        static void EnsureFeedbackAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            var entries=bank.entries.ToList();
+            void Replace(SoundCue cue,string[] names,float gain,float pitchVariation=0)
+            {
+                var clips=names.Select(name=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/"+name)).ToArray();
+                if(clips.Any(c=>c==null))throw new Exception("Missing original feedback audio for "+cue);
+                entries.RemoveAll(e=>e.cue==cue);
+                entries.Add(new SoundEntry{cue=cue,variants=clips,gain=gain,cooldown=0,pitchVariation=pitchVariation,priority=2});
+            }
+            Replace(SoundCue.CratePickup,new[]{"CratePickup_01.wav"},1);
+            Replace(SoundCue.WaveClear,new[]{"WaveClear_01.wav"},1);
+            Replace(SoundCue.WaveLetter,new[]{"WaveLetter_01.wav","WaveLetter_02.wav"},Mathf.Pow(10,-10f/20f),.2f);
+            Replace(SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")+".mp3").ToArray(),Mathf.Pow(10,-5f/20f));
+            Replace(SoundCue.Win,new[]{"Win_01.mp3"},Mathf.Pow(10,-5f/20f));
+            bank.entries=entries.ToArray();EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
         static void EnsureAudio()
         {
             string path = Root + "/Definitions/GameSounds.asset";
             if (File.Exists(path)) return;
             AssetDatabase.Refresh();
             var bank = ScriptableObject.CreateInstance<SoundBank>();
-            bank.entries = Enum.GetValues(typeof(SoundCue)).Cast<SoundCue>().Select(cue =>
+            bank.entries = Enum.GetValues(typeof(SoundCue)).Cast<SoundCue>().Where(cue=>cue!=SoundCue.CratePickup&&cue!=SoundCue.WaveLetter).Select(cue =>
             {
                 var clips = Directory.GetFiles(Root + "/Audio", cue + "_*").Where(p=>p.EndsWith(".wav")||p.EndsWith(".mp3")).OrderBy(p=>p).Select(file =>
                 {

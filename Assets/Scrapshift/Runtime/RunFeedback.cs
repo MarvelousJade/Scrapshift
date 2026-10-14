@@ -11,7 +11,24 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
-        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        int waveLettersRemaining;float waveLetterClock,winSoundDelay=-1;
+        void BeginWaveLetters(int count){waveLettersRemaining=count;waveLetterClock=.1f;}
+        void TickEndAudio(float dt)
+        {
+            if(Rules.Phase==RunPhase.Paused)return;
+            if(winSoundDelay>=0)
+            {
+                winSoundDelay-=dt;
+                if(winSoundDelay<=0){winSoundDelay=-1;sound.Play(SoundCue.Win);BeginWaveLetters(7);}
+            }
+            if(waveLettersRemaining<=0)return;
+            waveLetterClock-=dt;
+            if(waveLetterClock>0)return;
+            sound.Play(SoundCue.WaveLetter);
+            waveLettersRemaining--;
+            waveLetterClock+=.1f;
+        }
+        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);BeginWaveLetters(14);}
         void TickWaveSweep(float dt)
         {
             waveSweepAge+=dt;
