@@ -38,17 +38,17 @@ namespace Scrapshift
         void WinReviewTick()
         {
             if(!winReview)return;
-            float[] moments={.5f,1.8f,3f,4.4f};
+            float[] moments={.5f,1.95f,2.35f,3f,4.4f};
             if(winReviewStage<moments.Length&&waveSweepAge>=moments[winReviewStage]&&Rules.Phase==RunPhase.Playing)
             {
-                StartCoroutine(CaptureWinFrame(new[]{"jump","win-label","beam","results"}[winReviewStage]));
+                StartCoroutine(CaptureWinFrame(new[]{"jump","ascent","win-label","beam","results"}[winReviewStage]));
                 winReviewStage++;return;
             }
-            if(winReviewStage==3&&Rules.Phase==RunPhase.Won)
+            if(winReviewStage==4&&Rules.Phase==RunPhase.Won)
             {
                 StartCoroutine(CaptureWinFrame("results"));winReviewStage++;
             }
-            if(winReviewStage==4)
+            if(winReviewStage==5)
             {
                 if(!File.Exists(Path.Combine(winReviewPath,"results.png"))&&Time.realtimeSinceStartup-winReviewStart<12)return;
                 File.WriteAllText(Path.Combine(winReviewPath,"win-review.json"),JsonUtility.ToJson(new WinReviewReport{phase=Rules.Phase.ToString(),summary=endSummary,age=waveSweepAge}));

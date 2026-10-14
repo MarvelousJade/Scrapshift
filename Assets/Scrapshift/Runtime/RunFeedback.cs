@@ -13,9 +13,10 @@ namespace Scrapshift
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
         int waveLettersRemaining;float waveLetterClock,victoryWeaponLift;
         GameObject victoryRing;
-        SpriteRenderer victoryRingView;
+        SpriteRenderer[] victoryRingViews;
         static Sprite victoryRingSprite;
-        void ClearVictoryRing(){if(victoryRing!=null)Destroy(victoryRing);victoryRing=null;victoryRingView=null;}
+        const int VictoryRingCount=25;
+        void ClearVictoryRing(){if(victoryRing!=null)Destroy(victoryRing);victoryRing=null;victoryRingViews=null;}
         void DrawVictoryRing(float age)
         {
             if(age<1.25f)return;
@@ -23,14 +24,45 @@ namespace Scrapshift
             {
                 var texture=Resources.Load<Texture2D>("WinRing");
                 if(texture==null)return;
-                if(victoryRingSprite==null)victoryRingSprite=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),64);
-                victoryRing=new GameObject("Original blue victory circle");
-                victoryRingView=victoryRing.AddComponent<SpriteRenderer>();victoryRingView.sprite=victoryRingSprite;victoryRingView.sortingOrder=8;
+                if(victoryRingSprite==null)
+                {
+                    // Godot draws this texture additively: its black pixels contribute no light.
+                    // Convert the original luminance to alpha for Unity's sprite renderer.
+                    var pixels=texture.GetPixels32();
+                    for(int i=0;i<pixels.Length;i++)
+                    {
+                        var pixel=pixels[i];byte light=(byte)Mathf.Max(pixel.r,Mathf.Max(pixel.g,pixel.b));
+                        pixels[i]=new Color32(255,255,255,(byte)(pixel.a*light/255));
+                    }
+                    var glow=new Texture2D(texture.width,texture.height,TextureFormat.RGBA32,false);
+                    glow.SetPixels32(pixels);glow.Apply(false,true);
+                    victoryRingSprite=Sprite.Create(glow,new Rect(0,0,glow.width,glow.height),new Vector2(.5f,.5f),64);
+                }
+                victoryRing=new GameObject("Original blue victory circles");
+                victoryRingViews=new SpriteRenderer[VictoryRingCount];
+                for(int i=0;i<VictoryRingCount;i++)
+                {
+                    var circle=new GameObject("Rising blue circle "+(i+1));
+                    circle.transform.SetParent(victoryRing.transform,false);
+                    var view=circle.AddComponent<SpriteRenderer>();view.sprite=victoryRingSprite;view.sortingOrder=8;view.enabled=false;
+                    victoryRingViews[i]=view;
+                }
             }
-            float pulse=Mathf.Repeat(age-1.25f,.8f)/.8f;
             victoryRing.transform.position=new Vector3(playerPos.x,playerPos.y-.2f,-.9f);
-            victoryRing.transform.localScale=new Vector3(1.45f+pulse*.65f,.6f+pulse*.25f,1);
-            victoryRingView.color=new Color(.42f,.78f,1,.75f*(1-pulse*.55f)*Mathf.Clamp01((4.1f-age)/.4f));
+            for(int i=0;i<VictoryRingCount;i++)
+            {
+                // The reference beam emits 25 copies of particle_30 over 2.2 seconds,
+                // travelling straight upward at 400 pixels per second.
+                float life=age-1.25f-i*(2.2f/VictoryRingCount);
+                var view=victoryRingViews[i];view.enabled=life>=0&&life<2.2f;
+                if(!view.enabled)continue;
+                float size=Mathf.Lerp(.51f,1f,Mathf.Repeat(Mathf.Sin((i+1)*12.9898f)*43758.5453f,1));
+                view.transform.localPosition=new Vector3(0,life*6.25f,0);
+                view.transform.localScale=new Vector3(3f*size,size,1);
+                var tint=Color.Lerp(new Color(.411765f,.72549f,1),new Color(.8f,.95f,1),life/2.2f);
+                tint.a=Mathf.Clamp01((2.2f-life)/.45f);
+                view.color=tint;
+            }
         }
         void BeginWaveLetters(int count){waveLettersRemaining=count;waveLetterClock=.1f;}
         void TickEndAudio(float dt)
@@ -49,9 +81,8 @@ namespace Scrapshift
             float before=waveSweepAge;waveSweepAge+=dt;
             if(Rules.Wave==RunRules.WaveCount)
             {
-                if(before<1.25f&&waveSweepAge>=1.25f){sound.Play(SoundCue.WinBeam);if(!reducedMotion)Burst(playerPos,20,new Color(.42f,.78f,1));}
-                if(!reducedMotion&&waveSweepAge>=1.4f&&waveSweepAge<3.4f&&Mathf.FloorToInt((before-1.25f)/.18f)<Mathf.FloorToInt((waveSweepAge-1.25f)/.18f))Burst(playerPos+Vector2.up*(victoryWeaponLift+.3f),5,new Color(.42f,.78f,1));
-                if(before<1.4f&&waveSweepAge>=1.4f){sound.Play(SoundCue.Win);BeginWaveLetters(7);}
+                if(before<1.25f&&waveSweepAge>=1.25f)sound.Play(SoundCue.WinBeam);
+                if(before<2.05f&&waveSweepAge>=2.05f){sound.Play(SoundCue.Win);BeginWaveLetters(7);}
                 PoseVictory(waveSweepAge);
                 DrawVictoryRing(waveSweepAge);
             }
@@ -75,7 +106,7 @@ namespace Scrapshift
             float t=age-.25f;
             // The reference player's won animation squashes, jumps, lands, then rises in the beam.
             float jump=t<.1f?-.06f:t<.3f?Mathf.Lerp(-.06f,.93f,(t-.1f)/.2f):t<.55f?.93f:t<.65f?Mathf.Lerp(.93f,0,(t-.55f)/.1f):0;
-            float beam=t>1.26f?Mathf.Clamp01((t-1.26f)/1.9f)*5f:0;
+            float beam=t>1f?Mathf.Clamp01((t-1f)/.55f)*14f:0;
             var body=playerAnimation.bodyView;
             if(body!=null)
             {

@@ -76,9 +76,8 @@ namespace Scrapshift
             var boss=enemies.Find(e=>(e.type.role=="Boss"||e.type.role=="Elite")&&e.marker==null); if(boss!=null&&GameSettings.Flag("bossHp")){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,boss.type.id.ToUpperInvariant(),center);}
             DrawFeedback();
             DrawSupportShowcase();
-            if(waveSweeping&&Rules.Wave==RunRules.WaveCount&&waveSweepAge>=1.4f)
+            if(waveSweeping&&Rules.Wave==RunRules.WaveCount&&waveSweepAge>=2.05f)
             {
-                Overlay();
                 int visible=Mathf.Clamp(7-waveLettersRemaining,0,7);
                 OutlinedText(120,75,1200,240,"RUN WON".Substring(0,visible),new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
             }
