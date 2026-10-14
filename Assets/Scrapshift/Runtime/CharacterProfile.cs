@@ -17,6 +17,7 @@ namespace Scrapshift
         public int weaponSlots=6,minTier=1,maxTier=4,bonusTier=1;
         public ConditionalEffect[] conditionalEffects=Array.Empty<ConditionalEffect>();
         public CharacterEffectRow[] effectRows;
+        public AppearanceLayer[] appearances;
         public string id,title,description,bonusWeapon,classSet,classStat;
         public string[] startingWeapons,bannedItemGroups,startingItems;
         public StatEffect[] stats,gains;
@@ -77,7 +78,11 @@ namespace Scrapshift
             else damage+=Stat(w.melee?"melee_damage":"ranged_damage");
             var stack=w.Trait("effect_weapon_stack");
             if(stack!=null)damage+=stack.value*Mathf.Max(0,Inventory.Count(a=>a.id==w.id)-1);
-            return Mathf.Max(1,damage*Mathf.Max(0,1+(Stat("percent_damage")+(Character?.WeaponBonus(w,"stat_percent_damage")??0)+additionalPercent)/100));
+            // Godot WeaponService truncates the scaled base to an int, then rounds
+            // after applying the combined ordinary and explosion damage percentage.
+            damage=Mathf.Max(1,(int)damage);
+            float percent=1+(Stat("percent_damage")+(Character?.WeaponBonus(w,"stat_percent_damage")??0)+additionalPercent)/100;
+            return Mathf.Max(1,Mathf.Floor(damage*percent+.5f));
         }
         float EquipmentStat(string key)
         {

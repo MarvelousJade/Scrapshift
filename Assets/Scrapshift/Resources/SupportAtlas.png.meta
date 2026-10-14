@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,11 +52,11 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationMethod: 0
   spriteTessellationDetail: -1
   spriteGeometrySubdivision: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -110,7 +110,403 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SupportItem_turret
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 612
+        width: 245
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aabefa52f09ce350800000000000000
+      internalID: 6047367770234862243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_turret_flame
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 609
+        width: 254
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ae3e6a4a64881420800000000000000
+      internalID: 2600974376856600230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_turret_rocket
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 599
+        width: 271
+        height: 261
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab828e450969f840800000000000000
+      internalID: 5258349511444695968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_turret_laser
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 600
+        width: 238
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc036a52fb3d0f60800000000000000
+      internalID: 8002118024991804669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_turret_healing
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 597
+        width: 183
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e949f82ef50d0800800000000000000
+      internalID: 580126516167920099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_landmines
+      rect:
+        serializedVersion: 2
+        x: 1509
+        y: 613
+        width: 232
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ef2774a50eb2270800000000000000
+      internalID: 8226915822672739980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_garden
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 319
+        width: 245
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c707104deb9f6de20800000000000000
+      internalID: 3375159568756732028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_tyler
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 309
+        width: 223
+        height: 264
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d310404a15c3c10800000000000000
+      internalID: 2034590896548298068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_wandering_bot
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 327
+        width: 238
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fc1cdaf246803650800000000000000
+      internalID: 6210611508378606836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_bonk_dog
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 310
+        width: 268
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1415e2bb9d2ada50800000000000000
+      internalID: 6546595155080975387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_catling_gun
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 295
+        width: 274
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f468ac428e4b29160800000000000000
+      internalID: 7030880877421430351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_bot_o_mine
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 311
+        width: 255
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82c2c821dd500baf0800000000000000
+      internalID: -382799521269404632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_blazemander
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 41
+        width: 261
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32fbeac84e2157900800000000000000
+      internalID: 681471691438604067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_ratzilla
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 29
+        width: 247
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ad5ebd5decaa9bc0800000000000000
+      internalID: -3775515202116756061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_doc_moth
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 72
+        width: 287
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 786c674ab34164410800000000000000
+      internalID: 1460877375523178119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_lootworm
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 42
+        width: 273
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55f8dd56c37a8b040800000000000000
+      internalID: 4663661291991043925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_scapegoat
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 24
+        width: 240
+        height: 271
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f6a5e2c938b98cd0800000000000000
+      internalID: -2555308755333568783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SupportItem_jellyshield
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 41
+        width: 246
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356dffd8e9b4fb770800000000000000
+      internalID: 8628698555424429651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -124,7 +520,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SupportItem_blazemander: 681471691438604067
+      SupportItem_bonk_dog: 6546595155080975387
+      SupportItem_bot_o_mine: -382799521269404632
+      SupportItem_catling_gun: 7030880877421430351
+      SupportItem_doc_moth: 1460877375523178119
+      SupportItem_garden: 3375159568756732028
+      SupportItem_jellyshield: 8628698555424429651
+      SupportItem_landmines: 8226915822672739980
+      SupportItem_lootworm: 4663661291991043925
+      SupportItem_ratzilla: -3775515202116756061
+      SupportItem_scapegoat: -2555308755333568783
+      SupportItem_turret: 6047367770234862243
+      SupportItem_turret_flame: 2600974376856600230
+      SupportItem_turret_healing: 580126516167920099
+      SupportItem_turret_laser: 8002118024991804669
+      SupportItem_turret_rocket: 5258349511444695968
+      SupportItem_tyler: 2034590896548298068
+      SupportItem_wandering_bot: 6210611508378606836
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

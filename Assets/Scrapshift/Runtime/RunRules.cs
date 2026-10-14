@@ -43,7 +43,7 @@ namespace Scrapshift
             private set;
         }
         float healthCap=float.PositiveInfinity,speedCap=float.PositiveInfinity;
-        public float MaxHealth=>Math.Max(1,Math.Min(healthCap,10+Stat("max_hp")));
+        public float MaxHealth=>Math.Max(1,(int)Math.Min(healthCap,Stat("max_hp")));
         public int Kills
         {
             get;
@@ -116,7 +116,7 @@ namespace Scrapshift
             WeaponSets.Configure(source?.data.sets);
         }
         float PermanentStat(string name)=>stats.TryGetValue(name,out var v)?v:0;
-        public float Stat(string name)=>(PermanentStat(name)+SetStat(name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1)+LinkedStat(name);
+        public float Stat(string name)=>(PermanentStat(name)+(name=="max_hp"?10:0)+SetStat(name)+EquipmentStat(name)+ConditionalStat(name))*(Character?.Gain(name)??1)+LinkedStat(name);
         public int SetCount(WeaponSet set)=>StatWithoutSets("all_weapons_count_for_sets")>0?Inventory.Count:WeaponSets.Count(Inventory,set);
         public float WeaponRange(Equipment weapon)=>Mathf.Max(.25f,weapon.range+Stat("range")*(weapon.melee?.005f:.01f)+(Character?.WeaponBonus(weapon,"max_range")??0)/100);
         void Add(string name,float value)
@@ -153,6 +153,13 @@ namespace Scrapshift
             Level=0;freeShopRerolls=knownFreeRerolls=0;ApplyNextWaveEffects();BeginItemWave();
             Offers=Array.Empty<UpgradeOffer>();
             Shop=new ShopOffer[4];
+        }
+        public void SetShowcaseWave(int wave)
+        {
+            if(Phase!=RunPhase.Playing)throw new InvalidOperationException("A showcase wave requires an active run.");
+            if(wave<1||wave>WaveCount)throw new ArgumentOutOfRangeException(nameof(wave));
+            Wave=wave;
+            Remaining=Durations[wave-1];
         }
         public void Tick(float seconds)
         {

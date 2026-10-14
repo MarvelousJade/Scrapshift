@@ -13,6 +13,14 @@ namespace Scrapshift
 
     public static class CombatGeometry
     {
+        [System.Serializable] sealed class CollisionEntry { public string id; public float[] radii, hurt, contact; }
+        [System.Serializable] sealed class CollisionTable { public CollisionEntry[] entries; }
+        static CollisionEntry[] profiles;
+        static CollisionEntry Profile(string id)
+        {
+            if (profiles == null) profiles = JsonUtility.FromJson<CollisionTable>(Resources.Load<TextAsset>("enemy-collisions").text).entries;
+            return System.Array.Find(profiles, p => p.id == id);
+        }
         public const float PlayerHurtRadius = .21f;
         public const float BulletRadius = .44f;
         public const float HostileRadius = .170294f, FlashDuration = .1f;
@@ -21,6 +29,7 @@ namespace Scrapshift
         // Shapes do not inherit the animated visual squash or rotation.
         public static Vector2 HurtOffset(string id)
         {
+            var p = Profile(id); if (p != null) return new Vector2(p.hurt[0], p.hurt[1]);
             switch(id)
             {
                 case "bruiser": case "horned_bruiser": case "slasher": return Vector2.down*.4f;
@@ -33,6 +42,7 @@ namespace Scrapshift
         }
         public static Vector2 ContactOffset(string id)
         {
+            var p = Profile(id); if (p != null) return new Vector2(p.contact[0], p.contact[1]);
             switch(id)
             {
                 case "bruiser": case "horned_bruiser": case "slasher": return new Vector2(-.01f,-.39f);
@@ -51,6 +61,7 @@ namespace Scrapshift
         }
         public static EnemyCollision Enemy(string id)
         {
+            var p = Profile(id); if (p != null) return new EnemyCollision(p.radii[0], p.radii[1], p.radii[2]);
             switch (id)
             {
                 case "lamprey": return new EnemyCollision(.190263f,.480104f,.290172f);

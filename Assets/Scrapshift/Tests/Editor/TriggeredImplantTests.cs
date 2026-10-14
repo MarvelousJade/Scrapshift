@@ -36,7 +36,7 @@ namespace Scrapshift.Tests
         [Test] public void AddedScalingUsesStatBeforePercentDamageAndDoesNotReplaceNativeScaling()
         {
             var r=Run();Add(r,"nail");Add(r,"frozen_heart");r.GainWeaponStat("engineering",10);r.GainWeaponStat("elemental_damage",20);r.GainWeaponStat("ranged_damage",3);r.GainWeaponStat("percent_damage",50);
-            var pistol=catalog.Weapon("pistol",1);float expected=(pistol.damage+pistol.scaling.Sum(s=>r.Stat(s.key)*s.value)+4)*1.5f;Assert.AreEqual(expected,r.WeaponDamage(pistol),.001);
+            var pistol=catalog.Weapon("pistol",1);float baseDamage=UnityEngine.Mathf.Max(1,(int)(pistol.damage+pistol.scaling.Sum(s=>r.Stat(s.key)*s.value)+4));float expected=UnityEngine.Mathf.Max(1,UnityEngine.Mathf.Floor(baseDamage*1.5f+.5f));Assert.AreEqual(expected,r.WeaponDamage(pistol),.001);
         }
         [Test] public void CooldownFloorIncludesWeaponAnimationAndDoesNotStackDuplicateFloors()
         {

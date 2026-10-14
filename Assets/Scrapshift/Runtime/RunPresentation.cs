@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Linq;
 
 namespace Scrapshift
 {
@@ -19,6 +20,7 @@ namespace Scrapshift
         {var deck=GameObject.Find("Deck art");if(deck!=null)deck.transform.localScale=new Vector3(ArenaGeometry.HalfSize.x/ArenaGeometry.BaseHalfSize.x,ArenaGeometry.HalfSize.y/ArenaGeometry.BaseHalfSize.y,1);}
         void StartSelectedRun()
         {
+            loadoutShowcase=-1;showcaseCleanFrame=false;
             if(mapChoice<0)ApplyMapTheme(new System.Random().Next(MapThemes.Names.Length));
             pauseOptions=pauseCodex=false;Begin();Rules.Progress=progress;Rules.Difficulty=selectedDifficulty;recordedFinish=false;Rules.Start(SelectedCharacter,SelectedWeapon?.id);ArenaGeometry.SetMapSize(Rules.Stat("map_size"));ScaleMapArt();PlanEncounters();StartWave();
             music.StartOnce();
@@ -52,7 +54,8 @@ namespace Scrapshift
         }
         void ReturnToSelection(int page)
         {
-            if((Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)&&Rules.Wave<5)progress?.Complete("chal_hourglass");
+            if(loadoutShowcase<0&&(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)&&Rules.Wave<5)progress?.Complete("chal_hourglass");
+            loadoutShowcase=-1;showcaseCleanFrame=false;
             ClearCombat();if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;
             Rules.ReturnToTitle();menuPage=page;endSummary=false;player.SetActive(false);sound.StopAll();
         }
@@ -79,7 +82,7 @@ namespace Scrapshift
         }
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false,float motionTime=-1)
         {
-            var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>());
+            var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>(),GameSettings.Flag("hideItems",false));
             var spring=motionTime>=0?SpringMotion.Pose(motionTime,false,reducedMotion):new Vector3(1,1,0);
             if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
             {
@@ -96,7 +99,7 @@ namespace Scrapshift
             }
             foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,origin,scale);
             var hero=playerAnimation.idleFrames[0];Vector2 bodySize=(Vector2)hero.bounds.size*scale;
-            var bodyColor=GUI.color;GUI.color=PresentationPolish.BodyTint;DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));GUI.color=bodyColor;
+            var bodyColor=GUI.color;GUI.color=PresentationPolish.BodyTint;if(!layers.Any(l=>l.slot=="skin"&&l.image!=null))DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));GUI.color=bodyColor;
             foreach(var layer in layers)if(layer.order>=10)DrawAppearance(layer,origin,scale);
             GUI.matrix=portraitMatrix;
         }
@@ -162,6 +165,11 @@ namespace Scrapshift
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
             if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;
+            Text(256,496,360,35,"PHOTO / VIDEO SHOWCASES",new GUIStyle(heading){fontSize=23});
+            if(MenuButton(new Rect(254,545,280,65),"Martial Monk"))BeginLoadoutShowcase(0);
+            if(MenuButton(new Rect(254,627,280,58),"Cyberpunk Ranger"))BeginLoadoutShowcase(1);
+            if(MenuButton(new Rect(254,705,280,58),"Auto Turret"))BeginLoadoutShowcase(2);
+            if(MenuButton(new Rect(254,783,280,58),"Druid Pets"))BeginLoadoutShowcase(3);
 #if !UNITY_WEBGL || UNITY_EDITOR
             if(MenuButton(new Rect(30,783,200,58),"Quit"))Application.Quit();
 #endif

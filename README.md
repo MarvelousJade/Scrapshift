@@ -22,6 +22,10 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Ass
 - Weapon sets: duplicates count; tiers count equally. Gun adds Range, Precise adds Critical Chance, Primitive adds Max HP. Hover the set rows for all thresholds.
 - Enter or GO: start the next wave. Enter also starts/restarts a run.
 
+For screenshots and video, choose **Martial Monk**, **Cyberpunk Ranger**, **Auto Turret**, or **Druid Pets** on the title screen. Every showcase starts at wave 19 with six weapons, visible worn items, 18 nearby enemies, a continuing crowd of up to 36 enemies, and an invulnerable player. The normal game HUD is shown without a showcase bar; the wave 19 timer loops while the showcase continues. F6/F7/F9/F10 switch builds, F5 resets the current build, and F8 hides or restores the HUD. The showcases do not award progression.
+
+The showcase Windows player is in `Builds/Showcase` (keep the full folder together). Source tests and the build passed, but repeated local Direct3D 12 runs reported a GPU device error during capture checks; runtime graphics stability remains unresolved on this machine.
+
 Run `Builds/ConditionalImplants/Scrapshift.exe`; keep its entire player folder together. Archive: `Builds/Scrapshift-Windows.zip`.
 
 Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor closed. If it is open, copy `Assets`, `Packages`, `ProjectSettings` and `scripts` to a separate validation project and run those scripts there. Do not start a second Editor on the same project folder. The October 11 checks used `E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity`; compare source hashes before attributing its results to this checkout. Binaries/raw logs are ignored; source, Unity metadata, test reports and selected visual evidence are tracked.

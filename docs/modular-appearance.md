@@ -67,3 +67,35 @@ Shadows use the existing unit-circle mesh, a dedicated transparent material, a 0
 Actual regression found: initial test run was 128/129. The EditMode shadow activation check failed because normal MonoBehaviour lifecycle callbacks did not run for the Editor-created object. ExecuteAlways allows the component's existing activation/cleanup callbacks to work for Editor instances too; it has no autonomous update or asset-writing behavior. Initial XML is retained in artifacts/scale-shadow-review/initial-editmode.xml. Final results are recorded in verification.md.
 
 The new --scale-review fixture captures normal camera size 7.5, then a detail view at 2.8. It uses actual actor renderers and idle/walk springs but fixed positions and no combat/AI, so it is visual evidence rather than a balance test.
+
+## October 13 — Scrapshift art for reference appearance rules
+
+The appearance rules are sourced from the supplied game's metadata; the visible artwork is Scrapshift's own. The initial reference-PNG binding was corrected after user feedback. Source PNGs now live only in `artifacts/appearance-parity/source-art`, outside Unity's Assets and Resources, and are excluded from the playable build.
+
+178 eligible items retain their source slot, priority, depth, duplicate and removal rules. Existing fitted wearables use our `wearables-v2` art. Other items use their distinct custom shop artwork with anchors sized for our body. Multiple layers remain independent. Skin-slot items attach their own designs to our shell rather than substituting the original game's potato graphics. Character features use our authored player parts and accessory art while preserving source eligibility and blockers; shared facial archetypes are intentional, not 50 newly authored portraits.
+
+World icon-derived overlays use the existing geometry masks to exclude neighboring atlas fragments. This runtime mesh path is skipped for non-playing Editor inspections because Unity rejects geometry overrides there. Native review captures verify the actual masked renderers, layering and left/right mirroring. Appearance provenance tests reject any original-game appearance bitmap in scene dependencies or visible layer bindings.
+
+## October 13 — regenerated fitted wearables
+
+After the user rejected complete shop icons pasted onto the body, the built-in imagegen tool generated dedicated transparent parts for all 185 appearance layers (178 eligible items). Nine atlas PNGs include eight initial sheets and a targeted redraw preserving the Piercing Stabilizer and Gyroscopic Crown designs. Exact prompts and PNG hashes are in artifacts/fitted-appearance-review. The input references were Scrapshift's own player parts and item art. PNG pixels are unchanged; scripts only inspect alpha and produce sprite slicing and isolation masks.
+
+Each part has calibrated body-relative dimensions and anchors. Caps clear the eyes, mouth guards are centered, collars curve around the lower shell, and paired accessories have separate art. Full-body skin items replace the base shell; removing them restores it. Skin exclusivity, priority, acquisition, duplicate, removal and layer depth rules remain sourced from the reference. Portraits stretch fitted masks to the same dimensions used by world renderers, rather than applying inventory-icon aspect fitting.
+
+The native review fixture captures representative outfits facing both directions and all 178 eligible items. The new art intentionally adapts the visual designs to our anatomy; this does not claim pixel-identical placement to the original game's character.
+
+## October 13 — four shared-template corrections
+
+The beanie, leather vest, glasses and coffee now use separate full 1254-square transparent images in `OriginalArt/TemplateWearables`, generated from our player and inventory references. All four use 627 pixels per unit, layer scale 1, zero layer offset and no nonuniform stretch. The generator did not reliably obey requested pixel coordinates, so each complete canvas has an explicitly authored sprite pivot registering it to the same body origin. These pivots are import metadata; PNG pixels and transparent margins are preserved. This is registration of full artwork, not alpha-bound auto-fitting at runtime.
+
+`TemplateWearableBuilder` applies only these four overrides after the existing appearance catalog generation. Other item artwork and positions are retained pending individual visual review. The portrait renderer now accounts for the sprite pivot as SpriteRenderer does. The full-frame sprites inherit the body animation and mirror with it. Coffee occupies the above-head slot in the inspected original resource; the earlier statement that the original coffee appearance changes eyes was incorrect.
+
+`artifacts/shared-template-review` shows the four individually, combined, at smaller scale and mirrored during a walking pose. Native checks passed and 364 EditMode regression tests passed. Those checks verify registration, layering, removal and rendering behavior; they do not establish that every other item fits visually. `Builds/TemplateWearables/LaunchGame.cmd` is the new playable output. Exact generation/refinement prompts are linked in the review.
+
+### October 13 — remaining wearable registration pass
+
+Reviewed all six native item-gallery pages. Added an explicit body-origin registration table for the remaining 181 atlas layers (174 items); the four approved TemplateWearables PNGs and their bindings are unchanged. Made 64 per-piece fit corrections, including cyclops/elemental eyes, hats, horns, and side attachments. Existing good fits and source artwork remain intact; no original-game raster artwork was imported.
+
+Atlas custom pivots now express the character-body origin, including pivots outside cropped rectangles. Item-layer offsets are zero, and world/portrait rendering uses the same registration. Existing authored width/height ratios remain where appropriate; this does not claim that every atlas sprite is uniformly scaled. Slot priorities, source depths, exclusivity and acquisition logic are unchanged. `scripts/register_remaining_wearables.py` preserves the correction table independently of alpha-bound audits. `scripts/sync_template_wearables.py --all-wearables` copies only appearance fields and texture import metadata from the validation clone.
+
+Validation: 365/365 EditMode tests pass, including all 181 registered centers/dimensions and the four unchanged template canvases. Native runtime fixture passed (178 eligible items, 50 characters, 23 visible layers, mirrored correctly). Visually reviewed all 178 individual item appearances and twelve selected combinations in both facing directions; not every possible combination was visually tested. Fresh native captures, before/after gallery, and build links: `artifacts/remaining-wearables-review/review.html`. Unpacked Windows build: `Builds/RegisteredWearables/LaunchGame.cmd`.

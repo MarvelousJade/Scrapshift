@@ -63,9 +63,9 @@ namespace Scrapshift.Tests
         }
         [Test] public void SharpshotModifiesGainsAndRejectsMeleePurchases()
         {
-            var r=Start(3,"pistol");Assert.AreEqual(60,r.Stat("range"));Assert.AreEqual(10,r.MaxHealth);
+            var r=Start(3,"pistol");Assert.AreEqual(60,r.Stat("range"));Assert.AreEqual(7,r.MaxHealth);
             r.GainWeaponStat("ranged_damage",2);r.GainWeaponStat("max_hp",4);
-            Assert.AreEqual(3,r.Stat("ranged_damage"));Assert.AreEqual(13,r.MaxHealth);
+            Assert.AreEqual(3,r.Stat("ranged_damage"));Assert.AreEqual(10,r.MaxHealth);
             r.Collect(500);r.Tick(r.Remaining);while(r.Phase==RunPhase.Upgrade)r.Choose(0);
             Assert.IsTrue(r.Shop.Where(s=>s?.weapon!=null).All(s=>!s.weapon.melee));
             r.Shop[0]=new ShopOffer{weapon=catalog.Weapon("knife",1)};Assert.IsFalse(r.CanBuy(0));

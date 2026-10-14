@@ -14,6 +14,7 @@ namespace Scrapshift
             if(key=="attack_speed_mod")key="attack_speed";
             if(key=="levels")return catalog.levelIcon;
             if(key.StartsWith("item:"))return System.Array.Find(catalog.data.items,i=>i.id==key.Substring(5))?.image;
+            if(key=="piercing_damage")return System.Array.Find(catalog.data.items,i=>i.id=="pumpkin")?.image;
             var upgrade=System.Array.Find(catalog.data.upgrades,u=>u.stat==key);
             if(upgrade!=null&&upgrade.image!=null)return upgrade.image;
             int i=System.Array.IndexOf(ExtraKeys,key);

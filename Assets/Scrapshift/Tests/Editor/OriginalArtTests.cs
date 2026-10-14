@@ -30,10 +30,10 @@ namespace Scrapshift.Tests
         {
             var dependencies = AssetDatabase.GetDependencies(ContentBuilder.ScenePath, true);
             Assert.IsFalse(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".png")));
-            Assert.AreEqual(9, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
+            Assert.IsTrue(dependencies.Any(p => p.EndsWith("/OriginalArt/items-v2.png")), "Retain the authored legacy item sheet alongside dedicated item art.");
             Assert.IsTrue(dependencies.Any(p=>p.EndsWith("starter-weapons-v1.png")));
             Assert.IsTrue(dependencies.Any(p=>p.EndsWith("player-parts-v2.png")));
-            Assert.IsTrue(dependencies.Any(p=>p.EndsWith("wearables-v2.png")));
+            Assert.IsFalse(dependencies.Any(p=>p.Contains("/AppearanceReference/")&&p.EndsWith(".png")), "Reference appearance bitmaps must never be used as game art.");
             Assert.IsFalse(dependencies.Any(p=>p.EndsWith("hero-spring-v1.png")));
             Assert.IsTrue(dependencies.Any(p=>p.EndsWith("enemies-v5.png")));
             Assert.IsFalse(dependencies.Any(p=>p.Contains("hero-walk")));
@@ -123,13 +123,13 @@ namespace Scrapshift.Tests
         [Test] public void AuthoredWearablesKeepAppearancesAndLatestSlotWinsWithoutRemovingInventory()
         {
             var catalog = AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root + "/Definitions/ReferenceCatalog.asset");
-            Assert.That(catalog.data.items.Count(i=>i.appearance?.image!=null),Is.EqualTo(22));
+            Assert.That(catalog.data.items.Count(i=>i.appearance?.image!=null),Is.EqualTo(178));
             foreach (var item in catalog.data.items.Where(i=>i.appearance?.image!=null))
             {
-                Assert.IsNotEmpty(item.wearSlot, item.id);
+                Assert.IsNotNull(item.appearances, item.id);
                 Assert.Greater(item.wearScale, 0, item.id);
                 Assert.NotNull(item.appearance?.image,item.id);
-                Assert.AreNotSame(item.image,item.appearance.image,"Wearable must be separate from its shop icon.");
+                foreach(var layer in item.appearances) Assert.IsTrue(AssetDatabase.GetAssetPath(layer.image).StartsWith(ContentBuilder.ArtRoot+"/"),item.id+" must use our own artwork.");
             }
             var hat = catalog.data.items.Single(i => i.id == "beanie");
             var helmet = catalog.data.items.Single(i => i.id == "helmet");
@@ -141,3 +141,4 @@ namespace Scrapshift.Tests
         }
     }
 }
+

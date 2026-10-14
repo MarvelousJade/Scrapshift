@@ -39,6 +39,7 @@ namespace Scrapshift
         }
         void OnGUI()
         {
+            if(loadoutShowcase>=0&&showcaseCleanFrame&&Rules.Phase==RunPhase.Playing)return;
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
             DrawGameScreen();
@@ -46,6 +47,8 @@ namespace Scrapshift
         }
         void DrawGameScreen()
         {
+            if(appearanceParity){DrawAppearanceParityReview();return;}
+            if(itemIconReview&&itemIconStage>=2){DrawItemIconGallery();return;}
             BeginInspection();
             if(appearanceReview&&appearanceStage>=2&&appearanceStage<6){AppearanceReviewUI();return;}
             if(scaleReview)
@@ -101,7 +104,13 @@ namespace Scrapshift
             OutlinedText(550,20,340,40,$"WAVE {Rules.Wave}",new GUIStyle(center){fontSize=32});
             var timer=new GUIStyle(number) { fontSize=44, alignment=TextAnchor.MiddleCenter };
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
-                OutlinedText(630,61,180,56,supportShowcase?"DEMO":(waveSweeping?0:Mathf.CeilToInt(Rules.Remaining)).ToString(),timer);
+            {
+                int duration=RunRules.Durations[Mathf.Clamp(Rules.Wave-1,0,RunRules.WaveCount-1)];
+                int remaining=supportShowcase||loadoutShowcase>=0?
+                    Mathf.CeilToInt(duration-Mathf.Repeat(elapsed,duration)):
+                    waveSweeping?0:Mathf.CeilToInt(Rules.Remaining);
+                OutlinedText(630,61,180,56,remaining.ToString(),timer);
+            }
             DrawPendingRewards();
             GUI.matrix=hudMatrix;
         }

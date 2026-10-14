@@ -13,8 +13,8 @@ namespace Scrapshift
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
-        sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec;public ProjectileReference projectileRef;public WeaponProjectileView projectileView;public int critBounces,critPierces;public bool projectileStopped; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
+        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles;public float moveRange,moveUpdate,boostDamage=25; }
+        sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec;public ProjectileReference projectileRef;public WeaponProjectileView projectileView;public int critBounces,critPierces;public bool projectileStopped,deleteOnOwnerDeath; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public float petAttractSpeed=5; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
@@ -59,6 +59,10 @@ namespace Scrapshift
             music=gameObject.AddComponent<GameMusic>();music.Initialize();
             reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
+            int appearanceParityIndex=Array.IndexOf(args,"--appearance-parity-review");
+            if(appearanceParityIndex>=0&&appearanceParityIndex+1<args.Length)BeginAppearanceParityReview(args[appearanceParityIndex+1]);
+            int itemIconsIndex=Array.IndexOf(args,"--item-icons-review");
+            if(itemIconsIndex>=0&&itemIconsIndex+1<args.Length)BeginItemIconReview(args[itemIconsIndex+1]);
             InitializeDisplay(args);
             int inspectIndex=Array.IndexOf(args,"--inspection-review");
             if(inspectIndex>=0&&inspectIndex+1<args.Length)BeginInspectionReview(args[inspectIndex+1]);
@@ -86,6 +90,7 @@ namespace Scrapshift
             int petIndex=Array.IndexOf(args,"--pet-review");if(petIndex>=0&&petIndex+1<args.Length)BeginPetReview(args[petIndex+1]);
             int artIndex = Array.IndexOf(args, "--art-review");
             if (artIndex >= 0 && artIndex + 1 < args.Length) BeginArtReview(args[artIndex + 1]);
+            int fidelityIndex=Array.IndexOf(args,"--enemy-fidelity-review");if(fidelityIndex>=0&&fidelityIndex+1<args.Length)BeginEnemyFidelityReview(args[fidelityIndex+1]);
             int enemyIndex = Array.IndexOf(args, "--enemy-review");
             if (enemyIndex >= 0 && enemyIndex + 1 < args.Length) BeginEnemyReview(args[enemyIndex + 1]);
             int campaignIndex = Array.IndexOf(args, "--campaign-check");
@@ -105,10 +110,14 @@ namespace Scrapshift
             int appearanceIndex=Array.IndexOf(args,"--appearance-review");
             if(appearanceIndex>=0&&appearanceIndex+1<args.Length)BeginAppearanceReview(args[appearanceIndex+1]);
             if(Array.IndexOf(args,"--support-showcase")>=0)BeginSupportShowcase();
+            int loadoutIndex=Array.IndexOf(args,"--loadout-showcase");
+            if(loadoutIndex>=0&&loadoutIndex+1<args.Length)BeginLoadoutShowcase(ShowcaseLoadouts.Index(args[loadoutIndex+1]));
+            if(loadoutShowcase>=0&&Array.IndexOf(args,"--showcase-clean")>=0)showcaseCleanFrame=true;
         }
 
         public void Begin()
         {
+            wardrobe?.Reset();
             ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
@@ -124,11 +133,19 @@ namespace Scrapshift
 
         void Update()
         {
+            if(appearanceParity){AppearanceParityTick();return;}
+            if(itemIconReview){ItemIconReviewTick();return;}
             if(supportShowcase&&Input.GetKeyDown(KeyCode.F5))BeginSupportShowcase();
+            if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F5))BeginLoadoutShowcase(loadoutShowcase);
+            if(Input.GetKeyDown(KeyCode.F6))BeginLoadoutShowcase(0);
+            if(Input.GetKeyDown(KeyCode.F7))BeginLoadoutShowcase(1);
+            if(Input.GetKeyDown(KeyCode.F9))BeginLoadoutShowcase(2);
+            if(Input.GetKeyDown(KeyCode.F10))BeginLoadoutShowcase(3);
+            if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F8))showcaseCleanFrame=!showcaseCleanFrame;
 #if UNITY_WEBGL && SCRAPSHIFT_WEB_REVIEW
             TickWebReview();
 #endif
-            TickProgression(Time.unscaledDeltaTime);
+            if(loadoutShowcase<0)TickProgression(Time.unscaledDeltaTime);
             music.SetPhase(Rules.Phase);
             gameCamera.rect = PresentationLayout.Viewport(Screen.width, Screen.height);
             if (previewCapture && Time.realtimeSinceStartup > 3)
@@ -157,7 +174,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !inspectionReview && supportReviewPath==null) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
             if (Rules.Phase == RunPhase.Title)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -177,14 +194,14 @@ namespace Scrapshift
             foreach(var pet in pets)if(pet.reviveSound!=null){pet.reviveSound.volume=sound.Muted?0:sound.Volume;if(Rules.Phase!=RunPhase.Playing)pet.reviveSound.Stop();}
             foreach(var pet in pets)if(pet.obj!=null)foreach(var renderer in pet.obj.GetComponentsInChildren<SpriteRenderer>()){var c=renderer.color;c.a=GameSettings.Value("petOpacity");renderer.color=c;}
             foreach(var shot in shots)if(shot.obj!=null){var renderer=shot.obj.GetComponent<SpriteRenderer>();if(renderer!=null){var c=renderer.color;c.a=GameSettings.Value("projectileOpacity");renderer.color=c;}}
-            wardrobe.Sync(GameSettings.Flag("hideItems",false)?(System.Collections.Generic.IReadOnlyList<ItemEntry>)Array.Empty<ItemEntry>():Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
+            wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft, GameSettings.Flag("hideItems",false));
             UpdatePlayerFlash(Rules.Phase == RunPhase.Playing ? Mathf.Min(Time.deltaTime, .05f) : 0);
             FinishInspectionReview();
             if(enabled)InspectionReviewTick();
             SupportReviewTick();PetReviewTick();WeaponFidelityReviewTick();StarterReviewTick();
             ReviewTick();
             ArtReviewTick();
-            EnemyReviewTick();
+            EnemyReviewTick();EnemyFidelityReviewTick();
             CampaignCheckTick();
             LootReviewTick();
             SpringGalleryTick();
@@ -211,14 +228,14 @@ namespace Scrapshift
             int livingEnemies=0,livingTrees=0,burningEnemies=0;
             foreach(var e in enemies){if(e.marker==null){if(e.type.role=="Tree")livingTrees++;else livingEnemies++;}if(e.burnTicks>0)burningEnemies++;}
             Rules.LivingEnemies=livingEnemies;Rules.LivingTrees=livingTrees;Rules.BurningEnemies=burningEnemies;Rules.StructureCount=starterTurrets.Count+mines.Count;
-            playerPos = RunRules.ClampPosition(playerPos + Vector2.ClampMagnitude(movement, 1) * (Rules.MoveSpeed * dt));
+            playerVelocity=Vector2.ClampMagnitude(movement,1)*Rules.MoveSpeed;playerPos = RunRules.ClampPosition(playerPos + playerVelocity * dt);
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(movement,dt);
             player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
             player.SetActive(true);
-            if(supportShowcase)TickSupportShowcase(dt);else director.Tick(dt, QueueGroup, BeginSpawnGroup);
+            if(supportShowcase)TickSupportShowcase(dt);else if(loadoutShowcase>=0)TickLoadoutShowcase(dt);else director.Tick(dt, QueueGroup, BeginSpawnGroup);
             UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
             UpdateWeapons(dt); UpdateStarterEffects(dt); UpdateSlashes(dt);TickImplantAttacks(dt);
@@ -227,9 +244,10 @@ namespace Scrapshift
             UpdateSparks(dt); UpdateCorpses(dt);
             shakeTime = Mathf.Max(0, shakeTime - dt);
             if (shakeTime <= 0) shake = 0;
+            if(loadoutShowcase>=0)gameCamera.orthographicSize=Mathf.MoveTowards(gameCamera.orthographicSize,showcaseCleanFrame?3.2f:4.5f,dt*5);
             Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect);
             gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
-            if(supportShowcase)return;
+            if(supportShowcase||loadoutShowcase>=0)return;
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
             float healthBefore=Rules.Health;Rules.Tick(dt);
             if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}

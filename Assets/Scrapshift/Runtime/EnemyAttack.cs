@@ -10,7 +10,9 @@ namespace Scrapshift
         public float Progress { get; private set; }
         readonly EnemyBehavior behavior;
         readonly Func<float> nextCooldown;
-        float remaining;
+        float remaining,chargeDistance;
+        int shots;
+        float NextCooldown(){if(behavior.source!=null&&behavior.source.longEvery>0&&shots>=behavior.source.longEvery){shots=0;return behavior.source.longCooldown;}return nextCooldown();}
         public float WindupDuration => behavior.windup;
         public EnemyAttack(EnemyBehavior behavior, Func<float> nextCooldown)
         {
@@ -19,14 +21,14 @@ namespace Scrapshift
         }
         // Ranged aim follows the target until release; charges commit at preparation.
         // Active lasts for the dash or ranged animation tail, then normal cooldown.
-        public bool Step(float dt, Vector2 targetDirection, bool inRange)
+        public bool Step(float dt, Vector2 targetDirection, bool inRange,Func<Vector2> chargeTarget=null)
         {
             if (dt <= 0) return false;
             remaining -= dt;
             if (Phase == AttackPhase.Approach)
             {
                 if (remaining <= .00001f && inRange)
-                { Direction = targetDirection.normalized; Phase = AttackPhase.Windup; remaining = WindupDuration; Progress = 0; }
+                { var target=behavior.charge&&chargeTarget!=null?chargeTarget():targetDirection;chargeDistance=target.magnitude;Direction=target.normalized; Phase = AttackPhase.Windup; remaining = WindupDuration; Progress = 0; }
                 return false;
             }
             if (Phase == AttackPhase.Windup)
@@ -37,11 +39,14 @@ namespace Scrapshift
             if (remaining > .00001f) return false;
             if (Phase == AttackPhase.Windup)
             {
-                Phase = AttackPhase.Active; remaining += behavior.active;
-                if (behavior.active <= 0) { Phase = AttackPhase.Approach; remaining += nextCooldown(); }
+                float duration=behavior.active;
+                if(behavior.charge&&behavior.source?.chargeTiming==1&&chargeTarget!=null){var target=chargeTarget();Direction=target.normalized;chargeDistance=target.magnitude;}
+                if(behavior.charge&&behavior.source?.scaleDuration==true)duration+=chargeDistance/150;
+                shots++;Phase = AttackPhase.Active; remaining += duration;
+                if (duration <= 0) { Phase = AttackPhase.Approach; remaining += NextCooldown(); }
                 return true;
             }
-            Phase = AttackPhase.Approach; remaining += nextCooldown(); Progress = 0;
+            Phase = AttackPhase.Approach; remaining += NextCooldown(); Progress = 0;
             return false;
         }
     }

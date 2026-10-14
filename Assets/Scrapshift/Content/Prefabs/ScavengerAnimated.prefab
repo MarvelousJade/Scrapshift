@@ -149,945 +149,1552 @@ MonoBehaviour:
   footSprite: {fileID: -2142432281385454557, guid: b855c56e0640d154bbbd9206e06f7708, type: 3}
   looks:
   - name: Rookie
+    id: well_rounded
     layers:
-    - id: friendly
+    - id: items/characters/well_rounded/well_rounded_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/well_rounded/well_rounded_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Pugilist
+    id: brawler
     layers:
-    - id: stern
+    - id: items/characters/brawler/brawler_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 2
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/brawler/brawler_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Hothead
+    id: crazy
     layers:
-    - id: stern
+    - id: items/characters/crazy/crazy_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/crazy/crazy_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Sharpshot
+    id: ranger
     layers:
-    - id: sleepy
+    - id: items/characters/ranger/ranger_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 3
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/ranger/ranger_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Arc Weaver
+    id: mage
     layers:
-    - id: sleepy
+    - id: items/characters/mage/mage_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/mage/mage_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
+      priority: 3
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
   - name: Bulkhead
+    id: chunky
     layers:
-    - id: friendly
+    - id: items/characters/chunky/chunky_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
+      priority: 2
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/chunky/chunky_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Veteran
+    id: old
     layers:
-    - id: stern
+    - id: items/characters/old/old_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/old/old_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Probability Hacker
+    id: lucky
     layers:
-    - id: stern
+    - id: items/characters/lucky/lucky_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/lucky/lucky_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Splicer
+    id: mutant
     layers:
-    - id: sleepy
+    - id: items/characters/mutant/mutant_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 3
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/mutant/mutant_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      priority: 3
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Hybrid
+    id: generalist
     layers:
-    - id: sleepy
+    - id: items/characters/generalist/generalist_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/generalist/generalist_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Amplifier
+    id: loud
     layers:
-    - id: friendly
+    - id: items/characters/loud/loud_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/loud/loud_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
-      priority: 0
-      order: 14
+      priority: 3
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Multicore
+    id: multitasker
     layers:
-    - id: stern
+    - id: items/characters/multitasker/multitasker_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/multitasker/multitasker_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Feral
+    id: wildling
     layers:
-    - id: stern
+    - id: items/characters/wildling/wildling_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/wildling/wildling_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Mediator
+    id: pacifist
     layers:
-    - id: sleepy
+    - id: items/characters/pacifist/pacifist_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 3
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/pacifist/pacifist_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Duelist
+    id: gladiator
     layers:
-    - id: sleepy
+    - id: items/characters/gladiator/gladiator_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 1
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/gladiator/gladiator_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/gladiator/gladiator_helmet_appearance.tres
+      slot: hat
+      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.55}
+      scale: 0.60545456
+      priority: 3
+      order: 1011
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1000
+      stretch: {x: 1, y: 1}
   - name: Vaultkeeper
+    id: saver
     layers:
-    - id: friendly
+    - id: items/characters/saver/saver_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/saver/saver_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/saver/saver_nose_appearance.tres
+      slot: nose
+      image: {fileID: 0}
+      offset: {x: 0, y: -0.07}
+      scale: 1
+      priority: 3
+      order: 711
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 700
+      stretch: {x: 1, y: 1}
   - name: Hemovore
+    id: sick
     layers:
-    - id: stern
+    - id: items/characters/sick/sick_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/sick/sick_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Cultivator
+    id: farmer
     layers:
-    - id: stern
+    - id: items/characters/farmer/farmer_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/farmer/farmer_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
       priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/farmer/farmer_nose_appearance.tres
+      slot: nose
+      image: {fileID: 7911235102323647998, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.07}
+      scale: 0.19411765
       priority: 0
-      order: 12
+      order: 611
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 600
+      stretch: {x: 1, y: 1}
   - name: Phasewalker
+    id: ghost
     layers:
-    - id: sleepy
+    - id: items/characters/ghost/ghost_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/ghost/ghost_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Courier
+    id: speedy
     layers:
-    - id: sleepy
+    - id: items/characters/speedy/speedy_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 3
+      order: 1211
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1200
+      stretch: {x: 1, y: 1}
+    - id: items/characters/speedy/speedy_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Broker
+    id: entrepreneur
     layers:
-    - id: friendly
+    - id: items/characters/entrepreneur/entrepreneur_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/entrepreneur/entrepreneur_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/entrepreneur/entrepreneur_suit_appearance.tres
+      slot: torso
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.33}
+      scale: 0.5
+      priority: 0
+      order: 331
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 320
+      stretch: {x: 1, y: 1}
   - name: Fabricator
+    id: engineer
     layers:
-    - id: stern
+    - id: items/characters/engineer/engineer_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/engineer/engineer_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 3
+      order: 1261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1250
+      stretch: {x: 1, y: 1}
   - name: Surveyor
+    id: explorer
     layers:
-    - id: stern
+    - id: items/characters/explorer/explorer_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/explorer/explorer_hair_appearance.tres
+      slot: hat
+      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.55}
+      scale: 0.73212767
+      priority: 0
+      order: 1011
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1000
+      stretch: {x: 1, y: 1}
+    - id: items/characters/explorer/explorer_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 2
+      order: 561
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 550
+      stretch: {x: 1, y: 1}
   - name: Surgeon
+    id: doctor
     layers:
-    - id: sleepy
+    - id: items/characters/doctor/doctor_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 1311
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1300
+      stretch: {x: 1, y: 1}
+    - id: items/characters/doctor/doctor_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      priority: 2
+      order: 551
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 540
+      stretch: {x: 1, y: 1}
   - name: Tracker
+    id: hunter
     layers:
-    - id: sleepy
+    - id: items/characters/hunter/hunter_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 3
+      order: 1311
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1300
+      stretch: {x: 1, y: 1}
+    - id: items/characters/hunter/hunter_hat_appearance.tres
+      slot: hat
+      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.55}
+      scale: 0.60545456
+      priority: 3
+      order: 1011
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1000
+      stretch: {x: 1, y: 1}
+    - id: items/characters/hunter/hunter_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
+      priority: 2
+      order: 551
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 540
+      stretch: {x: 1, y: 1}
   - name: Demolitionist
+    id: artificer
     layers:
-    - id: friendly
+    - id: items/characters/artificer/artificer_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
+      priority: 3
+      order: 1311
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1300
+      stretch: {x: 1, y: 1}
+    - id: items/characters/artificer/artificer_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
-      priority: 0
-      order: 14
+      priority: 3
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Arms Broker
+    id: arms_dealer
     layers:
-    - id: stern
+    - id: items/characters/arms_dealer/arms_dealer_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 2
+      order: 1311
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1300
+      stretch: {x: 1, y: 1}
+    - id: items/characters/arms_dealer/arms_dealer_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 2
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Broadcaster
+    id: streamer
     layers:
-    - id: stern
+    - id: items/characters/streamer/streamer_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
-      slot: mouth
-      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      order: 1311
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1300
+      stretch: {x: 1, y: 1}
+    - id: items/characters/streamer/streamer_mouth_appearance.tres
+      slot: 
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.28}
+      scale: 0.32
+      priority: 4
+      order: 551
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 540
+      stretch: {x: 1, y: 1}
   - name: Augment
+    id: cyborg
     layers:
-    - id: sleepy
+    - id: items/characters/cyborg/cyborg_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 4
+      order: 1311
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1300
+      stretch: {x: 1, y: 1}
+    - id: items/characters/cyborg/cyborg_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
+      priority: 1
+      order: 561
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 550
+      stretch: {x: 1, y: 1}
+    - id: items/characters/cyborg/cyborg_skin_appearance.tres
+      slot: skin
+      image: {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0}
+      scale: 1
+      priority: 1
       order: 12
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1
+      stretch: {x: 1, y: 1}
   - name: Devourer
+    id: glutton
     layers:
-    - id: sleepy
+    - id: items/characters/glutton/glutton_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 1
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/glutton/glutton_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
+      priority: 1
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Titan Hunter
+    id: jack
     layers:
-    - id: friendly
+    - id: items/characters/jack/jack_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
+      priority: 1
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/jack/jack_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
+      priority: 1
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/jack/jack_nose_appearance.tres
+      slot: nose
+      image: {fileID: 7911235102323647998, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.07}
+      scale: 0.19411765
       priority: 0
-      order: 14
+      order: 611
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 600
+      stretch: {x: 1, y: 1}
   - name: Revenant
+    id: lich
     layers:
-    - id: stern
+    - id: items/characters/lich/lich_diadem_appearance.tres
+      slot: forehead
+      image: {fileID: -4538752222985096420, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: -0.18, y: 0.34}
+      scale: 0.24017468
+      priority: 3
+      order: 61
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 50
+      stretch: {x: 1, y: 1}
+    - id: items/characters/lich/lich_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 2
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/lich/lich_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 3
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Intern
+    id: apprentice
     layers:
-    - id: stern
+    - id: items/characters/apprentice/apprentice_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 1
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/apprentice/apprentice_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 1
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/apprentice/apprentice_robe_appearance.tres
+      slot: torso
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.33}
+      scale: 0.5
+      priority: 1
+      order: 331
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 320
+      stretch: {x: 1, y: 1}
   - name: Forest Phantom
+    id: cryptid
     layers:
-    - id: sleepy
+    - id: items/characters/cryptid/cryptid_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
+      scale: 0.5687888
+      priority: 2
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/cryptid/cryptid_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      priority: 2
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Angler
+    id: fisherman
     layers:
-    - id: sleepy
+    - id: items/characters/fisherman/fisherman_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/fisherman/fisherman_hat_appearance.tres
+      slot: hat
+      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.55}
+      scale: 0.60545456
+      priority: 2
+      order: 1011
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1000
+      stretch: {x: 1, y: 1}
+    - id: items/characters/fisherman/fisherman_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
-      priority: 0
-      order: 14
+      priority: 1
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Monolith
+    id: golem
     layers:
-    - id: friendly
+    - id: items/characters/golem/golem_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/golem/golem_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/golem/golem_skin_appearance.tres
+      slot: skin
+      image: {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0}
+      scale: 1
+      priority: 3
+      order: 12
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1
+      stretch: {x: 1, y: 1}
   - name: Sovereign
+    id: king
     layers:
-    - id: stern
+    - id: items/characters/king/king_crown_appearance.tres
+      slot: hat
+      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.55}
+      scale: 0.73212767
+      priority: 3
+      order: 911
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 900
+      stretch: {x: 1, y: 1}
+    - id: items/characters/king/king_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/king/king_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 2
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Outlaw
+    id: renegade
     layers:
-    - id: stern
+    - id: items/characters/renegade/renegade_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 1
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/renegade/renegade_hair_appearance.tres
+      slot: hat
+      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.55}
+      scale: 0.73212767
+      priority: 3
+      order: 811
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 800
+      stretch: {x: 1, y: 1}
+    - id: items/characters/renegade/renegade_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 2
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Monolimb
+    id: one_arm
     layers:
-    - id: sleepy
+    - id: items/characters/one_arm/one_arm_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/one_arm/one_arm_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Reactor
+    id: bull
     layers:
-    - id: sleepy
+    - id: items/characters/bull/bull_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 1211
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1200
+      stretch: {x: 1, y: 1}
+    - id: items/characters/bull/bull_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Sentinel
+    id: soldier
     layers:
-    - id: friendly
+    - id: items/characters/soldier/soldier_eyes_appearance.tres
       slot: eyes
       image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
-      priority: 0
-      order: 13
-    - id: smile
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
+      priority: 3
+      order: 1211
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1200
+      stretch: {x: 1, y: 1}
+    - id: items/characters/soldier/soldier_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
   - name: Pain Engine
+    id: masochist
     layers:
-    - id: stern
+    - id: items/characters/masochist/masochist_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
-      slot: mouth
-      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-  - name: Paladin
-    layers:
-    - id: stern
-      slot: eyes
-      image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
-      slot: mouth
-      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
-      image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
-      priority: 0
-      order: 12
-  - name: Blood Broker
-    layers:
-    - id: sleepy
-      slot: eyes
-      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: beard
-      slot: mouth
-      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
-      scale: 0.57994384
-      priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
-      image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
-      priority: 0
-      order: 12
-  - name: Newborn
-    layers:
-    - id: sleepy
-      slot: eyes
-      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.11}
-      scale: 0.55844724
-      priority: 0
-      order: 13
-    - id: beard
-      slot: mouth
-      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
-      scale: 0.57994384
-      priority: 0
-      order: 14
-  - name: Drifter
-    layers:
-    - id: friendly
-      slot: eyes
-      image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.1}
-      scale: 0.55499995
-      priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/masochist/masochist_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
+      offset: {x: 0, y: -0.22}
       scale: 0.50721854
       priority: 0
-      order: 14
-  - name: Circuit Witch
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+  - name: Paladin
+    id: knight
     layers:
-    - id: stern
+    - id: items/characters/knight/knight_eyes_appearance.tres
       slot: eyes
       image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
       priority: 0
-      order: 13
-    - id: smile
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/knight/knight_mouth_appearance.tres
       slot: mouth
       image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-  - name: Bloodline
-    layers:
-    - id: stern
-      slot: eyes
-      image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.12}
-      scale: 0.57733744
-      priority: 0
-      order: 13
-    - id: smile
-      slot: mouth
-      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.2}
-      scale: 0.48516557
-      priority: 0
-      order: 14
-    - id: mohawk
-      slot: head
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 2
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/knight/knight_helmet_appearance.tres
+      slot: hat
       image: {fileID: -8598833804126402720, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: 0.67}
-      scale: 0.49595743
+      offset: {x: 0, y: 0.55}
+      scale: 0.73212767
+      priority: 3
+      order: 1011
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1000
+      stretch: {x: 1, y: 1}
+  - name: Blood Broker
+    id: demon
+    layers:
+    - id: items/characters/demon/demon_ear_back_appearance.tres
+      slot: top-right
+      image: {fileID: -6338023803479276477, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0.38, y: 0.5}
+      scale: 0.40386474
       priority: 0
-      order: 12
+      order: -100
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: -100
+      stretch: {x: 1, y: 1}
+    - id: items/characters/demon/demon_ear_front_appearance.tres
+      slot: top-left
+      image: {fileID: -6338023803479276477, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: -0.38, y: 0.5}
+      scale: 0.40386474
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/demon/demon_eyes_appearance.tres
+      slot: eyes
+      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.5687888
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/demon/demon_mouth_appearance.tres
+      slot: mouth
+      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.22}
+      scale: 0.57994384
+      priority: 0
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/demon/demon_tail_appearance.tres
+      slot: tail
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0.48, y: -0.3}
+      scale: 0.48
+      priority: 0
+      order: -1100
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: -1100
+      stretch: {x: 1, y: 1}
+  - name: Newborn
+    id: baby
+    layers:
+    - id: items/characters/baby/appearances/baby_app_0.tres
+      slot: eyes
+      image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.5687888
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/baby/appearances/baby_app_1.tres
+      slot: mouth
+      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.22}
+      scale: 0.57994384
+      priority: 0
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/baby/appearances/baby_app_2.tres
+      slot: 
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.28}
+      scale: 0.32
+      priority: 0
+      order: 61
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 50
+      stretch: {x: 1, y: 1}
+  - name: Drifter
+    id: vagabond
+    layers:
+    - id: items/characters/vagabond/appearances/vagabond_app_0.tres
+      slot: eyes
+      image: {fileID: 5450405800823552052, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.5654717
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/vagabond/appearances/vagabond_app_1.tres
+      slot: mouth
+      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/vagabond/appearances/vagabond_app_2.tres
+      slot: neck
+      image: {fileID: 6953157878869284107, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.39}
+      scale: 0.43676472
+      priority: 1
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/vagabond/appearances/vagabond_app_3.tres
+      slot: back
+      image: {fileID: 1078027786635913500, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.08}
+      scale: 0.8504202
+      priority: 1
+      order: -1000
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: -1000
+      stretch: {x: 1, y: 1}
+  - name: Circuit Witch
+    id: technomage
+    layers:
+    - id: items/characters/technomage/appearances/technomage_app_0.tres
+      slot: eyes
+      image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/technomage/appearances/technomage_app_1.tres
+      slot: mouth
+      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 0
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+  - name: Bloodline
+    id: vampire
+    layers:
+    - id: items/characters/vampire/appearances/vampire_app_0.tres
+      slot: eyes
+      image: {fileID: 2842814585027089153, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0.11}
+      scale: 0.5567183
+      priority: 0
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/vampire/appearances/vampire_app_1.tres
+      slot: mouth
+      image: {fileID: -7261026609676352468, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.22}
+      scale: 0.50721854
+      priority: 0
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/vampire/appearances/vampire_app_2.tres
+      slot: torso
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.33}
+      scale: 0.5
+      priority: 0
+      order: 331
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 320
+      stretch: {x: 1, y: 1}
   - name: Drone Shepherd
+    id: beast_master
     layers:
-    - id: sleepy
+    - id: items/characters/beast_master/appearances/beast_master_eyes.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
-      slot: mouth
-      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
-      scale: 0.57994384
-      priority: 0
-      order: 14
-    - id: swept-hair
-      slot: head
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/beast_master/appearances/beast_master_fur.tres
+      slot: torso
+      image: {fileID: 6191716412420617325, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: 0, y: -0.33}
+      scale: 0.5
+      priority: 1
+      order: 551
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 540
+      stretch: {x: 1, y: 1}
+    - id: items/characters/beast_master/appearances/beast_master_hat.tres
+      slot: hat
       image: {fileID: 7476170262848592979, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: -0.02, y: 0.48}
-      scale: 0.6347507
+      offset: {x: 0, y: 0.55}
+      scale: 0.60545456
+      priority: 3
+      order: 1011
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1000
+      stretch: {x: 1, y: 1}
+    - id: items/characters/beast_master/appearances/beast_master_mouth.tres
+      slot: mouth
+      image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: -0.22}
+      scale: 0.57994384
       priority: 0
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/beast_master/appearances/beast_master_tatoo.tres
+      slot: skin
+      image: {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0}
+      scale: 1
+      priority: 2
       order: 12
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1
+      stretch: {x: 1, y: 1}
   - name: Glassheart
+    id: wounded
     layers:
-    - id: sleepy
+    - id: items/characters/wounded/wounded_forehead_appearance.tres
+      slot: forehead
+      image: {fileID: -4538752222985096420, guid: efe9a37e2fbfb3346a0eca5dda278986, type: 3}
+      offset: {x: -0.18, y: 0.34}
+      scale: 0.24017468
+      priority: 3
+      order: 961
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 950
+      stretch: {x: 1, y: 1}
+    - id: items/characters/wounded/wounded_eyes_appearance.tres
       slot: eyes
       image: {fileID: -2507948622400652626, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
       offset: {x: 0, y: 0.11}
-      scale: 0.55844724
+      scale: 0.5687888
       priority: 0
-      order: 13
-    - id: beard
+      order: 511
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 500
+      stretch: {x: 1, y: 1}
+    - id: items/characters/wounded/wounded_mouth_appearance.tres
       slot: mouth
       image: {fileID: 4496143173257764234, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
-      offset: {x: 0, y: -0.24}
+      offset: {x: 0, y: -0.22}
       scale: 0.57994384
       priority: 0
-      order: 14
+      order: 261
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 250
+      stretch: {x: 1, y: 1}
+    - id: items/characters/wounded/wounded_skin_appearance.tres
+      slot: skin
+      image: {fileID: 5650770366247052600, guid: 46eac7f7eb144934581e769081f3256a, type: 3}
+      offset: {x: 0, y: 0}
+      scale: 1
+      priority: 3
+      order: 12
+      sourceDefined: 1
+      characterAppearance: 1
+      depth: 1
+      stretch: {x: 1, y: 1}
   lookIndex: 0
   walkFramesPerSecond: 7
 --- !u!1 &1915980537753211436

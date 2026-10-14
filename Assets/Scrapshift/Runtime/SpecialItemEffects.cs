@@ -61,6 +61,7 @@ namespace Scrapshift
         public static string Description(string key,float value)
         {
             string amount=value.ToString("+0.##;-0.##;0",System.Globalization.CultureInfo.InvariantCulture);
+            if(key=="hp_start_next_wave"&&value<=-100)return "Start the next wave with 1 HP";
             if(lifecycle.TryGetValue(key,out var template))return string.Format(System.Globalization.CultureInfo.InvariantCulture,template,value.ToString("0.##",System.Globalization.CultureInfo.InvariantCulture));
             if(key=="consumable_heal")return amount+" HP recovered from consumables";
             if(key=="item_box_gold")return amount+" materials when collecting a crate";

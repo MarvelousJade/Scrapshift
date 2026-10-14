@@ -47,11 +47,12 @@ namespace Scrapshift
                 DropConsumable(new Vector2(-9,-4),ConsumableKind.Crate);
                 Rules.Collect(16);Rules.Tick(Rules.Remaining-.01f);lootReviewStage++;
             }
-            if(lootReviewStage==3 && t>4)
+            if(lootReviewStage==3 && t>4 && Rules.Phase==RunPhase.Loot)
             {
                 lootReport.cleanupCrate=Rules.PendingCrates==2;
                 lootReport.crateBeforeUpgrade=Rules.Phase==RunPhase.Loot && Rules.PendingLevels>0;
                 ScreenCapture.CaptureScreenshot(Path.Combine(lootReviewPath,"take-or-recycle.png"));lootReviewStage++;
+                lootReviewStart=Time.realtimeSinceStartup-4;t=4;
             }
             if(lootReviewStage==4 && t>5)
             {

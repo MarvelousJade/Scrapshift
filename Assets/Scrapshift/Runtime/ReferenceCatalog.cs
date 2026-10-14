@@ -12,7 +12,7 @@ namespace Scrapshift
     {
         public float start,interval,reduce,minimum,chance,area,inset;
         public int repeats,bucket;
-        public bool edge,preventElite,preventHorde,boss;
+        public bool edge,preventElite,preventHorde,boss,loot;
         public int minDifficulty,maxDifficulty=9999,minWave,maxWave=9999;
         public UnitEntry[] units;
     }
@@ -68,7 +68,13 @@ namespace Scrapshift
         public Vector2 wearOffset;
         public float wearScale = .2f;
         public int wearOrder = 11;
-        public AppearanceLayer appearance;
+        [SerializeField, UnityEngine.Serialization.FormerlySerializedAs("appearance")] AppearanceLayer legacyAppearance;
+        public AppearanceLayer appearance
+        {
+            get => appearances != null && appearances.Length > 0 ? appearances[0] : legacyAppearance;
+            set => legacyAppearance = value;
+        }
+        public AppearanceLayer[] appearances;
         public string Detail
         {
             get

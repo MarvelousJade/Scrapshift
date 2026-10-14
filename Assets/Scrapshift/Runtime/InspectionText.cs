@@ -43,7 +43,7 @@ namespace Scrapshift
             .Concat((item.conditionalEffects??Array.Empty<ConditionalEffect>()).Where(e=>!(e.customKey=="pet"&&e.value==0)).Select(e=>e.HasCustomDescription?"• "+e.Description:e.customKey=="stat_cap"?"• "+(e.key=="hp_cap"?"Max HP":"Speed")+" is capped at its value when you obtain this implant":ItemStatRow(e.key,e.value)+e.Suffix)));
         string ItemStatRow(string key,float value)
         {
-            string stat=key.Replace("stat_","");string icon=StatPresentation.Keys.Contains(stat)?"[["+stat+"]] ":"• ";
+            string stat=key.Replace("stat_","");string icon=StatPresentation.Keys.Contains(stat)||stat=="piercing_damage"?"[["+stat+"]] ":"• ";
             string text=StatEffect(key,value),color=SpecialItemEffects.IsPenalty(key,value)?"#FF3333":"#00FF00";
             return icon+System.Text.RegularExpressions.Regex.Replace(text,@"(?<![\w])[+-]?\d+(?:\.\d+)?%?",m=>"<color="+color+">"+m.Value+"</color>");
         }
