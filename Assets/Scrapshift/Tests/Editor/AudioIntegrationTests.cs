@@ -23,7 +23,7 @@ namespace Scrapshift.Tests
             foreach (SoundCue cue in Enum.GetValues(typeof(SoundCue)))
             {
                 var entry=bank.Find(cue); Assert.NotNull(entry,cue.ToString()); Assert.IsNotEmpty(entry.variants);
-                foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.AreEqual(1,clip.channels); }
+                foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.AreEqual(cue==SoundCue.WaveTick?2:1,clip.channels); }
             }
             Assert.GreaterOrEqual(bank.Find(SoundCue.Fire).variants.Length,3);
             Assert.GreaterOrEqual(bank.Find(SoundCue.Impact).variants.Length,3);
@@ -34,6 +34,24 @@ namespace Scrapshift.Tests
                 for (int previous=0;previous<count;previous++)
                     for (int roll=0;roll<100;roll++)
                     { int pick=GameAudio.VariantIndex(count,previous,roll); Assert.AreNotEqual(previous,pick); Assert.That(pick,Is.InRange(0,count-1)); }
+        }
+        [Test] public void LastFiveSecondsUseTheOriginalClockTick()
+        {
+            var tick=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath).Find(SoundCue.WaveTick);
+            Assert.NotNull(tick);
+            Assert.AreEqual("WaveTick_01",tick.variants.Single().name);
+            Assert.AreEqual(2,tick.priority);
+            Assert.AreEqual(1f,tick.gain);
+            Assert.AreEqual(.9f,tick.cooldown);
+            Assert.AreEqual(.1f,tick.pitchVariation);
+            Assert.IsFalse(WaveCountdownFeedback.IsWarning(6));
+            for(int second=1;second<=5;second++)Assert.IsTrue(WaveCountdownFeedback.IsWarning(second));
+            Assert.IsFalse(WaveCountdownFeedback.IsWarning(0));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(5.9f,5.1f));
+            Assert.IsTrue(WaveCountdownFeedback.TickDue(5.01f,4.99f));
+            Assert.IsTrue(WaveCountdownFeedback.TickDue(4.01f,3.99f));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(4.9f,4.1f));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(1.01f,0f));
         }
         [Test] public void AssetScopeNavigatesAnActualSoundReferenceToItsBank()
         {

@@ -2,6 +2,17 @@ using UnityEngine;
 
 namespace Scrapshift
 {
+    public static class WaveCountdownFeedback
+    {
+        public static int Display(float remaining) => Mathf.CeilToInt(remaining);
+        public static bool IsWarning(int displayed) => displayed >= 1 && displayed <= 5;
+        public static bool TickDue(float before, float after)
+        {
+            int displayed = Display(after);
+            return IsWarning(displayed) && displayed < Display(before);
+        }
+    }
+
     public sealed partial class ArenaGame
     {
         GUIStyle damageSmall, damageBig, cardTitle, center, icon;
@@ -108,6 +119,7 @@ namespace Scrapshift
                 int remaining=supportShowcase?
                     Mathf.CeilToInt(duration-Mathf.Repeat(elapsed,duration)):
                     waveSweeping?0:Mathf.CeilToInt(Rules.Remaining);
+                if(WaveCountdownFeedback.IsWarning(remaining))timer.normal.textColor=GameSettings.Negative;
                 OutlinedText(630,61,180,56,remaining.ToString(),timer);
             }
             DrawPendingRewards();
