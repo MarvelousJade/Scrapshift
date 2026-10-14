@@ -398,3 +398,10 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Fix:** Import the two original clips byte for byte. Play the popup when a challenge completes, including Rookie on the first loss, and play the whoosh when its toast expires. Queued challenges announce each popup. Keep the end-run reward card silent so a reward is not announced twice.
 
 **Verification and limit:** See unlock-sound-parity.md for the source trace and hashes. The cue and queue tests check imported clips, gain, pitch, and expiry; the full build and runtime checks are recorded with the integration build. Scrapshift's 2.6-second toast duration and end-run card layout still differ from the source.
+## October 14 - end-of-run inventory overlapped unlock review
+
+**User report:** The loss summary needed to show newly unlocked rewards clearly.
+
+**Cause:** The inventory panel occupied the horizontal space reserved for the Progress and unlock review area. The presentation review also assumed the starting SMG was the only inventory entry, which no longer held after item integration.
+
+**Fix:** Narrow and reposition the inventory panel, accept an SMG anywhere in the starting inventory during review, and clear the review's newly unlocked state before restart. The integrated Windows build succeeded with zero errors and warnings; 387 EditMode tests passed.

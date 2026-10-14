@@ -7,3 +7,5 @@ Scrapshift previously used its install cue when drawing the achievement toast an
 Source and imported SHA-256 hashes match: `Shield 4.mp3` / `AchievementPopup_01.mp3`: `3A46749AC7E5175B4F847F50903B8C3E7444831AC457A849C590A7D04C1F42EC`; `whoosh_swish_small_harsh_03.wav` / `AchievementPopout_01.wav`: `C3EE0794CCA2D85614E2F76633497E22D108EA8CBE8A6C1984A207E9539B4365`.
 
 Scrapshift's toast lasts 2.6 seconds, while the source popup's hide timer controls its duration. This change matches the clips, relative gain, pitch variation, and appear/disappear events, not the exact visual timing or end screen layout.
+
+Final integration verification: 387 Unity EditMode tests passed. The Windows player built with zero errors and zero warnings. Its hidden Direct3D 11 mixer check played all 26 cues audibly, including both unlock cues; mute suppression passed. This checks sound output, not a human listening comparison or the exact toast animation timing.
