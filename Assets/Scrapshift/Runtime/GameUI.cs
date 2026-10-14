@@ -94,7 +94,7 @@ namespace Scrapshift
             Text(24,22,262,38,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
             Frame(new Rect(24,64,262,38),new Color(.25f,.25f,.24f),6);
             Box(new Rect(30,70,250*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),26),new Color(.2f,.8f,.18f));
-            Text(195,64,87,38,$"LV.{Rules.Level}",new GUIStyle(center){alignment=TextAnchor.MiddleRight});
+            Text(24,64,262,38,$"LV.{Rules.Level}",center);
             DrawMoneyCounter();
             DrawStoredMaterials();
             GUI.matrix=hudMatrix*Matrix4x4.Translate(new Vector3(0,FullCanvas.yMin,0));
