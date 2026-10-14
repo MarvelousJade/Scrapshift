@@ -52,6 +52,25 @@ namespace Scrapshift.Tests
                     for (int roll=0;roll<100;roll++)
                     { int pick=GameAudio.VariantIndex(count,previous,roll); Assert.AreNotEqual(previous,pick); Assert.That(pick,Is.InRange(0,count-1)); }
         }
+        [Test] public void LastFiveSecondsUseTheOriginalClockTick()
+        {
+            var tick=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath).Find(SoundCue.WaveTick);
+            Assert.NotNull(tick);
+            Assert.AreEqual("WaveTick_01",tick.variants.Single().name);
+            Assert.AreEqual(2,tick.priority);
+            Assert.AreEqual(1f,tick.gain);
+            Assert.AreEqual(.9f,tick.cooldown);
+            Assert.AreEqual(.1f,tick.pitchVariation);
+            Assert.AreEqual(2,tick.variants.Single().channels);
+            Assert.IsFalse(WaveCountdownFeedback.IsWarning(6));
+            for(int second=1;second<=5;second++)Assert.IsTrue(WaveCountdownFeedback.IsWarning(second));
+            Assert.IsFalse(WaveCountdownFeedback.IsWarning(0));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(5.9f,5.1f));
+            Assert.IsTrue(WaveCountdownFeedback.TickDue(5.01f,4.99f));
+            Assert.IsTrue(WaveCountdownFeedback.TickDue(4.01f,3.99f));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(4.9f,4.1f));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(1.01f,0f));
+        }
         [Test] public void AssetScopeNavigatesAnActualSoundReferenceToItsBank()
         {
             var scan=ScanSession.Create(ContentBuilder.Root,new ScanOptions { inspectSavedScenes=true, useCache=false });

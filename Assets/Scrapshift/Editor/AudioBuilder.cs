@@ -51,13 +51,26 @@ namespace Scrapshift.Editor
             Replace(SoundCue.Win,new[]{"Win_01.mp3"},Mathf.Pow(10,-5f/20f));
             bank.entries=entries.ToArray();EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
         }
+        static void EnsureWaveTickAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            var clip=AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Audio/WaveTick_01.wav");
+            if(clip==null)throw new Exception("Missing original wave countdown tick");
+            var entry=bank.Find(SoundCue.WaveTick);
+            if(entry!=null&&bank.entries.Count(e=>e.cue==SoundCue.WaveTick)==1&&entry.variants!=null&&entry.variants.Length==1&&entry.variants[0]==clip&&
+               Mathf.Approximately(entry.gain,1)&&Mathf.Approximately(entry.cooldown,.9f)&&
+               Mathf.Approximately(entry.pitchVariation,.1f)&&entry.priority==2)return;
+            var entries=bank.entries.ToList();entries.RemoveAll(e=>e.cue==SoundCue.WaveTick);
+            entries.Add(new SoundEntry{cue=SoundCue.WaveTick,variants=new[]{clip},gain=1,cooldown=.9f,pitchVariation=.1f,priority=2});
+            bank.entries=entries.ToArray();EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
         static void EnsureAudio()
         {
             string path = Root + "/Definitions/GameSounds.asset";
             if (File.Exists(path)) return;
             AssetDatabase.Refresh();
             var bank = ScriptableObject.CreateInstance<SoundBank>();
-            bank.entries = Enum.GetValues(typeof(SoundCue)).Cast<SoundCue>().Where(cue=>cue!=SoundCue.CratePickup&&cue!=SoundCue.WaveLetter).Select(cue =>
+            bank.entries = Enum.GetValues(typeof(SoundCue)).Cast<SoundCue>().Where(cue=>cue!=SoundCue.WaveTick&&cue!=SoundCue.CratePickup&&cue!=SoundCue.WaveLetter).Select(cue =>
             {
                 var clips = Directory.GetFiles(Root + "/Audio", cue + "_*").Where(p=>p.EndsWith(".wav")||p.EndsWith(".mp3")).OrderBy(p=>p).Select(file =>
                 {

@@ -72,7 +72,7 @@ namespace Scrapshift
             }
             voice.panStereo = important ? 0 : Mathf.Clamp(position.x / 18, -.6f, .6f);
             gains[index] = overrideGain??entry.gain; started[index] = now;
-            if (important) duckUntil = now + .22f;
+            if (important && cue != SoundCue.WaveTick) duckUntil = now + .22f;
             voice.volume = gains[index] * Volume * (!important && !pickup && now < duckUntil ? .4f : 1);
             voice.Play(); Played++;
         }

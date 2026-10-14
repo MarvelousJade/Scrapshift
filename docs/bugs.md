@@ -378,3 +378,13 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 
 **Verification and limit:** 363/363 EditMode tests passed, including item-derived stat checks and queue cadence boundaries. The Windows build succeeded; the first run had one unrelated deprecated-API warning in the performance review, which was corrected before the final build. The timing is a 60 Hz approximation of the source timer and queue; see `showcase-loadouts.md` for the exact scope.
 **Built-player check:** Hidden headless player runs logged the Engineer queue draining to 11 turrets/gardens plus 3 pets, and the Druid queue draining to 1 structure plus 12 pets, both at 1.61 seconds. The twelfth Engineer structure request is a landmine spawner, tracked separately from visible turrets. The final build had zero errors and warnings. Visual placement was not inspected in this headless check.
+
+## October 13 - wave countdown warning missing
+
+**User report:** The final five-second wave counter should turn red and play the original clock sound.
+
+**Cause:** The Unity HUD always rendered its normal timer color, and the sound bank had no wave-tick cue. The source `wave_timer.gd` starts a one-second tick when less than six seconds remain; its first timeout changes the label to the configurable negative color and plays `clock_tick_01.wav`.
+
+**Fix:** Color displayed seconds 5 through 1 with the configured negative color. Add the byte-identical stereo clock WAV as a dedicated cue, playing once per displayed-second crossing with the source ±0.1 pitch variation. Keep its notification voice audible without ducking combat.
+
+**Verification and limit:** The Windows build succeeded with zero errors and warnings. All 364 EditMode tests passed. A hidden Direct3D 11 built-player mixer check passed all 22 cues, including the clock tick. A visual screenshot at exactly five seconds was not captured; see `wave-countdown-parity.md` for source and timing details.

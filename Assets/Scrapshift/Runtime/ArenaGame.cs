@@ -260,7 +260,8 @@ namespace Scrapshift
             if(supportShowcase)return;
             if(loadoutShowcase>=0&&Rules.Remaining<=dt){BeginLoadoutShowcase(loadoutShowcase);return;}
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
-            float healthBefore=Rules.Health;Rules.Tick(dt);
+            float healthBefore=Rules.Health, remainingBefore=Rules.Remaining;Rules.Tick(dt);
+            if(WaveCountdownFeedback.TickDue(remainingBefore,Rules.Remaining))sound.Play(SoundCue.WaveTick);
             if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
             if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); BeginWaveLetters(14); }
