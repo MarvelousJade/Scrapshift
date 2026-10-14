@@ -19,13 +19,13 @@ namespace Scrapshift.Tests
             var glasses=Item("glasses");var blindfold=Item("blindfold");
             CollectionAssert.AreEqual(new[]{blindfold.appearance},AppearanceResolver.Resolve(null,new[]{glasses,blindfold,glasses}));
         }
-        [Test] public void ItemEyesReplaceCharacterEyesAndRemovingItemRestoresBase()
+        [Test] public void ItemEyesReplaceCharacterEyesAndPreserveOtherCharacterFeatures()
         {
-            var look=Prefab.GetComponent<SpriteFrameAnimator>().looks.First(l=>l.layers.Any(a=>a.id=="beard"));
+            var look=Prefab.GetComponent<SpriteFrameAnimator>().looks.First(l=>l.id=="old");
             var glasses=Item("glasses");
             var composed=AppearanceResolver.Resolve(look,new[]{glasses});
             Assert.AreSame(glasses.appearance,composed.Single(l=>l.slot=="eyes"));
-            Assert.IsTrue(composed.Any(l=>l.id=="beard"));
+            Assert.IsTrue(composed.Contains(look.layers.Single(l=>l.slot=="mouth")));
             Assert.AreSame(look.layers.Single(l=>l.slot=="eyes"),AppearanceResolver.Resolve(look,new ItemEntry[0]).Single(l=>l.slot=="eyes"));
         }
         [Test] public void SameCountReplacementAndPresetChangeRefreshRenderersAndMirrorOffsets()
@@ -38,19 +38,21 @@ namespace Scrapshift.Tests
                 items[0]=Item("helmet");wardrobe.Sync(items,Catalog.spriteMaterial,false);
                 Assert.IsTrue(wardrobe.Layers.Contains(items[0].appearance));
                 Assert.IsFalse(wardrobe.Layers.Any(l=>l.id=="beanie"));
-                animator.lookIndex=System.Array.FindIndex(animator.looks,l=>l.layers.Any(a=>a.id=="beard"));items[0]=Item("head_injury");wardrobe.Sync(items,Catalog.spriteMaterial,true);
-                Assert.IsTrue(wardrobe.Layers.Any(l=>l.id=="beard"));
-                var view=obj.GetComponentsInChildren<SpriteRenderer>().Single(v=>v.enabled&&v.sprite==items[0].appearance.image);
+                animator.lookIndex=System.Array.FindIndex(animator.looks,l=>l.id=="old");items[0]=Item("head_injury");wardrobe.Sync(items,Catalog.spriteMaterial,true);
+                Assert.IsTrue(wardrobe.Layers.Contains(animator.Look.layers.Single(l=>l.slot=="mouth")));
+                var view=obj.GetComponentsInChildren<SpriteRenderer>().Single(v=>v.enabled&&v.name=="Appearance "+items[0].appearance.id);
+                Assert.AreSame(items[0].appearance.image.texture,view.sprite.texture);
                 Assert.AreSame(animator.BodyRoot,view.transform.parent);
                 Assert.IsTrue(view.flipX);Assert.AreEqual(-items[0].appearance.offset.x,view.transform.localPosition.x);
             }
             finally {Object.DestroyImmediate(obj);}
         }
-        [Test] public void FivePresetsShareBodyAndLegsWithDistinctFaceHairCombinations()
+        [Test] public void AllCharactersUseScrapshiftFeaturesAndShareTheBaseBodyAndLegs()
         {
             var animator=Prefab.GetComponent<SpriteFrameAnimator>();
             Assert.AreEqual(50,animator.looks.Length);
-            Assert.AreEqual(3,animator.looks.Select(l=>l.layers.Single(a=>a.slot=="eyes").image).Distinct().Count());
+            Assert.AreEqual(50,animator.looks.Select(l=>l.id).Distinct().Count());
+            foreach(var layer in animator.looks.SelectMany(l=>l.layers).Where(l=>l.image!=null)) Assert.IsTrue(AssetDatabase.GetAssetPath(layer.image).StartsWith(ContentBuilder.ArtRoot+"/"),layer.id);
             Assert.AreEqual("player-parts_00",animator.bodyView.sprite.name);
             Assert.AreEqual("player-leg_00",animator.footSprite.name);
             Assert.Greater(animator.footSprite.bounds.size.x,animator.footSprite.bounds.size.y,"Rounded boat limb must be wider than it is tall.");
@@ -62,6 +64,79 @@ namespace Scrapshift.Tests
             float hp=rules.MaxHealth,speed=rules.MoveSpeed;
             foreach(var look in Prefab.GetComponent<SpriteFrameAnimator>().looks)AppearanceResolver.Resolve(look,rules.Items);
             Assert.AreEqual(2,rules.Items.Count);Assert.AreEqual(hp,rules.MaxHealth);Assert.AreEqual(speed,rules.MoveSpeed);
+        }
+        [Test] public void AllItemLayersAreSeparateFittedWearablesRatherThanShopIcons()
+        {
+            var layers=Catalog.data.items.SelectMany(i=>i.appearances).ToArray();
+            Assert.AreEqual(185,layers.Length);Assert.AreEqual(185,layers.Select(l=>l.image).Distinct().Count());
+            foreach(var item in Catalog.data.items)foreach(var layer in item.appearances)
+            {
+                Assert.AreNotSame(item.image,layer.image,item.id);
+                string path=AssetDatabase.GetAssetPath(layer.image);
+                Assert.IsTrue(path.Contains("/FittedWearables/")||path.Contains("/TemplateWearables/"),item.id);
+                Assert.Greater(layer.Stretch.y,0);Assert.Greater(layer.scale,0);
+                var regions=AtlasIconMask.Regions(layer.image,layer.image.rect);Assert.IsNotEmpty(regions);
+                foreach(var region in regions)Assert.IsTrue(layer.image.rect.Contains(region.center));
+            }
+        }
+        [System.Serializable] sealed class RegisteredWearable {public string key;public float width,height,centerX,centerY;}
+        [System.Serializable] sealed class RegisteredWearables {public RegisteredWearable[] entries;}
+        [Test] public void EveryAtlasWearableUsesItsAuthoredBodyOriginInWorldAndPortraits()
+        {
+            var fits=JsonUtility.FromJson<RegisteredWearables>(System.IO.File.ReadAllText(ContentBuilder.ArtRoot+"/FittedWearables/registrations.json")).entries;
+            Assert.AreEqual(181,fits.Length);
+            foreach(var fit in fits)
+            {
+                int split=fit.key.LastIndexOf('_');var layer=Item(fit.key.Substring(0,split)).appearances[int.Parse(fit.key.Substring(split+1))];
+                Assert.AreEqual(Vector2.zero,layer.offset,fit.key);
+                var image=layer.image;
+                var center=Vector2.Scale((image.rect.size*.5f-image.pivot)/image.pixelsPerUnit,layer.Stretch)*layer.scale;
+                Assert.AreEqual(fit.centerX,center.x,.0001f,fit.key+" horizontal registration");
+                Assert.AreEqual(fit.centerY,center.y,.0001f,fit.key+" vertical registration");
+                Assert.AreEqual(fit.width,image.rect.width/image.pixelsPerUnit*layer.scale,.0001f,fit.key);
+                Assert.AreEqual(fit.height,image.rect.height/image.pixelsPerUnit*layer.scale*layer.Stretch.y,.0001f,fit.key);
+            }
+        }
+        [Test] public void TemplateWearablesKeepFullCanvasAndFollowTheAnimatedBody()
+        {
+            var obj=Object.Instantiate(Prefab);
+            try
+            {
+                var animator=obj.GetComponent<SpriteFrameAnimator>();animator.lookIndex=0;
+                var wardrobe=obj.AddComponent<CharacterWardrobe>();
+                foreach(string id in new[]{"beanie","leather_vest","glasses","coffee"})
+                {
+                    wardrobe.Reset();var item=Item(id);wardrobe.Sync(new[]{item},Catalog.spriteMaterial,false);
+                    var layer=item.appearances.Single();var sprite=layer.image;
+                    Assert.AreEqual(new Vector2(1254,1254),sprite.rect.size,id);
+                    Assert.AreEqual(627,sprite.pixelsPerUnit,id);
+                    Assert.AreEqual(Vector2.zero,layer.offset,id);
+                    Assert.AreEqual(Vector2.one,layer.Stretch,id);Assert.AreEqual(1,layer.scale,id);
+                    var view=obj.GetComponentsInChildren<SpriteRenderer>().Single(v=>v.enabled&&v.name=="Appearance "+layer.id);
+                    Assert.AreSame(animator.BodyRoot,view.transform.parent);
+                    animator.Tick(Vector2.left,.15f,false);wardrobe.Sync(new[]{item},Catalog.spriteMaterial,true);
+                    Assert.IsTrue(view.flipX);Assert.AreEqual(0,view.transform.localPosition.x);Assert.AreEqual(0,view.transform.localPosition.y);
+                    Assert.AreEqual(Vector3.one,view.transform.localScale);
+                    wardrobe.Sync(new ItemEntry[0],Catalog.spriteMaterial,true);
+                    Assert.AreEqual(0,wardrobe.VisibleCount);
+                }
+            }
+            finally{Object.DestroyImmediate(obj);}
+        }
+        [Test] public void FullBodySkinReplacesBaseShellAndRemovalRevealsItAgain()
+        {
+            var obj=Object.Instantiate(Prefab);
+            try
+            {
+                var animator=obj.GetComponent<SpriteFrameAnimator>();animator.lookIndex=0;
+                var wardrobe=obj.AddComponent<CharacterWardrobe>();
+                wardrobe.Sync(new[]{Item("potato")},Catalog.spriteMaterial,false);
+                Assert.IsFalse(animator.bodyView.enabled);
+                Assert.IsTrue(wardrobe.Layers.Any(l=>l.slot=="eyes"&&l.characterAppearance));
+                wardrobe.Sync(new ItemEntry[0],Catalog.spriteMaterial,false);
+                Assert.IsTrue(animator.bodyView.enabled);
+            }
+            finally{Object.DestroyImmediate(obj);}
         }
         [Test] public void CurvedLegSwingMirrorsLoopsAndRespectsReducedMotion()
         {
@@ -103,3 +178,5 @@ namespace Scrapshift.Tests
         }
     }
 }
+
+

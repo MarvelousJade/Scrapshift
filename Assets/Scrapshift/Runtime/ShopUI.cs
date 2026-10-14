@@ -253,9 +253,18 @@ namespace Scrapshift
 
         void DrawAppearance(AppearanceLayer layer, Vector2 origin, float scale)
         {
-            Vector2 size = layer.image.rect.size / layer.image.pixelsPerUnit * layer.scale * scale;
-            Vector2 center = origin + new Vector2(layer.offset.x, -layer.offset.y) * scale;
-            DrawIcon(layer.image, new Rect(center - size * .5f, size));
+            if(layer.image==null)return;
+            Vector2 size = Vector2.Scale(layer.image.rect.size / layer.image.pixelsPerUnit,layer.Stretch) * layer.scale * scale;
+            // Sprite pivots are body registration points, not necessarily the
+            // center of the transparent image. Match SpriteRenderer in portraits.
+            Vector2 registration=(layer.image.rect.size*.5f-layer.image.pivot)/layer.image.pixelsPerUnit;
+            Vector2 localCenter=layer.offset+Vector2.Scale(registration,layer.Stretch)*layer.scale;
+            Vector2 center = origin + new Vector2(localCenter.x, -localCenter.y) * scale;
+            var target=new Rect(center-size*.5f,size);
+            var preview=AtlasIconMask.Preview(layer.image);
+            // Wearables have calibrated nonuniform fitting, unlike square inventory icons.
+            if(preview!=null)GUI.DrawTexture(target,preview,ScaleMode.StretchToFill,true);
+            else DrawIcon(layer.image,target);
         }
     }
 }

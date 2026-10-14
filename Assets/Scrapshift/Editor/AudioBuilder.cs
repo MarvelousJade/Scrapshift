@@ -81,10 +81,10 @@ namespace Scrapshift.Editor
                     return AssetDatabase.LoadAssetAtPath<AudioClip>(asset);
                 }).ToArray();
                 if (clips.Length == 0) throw new Exception("Missing generated audio for " + cue);
-                bool important = cue == SoundCue.Hurt || cue == SoundCue.LevelUp || cue == SoundCue.Install || cue == SoundCue.Reroll || cue == SoundCue.Win || cue == SoundCue.Lose || cue == SoundCue.WaveClear;
-                return new SoundEntry { cue=cue, variants=clips, gain=cue == SoundCue.Fire ? .28f : cue == SoundCue.Pickup ? .42f : important ? .52f : cue == SoundCue.Pulse ? .43f : .30f,
+                bool important = cue == SoundCue.Hurt || cue == SoundCue.LevelUp || cue == SoundCue.Install || cue == SoundCue.Reroll || cue == SoundCue.Win || cue == SoundCue.Lose || cue == SoundCue.WaveClear || cue == SoundCue.AchievementPopup || cue == SoundCue.AchievementPopout;
+                return new SoundEntry { cue=cue, variants=clips, gain=cue==SoundCue.AchievementPopup?Mathf.Pow(10,-5f/20f):cue==SoundCue.AchievementPopout?1f:cue == SoundCue.Fire ? .28f : cue == SoundCue.Pickup ? .42f : important ? .52f : cue == SoundCue.Pulse ? .43f : .30f,
                     cooldown=cue == SoundCue.Fire ? .025f : cue == SoundCue.Pickup ? .045f : cue == SoundCue.Impact || cue == SoundCue.Kill ? .06f : .1f,
-                    pitchVariation=important ? 0 : .06f, priority=important ? 2 : 0 };
+                    pitchVariation=cue==SoundCue.AchievementPopup?.2f:important ? 0 : .06f, priority=important ? 2 : 0 };
             }).ToArray();
             AssetDatabase.CreateAsset(bank,path);
             var scene=EditorSceneManager.OpenScene(ScenePath);

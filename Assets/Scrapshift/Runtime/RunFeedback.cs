@@ -71,8 +71,10 @@ namespace Scrapshift
         void DrawHeroFace(Rect r)
         {
             var hero=playerAnimation.idleFrames[0];float scale=Mathf.Min(r.width/hero.bounds.size.x,r.height/hero.bounds.size.y);
-            Vector2 size=(Vector2)hero.bounds.size*scale;DrawIcon(hero,new Rect(r.center-size*.5f,size));
-            foreach(var layer in AppearanceResolver.Resolve(playerAnimation.Look,System.Array.Empty<ItemEntry>()))if(layer.order>=10)DrawAppearance(layer,r.center,scale);
+            var layers=AppearanceResolver.Resolve(playerAnimation.Look,System.Array.Empty<ItemEntry>(),GameSettings.Flag("hideItems",false));
+            foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,r.center,scale);
+            Vector2 size=(Vector2)hero.bounds.size*scale;if(!layers.Any(l=>l.slot=="skin"&&l.image!=null))DrawIcon(hero,new Rect(r.center-size*.5f,size));
+            foreach(var layer in layers)if(layer.order>=10)DrawAppearance(layer,r.center,scale);
         }
         void DrawPendingRewards()
         {

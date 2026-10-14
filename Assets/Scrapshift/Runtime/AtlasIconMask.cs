@@ -12,9 +12,15 @@ namespace Scrapshift
         static WeaponIconMasks data;
         static WeaponIconMasks cleanData;
         static WeaponIconMasks itemData;
+        static WeaponIconMasks fittedData;
         public static WeaponIconMask[] Masks=>(data??(data=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("weapon-icon-masks").text))).masks;
         static WeaponIconMask Find(Sprite sprite)
         {
+            if(sprite.name.StartsWith("Fitted_"))
+            {
+                if(fittedData==null)fittedData=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("fitted-wearable-masks").text);
+                return Array.Find(fittedData.masks,m=>m.name==sprite.name);
+            }
             if(sprite.name.StartsWith("Item_"))
             {
                 if(itemData==null)itemData=JsonUtility.FromJson<WeaponIconMasks>(Resources.Load<TextAsset>("item-icon-masks").text);

@@ -150,7 +150,7 @@ namespace Scrapshift
                     Vector2 delta=rotated-(a.away?e.pos:pos);shotAngle=Mathf.Atan2(delta.y,delta.x);
                 }
                 Vector2 dir=new Vector2(Mathf.Cos(shotAngle),Mathf.Sin(shotAngle));
-                float damage=Mathf.Max(1,(int)((a.damage+a.growth*(Rules.Wave-1))*Rules.EnemyDamageFactor*(e.boosted?1+e.boostDamage/100:e.type.role=="Elite"||e.type.role=="Boss"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1)));
+                float damage=EnemyReferenceRules.ScaledDamage(a.damage+a.growth*(Rules.Wave-1),Rules.EnemyDamageFactor*(e.boosted?1+e.boostDamage/100:e.type.role=="Elite"||e.type.role=="Boss"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1));
                 if(a.projectile.Contains("slash"))
                 {
                     var obj=HostileProjectile(a.projectileScene);obj.transform.position=pos;obj.transform.rotation=Quaternion.Euler(0,0,a.rotate?shotAngle*Mathf.Rad2Deg:0);

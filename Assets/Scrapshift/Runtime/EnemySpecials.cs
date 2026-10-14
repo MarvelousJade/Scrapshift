@@ -11,7 +11,7 @@ namespace Scrapshift
         }
         readonly List<Slash> slashes = new List<Slash>();
         static readonly float[] bossRadii = {2.5f,3,3.5f,6,6.5f,7,9.5f,10,10.5f};
-        float ProjectileDamage(Enemy e) => Mathf.Max(1,(int)((1+e.behavior.projectileGrowth*(Rules.Wave-1))*Rules.EnemyDamageFactor));
+        float ProjectileDamage(Enemy e) => EnemyReferenceRules.ScaledDamage(1+e.behavior.projectileGrowth*(Rules.Wave-1),Rules.EnemyDamageFactor);
         GameObject PlasmaOrb(string name, Transform parent=null)
         {
             var obj=HostileProjectile("projectiles/bullet_enemy/enemy_projectile.tscn");obj.name=name;

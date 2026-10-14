@@ -3,7 +3,13 @@ namespace Scrapshift
 {
     public static class EnemyReferenceRules
     {
-        public static float BossHealthFactor(int wave)=>wave<=8?.5f:wave<=12?.75f:1;
+        // Godot converts base health to an integer before applying run modifiers,
+        // then rounds positive final health and damage halves away from zero.
+        public static int SourceRound(float value)=>value>=0?Mathf.FloorToInt(value+.5f):Mathf.CeilToInt(value-.5f);
+        public static int ScaledHealth(float baseHealth,float factor)=>SourceRound((int)baseHealth*factor);
+        public static int ScaledDamage(float baseDamage,float factor)=>SourceRound(baseDamage*factor);
+        public static float ScaledSpeed(float baseSpeed,float factor)=>SourceRound(baseSpeed*100*factor)/100f;
+        public static float BossHealthFactor(int wave,bool doubleBoss=false)=>wave<=8?.5f:wave<=12||wave==20&&doubleBoss?.75f:1;
         public static float BossDamageFactor(int wave)=>wave>8&&wave<=12?.75f:1;
         public static float ChargeTargetRadius(EncounterAttack a)=>a.targetSize<0?Mathf.Min(6,a.maxRange/5):a.targetSize;
     }

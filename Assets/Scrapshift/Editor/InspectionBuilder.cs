@@ -35,6 +35,7 @@ namespace Scrapshift.Editor
                 target.wantedTags=profile.wantedTags;target.bannedItems=profile.bannedItems;target.effectRows=profile.rows;
             }
             foreach(var weapon in catalog.data.equipment)weapon.title=text.WeaponName(weapon);
+            EnsureReferenceAppearances(catalog);
             EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
         }
 
@@ -85,5 +86,6 @@ namespace Scrapshift.Editor
             ApplyDedicatedWeaponArt(catalog);
             EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
         }
+
     }
 }
