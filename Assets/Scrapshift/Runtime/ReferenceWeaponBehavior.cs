@@ -27,6 +27,8 @@ namespace Scrapshift
             else {float t=Ease((age-strike)/back);result.offset=Vector2.Lerp(finish,Vector2.zero,t);result.angle=sweep?Mathf.Lerp(-angle,0,t):0;}
             return result;
         }
+        public static float TrackedAngle(Vector2 mount,Vector2 target,float spreadDegrees)=>
+            Mathf.Atan2(target.y-mount.y,target.x-mount.x)*Mathf.Rad2Deg+spreadDegrees;
         public static bool Overlaps(Vector2 point,float radius,Vector2 center,float angle,Vector2 half)
         {
             Vector2 local=Quaternion.Euler(0,0,-angle)*(point-center);
@@ -38,7 +40,7 @@ namespace Scrapshift
     {
         sealed class MeleeAttack
         {
-            public float age,recoilTime,recoil,strike,back,range,angle;public bool sweep,flip,returnDamage,sounded;
+            public float age,recoilTime,recoil,strike,back,range,angle,trackingSpread;public bool sweep,flip,returnDamage,sounded;
             public Vector2 direction;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();
         }
         readonly MeleeAttack[] meleeAttacks=new MeleeAttack[24];
@@ -49,11 +51,26 @@ namespace Scrapshift
             float speed=Rules.WeaponAttackSpeed(w);var attack=new MeleeAttack{direction=direction,angle=Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,
                 range=range,sweep=sweep,flip=direction.x<0,returnDamage=p?.returnDamage??false,
                 recoilTime=w.recoilHalf/Mathf.Max(1,1+speed),recoil=w.recoil/Mathf.Max(1,1+speed),strike=ReferenceMeleeMotion.StrikeDuration(speed,range),back=ReferenceMeleeMotion.ReturnDuration(speed)};
+            var target=weaponTargets[index];
+            if(target!=null&&enemies.Contains(target))
+            {
+                Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,index);
+                attack.trackingSpread=Mathf.DeltaAngle(ReferenceMeleeMotion.TrackedAngle(mount,target.pos,0),attack.angle);
+            }
             meleeAttacks[index]=attack;swings[index]=attack.recoilTime+attack.strike+attack.back;
         }
         void TickMeleeAttack(int index,Equipment w,Vector2 mount,float dt)
         {
             var a=meleeAttacks[index];if(a==null)return;
+            // The reference keeps auto-aimed weapons pointed at their live target during a swing.
+            var target=weaponTargets[index];
+            if(target!=null&&enemies.Contains(target))
+            {
+                Vector2 offset=target.pos-mount;float trackingRange=RunFeedback.DetectionRange(Rules.WeaponRange(w));
+                if(offset.sqrMagnitude<=trackingRange*trackingRange&&offset.sqrMagnitude>.000001f)
+                    a.angle=ReferenceMeleeMotion.TrackedAngle(mount,target.pos,a.trackingSpread);
+                else weaponTargets[index]=null;
+            }
             var profile=WeaponReference.Profile(w);float until=Mathf.Min(a.age+dt,a.recoilTime+a.strike+a.back);
             // Sample the moving source-shaped hitbox, so fast sweeps cannot skip targets at low frame rates.
             for(float t=a.age;t<=until+.00001f;t=Mathf.Min(until,t+1f/240))

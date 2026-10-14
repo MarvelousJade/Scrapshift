@@ -62,6 +62,12 @@ namespace Scrapshift.Tests
             Assert.Less(a.offset.y,0);Assert.Greater(b.offset.y,0);Assert.Less(a.angle,0);Assert.Greater(b.angle,0);
             Assert.AreEqual(Vector2.zero,ReferenceMeleeMotion.Pose(.7f,.1f,.25f,.4f,.2f,2,true,false,false).offset);
         }
+        [Test] public void AutoMeleeAimFollowsTargetDuringPlayerMovementAndKeepsSpread()
+        {
+            Vector2 target=Vector2.right;
+            Assert.AreEqual(12,ReferenceMeleeMotion.TrackedAngle(Vector2.zero,target,12),.0001f);
+            Assert.AreEqual(-33,ReferenceMeleeMotion.TrackedAngle(Vector2.up,target,12),.0001f);
+        }
         [Test] public void RotatedHitboxRejectsEnemiesOutsideWeaponWidth()
         {
             Assert.IsTrue(ReferenceMeleeMotion.Overlaps(Vector2.up,.1f,Vector2.zero,90,new Vector2(1,.1f)));
