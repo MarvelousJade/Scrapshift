@@ -17,6 +17,7 @@ namespace Scrapshift
         public int weaponSlots=6,minTier=1,maxTier=4,bonusTier=1;
         public ConditionalEffect[] conditionalEffects=Array.Empty<ConditionalEffect>();
         public CharacterEffectRow[] effectRows;
+        public AppearanceLayer[] appearances;
         public string id,title,description,bonusWeapon,classSet,classStat;
         public string[] startingWeapons,bannedItemGroups,startingItems;
         public StatEffect[] stats,gains;

@@ -122,12 +122,12 @@ namespace Scrapshift
                 {var stroke=MakeLine("Green tree warning",marker.transform,RunFeedback.SpawnColor(true,1),.12f);stroke.positionCount=2;stroke.SetPosition(0,new Vector3(-.4f,-.4f*sign,0));stroke.SetPosition(1,new Vector3(.4f,.4f*sign,0));}
             }
             sound.Play(SoundCue.Spawn,pos);
-            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Rules.EnemyHealthFactor*Rules.DangerMultiplier*GameSettings.Value("enemyHealth");enemies.Add(new Enemy
+            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=EnemyReferenceRules.ScaledHealth(def.health+def.growth*(Rules.Wave-1),Rules.EnemyHealthFactor*Rules.DangerMultiplier*GameSettings.Value("enemyHealth"));enemies.Add(new Enemy
             {
-                obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
+                obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+(int)UnityEngine.Random.Range(-def.speedRandom*GameSettings.Value("enemySpeed")*100,def.speedRandom*GameSettings.Value("enemySpeed")*100)/100f),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
             })
             ;var spawned=enemies[enemies.Count-1];ResetEnemyMovement(spawned);
-            if(def.role=="Elite"||def.role=="Boss"){spawned.hp*=EnemyReferenceRules.BossHealthFactor(Rules.Wave);if(Rules.Wave==20&&Rules.Stat("double_boss")>0)spawned.hp*=.75f;spawned.hp=Mathf.Round(spawned.hp);spawned.maxHp=spawned.hp;}
+            if(def.role=="Elite"||def.role=="Boss"){float factor=EnemyReferenceRules.BossHealthFactor(Rules.Wave,Rules.Difficulty>=5||Rules.Stat("double_boss")>0);spawned.hp=EnemyReferenceRules.SourceRound(spawned.hp*factor);spawned.maxHp=spawned.hp;}
             peakEnemies=Mathf.Max(peakEnemies,enemies.Count);
         }
         void UpdateEnemies(float dt)
@@ -213,7 +213,7 @@ namespace Scrapshift
                         }
                     }
                 }
-                speed = Mathf.Max(0, speed*GameSettings.Value("enemySpeed")*Rules.EnemySpeedFactor*(Rules.Difficulty>=6?1.1f:1) - e.contactSlow-e.itemSlow);
+                speed = Mathf.Max(0,EnemyReferenceRules.ScaledSpeed(speed,GameSettings.Value("enemySpeed")*Rules.EnemySpeedFactor*(Rules.Difficulty>=6?1.1f:1)) - e.contactSlow-e.itemSlow);
                 e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
                 if (role == "Buffer" && e.cooldown <= 0)
                 {
@@ -239,7 +239,7 @@ namespace Scrapshift
                 foreach(var pet in pets)if(!pet.dead&&pet.spec.kind=="scapegoat"&&Vector2.Distance(e.pos,pet.pos)<ContactRadius(e)+.3f)DamageScapegoat(pet);
                 if (role != "Tree" && invulnerable <= 0 && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                 {
-                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1+e.boostDamage/100 : 1)*(role=="Boss"||role=="Elite"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1)*Rules.EnemyDamageFactor,e.type,e);
+                    HurtPlayer(EnemyReferenceRules.ScaledDamage(e.type.damage+e.type.damageGrowth*(Rules.Wave-1),Rules.EnemyDamageFactor*(e.boosted?1+e.boostDamage/100:1)*(role=="Boss"||role=="Elite"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1)),e.type,e);
                     e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, e.speed);
                     if (role == "Pursuer") e.action = 0;
                 }

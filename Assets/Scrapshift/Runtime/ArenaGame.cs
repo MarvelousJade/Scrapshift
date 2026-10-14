@@ -60,6 +60,8 @@ namespace Scrapshift
             music=gameObject.AddComponent<GameMusic>();music.Initialize();
             reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
+            int appearanceParityIndex=Array.IndexOf(args,"--appearance-parity-review");
+            if(appearanceParityIndex>=0&&appearanceParityIndex+1<args.Length)BeginAppearanceParityReview(args[appearanceParityIndex+1]);
             int itemIconsIndex=Array.IndexOf(args,"--item-icons-review");
             if(itemIconsIndex>=0&&itemIconsIndex+1<args.Length)BeginItemIconReview(args[itemIconsIndex+1]);
             InitializeDisplay(args);
@@ -119,6 +121,8 @@ namespace Scrapshift
 
         public void Begin()
         {
+            wardrobe?.Reset();
+            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
             ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;waveSweepAge=0;waveLettersRemaining=0;winSoundDelay=-1;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
@@ -134,6 +138,7 @@ namespace Scrapshift
 
         void Update()
         {
+            if(appearanceParity){AppearanceParityTick();return;}
             if(itemIconReview){ItemIconReviewTick();return;}
             if(supportShowcase&&Input.GetKeyDown(KeyCode.F5))BeginSupportShowcase();
             if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F5))BeginLoadoutShowcase(loadoutShowcase);
@@ -195,7 +200,7 @@ namespace Scrapshift
             foreach(var pet in pets)if(pet.reviveSound!=null){pet.reviveSound.volume=sound.Muted?0:sound.Volume;if(Rules.Phase!=RunPhase.Playing)pet.reviveSound.Stop();}
             foreach(var pet in pets)if(pet.obj!=null)foreach(var renderer in pet.obj.GetComponentsInChildren<SpriteRenderer>()){var c=renderer.color;c.a=GameSettings.Value("petOpacity");renderer.color=c;}
             foreach(var shot in shots)if(shot.obj!=null){var renderer=shot.obj.GetComponent<SpriteRenderer>();if(renderer!=null){var c=renderer.color;c.a=GameSettings.Value("projectileOpacity");renderer.color=c;}}
-            wardrobe.Sync(GameSettings.Flag("hideItems",false)?(System.Collections.Generic.IReadOnlyList<ItemEntry>)Array.Empty<ItemEntry>():Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft);
+            wardrobe.Sync(Rules.Items, catalog.spriteMaterial, playerAnimation.FacingLeft, GameSettings.Flag("hideItems",false));
             UpdatePlayerFlash(Rules.Phase == RunPhase.Playing ? Mathf.Min(Time.deltaTime, .05f) : 0);
             FinishInspectionReview();
             if(enabled)InspectionReviewTick();

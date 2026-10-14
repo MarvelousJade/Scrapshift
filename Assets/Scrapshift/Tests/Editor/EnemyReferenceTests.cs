@@ -34,6 +34,27 @@ namespace Scrapshift.Tests
         [TestCase(8,.5f,1)] [TestCase(11,.75f,.75f)] [TestCase(17,1,1)]
         public void EarlyBossScalingPreservesSourceBranches(int wave,float hp,float damage)
         {Assert.AreEqual(hp,EnemyReferenceRules.BossHealthFactor(wave));Assert.AreEqual(damage,EnemyReferenceRules.BossDamageFactor(wave));}
+        [Test] public void DoubleBossDangerReducesFinalBossHealthLikeSource()
+        {Assert.AreEqual(1,EnemyReferenceRules.BossHealthFactor(20));Assert.AreEqual(.75f,EnemyReferenceRules.BossHealthFactor(20,true));}
+        [TestCase(0,1f)] [TestCase(1,1f)] [TestCase(2,1f)] [TestCase(3,1.12f)]
+        [TestCase(4,1.26f)] [TestCase(5,1.4f)] [TestCase(6,1.6f)]
+        public void DangerHealthAndDamageMatchOriginalProfiles(int difficulty,float factor)
+        {
+            var run=new RunRules{Difficulty=difficulty};
+            var profile=Data.difficulties.Single(d=>d.level==difficulty);
+            float health=profile.effects.Where(e=>e.key=="danger_enemy_health").Sum(e=>e.value);
+            float damage=profile.effects.Where(e=>e.key=="danger_enemy_damage").Sum(e=>e.value);
+            Assert.AreEqual(factor,run.DangerMultiplier,.0001f);
+            Assert.AreEqual(factor,1+health/100,.0001f);
+            Assert.AreEqual(factor,1+damage/100,.0001f);
+        }
+        [Test] public void SourceRoundsEachEnemyScalingStep()
+        {
+            Assert.AreEqual(6,EnemyReferenceRules.ScaledHealth(5.9f,1.12f),"base health is truncated before Danger scaling");
+            Assert.AreEqual(2,EnemyReferenceRules.ScaledDamage(1,1.6f));
+            Assert.AreEqual(2.76f,EnemyReferenceRules.ScaledSpeed(2.51f,1.1f),.0001f,"Nightmare speed rounds to an integer source pixel speed");
+            Assert.AreEqual(30713,EnemyReferenceRules.SourceRound(EnemyReferenceRules.ScaledHealth(29250,1.4f)*.75f),"double boss health rounds half upward");
+        }
         [Test] public void ReleaseTimedChargeRecalculatesOnceAndThenLocks()
         {
             var a=new EnemyAttack(new EnemyBehavior{charge=true,windup=.2f,active=.5f,source=new EncounterAttack{chargeTiming=1}},()=>0);

@@ -68,7 +68,13 @@ namespace Scrapshift
         public Vector2 wearOffset;
         public float wearScale = .2f;
         public int wearOrder = 11;
-        public AppearanceLayer appearance;
+        [SerializeField, UnityEngine.Serialization.FormerlySerializedAs("appearance")] AppearanceLayer legacyAppearance;
+        public AppearanceLayer appearance
+        {
+            get => appearances != null && appearances.Length > 0 ? appearances[0] : legacyAppearance;
+            set => legacyAppearance = value;
+        }
+        public AppearanceLayer[] appearances;
         public string Detail
         {
             get

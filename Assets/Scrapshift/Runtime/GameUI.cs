@@ -58,6 +58,7 @@ namespace Scrapshift
         }
         void DrawGameScreen()
         {
+            if(appearanceParity){DrawAppearanceParityReview();return;}
             if(itemIconReview&&itemIconStage>=2){DrawItemIconGallery();return;}
             BeginInspection();
             if(appearanceReview&&appearanceStage>=2&&appearanceStage<6){AppearanceReviewUI();return;}

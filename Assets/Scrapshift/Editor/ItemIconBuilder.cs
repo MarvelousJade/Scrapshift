@@ -12,13 +12,13 @@ namespace Scrapshift.Editor
         [Serializable] sealed class ItemIconSheet {public string path;public int width,height;public ItemIconEntry[] entries;}
         [Serializable] sealed class ItemIconManifest {public ItemIconSheet[] sheets;}
         [Serializable] sealed class ItemIconAudit {public string status;public int items,unique;public string[] issues;}
-        static Sprite[] ImportItemIconSheet(string path,SpriteMetaData[] metadata)
+        static Sprite[] ImportItemIconSheet(string path,SpriteMetaData[] metadata,int maxTextureSize=2048)
         {
             AssetDatabase.ImportAsset(path);
             var importer=(TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType=TextureImporterType.Sprite;importer.spriteImportMode=SpriteImportMode.Multiple;
             importer.alphaIsTransparency=true;importer.isReadable=true;importer.mipmapEnabled=false;
-            importer.maxTextureSize=2048;importer.textureCompression=TextureImporterCompression.Uncompressed;
+            importer.maxTextureSize=maxTextureSize;importer.textureCompression=TextureImporterCompression.Uncompressed;
             importer.spritePixelsPerUnit=100;importer.filterMode=FilterMode.Bilinear;importer.wrapMode=TextureWrapMode.Clamp;
 #pragma warning disable CS0618
             importer.spritesheet=metadata;

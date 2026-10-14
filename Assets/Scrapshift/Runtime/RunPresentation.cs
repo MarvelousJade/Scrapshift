@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Linq;
 
 namespace Scrapshift
 {
@@ -81,7 +82,7 @@ namespace Scrapshift
         }
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false,float motionTime=-1)
         {
-            var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>());
+            var layers=AppearanceResolver.Resolve(look,gear?Rules.Items:Array.Empty<ItemEntry>(),GameSettings.Flag("hideItems",false));
             var spring=motionTime>=0?SpringMotion.Pose(motionTime,false,reducedMotion):new Vector3(1,1,0);
             if(playerAnimation.footSprite!=null)foreach(int side in new[]{-1,1})
             {
@@ -98,7 +99,7 @@ namespace Scrapshift
             }
             foreach(var layer in layers)if(layer.order<10)DrawAppearance(layer,origin,scale);
             var hero=playerAnimation.idleFrames[0];Vector2 bodySize=(Vector2)hero.bounds.size*scale;
-            var bodyColor=GUI.color;GUI.color=PresentationPolish.BodyTint;DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));GUI.color=bodyColor;
+            var bodyColor=GUI.color;GUI.color=PresentationPolish.BodyTint;if(!layers.Any(l=>l.slot=="skin"&&l.image!=null))DrawIcon(hero,new Rect(origin-bodySize*.5f,bodySize));GUI.color=bodyColor;
             foreach(var layer in layers)if(layer.order>=10)DrawAppearance(layer,origin,scale);
             GUI.matrix=portraitMatrix;
         }
@@ -190,7 +191,7 @@ namespace Scrapshift
                 if(MenuButton(new Rect(495,550,450,57),"Ok"))endSummary=true;return;
             }
             DrawStatsPanel(true);
-            DrawRunInventory(new Rect(390,104,990,680));
+            DrawRunInventory(new Rect(440,104,610,680));
             Text(1090,123,260,45,"Progress",heading);
             Text(1090,188,260,80,$"Level {Rules.Level}\n{Rules.Kills} enemies defeated",body);
             DrawInventoryTooltip();
