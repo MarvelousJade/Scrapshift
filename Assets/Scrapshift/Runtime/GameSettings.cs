@@ -4,7 +4,8 @@ namespace Scrapshift
     // Independent from run/progression saves. Fixtures never read or write the user's settings.
     public static class GameSettings
     {
-        public static bool IsFixture=>System.Array.Exists(System.Environment.GetCommandLineArgs(),a=>a.StartsWith("--"));
+        // Process arguments cannot change; avoid copying them on every gameplay settings read.
+        public static bool IsFixture { get; } = System.Array.Exists(System.Environment.GetCommandLineArgs(),a=>a.StartsWith("--"));
         public static bool Flag(string key,bool fallback=true)=>!IsFixture?PlayerPrefs.GetInt("options."+key,fallback?1:0)!=0:fallback;
         public static float Value(string key,float fallback=1)=>!IsFixture?PlayerPrefs.GetFloat("options."+key,fallback):fallback;
         public static void Set(string key,bool value){if(IsFixture)return;PlayerPrefs.SetInt("options."+key,value?1:0);PlayerPrefs.Save();}

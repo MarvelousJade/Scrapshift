@@ -13,8 +13,21 @@ namespace Scrapshift
         { Id=id; Name=name; Stat=stat; this.increment=increment; }
         // Reference resources contain total effects for counts 2..6, not cumulative tiers.
         public int Bonus(int count) => Mathf.Clamp(count-1,0,5)*increment;
-        public float Bonus(int count,string stat)=>count<2?0:Data==null?(stat==Stat?Bonus(count):0):
-            Data.bonuses.First(b=>b.count==Mathf.Clamp(count,2,6)).effects.Where(e=>e.key==stat).Sum(e=>e.value);
+        public float Bonus(int count,string stat)
+        {
+            if(count<2)return 0;
+            if(Data==null)return stat==Stat?Bonus(count):0;
+            int threshold=Mathf.Clamp(count,2,6);
+            foreach(var bonus in Data.bonuses)
+            {
+                if(bonus.count!=threshold)continue;
+                // Enumerable.Sum(float) uses a double accumulator. Preserve that rounding.
+                double total=0;
+                foreach(var effect in bonus.effects)if(effect.key==stat)total+=effect.value;
+                return (float)total;
+            }
+            throw new System.InvalidOperationException("Missing weapon-set threshold: "+threshold);
+        }
         public string Description(int count) => Data==null?ItemEntry.FormatStat(Stat,Bonus(count)):
             string.Join(", ",Data.bonuses.First(b=>b.count==Mathf.Clamp(count,2,6)).effects.Select(e=>ItemEntry.FormatStat(e.key,e.value)));
     }
@@ -32,7 +45,12 @@ namespace Scrapshift
         }
         public static WeaponSet For(Equipment weapon)
         {
-            if(weapon?.setIds!=null&&weapon.setIds.Length>0)return All.FirstOrDefault(s=>s.Id==weapon.setIds[0]);
+            if(weapon?.setIds!=null&&weapon.setIds.Length>0)
+            {
+                string id=weapon.setIds[0];
+                for(int i=0;i<All.Count;i++)if(All[i].Id==id)return All[i];
+                return null;
+            }
             switch(weapon?.id)
             {
                 case "pistol": case "smg": case "double_barrel_shotgun": case "laser_gun": return Gun;
@@ -50,7 +68,10 @@ namespace Scrapshift
         public static float Bonus(IReadOnlyList<Equipment> inventory,string stat)
         {
             float result=0;
-            foreach(var set in All)result+=set.Bonus(Count(inventory,set),stat);
+            for(int i=0;i<All.Count;i++)
+            {
+                var set=All[i];result+=set.Bonus(Count(inventory,set),stat);
+            }
             return result;
         }
     }

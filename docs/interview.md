@@ -75,7 +75,9 @@ The original brief emphasized small, polished, Unity experience and AssetScope c
 
 ## How would you optimize it?
 
-Measure first with Unity Profiler on a repeatable scenario. Investigate Instantiate/Destroy and nested collision searches if they dominate a frame. Pool transient objects or introduce spatial partitioning only with evidence. The project currently bounds entity counts; it has not established a production performance benchmark. Do not quote an invented FPS improvement.
+The first measured combat pass is documented in [performance optimization and interview Q&A](performance-optimization.md). Across two controlled Windows player runs, average simulation CPU cost fell from 17.48 to 5.36 ms at 100 enemies and from 55.66 to 12.66 ms at 200. The changes index immutable collision data, remove transient LINQ work from frequent set queries, and compute process fixture detection once. All 361 EditMode tests passed, and seeded combat aggregates matched.
+
+Explain the limits when quoting those numbers: this is headless simulation timing, excluding rendering and UI, not an FPS claim. Allocation counters were unavailable in the release player and are explicitly marked invalid. The linked notes cover complexity, GC, caching and invalidation, floating-point parity, mean versus p95, pooling, spatial partitioning, profiling tools, and branch isolation. Reproduce the benchmark and review the code before presenting assistant-run work as your own hands-on investigation.
 
 ## How did references influence the game?
 
@@ -272,3 +274,7 @@ The fix imports source smoke counts and item presentation, shares the timed expl
 Shaoyu asked whether projectile count, bounce, and piercing reductions matched the supplied game. The source trace ran through WeaponService._set_common_ranged_stats, RangedWeaponShootingBehavior.shoot, player_projectile.gd, the integer Hitbox.damage field, and EntitySpawner.get_rand_enemy. That revealed a shared +0.1-radian spread per extra shot, the zero-base-projectile exception, bounce priority, target-pool limits, and integer truncation after damage loss.
 
 Scrapshift already handled much of the sequence, but turrets and ranged pets missed the extra-shot rules, bounce redirected from the frame endpoint and could select bosses or trees, and fractional post-hit damage survived. The fix and evidence are in projectile-rules-parity.md and bugs.md. The built-player check confirms three shots with +2 projectiles, an 11-to-5 bounce, and an 11-to-7 pierce with Pumpkin; nine focused EditMode tests, the Windows build, and starter and companion reviews passed. Shaoyu prompted the audit; Codex traced and checked the implementation. Reproduce the reasoning before describing it as personally performed debugging.
+
+## October 13 interview example - measuring crowded combat performance
+
+The performance work isolated repeated collision-profile searches, weapon-set LINQ queries, and command-line argument copies in the combat loop. A seeded standalone benchmark measured lower CPU time after replacing those repeated operations, while matching the recorded shot, health, and position checksums. See `performance-optimization.md` for the benchmark setup, raw reports, regression tests, and limits. The measurements cover simulation CPU time for the tested workload, not rendered frame rate or every gameplay state. Shaoyu directed the work; Codex implemented and measured it. Reproduce the benchmark and trace the code before presenting it as personal experience.

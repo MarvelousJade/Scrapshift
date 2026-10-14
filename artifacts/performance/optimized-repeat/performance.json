@@ -1,0 +1,33 @@
+{
+    "scope": "Controlled headless Windows player CPU benchmark: 100/200 durable enemies, six tier-II weapons, fixed 60 Hz simulation, fixed seeds, 120 warmup + 360 measured steps. CPU times measure Simulate and UpdateFeedback only; excludes rendering, UI, startup and setup. Optional Unity allocation counter covers entire frames and is -1 if its positive control fails. Not a whole-game FPS measurement.",
+    "unity": "6000.6.5f1",
+    "cpu": "AMD Ryzen 5 3600 6-Core Processor ",
+    "samples": [
+        {
+            "enemies": 100,
+            "frames": 360,
+            "shotsFired": 81,
+            "remainingShots": 0,
+            "allocationCounterValid": false,
+            "simulationMeanMs": 5.832168888888892,
+            "simulationP95Ms": 7.8714,
+            "simulationMaxMs": 22.0615,
+            "allocatedBytesPerFrame": -1.0,
+            "positionChecksum": 6091.319722338114,
+            "healthChecksum": 99987951.625
+        },
+        {
+            "enemies": 200,
+            "frames": 360,
+            "shotsFired": 78,
+            "remainingShots": 0,
+            "allocationCounterValid": false,
+            "simulationMeanMs": 12.663076666666663,
+            "simulationP95Ms": 17.7319,
+            "simulationMaxMs": 26.0211,
+            "allocatedBytesPerFrame": -1.0,
+            "positionChecksum": 35152.153696016874,
+            "healthChecksum": 199978766.0
+        }
+    ]
+}
