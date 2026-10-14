@@ -232,7 +232,12 @@ namespace Scrapshift
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
             player.SetActive(true);
-            if(supportShowcase)TickSupportShowcase(dt);else if(loadoutShowcase>=0)TickLoadoutShowcase(dt);else director.Tick(dt, QueueGroup, BeginSpawnGroup);
+            if(supportShowcase)TickSupportShowcase(dt);
+            else
+            {
+                if(loadoutShowcase>=0)invulnerable=10;
+                director.Tick(dt, QueueGroup, BeginSpawnGroup);
+            }
             UpdateBirthQueue(dt); UpdateEquipment(dt);
             UpdateEnemies(dt);
             UpdateWeapons(dt); UpdateStarterEffects(dt); UpdateSlashes(dt);TickImplantAttacks(dt);
@@ -244,7 +249,8 @@ namespace Scrapshift
             if(loadoutShowcase>=0)gameCamera.orthographicSize=Mathf.MoveTowards(gameCamera.orthographicSize,showcaseCleanFrame?3.2f:4.5f,dt*5);
             Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect);
             gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
-            if(supportShowcase||loadoutShowcase>=0)return;
+            if(supportShowcase)return;
+            if(loadoutShowcase>=0&&Rules.Remaining<=dt){BeginLoadoutShowcase(loadoutShowcase);return;}
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
             float healthBefore=Rules.Health;Rules.Tick(dt);
             if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}

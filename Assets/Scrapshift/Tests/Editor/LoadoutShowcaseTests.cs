@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEngine;
 using Scrapshift.Editor;
 
 namespace Scrapshift.Tests
@@ -13,6 +14,7 @@ namespace Scrapshift.Tests
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
             Assert.IsNotNull(catalog);
             Assert.AreEqual(4,ShowcaseLoadouts.All.Length);
+            Assert.AreEqual(4,ShowcaseLoadouts.All.Select(loadout=>loadout.map).Distinct().Count());
             for(int index=0;index<ShowcaseLoadouts.All.Length;index++)
             {
                 var loadout=ShowcaseLoadouts.All[index];
@@ -45,19 +47,22 @@ namespace Scrapshift.Tests
             Assert.AreEqual(3,ShowcaseLoadouts.Index("druid"));
         }
 
-        [Test] public void ShowcaseStartsAtWave19WithWave19Enemies()
+        [Test] public void ShowcaseUsesTheRealWave19ScheduleAndCountdown()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
             Assert.AreEqual(19,ShowcaseLoadouts.Wave);
-            Assert.GreaterOrEqual(ShowcaseLoadouts.CrowdLimit,30);
-            Assert.IsNotNull(catalog.data.waves[ShowcaseLoadouts.Wave-1]);
-            var waveIds=catalog.data.waves[ShowcaseLoadouts.Wave-1].groups
-                .SelectMany(group=>group.units).Select(unit=>unit.id).ToArray();
-            foreach(var id in ShowcaseLoadouts.Wave19Enemies)
-            {
-                Assert.Contains(id,waveIds);
+            var source=JsonUtility.FromJson<BaseWaveCatalog>(Resources.Load<TextAsset>("base-waves").text);
+            var wave=WaveSelection.For(source,ShowcaseLoadouts.Wave,0,false,false);
+            Assert.AreEqual(60,wave.duration);
+            Assert.AreEqual(100,wave.cap);
+            foreach(var id in wave.groups.SelectMany(group=>group.units).Select(unit=>unit.id).Distinct())
                 Assert.IsNotNull(catalog.Enemy(id),id);
-            }
+            int spawned=0;
+            var director=new SpawnDirector(wave,19);
+            director.Tick(.5f,(group,unit,count)=>spawned+=count);
+            Assert.AreEqual(0,spawned,"The real schedule has no immediate crowd.");
+            director.Tick(7.5f,(group,unit,count)=>spawned+=count);
+            Assert.Greater(spawned,36,"The real wave can exceed the old showcase crowd limit.");
 
             var rules=new RunRules(19);
             rules.Configure(catalog);
@@ -66,6 +71,8 @@ namespace Scrapshift.Tests
             Assert.AreEqual(RunPhase.Playing,rules.Phase);
             Assert.AreEqual(19,rules.Wave);
             Assert.AreEqual(RunRules.Durations[18],rules.Remaining);
+            rules.Tick(1);
+            Assert.AreEqual(59,rules.Remaining);
         }
     }
 }

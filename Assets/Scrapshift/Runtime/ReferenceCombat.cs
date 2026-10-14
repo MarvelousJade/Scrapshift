@@ -436,6 +436,7 @@ namespace Scrapshift
         bool Damage(int index,float damage,float crit=0,float knockback=1,Vector2 attackDirection=default,Equipment weapon=null,bool secondary=false,bool bypassArmor=false,bool structure=false)
         {
             if(index<0||index>=enemies.Count)return false;
+            if(loadoutShowcase>=0)damage*=ShowcaseLoadouts.DamageMultiplier;
             float sourceDamage=damage;
             knockback+=Rules.Stat("knockback")/10;
             var e=enemies[index];if(e.marker!=null)return false;bool critical=(!structure||Rules.Stat("structures_can_crit")>0)&&UnityEngine.Random.value<Mathf.Clamp01(Rules.CritChance+crit);if(critical)

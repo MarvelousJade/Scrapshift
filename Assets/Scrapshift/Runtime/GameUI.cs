@@ -105,7 +105,7 @@ namespace Scrapshift
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
             {
                 int duration=RunRules.Durations[Mathf.Clamp(Rules.Wave-1,0,RunRules.WaveCount-1)];
-                int remaining=supportShowcase||loadoutShowcase>=0?
+                int remaining=supportShowcase?
                     Mathf.CeilToInt(duration-Mathf.Repeat(elapsed,duration)):
                     waveSweeping?0:Mathf.CeilToInt(Rules.Remaining);
                 OutlinedText(630,61,180,56,remaining.ToString(),timer);
