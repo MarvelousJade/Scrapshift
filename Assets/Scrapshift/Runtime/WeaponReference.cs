@@ -10,7 +10,7 @@ namespace Scrapshift
         public float accuracy=1,soundDb=-5,effectScale=1;public float[] half,hitOffset;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
     }
     [Serializable] public sealed class ExplosionReference
-    {public int index;public string texture;public string[] clips;public float soundDb,radius;[NonSerialized] public Sprite sprite;[NonSerialized] public AudioClip[] audio;}
+    {public int index,smokeAmount;public string texture;public string[] clips;public float soundDb,radius;[NonSerialized] public Sprite sprite;[NonSerialized] public AudioClip[] audio;}
     [Serializable] public sealed class SecondaryReference {public int index;public string scene;}
     [Serializable] public sealed class ProjectileReference
     {

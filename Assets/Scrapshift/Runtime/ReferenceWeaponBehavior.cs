@@ -108,19 +108,20 @@ namespace Scrapshift
             if(WeaponReference.Profile(shot.weapon)?.canBounce==false)shot.bounces=0;
         }
         sealed class ReferenceExplosion
-        {public Vector2 position;public float age,radius,damage;public Equipment weapon;public GameObject obj;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();}
+        {public Vector2 position;public float age,radius,scale,damage;public Equipment weapon;public GameObject obj;public ParticleSystem smoke;public int smokeAmount;public bool finished;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();}
         readonly List<ReferenceExplosion> weaponExplosions=new List<ReferenceExplosion>();
         void SpawnReferenceExplosion(Enemy victim,Equipment weapon,WeaponTrait trait,float damage)
         {
             var profile=WeaponReference.Profile(weapon);int index=System.Array.IndexOf(weapon.traits,trait);
             var reference=System.Array.Find(profile?.explosions??System.Array.Empty<ExplosionReference>(),x=>x.index==index);
             float scale=Mathf.Max(.1f,trait.radius*(1+Rules.Stat("explosion_size")/100));
-            var explosion=new ReferenceExplosion{position=victim.pos,radius=(reference?.radius??1.4734f)*scale,damage=damage*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),weapon=weapon};explosion.hit.Add(victim);
+            var explosion=new ReferenceExplosion{position=victim.pos,radius=(reference?.radius??1.4734f)*scale,scale=scale,damage=damage*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),weapon=weapon};explosion.hit.Add(victim);
             if(reference!=null)
             {
                 if(reference.sprite==null)reference.sprite=ProjectileReference.MakeSprite(reference.texture);
                 explosion.obj=SpriteObject("Weapon explosion",reference.sprite,victim.pos,14);explosion.obj.transform.localScale=Vector3.one*scale*1.36719f;
                 explosion.obj.GetComponent<SpriteRenderer>().color=new Color(.788235f,.788235f,.788235f,.392157f);
+                explosion.smokeAmount=reference.smokeAmount;
                 if(reference.soundDb>-50)
                 {
                     if(reference.audio==null)reference.audio=System.Array.ConvertAll(reference.clips,path=>Resources.Load<AudioClip>(path));
@@ -133,11 +134,29 @@ namespace Scrapshift
         {
             foreach(var explosion in weaponExplosions.ToArray())
             {
-                int before=Rules.Kills;
-                foreach(var e in enemies.ToArray())if(e.marker==null&&!explosion.hit.Contains(e)&&Vector2.Distance(HurtCenter(e),explosion.position+Vector2.down*.03f)<explosion.radius+HurtRadius(e))
-                {explosion.hit.Add(e);Damage(enemies.IndexOf(e),explosion.damage,explosion.weapon.crit,0,e.pos-explosion.position,explosion.weapon,true);}
-                Rules.RecordExplosionKills(Rules.Kills-before);explosion.age+=dt;
-                if(explosion.age>=.05f){if(explosion.obj!=null)Destroy(explosion.obj);weaponExplosions.Remove(explosion);}
+                if(!explosion.finished)
+                {
+                    int before=Rules.Kills;
+                    foreach(var e in enemies.ToArray())if(e.marker==null&&!explosion.hit.Contains(e)&&Vector2.Distance(HurtCenter(e),explosion.position+Vector2.down*.03f*explosion.scale)<explosion.radius+HurtRadius(e))
+                    {explosion.hit.Add(e);Damage(enemies.IndexOf(e),explosion.damage,explosion.weapon.crit,0,e.pos-explosion.position,explosion.weapon,true);}
+                    Rules.RecordExplosionKills(Rules.Kills-before);
+                }
+                explosion.age+=dt;
+                if(!explosion.finished&&explosion.age>=.05f-.000001f)
+                {
+                    explosion.finished=true;
+                    if(explosion.obj!=null)explosion.obj.GetComponent<SpriteRenderer>().enabled=false;
+                    if(explosion.smokeAmount>0&&GameSettings.Flag("effects"))
+                    {
+                        explosion.smoke=RocketExplosionSmoke.Emit(explosion.position,explosion.scale,explosion.smokeAmount);
+                    }
+                }
+                if(explosion.age>=1f)
+                {
+                    if(explosion.obj!=null)Destroy(explosion.obj);
+                    if(explosion.smoke!=null)Destroy(explosion.smoke.gameObject);
+                    weaponExplosions.Remove(explosion);
+                }
             }
         }
         Vector2 ProjectileHitOffset(Shot shot)

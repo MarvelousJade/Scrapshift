@@ -86,6 +86,7 @@ namespace Scrapshift
             }
             int supportIndex=Array.IndexOf(args,"--support-motion-review");if(supportIndex>=0&&supportIndex+1<args.Length)BeginSupportReview(args[supportIndex+1]);
             int weaponReviewIndex=Array.IndexOf(args,"--weapon-fidelity-review");if(weaponReviewIndex>=0&&weaponReviewIndex+1<args.Length)BeginWeaponFidelityReview(args[weaponReviewIndex+1]);
+            int rocketReviewIndex=Array.IndexOf(args,"--rocket-explosion-review");if(rocketReviewIndex>=0&&rocketReviewIndex+1<args.Length)BeginRocketExplosionReview(args[rocketReviewIndex+1]);
             int petIndex=Array.IndexOf(args,"--pet-review");if(petIndex>=0&&petIndex+1<args.Length)BeginPetReview(args[petIndex+1]);
             int artIndex = Array.IndexOf(args, "--art-review");
             if (artIndex >= 0 && artIndex + 1 < args.Length) BeginArtReview(args[artIndex + 1]);
@@ -171,7 +172,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
+            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !rocketExplosionReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
             if (Rules.Phase == RunPhase.Title)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -196,6 +197,7 @@ namespace Scrapshift
             FinishInspectionReview();
             if(enabled)InspectionReviewTick();
             SupportReviewTick();PetReviewTick();WeaponFidelityReviewTick();StarterReviewTick();
+            RocketExplosionReviewTick();
             ReviewTick();
             ArtReviewTick();
             EnemyReviewTick();EnemyFidelityReviewTick();

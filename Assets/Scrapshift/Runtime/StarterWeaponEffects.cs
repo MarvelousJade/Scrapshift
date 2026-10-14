@@ -120,7 +120,7 @@ namespace Scrapshift
         }
         void ClearStarterEffects()
         {
-            foreach(var explosion in weaponExplosions)if(explosion.obj!=null)Destroy(explosion.obj);weaponExplosions.Clear();
+            foreach(var explosion in weaponExplosions){if(explosion.obj!=null)Destroy(explosion.obj);if(explosion.smoke!=null)Destroy(explosion.smoke.gameObject);}weaponExplosions.Clear();
             System.Array.Clear(meleeAttacks,0,meleeAttacks.Length);
             foreach(var t in starterTurrets)Destroy(t.obj);starterTurrets.Clear();
             foreach(var mine in mines)Destroy(mine.obj);mines.Clear();mineSpawners.Clear();

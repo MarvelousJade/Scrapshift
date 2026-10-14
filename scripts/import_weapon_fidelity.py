@@ -6,6 +6,9 @@ ROOT=src.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 PROJECT=Path(__file__).resolve().parents[1]
 OUT=PROJECT/'Assets/Scrapshift/Resources/WeaponReference'
 OUT.mkdir(parents=True,exist_ok=True)
+# The explosion scene's smoke uses this shared source texture, not the flash sprite.
+smoke_source=ROOT/'particles/sprites/particle_3.png'
+shutil.copyfile(smoke_source,OUT/'particle_3.png')
 provenance={}
 def read(path):
     p=ROOT/path;provenance[path]=hashlib.sha256(p.read_bytes()).hexdigest();return p.read_text(encoding='utf-8-sig')
@@ -88,7 +91,7 @@ for i in re.findall(r'ExtResource\( (\d+) \)',line):
     for index,effect in enumerate(d.get('effects',[])):
         e=src.resource(effect)
         if 'explosion_scene' in e:
-            ex=scene(e['explosion_scene']);explosions.append(dict(index=index,texture=asset(ex['Sprite']['texture']),clips=[asset(v) for v in ex['.'].get('explosion_sounds',[])],soundDb=e.get('sound_db_mod',-10),radius=ex['Hitbox/Collision']['shape'].get('radius',147.34)/100))
+            ex=scene(e['explosion_scene']);explosions.append(dict(index=index,texture=asset(ex['Sprite']['texture']),clips=[asset(v) for v in ex['.'].get('explosion_sounds',[])],soundDb=e.get('sound_db_mod',-10),radius=ex['Hitbox/Collision']['shape'].get('radius',147.34)/100,smokeAmount=round(e.get('scale',1)*e.get('base_smoke_amount',0))))
         if 'weapon_stats' in e:secondary.append(dict(index=index,scene=projectile(src.resource(e['weapon_stats']).get('projectile_scene'))))
     weapons.append(dict(id=wid,tier=int(Path(path).parts[-2]),scene='' if melee else projectile(s.get('projectile_scene')),secondary=secondary,explosions=explosions,
         attackType=s.get('attack_type',0),alternate=s.get('alternate_attack_type',False),returnDamage=s.get('deal_dmg_on_return',False),

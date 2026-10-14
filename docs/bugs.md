@@ -340,3 +340,12 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Fix:** Import the supplied original particle image and emit its dark red puffs from the hurt sprite's edge on enemy hits, including kills. Exclude trees, honor the visual-effects setting and reuse the existing particle cap and cleanup path. The fatal hit shows the burst alongside the existing corpse animation.
 
 **Verification and limit:** Unity Windows build succeeded with zero errors and warnings. The built-player combat-feel fixture passed, counted eight blood particles on the fatal hit and saved a fresh `enemy-death.png` capture, which was inspected. The fixture uses a staged one-HP enemy and explicit time advances; it does not establish frame-perfect Godot particle trajectories or human play acceptance. The first runtime launch hit a Direct3D 12 device-removed crash, so the successful fixture used Direct3D 11 and an absolute capture folder.
+## October 13 - rocket impact lacked the source smoke burst (visual and timing defect)
+
+**User report:** Shaoyu asked whether the rocket launcher contact explosion used the same effect as the original game, then requested the source appearance, duration, particle rate, radius, and damage area.
+
+**Cause:** The existing `ReferenceWeaponBehavior` used the source flash sprite, sound clips, and approximate area, but destroyed the whole effect after 0.05 seconds. The original `explosion.tscn` removes only the flash and hitbox at 0.05 seconds, emits smoke, and keeps the node alive until 1 second. The collision's 3-pixel downward offset also needed to scale with the effect size.
+
+**Fix:** Imported the original `particle_3.png`; added 48 dark smoke particles for rocket tiers with the source emission radius, offset, speed, rotation, fade, and 0.75-second lifetime. The flash and damage window remain 0.05 seconds, and the effect cleans up at 1 second. The radius is 1.76808 world units before explosion-size bonuses. A floating-point threshold tolerance prevents the smoke from slipping one frame late at exactly 0.05 seconds. See `rocket-explosion-parity.md`.
+
+**Verification and limit:** Windows build succeeded with zero errors and warnings. A Direct3D 11 built-player fixture passed flash, area, smoke count/radius/lifetime, and cleanup checks. Visible screenshots were inspected for the flash and smoke sequence. Unity and Godot random particle motion and rasterization are not asserted to be pixel-identical.
