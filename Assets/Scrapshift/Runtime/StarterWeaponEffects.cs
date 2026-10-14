@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,14 +78,18 @@ namespace Scrapshift
         }
         void ResetStructures()
         {
-            ClearStarterEffects();float groupWidth=ArenaGeometry.HalfSize.x*2/3;structureGroupCenter=new Vector2(UnityEngine.Random.Range(-groupWidth/2,groupWidth/2),UnityEngine.Random.Range(-groupWidth/2,groupWidth/2));ResetPets();
+            ClearStarterEffects();ClearShowcaseSupportQueue();float groupWidth=ArenaGeometry.HalfSize.x*2/3;structureGroupCenter=new Vector2(UnityEngine.Random.Range(-groupWidth/2,groupWidth/2),UnityEngine.Random.Range(-groupWidth/2,groupWidth/2));
+            bool queue=loadoutShowcase>=0;
+            ResetPets(queue?(Action<PetSpec>)QueueShowcasePet:null);
             foreach(var w in Rules.Inventory)
             {
                 var trait=w.Trait("turret")??w.Trait("garden")??w.Trait("landmine");if(trait?.projectile==null)continue;
-                DeployStructure(trait.structure??new StructureSpec{kind=trait.key,stats=trait.projectile,spawnInterval=trait.spawnInterval,animationSpeed=trait.animationSpeed,explosionRadius=trait.radius},w.image);
+                var spec=trait.structure??new StructureSpec{kind=trait.key,stats=trait.projectile,spawnInterval=trait.spawnInterval,animationSpeed=trait.animationSpeed,explosionRadius=trait.radius};
+                if(queue)QueueShowcaseStructure(spec);else DeployStructure(spec,w.image);
             }
             foreach(var item in Rules.Items)if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)
-                if(effect.customKey=="structure"&&effect.structure!=null)for(int i=0;i<(int)effect.value;i++)DeployStructure(effect.structure,StructureImage(effect.structure.kind));
+                if(effect.customKey=="structure"&&effect.structure!=null)for(int i=0;i<(int)effect.value;i++)
+                {if(queue)QueueShowcaseStructure(effect.structure);else DeployStructure(effect.structure,StructureImage(effect.structure.kind));}
         }
         void UpdateStarterEffects(float dt)
         {

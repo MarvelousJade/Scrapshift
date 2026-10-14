@@ -367,3 +367,14 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Fix:** Use the source count/spread rule for held ranged weapons, turrets, and ranged pets. Move a bouncing shot to the collision position and restrict its random target pool to ordinary enemies. Truncate positive post-hit damage after clamping reduction, retaining at least one. Preserve bounce-before-pierce, ignored prior targets, and the Particle Accelerator no-bounce gate.
 
 **Verification and limit:** The Windows build passed with zero errors/warnings, nine focused Unity EditMode tests passed, and a Direct3D 11 built-player fixture fired three shots with +2 projectiles, bounced for 11 then 5 damage, and pierced for 11 then 7 with Pumpkin's +15 bonus. Full starter/deployable and companion reviews passed. See projectile-rules-parity.md. Random trajectories and crowded-wave target choices are not asserted to be deterministic.
+
+## October 13 - showcase helpers appeared instantly in fixed rows
+
+**User report:** The Auto Turret demo started with turrets at fixed points, and pets appeared immediately. Shaoyu asked for wave-start spawning like the supplied game and stronger item-based Ranger, Engineer, and Druid builds.
+
+**Cause:** `BeginLoadoutShowcase` called `StartWave`, which deployed all structures and pets immediately, then overwrote their positions with hardcoded rows. The reference `entity_spawner.gd` queues them from the one-second `StructureTimer` and releases one structure and one pet every three physics frames.
+
+**Fix:** Showcase wave start now queues owned structures and pets, waits about 1.05 seconds, then releases one of each every 0.05 seconds using ordinary random placement. The Ranger receives real Bandana, Ricochet, Pumpkin, and attack-speed items. The Engineer and Druid receive additional helper items plus attack-speed, Engineering, and structure-crit buffs. No projectile-count stat is injected. Seashell is a DLC item outside the supplied base-game catalog and was excluded after Shaoyu clarified the desired item effects.
+
+**Verification and limit:** 363/363 EditMode tests passed, including item-derived stat checks and queue cadence boundaries. The Windows build succeeded; the first run had one unrelated deprecated-API warning in the performance review, which was corrected before the final build. The timing is a 60 Hz approximation of the source timer and queue; see `showcase-loadouts.md` for the exact scope.
+**Built-player check:** Hidden headless player runs logged the Engineer queue draining to 11 turrets/gardens plus 3 pets, and the Druid queue draining to 1 structure plus 12 pets, both at 1.61 seconds. The twelfth Engineer structure request is a landmine spawner, tracked separately from visible turrets. The final build had zero errors and warnings. Visual placement was not inspected in this headless check.

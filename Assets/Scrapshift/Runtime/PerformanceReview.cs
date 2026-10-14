@@ -30,7 +30,7 @@ namespace Scrapshift
             var args = Environment.GetCommandLineArgs();
             int index = Array.IndexOf(args, "--performance-review");
             if (index < 0 || index + 1 >= args.Length) return;
-            var game = UnityEngine.Object.FindFirstObjectByType<ArenaGame>();
+            var game = UnityEngine.Object.FindAnyObjectByType<ArenaGame>();
             if (game != null) game.StartCoroutine(game.PerformanceReview(args[index + 1]));
         }
 

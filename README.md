@@ -26,7 +26,9 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Ass
 
 For screenshots and video, choose **Martial Monk** (Rust Flats), **Cyberpunk Ranger** (Neon Drain), **Auto Turret** (Ash Foundry), or **Druid Pets** (Overgrown Relay) on the title screen. Every showcase starts at wave 19 with six weapons and visible worn items. Enemies use the real wave 19 spawn schedule, mix, and 100-enemy cap; the 60-second timer counts down and the same showcase restarts when it ends. The player is invulnerable and all attacks deal twice their normal damage for filming. The normal game HUD is shown without a showcase bar. F6/F7/F9/F10 switch builds, F5 resets the current build, and F8 hides or restores the HUD. The showcases do not award progression.
 
-The showcase Windows player is in `Builds/Showcase` (keep the full folder together). Source tests and the build passed, but repeated local Direct3D 12 runs reported a GPU device error during capture checks; runtime graphics stability remains unresolved on this machine.
+The Ranger owns Bandanas and Ricochets for extra piercing and bounces, plus attack-speed items. The Engineer has additional turrets and pets, Clockwork Wasps, Improved Tools, Engineering, and structure crit items. The Druid has more pets and helper buffs. Turrets and pets enter gradually after the wave starts instead of appearing in fixed rows. These loadouts use the items' actual effects; they add no synthetic projectile-count bonus.
+
+The showcase Windows player is in `Builds/ShowcaseItemBuffs` (keep the full folder together). Double-click `Play Cyberpunk Ranger.cmd`, `Play Auto Turret.cmd`, or `Play Druid Pets.cmd` to inspect the item-based builds. Source tests and the build passed; headless player runs confirmed delayed helper deployment. Visual play was not verified on this machine.
 
 Run `Builds/ConditionalImplants/Scrapshift.exe`; keep its entire player folder together. Archive: `Builds/Scrapshift-Windows.zip`.
 

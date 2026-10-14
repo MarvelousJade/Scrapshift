@@ -15,11 +15,12 @@ namespace Scrapshift
         }
         readonly List<Pet> pets=new List<Pet>();
         void ClearPets(){foreach(var pet in pets)Destroy(pet.obj);pets.Clear();Rules.HealingDrones=0;Rules.PetCount=0;}
-        void ResetPets()
+        void ResetPets(Action<PetSpec> create=null)
         {
             ClearPets();
-            foreach(var effect in Rules.Effects("pet"))if(effect.pet!=null&&!string.IsNullOrEmpty(effect.pet.kind))for(int i=0;i<(int)effect.value;i++)SpawnPet(effect.pet);
-            int shields=(int)Rules.Stat("jellyshield_count");for(int i=0;i<shields;i++)SpawnPet(new PetSpec{kind="jellyshield",health=1,zone=1});
+            if(create==null)create=SpawnPet;
+            foreach(var effect in Rules.Effects("pet"))if(effect.pet!=null&&!string.IsNullOrEmpty(effect.pet.kind))for(int i=0;i<(int)effect.value;i++)create(effect.pet);
+            int shields=(int)Rules.Stat("jellyshield_count");for(int i=0;i<shields;i++)create(new PetSpec{kind="jellyshield",health=1,zone=1});
             Rules.PetCount=pets.Count;
         }
         void SpawnPet(PetSpec spec)

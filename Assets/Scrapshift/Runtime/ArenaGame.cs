@@ -241,7 +241,7 @@ namespace Scrapshift
             if(supportShowcase)TickSupportShowcase(dt);
             else
             {
-                if(loadoutShowcase>=0)invulnerable=10;
+                if(loadoutShowcase>=0){invulnerable=10;TickShowcaseSupportQueue(dt);}
                 director.Tick(dt, QueueGroup, BeginSpawnGroup);
             }
             UpdateBirthQueue(dt); UpdateEquipment(dt);
@@ -311,6 +311,7 @@ namespace Scrapshift
         }
         void ClearCombat()
         {
+            ClearShowcaseSupportQueue();
             ClearPets();
             ClearReferenceCombat(); ClearImpacts(); ClearFootDust(); floaters.Clear();
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();

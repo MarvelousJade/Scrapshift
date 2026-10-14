@@ -47,6 +47,40 @@ namespace Scrapshift.Tests
             Assert.AreEqual(3,ShowcaseLoadouts.Index("druid"));
         }
 
+        [Test] public void ShowcaseCombatBonusesComeFromOwnedItems()
+        {
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+            var ranger=new RunRules(19);ranger.Configure(catalog);ranger.Start();
+            foreach(var id in ShowcaseLoadouts.All[1].items)ranger.GrantItem(Array.Find(catalog.data.items,item=>item.id==id));
+            Assert.AreEqual(0,ranger.Stat("projectiles"),"The showcase does not inject extra shots.");
+            Assert.AreEqual(2,ranger.Stat("piercing"));
+            Assert.AreEqual(2,ranger.Stat("bounce"));
+            Assert.GreaterOrEqual(ranger.Stat("attack_speed"),50);
+
+            var engineer=new RunRules(19);engineer.Configure(catalog);engineer.Start();
+            foreach(var id in ShowcaseLoadouts.All[2].items)engineer.GrantItem(Array.Find(catalog.data.items,item=>item.id==id));
+            Assert.AreEqual(0,engineer.Stat("projectiles"));
+            Assert.GreaterOrEqual(engineer.StructureAttackSpeed,40);
+            Assert.Greater(engineer.Stat("engineering"),0);
+            Assert.Greater(engineer.Stat("structures_can_crit"),0);
+            Assert.GreaterOrEqual(engineer.Effects("structure").Count(),9);
+            Assert.GreaterOrEqual(engineer.Effects("pet").Count(),3);
+            Assert.GreaterOrEqual(ShowcaseLoadouts.All[3].items.Count(id=>Array.Find(catalog.data.items,item=>item.id==id)?.conditionalEffects?.Any(effect=>effect.customKey=="pet"&&effect.pet!=null)==true),10);
+            var druid=new RunRules(19);druid.Configure(catalog);druid.Start();
+            foreach(var id in ShowcaseLoadouts.All[3].items)druid.GrantItem(Array.Find(catalog.data.items,item=>item.id==id));
+            Assert.GreaterOrEqual(druid.StructureAttackSpeed,30);
+            Assert.Greater(druid.Stat("engineering"),0);
+        }
+
+        [Test] public void ShowcaseHelpersWaitForWaveStartAndReleaseInSourceCadence()
+        {
+            Assert.AreEqual(0,ShowcaseSupportTiming.ReleasedBy(0));
+            Assert.AreEqual(0,ShowcaseSupportTiming.ReleasedBy(1.049f));
+            Assert.AreEqual(1,ShowcaseSupportTiming.ReleasedBy(1.05f));
+            Assert.AreEqual(1,ShowcaseSupportTiming.ReleasedBy(1.099f));
+            Assert.AreEqual(2,ShowcaseSupportTiming.ReleasedBy(1.10f));
+        }
+
         [Test] public void ShowcaseUsesTheRealWave19ScheduleAndCountdown()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
