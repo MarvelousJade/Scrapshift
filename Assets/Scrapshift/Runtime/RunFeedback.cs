@@ -11,16 +11,31 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
-        int waveLettersRemaining;float waveLetterClock,winSoundDelay=-1;
+        int waveLettersRemaining;float waveLetterClock,victoryWeaponLift;
+        GameObject victoryRing;
+        SpriteRenderer victoryRingView;
+        static Sprite victoryRingSprite;
+        void ClearVictoryRing(){if(victoryRing!=null)Destroy(victoryRing);victoryRing=null;victoryRingView=null;}
+        void DrawVictoryRing(float age)
+        {
+            if(age<1.25f)return;
+            if(victoryRing==null)
+            {
+                var texture=Resources.Load<Texture2D>("WinRing");
+                if(texture==null)return;
+                if(victoryRingSprite==null)victoryRingSprite=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),new Vector2(.5f,.5f),64);
+                victoryRing=new GameObject("Original blue victory circle");
+                victoryRingView=victoryRing.AddComponent<SpriteRenderer>();victoryRingView.sprite=victoryRingSprite;victoryRingView.sortingOrder=8;
+            }
+            float pulse=Mathf.Repeat(age-1.25f,.8f)/.8f;
+            victoryRing.transform.position=new Vector3(playerPos.x,playerPos.y-.2f,-.9f);
+            victoryRing.transform.localScale=new Vector3(1.45f+pulse*.65f,.6f+pulse*.25f,1);
+            victoryRingView.color=new Color(.42f,.78f,1,.75f*(1-pulse*.55f)*Mathf.Clamp01((4.1f-age)/.4f));
+        }
         void BeginWaveLetters(int count){waveLettersRemaining=count;waveLetterClock=.1f;}
         void TickEndAudio(float dt)
         {
             if(Rules.Phase==RunPhase.Paused)return;
-            if(winSoundDelay>=0)
-            {
-                winSoundDelay-=dt;
-                if(winSoundDelay<=0){winSoundDelay=-1;sound.Play(SoundCue.Win);BeginWaveLetters(7);}
-            }
             if(waveLettersRemaining<=0)return;
             waveLetterClock-=dt;
             if(waveLetterClock>0)return;
@@ -28,10 +43,18 @@ namespace Scrapshift
             waveLettersRemaining--;
             waveLetterClock+=.1f;
         }
-        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);BeginWaveLetters(14);}
+        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));RemoveWaveEnemies();ClearVictoryRing();waveSweeping=true;waveSweepAge=0;victoryWeaponLift=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);if(Rules.Wave==RunRules.WaveCount)waveLettersRemaining=0;else BeginWaveLetters(14);}
         void TickWaveSweep(float dt)
         {
-            waveSweepAge+=dt;
+            float before=waveSweepAge;waveSweepAge+=dt;
+            if(Rules.Wave==RunRules.WaveCount)
+            {
+                if(before<1.25f&&waveSweepAge>=1.25f){sound.Play(SoundCue.WinBeam);if(!reducedMotion)Burst(playerPos,20,new Color(.42f,.78f,1));}
+                if(!reducedMotion&&waveSweepAge>=1.4f&&waveSweepAge<3.4f&&Mathf.FloorToInt((before-1.25f)/.18f)<Mathf.FloorToInt((waveSweepAge-1.25f)/.18f))Burst(playerPos+Vector2.up*(victoryWeaponLift+.3f),5,new Color(.42f,.78f,1));
+                if(before<1.4f&&waveSweepAge>=1.4f){sound.Play(SoundCue.Win);BeginWaveLetters(7);}
+                PoseVictory(waveSweepAge);
+                DrawVictoryRing(waveSweepAge);
+            }
             float scale=PresentationLayout.CanvasScale(Screen.width,Screen.height);
             Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-140.5f*scale,20));
             for(int i=pickups.Count-1;i>=0;i--)
@@ -43,8 +66,29 @@ namespace Scrapshift
                 if(pickup.fruit)CollectPickup(pickup);else {Rules.BankMaterials(pickup.value);if(waveSweepAge-moneyArrivalTime>.12f)moneyArrivalAmount=0;moneyArrivalAmount+=pickup.value;moneyArrivalTime=waveSweepAge;}
                 Destroy(pickup.obj);pickups.RemoveAt(i);
             }
-            if(waveSweepAge<1.8f||pickups.Count>0)return;
-            waveSweeping=false;Rules.Tick(Rules.Remaining);
+            if(waveSweepAge<(Rules.Wave==RunRules.WaveCount?4f:1.8f)||(Rules.Wave!=RunRules.WaveCount&&pickups.Count>0))return;
+            waveSweeping=false;ClearVictoryRing();Rules.Tick(Rules.Remaining);if(Rules.Phase==RunPhase.Won)endSummary=true;
+        }
+        void PoseVictory(float age)
+        {
+            if(reducedMotion||age<.25f)return;
+            float t=age-.25f;
+            // The reference player's won animation squashes, jumps, lands, then rises in the beam.
+            float jump=t<.1f?-.06f:t<.3f?Mathf.Lerp(-.06f,.93f,(t-.1f)/.2f):t<.55f?.93f:t<.65f?Mathf.Lerp(.93f,0,(t-.55f)/.1f):0;
+            float beam=t>1.26f?Mathf.Clamp01((t-1.26f)/1.9f)*5f:0;
+            var body=playerAnimation.bodyView;
+            if(body!=null)
+            {
+                body.transform.localPosition=new Vector3(0,jump+beam,0);
+                float squash=t<.3f?Mathf.Lerp(1.15f,.83f,Mathf.Clamp01((t-.1f)/.2f)):t<.65f?Mathf.Lerp(.83f,1.16f,Mathf.Clamp01((t-.55f)/.1f)):1;
+                body.transform.localScale=new Vector3(squash,2-squash,1);
+            }
+            if(playerAnimation.leftFoot!=null)playerAnimation.leftFoot.transform.localPosition+=Vector3.up*(jump+beam);
+            if(playerAnimation.rightFoot!=null)playerAnimation.rightFoot.transform.localPosition+=Vector3.up*(jump+beam);
+            float weaponLift=(jump+beam)*ActorPresentation.PlayerScale;
+            foreach(var weapon in equipmentViews)if(weapon!=null)weapon.transform.position+=Vector3.up*(weaponLift-victoryWeaponLift);
+            victoryWeaponLift=weaponLift;
+            playerShadow.Place(playerPos,ActorPresentation.PlayerScale,Mathf.Clamp01((jump+beam)/5f));
         }
         void DrawMoneyCounter()
         {

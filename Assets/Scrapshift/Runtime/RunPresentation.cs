@@ -176,10 +176,11 @@ namespace Scrapshift
         }
         void ReferenceEndUI()
         {
+            if(Rules.Phase==RunPhase.Won)endSummary=true;
             if(DrawUnlockReward())return;
             if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
             if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
-            else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
+            else OutlinedText(300,28,1100,58,won?$"Run Won - Salvage Yard     Danger {Rules.Difficulty}":$"Run Lost - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
             if(!endSummary)
             {
                 if(won){Portrait(new Vector2(720,417),160,playerAnimation.Look,true);Text(460,625,520,45,"20 waves survived",center);}

@@ -105,6 +105,8 @@ namespace Scrapshift
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
             int presentationIndex=Array.IndexOf(args,"--presentation-review");
             if(presentationIndex>=0&&presentationIndex+1<args.Length)BeginPresentationReview(args[presentationIndex+1]);
+            int winReviewIndex=Array.IndexOf(args,"--win-review");
+            if(winReviewIndex>=0&&winReviewIndex+1<args.Length)BeginWinReview(args[winReviewIndex+1]);
             int feelIndex=Array.IndexOf(args,"--combat-feel-review");
             if(feelIndex>=0&&feelIndex+1<args.Length)BeginCombatFeelReview(args[feelIndex+1]);
             int worldIndex=Array.IndexOf(args,"--world-review");
@@ -121,9 +123,9 @@ namespace Scrapshift
 
         public void Begin()
         {
-            wardrobe?.Reset();
+            wardrobe?.Reset();ClearVictoryRing();
             ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
-            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;waveSweepAge=0;waveLettersRemaining=0;winSoundDelay=-1;selectedWeapon=-1;
+            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;waveSweepAge=0;waveLettersRemaining=0;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
             gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
@@ -191,7 +193,7 @@ namespace Scrapshift
             if (audioPhase != Rules.Phase)
             {
                 if (Rules.Phase != RunPhase.Playing) sound.StopCombat();
-                if (Rules.Phase == RunPhase.Won) winSoundDelay=Mathf.Max(0,2.4f-waveSweepAge);
+                if (Rules.Phase == RunPhase.Won) endSummary=true;
                 if (Rules.Phase == RunPhase.Lost) { sound.Play(SoundCue.Lose); sound.Play(SoundCue.WaveClear); BeginWaveLetters(8); }
                 audioPhase = Rules.Phase;
             }
@@ -219,6 +221,7 @@ namespace Scrapshift
             WorldReviewTick();
             CombatFeelReviewTick();
             PresentationReviewTick();
+            WinReviewTick();
         }
 
         void Simulate(float dt)

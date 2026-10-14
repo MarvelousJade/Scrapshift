@@ -18,6 +18,44 @@ namespace Scrapshift
             public bool capturesVerified,authoredScenePresent,canopyInstantiated,selectedWeaponStarted,landingHeldTimer,landingFinished,restartReset,returnToTitle,twentyWaveWin,inventoryScreen,upgradeScreen,shopScreen,lootScreen;
         }
         PresentationReport presentationReport;
+        bool winReview;
+        string winReviewPath;
+        int winReviewStage;
+        float winReviewStart;
+        void BeginWinReview(string folder)
+        {
+            winReview=true;winReviewPath=Path.GetFullPath(folder);Directory.CreateDirectory(winReviewPath);reducedMotion=false;winReviewStart=Time.realtimeSinceStartup;
+            StartSelectedRun();TickArrival(ArrivalMotion.Duration);Rules.SetShowcaseWave(RunRules.WaveCount);
+            sound.SetMuted(true);BeginWaveSweep();
+        }
+        System.Collections.IEnumerator CaptureWinFrame(string name)
+        {
+            yield return new WaitForEndOfFrame();
+            var image=new Texture2D(Screen.width,Screen.height,TextureFormat.RGB24,false);
+            image.ReadPixels(new Rect(0,0,Screen.width,Screen.height),0,0);
+            image.Apply();File.WriteAllBytes(Path.Combine(winReviewPath,name+".png"),image.EncodeToPNG());Destroy(image);
+        }
+        void WinReviewTick()
+        {
+            if(!winReview)return;
+            float[] moments={.5f,1.8f,3f,4.4f};
+            if(winReviewStage<moments.Length&&waveSweepAge>=moments[winReviewStage]&&Rules.Phase==RunPhase.Playing)
+            {
+                StartCoroutine(CaptureWinFrame(new[]{"jump","win-label","beam","results"}[winReviewStage]));
+                winReviewStage++;return;
+            }
+            if(winReviewStage==3&&Rules.Phase==RunPhase.Won)
+            {
+                StartCoroutine(CaptureWinFrame("results"));winReviewStage++;
+            }
+            if(winReviewStage==4)
+            {
+                if(!File.Exists(Path.Combine(winReviewPath,"results.png"))&&Time.realtimeSinceStartup-winReviewStart<12)return;
+                File.WriteAllText(Path.Combine(winReviewPath,"win-review.json"),JsonUtility.ToJson(new WinReviewReport{phase=Rules.Phase.ToString(),summary=endSummary,age=waveSweepAge}));
+                winReview=false;Application.Quit(Rules.Phase==RunPhase.Won&&endSummary?0:1);
+            }
+        }
+        [Serializable] sealed class WinReviewReport {public string phase;public bool summary;public float age;}
         void BeginPresentationReview(string folder)
         {
             presentationReview=true;presentationPath=folder;Directory.CreateDirectory(folder);presentationUtc=DateTime.UtcNow;
@@ -54,7 +92,7 @@ namespace Scrapshift
                     StartSelectedRun();presentationReport.restartReset=Rules.Health==Rules.MaxHealth&&Rules.Wave==1&&!endSummary&&Arriving&&Rules.Inventory[0].id=="smg";
                     TickArrival(ArrivalMotion.Duration);
                     for(int i=1;i<=20;i++){Rules.Tick(Rules.Remaining);while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);if(Rules.Phase==RunPhase.Shop)Rules.NextWave();}
-                    presentationReport.twentyWaveWin=Rules.Phase==RunPhase.Won;break;
+                    presentationReport.twentyWaveWin=Rules.Phase==RunPhase.Won;endSummary=true;progress.NewlyUnlocked.Clear();achievementToasts.Tick(30);break;
                 case 13:
                     StartSelectedRun();TickArrival(ArrivalMotion.Duration);
                     foreach(string id in new[]{"smg","double_barrel_shotgun","laser_gun","knife","spear"})Rules.Inventory.Add(catalog.Weapon(id,1));

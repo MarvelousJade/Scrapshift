@@ -3,6 +3,7 @@ using System.Linq;
 using AssetScope;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEngine;
 using Scrapshift.Editor;
 
 namespace Scrapshift.Tests
@@ -35,6 +36,8 @@ namespace Scrapshift.Tests
             AssertCue(bank,SoundCue.WaveClear,new[]{"WaveClear_01"},1);
             AssertCue(bank,SoundCue.WaveLetter,new[]{"WaveLetter_01","WaveLetter_02"},(float)Math.Pow(10,-10.0/20));
             AssertCue(bank,SoundCue.Win,new[]{"Win_01"},(float)Math.Pow(10,-5.0/20));
+            AssertCue(bank,SoundCue.WinBeam,new[]{"WinBeam_01"},1);
+            Assert.IsNotNull(Resources.Load<Texture2D>("WinRing"),"The victory light must use the original blue circle sprite.");
             AssertCue(bank,SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")).ToArray(),(float)Math.Pow(10,-5.0/20));
         }
         [Test] public void AchievementPopupUsesTheOriginalTwoSoundsAndTiming()
