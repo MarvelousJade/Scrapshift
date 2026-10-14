@@ -388,3 +388,13 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Fix:** Color displayed seconds 5 through 1 with the configured negative color. Add the byte-identical stereo clock WAV as a dedicated cue, playing once per displayed-second crossing with the source ±0.1 pitch variation. Keep its notification voice audible without ducking combat.
 
 **Verification and limit:** The Windows build succeeded with zero errors and warnings. All 364 EditMode tests passed. A hidden Direct3D 11 built-player mixer check passed all 22 cues, including the clock tick. A visual screenshot at exactly five seconds was not captured; see `wave-countdown-parity.md` for source and timing details.
+
+## October 13 - unlock popup used the install sound
+
+**User report:** Shaoyu asked for the original unlock sound, including unlocks earned on a lost run.
+
+**Cause:** Scrapshift played its generic install cue when an achievement toast was drawn. The end-of-run reward card had no matching sound. The original challenge_completed_ui.gd uses a dedicated popup clip and a separate popout whoosh.
+
+**Fix:** Import the two original clips byte for byte. Play the popup when a challenge completes, including Rookie on the first loss, and play the whoosh when its toast expires. Queued challenges announce each popup. Keep the end-run reward card silent so a reward is not announced twice.
+
+**Verification and limit:** See unlock-sound-parity.md for the source trace and hashes. The cue and queue tests check imported clips, gain, pitch, and expiry; the full build and runtime checks are recorded with the integration build. Scrapshift's 2.6-second toast duration and end-run card layout still differ from the source.

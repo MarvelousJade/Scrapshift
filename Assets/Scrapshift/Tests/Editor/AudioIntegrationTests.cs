@@ -37,6 +37,21 @@ namespace Scrapshift.Tests
             AssertCue(bank,SoundCue.Win,new[]{"Win_01"},(float)Math.Pow(10,-5.0/20));
             AssertCue(bank,SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")).ToArray(),(float)Math.Pow(10,-5.0/20));
         }
+        [Test] public void AchievementPopupUsesTheOriginalTwoSoundsAndTiming()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath);
+            AssertCue(bank,SoundCue.AchievementPopup,new[]{"AchievementPopup_01"},(float)Math.Pow(10,-5.0/20));
+            AssertCue(bank,SoundCue.AchievementPopout,new[]{"AchievementPopout_01"},1);
+            Assert.AreEqual(.2f,bank.Find(SoundCue.AchievementPopup).pitchVariation);
+            Assert.AreEqual(0,bank.Find(SoundCue.AchievementPopout).pitchVariation);
+            var queue=new AchievementToastQueue();
+            var challenge=new UnlockDefinition{id="chal_rookie",reward="character_chunky"};
+            queue.Enqueue(challenge);
+            Assert.AreSame(challenge,queue.Current);
+            Assert.AreEqual(0,queue.Tick(AchievementToastQueue.Duration-.01f));
+            Assert.AreEqual(1,queue.Tick(.02f));
+            Assert.IsNull(queue.Current);
+        }
         static void AssertCue(SoundBank bank,SoundCue cue,string[] names,float gain)
         {
             var entry=bank.Find(cue);Assert.NotNull(entry);

@@ -19,7 +19,7 @@ namespace Scrapshift
             var definitions=JsonUtility.FromJson<UnlockCatalog>(Resources.Load<TextAsset>("base-unlocks").text);
             bool fixture=Environment.GetCommandLineArgs().Any(a=>a.StartsWith("--"));
             progress=new Progression(definitions.challenges,fixture?null:Path.Combine(Application.persistentDataPath,"progress-v1.json"));
-            progress.ChallengeCompleted+=achievementToasts.Enqueue;
+            progress.ChallengeCompleted+=OnAchievementCompleted;
             ApplyUnlocks();InitializeEncounters();
         }
         void ApplyUnlocks()
@@ -30,9 +30,21 @@ namespace Scrapshift
             RunRules.ConfigureShopItems(catalog.data.items);
         }
         bool CharacterUnlocked(CharacterProfile character)=>character.available;
+        void OnAchievementCompleted(UnlockDefinition challenge)
+        {
+            bool first=achievementToasts.Current==null;
+            achievementToasts.Enqueue(challenge);
+            if(first)sound?.Play(SoundCue.AchievementPopup);
+        }
         void TickProgression(float dt)
         {
-            achievementToasts.Tick(dt);
+            var before=achievementToasts.Current;
+            if(achievementToasts.Tick(dt)>0)
+            {
+                sound?.Play(SoundCue.AchievementPopout);
+                if(achievementToasts.Current!=null&&achievementToasts.Current!=before)
+                    sound?.Play(SoundCue.AchievementPopup);
+            }
 #if UNITY_WEBGL && !UNITY_EDITOR
             browserSaveClock+=dt;if(browserSaveClock>=5){browserSaveClock=0;progress?.Save();}
 #endif

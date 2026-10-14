@@ -11,22 +11,20 @@ namespace Scrapshift
         public const float Duration=2.6f;
         public void Enqueue(UnlockDefinition achievement)
         {if(Current==null){Current=achievement;Age=0;}else waiting.Enqueue(achievement);}
-        public void Tick(float dt)
+        public int Tick(float dt)
         {
-            if(Current==null)return;Age+=Mathf.Max(0,dt);
+            if(Current==null)return 0;Age+=Mathf.Max(0,dt);int finished=0;
             while(Current!=null&&Age>=Duration)
-            {Age-=Duration;Current=waiting.Count>0?waiting.Dequeue():null;}
+            {Age-=Duration;Current=waiting.Count>0?waiting.Dequeue():null;finished++;}
+            return finished;
         }
     }
     public sealed partial class ArenaGame
     {
         readonly AchievementToastQueue achievementToasts=new AchievementToastQueue();
-        UnlockDefinition audibleAchievement;
         void DrawAchievementToast()
         {
             var achievement=achievementToasts.Current;if(achievement==null)return;
-            if(Event.current.type==EventType.Repaint&&audibleAchievement!=achievement)
-            {audibleAchievement=achievement;sound.Play(SoundCue.Install);}
             var reward=RewardEntry(achievement.reward);
             float fade=Mathf.Min(Mathf.Clamp01(achievementToasts.Age/.2f),Mathf.Clamp01((AchievementToastQueue.Duration-achievementToasts.Age)/.3f));
             var r=new Rect(FullCanvas.xMin+20-(reducedMotion?0:30*(1-fade)),FullCanvas.yMax-114,360,94);
