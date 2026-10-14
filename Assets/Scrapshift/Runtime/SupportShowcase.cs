@@ -10,6 +10,7 @@ namespace Scrapshift
         float showcaseSpawnClock;
         void BeginSupportShowcase()
         {
+            loadoutShowcase=-1;showcaseCleanFrame=false;
             supportShowcase=true;pauseOptions=pauseCodex=false;
             Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();SyncEquipment();
             reducedMotion=false;player.SetActive(true);showcaseSpawnClock=0;invulnerable=10;

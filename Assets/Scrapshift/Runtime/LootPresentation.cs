@@ -6,38 +6,23 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int cratesSpawned;
+        Texture2D cyberCrateTexture;
+        Sprite cyberCrateSprite;
+        Texture2D CrateTexture => cyberCrateTexture != null ? cyberCrateTexture : (cyberCrateTexture=Resources.Load<Texture2D>("CyberCrate"));
         void DrawCrateIcon(Rect r)
         {
-            RoundedBox(r,ink,4);
-            Rect face=new Rect(r.x+3,r.y+9,r.width-6,r.height-12);
-            Box(face,new Color(.45f,.27f,.12f));
-            Box(new Rect(r.x+3,r.y+3,r.width-6,6),new Color(.75f,.52f,.28f));
-            for(int i=1;i<3;i++)Box(new Rect(face.x,face.y+i*face.height/3,face.width,2),new Color(.22f,.13f,.065f));
-            Box(new Rect(face.x+2,face.y,4,face.height),new Color(.72f,.48f,.24f));
-            Box(new Rect(face.xMax-6,face.y,4,face.height),new Color(.72f,.48f,.24f));
-            var matrix=GUI.matrix;GUIUtility.RotateAroundPivot(-32,face.center);
-            Box(new Rect(face.center.x-face.width*.45f,face.center.y-2,face.width*.9f,5),new Color(.85f,.61f,.34f));GUI.matrix=matrix;
-            foreach(float x in new[]{face.x+3,face.xMax-5})foreach(float y in new[]{face.y+3,face.yMax-5})Box(new Rect(x,y,2,2),ink);
+            GUI.DrawTexture(r,CrateTexture,ScaleMode.ScaleToFit,true);
         }
         GameObject CrateObject(Vector2 position, bool legendary)
         {
-            var obj=new GameObject(legendary?"Legendary salvage crate":"Salvage crate");
+            if(cyberCrateSprite==null)
+                cyberCrateSprite=Sprite.Create(CrateTexture,new Rect(0,0,CrateTexture.width,CrateTexture.height),new Vector2(.5f,.5f),100);
+            var obj=new GameObject(legendary?"Legendary cyber crate":"Cyber crate");
             obj.transform.position=new Vector3(position.x,position.y,-1.5f);
-            var fill=MakeLine("Box",obj.transform,new Color(.48f,.29f,.12f),.44f);
-            fill.sortingOrder=3;fill.positionCount=2;
-            fill.SetPosition(0,new Vector3(-.26f,0,0));fill.SetPosition(1,new Vector3(.26f,0,0));
-            var rim=MakeLine("Outline",obj.transform,new Color(.09f,.07f,.05f),.06f,true);
-            rim.sortingOrder=4;rim.positionCount=4;
-            rim.SetPosition(0,new Vector3(-.29f,-.24f,0));rim.SetPosition(1,new Vector3(.29f,-.24f,0));
-            rim.SetPosition(2,new Vector3(.29f,.24f,0));rim.SetPosition(3,new Vector3(-.29f,.24f,0));
-            for(int i=0;i<2;i++)
-            {
-                var seam=MakeLine("Wood plank seam",obj.transform,new Color(.22f,.13f,.065f),.025f);seam.sortingOrder=5;seam.positionCount=2;
-                seam.SetPosition(0,new Vector3(-.26f,-.08f+i*.16f));seam.SetPosition(1,new Vector3(.26f,-.08f+i*.16f));
-            }
-            var strap=MakeLine("Wooden brace",obj.transform,legendary?coral:new Color(.85f,.61f,.34f),.065f);
-            strap.sortingOrder=6;strap.positionCount=2;
-            strap.SetPosition(0,new Vector3(-.22f,-.18f,0));strap.SetPosition(1,new Vector3(.22f,.18f,0));
+            var art=new GameObject("Crate artwork");art.transform.SetParent(obj.transform,false);
+            var renderer=art.AddComponent<SpriteRenderer>();renderer.sprite=cyberCrateSprite;renderer.sortingOrder=4;
+            art.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(cyberCrateSprite,.64f);
+            if(legendary)renderer.color=new Color(1,.65f,.4f);
             return obj;
         }
 

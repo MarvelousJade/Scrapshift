@@ -9,6 +9,7 @@ namespace Scrapshift
         public float cooldown = 1, jitter = 10f/60, initial, windup = .4f, active = .75f;
         public float minRange, maxRange = 3, chargeSpeed = 5, spacing, offset = 2;
         public float projectileSpeed = 5, projectileGrowth = 1, spread;
+        public EncounterAttack source;public float rangeRandom,spacingRandom=1,updateInterval=-1;public bool allowWithin=true;
         public static EnemyBehavior For(string id, bool secondPhase = false)
         {
             var b = new EnemyBehavior();

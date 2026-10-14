@@ -34,7 +34,7 @@ namespace Scrapshift
                 else Add(g);
             }
             // Crash Zone loot group: one alien per copy, once between 5s and ten seconds before the end.
-            for(int i=0;i<extraLootAliens;i++)Add(new SpawnGroup{start=5+(float)random.NextDouble()*Math.Max(0,wave.duration-15),interval=3,minimum=1,repeats=-1,chance=1,area=-1,inset=2,units=new[]{new UnitEntry{id="looter",min=1,max=1,chance=1}}});
+            for(int i=0;i<extraLootAliens;i++)Add(new SpawnGroup{start=5+(float)random.NextDouble()*Math.Max(0,wave.duration-15),interval=3,minimum=1,repeats=-1,chance=1,area=-1,inset=2,loot=true,units=new[]{new UnitEntry{id="looter",min=1,max=1,chance=1}}});
         }
         public void AddExtra(SpawnGroup g)=>Add(g);
         void Add(SpawnGroup g)
@@ -58,7 +58,7 @@ namespace Scrapshift
                     {
                         float number=random.Next(u.min,u.max+1);
                         if(u.id=="tree")number+=extraTrees;
-                        else if(u.id!="looter")number=Math.Max(1,number*(1+enemyModifier/100));
+                        else if(!s.group.loot)number=Math.Max(1,number*(1+enemyModifier/100));
                         float n=Math.Max(0,number)*u.chance;int count=(int)n;if(random.NextDouble()<n-count)count++;if(count>0)emit(s.group,u,count);
                     }
                     s.left--;

@@ -149,9 +149,9 @@ namespace Scrapshift
             if(source.StartsWith("item_"))return Items.Count(i=>"item_"+i.id==source);
             string key=source.Replace("stat_","");
             // Source stat links intentionally exclude other linked bonuses, avoiding cycles.
-            float value=(PermanentStat(key)+WeaponSets.Bonus(Inventory,key)+EquipmentStat(key))*(Character?.Gain(key)??1);
-            if(key=="max_hp")value+=10;
-            if(!permanent)value+=ConditionalStat(key);
+            float gain=Character?.Gain(key)??1;
+            float value=(PermanentStat(key)+(key=="max_hp"?10:0)+WeaponSets.Bonus(Inventory,key)+EquipmentStat(key))*gain;
+            if(!permanent)value+=ConditionalStat(key)*gain;
             return value;
         }
         void ResetConditionalEffects()

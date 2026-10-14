@@ -7,21 +7,17 @@ namespace Scrapshift
         sealed class Slash
         {
             public Enemy owner; public GameObject obj; public Vector2 pos, direction;
-            public float age, damage; public bool hit;
+            public float age, damage; public bool hit,forward,deleteOnDeath;
         }
         readonly List<Slash> slashes = new List<Slash>();
         static readonly float[] bossRadii = {2.5f,3,3.5f,6,6.5f,7,9.5f,10,10.5f};
         float ProjectileDamage(Enemy e) => Mathf.Max(1,(int)((1+e.behavior.projectileGrowth*(Rules.Wave-1))*Rules.EnemyDamageFactor));
         GameObject PlasmaOrb(string name, Transform parent=null)
         {
-            var obj=new GameObject(name); if(parent!=null)obj.transform.SetParent(parent,false);
-            var rim=MakeLine("Plasma outline",obj.transform,coral,.09f,true);
-            rim.sortingOrder=13;rim.positionCount=16;
-            for(int i=0;i<16;i++) { float a=i*Mathf.PI*2/16;rim.SetPosition(i,new Vector3(Mathf.Cos(a)*.13f,Mathf.Sin(a)*.13f,0)); }
-            var core=MakeLine("Core",obj.transform,amber,.1f);
-            core.sortingOrder=14;core.positionCount=2;core.SetPosition(0,Vector3.left*.04f);core.SetPosition(1,Vector3.right*.04f);
-            return obj;
+            var obj=HostileProjectile("projectiles/bullet_enemy/enemy_projectile.tscn");obj.name=name;
+            if(parent!=null)obj.transform.SetParent(parent,false);return obj;
         }
+
         void UpdateBossArm(Enemy e,float dt)
         {
             if(e.orbitProjectiles==null)
@@ -73,17 +69,16 @@ namespace Scrapshift
             for(int i=slashes.Count-1;i>=0;i--)
             {
                 var s=slashes[i];s.age+=dt;
-                if(s.age>=.63f || !enemies.Contains(s.owner)) { Destroy(s.obj);slashes.RemoveAt(i);continue; }
+                if(s.age>=.63f || s.deleteOnDeath&&!enemies.Contains(s.owner)) { Destroy(s.obj);slashes.RemoveAt(i);continue; }
                 bool active=s.age>=.48f && s.age<.6f;
-                var line=s.obj.GetComponentInChildren<LineRenderer>();line.startWidth=line.endWidth=active?.22f:.05f;
-                line.startColor=line.endColor=active?amber:new Color(1,.3f,.2f,.5f);
+                s.obj.GetComponent<EnemyProjectileView>()?.Pose(s.age);
                 if(!active || s.hit)continue;
                 int frame=Mathf.Clamp((int)((s.age-.48f)/.03f),0,3);
                 float[] centers={-1.22f,-.71f,-.065f,.655f};
                 float[] widths={.3f,.79f,1.365f,.885f};
                 Vector2 local=PlayerHurtCenter-s.pos;
-                float along=Vector2.Dot(local,s.direction),across=Vector2.Dot(local,new Vector2(-s.direction.y,s.direction.x));
-                if(Mathf.Abs(along-centers[frame])<widths[frame]+CombatGeometry.PlayerHurtRadius && Mathf.Abs(across)<.17f+CombatGeometry.PlayerHurtRadius)
+                float along=Vector2.Dot(local,s.direction)-(s.forward?1.65f:0),across=Vector2.Dot(local,new Vector2(-s.direction.y,s.direction.x));
+                if(Mathf.Abs(along-centers[frame])<widths[frame]+CombatGeometry.PlayerHurtRadius && Mathf.Abs(across+.03f)<(frame==0?.17f:frame==1?.15f:frame==2?.14f:.12f)+CombatGeometry.PlayerHurtRadius)
                 { HurtPlayer(s.damage,s.owner.type,s.owner);s.hit=true; }
             }
         }

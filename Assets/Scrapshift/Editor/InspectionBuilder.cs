@@ -27,12 +27,62 @@ namespace Scrapshift.Editor
                 expanded.Add(target);
             }
             catalog.data.items=expanded.ToArray();RunRules.ConfigureShopItems(catalog.data.items);
+            ApplyDedicatedItemIcons(catalog);
+            ApplyDedicatedWeaponArt(catalog);
             foreach(var profile in design.characters)
             {
                 var target=System.Array.Find(catalog.data.characters,c=>c.id==profile.id);
                 target.wantedTags=profile.wantedTags;target.bannedItems=profile.bannedItems;target.effectRows=profile.rows;
             }
             foreach(var weapon in catalog.data.equipment)weapon.title=text.WeaponName(weapon);
+            EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
+        }
+
+        // Preserve the item-ID mappings whenever the expanded catalog is rebuilt.
+        static void ApplyDedicatedItemIcons(ReferenceCatalog catalog)
+        {
+            const string path=Root+"/OriginalArt/blast-gland-v1.png";
+            var sprite=ImportDedicatedSprite(path,512);
+            var item=System.Array.Find(catalog.data.items,i=>i.id=="dynamite");
+            if(item==null)throw new System.Exception("Blast Gland catalog entry is missing.");
+            item.image=sprite;
+            ApplyAllItemIcons(catalog);
+        }
+
+        static void ApplyDedicatedWeaponArt(ReferenceCatalog catalog)
+        {
+            var sprite=ImportDedicatedSprite(Root+"/OriginalArt/jousting-lance-v2.png",2048);
+            int count=0;
+            foreach(var weapon in catalog.data.equipment)if(weapon.id=="jousting_lance")
+            {weapon.image=sprite;count++;}
+            if(count!=4)throw new System.Exception("Expected four Jousting Lance tiers; found "+count);
+        }
+
+        static UnityEngine.Sprite ImportDedicatedSprite(string path,int maxSize)
+        {
+            AssetDatabase.ImportAsset(path);
+            var importer=(TextureImporter)AssetImporter.GetAtPath(path);
+            if(importer==null)throw new System.Exception("Missing dedicated art: "+path);
+            if(importer.textureType!=TextureImporterType.Sprite||importer.spriteImportMode!=SpriteImportMode.Single||
+               importer.maxTextureSize!=maxSize||!importer.alphaIsTransparency||importer.textureCompression!=TextureImporterCompression.Uncompressed)
+            {
+                importer.textureType=TextureImporterType.Sprite;
+                importer.spriteImportMode=SpriteImportMode.Single;
+                importer.alphaIsTransparency=true;
+                importer.maxTextureSize=maxSize;
+                importer.textureCompression=TextureImporterCompression.Uncompressed;
+                importer.SaveAndReimport();
+            }
+            var sprite=AssetDatabase.LoadAssetAtPath<UnityEngine.Sprite>(path);
+            if(sprite==null)throw new System.Exception("Could not import sprite: "+path);
+            return sprite;
+        }
+
+        public static void RefreshDedicatedArt()
+        {
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(Root+"/Definitions/ReferenceCatalog.asset");
+            ApplyDedicatedItemIcons(catalog);
+            ApplyDedicatedWeaponArt(catalog);
             EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
         }
     }

@@ -27,6 +27,7 @@ namespace Scrapshift
         }
         void TickPillar(Shot shot)
         {
+            var view=shot.obj.GetComponent<EnemyProjectileView>();if(view!=null){view.Pose(shot.age);return;}
             var lines=shot.obj.GetComponentsInChildren<LineRenderer>();
             float fade=shot.age<.68f?1:Mathf.Clamp01((BossPatterns.PillarEnd-shot.age)/.36f);
             lines[0].startColor=lines[0].endColor=new Color(coral.r,coral.g,coral.b,(.45f+.55f*Mathf.Clamp01(shot.age/.5f))*fade);

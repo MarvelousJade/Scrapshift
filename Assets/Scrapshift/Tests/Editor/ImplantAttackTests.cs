@@ -14,7 +14,7 @@ namespace Scrapshift.Tests
         {
             var r=Run();Add(r,"alien_eyes");Add(r,"nail");r.GainWeaponStat("engineering",100);r.GainWeaponStat("percent_damage",50);
             var effect=r.Effects("alien_eyes").Single();Assert.AreEqual(6,effect.value);Assert.AreEqual(3,effect.interval);
-            Assert.AreEqual((1+r.MaxHealth*.5f)*1.5f,r.WeaponDamage(effect.projectile.AsEquipment()),.001);
+            Assert.AreEqual(UnityEngine.Mathf.Max(1,UnityEngine.Mathf.Floor(UnityEngine.Mathf.Max(1,(int)(1+r.MaxHealth*.5f))*1.5f+.5f)),r.WeaponDamage(effect.projectile.AsEquipment()),.001);
         }
         [Test] public void ExplosionAndOrdinaryDamagePercentagesAddBeforeApplyingTheMinimum()
         {

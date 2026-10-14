@@ -24,7 +24,7 @@ namespace Scrapshift
         int chargeReleases, rangedReleases, spawnRelocations, bossMutations;
         void BeginSpawnGroup(SpawnGroup group)
         {
-            var active = enemies.FindAll(e=>e.marker==null && e.type.role!="Boss" && e.type.role!="Tree");
+            var active = enemies.FindAll(e=>e.marker==null && e.type.role!="Boss" && e.type.role!="Elite" && e.type.role!="Tree");
             int cap = catalog.data.waves[Rules.Wave-1].cap;
             while(active.Count>cap)
             {
@@ -63,11 +63,11 @@ namespace Scrapshift
             births.Clear();cratesSpawned=0;
             Array.Clear(weaponClocks,0,weaponClocks.Length);
             SyncEquipment();ResetStructures();AddWaveEncounters();
-            if(Rules.Wave==20)births.Push(new Birth
+            if(Rules.Wave==20)
             {
-                type=catalog.Enemy(Rules.Difficulty>=5||placementRandom.Next(2)==0?"predator":"invoker"),pos=RandomPosition(playerPos,4)
-            }, BirthLane.Boss);
-            if(Rules.Wave==20&&Rules.Difficulty>=5)births.Push(new Birth{type=catalog.Enemy("invoker"),pos=RandomPosition(playerPos,4)},BirthLane.Boss);
+                string first=placementRandom.Next(2)==0?"predator":"invoker";QueueElite(first);
+                if(Rules.Difficulty>=5||Rules.Stat("double_boss")>0)QueueElite(first=="predator"?"invoker":"predator");
+            }
         }
         void AdvanceWave()
         {
@@ -105,7 +105,7 @@ namespace Scrapshift
             var def = catalog.Enemy(unit.id);
             if (def == null) return;
             for (int i = 0; i < count; i++)
-                births.Push(new Birth { type = def, pos = SpawnPlacement.Position(group, unit, groupAnchor, playerPos, placementRandom) }, def.role=="Tree"?BirthLane.Tree:BirthLane.Regular);
+                births.Push(new Birth { type = def, pos = SpawnPlacement.Position(group, unit, groupAnchor, playerPos, placementRandom) }, def.role=="Tree"?BirthLane.Tree:def.role=="Boss"||def.role=="Elite"?BirthLane.Boss:BirthLane.Regular);
         }
         void UpdateBirthQueue(float dt) => births.Tick(dt, b=>Spawn(b.type,b.pos));
         EnemyAttack MakeAttack(EnemyBehavior behavior) => behavior.charge || behavior.ranged ?
@@ -122,14 +122,17 @@ namespace Scrapshift
                 {var stroke=MakeLine("Green tree warning",marker.transform,RunFeedback.SpawnColor(true,1),.12f);stroke.positionCount=2;stroke.SetPosition(0,new Vector3(-.4f,-.4f*sign,0));stroke.SetPosition(1,new Vector3(.4f,.4f*sign,0));}
             }
             sound.Play(SoundCue.Spawn,pos);
-            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Mathf.Max(.01f,1+Rules.Stat("enemy_health")/100)*Rules.DangerMultiplier*GameSettings.Value("enemyHealth");enemies.Add(new Enemy
+            marker.transform.localScale=Vector3.one*.6f;marker.transform.rotation=Quaternion.Euler(0,0,UnityEngine.Random.Range(-25,25));float hp=(def.health+def.growth*(Rules.Wave-1))*Rules.EnemyHealthFactor*Rules.DangerMultiplier*GameSettings.Value("enemyHealth");enemies.Add(new Enemy
             {
                 obj=obj,shadow=shadow,marker=marker,type=def,hp=hp,maxHp=hp,pos=pos,speed=Mathf.Max(0,def.speed+UnityEngine.Random.Range(-def.speedRandom,def.speedRandom)),cooldown=def.role=="Buffer"?.25f:1,renderers=obj.GetComponents<Renderer>(),wander=new Vector2(UnityEngine.Random.Range(-behavior.offset,behavior.offset),UnityEngine.Random.Range(-behavior.offset,behavior.offset)),attack=attack,behavior=behavior,spacing=behavior.spacing+UnityEngine.Random.Range(-1f,1f),orbitSign=UnityEngine.Random.value<.5f?-1:1
             })
-            ;peakEnemies=Mathf.Max(peakEnemies,enemies.Count);
+            ;var spawned=enemies[enemies.Count-1];ResetEnemyMovement(spawned);
+            if(def.role=="Elite"||def.role=="Boss"){spawned.hp*=EnemyReferenceRules.BossHealthFactor(Rules.Wave);if(Rules.Wave==20&&Rules.Stat("double_boss")>0)spawned.hp*=.75f;spawned.hp=Mathf.Round(spawned.hp);spawned.maxHp=spawned.hp;}
+            peakEnemies=Mathf.Max(peakEnemies,enemies.Count);
         }
         void UpdateEnemies(float dt)
         {
+            TickFriendlyBoost(dt);
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 var e = enemies[i]; e.age += dt;e.iceClock=Mathf.Max(0,e.iceClock-dt); e.flash = Mathf.Max(0, e.flash - dt);
@@ -139,7 +142,7 @@ namespace Scrapshift
                     mr.color = RunFeedback.SpawnColor(e.type.role=="Tree",Mathf.Repeat(e.age * (2 + e.age * 8), 1) < .3f ? .35f : 1);
                     e.marker.transform.localScale = Vector3.one * (.52f + .12f * e.age);
                     if (e.age < 1) continue;
-                    if (e.type.role!="Boss" && e.type.role!="Tree" && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
+                    if (e.type.role!="Boss" && e.type.role!="Elite" && e.type.role!="Tree" && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                     {
                         e.pos = RandomPosition(playerPos, 0); e.marker.transform.position = e.pos; e.age = 0;
                         spawnRelocations++; continue;
@@ -152,7 +155,7 @@ namespace Scrapshift
                 float distance = Vector2.Distance(e.pos, targetPosition), speed = e.speed;
                 e.cooldown -= dt; e.action += dt;
                 string role = e.type.role;
-                if (e.type.id=="predator" && !e.secondPhase && Mathf.Floor(e.activeAge)>e.phaseCheck)
+                if (e.type.id=="predator" && !encounterDefinitions.ContainsKey(e.type.id) && !e.secondPhase && Mathf.Floor(e.activeAge)>e.phaseCheck)
                 {
                     e.phaseCheck=Mathf.FloorToInt(e.activeAge);
                     if(e.hp<=e.maxHp*.5f || e.phaseCheck>=45)
@@ -165,12 +168,13 @@ namespace Scrapshift
                         toward *= Mathf.Sign(distance-e.spacing);
                         speed = Mathf.Min(speed, Mathf.Abs(distance-e.spacing)/dt); break;
                     case EnemyMovement.Offset:
-                        toward=(targetPosition+e.wander-e.pos).normalized; break;
+                        toward=(targetPosition+e.wander-e.pos).normalized;speed=Mathf.Min(speed,Vector2.Distance(targetPosition+e.wander,e.pos)/dt);break;
                     case EnemyMovement.Destination: case EnemyMovement.AroundPlayer: case EnemyMovement.Materials:
-                        if(!e.hasDestination || Vector2.Distance(e.pos,e.destination)<.1f)
+                        e.moveUpdate+=dt;
+                        if(!e.hasDestination || Vector2.Distance(e.pos,e.destination)<.1f || e.behavior.updateInterval>=0&&e.moveUpdate>=e.behavior.updateInterval)
                         {
-                            e.hasDestination=true;
-                            e.destination=e.behavior.movement==EnemyMovement.AroundPlayer ? RunRules.ClampPosition(playerPos+new Vector2(UnityEngine.Random.Range(-3f,3f),UnityEngine.Random.Range(-3f,3f))) : RandomPosition(playerPos,0);
+                            e.hasDestination=true;e.moveUpdate=0;
+                            e.destination=e.behavior.movement==EnemyMovement.AroundPlayer ? RunRules.ClampPosition(targetPosition+new Vector2(UnityEngine.Random.Range(-e.moveRange,e.moveRange),UnityEngine.Random.Range(-e.moveRange,e.moveRange))) : RandomPosition(playerPos,0);
                             if(e.behavior.movement==EnemyMovement.Materials)
                             {
                                 var materials=pickups.FindAll(p=>!p.fruit);
@@ -186,7 +190,7 @@ namespace Scrapshift
                 if (e.attack != null)
                 {
                     var previous = e.attack.Phase;
-                    bool released = e.attack.Step(dt, targetPosition - e.pos, distance >= e.behavior.minRange && distance <= e.behavior.maxRange);
+                    bool released = e.attack.Step(dt, targetPosition - e.pos, distance >= e.behavior.minRange && distance <= e.behavior.maxRange,()=>ChargeTarget(e,targetPosition));
                     if (previous != AttackPhase.Windup && e.attack.Phase == AttackPhase.Windup && charge)
                         sound.Play(SoundCue.Charge, e.pos);
                     if (charge && e.attack.Phase == AttackPhase.Windup) speed = 0;
@@ -209,19 +213,14 @@ namespace Scrapshift
                         }
                     }
                 }
-                speed = Mathf.Max(0, speed*GameSettings.Value("enemySpeed")*Mathf.Max(.01f,(1+Rules.Stat("enemy_speed")/100)*(Rules.Difficulty>=6?1.1f:1)) - e.contactSlow-e.itemSlow);
+                speed = Mathf.Max(0, speed*GameSettings.Value("enemySpeed")*Rules.EnemySpeedFactor*(Rules.Difficulty>=6?1.1f:1) - e.contactSlow-e.itemSlow);
                 e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
                 if (role == "Buffer" && e.cooldown <= 0)
                 {
                     e.cooldown = 4;
-                    var eligible = enemies.FindAll(x => x != e && x.marker == null && !x.boosted && x.behavior.canBoost && x.type.role != "Tree" && Vector2.Distance(x.pos, e.pos) < 3.0904f);
-                    var target = eligible.Count>0 ? eligible[placementRandom.Next(eligible.Count)] : null;
-                    if (target != null)
-                    {
-                        target.boosted = true; target.hp *= 2.5f; target.maxHp *= 2.5f; target.speed *= 1.5f;
-                        e.supportFlash = .45f; target.supportFlash = .45f;
-                        FloatText(target.pos, "BOOST", new Color(.8f, .4f, 1), false);
-                    }
+                    int count=encounterDefinitions.TryGetValue(e.type.id,out var spec)?spec.boostCount:1;
+                    for(int boost=0;boost<count;boost++)BoostNearbyEntity(e,spec?.boostDamage??25);
+
                 }
                 Vector2 separation = Vector2.zero;
                 foreach (var other in enemies)
@@ -240,7 +239,7 @@ namespace Scrapshift
                 foreach(var pet in pets)if(!pet.dead&&pet.spec.kind=="scapegoat"&&Vector2.Distance(e.pos,pet.pos)<ContactRadius(e)+.3f)DamageScapegoat(pet);
                 if (role != "Tree" && invulnerable <= 0 && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                 {
-                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1.25f : 1)*Rules.EnemyDamageFactor,e.type,e);
+                    HurtPlayer((e.type.damage + e.type.damageGrowth * (Rules.Wave - 1)) * (e.boosted ? 1+e.boostDamage/100 : 1)*(role=="Boss"||role=="Elite"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1)*Rules.EnemyDamageFactor,e.type,e);
                     e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, e.speed);
                     if (role == "Pursuer") e.action = 0;
                 }
@@ -370,6 +369,7 @@ namespace Scrapshift
             for (int i = shots.Count - 1; i >= 0; i--)
             {
                 var s = shots[i]; Vector2 old = s.pos;
+                if(s.deleteOnOwnerDeath&&(s.sourceEnemy==null||s.sourceEnemy.hp<=0||!enemies.Contains(s.sourceEnemy))){Destroy(s.obj);shots.RemoveAt(i);continue;}
                 if(s.projectileStopped)
                 {
                     s.age+=dt;s.life-=dt;s.pos+=s.velocity*dt;s.obj.transform.position=s.pos;s.projectileView?.Pose(s.age);
@@ -383,7 +383,7 @@ namespace Scrapshift
                 {if(SegmentDistance(PlayerHurtCenter,old,s.pos)<=CombatGeometry.PlayerHurtRadius+1.04f){float hp=Rules.Health;Rules.Heal(s.damage);if(Rules.Health>hp){FloatText(playerPos,$"+{Rules.Health-hp:0} HP",mint,false);sound.Play(SoundCue.Pickup);}s.life=0;}}
                 else if (s.hostile)
                 {
-                    if(s.pillar)TickPillar(s);
+                    s.obj.GetComponent<EnemyProjectileView>()?.Pose(s.age);
                     if(s.pillar&&!BossPatterns.PillarActive(s.age)){}
                     else if(PetBlocksProjectile(old,s.pos))s.life=0;
                     else if (SegmentDistance(PlayerHurtCenter, old+(s.pillar?Vector2.up*.04f:Vector2.zero), s.pos+(s.pillar?Vector2.up*.04f:Vector2.zero)) <= CombatGeometry.PlayerHurtRadius + (s.pillar?BossPatterns.PillarRadius:CombatGeometry.HostileRadius))
@@ -455,6 +455,7 @@ namespace Scrapshift
             e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
+            if((e.type.id=="fly"||e.type.id=="horned_fly")&&!bypassArmor&&weapon!=null&&!weapon.melee&&UnityEngine.Random.value<.25f)FireEncounter(e);
             Shake(Mathf.Min(damage/3,3)/100);if(e.type.role!="Tree")EnemyBloodParticles(e,attackDirection);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);Burst(e.pos,critical?7:3,critical?amber:coral);WeaponReference.Impact(sound,e.pos,critical,bypassArmor);if(!structure&&Rules.TryLifeSteal(UnityEngine.Random.value,(weapon?.lifesteal??0)+(weapon!=null?(Rules.Character?.WeaponBonus(weapon,"lifesteal")??0)/100:0)))FloatText(playerPos,"+1 HP",mint,false);if(e.hp>0){ApplyStarterHit(e,weapon,critical,false,secondary,structure,sourceDamage);return critical;}if(bypassArmor)Rules.RecordBurnKill();Rules.RecordEnemy(e.type.id,e.type.role=="Tree",e.activeAge,e.type.role=="Boss"||e.type.role=="Elite");Rules.Kill();Rules.CriticalKillMaterials(critical);if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);if(e.type.role=="Boss"){ if(enemies.FindAll(x=>x.type.role=="Boss"&&x.hp>0).Count==0)Rules.DefeatBoss(); if(e.orbitProjectiles!=null)foreach(var orb in e.orbitProjectiles)Destroy(orb); }Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;e.knockback=CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);corpses.Add(e);enemies.Remove(e);Drop(e.pos,Rules.MaterialDropValue(e.type.id=="evil_mob"?e.gold*(e.evolution+1):e.type.value,e.type.role=="Tree",UnityEngine.Random.value),false);var consumable=ReferenceLoot.Roll(e.type.id,Rules.Stat("luck"),cratesSpawned,UnityEngine.Random.value,UnityEngine.Random.value);if(consumable==ConsumableKind.None&&UnityEngine.Random.value<Rules.Stat("enemy_fruit_drops")/100)consumable=ConsumableKind.Fruit;if(e.type.role=="Elite")consumable=ConsumableKind.LegendaryCrate;DropConsumable(e.pos,consumable);if(e.type.role=="Spawner")for(int i=0;i<(e.type.id=="bloated_spawner"?5:3);i++)births.Push(new Birth
             {
                 type=catalog.Enemy(e.type.id=="bloated_spawner"?"dire_junkie":"junkie"),pos=RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(-1f,1f)))

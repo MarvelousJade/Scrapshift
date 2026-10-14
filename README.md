@@ -8,6 +8,8 @@ The Unity Editor developer role asks for C#, Unity project experience, automated
 
 The user requested close reference analysis before implementation. See [the source study](docs/reference-rebuild.md), [original art and full prompts](docs/original-art.md), and [historical media provenance](artifacts/reference-media-provenance.json). Reference audio is third-party work supplied by the user. Historical borrowed sprite files remain in the repo but are no longer game-scene dependencies. This is not a claim of official source access or complete game parity.
 
+[October 13 project changes](docs/project-changes-2026-10-13.md) reconciles the recent project chats, source changes, verification, and remaining limits.
+
 ## Play and develop
 
 Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Assets/Scrapshift/Content/Scenes/Deck.unity`. **Scrapshift > Generate Game Content** applies versioned content migrations while preserving existing asset GUIDs.
@@ -21,6 +23,10 @@ Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Ass
 - Shop: buy items/weapons, lock offers, select weapon slots to combine or recycle. Six slots maximum; buying a matching tier at capacity combines it.
 - Weapon sets: duplicates count; tiers count equally. Gun adds Range, Precise adds Critical Chance, Primitive adds Max HP. Hover the set rows for all thresholds.
 - Enter or GO: start the next wave. Enter also starts/restarts a run.
+
+For screenshots and video, choose **Martial Monk**, **Cyberpunk Ranger**, **Auto Turret**, or **Druid Pets** on the title screen. Every showcase starts at wave 19 with six weapons, visible worn items, 18 nearby enemies, a continuing crowd of up to 36 enemies, and an invulnerable player. The normal game HUD is shown without a showcase bar; the wave 19 timer loops while the showcase continues. F6/F7/F9/F10 switch builds, F5 resets the current build, and F8 hides or restores the HUD. The showcases do not award progression.
+
+The showcase Windows player is in `Builds/Showcase` (keep the full folder together). Source tests and the build passed, but repeated local Direct3D 12 runs reported a GPU device error during capture checks; runtime graphics stability remains unresolved on this machine.
 
 Run `Builds/ConditionalImplants/Scrapshift.exe`; keep its entire player folder together. Archive: `Builds/Scrapshift-Windows.zip`.
 

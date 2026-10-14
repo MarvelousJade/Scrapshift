@@ -69,7 +69,7 @@ namespace Scrapshift.Tests
         [Test] public void EnemyAndTreeModifiersLeaveLootAliensUnchanged()
         {
             var wave=new WaveEntry{groups=new[]{new SpawnGroup{chance=1,start=1,minimum=1,interval=1,units=new[]{
-                new UnitEntry{id="baby_alien",min=10,max=10,chance=1},new UnitEntry{id="tree",min=1,max=1,chance=1},new UnitEntry{id="looter",min=1,max=1,chance=1}}}}};
+                new UnitEntry{id="baby_alien",min=10,max=10,chance=1},new UnitEntry{id="tree",min=1,max=1,chance=1}}},new SpawnGroup{chance=1,start=1,loot=true,units=new[]{new UnitEntry{id="looter",min=1,max=1,chance=1}}}}};
             var emitted=new System.Collections.Generic.Dictionary<string,int>();new SpawnDirector(wave,1,50,3).Tick(1,(g,u,n)=>emitted[u.id]=n);
             Assert.AreEqual(15,emitted["baby_alien"]);Assert.AreEqual(4,emitted["tree"]);Assert.AreEqual(1,emitted["looter"]);
         }

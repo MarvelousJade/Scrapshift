@@ -31,13 +31,13 @@ namespace Scrapshift
             structure.rig=SupportRig.Create(obj,spec.kind,true);
             if(spec.kind=="landmine"){Destroy(obj);structure.obj=null;structure.clock=spec.spawnInterval;mineSpawners.Add(structure);SpawnMine(structure,image);}
             else starterTurrets.Add(structure);
-            progress?.Check("chal_turrets",starterTurrets.FindAll(t=>t.spec.kind!="garden"&&t.spec.kind!="wandering_bot").Count);
+            if(loadoutShowcase<0)progress?.Check("chal_turrets",starterTurrets.FindAll(t=>t.spec.kind!="garden"&&t.spec.kind!="wandering_bot").Count);
         }
         float StructureAnimationSpeed(StarterTurret turret)
-        {float cooldown=Rules.StructureCooldown(turret.stats.interval);return Mathf.Max(turret.spec.animationSpeed,Mathf.Min(3,.3f/Mathf.Max(.001f,cooldown)));}
+        {float cooldown=Rules.StructureCooldown(turret.stats.interval*(turret.boostClock>0?.8f:1));return Mathf.Max(turret.spec.animationSpeed,Mathf.Min(3,.3f/Mathf.Max(.001f,cooldown)));}
         void TickStructure(StarterTurret turret,float dt)
         {
-            var spec=turret.spec;
+            var spec=turret.spec;turret.boostClock=Mathf.Max(0,turret.boostClock-dt);float boostedRange=turret.stats.range*(turret.boostClock>0?1.2f:1);
             var target=spec.healing?null:spec.kind=="tyler"?PetRangedTarget(turret.pos,turret.stats.range):NearestStarterTarget(turret.pos);
             turret.animationAge=Mathf.Min(.3f,turret.animationAge+dt*StructureAnimationSpeed(turret));
             var pose=reducedMotion||turret.rig!=null?Vector2.one:SupportMotion.TurretScale(turret.animationAge);
@@ -55,11 +55,11 @@ namespace Scrapshift
                 return;
             }
             turret.clock-=dt;if(turret.clock>0)return;
-            bool inRange=spec.kind=="garden"||(spec.healing?Vector2.Distance(playerPos,turret.pos)<=turret.stats.range:target!=null&&Vector2.Distance(target.pos,turret.pos)<=turret.stats.range);
+            bool inRange=spec.kind=="garden"||(spec.healing?Vector2.Distance(playerPos,turret.pos)<=boostedRange:target!=null&&Vector2.Distance(target.pos,turret.pos)<=boostedRange);
             if(!turret.firing)
             {if(inRange){turret.firing=true;turret.animationAge=0;turret.clock=.2f/StructureAnimationSpeed(turret);}return;}
             turret.firing=false;
-            float interval=Rules.StructureCooldown(turret.stats.interval);
+            float interval=Rules.StructureCooldown(turret.stats.interval*(turret.boostClock>0?.8f:1));
             turret.shotsTaken++;
             bool reload=turret.stats.reloadEvery>0&&turret.shotsTaken%turret.stats.reloadEvery==0;
             turret.clock=(reload?interval*turret.stats.reloadMultiplier:UnityEngine.Random.Range(Mathf.Max(1f/60,interval*.7f),interval*1.3f))+.1f/StructureAnimationSpeed(turret);
@@ -71,6 +71,7 @@ namespace Scrapshift
             {
                 float direction=angle+UnityEngine.Random.Range(-turret.stats.spread,turret.stats.spread);
                 StarterProjectile(turret.pos,new Vector2(Mathf.Cos(direction),Mathf.Sin(direction)),turret.stats,true,structure:true,structureSpec:spec);
+                if(turret.boostClock>0&&shots.Count>0)shots[shots.Count-1].damage+=turret.stats.damage*.2f*Mathf.Max(0,1+Rules.Stat("structure_percent_damage")/100);
             }
             OriginalSupportAudio.Play(sound,"shot:"+spec.kind,turret.pos);
         }

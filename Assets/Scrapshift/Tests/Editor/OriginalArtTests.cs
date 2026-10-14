@@ -30,7 +30,7 @@ namespace Scrapshift.Tests
         {
             var dependencies = AssetDatabase.GetDependencies(ContentBuilder.ScenePath, true);
             Assert.IsFalse(dependencies.Any(p => p.Contains("/Reference/") && p.EndsWith(".png")));
-            Assert.AreEqual(9, dependencies.Count(p => p.Contains("/OriginalArt/") && p.EndsWith(".png")));
+            Assert.IsTrue(dependencies.Any(p => p.EndsWith("/OriginalArt/items-v2.png")), "Retain the authored legacy item sheet alongside dedicated item art.");
             Assert.IsTrue(dependencies.Any(p=>p.EndsWith("starter-weapons-v1.png")));
             Assert.IsTrue(dependencies.Any(p=>p.EndsWith("player-parts-v2.png")));
             Assert.IsTrue(dependencies.Any(p=>p.EndsWith("wearables-v2.png")));

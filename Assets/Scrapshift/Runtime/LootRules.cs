@@ -58,5 +58,6 @@ namespace Scrapshift
             if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)if(effect.customKey=="stat_cap")
             {if(effect.key=="hp_cap")healthCap=MaxHealth;else if(effect.key=="speed_cap")speedCap=Stat("speed");}
         }
+        public void GrantItem(ItemEntry item) => ApplyItem(item);
     }
 }

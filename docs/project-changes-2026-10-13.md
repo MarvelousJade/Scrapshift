@@ -1,0 +1,22 @@
+# Project changes reviewed on October 13, 2026
+
+This note reconciles the five Scrap Shift project chats with the source integrated into `main`. The chats cover item and status parity, item randomization, enemy and weapon behavior, missing item art, and the wave 19 screenshot builds. A chat's completion claim is treated as evidence to check against the repository, not as a substitute for a source diff or test result.
+
+## Gameplay and reference behavior
+
+- **Items and status values:** The imported base catalog was checked against 4,918 fields from the supplied reference resources, covering 209 items, 205 weapon tiers, and 50 characters. The runtime corrections cover boss and elite health from `enemy_health`, a zero-speed result from `enemy_speed`, the enemy-damage floor, starting HP in character Max HP multipliers, and integer rounding in weapon damage scaling. [The focused audit](item-status-parity-audit.md) identifies the source rule and test for each change. This is a base-game single-player comparison, not a claim of complete frame parity.
+- **Item rolls:** The shop, level reward, and crate selection comparison was merged earlier in `01b97f6`. [The randomization audit](item-randomization-parity.md) records its pool and roll-order limits.
+- **Enemies and bosses:** The new source data and combat code cover expanded wave groups, enemy collision dimensions, projectile visuals, attack timing, elite and boss phase behavior, and source spawn limits. The long red-and-white warning arrow is restricted to slash attacks by Slasher, Mad Slasher, Tentacle, Butcher, Croc, Mantis, and Mom. Buffer effects can reach the player and structures. An ordinary population cap no longer removes elites. Enemy blood hit particles, cursor behavior, and melee target tracking were committed to `main` before this integration.
+- **Weapons and helpers:** Weapon projectiles use the imported scene art and timing; melee thrust and sweep motion, pellet spread, bounce and piercing, and normal/critical/burning impact sounds follow the reference paths. Turret and pet behavior remains covered by the existing support and weapon reviews. The existing weapon review records remaining visual and audio differences.
+
+## Visuals and showcase builds
+
+- **Item art:** Each of the 209 catalog items now has an individual icon; 166 shared placeholders were replaced. Piercing Stabilizer's description row has its icon as well. The content builder preserves the mappings, and the icon audit checks missing, duplicate, and placeholder assignments. Blast Gland has dedicated art. A slimmer Jousting Lance replaces the oversized sprite. The dropped crate and its UI icon share a cyberpunk design.
+- **Player presentation:** Item icons are separate from worn appearance. Currently 22 items have character overlays; the other 187 have gameplay effects without wearable art. The pickup splash stays the same green as dropped scrap. Weird Ghost's description now says the next wave starts at 1 HP. [Actor presentation notes](actor-presentation.md) describe earlier proportions, outlines, and shadows.
+- **Photo and video presets:** The title screen offers Martial Monk, Cyberpunk Ranger, Auto Turret Engineer, and Druid Companion. Each has six weapons and selected items, starts on wave 19 with 18 nearby enemies, and replenishes a crowd up to 36. These presets keep the normal HUD and a looping numeric wave timer. The in-game showcase bar and `DEMO` timer label are gone. F5 resets, F6/F7/F9/F10 switch presets, and F8 hides or restores the HUD. Showcases do not award progression.
+
+## Verification and remaining limits
+
+The item-icon chat reported 353 passing EditMode tests, plus visual checks of the shop, Codex, and six catalog pages. On the combined `main` source, a fresh import initially left two AssetScope tests with findings; a subsequent explicit scan found zero findings, and the complete EditMode suite passed **354/354**. The combined Windows build succeeded with **zero errors and warnings**. The item/status audit separately recorded 4,918 matching imported fields.
+
+Windows player folders under `Builds/` and raw captures under `artifacts/` are local outputs and are not part of the source merge. A previous local Direct3D 12 player run reported an unrecoverable GPU device error and the computer crashed during graphics checks, so this integration does not claim a fresh playable graphics check. The catalog and cross-engine behavior still have limits documented in the individual audits and README.

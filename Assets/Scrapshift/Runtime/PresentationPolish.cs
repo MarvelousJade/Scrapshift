@@ -5,6 +5,7 @@ namespace Scrapshift
     public static class PresentationPolish { public static Color BodyTint=>Color.white; }
     public sealed partial class ArenaGame
     {
+        static readonly Color scrapPickupGreen=new Color32(157,249,42,255);
         Rect lastUiHover;int optionsTab;float stepClock;bool yardPolished;float smokeClock;
         sealed class Dust { public LineRenderer line;public SpriteRenderer smoke;public GameObject root;public Vector2 pos;public float age,rotation,scale=1;public Vector2 velocity;public bool pickup; }
         Sprite smokeSprite;
@@ -33,7 +34,7 @@ namespace Scrapshift
                 var sprite=root.AddComponent<SpriteRenderer>();sprite.sprite=smokeSprite;sprite.sharedMaterial=catalog.spriteMaterial;sprite.sortingOrder=2;
                 root.transform.localScale=new Vector3(1,.7f,1);footDust.Add(new Dust{smoke=sprite,root=root,pos=pos,velocity=UnityEngine.Random.insideUnitCircle*.3f,rotation=UnityEngine.Random.Range(194f,1246f),scale=UnityEngine.Random.Range(.75f,1.25f)});return;
             }
-            var line=MakeLine("Puff",root.transform,pickup?mint:new Color(.6f,.65f,.7f,.25f),pickup?.025f:.13f,true);
+            var line=MakeLine("Puff",root.transform,pickup?scrapPickupGreen:new Color(.6f,.65f,.7f,.25f),pickup?.025f:.13f,true);
             line.sortingOrder=pickup?15:1;line.positionCount=12;
             for(int i=0;i<12;i++){float a=i*Mathf.PI*2/12;line.SetPosition(i,new Vector3(Mathf.Cos(a)*.11f,Mathf.Sin(a)*.055f,0));}
             footDust.Add(new Dust{line=line,root=root,pos=pos,pickup=pickup});
@@ -46,7 +47,7 @@ namespace Scrapshift
             {
                 var root=new GameObject("Material pickup particle");
                 var p=playerPos+UnityEngine.Random.insideUnitCircle*.15f;root.transform.position=(Vector3)p+Vector3.back*2;
-                var line=MakeLine("Spark",root.transform,new Color(.46f,1,.46f),.08f);line.sortingOrder=15;line.numCapVertices=4;line.positionCount=2;
+                var line=MakeLine("Spark",root.transform,scrapPickupGreen,.08f);line.sortingOrder=15;line.numCapVertices=4;line.positionCount=2;
                 line.SetPosition(0,new Vector3(-.025f,0,0));line.SetPosition(1,new Vector3(.025f,0,0));
                 footDust.Add(new Dust{root=root,line=line,pos=p,pickup=true,velocity=UnityEngine.Random.insideUnitCircle.normalized*UnityEngine.Random.Range(3f,6f)});
             }
@@ -70,7 +71,7 @@ namespace Scrapshift
             for(int i=footDust.Count-1;i>=0;i--)
             {
                 var d=footDust[i];d.age+=dt;float t=d.age/(d.pickup?.3f:.75f);
-                var c=d.pickup?mint:Color.white;c.a*=1-t;if(d.line!=null)d.line.startColor=d.line.endColor=c;else {d.smoke.color=Color.white;d.pos+=d.velocity*dt;d.root.transform.position=(Vector3)d.pos+Vector3.back*2;d.root.transform.Rotate(0,0,d.rotation*dt);}
+                var c=d.pickup?scrapPickupGreen:Color.white;c.a*=1-t;if(d.line!=null)d.line.startColor=d.line.endColor=c;else {d.smoke.color=Color.white;d.pos+=d.velocity*dt;d.root.transform.position=(Vector3)d.pos+Vector3.back*2;d.root.transform.Rotate(0,0,d.rotation*dt);}
                 if(d.pickup){d.pos+=d.velocity*dt;d.root.transform.position=(Vector3)d.pos+Vector3.back*2;}
                 d.root.transform.localScale=Vector3.one*Mathf.Max(0,1-t)*d.scale;
                 if(t>=1){Destroy(d.root);footDust.RemoveAt(i);}
@@ -96,7 +97,8 @@ namespace Scrapshift
                 if(child.name=="Small stone"||child.name=="Stone highlight"||child.name=="Small faceted stone"||child.name=="Buried scrap"||child.name=="Scrap glint"||child.name=="Dry grass")child.gameObject.SetActive(false);
             }
             mapChoice=Mathf.Clamp((int)GameSettings.Value("mapTheme",0),-1,MapThemes.Names.Length-1);
-            ApplyMapTheme(mapChoice<0?new System.Random().Next(MapThemes.Names.Length):mapChoice);
+            ApplyMapTheme(loadoutShowcase>=0?ShowcaseLoadouts.All[loadoutShowcase].map:
+                mapChoice<0?new System.Random().Next(MapThemes.Names.Length):mapChoice);
         }
     }
 }
