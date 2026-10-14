@@ -12,6 +12,8 @@ namespace Scrapshift
         Vector2 gunDirection = Vector2.right;
         float recoil, playerFlash, shakeTime;
         readonly List<SpriteRenderer> playerFlashViews = new List<SpriteRenderer>();
+        Sprite enemyBloodSprite;
+        bool enemyBloodSpriteLoaded;
         void Shake(float amount)
         {
             if(!GameSettings.Flag("shake"))return;
@@ -69,6 +71,46 @@ namespace Scrapshift
                 var block=new MaterialPropertyBlock();block.SetColor("_Color",new Color(.623529f,.152941f,.152941f));
                 obj.GetComponentInChildren<Renderer>().SetPropertyBlock(block);
                 sparks.Add(new Spark{obj=obj,pos=pos,velocity=UnityEngine.Random.insideUnitCircle.normalized*UnityEngine.Random.Range(3f,6f),life=.5f,max=.5f});
+            }
+        }
+        void EnemyBloodParticles(Enemy enemy, Vector2 knockbackDirection)
+        {
+            if (!GameSettings.Flag("effects") || sparks.Count >= 200) return;
+            if (!enemyBloodSpriteLoaded)
+            {
+                enemyBloodSpriteLoaded = true;
+                var texture = Resources.Load<Texture2D>("EnemyBloodParticle");
+                if (texture != null)
+                {
+                    texture.filterMode = FilterMode.Point;
+                    enemyBloodSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
+                        new Vector2(.5f, .5f), 100, 0, SpriteMeshType.FullRect);
+                    enemyBloodSprite.name = "Original hit particle";
+                }
+                else Debug.LogError("Missing enemy blood particle resource");
+            }
+            if (enemyBloodSprite == null) return;
+
+            // The source emits eight half-second red puffs from the edge of the hurt sprite.
+            Vector2 direction = knockbackDirection.sqrMagnitude > .0001f ? knockbackDirection.normalized : Vector2.right;
+            var body = enemy.obj.GetComponent<SpriteRenderer>();
+            float edge = body != null && body.sprite != null
+                ? body.sprite.bounds.size.x * Mathf.Abs(enemy.obj.transform.lossyScale.x) * .25f : 0;
+            Vector2 origin = enemy.pos + direction * edge;
+            for (int i = 0; i < 8 && sparks.Count < 200; i++)
+            {
+                Vector2 pos = origin + UnityEngine.Random.insideUnitCircle * .15f;
+                var obj = new GameObject("Enemy blood particle");
+                obj.transform.position = new Vector3(pos.x, pos.y, -3);
+                obj.transform.rotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 360f));
+                var view = obj.AddComponent<SpriteRenderer>();
+                view.sprite = enemyBloodSprite;
+                view.color = new Color(.623529f, .152941f, .152941f);
+                view.sortingOrder = 22;
+                float angle = UnityEngine.Random.Range(-90f, 90f);
+                Vector2 spray = Quaternion.Euler(0, 0, angle) * -direction;
+                sparks.Add(new Spark { obj = obj, pos = pos, velocity = spray * UnityEngine.Random.Range(3f, 6f),
+                    life = .5f, max = .5f, scale = UnityEngine.Random.Range(.375f, .625f) });
             }
         }
         void UpdatePlayerFlash(float dt)

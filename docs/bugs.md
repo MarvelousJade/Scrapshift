@@ -330,3 +330,13 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Fix:** Commit `137bbd4` updates the auto-aimed swing angle from the current weapon mount and live target each frame, preserves the spread chosen when the attack began, and stops tracking after the target leaves detection range. It leaves manual aim and the collision-based hit rule intact.
 
 **Verification and limit:** 331/331 Unity EditMode tests passed, the Windows build had zero errors/warnings, and the built-player fixture passed 205/205 stationary weapon attack checks. The new movement-angle regression checks direction and preserved spread. No human playthrough or proof that every moving-target miss disappeared is claimed. Shaoyu reported the symptom; Codex compared the source, implemented and ran these checks.
+
+## October 13 - missing red enemy hit burst (visual defect)
+
+**User report:** Enemy deaths lacked the red exploding effect visible in the supplied original game.
+
+**Source diagnosis:** `global/effects_manager.gd` emits `hit_particles.tscn` on every positive hit to an enemy with `generate_blood`, including a fatal hit. That scene uses eight dark red `particle_1.png` puffs, a half-second lifetime, outward motion and no gravity. Trees set `generate_blood = false`. The separate `entity.tscn` death animation shrinks, rotates and darkens the body; Scrapshift already had that part. Its generic coral sparks were the visible mismatch.
+
+**Fix:** Import the supplied original particle image and emit its dark red puffs from the hurt sprite's edge on enemy hits, including kills. Exclude trees, honor the visual-effects setting and reuse the existing particle cap and cleanup path. The fatal hit shows the burst alongside the existing corpse animation.
+
+**Verification and limit:** Unity Windows build succeeded with zero errors and warnings. The built-player combat-feel fixture passed, counted eight blood particles on the fatal hit and saved a fresh `enemy-death.png` capture, which was inspected. The fixture uses a staged one-HP enemy and explicit time advances; it does not establish frame-perfect Godot particle trajectories or human play acceptance. The first runtime launch hit a Direct3D 12 device-removed crash, so the successful fixture used Direct3D 11 and an absolute capture folder.

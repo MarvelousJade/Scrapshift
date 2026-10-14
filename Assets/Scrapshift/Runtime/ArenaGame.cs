@@ -16,7 +16,7 @@ namespace Scrapshift
         sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec;public ProjectileReference projectileRef;public WeaponProjectileView projectileView;public int critBounces,critPierces;public bool projectileStopped; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
         sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public float petAttractSpeed=5; public int value; public bool fruit; public ConsumableKind consumable; }
-        sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max; }
+        sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max, scale; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
         readonly List<Pickup> pickups = new List<Pickup>();
@@ -278,7 +278,7 @@ namespace Scrapshift
             for (int i = sparks.Count - 1; i >= 0; i--)
             {
                 var s = sparks[i]; s.life -= dt; s.pos += s.velocity * dt;
-                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * .9f;
+                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * (s.scale > 0 ? s.scale : .9f);
                 if (s.life <= 0) { Destroy(s.obj); sparks.RemoveAt(i); }
             }
         }
