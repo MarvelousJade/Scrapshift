@@ -165,11 +165,13 @@ namespace Scrapshift
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
             if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;
+#if !UNITY_WEBGL
             Text(256,496,360,35,"PHOTO / VIDEO SHOWCASES",new GUIStyle(heading){fontSize=23});
             if(MenuButton(new Rect(254,545,280,65),"Martial Monk"))BeginLoadoutShowcase(0);
             if(MenuButton(new Rect(254,627,280,58),"Cyberpunk Ranger"))BeginLoadoutShowcase(1);
             if(MenuButton(new Rect(254,705,280,58),"Auto Turret"))BeginLoadoutShowcase(2);
             if(MenuButton(new Rect(254,783,280,58),"Druid Pets"))BeginLoadoutShowcase(3);
+#endif
 #if !UNITY_WEBGL || UNITY_EDITOR
             if(MenuButton(new Rect(30,783,200,58),"Quit"))Application.Quit();
 #endif

@@ -405,3 +405,14 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 **Cause:** The inventory panel occupied the horizontal space reserved for the Progress and unlock review area. The presentation review also assumed the starting SMG was the only inventory entry, which no longer held after item integration.
 
 **Fix:** Narrow and reposition the inventory panel, accept an SMG anywhere in the starting inventory during review, and clear the review's newly unlocked state before restart. The integrated Windows build succeeded with zero errors and warnings; 387 EditMode tests passed.
+
+
+## October 14 - Web release exposed local showcase mode
+
+**User report:** The itch.io Web build should contain the normal game without the photo/video demo mode.
+
+**Cause:** The WebGL build excluded diagnostic review controls but still compiled the title screen showcase buttons and F5-F10 shortcuts from the desktop presentation code.
+
+**Fix:** Compile those buttons, shortcuts, and showcase command-line entry points only for non-Web builds. Keep the desktop showcase for capture work. Rebuild the WebGL release from main and replace the upload ZIP.
+
+**Verification and limit:** Final WebGL release build succeeded with zero errors and warnings. The upload ZIP has index.html at its root. Browser UI inspection and itch.io iframe testing remain open.

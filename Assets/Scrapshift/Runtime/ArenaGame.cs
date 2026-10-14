@@ -115,10 +115,12 @@ namespace Scrapshift
             if(scaleIndex>=0&&scaleIndex+1<args.Length)BeginScaleReview(args[scaleIndex+1]);
             int appearanceIndex=Array.IndexOf(args,"--appearance-review");
             if(appearanceIndex>=0&&appearanceIndex+1<args.Length)BeginAppearanceReview(args[appearanceIndex+1]);
+#if !UNITY_WEBGL
             if(Array.IndexOf(args,"--support-showcase")>=0)BeginSupportShowcase();
             int loadoutIndex=Array.IndexOf(args,"--loadout-showcase");
             if(loadoutIndex>=0&&loadoutIndex+1<args.Length)BeginLoadoutShowcase(ShowcaseLoadouts.Index(args[loadoutIndex+1]));
             if(loadoutShowcase>=0&&Array.IndexOf(args,"--showcase-clean")>=0)showcaseCleanFrame=true;
+#endif
         }
 
         public void Begin()
@@ -142,6 +144,7 @@ namespace Scrapshift
         {
             if(appearanceParity){AppearanceParityTick();return;}
             if(itemIconReview){ItemIconReviewTick();return;}
+#if !UNITY_WEBGL
             if(supportShowcase&&Input.GetKeyDown(KeyCode.F5))BeginSupportShowcase();
             if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F5))BeginLoadoutShowcase(loadoutShowcase);
             if(Input.GetKeyDown(KeyCode.F6))BeginLoadoutShowcase(0);
@@ -149,6 +152,7 @@ namespace Scrapshift
             if(Input.GetKeyDown(KeyCode.F9))BeginLoadoutShowcase(2);
             if(Input.GetKeyDown(KeyCode.F10))BeginLoadoutShowcase(3);
             if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F8))showcaseCleanFrame=!showcaseCleanFrame;
+#endif
 #if UNITY_WEBGL && SCRAPSHIFT_WEB_REVIEW
             TickWebReview();
 #endif
