@@ -302,3 +302,31 @@ Colored card edge follow-up: Frame supplied a black outer perimeter before a col
 Rounded inventory focus: Inspect drew four white rectangular border strips over the rounded tile fill, creating square white corners. Replaced them with a rounded border-only draw (radius 8, width 2). The inspection fixture now applies forced focus to this outline too, so screenshot validation exercises the previously missed layer.
 
 White inventory seam follow-up: the previous rounded outline fix was incomplete. Frame still painted a dark full-size base behind an inset white fill, and Inspect added another perimeter. Focused frames now draw one solid rounded white surface, and inventory inspection no longer overlays another border. Keyboard focus uses the same tile state. Added a pause-character reproduction capture.
+
+## October 13 - item pool and reroll parity (source-audit defect)
+
+**Trigger and expected behavior:** Shaoyu asked for shop, crate and level-reward randomization to match the supplied extracted game. Source review found that the default random item pool must reject zero-maximum-count items, a new shop excludes only locked prior offers, a reroll excludes the offers it replaces, and an empty rarity tier does not fall back to a lower tier. This was a code/source mismatch; no manual run is claimed to have displayed the rare bad item.
+
+**Cause:** `ConfigureShopItems` accepted `broken_hourglass` because it checked availability but not `maxCount`; item selection had a lower-tier fallback; shop exclusion and random draw order differed from the reference. The original allows `broken_hourglass` through a separate transformation, not ordinary shop/crate rolls.
+
+**Fix:** Filter zero-count items, keep the selected tier, distinguish fresh-shop from reroll exclusions, and align the shop/crate draw sequence. The level reward rarity formula already matched; only its draw order changed. See `item-randomization-parity.md` and commit `d6cd68c`.
+
+**Verification and limit:** The isolated item branch passed 330 Unity EditMode tests, including eligibility and reroll cases. This establishes the implemented selection rules for the imported pool, not identical individual offers from equal numeric seeds or full DLC/unlock parity.
+
+## October 13 - XP level label sat at the right of the bar (UI defect)
+
+**User report:** The laptop game's level text appeared at the right of the XP bar rather than centered like the health text.
+
+**Cause and fix:** `GameUI` drew `LV.#` in a narrow x=195, width=87 rectangle with right alignment. Commit `574f935` uses the XP bar's full x=24, width=262 rectangle and the shared centered style.
+
+**Verification and limit:** The Windows build succeeded with zero errors and warnings. A separate screenshot assertion or post-fix user acceptance was not recorded for this alignment change.
+
+## October 13 - auto melee swing stopped tracking its target (combat defect)
+
+**User report:** A melee weapon sometimes missed when Shaoyu moved during its attack. Some misses are expected: the original damages only when the animated hitbox overlaps an enemy, and ordinary weapons start attacks while the player is stationary. The report prompted a source comparison; it did not by itself prove every miss was a bug.
+
+**Cause:** The supplied `weapons/weapon.gd` keeps rotating an auto-aimed weapon toward its live target while shooting, and its melee behavior moves a timed collision hitbox. Scrapshift's `BeginMeleeAttack` stored the initial angle and `TickMeleeAttack` reused it for the whole swing. Movement could therefore leave the hitbox pointed at the target's old direction. Manual aim is intentionally fixed during a swing in the reference.
+
+**Fix:** Commit `137bbd4` updates the auto-aimed swing angle from the current weapon mount and live target each frame, preserves the spread chosen when the attack began, and stops tracking after the target leaves detection range. It leaves manual aim and the collision-based hit rule intact.
+
+**Verification and limit:** 331/331 Unity EditMode tests passed, the Windows build had zero errors/warnings, and the built-player fixture passed 205/205 stationary weapon attack checks. The new movement-angle regression checks direction and preserved spread. No human playthrough or proof that every moving-target miss disappeared is claimed. Shaoyu reported the symptom; Codex compared the source, implemented and ran these checks.
