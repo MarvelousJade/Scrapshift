@@ -7,7 +7,7 @@ import sys
 
 root = Path(__file__).resolve().parents[1]
 clone = root.parents[2] / 'tmp' / 'ScrapshiftParity'
-ids = {'beanie', 'leather_vest', 'glasses', 'coffee'}
+ids = {'beanie', 'leather_vest', 'glasses', 'coffee', 'blindfold'}
 all_wearables = '--all-wearables' in sys.argv
 if all_wearables:
     manifest=json.loads((root/'Assets/Scrapshift/Content/OriginalArt/FittedWearables/manifest.json').read_text())
