@@ -75,7 +75,9 @@ The original brief emphasized small, polished, Unity experience and AssetScope c
 
 ## How would you optimize it?
 
-Measure first with Unity Profiler on a repeatable scenario. Investigate Instantiate/Destroy and nested collision searches if they dominate a frame. Pool transient objects or introduce spatial partitioning only with evidence. The project currently bounds entity counts; it has not established a production performance benchmark. Do not quote an invented FPS improvement.
+The first measured combat pass is documented in [performance optimization and interview Q&A](performance-optimization.md). Across two controlled Windows player runs, average simulation CPU cost fell from 17.48 to 5.36 ms at 100 enemies and from 55.66 to 12.66 ms at 200. The changes index immutable collision data, remove transient LINQ work from frequent set queries, and compute process fixture detection once. All 361 EditMode tests passed, and seeded combat aggregates matched.
+
+Explain the limits when quoting those numbers: this is headless simulation timing, excluding rendering and UI, not an FPS claim. Allocation counters were unavailable in the release player and are explicitly marked invalid. The linked notes cover complexity, GC, caching and invalidation, floating-point parity, mean versus p95, pooling, spatial partitioning, profiling tools, and branch isolation. Reproduce the benchmark and review the code before presenting assistant-run work as your own hands-on investigation.
 
 ## How did references influence the game?
 

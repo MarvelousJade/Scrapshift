@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace Scrapshift
@@ -11,13 +12,14 @@ namespace Scrapshift
     {
         [Serializable] sealed class PerformanceSample
         {
-            public int enemies, frames, shotsFired, remainingShots, collections;
-            public double simulationMeanMs, simulationP95Ms, simulationMaxMs, allocatedBytesPerStep;
+            public int enemies, frames, shotsFired, remainingShots;
+            public bool allocationCounterValid;
+            public double simulationMeanMs, simulationP95Ms, simulationMaxMs, allocatedBytesPerFrame;
             public double positionChecksum, healthChecksum;
         }
         [Serializable] sealed class PerformanceReport
         {
-            public string scope = "Controlled Windows player CPU benchmark: 100/200 durable enemies, six tier-II weapons, fixed 60 Hz simulation, fixed seeds, 120 warmup + 360 measured steps. Measures Simulate and UpdateFeedback only; excludes rendering, UI, startup and setup. Not a whole-game FPS measurement.";
+            public string scope = "Controlled headless Windows player CPU benchmark: 100/200 durable enemies, six tier-II weapons, fixed 60 Hz simulation, fixed seeds, 120 warmup + 360 measured steps. CPU times measure Simulate and UpdateFeedback only; excludes rendering, UI, startup and setup. Optional Unity allocation counter covers entire frames and is -1 if its positive control fails. Not a whole-game FPS measurement.";
             public string unity, cpu;
             public PerformanceSample[] samples;
         }
@@ -44,6 +46,11 @@ namespace Scrapshift
             var results = new List<PerformanceSample>();
             foreach (int count in new[] { 100, 200 })
             {
+                using var allocationRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Allocated In Frame", 1);
+                var allocationProbe = new byte[65536];
+                yield return null;
+                bool allocationCounterValid = allocationRecorder.Valid && allocationRecorder.Count > 0 && allocationRecorder.LastValue >= allocationProbe.Length;
+                GC.KeepAlive(allocationProbe);
                 UnityEngine.Random.InitState(771);
                 placementRandom = new System.Random(771);
                 Begin();
@@ -71,25 +78,20 @@ namespace Scrapshift
                 const int warmup = 120, measured = 360;
                 var times = new double[measured];
                 long allocated = 0;
-                int collections = 0;
                 for (int frame = 0; frame < warmup + measured; frame++)
                 {
-                    if (frame == warmup) collections = GC.CollectionCount(0);
                     invulnerable = 1;
-                    long bytes = GC.GetAllocatedBytesForCurrentThread();
                     long start = Stopwatch.GetTimestamp();
                     UpdateFeedback(1f / 60);
                     Simulate(1f / 60);
                     long end = Stopwatch.GetTimestamp();
-                    long used = GC.GetAllocatedBytesForCurrentThread() - bytes;
                     if (frame >= warmup)
                     {
                         times[frame - warmup] = (end - start) * 1000.0 / Stopwatch.Frequency;
-                        allocated += used;
                     }
                     yield return null;
+                    if (frame >= warmup && allocationCounterValid) allocated += allocationRecorder.LastValue;
                 }
-                collections = GC.CollectionCount(0) - collections;
                 double sum = 0, positions = 0, health = 0;
                 foreach (double time in times) sum += time;
                 for (int i = 0; i < enemies.Count; i++)
@@ -99,9 +101,9 @@ namespace Scrapshift
                 }
                 Array.Sort(times);
                 results.Add(new PerformanceSample { enemies = enemies.Count, frames = measured, shotsFired = shotsFired,
-                    remainingShots = shots.Count, collections = collections, simulationMeanMs = sum / measured,
+                    remainingShots = shots.Count, allocationCounterValid = allocationCounterValid, simulationMeanMs = sum / measured,
                     simulationP95Ms = times[(int)((measured - 1) * .95)], simulationMaxMs = times[measured - 1],
-                    allocatedBytesPerStep = allocated / (double)measured, positionChecksum = positions, healthChecksum = health });
+                    allocatedBytesPerFrame = allocationCounterValid ? allocated / (double)measured : -1, positionChecksum = positions, healthChecksum = health });
                 File.WriteAllText(Path.Combine(folder, "performance.json"), JsonUtility.ToJson(new PerformanceReport {
                     unity = Application.unityVersion, cpu = SystemInfo.processorType, samples = results.ToArray() }, true));
             }

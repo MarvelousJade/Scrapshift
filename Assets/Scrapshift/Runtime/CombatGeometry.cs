@@ -15,11 +15,18 @@ namespace Scrapshift
     {
         [System.Serializable] sealed class CollisionEntry { public string id; public float[] radii, hurt, contact; }
         [System.Serializable] sealed class CollisionTable { public CollisionEntry[] entries; }
-        static CollisionEntry[] profiles;
+        static System.Collections.Generic.Dictionary<string, CollisionEntry> profiles;
         static CollisionEntry Profile(string id)
         {
-            if (profiles == null) profiles = JsonUtility.FromJson<CollisionTable>(Resources.Load<TextAsset>("enemy-collisions").text).entries;
-            return System.Array.Find(profiles, p => p.id == id);
+            if (profiles == null)
+            {
+                var entries = JsonUtility.FromJson<CollisionTable>(Resources.Load<TextAsset>("enemy-collisions").text).entries;
+                profiles = new System.Collections.Generic.Dictionary<string, CollisionEntry>(entries.Length, System.StringComparer.Ordinal);
+                // The imported table is immutable for the lifetime of this domain.
+                // Keep the first entry, matching the previous array search.
+                foreach (var entry in entries) if (!profiles.ContainsKey(entry.id)) profiles.Add(entry.id, entry);
+            }
+            return id != null && profiles.TryGetValue(id, out var profile) ? profile : null;
         }
         public const float PlayerHurtRadius = .21f;
         public const float BulletRadius = .44f;
