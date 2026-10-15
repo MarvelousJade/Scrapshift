@@ -41,7 +41,7 @@ namespace Scrapshift
                 int before=Rules.Kills;
                 foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(target.pos,explosion.position)<=radius)
                     Damage(enemies.IndexOf(target),damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true);
-                Rules.RecordExplosionKills(Rules.Kills-before);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position);
+                Rules.RecordExplosionKills(Rules.Kills-before);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position,contextProfile:ContextSoundProfile.Explosion);
             }
         }
         void TryVulnerability(Enemy target,string scalingStat)

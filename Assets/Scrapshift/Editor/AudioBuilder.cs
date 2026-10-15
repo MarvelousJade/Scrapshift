@@ -9,6 +9,28 @@ namespace Scrapshift.Editor
 {
     public static partial class ContentBuilder
     {
+        static void EnsureAlienEyesAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            var clips=Enumerable.Range(1,2).Select(i=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/Pulse_"+i.ToString("00")+".wav")).ToArray();
+            if(clips.Any(c=>c==null))throw new Exception("Missing supplied Alien Eyes sound variants");
+            var entry=bank.Find(SoundCue.Pulse);
+            entry.variants=clips;entry.gain=1;entry.pitchVariation=.1f;
+            EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
+        static void EnsureEndRunReferenceAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            foreach(var cue in new[]{SoundCue.Win,SoundCue.Lose})
+            {
+                int count=cue==SoundCue.Win?1:9;
+                var clips=Enumerable.Range(1,count).Select(i=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/"+cue+"_"+i.ToString("00")+".mp3")).ToArray();
+                if(clips.Any(c=>c==null))throw new Exception("Missing supplied end-run audio: "+cue);
+                var entry=bank.Find(cue);
+                entry.variants=clips;entry.gain=Mathf.Pow(10,-5f/20);entry.pitchVariation=0;entry.priority=2;
+            }
+            EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
         static void EnsurePlayerHitAudio()
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");

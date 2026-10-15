@@ -82,7 +82,7 @@ namespace Scrapshift
             float damage=SpecialWeaponRules.StructureDamage(Rules,spec.Equipment)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100);
             foreach(var enemy in enemies.ToArray())if(enemy!=directHit&&enemy.marker==null&&Vector2.Distance(enemy.pos,position)<=radius)
                 Damage(enemies.IndexOf(enemy),damage,spec.stats.crit,0,enemy.pos-position,spec.Equipment,true,false,true);
-            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(position,16,amber);sound.Play(SoundCue.Impact,position);
+            Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(position,16,amber);sound.Play(SoundCue.Impact,position,contextProfile:ContextSoundProfile.Explosion);
         }
     }
 }

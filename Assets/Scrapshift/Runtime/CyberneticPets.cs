@@ -32,7 +32,10 @@ namespace Scrapshift
             if(spec.kind=="doc_moth"){pet.zoneView=MakeLine("Healing zone",obj.transform,new Color(.25f,1,.4f,.2f),.035f,true);pet.zoneView.useWorldSpace=true;pet.zoneView.positionCount=64;pet.zoneView.sortingOrder=2;}
             if(spec.kind=="scapegoat")
             {
-                pet.reviveSound=obj.AddComponent<AudioSource>();pet.reviveSound.playOnAwake=false;pet.reviveSound.loop=true;pet.reviveSound.clip=Resources.Load<AudioClip>("OriginalSupportAudio/scapegoat_heal_loop");
+                pet.reviveSound=obj.AddComponent<AudioSource>();pet.reviveSound.playOnAwake=false;pet.reviveSound.loop=true;
+                var healLoop=Resources.Load<AudioClip>("OriginalSupportAudio/scapegoat_heal_loop");
+                var audioLibrary=Resources.Load<CyberSoundLibrary>("CyberSoundLibrary");
+                pet.reviveSound.clip=audioLibrary!=null?audioLibrary.Resolve(healLoop,SoundCue.Fire,ContextSoundProfile.HealLoop):healLoop;
                 pet.healthBack=MakeLine("Decoy health background",obj.transform,Color.black,.10f);pet.healthView=MakeLine("Decoy health",obj.transform,mint,.06f);
                 foreach(var line in new[]{pet.healthBack,pet.healthView}){line.useWorldSpace=true;line.positionCount=2;line.sortingOrder=15;}
                 pet.healthView.sortingOrder=16;

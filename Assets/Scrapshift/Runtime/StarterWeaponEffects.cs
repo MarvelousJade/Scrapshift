@@ -106,7 +106,7 @@ namespace Scrapshift
                 int explosionKillsBefore=Rules.Kills;
             foreach(var e in enemies.ToArray())if(e.marker==null&&Vector2.Distance(e.pos,mine.pos)<mine.radius)
                     Damage(enemies.IndexOf(e),SpecialWeaponRules.StructureDamage(Rules,mine.stats)*Mathf.Max(0,1+Rules.Stat("explosion_damage")/100),mine.stats.crit,mine.stats.knockback,e.pos-mine.pos,mine.stats,true,false,true);
-                Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos);Destroy(mine.obj);mines.RemoveAt(i);
+                Rules.RecordExplosionKills(Rules.Kills-explosionKillsBefore);Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos,contextProfile:ContextSoundProfile.Explosion);Destroy(mine.obj);mines.RemoveAt(i);
             }
             foreach(var e in enemies.ToArray())if(e.burnTicks>0&&e.marker==null)
             {

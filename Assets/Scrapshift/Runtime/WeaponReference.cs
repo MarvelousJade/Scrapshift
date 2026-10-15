@@ -58,9 +58,9 @@ namespace Scrapshift
         public static AudioClip[] ImpactClips(bool critical,bool burning)
         {Load();var a=data.audio.Single(x=>x.id==(burning?"burn":critical?"crit":"hurt"));return a.loaded??(a.loaded=a.clips.Select(Resources.Load<AudioClip>).ToArray());}
         public static void Impact(GameAudio audio,Vector2 position,bool critical,bool burning)
-        {audio.Play(critical?SoundCue.Critical:SoundCue.Impact,position,ImpactClips(critical,burning),1,.2f,true);}
+        {audio.Play(critical?SoundCue.Critical:SoundCue.Impact,position,ImpactClips(critical,burning),1,.2f,true,burning?ContextSoundProfile.Burn:(int?)null);}
         public static void Fire(GameAudio audio,Equipment w,Vector2 position)
-        {audio.Play(w.melee?SoundCue.Swing:SoundCue.Fire,position,w.sounds,Mathf.Pow(10,(Profile(w)?.soundDb??-5)/20),.2f,true);}
+        {audio.Play(w.melee?SoundCue.Swing:SoundCue.Fire,position,w.sounds,Mathf.Pow(10,(Profile(w)?.soundDb??-5)/20),.2f,true,ContextSoundProfile.Weapon(w.id,w.melee));}
         public static float Speed(Equipment w,float rangeStat)
         {return Profile(w)?.speedWithRange==true?Mathf.Clamp(w.projectileSpeed*(1+rangeStat/300),.5f,60):w.projectileSpeed;}
         public static float Spread(Equipment w,float addedProjectiles,float roll)

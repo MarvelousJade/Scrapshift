@@ -18,10 +18,12 @@ namespace Scrapshift
         int[] previous;
         float duckUntil, lastPickup;
         int pickupChain;
+        CyberSoundLibrary cyberSounds;
 
         public void Initialize(SoundBank bank, bool muted)
         {
             Bank = bank; Muted = muted;
+            cyberSounds=Resources.Load<CyberSoundLibrary>("CyberSoundLibrary");
             Volume = Mathf.Clamp01(PlayerPrefs.GetFloat("sfxVolume", .7f));
             int count = System.Enum.GetValues(typeof(SoundCue)).Length;
             last = new float[count]; previous = new int[count];
@@ -39,7 +41,7 @@ namespace Scrapshift
             int selected = Mathf.Abs(roll % (count - 1));
             return previous < 0 ? Mathf.Abs(roll % count) : selected >= previous ? selected + 1 : selected;
         }
-        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null, float? overrideGain = null, float? overridePitchVariation = null, bool independent = false)
+        public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null, float? overrideGain = null, float? overridePitchVariation = null, bool independent = false, int? contextProfile = null)
         {
             if (Bank == null || Muted || Volume <= 0) return;
             var entry = Bank.Find(cue); int key = (int)cue; float now = Time.unscaledTime;
@@ -60,7 +62,7 @@ namespace Scrapshift
             var clips = overrideClips != null && overrideClips.Length > 0 ? overrideClips : entry.variants;
             int variant = VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
             previous[key] = variant; last[key] = now;
-            var voice = voices[index]; voice.Stop(); voice.clip = clips[variant];
+            var voice = voices[index]; voice.Stop(); voice.clip = cyberSounds!=null?cyberSounds.Resolve(clips[variant],cue,contextProfile):clips[variant];
             float pitchVariation=overridePitchVariation??entry.pitchVariation;
             voice.pitch = 1 + Random.Range(-pitchVariation, pitchVariation);
             if (cue == SoundCue.Pickup)

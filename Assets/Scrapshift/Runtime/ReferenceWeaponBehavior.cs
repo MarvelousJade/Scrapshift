@@ -107,7 +107,7 @@ namespace Scrapshift
                 if(reference.soundDb>-50)
                 {
                     if(reference.audio==null)reference.audio=System.Array.ConvertAll(reference.clips,path=>Resources.Load<AudioClip>(path));
-                    sound.Play(SoundCue.Impact,victim.pos,reference.audio,Mathf.Pow(10,reference.soundDb/20),.2f,true);
+                    sound.Play(SoundCue.Impact,victim.pos,reference.audio,Mathf.Pow(10,reference.soundDb/20),.2f,true,ContextSoundProfile.Explosion);
                 }
             }
             weaponExplosions.Add(explosion);

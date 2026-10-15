@@ -18,7 +18,7 @@ namespace Scrapshift
         public static void Play(GameAudio audio,string key,Vector2 position)
         {
             var e=Find(key);if(e==null||e.loaded.Length==0)return;
-            audio.Play(SoundCue.Fire,position,e.loaded,Mathf.Pow(10,e.db/20),.2f);
+            audio.Play(SoundCue.Fire,position,e.loaded,Mathf.Pow(10,e.db/20),.2f,contextProfile:ContextSoundProfile.Support(key));
         }
     }
 }
