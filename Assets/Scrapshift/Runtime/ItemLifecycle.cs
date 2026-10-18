@@ -16,7 +16,9 @@ namespace Scrapshift
         public int ExtraLootAliens {get;private set;}
         public int HitProtection {get;private set;}
         public bool LastHitProtected {get;private set;}
-        public float BurningInterval=>Mathf.Max(.1f,1+(Stat("burning_cooldown_increase")-Stat("burning_cooldown_reduction"))/100);
+        // unit.tscn starts BurningTimer at 0.5 s; unit.gd applies the summed
+        // increase/reduction once when the enemy is initialized.
+        public float BurningInterval=>Mathf.Max(.1f,.5f*(1+(Stat("burning_cooldown_increase")-Stat("burning_cooldown_reduction"))/100));
         public float DodgeLimit=>Mathf.Clamp(Mathf.Max(60,Stat("dodge_cap")),0,100)/100;
         void BeginItemWave()
         {

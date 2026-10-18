@@ -1,4 +1,16 @@
-## Current completed checkpoint - October17, R23
+Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
+
+## Current rehearsal - item, survival and unlock lifecycle corrections (R25)
+
+Explain how a passing count/cap test can miss a combined effect: burning had correct payloads but used a 1s base instead of the source Unit timer's 0.5s. Trace ItemLifecycle.BurningInterval through combined-stat tests and actual 60 Hz native burn traces. Forced burn application does not test proc probability.
+
+Trace RunRules.Hurt -> BeginDeathCleanup -> TickDeathSweep -> retry/acknowledgment. A lethal hit must stop later attacks and pickups in the same tick. Half-second cleanup banks raw material without XP/harvesting; consumables cannot heal a dead player. Optional retry restores an explicit wave-start checkpoint while global achievements and RNG remain live. Explain the tradeoff: new persistent run fields require deliberate checkpoint coverage; copying all objects would copy state that must stay live.
+
+Explain why combat minimum HP differs from spendable raw Max HP. Model tests caught repeated last-HP purchases; native screenshot review exposed incorrect currency icons/header/stat values. For unlocks, global completion differs from current-run eligibility: dying can complete Rookie while retry retains its frozen item pool. All 115 definitions have producer/save-reload/next-run tests; counter-adapter cases do not prove native collision producers.
+
+Evidence: 1181/1181 full suite, three native R25 fixtures,12 fresh captures, zero build errors/warnings. See [priority report](gameplay-priority-followup-2026-10-17.md). Codex investigated, implemented and tested under the user's direction. Reproduce these traces before claiming personal hands-on debugging. Exhaustive item pairs and human survival balance remain unverified; no new 20-wave result is claimed.
+
+## Historical completed checkpoint - October17, R23
 
 The complete suite passed **1031/1031**, zero failures/skips, exit0. R23 built with zero errors/warnings at `Builds/GameplayParity20261017R23/LaunchGame.cmd`;550 recorded source/import/settings inputs and160 player files were verified again after the run. Native virtual navigation passed17 snapshots and final settlement passed both routes, exit0. The final normal-speed scripted20-wave campaign completed Won/exit0,20 waves/19 shops, and the comparison with the completed supplied-original run passed **18/18 bounded checks**. Its final receipt credited109 materials (1227 to1336), then Harvesting grew109 to115. See [complete evidence](full-verification-2026-10-17.md).
 

@@ -162,6 +162,12 @@ Updated: 2026-10-17, America/Toronto. This file records the user's instructions 
 
 ## Builds, previews and working practices
 
+- October17 documentation: `docs/gameplay-verification-status.md` is the consolidated verified/partial/missing checklist. Keep source/model/native/human coverage separate and update it after new evidence.
+
+- October17 priority follow-up: R25 (`Builds/GameplayParity20261017R25/LaunchGame.cmd`) fixes combined burning timing, cleanup healing, defeat/retry lifecycle, raw HP-shop currency/presentation and retry unlock-pool lifetime. Full suite1181/1181 Passed; all115 unlock definitions have producer/save-reload/next-run cases plus one guard. Three R25 native fixtures Passed/exit0;12 captures reviewed,568 source inputs/160 player files verified. See `docs/gameplay-priority-followup-2026-10-17.md`. Staged checks do not establish exhaustive item pairs or human survival balance; R23 full20 remains historical.
+
+- October17 follow-up priority: the user selected three areas to fix first: combined item effects/stacks; ordinary damage/healing/lethal hits/defeat; special shop alternatives and unlock triggers/persistence across subsequent runs. Use disjoint agent ownership, source-derived focused tests and native checks for confirmed fixes before another broad campaign. R23 and commit affceae are the preserved baseline; previous verification does not close these broader cases.
+
 - October17 latest authorization: the user now requests the complete test suite and a fresh full20-wave comparison against the supplied original, with fixes for confirmed differences and updated bug/interview notes. The earlier hold on whole-suite/full-run testing is superseded for this phase. Use isolated profiles/clones and preserve prior evidence.
 
 - October 15 latest testing order: finish the remaining source audits and gameplay fixes before running the whole test suite or another full-run comparison. Focused checks may support individual fixes. Keep bug documentation and interview notes updated, and distinguish implemented fixes from validation still pending.

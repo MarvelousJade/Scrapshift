@@ -58,7 +58,7 @@ namespace Scrapshift.Tests
         [Test] public void BurnIntervalAndDodgeCapsRespectLimits()
         {
             var r=Run();Assert.AreEqual(.6f,r.DodgeLimit);r.GainWeaponStat("dodge_cap",70);Assert.AreEqual(.7f,r.DodgeLimit);
-            r.GainWeaponStat("burning_cooldown_reduction",20);Assert.AreEqual(.8f,r.BurningInterval,.001);r.GainWeaponStat("burning_cooldown_reduction",1000);Assert.AreEqual(.1f,r.BurningInterval);
+            r.GainWeaponStat("burning_cooldown_reduction",20);Assert.AreEqual(.4f,r.BurningInterval,.001);r.GainWeaponStat("burning_cooldown_reduction",1000);Assert.AreEqual(.1f,r.BurningInterval);
         }
         [Test] public void CriticalKillHealingNeedsBothCriticalAndSuccessfulRoll()
         {

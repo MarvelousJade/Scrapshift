@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="116" result="Passed" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:05Z" duration="6.064891">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1181" result="Passed" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:05Z" duration="6.064891" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2373" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1151" result="Passed" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:05Z" duration="6.032963" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21176" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2374" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1151" result="Passed" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:05Z" duration="6.013784" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2375" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1151" result="Passed" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:05Z" duration="5.992917" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2095" name="UnlockDispatchParityTests" fullname="Scrapshift.Tests.UnlockDispatchParityTests" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" testcasecount="116" result="Passed" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:05Z" duration="5.969107" total="116" passed="116" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2096" name="CaseInventoryEqualsEveryImportedDefinition" fullname="Scrapshift.Tests.UnlockDispatchParityTests.CaseInventoryEqualsEveryImportedDefinition" methodname="CaseInventoryEqualsEveryImportedDefinition" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1960824971" result="Passed" start-time="2026-10-18 03:27:59Z" end-time="2026-10-18 03:28:00Z" duration="0.258815" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2212" name="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" fullname="Scrapshift.Tests.UnlockDispatchParityTests.EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" testcasecount="115" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:05Z" duration="5.691188" total="115" passed="115" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2097" name="UnlockDispatch_unlock_difficulty_1" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_unlock_difficulty_1" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1447558179" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.072620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2098" name="UnlockDispatch_unlock_difficulty_2" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_unlock_difficulty_2" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="911611805" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.058266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2099" name="UnlockDispatch_unlock_difficulty_3" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_unlock_difficulty_3" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="478225288" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.085378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2100" name="UnlockDispatch_unlock_difficulty_4" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_unlock_difficulty_4" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="173858554" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.097145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2101" name="UnlockDispatch_unlock_difficulty_5" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_unlock_difficulty_5" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="550741924" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.098097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2102" name="UnlockDispatch_unlock_difficulty_6" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_unlock_difficulty_6" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="638323034" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.287876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2103" name="UnlockDispatch_chal_difficulty_0" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_0" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1556758510" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.029496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2104" name="UnlockDispatch_chal_difficulty_1" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_1" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2127006876" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.030740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2105" name="UnlockDispatch_chal_difficulty_2" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_2" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="208323848" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.052116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2106" name="UnlockDispatch_chal_difficulty_3" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_3" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="30826445" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.052045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2107" name="UnlockDispatch_chal_difficulty_4" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_4" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="946674340" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:00Z" duration="0.048821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2108" name="UnlockDispatch_chal_difficulty_5" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_5" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1964894652" result="Passed" start-time="2026-10-18 03:28:00Z" end-time="2026-10-18 03:28:01Z" duration="0.048189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2109" name="UnlockDispatch_chal_difficulty_6" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_difficulty_6" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1293443813" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.097507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2110" name="UnlockDispatch_chal_survivor_1" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_survivor_1" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="797127177" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.033458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2111" name="UnlockDispatch_chal_survivor_2" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_survivor_2" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="167053259" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.032419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2112" name="UnlockDispatch_chal_survivor_3" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_survivor_3" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1140863282" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.034430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2113" name="UnlockDispatch_chal_survivor_4" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_survivor_4" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="942672729" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.039446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2114" name="UnlockDispatch_chal_survivor_5" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_survivor_5" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="872777788" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.050222" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2115" name="UnlockDispatch_chal_gatherer_1" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_gatherer_1" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="55651547" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.022530" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2116" name="UnlockDispatch_chal_gatherer_2" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_gatherer_2" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2010495732" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.028761" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2117" name="UnlockDispatch_chal_gatherer_3" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_gatherer_3" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="175179380" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.039255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2118" name="UnlockDispatch_chal_gatherer_4" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_gatherer_4" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="138272927" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.043133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2119" name="UnlockDispatch_chal_gatherer_5" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_gatherer_5" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="727713199" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.070079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2120" name="UnlockDispatch_chal_rookie" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_rookie" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="249455880" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.028812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2121" name="UnlockDispatch_chal_dying" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_dying" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="553864428" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.026942" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2122" name="UnlockDispatch_chal_agriculture" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_agriculture" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="949806665" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.018336" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2123" name="UnlockDispatch_chal_hallucination" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_hallucination" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="389882528" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.018659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2124" name="UnlockDispatch_chal_fast" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_fast" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="341289247" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.017649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2125" name="UnlockDispatch_chal_hoarder" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_hoarder" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1937297848" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.021783" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2126" name="UnlockDispatch_chal_turrets" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_turrets" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="464172766" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.146220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2127" name="UnlockDispatch_chal_lumberjack" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_lumberjack" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1124589674" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.029041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2128" name="UnlockDispatch_chal_medicine" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_medicine" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2027528750" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.020684" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2129" name="UnlockDispatch_chal_perfect_vision" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_perfect_vision" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="30652278" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.032844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2130" name="UnlockDispatch_chal_fireworks" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_fireworks" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1950449484" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.021798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2131" name="UnlockDispatch_chal_recycling" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_recycling" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1544655322" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.030071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2132" name="UnlockDispatch_chal_slow" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_slow" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="462437502" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.023393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2133" name="UnlockDispatch_chal_hungry" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_hungry" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="7799372" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:01Z" duration="0.018788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2134" name="UnlockDispatch_chal_advanced_technology" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_advanced_technology" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2074222785" result="Passed" start-time="2026-10-18 03:28:01Z" end-time="2026-10-18 03:28:02Z" duration="0.023256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2135" name="UnlockDispatch_chal_giant_slayer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_giant_slayer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1233844873" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.019649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2136" name="UnlockDispatch_chal_robust" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_robust" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="49686760" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.017495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2137" name="UnlockDispatch_chal_baited" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_baited" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="659844005" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.022880" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2138" name="UnlockDispatch_chal_forest" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_forest" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="72433557" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.023057" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2139" name="UnlockDispatch_chal_bourgeoisie" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_bourgeoisie" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="285341493" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.019367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2140" name="UnlockDispatch_chal_student" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_student" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="218559542" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.337590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2141" name="UnlockDispatch_chal_reckless" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_reckless" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="961309710" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.025618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2142" name="UnlockDispatch_chal_scavenger" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_scavenger" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="558609126" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.020805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2143" name="UnlockDispatch_chal_fast_learner" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_fast_learner" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="321484076" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.070144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2144" name="UnlockDispatch_chal_experimentation" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_experimentation" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1210926739" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.018396" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2145" name="UnlockDispatch_chal_magic_and_machinery" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_magic_and_machinery" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="913395594" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.021934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2146" name="UnlockDispatch_chal_blood_drinker" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_blood_drinker" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="246229054" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.017903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2147" name="UnlockDispatch_chal_well_rounded" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_well_rounded" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1023472649" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.024882" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2148" name="UnlockDispatch_chal_brawler" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_brawler" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1044534881" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.029998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2149" name="UnlockDispatch_chal_crazy" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_crazy" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1742696545" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.046716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2150" name="UnlockDispatch_chal_ranger" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_ranger" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="441737786" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.047052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2151" name="UnlockDispatch_chal_mage" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_mage" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="882178129" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.050962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2152" name="UnlockDispatch_chal_chunky" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_chunky" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1309285252" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.047802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2153" name="UnlockDispatch_chal_old" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_old" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="183898606" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.045393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2154" name="UnlockDispatch_chal_lucky" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_lucky" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="228769408" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:02Z" duration="0.055238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2155" name="UnlockDispatch_chal_mutant" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_mutant" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1767477773" result="Passed" start-time="2026-10-18 03:28:02Z" end-time="2026-10-18 03:28:03Z" duration="0.053806" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2156" name="UnlockDispatch_chal_generalist" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_generalist" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1748418906" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.045892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2157" name="UnlockDispatch_chal_loud" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_loud" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="248440506" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.048662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2158" name="UnlockDispatch_chal_multitasker" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_multitasker" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1215469263" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.045427" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2159" name="UnlockDispatch_chal_wildling" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_wildling" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="189709028" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.046244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2160" name="UnlockDispatch_chal_pacifist" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_pacifist" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1891634729" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.050785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2161" name="UnlockDispatch_chal_gladiator" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_gladiator" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1053720418" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.048216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2162" name="UnlockDispatch_chal_saver" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_saver" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1066629237" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.054365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2163" name="UnlockDispatch_chal_sick" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_sick" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1934242374" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.051843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2164" name="UnlockDispatch_chal_farmer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_farmer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1490477976" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.049385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2165" name="UnlockDispatch_chal_ghost" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_ghost" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1399955502" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.057745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2166" name="UnlockDispatch_chal_speedy" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_speedy" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1852099404" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.052319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2167" name="UnlockDispatch_chal_entrepreneur" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_entrepreneur" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1133063910" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.053124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2168" name="UnlockDispatch_chal_engineer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_engineer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1015933591" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.050852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2169" name="UnlockDispatch_chal_explorer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_explorer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1786416562" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.054772" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2170" name="UnlockDispatch_chal_doctor" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_doctor" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="5964787" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.048336" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2171" name="UnlockDispatch_chal_hunter" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_hunter" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1350651727" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.047730" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2172" name="UnlockDispatch_chal_artificer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_artificer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="102745823" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.055833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2173" name="UnlockDispatch_chal_arms_dealer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_arms_dealer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2000415081" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:03Z" duration="0.055198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2174" name="UnlockDispatch_chal_streamer" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_streamer" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="509153657" result="Passed" start-time="2026-10-18 03:28:03Z" end-time="2026-10-18 03:28:04Z" duration="0.050383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2175" name="UnlockDispatch_chal_cyborg" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_cyborg" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1435629817" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.056366" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2176" name="UnlockDispatch_chal_glutton" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_glutton" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2142738949" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.053595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2177" name="UnlockDispatch_chal_jack" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_jack" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="628322589" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.056030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2178" name="UnlockDispatch_chal_lich" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_lich" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1326439436" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.062964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2179" name="UnlockDispatch_chal_apprentice" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_apprentice" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1575377300" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.055596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2180" name="UnlockDispatch_chal_cryptid" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_cryptid" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1691068794" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.051976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2181" name="UnlockDispatch_chal_fisherman" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_fisherman" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1588183764" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.048805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2182" name="UnlockDispatch_chal_golem" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_golem" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="80054793" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.045439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2183" name="UnlockDispatch_chal_king" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_king" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="284832205" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.045021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2184" name="UnlockDispatch_chal_renegade" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_renegade" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1736398139" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.048441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2185" name="UnlockDispatch_chal_one_arm" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_one_arm" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1068271355" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.045784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2186" name="UnlockDispatch_chal_bull" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_bull" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="235370070" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.046389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2187" name="UnlockDispatch_chal_soldier" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_soldier" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="278538896" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.052531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2188" name="UnlockDispatch_chal_masochist" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_masochist" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1926513611" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.056337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2189" name="UnlockDispatch_chal_knight" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_knight" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="306745012" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.047650" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2190" name="UnlockDispatch_chal_demon" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_demon" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1632909614" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.053643" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2191" name="UnlockDispatch_chal_baby" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_baby" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1948729901" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.050114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2192" name="UnlockDispatch_chal_vagabond" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_vagabond" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1591858389" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.048598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2193" name="UnlockDispatch_chal_technomage" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_technomage" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2030208176" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:04Z" duration="0.053121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2194" name="UnlockDispatch_chal_vampire" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_vampire" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="541190411" result="Passed" start-time="2026-10-18 03:28:04Z" end-time="2026-10-18 03:28:05Z" duration="0.049851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2195" name="UnlockDispatch_chal_evil_hat" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_evil_hat" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1312322771" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.025187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2196" name="UnlockDispatch_chal_hourglass" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_hourglass" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="2042164120" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.158586" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2197" name="UnlockDispatch_chal_candy_bag" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_candy_bag" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="771850399" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.061386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2198" name="UnlockDispatch_chal_fruit_basket" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_fruit_basket" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="978489747" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.043946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2199" name="UnlockDispatch_chal_will_o_the_wisp" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_will_o_the_wisp" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1958454884" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.025853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2200" name="UnlockDispatch_chal_ghost_outfit" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_ghost_outfit" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1208779837" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.024511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2201" name="UnlockDispatch_chal_vorpal_sword" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_vorpal_sword" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1260648791" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.024638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2202" name="UnlockDispatch_chal_bonk_dog" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_bonk_dog" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="7539058" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.022159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2203" name="UnlockDispatch_chal_catling_gun" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_catling_gun" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1405601966" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.024135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2204" name="UnlockDispatch_chal_bot_o_mine" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_bot_o_mine" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1736731758" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.034234" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2205" name="UnlockDispatch_chal_blazemander" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_blazemander" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1238569706" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.032356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2206" name="UnlockDispatch_chal_doc_moth" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_doc_moth" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="779432306" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.022370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2207" name="UnlockDispatch_chal_lootworm" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_lootworm" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1456353818" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.029600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2208" name="UnlockDispatch_chal_jellyshield" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_jellyshield" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1822228596" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.022199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2209" name="UnlockDispatch_chal_beast_master" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_beast_master" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="940623238" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.053124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2210" name="UnlockDispatch_chal_paws_n_claws" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_paws_n_claws" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1772222471" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.063154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2211" name="UnlockDispatch_chal_wounded" fullname="Scrapshift.Tests.UnlockDispatchParityTests.UnlockDispatch_chal_wounded" methodname="EveryImportedProducerDispatchesPersistsAndEnablesItsNextRunReward" classname="Scrapshift.Tests.UnlockDispatchParityTests" runstate="Runnable" seed="1120096317" result="Passed" start-time="2026-10-18 03:28:05Z" end-time="2026-10-18 03:28:05Z" duration="0.046221" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/gameplay-priority-followup-2026-10-17/unlocks-attempt-1.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

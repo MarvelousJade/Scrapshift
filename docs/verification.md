@@ -1,4 +1,12 @@
-## Current completed checkpoint - October17, R23
+Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
+
+## Current priority follow-up - October17, R25
+
+The three requested tracks were audited and their confirmed differences fixed: combined burning cadence, Torture cleanup healing, lethal-frame/defeat cleanup and optional retry, raw health-shop currency/presentation, and unlock-pool lifetime across retry. Full suite **1181/1181 Passed**, zero failures/skips, exit0; Windows build zero errors/warnings. Three R25 native fixtures Passed/exit0 with 12 fresh captures reviewed; 568 source/settings/import inputs and 160 player files verified. Launch: `Builds/GameplayParity20261017R25/LaunchGame.cmd`.
+
+All 115 imported unlock definitions have executed producer/save-reload/next-run eligibility scenarios, plus one coverage guard. These are automated checks, not 115 native playthroughs. Item combinations remain representative rather than exhaustive; native survival uses staged real projectile contacts and virtual-A retry, not a human survival campaign. Special shops include a source audit of every imported carrier; uncarried synthetic effects remain labeled. R23's invulnerable 20-wave comparison is historical and was not rerun or relabeled. See [priority report](gameplay-priority-followup-2026-10-17.md) and its detailed track reports.
+
+## Historical completed checkpoint - October17, R23
 
 The complete suite passed **1031/1031**, zero failures/skips, exit0. R23 built with zero errors/warnings at `Builds/GameplayParity20261017R23/LaunchGame.cmd`;550 recorded source/import/settings inputs and160 player files were verified again after the run. Native virtual navigation passed17 snapshots and final settlement passed both routes, exit0. The final normal-speed scripted20-wave campaign completed Won/exit0,20 waves/19 shops, and the comparison with the completed supplied-original run passed **18/18 bounded checks**. Its final receipt credited109 materials (1227 to1336), then Harvesting grew109 to115. See [complete evidence](full-verification-2026-10-17.md).
 

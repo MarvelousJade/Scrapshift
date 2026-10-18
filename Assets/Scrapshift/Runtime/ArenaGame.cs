@@ -123,7 +123,7 @@ namespace Scrapshift
 
         public void Begin()
         {
-            combatAccumulator=0;
+            combatAccumulator=0;deathSweepStarted=lossSoundPlayed=false;
             wardrobe?.Reset();
             ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
@@ -164,7 +164,7 @@ namespace Scrapshift
             }
             TickAmbientPresentation();
             if (titleModel != null) titleModel.SetActive(false);
-            gun.SetActive(false); SetEquipmentVisible(Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won || Rules.Phase==RunPhase.Lost);
+            gun.SetActive(false); SetEquipmentVisible((Rules.Phase == RunPhase.Playing || Rules.Phase == RunPhase.Paused || Rules.Phase==RunPhase.Won)&&Rules.Health>0);
 #if !UNITY_WEBGL || UNITY_EDITOR
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
 #endif
@@ -195,6 +195,7 @@ namespace Scrapshift
                 }
             }
             else combatAccumulator=0;
+            TickDeathSweep(Time.deltaTime);
             if (Rules.Phase == RunPhase.Title)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -207,7 +208,7 @@ namespace Scrapshift
             {
                 if (Rules.Phase != RunPhase.Playing) sound.StopCombat();
                 if (Rules.Phase == RunPhase.Won) sound.Play(SoundCue.Win);
-                if (Rules.Phase == RunPhase.Lost) sound.Play(SoundCue.Lose);
+                if (Rules.Phase == RunPhase.Lost&&!lossSoundPlayed){lossSoundPlayed=true;sound.Play(SoundCue.Lose);}
                 audioPhase = Rules.Phase;
             }
             if (smoke) SmokeTick();
@@ -277,9 +278,17 @@ namespace Scrapshift
             activePlayerContactBatch=invulnerable<=0;
             try
             {
-                using(ProfileEquipment.Auto())UpdateEquipment(dt);using(ProfileEnemies.Auto())UpdateEnemies(dt);
-                using(ProfileProjectiles.Auto())UpdateWeapons(dt);using(ProfileStarterEffects.Auto())UpdateStarterEffects(dt);using(ProfileSlashes.Auto())UpdateSlashes(dt);using(ProfileImplantAttacks.Auto())TickImplantAttacks(dt);
+                using(ProfileEquipment.Auto())UpdateEquipment(dt);
+                if(Rules.Phase!=RunPhase.Playing)return;
+                using(ProfileEnemies.Auto())UpdateEnemies(dt);
+                if(Rules.Phase!=RunPhase.Playing)return;
+                using(ProfileProjectiles.Auto())UpdateWeapons(dt);
+                if(Rules.Phase!=RunPhase.Playing)return;
+                using(ProfileStarterEffects.Auto())UpdateStarterEffects(dt);using(ProfileSlashes.Auto())UpdateSlashes(dt);using(ProfileImplantAttacks.Auto())TickImplantAttacks(dt);
                 using(ProfilePets.Auto())TickPets(dt);using(ProfileNightmare.Auto())TickNightmare(dt);
+                // player.die immediately disables its pickup areas. Do not run
+                // later combat/pickup work after a lethal contact in this tick.
+                if(Rules.Phase!=RunPhase.Playing)return;
             }
             finally{activePlayerContactBatch=null;}
             using(ProfilePickups.Auto())UpdatePickups(dt);

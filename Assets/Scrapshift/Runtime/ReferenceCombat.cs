@@ -80,6 +80,7 @@ namespace Scrapshift
         }
         void StartWave()
         {
+            Rules.CaptureWaveRetryState();
             director=new SpawnDirector(CurrentSourceWave(),UnityEngine.Random.Range(1,int.MaxValue),Rules.Stat("number_of_enemies"),Rules.Stat("trees"),Rules.ExtraLootAliens);
             births.Clear();cratesSpawned=0;
             Array.Clear(weaponClocks,0,weaponClocks.Length);

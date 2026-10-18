@@ -66,6 +66,8 @@ namespace Scrapshift
         }
         void ConfirmMenu()
         {
+            if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending)return;
+            if(Rules.Phase==RunPhase.Lost&&!endSummary&&GameSettings.Flag("retryWave",false)&&Rules.CanRetryWave){RetryCurrentWave();return;}
             sound.Play(SoundCue.UiPress);
             if(Rules.Phase==RunPhase.Title)
             {
@@ -321,7 +323,9 @@ namespace Scrapshift
         }
         void ReferenceEndUI()
         {
-            if(DrawUnlockReward())return;
+            if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending){Overlay();return;}
+            bool retryChoice=Rules.Phase==RunPhase.Lost&&!endSummary&&GameSettings.Flag("retryWave",false)&&Rules.CanRetryWave;
+            if(!retryChoice&&DrawUnlockReward())return;
             if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
             if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
             else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
@@ -333,7 +337,14 @@ namespace Scrapshift
                     Text(400,282,640,82,lastAttacker==null?"The shift is over":"Killed by:\n"+System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(lastAttacker.id.Replace('_',' ')),new GUIStyle(center){fontSize=27});
                     if(lastAttacker!=null){Frame(new Rect(655,385,130,135),new Color(.28f,.28f,.28f));DrawIcon(lastAttacker.image,new Rect(667,397,106,111));}
                 }
-                if(MenuButton(new Rect(495,550,450,57),"Ok"))endSummary=true;return;
+                if(!won&&GameSettings.Flag("retryWave",false)&&Rules.CanRetryWave)
+                {
+                    Text(495,510,450,38,"Retries: "+Rules.Retries,center);
+                    if(MenuButton(new Rect(495,550,450,57),"Retry wave")){RetryCurrentWave();return;}
+                    if(MenuButton(new Rect(495,620,450,57),"End run"))endSummary=true;
+                }
+                else if(MenuButton(new Rect(495,550,450,57),"Ok"))endSummary=true;
+                return;
             }
             DrawStatsPanel(true);
             DrawRunInventory(new Rect(390,104,990,680));

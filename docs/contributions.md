@@ -1,4 +1,8 @@
-## Current completed checkpoint - October17, R23
+## October17 priority follow-up attribution (R25)
+
+The user selected combined item effects, ordinary survival and special-shop/unlock persistence as priorities. Codex agents inspected supplied read-only source, generated focused and per-definition tests, implemented corrections and ran isolated Unity/native checks. The user did not perform these automated checks and has not confirmed a new human survival playthrough. Results: 1181/1181 full suite, three native fixtures Passed/exit0. The 115 unlock producer scenarios are not 115 human playthroughs. See [priority report](gameplay-priority-followup-2026-10-17.md). This pass does not establish third-party redistribution rights.
+
+## Historical completed checkpoint - October17, R23
 
 The complete suite passed **1031/1031**, zero failures/skips, exit0. R23 built with zero errors/warnings at `Builds/GameplayParity20261017R23/LaunchGame.cmd`;550 recorded source/import/settings inputs and160 player files were verified again after the run. Native virtual navigation passed17 snapshots and final settlement passed both routes, exit0. The final normal-speed scripted20-wave campaign completed Won/exit0,20 waves/19 shops, and the comparison with the completed supplied-original run passed **18/18 bounded checks**. Its final receipt credited109 materials (1227 to1336), then Harvesting grew109 to115. See [complete evidence](full-verification-2026-10-17.md).
 

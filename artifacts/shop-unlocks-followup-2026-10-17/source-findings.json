@@ -1,0 +1,50 @@
+{
+  "scope": "Read-only source audit; no native/Unity launch by this agent",
+  "reference": "E:\\UnityProjects\\brotato-(3.x)",
+  "files": [
+    {
+      "path": "singletons/run_data.gd",
+      "sha256": "9b1f2c940fcb04dcac6cf0821bc14b054c02c0e43ac9037f5c997b0645575273"
+    },
+    {
+      "path": "singletons/item_service.gd",
+      "sha256": "7990aefd66dc2880396c4fbccda78a7e1a5318bfe01d6d8cf3883e7cb7dfcbeb"
+    },
+    {
+      "path": "singletons/challenge_service.gd",
+      "sha256": "9351996770b3743fa24ca3d6716dd7a2c7db62b0f198f075dcb05c4a7854e794"
+    },
+    {
+      "path": "ui/menus/shop/base_shop.gd",
+      "sha256": "b0749d3b2740ba387385eccf4bdd9c2398ac6132caa1cd274ddadfa051669522"
+    },
+    {
+      "path": "ui/menus/shop/shop_items_container.gd",
+      "sha256": "b7d478b8f6284c574edd65d72ffd516577926c5935d74f530083a8102128ec7f"
+    },
+    {
+      "path": "ui/menus/shop/shop_item.gd",
+      "sha256": "b887df317fdd893a66d1c963fe727c3922adcbfccc632fc6c52c2f5dd3dc7807"
+    },
+    {
+      "path": "ui/menus/pages/menu_confirm.gd",
+      "sha256": "44112eb57ee495e8d41b621e51f90a20fda978b78bb058dbc7db726efde32ff5"
+    },
+    {
+      "path": "ui/menus/pages/main_menu.gd",
+      "sha256": "e55053b0e9d042a013237ec89eab825539b73f983f30b5757f6f92bbc64b239d"
+    }
+  ],
+  "confirmedDifferences": [
+    {
+      "id": "demon_zero_currency",
+      "source": "run_data.gd:get_player_currency uses raw get_stat(max_hp) as int, not live max-health floor",
+      "fixOwner": "root RunRules.cs/CharacterMechanics.cs"
+    },
+    {
+      "id": "retry_pool_thaw",
+      "source": "RunData.reset snapshots ItemService unlocked pools; same-run retry must not replace that snapshot with newly completed rewards",
+      "fix": "ProgressionRuntime.RefreshAfterRun retains Frozen on Lost until confirmedEnd"
+    }
+  ]
+}

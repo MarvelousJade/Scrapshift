@@ -152,7 +152,7 @@ namespace Scrapshift
         {
             initializingHealth=true;
             ResetWaveSettlement();
-            Abandoned=false;
+            ResetDeathCleanup();ResetWaveRetry();Abandoned=false;
             ResetSpecialShopEffects();
             Level=0;burningKills=0;queuedBaits=0;ExtraElite=false;UsedLocks=false;runConsumables=runRecycles=projectileHits=0;runHealing=0;stats.Clear();nextWaveStats.Clear();burnKillCounts.Clear();xpFraction=0;bonusFreeShopReroll=false;weaponSlotsEarned=0;Character=character;
             ResetConditionalEffects();
@@ -196,6 +196,7 @@ namespace Scrapshift
         }
         public void Tick(float seconds)
         {
+            if(Phase==RunPhase.Lost){AdvanceDeathCleanup(seconds);return;}
             if(Phase!=RunPhase.Playing||waveSettlementPending||seconds<=0)return;
             ReconcileMaximumHealth();
             TickCharacter(Math.Min(seconds,Remaining));TickConditionalEffects(Math.Min(seconds,Remaining));
@@ -269,12 +270,12 @@ namespace Scrapshift
             Health=Stat("die_in_one_hit")>0?0:Math.Max(0,Health-taken);
             BeginRegenerationAfterDamage();
             DamageTriggers();
-            if(Health==0)Phase=RunPhase.Lost;
+            if(Health==0)BeginDeathCleanup();
         }
         public void Heal(float amount,bool fromTorture=false)
         {
             float before=Health;
-            if(Phase==RunPhase.Playing&&amount>0&&Stat("no_heal")<=0&&(Stat("torture")<=0||fromTorture))Health=Math.Min(MaxHealth,Health+amount);
+            if(Phase==RunPhase.Playing&&amount>0&&Stat("no_heal")<=0&&(Stat("torture")<=0||fromTorture||WaveSettlementPending))Health=Math.Min(MaxHealth,Health+amount);
             if(Health>before){runHealing+=Health-before;Progress?.Check("chal_medicine",runHealing);RandomDamageTrigger("dmg_when_heal");}
         }
         public void DefeatBoss()
@@ -464,7 +465,7 @@ namespace Scrapshift
         {
             if(Phase!=RunPhase.Shop||i<0||i>=4||Shop[i]==null)return false;
             var s=Shop[i];
-            return (UsesHealthShop?MaxHealth>=Price(s):Scrap>=Price(s))&&CanAcquire(s);
+            return ShopBalance>=Price(s)&&CanAcquire(s);
         }
         public bool Buy(int i)
         {
@@ -532,7 +533,7 @@ namespace Scrapshift
             initializingHealth=true;
             UsedLocks|=Shop.Any(o=>o?.locked==true);
             Wave=PrepareNextWave();
-            ResetWaveSettlement();
+            ResetDeathCleanup();ResetWaveSettlement();
             Remaining=Durations[Wave-1];
             ResetConditionalEffects();
             Health=MaxHealth;
@@ -546,7 +547,7 @@ namespace Scrapshift
         public void Pause()
         {
             if(Phase==RunPhase.Paused)Phase=pausedFrom;
-            else if(Phase==RunPhase.Playing||Phase==RunPhase.Shop||Phase==RunPhase.Upgrade||Phase==RunPhase.Loot)
+            else if(Phase==RunPhase.Playing||Phase==RunPhase.Shop||Phase==RunPhase.Upgrade||Phase==RunPhase.Loot||Phase==RunPhase.Lost&&DeathCleanupPending)
             {pausedFrom=Phase;Phase=RunPhase.Paused;}
         }
         public static Vector2 ClampPosition(Vector2 p)=>ArenaGeometry.Clamp(p);

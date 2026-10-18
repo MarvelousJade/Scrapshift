@@ -60,7 +60,9 @@ namespace Scrapshift
             float textWidth=Mathf.Min(r.width-iconSize-20,style.CalcSize(new GUIContent(label)).x+8);
             float start=r.center.x-(textWidth+iconSize+8)/2;
             Text(start,r.y,textWidth,r.height,label,style);
-            DrawIcon(catalog.scrapShapes[0],new Rect(start+textWidth+8,r.center.y-iconSize/2,iconSize,iconSize));
+            var priceIcon=new Rect(start+textWidth+8,r.center.y-iconSize/2,iconSize,iconSize);
+            if(Rules.UsesHealthShop)DrawStatIcon("max_hp",priceIcon);
+            else DrawIcon(catalog.scrapShapes[0],priceIcon);
             return pressed;
         }
         void DrawIcon(Sprite sprite,Rect r)
@@ -100,7 +102,7 @@ namespace Scrapshift
             var right=new GUIStyle(inspectionBody) { alignment=TextAnchor.MiddleRight };
             for(int i=0;i<names.Length;i++)
             {
-                float value=names[i]=="max_hp"?Rules.MaxHealth:Rules.Stat(names[i]);
+                float value=Rules.Stat(names[i]);
                 float y=174+i*26;
                 DrawStatIcon(names[i],new Rect(1125,y+2,24,24));
                 var label=new GUIStyle(inspectionBody);
@@ -144,7 +146,7 @@ namespace Scrapshift
             Box(FullCanvas,new Color(.19f,.175f,.15f,.76f));
             OutlinedText(ContentLeft,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
             DrawIcon(catalog.scrapShapes[0],new Rect(550,30,42,48));
-            Text(602,30,180,48,Rules.ShopBalance.ToString("0")+(Rules.UsesHealthShop?" HP":""),new GUIStyle(number){fontSize=40,alignment=TextAnchor.MiddleLeft});
+            Text(602,30,180,48,Rules.Scrap.ToString("0"),new GUIStyle(number){fontSize=40,alignment=TextAnchor.MiddleLeft});
             GUI.enabled=Rules.CanReroll;
             if(RerollButton(new Rect(StatsLeft-318,27,294,56)))RerollUpgrade();
             GUI.enabled=true;

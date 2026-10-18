@@ -27,7 +27,7 @@ namespace Scrapshift
         // Factory and structure pets. Weapon-deployed actors are not entries.
         public int OwnedStructures=>Effects("structure").Count()+Items.Count(i=>i.id=="pocket_factory")+Effects("pet").Count(e=>e.pet!=null&&e.pet.structure);
         public bool UsesHealthShop=>Stat("hp_shop")>0;
-        public float ShopBalance=>UsesHealthShop?MaxHealth:Scrap;
+        public float ShopBalance=>UsesHealthShop?(int)Stat("max_hp"):Scrap;
         public float WantedTagChance=>Stat("boosted_wanted_item_tag")>0?.1f:.05f;
         public float BurnCurrentHealthDamage(float health,bool boss)=>Mathf.Floor(health*Effects("burning_enemy_hp_percent_damage").Sum(e=>e.value)/(boss?1000:100));
         static readonly string[] primaryStats={"max_hp","armor","crit_chance","luck","attack_speed","elemental_damage","hp_regeneration","lifesteal","melee_damage","percent_damage","dodge","engineering","range","ranged_damage","speed","harvesting"};

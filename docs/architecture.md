@@ -1,3 +1,9 @@
+## October17 lifecycle integration (R25)
+
+DeathLifecycle separates immediate Lost state from the source 0.5s acknowledgment gate. ArenaGame stops work after lethal contact, clears combat actors, banks raw materials and advances cleanup while unpaused. RetryWaveState copies explicit persistent wave-start values, dictionaries and mutable shop offers; catalog references, global Progression and RNG stay live. StartWave captures before consuming encounter queues; retry rebuilds actors and checkpoints the restored wave. GameSettings.retryWave is functional and defaults false. Explicit snapshot fields need maintenance when new persistent run data is added.
+
+RunUnlockPool.RefreshAfterRun keeps eligibility frozen through Lost pending/Retry; confirmed end/fresh run refreshes it. ShopBalance uses raw truncated Max HP for Demon while MaxHealth retains the combat minimum; ShopUI shows HP purchases and material rerolls separately. ItemLifecycle combines cooldown modifiers against the source 0.5s burn base. Evidence: [priority report](gameplay-priority-followup-2026-10-17.md).
+
 ## October17: allocation-safe lookups in combat
 
 `CombatGeometry` builds an ordinal index once from the immutable enemy collision resource, preserving first-row selection and missing/null fallbacks. Crowd and projectile loops reuse the same authored shapes without creating a captured predicate per lookup. `WeaponSets` uses loops while retaining configured identity, explicit/legacy membership and source total-bonus selection. `GameSettings` caches only immutable launch classification; live values remain in the existing fixture dictionary or PlayerPrefs. No mutable stat cache or physics-clock change was introduced.

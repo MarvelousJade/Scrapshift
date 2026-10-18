@@ -21,6 +21,13 @@ namespace Scrapshift
         {Frozen=false;Refresh(catalog,progress);Frozen=true;}
         public void EndRun(ReferenceCatalog catalog,Progression progress)
         {Frozen=false;Refresh(catalog,progress);}
+        public void RefreshAfterRun(ReferenceCatalog catalog,Progression progress,RunPhase phase,bool confirmedEnd)
+        {
+            // Source retry restores the current run, not RunData.reset's fresh
+            // eligibility snapshot. A death can still offer retry, so retain the
+            // frozen pool until the player confirms leaving that run.
+            if(Frozen&&(phase==RunPhase.Title||phase==RunPhase.Won||phase==RunPhase.Lost&&confirmedEnd))EndRun(catalog,progress);
+        }
     }
     public sealed partial class ArenaGame
     {
@@ -49,8 +56,8 @@ namespace Scrapshift
         void TickProgression(float dt)
         {
             achievementToasts.Tick(dt);
-            if(runUnlockPool?.Frozen==true&&(Rules.Phase==RunPhase.Title||Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost))
-                runUnlockPool.EndRun(catalog,progress);
+            if(runUnlockPool?.Frozen==true)
+                runUnlockPool.RefreshAfterRun(catalog,progress,Rules.Phase,endSummary);
 #if UNITY_WEBGL && !UNITY_EDITOR
             browserSaveClock+=dt;if(browserSaveClock>=5){browserSaveClock=0;progress?.Save();}
 #endif
