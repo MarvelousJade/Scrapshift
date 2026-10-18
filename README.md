@@ -4,7 +4,9 @@ A Unity arena-survival study built around the supplied Brotato Crash Zone refere
 
 ## Why this exists
 
-The Unity Editor developer role asks for C#, Unity project experience, automated testing and attention to creators' workflows. AssetScope is the companion Editor tool. This playable project supplies real scene, prefab, material, sprite, audio and data references for inspecting dependencies and navigating to their owners.
+I started Scrapshift because I enjoy Brotato and wanted to improve my ability to make games in Unity and practice C#. Rebuilding the gameplay with my own characters and visual direction gives me a concrete way to learn, experiment and improve through a playable project.
+
+AssetScope is the companion Editor tool. Scrapshift also supplies real scene, prefab, material, sprite, audio and data references for inspecting dependencies and navigating to their owners.
 
 The user requested close reference analysis before implementation. See [the source study](docs/reference-rebuild.md), [original art and full prompts](docs/original-art.md), and [historical media provenance](artifacts/reference-media-provenance.json). Reference audio is third-party work supplied by the user. Historical borrowed sprite files remain in the repo but are no longer game-scene dependencies. This is not a claim of official source access or complete game parity.
 
