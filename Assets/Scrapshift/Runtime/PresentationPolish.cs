@@ -3,19 +3,36 @@ using System.Collections.Generic;
 namespace Scrapshift
 {
     public static class PresentationPolish { public static Color BodyTint=>Color.white; }
+    // Reference player_move.tres: a .6-second loop with contacts at .1 and .4.
+    // Advance animation time so speed changes retain phase instead of restarting a timer.
+    public sealed class FootstepTiming
+    {
+        double elapsed,next=.1;
+        public void Reset(){elapsed=0;next=.1;}
+        public int Tick(bool moving,float dt,float moveSpeed)
+        {
+            if(!moving){Reset();return 0;}
+            elapsed+=System.Math.Max(0,dt)*System.Math.Max(0,moveSpeed)/4.5;
+            int contacts=0;
+            while(elapsed>=next){contacts++;next+=.3;}
+            return contacts;
+        }
+    }
     public sealed partial class ArenaGame
     {
         static readonly Color scrapPickupGreen=new Color32(157,249,42,255);
-        Rect lastUiHover;int optionsTab;float stepClock;bool yardPolished;float smokeClock;
+        Rect lastUiHover;int optionsTab;bool yardPolished;float smokeClock;
+        readonly FootstepTiming footstepTiming=new FootstepTiming();
         sealed class Dust { public LineRenderer line;public SpriteRenderer smoke;public GameObject root;public Vector2 pos;public float age,rotation,scale=1;public Vector2 velocity;public bool pickup; }
         Sprite smokeSprite;
         readonly List<Dust> footDust=new List<Dust>();
         void TickFootsteps(Vector2 movement,float dt)
         {
-            if(movement.sqrMagnitude<.01f){stepClock=smokeClock=0;return;}
+            bool moving=movement.sqrMagnitude>=.01f;
+            int contacts=footstepTiming.Tick(moving,dt,Rules.MoveSpeed);
+            if(!moving){smokeClock=0;return;}
             smokeClock-=dt;if(smokeClock<=0){smokeClock=.125f*UnityEngine.Random.Range(.65f,1.35f);if(!reducedMotion)AddFootDust(playerPos+new Vector2(UnityEngine.Random.Range(-.1f,.1f),-.24f),false);}
-            stepClock-=dt;if(stepClock>0)return;stepClock=.28f;
-            sound.Play(SoundCue.Step,playerPos);
+            for(int i=0;i<contacts;i++)sound.Play(SoundCue.Step,playerPos);
 
         }
         void AddFootDust(Vector2 pos,bool pickup)
@@ -39,7 +56,7 @@ namespace Scrapshift
             for(int i=0;i<12;i++){float a=i*Mathf.PI*2/12;line.SetPosition(i,new Vector3(Mathf.Cos(a)*.11f,Mathf.Sin(a)*.055f,0));}
             footDust.Add(new Dust{line=line,root=root,pos=pos,pickup=pickup});
         }
-        void ClearFootDust(){foreach(var d in footDust)if(d.root!=null)Destroy(d.root);footDust.Clear();stepClock=0;}
+        void ClearFootDust(){foreach(var d in footDust)if(d.root!=null)Destroy(d.root);footDust.Clear();footstepTiming.Reset();}
         void PickupContactEffect()
         {
             if(!GameSettings.Flag("effects")||reducedMotion||footDust.Count>56)return;

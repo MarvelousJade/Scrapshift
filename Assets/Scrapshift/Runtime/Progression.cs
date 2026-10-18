@@ -61,13 +61,13 @@ namespace Scrapshift
                 case "chal_hoarder":return "Hold 3000 materials";
                 case "chal_turrets":return "Have 5 turrets at once";
                 case "chal_lumberjack":return "Destroy 50 trees across runs";
-                case "chal_medicine":return "Heal 200 HP in one run";
+                case "chal_medicine":return "Heal 200 HP in one wave";
                 case "chal_fireworks":return "Kill 15 enemies with one explosion";
                 case "chal_recycling":return "Recycle 12 weapons in one run";
                 case "chal_hungry":return "Pick up 20 consumables in one run";
                 case "chal_advanced_technology":return "Have 10 Ranged Damage and 3 structures";
                 case "chal_magic_and_machinery":return "Have 10 Elemental Damage and 3 structures";
-                case "chal_giant_slayer":return "Defeat a boss or elite in less than 15 seconds";
+                case "chal_giant_slayer":return "Defeat a boss or elite within 15 seconds";
                 case "chal_baited":return "Own 2 Threat Beacon Implants";
                 case "chal_forest":return "Finish a wave with 10 living trees";
                 case "chal_bourgeoisie":return "Equip 3 tier IV weapons";
@@ -77,7 +77,7 @@ namespace Scrapshift
                 case "chal_fast_learner":return "Reach level 10 before wave 6";
                 case "chal_experimentation":return "Equip 6 different weapons";
                 case "chal_evil_hat":return "Defeat 5 evil enemies across runs";
-                case "chal_hourglass":return "Return to the menu before wave 5";
+                case "chal_hourglass":return "Return to the menu during a wave with less than 5 seconds remaining";
                 case "chal_candy_bag":return "Win without locking shop offers";
                 case "chal_fruit_basket":return "Collect 100 fruits at full HP across runs";
                 case "chal_will_o_the_wisp":return "Kill 30 enemies with burning in one wave";
@@ -103,31 +103,69 @@ namespace Scrapshift
         public void Count(string key,int amount=1)
         {
             var c=Data.counters.FirstOrDefault(x=>x.key==key);if(c==null){c=new ProgressCounter{key=key};Data.counters.Add(c);}c.value+=amount;
+            // Fruit Basket is checked at the actual fruit contact. The other
+            // lifetime counters are checked by main's wave-timeout callback.
+            if(key=="full_health_fruit")foreach(var d in definitions)
+                if(d.id=="chal_fruit_basket"&&c.value>=d.value)Complete(d.id);
+        }
+        public void CheckCountedChallenges()
+        {
             foreach(var d in definitions)
             {
-                bool matches=key=="kills"&&d.name=="CHAL_SURVIVOR"||key=="materials"&&d.name=="CHAL_GATHERER"||key=="trees"&&d.id=="chal_lumberjack"||key=="evil_mob"&&d.id=="chal_evil_hat"||key=="full_health_fruit"&&d.id=="chal_fruit_basket";
-                if(matches&&c.value>=d.value)Complete(d.id);
+                string key=d.name=="CHAL_SURVIVOR"?"kills":d.name=="CHAL_GATHERER"?"materials":d.id=="chal_lumberjack"?"trees":d.id=="chal_evil_hat"?"evil_mob":null;
+                if(key!=null&&Total(key)>=d.value)Complete(d.id);
             }
         }
         public void CheckStats(RunRules run)
         {
-            foreach(var d in definitions)if(!string.IsNullOrEmpty(d.stat)&&d.description=="CHAL_STAT_DESC")Check(d.id,d.stat=="max_hp"?run.MaxHealth:run.Stat(d.stat),d.value<0);
+            foreach(var d in definitions)if(!string.IsNullOrEmpty(d.stat)&&d.description=="CHAL_STAT_DESC")Check(d.id,run.Stat(d.stat),d.value<0);
             Check("chal_hoarder",run.Scrap);Check("chal_student",run.Level);
             if(run.Wave<6)Check("chal_fast_learner",run.Level);
             Check("chal_baited",run.Items.Count(i=>i.id=="bait"));Check("chal_bourgeoisie",run.Inventory.Count(w=>w.tier==4));
             Check("chal_scavenger",run.Items.Where(i=>i.tier==1).Select(i=>i.id).Distinct().Count());
-            if(run.Stat("ranged_damage")>=10&&run.OwnedStructures>=3)Complete("chal_advanced_technology");
-            if(run.Stat("elemental_damage")>=10&&run.OwnedStructures>=3)Complete("chal_magic_and_machinery");
+            // ChallengeService checks the registered structures-effect array,
+            // not every spawned structure, weapon attachment or structure pet.
+            int challengeStructures=run.Effects("structure").Count();
+            if(run.Stat("ranged_damage")>=10&&challengeStructures>=3)Complete("chal_advanced_technology");
+            if(run.Stat("elemental_damage")>=10&&challengeStructures>=3)Complete("chal_magic_and_machinery");
             if(run.Stat("hp_regeneration")>=10&&run.Stat("lifesteal")>=10)Complete("chal_doc_moth");
-            if(new[]{"chal_bonk_dog","chal_catling_gun","chal_bot_o_mine","chal_blazemander","chal_lootworm"}.All(Completed))Complete("chal_paws_n_claws");
             foreach(var pair in new[]{("chal_bonk_dog","melee_damage"),("chal_catling_gun","ranged_damage"),("chal_bot_o_mine","engineering"),("chal_blazemander","elemental_damage")})Check(pair.Item1,run.Inventory.Count(w=>w.scaling!=null&&w.scaling.Any(s=>s.key==pair.Item2)));
+            CheckCompanionUnlock();
             if(run.Inventory.Count>=6&&run.Inventory.Select(w=>w.id).Distinct().Count()>=6)Complete("chal_experimentation");
         }
-        public void Finish(bool won,string character,int difficulty,bool usedLocks)
+        public void CheckCompanionUnlock()
         {
-            if(!won)Complete("chal_rookie");
+            if(new[]{"chal_bonk_dog","chal_catling_gun","chal_bot_o_mine","chal_blazemander","chal_lootworm"}.All(Completed))Complete("chal_paws_n_claws");
+        }
+        public int BestDifficulty(string character)
+        {
+            string key="best_danger:"+character;
+            var record=Data.counters.FirstOrDefault(c=>c.key==key);
+            // Older saves only recorded Danger 5 characters and character completion.
+            return record!=null?(int)record.value-1:Total("danger5:"+character)>0?5:-1;
+        }
+        public string CharacterRecord(string character)
+        {
+            int best=BestDifficulty(character);
+            return best<0?(Completed("chal_"+character)?"Run completed\nDanger not recorded":"None yet"):"Best: Danger "+best;
+        }
+        public void Finish(bool won,string character,int difficulty,bool usedLocks,bool died=true)
+        {
+            if(!won){if(died)Complete("chal_rookie");}
             else
             {
+                // Final-boss victory can reach this adapter without its ordinary
+                // wave sweep; the reference always checks counters at timeout.
+                CheckCountedChallenges();
+                int best=BestDifficulty(character);
+                Count("wins:"+character);
+                if(difficulty>best)
+                {
+                    string key="best_danger:"+character;
+                    var record=Data.counters.FirstOrDefault(c=>c.key==key);
+                    if(record==null)Data.counters.Add(new ProgressCounter{key=key,value=difficulty+1});
+                    else record.value=difficulty+1;
+                }
                 Complete("chal_"+character);Complete("chal_difficulty_"+difficulty);
                 for(int i=1;i<=Math.Min(5,difficulty+1);i++)Complete("unlock_difficulty_"+i);
                 if(difficulty>=5){string key="danger5:"+character;if(Total(key)==0)Count(key);if(Data.counters.Count(c=>c.key.StartsWith("danger5:")&&c.value>0)>=10)Complete("unlock_difficulty_6");}

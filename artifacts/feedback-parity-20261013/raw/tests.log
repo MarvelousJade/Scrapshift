@@ -1,0 +1,557 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 24280)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 3616)
+VBCSCompiler prewarm took 19.80 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.5f1 (3ff58d469c8a) revision 4191629'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Channel LicenseClient-FanSh doesn't exist
+OS: 'Windows 11  (10.0.26300) Professional' Language: 'en' Physical Memory: 16309 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-14T01:35:23Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 18616)
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Unity.com
+-batchmode
+-nographics
+-projectPath
+E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013
+-runTests
+-testPlatform
+EditMode
+-testFilter
+Scrapshift.Tests
+-testResults
+E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013/artifacts/editmode.xml
+-logFile
+E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013/artifacts/raw/tests.log
+Successfully changed project path to: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013
+E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/FeedbackParity-20261013
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [26032]  Target information:
+
+Player connection [26032]  * "[IP] 192.168.2.25 [Port] 55504 [Flags] 2 [Guid] 3113617764 [EditorId] 3113617764 [Version] 1048832 [Id] WindowsEditor(7,Desktop5700) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [26032] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [26032] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Starting IPC server.
+Waiting for clients to connect on \\.\pipe\Unity-LicenseClient-FanSh, press Ctrl-C to exit.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-FanSh" at "2026-10-14T01:35:23.7982949Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 18616, path: "C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Package Manager] Connected to IPC stream "Upm-25168" after 0.4 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              5c906fcc5b7643a28c75fbbd96271a01
+  Correlation Id:          debc5da4c1eee9d1eef52ade00123a61
+  External correlation Id: 3541750286865288833
+  Machine Id:              EEHLJjforAoy3xYqsMQsmfVfVmo=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-FanSh" (connect: 0.56s, validation: 0.15s, handshake: 0.07s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-FanSh-notifications" at "2026-10-14T01:35:24.0215802Z"
+[Licensing::Module] Connected to LicensingClient (PId: 18616, launch time: 0.01, total connection time: 0.79s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 3574363522264-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Module] Licensing Background thread has ended after 0.85s
+[Licensing::Module] Licensing is initialized (took 0.20s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 61a48b5daddd60e6c6969412aae851f7
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/FeedbackParity-20261013Unity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.5f1 (3ff58d469c8a)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/FeedbackParity-20261013/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56168
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003930 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.157 seconds
+Domain Reload Profiling: 2032ms
+	BeginReloadAssembly (207ms)
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (30ms)
+	initialDomainReloadingComplete (106ms)
+	LoadAllAssembliesAndSetupDomain (524ms)
+		LoadAssemblies (185ms)
+		TypeCache.Refresh (358ms)
+			TypeCache.ScanAssembly (337ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (1159ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (165ms)
+			ProcessInitializeOnLoadAttributes (234ms)
+			ProcessInitializeOnLoadMethodAttributes (359ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 14 packages:
+  Built-in packages:
+    com.unity.test-framework@1.8.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.test-framework@80f691d4262b)
+    com.unity.modules.audio@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.particlesystem@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.screencapture@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.imgui@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.uielements@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.ui@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.hierarchycore@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.modules.physics@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.animation@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.imageconversion@1.0.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.ext.nunit@2.1.0 (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+  Embedded packages:
+    com.shaoyu.assetscope@file:E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Packages\com.shaoyu.assetscope (location: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013\Packages\com.shaoyu.assetscope)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/FeedbackParity-20261013
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s900ms
+[211/234    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[230/234    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Scrapshift.Tests.dll (+2 others)
+[231/234    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Scrapshift.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Scrapshift.Tests.dll, with 146 defines and 301 references
+
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+[232/234    0s] CopyFiles Library/ScriptAssemblies/Scrapshift.Tests.pdb
+[233/234    0s] CopyFiles Library/ScriptAssemblies/Scrapshift.Tests.dll
+*** Tundra build success (1.85 seconds), 5 items updated, 234 evaluated
+Total cache size 15260289
+Total cache size after purge 15260289, took 00:00:00.0629634
+AssetDatabase: script compilation time: 2.758254s
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.694 seconds
+Domain Reload Profiling: 1494ms
+	BeginReloadAssembly (355ms)
+		DisableScriptedObjects (37ms)
+		CreateAndSetChildDomain (67ms)
+	RebuildCommonClasses (16ms)
+	RebuildNativeTypeToScriptingClass (28ms)
+	initialDomainReloadingComplete (70ms)
+	LoadAllAssembliesAndSetupDomain (329ms)
+		LoadAssemblies (296ms)
+		TypeCache.Refresh (27ms)
+			TypeCache.ScanAssembly (18ms)
+		AnalyzeDomain (12ms)
+			BuildScriptInfoCaches (10ms)
+	FinalizeReload (697ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (161ms)
+			ProcessInitializeOnLoadAttributes (100ms)
+			ProcessInitializeOnLoadMethodAttributes (77ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (47ms)
+Starting new worker id: 0 with log in E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/FeedbackParity-20261013/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=0c6dd6708ee3bfd46a3e240f385097b8): Total: 4.796 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=946 ms
+		Asset DB Callback time: managed=195 ms, native=19 ms
+		Scripting: domain reloads=1, domain reload time=853 ms, compile time=2761 ms, other=20 ms
+		Project Asset Count: scripts=133, non-scripts=509
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 20.986ms
+	ApplyChangesToAssetFolders: 1.020ms
+	Scan: 44.110ms
+	Collect global state as custom dependencies: 17.381ms
+	OnSourceAssetsModified: 0.908ms
+	CategorizeScriptCompilationAssets: 5.954ms
+	ProcessAssetsWithTransientArtifactChanges: 12.342ms
+	CategorizeAssets: 4.790ms
+	CompileScripts: 2760.972ms
+	ImportOutOfDateAssets: 716.385ms (698.221ms without children)
+		UnloadImportedAssets: 1.895ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.115ms
+		ImportSchedulerStart: 16.151ms
+	PostProcessAllAssets: 196.339ms
+		VCAutoAddAssetPostprocess 1.174ms
+		XRBuildSystem.XRAssetImported 0.072ms
+		MonoPostProcessAllAssets: 194.469ms
+			AssetScopeImportWatcher.OnPostprocessAllAssets 66.539ms
+			AssetPostprocessor.OnPostprocessAllAssets 51.079ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 13.523ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 13.433ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 11.487ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 4.995ms
+			AssetChangedListener.OnPostprocessAllAssets 4.987ms
+			SyncVS.PostprocessSyncProject 2.780ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 2.042ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 2.040ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.102ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.963ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.676ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.558ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.508ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.485ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.462ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.408ms
+			AssetEvents.OnPostprocessAllAssets 0.406ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.272ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.225ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.175ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.130ms
+	PostAssetChangesProfiler: 0.840ms
+	UnloadStreamsBegin: 2.558ms
+	GenerateScriptTypeHashes: 0.055ms
+	GenerateScriptTypeSerializationHashes: 0.092ms
+	Untracked: 984.460ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 20.570ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Scrapshift
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 600 unused Assets / (486.1 KB). Loaded Objects now: 1329.
+Memory consumption went from 223.9 MB to 223.4 MB.
+Total: 18.810800 ms (FindLiveObjects: 0.785100 ms CreateObjectMapping: 0.037700 ms MarkObjects: 17.123700 ms  DeleteObjects: 0.632400 ms)
+
+Microsoft Media Foundation video decoding to texture disabled: graphics device is Null, only Direct3D 11 and Direct3D 12 (only on desktop) are supported for hardware-accelerated video decoding.
+[Project] Loading completed in 8.510 seconds
+	Project init time: 				8.041 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.571 seconds
+		Asset Database init time: 		0.247 seconds
+		Global illumination init time: 	0.004 seconds
+		Assemblies load time: 			2.121 seconds
+		Unity extensions init time: 	0.002 seconds
+		Asset Database refresh time: 	4.796 seconds
+	Scene opening time: 			0.213 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1791941731707,"processId":25168,"projectLoad":8.510429499999999,"projectInit":8.0409879,"templateInit":0.0,"packageManagerInit":0.5707049,"assetDatabaseInit":0.2474026,"globalIlluminationInit":0.0043895,"assembliesLoad":2.1207809,"unityExtensionsInit":0.0024877,"assetDatabaseRefresh":4.7963716,"sceneOpening":0.2130953}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1791941731707,"processId":25168,"editorVersion":"6000.6.5f1 (3ff58d469c8a)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
+[Licensing::Client] Successfully resolved entitlement details
+Running tests for ExecutionSettings with details:
+targetPlatform = 
+playerHeartbeatTimeout = 600
+filters[0] = 
+   Filter with settings:
+   testMode = EditMode
+   targetPlatform = 
+   testNames = null
+   groupNames = Scrapshift.Tests
+   categoryNames = null
+   assemblyNames = null
+ignoreTests = {}
+featureFlags = null
+
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:InitializeAndExecuteRun (string[]) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:53)
+UnityEditor.TestTools.TestRunner.CommandLineTest.TestStarter:InitializeAndExecuteRun () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/TestStarter.cs:64)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 53)
+
+[UnityConnectServicesConfig] config is NOT valid, switching to default
+Created GICache directory at C:/Users/FanSh/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.018s, timestamps: [8.516 - 8.535]
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (0 B). Loaded Objects now: 1486.
+Memory consumption went from 226.6 MB to 226.6 MB.
+Total: 8.381500 ms (FindLiveObjects: 0.194600 ms CreateObjectMapping: 0.025600 ms MarkObjects: 8.028600 ms  DeleteObjects: 0.008700 ms)
+
+Worker ready: AssetImportWorkerHW0 0
+Loaded scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+	Deserialize:            12.778 ms
+	Integration:            3.244 ms
+	Integration of assets:  0.005 ms
+	Thread Wait Time:       0.031 ms
+	Total Operation Time:   16.059 ms
+Importing 'GUID: 49ab37c00c4a78746aa4ec942ef972ee - Path: Assets/Scrapshift/Content/Definitions/GameSounds.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 49ab37c00c4a78746aa4ec942ef972ee' -> (Import Result ID: 'c9718e7f907103935cf3c6abd52cd18e') in 0.005 seconds [static dependencies only]. Details - ImportResultOutputID=686b128631e941d8bce0948d9cab96bc DependenciesID=b29cd9e6960cfcf06cb342e555f890e8 StaticDependenciesID=a2f9390507389b890ebf350231460a33 
+Asset Pipeline Refresh (id=9dd713d0e4637ec47a4c535f358061bb): Total: 0.036 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Opening scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+	Deserialize:            7.449 ms
+	Integration:            18.007 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.026 ms
+	Total Operation Time:   25.485 ms
+Unloading 747 unused Assets / (91.6 MB). Loaded Objects now: 2991.
+Memory consumption went from 445.6 MB to 353.9 MB.
+Total: 10.812100 ms (FindLiveObjects: 0.522300 ms CreateObjectMapping: 0.076200 ms MarkObjects: 8.818800 ms  DeleteObjects: 1.234800 ms)
+
+Importing 'GUID: 9ff40c312d176014e9febd8d343b09b9 - Path: Assets/Scrapshift/Content/OriginalArt/blast-gland-v1.png' with importer (TextureImporter)
+Imported 'GUID: 9ff40c312d176014e9febd8d343b09b9' -> (Import Result ID: 'a8a6a03a1dbfed2fadd22c3762076e3e') in 0.073 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f1903f16bea475d89ff0a7ce4dbb2102 DependenciesID=b9f208c498947675d6c16b1b54185a1e StaticDependenciesID=6c95f8dc3c5f26714f927c33d3af09e2 
+Asset Pipeline Refresh (id=2585881cd7ccb6e46a6acb2f6f2c058f): Total: 0.093 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 681539605b0eb8d42b41d0f10bc5552f - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-01.png' with importer (TextureImporter)
+Imported 'GUID: 681539605b0eb8d42b41d0f10bc5552f' -> (Import Result ID: '9cf652b48ea2e2b605600401495dfeb1') in 0.187 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=159db2bed8eaa526b4e2bbc1745c86bf DependenciesID=cf0639b5bf425f485b22d6296dc586c4 StaticDependenciesID=d20f3ad13220bd1aaa96c7d02b893f89 
+Asset Pipeline Refresh (id=891901e6c6819bb48994d85c8d822c31): Total: 0.199 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 681539605b0eb8d42b41d0f10bc5552f - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-01.png' with importer (TextureImporter)
+Imported 'GUID: 681539605b0eb8d42b41d0f10bc5552f' -> (Import Result ID: '9cf652b48ea2e2b605600401495dfeb1') in 0.195 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=159db2bed8eaa526b4e2bbc1745c86bf DependenciesID=cf0639b5bf425f485b22d6296dc586c4 StaticDependenciesID=d20f3ad13220bd1aaa96c7d02b893f89 
+Asset Pipeline Refresh (id=ec1c5d799ef795040b97fec3f7ded717): Total: 0.234 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-02.png' with importer (TextureImporter)
+Imported 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7' -> (Import Result ID: '3250a656555c8ced94f840af5e4fc989') in 0.140 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=abe04c738a5ca1cb63ad29a79c8fbd5c DependenciesID=2ffc2f5669efc9d83a595dc841e6f19e StaticDependenciesID=02f0531a0706a4c30e05a4c205fd5075 
+Asset Pipeline Refresh (id=bbb849939d4626549ba2789b5831a67d): Total: 0.155 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-02.png' with importer (TextureImporter)
+Imported 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7' -> (Import Result ID: '3250a656555c8ced94f840af5e4fc989') in 0.140 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=abe04c738a5ca1cb63ad29a79c8fbd5c DependenciesID=2ffc2f5669efc9d83a595dc841e6f19e StaticDependenciesID=02f0531a0706a4c30e05a4c205fd5075 
+Asset Pipeline Refresh (id=29170d16310b06b4f8f88f62aaf693be): Total: 0.164 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: bf671d454080bc14fb628ea4bce63507 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-03.png' with importer (TextureImporter)
+Imported 'GUID: bf671d454080bc14fb628ea4bce63507' -> (Import Result ID: 'e91834e7b7fd553d2786bcdaa2116c94') in 0.149 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=581f9857b7e210ae577907d779c78f5a DependenciesID=8de5f294a22e8d9540a1c7994c67098b StaticDependenciesID=073853e9b759bfce0a78f362483c6c4e 
+Asset Pipeline Refresh (id=7aa00c3c2118db04482743c1180d80fa): Total: 0.160 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: bf671d454080bc14fb628ea4bce63507 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-03.png' with importer (TextureImporter)
+Imported 'GUID: bf671d454080bc14fb628ea4bce63507' -> (Import Result ID: 'e91834e7b7fd553d2786bcdaa2116c94') in 0.140 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=581f9857b7e210ae577907d779c78f5a DependenciesID=8de5f294a22e8d9540a1c7994c67098b StaticDependenciesID=073853e9b759bfce0a78f362483c6c4e 
+Asset Pipeline Refresh (id=0b57afd3912b5374fa1e05bfb6bbfa89): Total: 0.163 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: ff0aac826c2b1304caeb2b81665a4eeb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-04.png' with importer (TextureImporter)
+Imported 'GUID: ff0aac826c2b1304caeb2b81665a4eeb' -> (Import Result ID: 'ad4725dad2d0134da212a355baa7630e') in 0.132 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=59f84f236cd32b0792cd0d95311ddd9f DependenciesID=5738ba205e67c24094562d2dff58aab8 StaticDependenciesID=2d3509a890b095e20e834e323bfab886 
+Asset Pipeline Refresh (id=c6d7c3ab7da44d144a79ed0d81b73cc6): Total: 0.144 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: ff0aac826c2b1304caeb2b81665a4eeb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-04.png' with importer (TextureImporter)
+Imported 'GUID: ff0aac826c2b1304caeb2b81665a4eeb' -> (Import Result ID: 'ad4725dad2d0134da212a355baa7630e') in 0.143 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=59f84f236cd32b0792cd0d95311ddd9f DependenciesID=5738ba205e67c24094562d2dff58aab8 StaticDependenciesID=2d3509a890b095e20e834e323bfab886 
+Asset Pipeline Refresh (id=46fe1b0a983f31f41a7de513092c8f22): Total: 0.165 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-05.png' with importer (TextureImporter)
+Imported 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7' -> (Import Result ID: '2dd96c8cb6e2e11c773e6b71c448ebe7') in 0.133 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f457098f040085ad039b1b9dc8d7a5b0 DependenciesID=6a786cfaef6f7e24e316c5a6e8777d68 StaticDependenciesID=6b634699492bdc3899a9228ea125702c 
+Asset Pipeline Refresh (id=545736a5551fd4344be71a32031b06b0): Total: 0.144 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-05.png' with importer (TextureImporter)
+Imported 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7' -> (Import Result ID: '2dd96c8cb6e2e11c773e6b71c448ebe7') in 0.138 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f457098f040085ad039b1b9dc8d7a5b0 DependenciesID=6a786cfaef6f7e24e316c5a6e8777d68 StaticDependenciesID=6b634699492bdc3899a9228ea125702c 
+Asset Pipeline Refresh (id=5064ce9effc50f843aac0308acd39416): Total: 0.160 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-06.png' with importer (TextureImporter)
+Imported 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb' -> (Import Result ID: 'ac532a44b94e7c3be8d82dd8c5d0502d') in 0.121 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be3470d8ffab4812de3ac86c08d60c0b DependenciesID=6f198ca7e3483802913ea9fcb028ae75 StaticDependenciesID=64ae51ad07c28f615b4e219707feb788 
+Asset Pipeline Refresh (id=c7d72f0b14b7caa41bf82718bfc213a0): Total: 0.132 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-06.png' with importer (TextureImporter)
+Imported 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb' -> (Import Result ID: 'ac532a44b94e7c3be8d82dd8c5d0502d') in 0.128 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be3470d8ffab4812de3ac86c08d60c0b DependenciesID=6f198ca7e3483802913ea9fcb028ae75 StaticDependenciesID=64ae51ad07c28f615b4e219707feb788 
+Asset Pipeline Refresh (id=a3e58f0a6f33b664ca69e292ec9d7d6b): Total: 0.151 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: d48349f9cdd596c47872a04fead2a262 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-07.png' with importer (TextureImporter)
+Imported 'GUID: d48349f9cdd596c47872a04fead2a262' -> (Import Result ID: 'ef1824a0c3f68d678420a94b548398e9') in 0.115 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b4be8401a5a8650808a7112bbab8f9c2 DependenciesID=1fbf77ed2e7591b9869a061e4c473999 StaticDependenciesID=53fceb261f644342f336003f301f5eb0 
+Asset Pipeline Refresh (id=c0fb04e43bdea4d49bb8e27353e66e3b): Total: 0.125 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: d48349f9cdd596c47872a04fead2a262 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-07.png' with importer (TextureImporter)
+Imported 'GUID: d48349f9cdd596c47872a04fead2a262' -> (Import Result ID: 'ef1824a0c3f68d678420a94b548398e9') in 0.122 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b4be8401a5a8650808a7112bbab8f9c2 DependenciesID=1fbf77ed2e7591b9869a061e4c473999 StaticDependenciesID=53fceb261f644342f336003f301f5eb0 
+Asset Pipeline Refresh (id=b630a145a4ab11947aeb50e9c9e72112): Total: 0.144 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: c8e055dad74141e986a03877cb6baf4f - Path: Assets/Scrapshift/Resources/SupportAtlas.png' with importer (TextureImporter)
+Imported 'GUID: c8e055dad74141e986a03877cb6baf4f' -> (Import Result ID: '4b2dca755cce4b0bfd76da7f1e03fa3e') in 0.146 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=32b4485c78eb0f933cfc7dc173809894 DependenciesID=2475612101be788a746f5099db3ff30b StaticDependenciesID=3485f68b3fdae859e7a0cb6d7b8defb3 
+Asset Pipeline Refresh (id=7168d9e80ad531c40b6711fa5a37f01d): Total: 0.157 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: c8e055dad74141e986a03877cb6baf4f - Path: Assets/Scrapshift/Resources/SupportAtlas.png' with importer (TextureImporter)
+Imported 'GUID: c8e055dad74141e986a03877cb6baf4f' -> (Import Result ID: '4b2dca755cce4b0bfd76da7f1e03fa3e') in 0.132 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=32b4485c78eb0f933cfc7dc173809894 DependenciesID=2475612101be788a746f5099db3ff30b StaticDependenciesID=3485f68b3fdae859e7a0cb6d7b8defb3 
+Asset Pipeline Refresh (id=cf41eb822d949434186e27f16b0609b0): Total: 0.154 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Item icon audit passed: 209 individual item sprites.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Scrapshift.Editor.ContentBuilder:ValidateAllItemIcons (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/ItemIconBuilder.cs:86)
+Scrapshift.Editor.ContentBuilder:ApplyAllItemIcons (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/ItemIconBuilder.cs:47)
+Scrapshift.Editor.ContentBuilder:ApplyDedicatedItemIcons (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/InspectionBuilder.cs:49)
+Scrapshift.Editor.ContentBuilder:EnsureInspectionUI () (at Assets/Scrapshift/Editor/InspectionBuilder.cs:30)
+Scrapshift.Editor.ContentBuilder:Generate () (at Assets/Scrapshift/Editor/ContentBuilder.cs:24)
+Scrapshift.Tests.ContentTests:RepeatedGenerationPreservesAuthoredAssetGuids () (at Assets/Scrapshift/Tests/Editor/GameTests.cs:45)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)
+UnityEngine.TestTools.UnityTestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/UnityTestMethodCommand.cs:19)
+UnityEngine.TestRunner.NUnitExtensions.Runner.UnityLogCheckDelegatingCommand/<>c__DisplayClass3_0:<Execute>b__0 () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/UnityLogCheckDelegatingCommand.cs:32)
+UnityEngine.TestRunner.NUnitExtensions.Runner.UnityLogCheckDelegatingCommand:CaptureException (NUnit.Framework.Internal.TestResult,System.Action) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/UnityLogCheckDelegatingCommand.cs:93)
+UnityEngine.TestRunner.NUnitExtensions.Runner.UnityLogCheckDelegatingCommand:ExecuteAndCheckLog (UnityEngine.TestTools.Logging.LogScope,NUnit.Framework.Internal.TestResult,System.Action) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/UnityLogCheckDelegatingCommand.cs:104)
+UnityEngine.TestRunner.NUnitExtensions.Runner.UnityLogCheckDelegatingCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/UnityLogCheckDelegatingCommand.cs:32)
+UnityEngine.TestRunner.NUnitExtensions.Runner.UnityLogCheckDelegatingCommand/<ExecuteEnumerable>d__4:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/UnityLogCheckDelegatingCommand.cs:43)
+UnityEngine.TestTools.BeforeAfterTestCommandBase`1/<ExecuteEnumerable>d__16<NUnit.Framework.ITestAction>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/BeforeAfterTestCommandBase.cs:213)
+UnityEngine.TestTools.ImmediateEnumerableCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/ImmediateEnumerableCommand.cs:18)
+UnityEngine.TestTools.BeforeAfterTestCommandBase`1/<ExecuteEnumerable>d__16<System.Reflection.MethodInfo>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/BeforeAfterTestCommandBase.cs:220)
+UnityEngine.TestTools.BeforeAfterTestCommandBase`1/<ExecuteEnumerable>d__16<System.Reflection.MethodInfo>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/BeforeAfterTestCommandBase.cs:213)
+UnityEngine.TestTools.BeforeAfterTestCommandBase`1/<ExecuteEnumerable>d__16<UnityEngine.TestTools.IOuterUnityTestAction>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/BeforeAfterTestCommandBase.cs:213)
+UnityEngine.TestTools.RetryCommand/<ExecuteEnumerable>d__2:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/RetryCommand.cs:37)
+UnityEngine.TestTools.RepeatCommand/<ExecuteEnumerable>d__2:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/RepeatCommand.cs:36)
+UnityEngine.TestTools.IgnoreTestCommand/<ExecuteEnumerable>d__3:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/IgnoreTestCommand.cs:42)
+UnityEngine.TestTools.StrictCheckCommand/<ExecuteEnumerable>d__2:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Commands/StrictCheckCommand.cs:29)
+UnityEngine.TestRunner.NUnitExtensions.Runner.DefaultTestWorkItem/<PerformWork>d__2:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/DefaultTestWorkItem.cs:58)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<RunChildren>d__17:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:209)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<PerformWork>d__13:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:83)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<RunChildren>d__17:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:209)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<PerformWork>d__13:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:83)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<RunChildren>d__17:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:209)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<PerformWork>d__13:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:83)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<RunChildren>d__17:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:209)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<PerformWork>d__13:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:83)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<RunChildren>d__17:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:209)
+UnityEngine.TestRunner.NUnitExtensions.Runner.CompositeWorkItem/<PerformWork>d__13:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Runner/CompositeWorkItem.cs:83)
+UnityEditor.TestTools.TestRunner.EditModeRunner:MoveNextAndUpdateYieldObject () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRunner/EditModeRunner.cs:180)
+UnityEditor.TestTools.TestRunner.EditModeRunner:TestConsumer (UnityEditor.TestTools.TestRunner.TestRunnerStateSerializer) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRunner/EditModeRunner.cs:220)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.EditModeRunTask/<Execute>d__1:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/EditModeRunTask.cs:48)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: Assets/Scrapshift/Editor/ItemIconBuilder.cs Line: 86)
+
+Importing 'GUID: 3e63d38c26b87e44082c416be3d5864d - Path: Assets/Scrapshift/Content/OriginalArt/jousting-lance-v2.png' with importer (TextureImporter)
+Imported 'GUID: 3e63d38c26b87e44082c416be3d5864d' -> (Import Result ID: '0743166785397acbe74899123407dfc8') in 0.084 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ec4d774ff7dad4770c2da9a91565b973 DependenciesID=8303ba1e6ebfefbfe2d8367e3b292f00 StaticDependenciesID=6deebeeecd48e7ddafdef8e5ef4ba369 
+Asset Pipeline Refresh (id=518dda0276815784bb35be3ff300fefc): Total: 0.094 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: c0bd3237227456548970835891090ee6 - Path: Assets/Scrapshift/Content/Definitions/ReferenceCatalog.asset' with importer (NativeFormatImporter)
+Imported 'GUID: c0bd3237227456548970835891090ee6' -> (Import Result ID: '87194fa77732b29f173c221c9f3442e8') in 0.004 seconds [static dependencies only]. Details - ImportResultOutputID=5037a80c2f80649e995360f8c23b5176 DependenciesID=9280c4e2c232247f3f8bebe9db22c508 StaticDependenciesID=54feb4d3e17c7e0884955ccfba417fec 
+Asset Pipeline Refresh (id=edd63bc7800a8fe48b00a7fa1731d09e): Total: 0.022 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Opening scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+	Deserialize:            6.803 ms
+	Integration:            12.615 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       0.018 ms
+	Total Operation Time:   19.441 ms
+Unloading 15 unused Assets / (11.8 KB). Loaded Objects now: 2992.
+Memory consumption went from 354.0 MB to 354.0 MB.
+Total: 8.156200 ms (FindLiveObjects: 0.371000 ms CreateObjectMapping: 0.043600 ms MarkObjects: 7.549800 ms  DeleteObjects: 0.041400 ms)
+
+Loaded scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+	Deserialize:            7.687 ms
+	Integration:            2.652 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.028 ms
+	Total Operation Time:   10.369 ms
+Saving results to: E:\Codex Projects\Job Search Assistant\work\repos\Scrapshift\Builds\FeedbackParity-20261013/artifacts/editmode.xml
+Unloading 461 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1785 unused Assets / (266.4 MB). Loaded Objects now: 1528.
+Memory consumption went from 0.50 GB to 251.2 MB.
+Total: 15.813400 ms (FindLiveObjects: 0.412100 ms CreateObjectMapping: 0.060100 ms MarkObjects: 11.137400 ms  DeleteObjects: 4.040600 ms)
+
+DisplayProgressbar: Undo
+Test run completed. Exiting with code 0 (Ok). Run completed.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitApplication (UnityEditor.TestTools.TestRunner.CommandLineTest.Executer/ReturnCodes,string) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:81)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitIfRunIsCompleted () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:74)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 81)
+
+MonoPathRemapper: Attempts to remap: 4198; Successful remaps: 32
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-FanSh-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-FanSh channel disconnected successfully.
+Shut down.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000002498, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000004920, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000002498, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000004920, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3356
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791941757044,"processId":25168,"allocatedMemory":11409581,"memoryLabels":[{"Default":152688},{"Permanent":15516},{"NewDelete":68799},{"Thread":3963624},{"Manager":32701},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":835803},{"Material":132},{"GfxDevice":55968},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":34304},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":1259880},{"BaseObject":283680},{"Resource":1444},{"Renderer":2504},{"Transform":4685},{"File":7381},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":604573},{"StaticString":3808},{"Utility":2674262},{"Curl":2559},{"PoolAlloc":2168},{"AI":80},{"TypeTree":17165},{"ScriptManager":12656},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":288},{"WebRequest":552},{"VR":49650},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":464},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":117543},{"VersionControl":8},{"Undo":931},{"AssetDatabase":686277},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3226},{"Windowing":456},{"Licensing":1264},{"AssetReference":32},{"IPCStream":32}]}

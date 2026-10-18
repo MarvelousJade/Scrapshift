@@ -1,0 +1,7182 @@
+{
+    "status": "Exported",
+    "rawPath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\late-wave-profile-2026-10-17\\crowd\\crowded.raw",
+    "scope": "Non-Deep Unity CPU profile. Self-time rows can be aggregated; inclusive totals overlap and must not be summed across parent/child markers. Synthetic fixture cannot alone prove the cause of R21 lag.",
+    "firstFrame": 0,
+    "lastFrame": 16,
+    "frames": 17,
+    "threadFrames": 884,
+    "topSelf": [
+        {
+            "thread": "Worker 1",
+            "name": "Idle",
+            "totalMs": 24648.774815999986,
+            "selfMs": 24648.774815999986,
+            "calls": 185.0,
+            "gcBytes": 0.0,
+            "occurrences": 185
+        },
+        {
+            "thread": "Worker 10",
+            "name": "Idle",
+            "totalMs": 19904.647888,
+            "selfMs": 19904.647888,
+            "calls": 124.0,
+            "gcBytes": 0.0,
+            "occurrences": 124
+        },
+        {
+            "thread": "Worker 0",
+            "name": "Idle",
+            "totalMs": 18318.236432,
+            "selfMs": 18318.236432,
+            "calls": 115.0,
+            "gcBytes": 0.0,
+            "occurrences": 115
+        },
+        {
+            "thread": "Worker 4",
+            "name": "Idle",
+            "totalMs": 18314.418727999993,
+            "selfMs": 18314.418727999993,
+            "calls": 140.0,
+            "gcBytes": 0.0,
+            "occurrences": 140
+        },
+        {
+            "thread": "Worker 7",
+            "name": "Idle",
+            "totalMs": 12710.620180000005,
+            "selfMs": 12710.620180000005,
+            "calls": 121.0,
+            "gcBytes": 0.0,
+            "occurrences": 121
+        },
+        {
+            "thread": "Worker 9",
+            "name": "Idle",
+            "totalMs": 12710.219119999996,
+            "selfMs": 12710.219119999996,
+            "calls": 113.0,
+            "gcBytes": 0.0,
+            "occurrences": 113
+        },
+        {
+            "thread": "Worker 6",
+            "name": "Idle",
+            "totalMs": 12709.915844000003,
+            "selfMs": 12709.915844000003,
+            "calls": 117.0,
+            "gcBytes": 0.0,
+            "occurrences": 117
+        },
+        {
+            "thread": "Worker 8",
+            "name": "Idle",
+            "totalMs": 12709.430267999993,
+            "selfMs": 12709.430267999993,
+            "calls": 118.0,
+            "gcBytes": 0.0,
+            "occurrences": 118
+        },
+        {
+            "thread": "Worker 5",
+            "name": "Idle",
+            "totalMs": 12708.820891999998,
+            "selfMs": 12708.820891999998,
+            "calls": 129.0,
+            "gcBytes": 0.0,
+            "occurrences": 129
+        },
+        {
+            "thread": "Worker 2",
+            "name": "Idle",
+            "totalMs": 12706.840728000001,
+            "selfMs": 12706.840728000001,
+            "calls": 128.0,
+            "gcBytes": 0.0,
+            "occurrences": 128
+        },
+        {
+            "thread": "Worker 3",
+            "name": "Idle",
+            "totalMs": 12706.478700000001,
+            "selfMs": 12706.478700000001,
+            "calls": 177.0,
+            "gcBytes": 0.0,
+            "occurrences": 177
+        },
+        {
+            "thread": "BatchDeleteObjects",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12705.363003999953,
+            "selfMs": 12705.363003999953,
+            "calls": 1938.0,
+            "gcBytes": 0.0,
+            "occurrences": 1938
+        },
+        {
+            "thread": "Worker",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12694.395015999997,
+            "selfMs": 12694.395015999997,
+            "calls": 168.0,
+            "gcBytes": 0.0,
+            "occurrences": 168
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12663.547143999996,
+            "selfMs": 12663.547143999996,
+            "calls": 315.0,
+            "gcBytes": 0.0,
+            "occurrences": 315
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 10807.388699999954,
+            "selfMs": 10807.388699999954,
+            "calls": 41687.0,
+            "gcBytes": 0.0,
+            "occurrences": 41687
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]",
+            "totalMs": 12568.22784,
+            "selfMs": 9679.024688,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "File.Write",
+            "totalMs": 1827.0830000000153,
+            "selfMs": 1827.0830000000153,
+            "calls": 41688.0,
+            "gcBytes": 0.0,
+            "occurrences": 41688
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC.Alloc",
+            "totalMs": 1668.4506996997632,
+            "selfMs": 1668.4506996997632,
+            "calls": 33286955.0,
+            "gcBytes": 2411192148.0,
+            "occurrences": 33286955
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC.Collect",
+            "totalMs": 1205.1650999999986,
+            "selfMs": 1205.1650999999986,
+            "calls": 2083.0,
+            "gcBytes": 0.0,
+            "occurrences": 2083
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "Profiler.WriteBuffer",
+            "totalMs": 1881.7493000000031,
+            "selfMs": 54.66629999999791,
+            "calls": 41671.0,
+            "gcBytes": 0.0,
+            "occurrences": 41671
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.OnGUI() [Invoke]",
+            "totalMs": 89.94289999999997,
+            "selfMs": 28.757499999999993,
+            "calls": 32.0,
+            "gcBytes": 3829532.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GameObject.AddComponent",
+            "totalMs": 27.474899999999792,
+            "selfMs": 26.70479999999983,
+            "calls": 3090.0,
+            "gcBytes": 2184.0,
+            "occurrences": 3090
+        },
+        {
+            "thread": "Audio Mixer Thread",
+            "name": "Audio.Thread",
+            "totalMs": 22.206600000000016,
+            "selfMs": 20.411599999999993,
+            "calls": 642.0,
+            "gcBytes": 0.0,
+            "occurrences": 642
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.Get_GPOS_Lookups",
+            "totalMs": 20.0172,
+            "selfMs": 20.0172,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Render Thread",
+            "name": "GUI.Repaint",
+            "totalMs": 71.2762,
+            "selfMs": 16.121799999999997,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.GetOpenTypeFontFeatures",
+            "totalMs": 37.831999999999994,
+            "selfMs": 14.9424,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate.Produce",
+            "totalMs": 11.024799999999994,
+            "selfMs": 11.024799999999994,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "name": "Audio.Thread",
+            "totalMs": 9.676900000000003,
+            "selfMs": 9.676900000000003,
+            "calls": 642.0,
+            "gcBytes": 0.0,
+            "occurrences": 642
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Destroy",
+            "totalMs": 11.893099999999976,
+            "selfMs": 7.403899999999994,
+            "calls": 1922.0,
+            "gcBytes": 0.0,
+            "occurrences": 1922
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GameObject.ActivateAwakeRecursively",
+            "totalMs": 6.777599999999936,
+            "selfMs": 6.632799999999948,
+            "calls": 4958.0,
+            "gcBytes": 0.0,
+            "occurrences": 4958
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderForwardAlpha.Render",
+            "totalMs": 6.553299999999999,
+            "selfMs": 6.545499999999999,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.CollectUIToolkitStats",
+            "totalMs": 6.237699999999999,
+            "selfMs": 6.228599999999999,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.IMGUIModule.dll!UnityEngine::GUIStyle.GetMeshInfo() [Invoke]",
+            "totalMs": 48.86069999999978,
+            "selfMs": 6.222599999999905,
+            "calls": 2272.0,
+            "gcBytes": 124916.0,
+            "occurrences": 2272
+        },
+        {
+            "thread": "Worker",
+            "name": "WaitForJobGroupID",
+            "totalMs": 10.931899999999999,
+            "selfMs": 5.884499999999998,
+            "calls": 53.0,
+            "gcBytes": 0.0,
+            "occurrences": 53
+        },
+        {
+            "thread": "Render Thread",
+            "name": "PlayerEndOfFrame",
+            "totalMs": 7.2509000000000015,
+            "selfMs": 5.846400000000002,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Finalizer",
+            "name": "GC.Finalizer",
+            "totalMs": 5.5161000000000024,
+            "selfMs": 5.5161000000000024,
+            "calls": 255.0,
+            "gcBytes": 0.0,
+            "occurrences": 255
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Material.SetPassFast",
+            "totalMs": 5.135699999999997,
+            "selfMs": 4.888399999999948,
+            "calls": 2416.0,
+            "gcBytes": 0.0,
+            "occurrences": 2416
+        },
+        {
+            "thread": "Worker",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 4.7608,
+            "selfMs": 4.492699999999999,
+            "calls": 18.0,
+            "gcBytes": 0.0,
+            "occurrences": 18
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate.Awake",
+            "totalMs": 4.427500000000005,
+            "selfMs": 4.24379999999999,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TransformHandle.SetParent",
+            "totalMs": 6.357999999999977,
+            "selfMs": 4.040799999999997,
+            "calls": 1201.0,
+            "gcBytes": 0.0,
+            "occurrences": 1201
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxDeviceD3D12.ExecuteCommandList",
+            "totalMs": 5.057699999999999,
+            "selfMs": 3.9795000000000007,
+            "calls": 96.0,
+            "gcBytes": 0.0,
+            "occurrences": 96
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.PresentFrame",
+            "totalMs": 4.331599999999999,
+            "selfMs": 3.9501999999999997,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 3",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 4.1282,
+            "selfMs": 3.4897999999999993,
+            "calls": 30.0,
+            "gcBytes": 0.0,
+            "occurrences": 30
+        },
+        {
+            "thread": "Render Thread",
+            "name": "CreateResourceWithTag",
+            "totalMs": 3.389499999999999,
+            "selfMs": 3.389499999999999,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate.Copy",
+            "totalMs": 3.349799999999987,
+            "selfMs": 3.349799999999987,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.UIElementsModule.dll!UnityEngine.UIElements::UIElementsRuntimeUtilityNative.UpdatePanels() [Invoke]",
+            "totalMs": 4.1859,
+            "selfMs": 3.324499999999999,
+            "calls": 16.0,
+            "gcBytes": 1900.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "CreateCommittedResourceWithTag",
+            "totalMs": 3.2668999999999997,
+            "selfMs": 3.2668999999999997,
+            "calls": 4.0,
+            "gcBytes": 0.0,
+            "occurrences": 4
+        },
+        {
+            "thread": "Main Thread",
+            "name": "SpriteRenderer.PrepareNode",
+            "totalMs": 3.0031999999999646,
+            "selfMs": 3.0031999999999646,
+            "calls": 2473.0,
+            "gcBytes": 0.0,
+            "occurrences": 2473
+        },
+        {
+            "thread": "Audio Stream Thread",
+            "name": "Audio.Thread",
+            "totalMs": 2.902499999999986,
+            "selfMs": 2.902499999999986,
+            "calls": 1295.0,
+            "gcBytes": 0.0,
+            "occurrences": 1295
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.MemoryFrameMaintenance",
+            "totalMs": 2.8024999999999993,
+            "selfMs": 2.8024999999999993,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderLoop",
+            "totalMs": 99.38760000000008,
+            "selfMs": 2.723300000000002,
+            "calls": 158.0,
+            "gcBytes": 0.0,
+            "occurrences": 158
+        },
+        {
+            "thread": "Worker 1",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 3.196,
+            "selfMs": 2.3178,
+            "calls": 28.0,
+            "gcBytes": 0.0,
+            "occurrences": 28
+        },
+        {
+            "thread": "Worker 4",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.7187,
+            "selfMs": 2.3106,
+            "calls": 22.0,
+            "gcBytes": 0.0,
+            "occurrences": 22
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxDeviceD3D12.Swap",
+            "totalMs": 2.304,
+            "selfMs": 2.304,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.Get_GSUB_Lookups",
+            "totalMs": 2.2679,
+            "selfMs": 2.2679,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Worker 2",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 3.1634,
+            "selfMs": 2.1024999999999996,
+            "calls": 27.0,
+            "gcBytes": 0.0,
+            "occurrences": 27
+        },
+        {
+            "thread": "Main Thread",
+            "name": "WaitForJobGroupID",
+            "totalMs": 5.944899999999998,
+            "selfMs": 2.0391,
+            "calls": 90.0,
+            "gcBytes": 0.0,
+            "occurrences": 90
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TransformChangeSystem",
+            "totalMs": 1.9608999999999865,
+            "selfMs": 1.9608999999999865,
+            "calls": 1467.0,
+            "gcBytes": 0.0,
+            "occurrences": 1467
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PlayerLoop",
+            "totalMs": 12710.321856,
+            "selfMs": 1.9144320000000001,
+            "calls": 16.0,
+            "gcBytes": 2410955374.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 8",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.8461,
+            "selfMs": 1.8936999999999997,
+            "calls": 20.0,
+            "gcBytes": 0.0,
+            "occurrences": 20
+        },
+        {
+            "thread": "Worker 5",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.2424999999999997,
+            "selfMs": 1.8354,
+            "calls": 15.0,
+            "gcBytes": 0.0,
+            "occurrences": 15
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.FlushMemoryCounters",
+            "totalMs": 1.8316999999999999,
+            "selfMs": 1.8316999999999999,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TextGenerator.GenerateText",
+            "totalMs": 42.596500000000006,
+            "selfMs": 1.7213999999999998,
+            "calls": 132.0,
+            "gcBytes": 348.0,
+            "occurrences": 132
+        },
+        {
+            "thread": "Worker 10",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.1584999999999996,
+            "selfMs": 1.6973,
+            "calls": 21.0,
+            "gcBytes": 0.0,
+            "occurrences": 21
+        },
+        {
+            "thread": "Worker 9",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.5584999999999996,
+            "selfMs": 1.6554999999999997,
+            "calls": 22.0,
+            "gcBytes": 0.0,
+            "occurrences": 22
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Clear",
+            "totalMs": 1.6247999999999998,
+            "selfMs": 1.6247999999999998,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.DrawDynamic",
+            "totalMs": 1.833300000000001,
+            "selfMs": 1.6212999999999997,
+            "calls": 162.0,
+            "gcBytes": 0.0,
+            "occurrences": 162
+        },
+        {
+            "thread": "Audio Mixer Thread",
+            "name": "MasterDSP",
+            "totalMs": 1.611099999999994,
+            "selfMs": 1.611099999999994,
+            "calls": 596.0,
+            "gcBytes": 0.0,
+            "occurrences": 596
+        },
+        {
+            "thread": "Worker 0",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.4648999999999996,
+            "selfMs": 1.603,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TransformHandle.SetHierarchyCapacity",
+            "totalMs": 1.564300000000001,
+            "selfMs": 1.564300000000001,
+            "calls": 614.0,
+            "gcBytes": 0.0,
+            "occurrences": 614
+        },
+        {
+            "thread": "Worker 1",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 1.5480000000000003,
+            "selfMs": 1.5480000000000003,
+            "calls": 92.0,
+            "gcBytes": 0.0,
+            "occurrences": 92
+        },
+        {
+            "thread": "Worker 4",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 1.5031000000000003,
+            "selfMs": 1.5031000000000003,
+            "calls": 82.0,
+            "gcBytes": 0.0,
+            "occurrences": 82
+        },
+        {
+            "thread": "Worker 2",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 1.3567999999999998,
+            "selfMs": 1.3567999999999998,
+            "calls": 58.0,
+            "gcBytes": 0.0,
+            "occurrences": 58
+        },
+        {
+            "thread": "Worker 6",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 1.7660999999999998,
+            "selfMs": 1.2973999999999999,
+            "calls": 14.0,
+            "gcBytes": 0.0,
+            "occurrences": 14
+        },
+        {
+            "thread": "Worker 6",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 1.2078999999999998,
+            "selfMs": 1.2078999999999998,
+            "calls": 77.0,
+            "gcBytes": 0.0,
+            "occurrences": 77
+        },
+        {
+            "thread": "Worker 3",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 1.1893000000000002,
+            "selfMs": 1.1893000000000002,
+            "calls": 84.0,
+            "gcBytes": 0.0,
+            "occurrences": 84
+        },
+        {
+            "thread": "Main Thread",
+            "name": "ExecuteRenderQueueJob",
+            "totalMs": 1.7761999999999998,
+            "selfMs": 1.1872999999999998,
+            "calls": 18.0,
+            "gcBytes": 0.0,
+            "occurrences": 18
+        },
+        {
+            "thread": "Worker 5",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 1.1506,
+            "selfMs": 1.1506,
+            "calls": 53.0,
+            "gcBytes": 0.0,
+            "occurrences": 53
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.GlyphRasterizer.Calculate3x3AAEDT",
+            "totalMs": 1.1482999999999999,
+            "selfMs": 1.1482999999999999,
+            "calls": 3.0,
+            "gcBytes": 0.0,
+            "occurrences": 3
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderTexture.ResolveAA",
+            "totalMs": 1.1465,
+            "selfMs": 1.1465,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PlayerConnection.Poll",
+            "totalMs": 2.2732999999999994,
+            "selfMs": 1.1258999999999997,
+            "calls": 32.0,
+            "gcBytes": 0.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxTask_ReadValue",
+            "totalMs": 12695.512139999984,
+            "selfMs": 1.1202239999999972,
+            "calls": 672.0,
+            "gcBytes": 0.0,
+            "occurrences": 672
+        },
+        {
+            "thread": "Worker 7",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 1.5731999999999997,
+            "selfMs": 1.0806,
+            "calls": 11.0,
+            "gcBytes": 0.0,
+            "occurrences": 11
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate",
+            "totalMs": 19.881500000000013,
+            "selfMs": 1.0793999999999915,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxDeviceD3D12.ResourceBarriers",
+            "totalMs": 1.0781999999999983,
+            "selfMs": 1.0781999999999983,
+            "calls": 186.0,
+            "gcBytes": 0.0,
+            "occurrences": 186
+        },
+        {
+            "thread": "Worker 7",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 0.9930999999999996,
+            "selfMs": 0.9930999999999996,
+            "calls": 53.0,
+            "gcBytes": 0.0,
+            "occurrences": 53
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!::CrowdedProfile.Start() [Coroutine: MoveNext] [Invoke]",
+            "totalMs": 0.9425,
+            "selfMs": 0.9422,
+            "calls": 16.0,
+            "gcBytes": 304.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 8",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 0.8924999999999998,
+            "selfMs": 0.8924999999999998,
+            "calls": 47.0,
+            "gcBytes": 0.0,
+            "occurrences": 47
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderForwardOpaque.Render",
+            "totalMs": 2.5168000000000004,
+            "selfMs": 0.8680000000000001,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UIElements.PreUpdatePanelRenderers",
+            "totalMs": 0.8392000000000001,
+            "selfMs": 0.8389,
+            "calls": 14.0,
+            "gcBytes": 48.0,
+            "occurrences": 14
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.GetPairAdjustmentRecords",
+            "totalMs": 38.6164,
+            "selfMs": 0.7844,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Camera.Render",
+            "totalMs": 12.006999999999998,
+            "selfMs": 0.7745,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.CollectAudioStats",
+            "totalMs": 0.7754000000000001,
+            "selfMs": 0.7434999999999999,
+            "calls": 32.0,
+            "gcBytes": 0.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Render Thread",
+            "name": "BufferD3D12.UpdateInternal",
+            "totalMs": 0.6921000000000005,
+            "selfMs": 0.6921000000000005,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TextGenerator.Prepare",
+            "totalMs": 2.243900000000001,
+            "selfMs": 0.6643999999999997,
+            "calls": 132.0,
+            "gcBytes": 348.0,
+            "occurrences": 132
+        },
+        {
+            "thread": "Main Thread",
+            "name": "afterCullingOutputReady.Invoke",
+            "totalMs": 0.6654999999999999,
+            "selfMs": 0.6643,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 4",
+            "name": "LineRenderer.RenderGeometryJob",
+            "totalMs": 0.6490000000000002,
+            "selfMs": 0.6490000000000002,
+            "calls": 214.0,
+            "gcBytes": 0.0,
+            "occurrences": 214
+        },
+        {
+            "thread": "Render Thread",
+            "name": "BufferD3D12.InitializeResource",
+            "totalMs": 4.168899999999996,
+            "selfMs": 0.6292999999999994,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Main Thread",
+            "name": "RenderForwardAlpha.Prepare",
+            "totalMs": 0.6217,
+            "selfMs": 0.6217,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "InputUpdate",
+            "totalMs": 0.7528,
+            "selfMs": 0.575,
+            "calls": 16.0,
+            "gcBytes": 896.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 9",
+            "name": "UpdateRendererBoundingVolumes",
+            "totalMs": 0.5734999999999998,
+            "selfMs": 0.5734999999999998,
+            "calls": 33.0,
+            "gcBytes": 0.0,
+            "occurrences": 33
+        },
+        {
+            "thread": "Worker 2",
+            "name": "BatchRenderer.Flush",
+            "totalMs": 0.8644999999999995,
+            "selfMs": 0.5626999999999998,
+            "calls": 117.0,
+            "gcBytes": 0.0,
+            "occurrences": 117
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.SetRenderTarget",
+            "totalMs": 0.5599000000000002,
+            "selfMs": 0.5599000000000002,
+            "calls": 98.0,
+            "gcBytes": 0.0,
+            "occurrences": 98
+        },
+        {
+            "thread": "Worker 2",
+            "name": "SpriteRenderer.PrepareNode",
+            "totalMs": 0.5333999999999994,
+            "selfMs": 0.5333999999999994,
+            "calls": 210.0,
+            "gcBytes": 0.0,
+            "occurrences": 210
+        },
+        {
+            "thread": "Worker 1",
+            "name": "ExecuteRenderQueueJob",
+            "totalMs": 0.9258,
+            "selfMs": 0.5314000000000001,
+            "calls": 11.0,
+            "gcBytes": 0.0,
+            "occurrences": 11
+        },
+        {
+            "thread": "Main Thread",
+            "name": "SortingGroup.UpdateRenderer",
+            "totalMs": 0.5267999999999842,
+            "selfMs": 0.5267999999999842,
+            "calls": 3683.0,
+            "gcBytes": 0.0,
+            "occurrences": 3683
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Render.Prepare",
+            "totalMs": 0.5194,
+            "selfMs": 0.5194,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.FinishFrameRendering",
+            "totalMs": 103.8925,
+            "selfMs": 0.5140000000000001,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 1",
+            "name": "RenderForwardAlpha.Sort",
+            "totalMs": 0.5058,
+            "selfMs": 0.5058,
+            "calls": 45.0,
+            "gcBytes": 0.0,
+            "occurrences": 45
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.OpenTypeValidation",
+            "totalMs": 0.49959999999999993,
+            "selfMs": 0.49959999999999993,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Worker 3",
+            "name": "LineRenderer.RenderGeometryJob",
+            "totalMs": 0.4873000000000002,
+            "selfMs": 0.4873000000000002,
+            "calls": 101.0,
+            "gcBytes": 0.0,
+            "occurrences": 101
+        },
+        {
+            "thread": "Worker 5",
+            "name": "LineRenderer.RenderGeometryJob",
+            "totalMs": 0.4693000000000003,
+            "selfMs": 0.4693000000000003,
+            "calls": 153.0,
+            "gcBytes": 0.0,
+            "occurrences": 153
+        },
+        {
+            "thread": "Worker 5",
+            "name": "ExecuteRenderQueueJob",
+            "totalMs": 0.7680000000000001,
+            "selfMs": 0.4626,
+            "calls": 8.0,
+            "gcBytes": 0.0,
+            "occurrences": 8
+        },
+        {
+            "thread": "Worker 0",
+            "name": "BatchRenderer.Flush",
+            "totalMs": 0.6048000000000003,
+            "selfMs": 0.4611,
+            "calls": 95.0,
+            "gcBytes": 0.0,
+            "occurrences": 95
+        },
+        {
+            "thread": "Worker 2",
+            "name": "RenderForwardAlpha.Sort",
+            "totalMs": 0.46079999999999993,
+            "selfMs": 0.46079999999999993,
+            "calls": 27.0,
+            "gcBytes": 0.0,
+            "occurrences": 27
+        },
+        {
+            "thread": "Worker 9",
+            "name": "BatchRenderer.Flush",
+            "totalMs": 0.6528999999999997,
+            "selfMs": 0.4571999999999999,
+            "calls": 123.0,
+            "gcBytes": 0.0,
+            "occurrences": 123
+        },
+        {
+            "thread": "Main Thread",
+            "name": "SpriteRenderer.OnChangeSprite",
+            "totalMs": 0.4548,
+            "selfMs": 0.4548,
+            "calls": 58.0,
+            "gcBytes": 0.0,
+            "occurrences": 58
+        },
+        {
+            "thread": "Worker 1",
+            "name": "LineRenderer.RenderGeometryJob",
+            "totalMs": 0.4538000000000004,
+            "selfMs": 0.4538000000000004,
+            "calls": 165.0,
+            "gcBytes": 0.0,
+            "occurrences": 165
+        },
+        {
+            "thread": "Worker 6",
+            "name": "LineRenderer.RenderGeometryJob",
+            "totalMs": 0.4527000000000002,
+            "selfMs": 0.4527000000000002,
+            "calls": 158.0,
+            "gcBytes": 0.0,
+            "occurrences": 158
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.UploadTextureData",
+            "totalMs": 0.4558,
+            "selfMs": 0.4524,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        }
+    ],
+    "topTotal": [
+        {
+            "thread": "Worker 1",
+            "name": "Idle",
+            "totalMs": 24648.774815999986,
+            "selfMs": 24648.774815999986,
+            "calls": 185.0,
+            "gcBytes": 0.0,
+            "occurrences": 185
+        },
+        {
+            "thread": "Worker 10",
+            "name": "Idle",
+            "totalMs": 19904.647888,
+            "selfMs": 19904.647888,
+            "calls": 124.0,
+            "gcBytes": 0.0,
+            "occurrences": 124
+        },
+        {
+            "thread": "Worker 0",
+            "name": "Idle",
+            "totalMs": 18318.236432,
+            "selfMs": 18318.236432,
+            "calls": 115.0,
+            "gcBytes": 0.0,
+            "occurrences": 115
+        },
+        {
+            "thread": "Worker 4",
+            "name": "Idle",
+            "totalMs": 18314.418727999993,
+            "selfMs": 18314.418727999993,
+            "calls": 140.0,
+            "gcBytes": 0.0,
+            "occurrences": 140
+        },
+        {
+            "thread": "Worker 7",
+            "name": "Idle",
+            "totalMs": 12710.620180000005,
+            "selfMs": 12710.620180000005,
+            "calls": 121.0,
+            "gcBytes": 0.0,
+            "occurrences": 121
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PlayerLoop",
+            "totalMs": 12710.321856,
+            "selfMs": 1.9144320000000001,
+            "calls": 16.0,
+            "gcBytes": 2410955374.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 9",
+            "name": "Idle",
+            "totalMs": 12710.219119999996,
+            "selfMs": 12710.219119999996,
+            "calls": 113.0,
+            "gcBytes": 0.0,
+            "occurrences": 113
+        },
+        {
+            "thread": "Worker 6",
+            "name": "Idle",
+            "totalMs": 12709.915844000003,
+            "selfMs": 12709.915844000003,
+            "calls": 117.0,
+            "gcBytes": 0.0,
+            "occurrences": 117
+        },
+        {
+            "thread": "Worker 8",
+            "name": "Idle",
+            "totalMs": 12709.430267999993,
+            "selfMs": 12709.430267999993,
+            "calls": 118.0,
+            "gcBytes": 0.0,
+            "occurrences": 118
+        },
+        {
+            "thread": "Worker 5",
+            "name": "Idle",
+            "totalMs": 12708.820891999998,
+            "selfMs": 12708.820891999998,
+            "calls": 129.0,
+            "gcBytes": 0.0,
+            "occurrences": 129
+        },
+        {
+            "thread": "Worker 2",
+            "name": "Idle",
+            "totalMs": 12706.840728000001,
+            "selfMs": 12706.840728000001,
+            "calls": 128.0,
+            "gcBytes": 0.0,
+            "occurrences": 128
+        },
+        {
+            "thread": "Worker 3",
+            "name": "Idle",
+            "totalMs": 12706.478700000001,
+            "selfMs": 12706.478700000001,
+            "calls": 177.0,
+            "gcBytes": 0.0,
+            "occurrences": 177
+        },
+        {
+            "thread": "BatchDeleteObjects",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12705.363003999953,
+            "selfMs": 12705.363003999953,
+            "calls": 1938.0,
+            "gcBytes": 0.0,
+            "occurrences": 1938
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxTask_ReadValue",
+            "totalMs": 12695.512139999984,
+            "selfMs": 1.1202239999999972,
+            "calls": 672.0,
+            "gcBytes": 0.0,
+            "occurrences": 672
+        },
+        {
+            "thread": "Worker",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12694.395015999997,
+            "selfMs": 12694.395015999997,
+            "calls": 168.0,
+            "gcBytes": 0.0,
+            "occurrences": 168
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.WaitForGfxCommandsFromMainThread",
+            "totalMs": 12663.660979999991,
+            "selfMs": 0.11493600000000007,
+            "calls": 314.0,
+            "gcBytes": 0.0,
+            "occurrences": 314
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12663.547143999996,
+            "selfMs": 12663.547143999996,
+            "calls": 315.0,
+            "gcBytes": 0.0,
+            "occurrences": 315
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Update.ScriptRunBehaviourUpdate",
+            "totalMs": 12568.819647999999,
+            "selfMs": 0.021695999999999997,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "BehaviourUpdate",
+            "totalMs": 12568.797951999999,
+            "selfMs": 0.275008,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]",
+            "totalMs": 12568.22784,
+            "selfMs": 9679.024688,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 10807.388699999954,
+            "selfMs": 10807.388699999954,
+            "calls": 41687.0,
+            "gcBytes": 0.0,
+            "occurrences": 41687
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "Profiler.WriteBuffer",
+            "totalMs": 1881.7493000000031,
+            "selfMs": 54.66629999999791,
+            "calls": 41671.0,
+            "gcBytes": 0.0,
+            "occurrences": 41671
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "File.Write",
+            "totalMs": 1827.0830000000153,
+            "selfMs": 1827.0830000000153,
+            "calls": 41688.0,
+            "gcBytes": 0.0,
+            "occurrences": 41688
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC.Alloc",
+            "totalMs": 1668.4506996997632,
+            "selfMs": 1668.4506996997632,
+            "calls": 33286955.0,
+            "gcBytes": 2411192148.0,
+            "occurrences": 33286955
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC.Collect",
+            "totalMs": 1205.1650999999986,
+            "selfMs": 1205.1650999999986,
+            "calls": 2083.0,
+            "gcBytes": 0.0,
+            "occurrences": 2083
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.FinishFrameRendering",
+            "totalMs": 103.8925,
+            "selfMs": 0.5140000000000001,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderLoop",
+            "totalMs": 99.38760000000008,
+            "selfMs": 2.723300000000002,
+            "calls": 158.0,
+            "gcBytes": 0.0,
+            "occurrences": 158
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UIEvents.IMGUIRenderOverlays",
+            "totalMs": 90.91679999999998,
+            "selfMs": 0.0245,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GUI.Repaint",
+            "totalMs": 90.8923,
+            "selfMs": 0.4223,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.OnGUI() [Invoke]",
+            "totalMs": 89.94289999999997,
+            "selfMs": 28.757499999999993,
+            "calls": 32.0,
+            "gcBytes": 3829532.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Render Thread",
+            "name": "GUI.Repaint",
+            "totalMs": 71.2762,
+            "selfMs": 16.121799999999997,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.IMGUIModule.dll!UnityEngine::GUIStyle.GetMeshInfo() [Invoke]",
+            "totalMs": 48.86069999999978,
+            "selfMs": 6.222599999999905,
+            "calls": 2272.0,
+            "gcBytes": 124916.0,
+            "occurrences": 2272
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TextGenerator.GenerateText",
+            "totalMs": 42.596500000000006,
+            "selfMs": 1.7213999999999998,
+            "calls": 132.0,
+            "gcBytes": 348.0,
+            "occurrences": 132
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontAsset.UpdateGlyphAdjustmentRecords",
+            "totalMs": 38.6312,
+            "selfMs": 0.0126,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.GetPairAdjustmentRecords",
+            "totalMs": 38.6164,
+            "selfMs": 0.7844,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.GetOpenTypeFontFeatures",
+            "totalMs": 37.831999999999994,
+            "selfMs": 14.9424,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GameObject.AddComponent",
+            "totalMs": 27.474899999999792,
+            "selfMs": 26.70479999999983,
+            "calls": 3090.0,
+            "gcBytes": 2184.0,
+            "occurrences": 3090
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.GetOpenTypeLayoutTables",
+            "totalMs": 22.389999999999997,
+            "selfMs": 0.0034999999999999996,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Audio Mixer Thread",
+            "name": "Audio.Thread",
+            "totalMs": 22.206600000000016,
+            "selfMs": 20.411599999999993,
+            "calls": 642.0,
+            "gcBytes": 0.0,
+            "occurrences": 642
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.Get_GPOS_Table",
+            "totalMs": 20.048799999999996,
+            "selfMs": 0.0021999999999999997,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.Get_GPOS_Lookups",
+            "totalMs": 20.0172,
+            "selfMs": 20.0172,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate",
+            "totalMs": 19.881500000000013,
+            "selfMs": 1.0793999999999915,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Camera.Render",
+            "totalMs": 12.789599999999998,
+            "selfMs": 0.42399999999999993,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "CoroutinesDelayedCalls",
+            "totalMs": 12.553699999999978,
+            "selfMs": 0.42869999999999847,
+            "calls": 331.0,
+            "gcBytes": 304.0,
+            "occurrences": 331
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Update.ScriptRunDelayedDynamicFrameRate",
+            "totalMs": 12.520899999999997,
+            "selfMs": 0.019,
+            "calls": 16.0,
+            "gcBytes": 304.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Camera.Render",
+            "totalMs": 12.006999999999998,
+            "selfMs": 0.7745,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Destroy",
+            "totalMs": 11.893099999999976,
+            "selfMs": 7.403899999999994,
+            "calls": 1922.0,
+            "gcBytes": 0.0,
+            "occurrences": 1922
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate.Produce",
+            "totalMs": 11.024799999999994,
+            "selfMs": 11.024799999999994,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxTask_SyncJobFence",
+            "totalMs": 10.974399999999996,
+            "selfMs": 0.0425,
+            "calls": 122.0,
+            "gcBytes": 0.0,
+            "occurrences": 122
+        },
+        {
+            "thread": "Worker",
+            "name": "WaitForJobGroupID",
+            "totalMs": 10.931899999999999,
+            "selfMs": 5.884499999999998,
+            "calls": 53.0,
+            "gcBytes": 0.0,
+            "occurrences": 53
+        },
+        {
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "name": "Audio.Thread",
+            "totalMs": 9.676900000000003,
+            "selfMs": 9.676900000000003,
+            "calls": 642.0,
+            "gcBytes": 0.0,
+            "occurrences": 642
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.ProfilerEndFrame",
+            "totalMs": 9.4225,
+            "selfMs": 0.015099999999999995,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.FlushCounters",
+            "totalMs": 9.407399999999999,
+            "selfMs": 0.0131,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Drawing",
+            "totalMs": 9.2933,
+            "selfMs": 0.072,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 1",
+            "name": "EngineJob",
+            "totalMs": 7.959600000000003,
+            "selfMs": 0.17599999999999988,
+            "calls": 420.0,
+            "gcBytes": 0.0,
+            "occurrences": 420
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.CollectLegacyStats",
+            "totalMs": 7.376400000000001,
+            "selfMs": 0.06179999999999999,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 3",
+            "name": "EngineJob",
+            "totalMs": 7.360200000000006,
+            "selfMs": 0.22610000000000013,
+            "calls": 294.0,
+            "gcBytes": 0.0,
+            "occurrences": 294
+        },
+        {
+            "thread": "Render Thread",
+            "name": "PlayerEndOfFrame",
+            "totalMs": 7.2509000000000015,
+            "selfMs": 5.846400000000002,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 2",
+            "name": "EngineJob",
+            "totalMs": 7.124700000000004,
+            "selfMs": 0.14840000000000025,
+            "calls": 277.0,
+            "gcBytes": 0.0,
+            "occurrences": 277
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GameObject.ActivateAwakeRecursively",
+            "totalMs": 6.777599999999936,
+            "selfMs": 6.632799999999948,
+            "calls": 4958.0,
+            "gcBytes": 0.0,
+            "occurrences": 4958
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Render.TransparentGeometry",
+            "totalMs": 6.558899999999999,
+            "selfMs": 0.005600000000000001,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderForwardAlpha.Render",
+            "totalMs": 6.553299999999999,
+            "selfMs": 6.545499999999999,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 4",
+            "name": "EngineJob",
+            "totalMs": 6.366200000000002,
+            "selfMs": 0.15970000000000018,
+            "calls": 380.0,
+            "gcBytes": 0.0,
+            "occurrences": 380
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TransformHandle.SetParent",
+            "totalMs": 6.357999999999977,
+            "selfMs": 4.040799999999997,
+            "calls": 1201.0,
+            "gcBytes": 0.0,
+            "occurrences": 1201
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.CollectUIToolkitStats",
+            "totalMs": 6.237699999999999,
+            "selfMs": 6.228599999999999,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "WaitForJobGroupID",
+            "totalMs": 5.944899999999998,
+            "selfMs": 2.0391,
+            "calls": 90.0,
+            "gcBytes": 0.0,
+            "occurrences": 90
+        },
+        {
+            "thread": "Main Thread",
+            "name": "CullResults.CreateSharedRendererScene",
+            "totalMs": 5.5657,
+            "selfMs": 0.08749999999999998,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Finalizer",
+            "name": "GC.Finalizer",
+            "totalMs": 5.5161000000000024,
+            "selfMs": 5.5161000000000024,
+            "calls": 255.0,
+            "gcBytes": 0.0,
+            "occurrences": 255
+        },
+        {
+            "thread": "Worker 5",
+            "name": "EngineJob",
+            "totalMs": 5.3789,
+            "selfMs": 0.09060000000000018,
+            "calls": 293.0,
+            "gcBytes": 0.0,
+            "occurrences": 293
+        },
+        {
+            "thread": "Main Thread",
+            "name": "EndRenderQueueExtraction",
+            "totalMs": 5.3689,
+            "selfMs": 0.0814,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 8",
+            "name": "EngineJob",
+            "totalMs": 5.199300000000003,
+            "selfMs": 0.08480000000000017,
+            "calls": 231.0,
+            "gcBytes": 0.0,
+            "occurrences": 231
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxTask_Execute",
+            "totalMs": 5.137500000000001,
+            "selfMs": 0.07980000000000004,
+            "calls": 96.0,
+            "gcBytes": 0.0,
+            "occurrences": 96
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Material.SetPassFast",
+            "totalMs": 5.135699999999997,
+            "selfMs": 4.888399999999948,
+            "calls": 2416.0,
+            "gcBytes": 0.0,
+            "occurrences": 2416
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxDeviceD3D12.ExecuteCommandList",
+            "totalMs": 5.057699999999999,
+            "selfMs": 3.9795000000000007,
+            "calls": 96.0,
+            "gcBytes": 0.0,
+            "occurrences": 96
+        },
+        {
+            "thread": "Worker",
+            "name": "EngineJob",
+            "totalMs": 5.022100000000001,
+            "selfMs": 0.014799999999999997,
+            "calls": 18.0,
+            "gcBytes": 0.0,
+            "occurrences": 18
+        },
+        {
+            "thread": "Worker",
+            "name": "SplitJobConsumer",
+            "totalMs": 5.0073,
+            "selfMs": 0.2279,
+            "calls": 18.0,
+            "gcBytes": 0.0,
+            "occurrences": 18
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.InitializeBuffer",
+            "totalMs": 4.990599999999998,
+            "selfMs": 0.1296000000000001,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Worker",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 4.7608,
+            "selfMs": 4.492699999999999,
+            "calls": 18.0,
+            "gcBytes": 0.0,
+            "occurrences": 18
+        },
+        {
+            "thread": "Worker 6",
+            "name": "EngineJob",
+            "totalMs": 4.535800000000002,
+            "selfMs": 0.10210000000000025,
+            "calls": 306.0,
+            "gcBytes": 0.0,
+            "occurrences": 306
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate.Awake",
+            "totalMs": 4.427500000000005,
+            "selfMs": 4.24379999999999,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.PresentFrame",
+            "totalMs": 4.331599999999999,
+            "selfMs": 3.9501999999999997,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 9",
+            "name": "EngineJob",
+            "totalMs": 4.321499999999999,
+            "selfMs": 0.0928000000000002,
+            "calls": 193.0,
+            "gcBytes": 0.0,
+            "occurrences": 193
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PreLateUpdate.UIElementsUpdatePanels",
+            "totalMs": 4.215199999999999,
+            "selfMs": 0.029300000000000007,
+            "calls": 16.0,
+            "gcBytes": 1900.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GameObject.Deactivate",
+            "totalMs": 4.194299999999978,
+            "selfMs": 0.13750000000000095,
+            "calls": 1955.0,
+            "gcBytes": 0.0,
+            "occurrences": 1955
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.UIElementsModule.dll!UnityEngine.UIElements::UIElementsRuntimeUtilityNative.UpdatePanels() [Invoke]",
+            "totalMs": 4.1859,
+            "selfMs": 3.324499999999999,
+            "calls": 16.0,
+            "gcBytes": 1900.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "BufferD3D12.InitializeResource",
+            "totalMs": 4.168899999999996,
+            "selfMs": 0.6292999999999994,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Worker 3",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 4.1282,
+            "selfMs": 3.4897999999999993,
+            "calls": 30.0,
+            "gcBytes": 0.0,
+            "occurrences": 30
+        },
+        {
+            "thread": "Worker 7",
+            "name": "EngineJob",
+            "totalMs": 3.985500000000001,
+            "selfMs": 0.07930000000000013,
+            "calls": 199.0,
+            "gcBytes": 0.0,
+            "occurrences": 199
+        },
+        {
+            "thread": "Worker 0",
+            "name": "EngineJob",
+            "totalMs": 3.5957000000000003,
+            "selfMs": 0.05660000000000005,
+            "calls": 94.0,
+            "gcBytes": 0.0,
+            "occurrences": 94
+        },
+        {
+            "thread": "Render Thread",
+            "name": "BufferD3D12.CreateBufferResource",
+            "totalMs": 3.5395999999999996,
+            "selfMs": 0.14899999999999983,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Main Thread",
+            "name": "EngineJob",
+            "totalMs": 3.5256999999999996,
+            "selfMs": 0.018200000000000004,
+            "calls": 86.0,
+            "gcBytes": 0.0,
+            "occurrences": 86
+        },
+        {
+            "thread": "Render Thread",
+            "name": "CreateResourceWithTag",
+            "totalMs": 3.389499999999999,
+            "selfMs": 3.389499999999999,
+            "calls": 264.0,
+            "gcBytes": 0.0,
+            "occurrences": 264
+        },
+        {
+            "thread": "Worker 10",
+            "name": "EngineJob",
+            "totalMs": 3.3813999999999993,
+            "selfMs": 0.0796,
+            "calls": 106.0,
+            "gcBytes": 0.0,
+            "occurrences": 106
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Instantiate.Copy",
+            "totalMs": 3.349799999999987,
+            "selfMs": 3.349799999999987,
+            "calls": 1199.0,
+            "gcBytes": 0.0,
+            "occurrences": 1199
+        },
+        {
+            "thread": "Render Thread",
+            "name": "CreateCommittedResourceWithTag",
+            "totalMs": 3.2668999999999997,
+            "selfMs": 3.2668999999999997,
+            "calls": 4.0,
+            "gcBytes": 0.0,
+            "occurrences": 4
+        },
+        {
+            "thread": "Worker 1",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 3.196,
+            "selfMs": 2.3178,
+            "calls": 28.0,
+            "gcBytes": 0.0,
+            "occurrences": 28
+        },
+        {
+            "thread": "Worker 2",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 3.1634,
+            "selfMs": 2.1024999999999996,
+            "calls": 27.0,
+            "gcBytes": 0.0,
+            "occurrences": 27
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.UpdateAllRenderers",
+            "totalMs": 3.0514000000000006,
+            "selfMs": 0.050699999999999995,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "SpriteRenderer.PrepareNode",
+            "totalMs": 3.0031999999999646,
+            "selfMs": 3.0031999999999646,
+            "calls": 2473.0,
+            "gcBytes": 0.0,
+            "occurrences": 2473
+        },
+        {
+            "thread": "Worker 3",
+            "name": "SplitJobConsumer",
+            "totalMs": 2.9481999999999995,
+            "selfMs": 0.1993,
+            "calls": 13.0,
+            "gcBytes": 0.0,
+            "occurrences": 13
+        },
+        {
+            "thread": "Audio Stream Thread",
+            "name": "Audio.Thread",
+            "totalMs": 2.902499999999986,
+            "selfMs": 2.902499999999986,
+            "calls": 1295.0,
+            "gcBytes": 0.0,
+            "occurrences": 1295
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.UploadTexture",
+            "totalMs": 2.8850999999999996,
+            "selfMs": 0.0455,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Worker 8",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.8461,
+            "selfMs": 1.8936999999999997,
+            "calls": 20.0,
+            "gcBytes": 0.0,
+            "occurrences": 20
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.MemoryFrameMaintenance",
+            "totalMs": 2.8024999999999993,
+            "selfMs": 2.8024999999999993,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 4",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.7187,
+            "selfMs": 2.3106,
+            "calls": 22.0,
+            "gcBytes": 0.0,
+            "occurrences": 22
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Drawing",
+            "totalMs": 2.6106,
+            "selfMs": 0.2046,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 9",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.5584999999999996,
+            "selfMs": 1.6554999999999997,
+            "calls": 22.0,
+            "gcBytes": 0.0,
+            "occurrences": 22
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxTask_Present",
+            "totalMs": 2.5364999999999993,
+            "selfMs": 0.010799999999999999,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "QueuePrepareIntegrateMainThreadObjects",
+            "totalMs": 2.5354999999999994,
+            "selfMs": 0.12119999999999999,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Render.OpaqueGeometry",
+            "totalMs": 2.5244000000000004,
+            "selfMs": 0.007600000000000001,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "RenderForwardOpaque.Render",
+            "totalMs": 2.5168000000000004,
+            "selfMs": 0.8680000000000001,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Graphics.Blit",
+            "totalMs": 2.4757999999999996,
+            "selfMs": 0.2626,
+            "calls": 18.0,
+            "gcBytes": 0.0,
+            "occurrences": 18
+        },
+        {
+            "thread": "Worker 0",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.4648999999999996,
+            "selfMs": 1.603,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.CreateTexture",
+            "totalMs": 2.3838,
+            "selfMs": 0.1005,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.Get_GSUB_Table",
+            "totalMs": 2.3377,
+            "selfMs": 0.0026,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Worker",
+            "name": "GfxDeviceD3D12.Swap",
+            "totalMs": 2.304,
+            "selfMs": 2.304,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PlayerConnection.Poll",
+            "totalMs": 2.2732999999999994,
+            "selfMs": 1.1258999999999997,
+            "calls": 32.0,
+            "gcBytes": 0.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontEngine.Get_GSUB_Lookups",
+            "totalMs": 2.2679,
+            "selfMs": 2.2679,
+            "calls": 2.0,
+            "gcBytes": 0.0,
+            "occurrences": 2
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TextGenerator.Prepare",
+            "totalMs": 2.243900000000001,
+            "selfMs": 0.6643999999999997,
+            "calls": 132.0,
+            "gcBytes": 348.0,
+            "occurrences": 132
+        },
+        {
+            "thread": "Worker 5",
+            "name": "RenderForward.RenderLoopJob",
+            "totalMs": 2.2424999999999997,
+            "selfMs": 1.8354,
+            "calls": 15.0,
+            "gcBytes": 0.0,
+            "occurrences": 15
+        }
+    ],
+    "waitsAndGc": [
+        {
+            "thread": "Main Thread",
+            "name": "PlayerLoop",
+            "totalMs": 12710.321856,
+            "selfMs": 1.9144320000000001,
+            "calls": 16.0,
+            "gcBytes": 2410955374.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "BatchDeleteObjects",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12705.363003999953,
+            "selfMs": 12705.363003999953,
+            "calls": 1938.0,
+            "gcBytes": 0.0,
+            "occurrences": 1938
+        },
+        {
+            "thread": "Worker",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12694.395015999997,
+            "selfMs": 12694.395015999997,
+            "calls": 168.0,
+            "gcBytes": 0.0,
+            "occurrences": 168
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Gfx.WaitForGfxCommandsFromMainThread",
+            "totalMs": 12663.660979999991,
+            "selfMs": 0.11493600000000007,
+            "calls": 314.0,
+            "gcBytes": 0.0,
+            "occurrences": 314
+        },
+        {
+            "thread": "Render Thread",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 12663.547143999996,
+            "selfMs": 12663.547143999996,
+            "calls": 315.0,
+            "gcBytes": 0.0,
+            "occurrences": 315
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Update.ScriptRunBehaviourUpdate",
+            "totalMs": 12568.819647999999,
+            "selfMs": 0.021695999999999997,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "BehaviourUpdate",
+            "totalMs": 12568.797951999999,
+            "selfMs": 0.275008,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]",
+            "totalMs": 12568.22784,
+            "selfMs": 9679.024688,
+            "calls": 16.0,
+            "gcBytes": 2407347742.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Dispatcher",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 10807.388699999954,
+            "selfMs": 10807.388699999954,
+            "calls": 41687.0,
+            "gcBytes": 0.0,
+            "occurrences": 41687
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC.Alloc",
+            "totalMs": 1668.4506996997632,
+            "selfMs": 1668.4506996997632,
+            "calls": 33286955.0,
+            "gcBytes": 2411192148.0,
+            "occurrences": 33286955
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC.Collect",
+            "totalMs": 1205.1650999999986,
+            "selfMs": 1205.1650999999986,
+            "calls": 2083.0,
+            "gcBytes": 0.0,
+            "occurrences": 2083
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.FinishFrameRendering",
+            "totalMs": 103.8925,
+            "selfMs": 0.5140000000000001,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UIEvents.IMGUIRenderOverlays",
+            "totalMs": 90.91679999999998,
+            "selfMs": 0.0245,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GUI.Repaint",
+            "totalMs": 90.8923,
+            "selfMs": 0.4223,
+            "calls": 16.0,
+            "gcBytes": 3835420.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.OnGUI() [Invoke]",
+            "totalMs": 89.94289999999997,
+            "selfMs": 28.757499999999993,
+            "calls": 32.0,
+            "gcBytes": 3829532.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.IMGUIModule.dll!UnityEngine::GUIStyle.GetMeshInfo() [Invoke]",
+            "totalMs": 48.86069999999978,
+            "selfMs": 6.222599999999905,
+            "calls": 2272.0,
+            "gcBytes": 124916.0,
+            "occurrences": 2272
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TextGenerator.GenerateText",
+            "totalMs": 42.596500000000006,
+            "selfMs": 1.7213999999999998,
+            "calls": 132.0,
+            "gcBytes": 348.0,
+            "occurrences": 132
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GameObject.AddComponent",
+            "totalMs": 27.474899999999792,
+            "selfMs": 26.70479999999983,
+            "calls": 3090.0,
+            "gcBytes": 2184.0,
+            "occurrences": 3090
+        },
+        {
+            "thread": "Main Thread",
+            "name": "CoroutinesDelayedCalls",
+            "totalMs": 12.553699999999978,
+            "selfMs": 0.42869999999999847,
+            "calls": 331.0,
+            "gcBytes": 304.0,
+            "occurrences": 331
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Update.ScriptRunDelayedDynamicFrameRate",
+            "totalMs": 12.520899999999997,
+            "selfMs": 0.019,
+            "calls": 16.0,
+            "gcBytes": 304.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker",
+            "name": "WaitForJobGroupID",
+            "totalMs": 10.931899999999999,
+            "selfMs": 5.884499999999998,
+            "calls": 53.0,
+            "gcBytes": 0.0,
+            "occurrences": 53
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PostLateUpdate.ProfilerEndFrame",
+            "totalMs": 9.4225,
+            "selfMs": 0.015099999999999995,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.FlushCounters",
+            "totalMs": 9.407399999999999,
+            "selfMs": 0.0131,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.CollectLegacyStats",
+            "totalMs": 7.376400000000001,
+            "selfMs": 0.06179999999999999,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Profiler.CollectUIToolkitStats",
+            "totalMs": 6.237699999999999,
+            "selfMs": 6.228599999999999,
+            "calls": 16.0,
+            "gcBytes": 4798.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "WaitForJobGroupID",
+            "totalMs": 5.944899999999998,
+            "selfMs": 2.0391,
+            "calls": 90.0,
+            "gcBytes": 0.0,
+            "occurrences": 90
+        },
+        {
+            "thread": "Finalizer",
+            "name": "GC.Finalizer",
+            "totalMs": 5.5161000000000024,
+            "selfMs": 5.5161000000000024,
+            "calls": 255.0,
+            "gcBytes": 0.0,
+            "occurrences": 255
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PreLateUpdate.UIElementsUpdatePanels",
+            "totalMs": 4.215199999999999,
+            "selfMs": 0.029300000000000007,
+            "calls": 16.0,
+            "gcBytes": 1900.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.UIElementsModule.dll!UnityEngine.UIElements::UIElementsRuntimeUtilityNative.UpdatePanels() [Invoke]",
+            "totalMs": 4.1859,
+            "selfMs": 3.324499999999999,
+            "calls": 16.0,
+            "gcBytes": 1900.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TextGenerator.Prepare",
+            "totalMs": 2.243900000000001,
+            "selfMs": 0.6643999999999997,
+            "calls": 132.0,
+            "gcBytes": 348.0,
+            "occurrences": 132
+        },
+        {
+            "thread": "Main Thread",
+            "name": "FontAsset.TryAddCharacter",
+            "totalMs": 1.5795,
+            "selfMs": 0.38959999999999995,
+            "calls": 3.0,
+            "gcBytes": 348.0,
+            "occurrences": 3
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!::CrowdedProfile.Start() [Coroutine: MoveNext] [Invoke]",
+            "totalMs": 0.9425,
+            "selfMs": 0.9422,
+            "calls": 16.0,
+            "gcBytes": 304.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PreUpdate.NewInputUpdate",
+            "totalMs": 0.9234,
+            "selfMs": 0.0222,
+            "calls": 16.0,
+            "gcBytes": 896.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UIElements.PreUpdatePanelRenderers",
+            "totalMs": 0.8392000000000001,
+            "selfMs": 0.8389,
+            "calls": 14.0,
+            "gcBytes": 48.0,
+            "occurrences": 14
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.InputModule.dll!UnityEngineInternal.Input::NativeInputSystem.ProcessInputUpdate() [Invoke]",
+            "totalMs": 0.7880000000000001,
+            "selfMs": 0.0352,
+            "calls": 16.0,
+            "gcBytes": 896.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "InputUpdate",
+            "totalMs": 0.7528,
+            "selfMs": 0.575,
+            "calls": 16.0,
+            "gcBytes": 896.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "TimeUpdate.WaitForLastPresentationAndUpdateTime",
+            "totalMs": 0.472,
+            "selfMs": 0.08349999999999996,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "UnityEngine.IMGUIModule.dll!UnityEngine::GUIUtility.BeginGUI() [Invoke]",
+            "totalMs": 0.37220000000000003,
+            "selfMs": 0.36549999999999994,
+            "calls": 32.0,
+            "gcBytes": 5888.0,
+            "occurrences": 32
+        },
+        {
+            "thread": "Main Thread",
+            "name": "WaitForLastPresentation",
+            "totalMs": 0.30639999999999995,
+            "selfMs": 0.27010000000000006,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "PreLateUpdate.ScriptRunBehaviourLateUpdate",
+            "totalMs": 0.27360000000000007,
+            "selfMs": 0.009500000000000001,
+            "calls": 16.0,
+            "gcBytes": 1088.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "LateBehaviourUpdate",
+            "totalMs": 0.2641,
+            "selfMs": 0.03870000000000001,
+            "calls": 16.0,
+            "gcBytes": 1088.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Scrapshift.Runtime.dll!::CrowdedProfile.LateUpdate() [Invoke]",
+            "totalMs": 0.22540000000000004,
+            "selfMs": 0.2226,
+            "calls": 16.0,
+            "gcBytes": 1088.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "WaitForRenderJobs",
+            "totalMs": 0.1326,
+            "selfMs": 0.1326,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "InputSystem.onEvent",
+            "totalMs": 0.11879999999999999,
+            "selfMs": 0.11620000000000001,
+            "calls": 16.0,
+            "gcBytes": 896.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Render Thread",
+            "name": "WaitForRenderJobs",
+            "totalMs": 0.08249999999999999,
+            "selfMs": 0.08249999999999999,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "DXGI.WaitOnSwapChain",
+            "totalMs": 0.0363,
+            "selfMs": 0.0363,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Gfx.WaitForPresentOnGfxThread",
+            "totalMs": 0.0341,
+            "selfMs": 0.0039,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0302,
+            "selfMs": 0.0302,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "WaitForTargetFPS",
+            "totalMs": 0.028600000000000004,
+            "selfMs": 0.018799999999999997,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "ParticleSystem.WaitForPreviousRenderingToFinish",
+            "totalMs": 0.0035999999999999995,
+            "selfMs": 0.0035999999999999995,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 8",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0017000000000000003,
+            "selfMs": 0.0017000000000000003,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Worker 9",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0016000000000000003,
+            "selfMs": 0.0016000000000000003,
+            "calls": 15.0,
+            "gcBytes": 0.0,
+            "occurrences": 15
+        },
+        {
+            "thread": "Worker 3",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0012000000000000003,
+            "selfMs": 0.0012000000000000003,
+            "calls": 13.0,
+            "gcBytes": 0.0,
+            "occurrences": 13
+        },
+        {
+            "thread": "Worker 1",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0011,
+            "selfMs": 0.0011,
+            "calls": 11.0,
+            "gcBytes": 0.0,
+            "occurrences": 11
+        },
+        {
+            "thread": "Worker 0",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.001,
+            "selfMs": 0.001,
+            "calls": 13.0,
+            "gcBytes": 0.0,
+            "occurrences": 13
+        },
+        {
+            "thread": "Worker 4",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.001,
+            "selfMs": 0.001,
+            "calls": 11.0,
+            "gcBytes": 0.0,
+            "occurrences": 11
+        },
+        {
+            "thread": "Worker 5",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0007000000000000001,
+            "selfMs": 0.0007000000000000001,
+            "calls": 11.0,
+            "gcBytes": 0.0,
+            "occurrences": 11
+        },
+        {
+            "thread": "Worker 2",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0006000000000000001,
+            "selfMs": 0.0006000000000000001,
+            "calls": 10.0,
+            "gcBytes": 0.0,
+            "occurrences": 10
+        },
+        {
+            "thread": "Worker 6",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0005,
+            "selfMs": 0.0005,
+            "calls": 6.0,
+            "gcBytes": 0.0,
+            "occurrences": 6
+        },
+        {
+            "thread": "Worker 7",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.0005,
+            "selfMs": 0.0005,
+            "calls": 6.0,
+            "gcBytes": 0.0,
+            "occurrences": 6
+        },
+        {
+            "thread": "Worker 10",
+            "name": "Semaphore.WaitForSignal",
+            "totalMs": 0.00019999999999999998,
+            "selfMs": 0.00019999999999999998,
+            "calls": 9.0,
+            "gcBytes": 0.0,
+            "occurrences": 9
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC Allocated In Frame",
+            "totalMs": 0.0,
+            "selfMs": 0.0,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC Allocation In Frame Count",
+            "totalMs": 0.0,
+            "selfMs": 0.0,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC Reserved Memory",
+            "totalMs": 0.0,
+            "selfMs": 0.0,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        },
+        {
+            "thread": "Main Thread",
+            "name": "GC Used Memory",
+            "totalMs": 0.0,
+            "selfMs": 0.0,
+            "calls": 16.0,
+            "gcBytes": 0.0,
+            "occurrences": 16
+        }
+    ],
+    "frameCosts": [
+        {
+            "frame": 0,
+            "thread": "Main Thread",
+            "totalMs": 6.1953
+        },
+        {
+            "frame": 0,
+            "thread": "Render Thread",
+            "totalMs": 10.925799999999999
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "AsyncRead",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Audio Stream Thread",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Dispatcher",
+            "totalMs": 6.2311
+        },
+        {
+            "frame": 0,
+            "thread": "Finalizer",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "HIDInput",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Input Polling Thread",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "PreloadManager",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker",
+            "totalMs": 11.085799999999999
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 0",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 0",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 1",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 1",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 10",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 10",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 11",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 12",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 13",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 14",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 15",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 2",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 2",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 3",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 3",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 4",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 4",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 5",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 5",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 6",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 6",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 7",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 7",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 8",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 8",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 9",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 0,
+            "thread": "Worker 9",
+            "totalMs": 6.1956
+        },
+        {
+            "frame": 1,
+            "thread": "Main Thread",
+            "totalMs": 779.020672
+        },
+        {
+            "frame": 1,
+            "thread": "Render Thread",
+            "totalMs": 774.367616
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "AsyncRead",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Audio Stream Thread",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Dispatcher",
+            "totalMs": 779.02848
+        },
+        {
+            "frame": 1,
+            "thread": "Finalizer",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "HIDInput",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Input Polling Thread",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "PreloadManager",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker",
+            "totalMs": 774.389376
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 0",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 0",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 1",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 1",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 10",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 10",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 11",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 12",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 13",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 14",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 15",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 2",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 2",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 3",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 3",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 4",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 4",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 5",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 5",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 6",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 6",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 7",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 7",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 8",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 8",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 9",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 1,
+            "thread": "Worker 9",
+            "totalMs": 779.021568
+        },
+        {
+            "frame": 2,
+            "thread": "Main Thread",
+            "totalMs": 751.505088
+        },
+        {
+            "frame": 2,
+            "thread": "Render Thread",
+            "totalMs": 751.523072
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "AsyncRead",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Audio Stream Thread",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Dispatcher",
+            "totalMs": 751.478208
+        },
+        {
+            "frame": 2,
+            "thread": "Finalizer",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "HIDInput",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Input Polling Thread",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "PreloadManager",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker",
+            "totalMs": 751.863296
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 0",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 0",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 1",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 1",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 10",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 10",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 11",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 12",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 13",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 14",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 15",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 2",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 2",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 3",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 3",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 4",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 4",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 5",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 5",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 6",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 6",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 7",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 7",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 8",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 8",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 9",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 2,
+            "thread": "Worker 9",
+            "totalMs": 751.5054719999999
+        },
+        {
+            "frame": 3,
+            "thread": "Main Thread",
+            "totalMs": 775.041472
+        },
+        {
+            "frame": 3,
+            "thread": "Render Thread",
+            "totalMs": 774.963008
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "AsyncRead",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Audio Stream Thread",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Dispatcher",
+            "totalMs": 775.05152
+        },
+        {
+            "frame": 3,
+            "thread": "Finalizer",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "HIDInput",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Input Polling Thread",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "PreloadManager",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker",
+            "totalMs": 774.6593919999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 0",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 0",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 1",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 1",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 10",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 10",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 11",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 12",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 13",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 14",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 15",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 2",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 2",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 3",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 3",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 4",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 4",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 5",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 5",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 6",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 6",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 7",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 7",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 8",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 8",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 9",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 3,
+            "thread": "Worker 9",
+            "totalMs": 775.0417279999999
+        },
+        {
+            "frame": 4,
+            "thread": "Main Thread",
+            "totalMs": 761.68608
+        },
+        {
+            "frame": 4,
+            "thread": "Render Thread",
+            "totalMs": 761.72992
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "AsyncRead",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Audio Stream Thread",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Dispatcher",
+            "totalMs": 761.6659199999999
+        },
+        {
+            "frame": 4,
+            "thread": "Finalizer",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "HIDInput",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Input Polling Thread",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "PreloadManager",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker",
+            "totalMs": 761.6318719999999
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 0",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 0",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 1",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 1",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 10",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 10",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 11",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 12",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 13",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 14",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 15",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 2",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 2",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 3",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 3",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 4",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 4",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 5",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 5",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 6",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 6",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 7",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 7",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 8",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 8",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 9",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 4,
+            "thread": "Worker 9",
+            "totalMs": 761.686592
+        },
+        {
+            "frame": 5,
+            "thread": "Main Thread",
+            "totalMs": 901.1943679999999
+        },
+        {
+            "frame": 5,
+            "thread": "Render Thread",
+            "totalMs": 901.178496
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "AsyncRead",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Audio Stream Thread",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Dispatcher",
+            "totalMs": 901.2209919999999
+        },
+        {
+            "frame": 5,
+            "thread": "Finalizer",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "HIDInput",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Input Polling Thread",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "PreloadManager",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker",
+            "totalMs": 901.19552
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 0",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 0",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 1",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 1",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 10",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 10",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 11",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 12",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 13",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 14",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 15",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 2",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 2",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 3",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 3",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 4",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 4",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 5",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 5",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 6",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 6",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 7",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 7",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 8",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 8",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 9",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 5,
+            "thread": "Worker 9",
+            "totalMs": 901.194624
+        },
+        {
+            "frame": 6,
+            "thread": "Main Thread",
+            "totalMs": 800.5395199999999
+        },
+        {
+            "frame": 6,
+            "thread": "Render Thread",
+            "totalMs": 800.574976
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "AsyncRead",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Audio Stream Thread",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Dispatcher",
+            "totalMs": 800.528704
+        },
+        {
+            "frame": 6,
+            "thread": "Finalizer",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "HIDInput",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Input Polling Thread",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "PreloadManager",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker",
+            "totalMs": 800.4565759999999
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 0",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 0",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 1",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 1",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 10",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 10",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 11",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 12",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 13",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 14",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 15",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 2",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 2",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 3",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 3",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 4",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 4",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 5",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 5",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 6",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 6",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 7",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 7",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 8",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 8",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 9",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 6,
+            "thread": "Worker 9",
+            "totalMs": 800.539712
+        },
+        {
+            "frame": 7,
+            "thread": "Main Thread",
+            "totalMs": 752.589824
+        },
+        {
+            "frame": 7,
+            "thread": "Render Thread",
+            "totalMs": 752.744832
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "AsyncRead",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Audio Stream Thread",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Dispatcher",
+            "totalMs": 752.590592
+        },
+        {
+            "frame": 7,
+            "thread": "Finalizer",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "HIDInput",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Input Polling Thread",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "PreloadManager",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker",
+            "totalMs": 752.756096
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 0",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 0",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 1",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 1",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 10",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 10",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 11",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 12",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 13",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 14",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 15",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 2",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 2",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 3",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 3",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 4",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 4",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 5",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 5",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 6",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 6",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 7",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 7",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 8",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 8",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 9",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 7,
+            "thread": "Worker 9",
+            "totalMs": 752.59008
+        },
+        {
+            "frame": 8,
+            "thread": "Main Thread",
+            "totalMs": 762.657472
+        },
+        {
+            "frame": 8,
+            "thread": "Render Thread",
+            "totalMs": 762.4707199999999
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "AsyncRead",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Audio Stream Thread",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Dispatcher",
+            "totalMs": 762.639296
+        },
+        {
+            "frame": 8,
+            "thread": "Finalizer",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "HIDInput",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Input Polling Thread",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "PreloadManager",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker",
+            "totalMs": 762.463808
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 0",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 0",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 1",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 1",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 10",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 10",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 11",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 12",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 13",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 14",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 15",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 2",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 2",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 3",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 3",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 4",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 4",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 5",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 5",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 6",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 6",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 7",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 7",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 8",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 8",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 9",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 8,
+            "thread": "Worker 9",
+            "totalMs": 762.657728
+        },
+        {
+            "frame": 9,
+            "thread": "Main Thread",
+            "totalMs": 822.669824
+        },
+        {
+            "frame": 9,
+            "thread": "Render Thread",
+            "totalMs": 822.663296
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "AsyncRead",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Audio Stream Thread",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Dispatcher",
+            "totalMs": 822.673984
+        },
+        {
+            "frame": 9,
+            "thread": "Finalizer",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "HIDInput",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Input Polling Thread",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "PreloadManager",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker",
+            "totalMs": 822.653696
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 0",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 0",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 1",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 1",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 10",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 10",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 11",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 12",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 13",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 14",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 15",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 2",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 2",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 3",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 3",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 4",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 4",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 5",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 5",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 6",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 6",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 7",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 7",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 8",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 8",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 9",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 9,
+            "thread": "Worker 9",
+            "totalMs": 822.669888
+        },
+        {
+            "frame": 10,
+            "thread": "Main Thread",
+            "totalMs": 998.583488
+        },
+        {
+            "frame": 10,
+            "thread": "Render Thread",
+            "totalMs": 998.650368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "AsyncRead",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Audio Stream Thread",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Dispatcher",
+            "totalMs": 998.5905919999999
+        },
+        {
+            "frame": 10,
+            "thread": "Finalizer",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "HIDInput",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Input Polling Thread",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "PreloadManager",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker",
+            "totalMs": 998.6618239999999
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 0",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 0",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 1",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 1",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 10",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 10",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 11",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 12",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 13",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 14",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 15",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 2",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 2",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 3",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 3",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 4",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 4",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 5",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 5",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 6",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 6",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 7",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 7",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 8",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 8",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 9",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 10,
+            "thread": "Worker 9",
+            "totalMs": 998.58368
+        },
+        {
+            "frame": 11,
+            "thread": "Main Thread",
+            "totalMs": 813.7823999999999
+        },
+        {
+            "frame": 11,
+            "thread": "Render Thread",
+            "totalMs": 813.711808
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "AsyncRead",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Audio Stream Thread",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Dispatcher",
+            "totalMs": 813.786176
+        },
+        {
+            "frame": 11,
+            "thread": "Finalizer",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "HIDInput",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Input Polling Thread",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "PreloadManager",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker",
+            "totalMs": 813.703168
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 0",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 0",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 1",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 1",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 10",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 10",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 11",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 12",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 13",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 14",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 15",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 2",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 2",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 3",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 3",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 4",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 4",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 5",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 5",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 6",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 6",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 7",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 7",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 8",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 8",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 9",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 11,
+            "thread": "Worker 9",
+            "totalMs": 813.7825919999999
+        },
+        {
+            "frame": 12,
+            "thread": "Main Thread",
+            "totalMs": 760.056512
+        },
+        {
+            "frame": 12,
+            "thread": "Render Thread",
+            "totalMs": 760.0515839999999
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "AsyncRead",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Audio Stream Thread",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Dispatcher",
+            "totalMs": 760.0465919999999
+        },
+        {
+            "frame": 12,
+            "thread": "Finalizer",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "HIDInput",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Input Polling Thread",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "PreloadManager",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker",
+            "totalMs": 760.062912
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 0",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 0",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 1",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 1",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 10",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 10",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 11",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 12",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 13",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 14",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 15",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 2",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 2",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 3",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 3",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 4",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 4",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 5",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 5",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 6",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 6",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 7",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 7",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 8",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 8",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 9",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 12,
+            "thread": "Worker 9",
+            "totalMs": 760.056576
+        },
+        {
+            "frame": 13,
+            "thread": "Main Thread",
+            "totalMs": 766.7763199999999
+        },
+        {
+            "frame": 13,
+            "thread": "Render Thread",
+            "totalMs": 766.945792
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "AsyncRead",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Audio Stream Thread",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Dispatcher",
+            "totalMs": 766.787328
+        },
+        {
+            "frame": 13,
+            "thread": "Finalizer",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "HIDInput",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Input Polling Thread",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "PreloadManager",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker",
+            "totalMs": 767.1386239999999
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 0",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 0",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 1",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 1",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 10",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 10",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 11",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 12",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 13",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 14",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 15",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 2",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 2",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 3",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 3",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 4",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 4",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 5",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 5",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 6",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 6",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 7",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 7",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 8",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 8",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 9",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 13,
+            "thread": "Worker 9",
+            "totalMs": 766.776384
+        },
+        {
+            "frame": 14,
+            "thread": "Main Thread",
+            "totalMs": 775.426304
+        },
+        {
+            "frame": 14,
+            "thread": "Render Thread",
+            "totalMs": 775.292928
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "AsyncRead",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Audio Stream Thread",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Dispatcher",
+            "totalMs": 775.419904
+        },
+        {
+            "frame": 14,
+            "thread": "Finalizer",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "HIDInput",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Input Polling Thread",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "PreloadManager",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker",
+            "totalMs": 775.087872
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 0",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 0",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 1",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 1",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 10",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 10",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 11",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 12",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 13",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 14",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 15",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 2",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 2",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 3",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 3",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 4",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 4",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 5",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 5",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 6",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 6",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 7",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 7",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 8",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 8",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 9",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 14,
+            "thread": "Worker 9",
+            "totalMs": 775.4264959999999
+        },
+        {
+            "frame": 15,
+            "thread": "Main Thread",
+            "totalMs": 768.083392
+        },
+        {
+            "frame": 15,
+            "thread": "Render Thread",
+            "totalMs": 770.089792
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "AsyncRead",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Audio Stream Thread",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Dispatcher",
+            "totalMs": 768.082624
+        },
+        {
+            "frame": 15,
+            "thread": "Finalizer",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "HIDInput",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Input Polling Thread",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "PreloadManager",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker",
+            "totalMs": 770.11488
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 0",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 0",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 1",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 1",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 10",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 10",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 11",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 12",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 13",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 14",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 15",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 2",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 2",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 3",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 3",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 4",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 4",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 5",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 5",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 6",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 6",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 7",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 7",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 8",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 8",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 9",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 15,
+            "thread": "Worker 9",
+            "totalMs": 768.08352
+        },
+        {
+            "frame": 16,
+            "thread": "Main Thread",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Render Thread",
+            "totalMs": 719.030976
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AssetGarbageCollectorHelper",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "AsyncRead",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Audio (WASAPI) Feeder Thread",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Audio Mixer Thread",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Audio Stream Thread",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "BatchDeleteObjects",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Dispatcher",
+            "totalMs": 721.092992
+        },
+        {
+            "frame": 16,
+            "thread": "Finalizer",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "HIDInput",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Input Polling Thread",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "PreloadManager",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "ReadAsyncQueue Thread",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker",
+            "totalMs": 718.9902079999999
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 0",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 0",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 1",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 1",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 10",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 10",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 11",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 12",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 13",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 14",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 15",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 2",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 2",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 3",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 3",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 4",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 4",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 5",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 5",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 6",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 6",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 7",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 7",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 8",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 8",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 9",
+            "totalMs": 721.10272
+        },
+        {
+            "frame": 16,
+            "thread": "Worker 9",
+            "totalMs": 721.10272
+        }
+    ]
+}

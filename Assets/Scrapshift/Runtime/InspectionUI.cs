@@ -18,6 +18,7 @@ namespace Scrapshift
         void BeginInspection()
         {
             inspectionEntries.Clear();hoveredInspection=null;
+            if(menuNavigationActive)keyboardInspection=false;
             inspectionOrigin=GUIUtility.GUIToScreenPoint(Vector2.zero);
             if(inspectionPhase!=Rules.Phase){focusedInspection=null;keyboardInspection=false;inspectionPhase=Rules.Phase;}
             if((Event.current.mousePosition-lastInspectionMouse).sqrMagnitude>1)keyboardInspection=false;
@@ -34,7 +35,9 @@ namespace Scrapshift
             }
             var entry=new InspectEntry{id=id,title=name,description=description,image=image,category=category,anchor=root,color=TierColor(tier)};
             inspectionEntries.Add(entry);
-            bool over=inspectionReview?forcedInspection==id:root.Contains(lastInspectionMouse);
+            bool navigationFocus=NavigationButton(local);
+            if(navigationFocus){keyboardInspection=true;focusedInspection=id;}
+            bool over=inspectionReview?forcedInspection==id:!menuNavigationActive&&root.Contains(lastInspectionMouse);
             if(over&&!keyboardInspection){hoveredInspection=entry;focusedInspection=id;}
             bool inventoryTile=(id=="character"||id.StartsWith("weapon:")||id.StartsWith("item:"))&&(Rules.Phase==RunPhase.Shop||Rules.Phase==RunPhase.Paused||Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost);
             if(!inventoryTile&&(over&&!keyboardInspection||keyboardInspection&&focusedInspection==id))
@@ -50,7 +53,7 @@ namespace Scrapshift
         {
             if(inspectionEntries.Count==0)return;
             var ev=Event.current;
-            if(ev.type==EventType.KeyDown&&(ev.keyCode==KeyCode.Tab||ev.keyCode==KeyCode.LeftArrow||ev.keyCode==KeyCode.RightArrow||ev.keyCode==KeyCode.UpArrow||ev.keyCode==KeyCode.DownArrow))
+            if(ev.type==EventType.KeyDown&&(ev.keyCode==KeyCode.Tab||!menuNavigationActive&&(ev.keyCode==KeyCode.LeftArrow||ev.keyCode==KeyCode.RightArrow||ev.keyCode==KeyCode.UpArrow||ev.keyCode==KeyCode.DownArrow)))
             {
                 sound.Play(SoundCue.UiFocus);
                 int index=inspectionEntries.FindIndex(e=>e.id==focusedInspection);

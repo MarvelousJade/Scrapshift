@@ -23,7 +23,6 @@ namespace Scrapshift
         public StatEffect[] stats,gains;
         public float classValue;
         public bool noMelee;
-        public string DefaultWeapon=>!string.IsNullOrEmpty(bonusWeapon)?bonusWeapon:noRanged&&startingWeapons.Length>0?startingWeapons[0]:"pistol";
         public float Gain(string stat)=>1+(gains?.Where(g=>g.key==stat).Sum(g=>g.value)??0)/100;
         public float WeaponBonus(Equipment w,string stat)=>classStat==stat&&w.HasSet(classSet)?classValue:0;
         public bool Allows(Equipment w)=>w!=null&&(!noMelee||!w.melee)&&(!noRanged||w.melee);
@@ -74,13 +73,16 @@ namespace Scrapshift
         public float WeaponDamage(Equipment w,float additionalPercent=0)
         {
             float damage=w.damage+(Character?.WeaponBonus(w,"damage")??0)+NoHitWeaponBonus(w)+(w.specialSpawn?0:AddedWeaponScaling);
-            if(w.scaling!=null)foreach(var s in w.scaling)damage+=(s.key=="max_hp"?MaxHealth:s.key=="levels"?Level:Stat(s.key))*s.value;
+            // WeaponService.sum_scaling_stat_values uses uncapped Utils.get_stat,
+            // including fractional Max HP; the player's usable health cap is separate.
+            if(w.scaling!=null)foreach(var s in w.scaling)damage+=(s.key=="levels"?Level:Stat(s.key))*s.value;
             else damage+=Stat(w.melee?"melee_damage":"ranged_damage");
             var stack=w.Trait("effect_weapon_stack");
             if(stack!=null)damage+=stack.value*Mathf.Max(0,Inventory.Count(a=>a.id==w.id)-1);
             // Godot WeaponService truncates the scaled base to an int, then rounds
             // after applying the combined ordinary and explosion damage percentage.
             damage=Mathf.Max(1,(int)damage);
+            if(w.traits!=null&&w.traits.Any(t=>t.key=="effect_explode"||t.key=="effect_explode_custom"||t.key=="effect_explode_melee"))additionalPercent+=Stat("explosion_damage");
             float percent=1+(Stat("percent_damage")+(Character?.WeaponBonus(w,"stat_percent_damage")??0)+additionalPercent)/100;
             return Mathf.Max(1,Mathf.Floor(damage*percent+.5f));
         }

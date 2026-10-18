@@ -42,7 +42,7 @@ namespace Scrapshift
             if(loadoutShowcase>=0&&showcaseCleanFrame&&Rules.Phase==RunPhase.Playing)return;
             EnsureStyles(); float scale = Mathf.Min(Screen.width / 1440f, Screen.height / 900f);
             GUI.matrix = Matrix4x4.TRS(new Vector3((Screen.width - 1440*scale)/2,(Screen.height-900*scale)/2), Quaternion.identity, Vector3.one*scale);
-            DrawGameScreen();
+            BeginMenuNavigation();DrawGameScreen();EndMenuNavigation();
             DrawAchievementToast();
         }
         void DrawGameScreen()
@@ -96,7 +96,7 @@ namespace Scrapshift
             Box(new Rect(30,28,250*Mathf.Clamp01(Rules.Health/Rules.MaxHealth),26), new Color(.83f,.07f,.05f));
             Text(24,22,262,38,$"{Mathf.CeilToInt(Rules.Health)} / {Rules.MaxHealth:0}",center);
             Frame(new Rect(24,64,262,38),new Color(.25f,.25f,.24f),6);
-            Box(new Rect(30,70,250*Mathf.Clamp01((float)Rules.XP/Rules.NextLevel),26),new Color(.2f,.8f,.18f));
+            Box(new Rect(30,70,250*Mathf.Clamp01(Rules.XPProgress/Rules.NextLevelExact),26),new Color(.2f,.8f,.18f));
             Text(24,64,262,38,$"LV.{Rules.Level}",center);
             DrawMoneyCounter();
             DrawStoredMaterials();
@@ -130,19 +130,20 @@ namespace Scrapshift
             
             for(int i=0;i<Rules.Offers.Length;i++)
             {
-                var o=Rules.Offers[i];float x=OfferX(i),width=OfferWidth;
+                var o=Rules.Offers[i];float x=Rules.Offers.Length==1?ContentLeft+(ContentWidth-OfferWidth)/2:OfferX(i),width=OfferWidth;
                 TierCard(new Rect(x,320,width,270),o.Tier);
                 RoundedBox(new Rect(x+14,340,66,70),new Color(.075f,.075f,.075f),6);
-                DrawIcon(o.Image,new Rect(x+20,346,54,58));
-                Text(x+92,342,width-108,58,CyberneticTheme.UpgradeName(o.Stat)+(o.Tier>1?" "+new[]{"","","II","III","IV"}[o.Tier]:""),new GUIStyle(body){fontSize=20,normal={textColor=TierColor(o.Tier)}});
+                if(o.Image!=null)DrawIcon(o.Image,new Rect(x+20,346,54,58));
+                else Text(x+20,346,54,58,"+1",new GUIStyle(number){fontSize=28,alignment=TextAnchor.MiddleCenter});
+                Text(x+92,342,width-108,58,o.Kind==UpgradeKind.WeaponSlot?o.Title:CyberneticTheme.UpgradeName(o.Stat)+(o.Tier>1?" "+new[]{"","","II","III","IV"}[o.Tier]:""),new GUIStyle(body){fontSize=20,normal={textColor=TierColor(o.Tier)}});
                 Text(x+92,400,width-108,28,"Upgrade",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
                 var gain=new GUIStyle(body);gain.normal.textColor=new Color(.38f,1,.25f);
-                RichText(StatLine(o.Stat,o.Amount),new Rect(x+18,450,width-36,65),18);
-                if(MenuButton(new Rect(x+16,530,width-32,44),"Choose",cardAction:true))SelectUpgrade(i);
+                if(o.Kind==UpgradeKind.WeaponSlot)Text(x+18,450,width-36,65,o.Detail,new GUIStyle(body){fontSize=19,normal={textColor=new Color(.38f,1,.25f)}});
+                else RichText(StatLine(o.Stat,o.Amount),new Rect(x+18,450,width-36,65),18);
+                if(MenuButton(new Rect(x+16,530,width-32,44),"Choose",cardAction:true,defaultFocus:i==(Rules.Offers.Length>1?1:0)))SelectUpgrade(i);
             }
-            GUI.enabled=Rules.CanReroll;
-            if(RerollButton(new Rect(ContentLeft+(ContentWidth-406)/2,630,406,56)))RerollUpgrade();
-            GUI.enabled=true;
+            if(Rules.Offers.Length>1)
+            {GUI.enabled=Rules.CanReroll;if(RerollButton(new Rect(ContentLeft+(ContentWidth-406)/2,630,406,56)))RerollUpgrade();GUI.enabled=true;}
             DrawSetTooltip();
         }
         bool pauseOptions,pauseCodex;
@@ -157,7 +158,7 @@ namespace Scrapshift
             if(pauseCodex){DrawPauseCodex();return;}
             DrawStatsPanel();
             float left=FullCanvas.xMin+40,width=Mathf.Min(515,FullCanvas.width*.33f);
-            if(Button(new Rect(left,203,width,55),"Resume"))Rules.Pause();
+            if(MenuButton(new Rect(left,203,width,55),"Resume",defaultFocus:true))Rules.Pause();
             if(Button(new Rect(left,278,width,55),"Restart"))StartSelectedRun();
             if(Button(new Rect(left,353,width,55),"End the run"))Rules.Abandon();
             if(Button(new Rect(left,428,width,55),"Codex"))pauseCodex=true;

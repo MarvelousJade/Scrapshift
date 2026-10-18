@@ -23,7 +23,7 @@ namespace Scrapshift.Tests
             foreach (SoundCue cue in Enum.GetValues(typeof(SoundCue)))
             {
                 var entry=bank.Find(cue); Assert.NotNull(entry,cue.ToString()); Assert.IsNotEmpty(entry.variants);
-                foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.AreEqual(1,clip.channels); }
+                foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.AreEqual(cue==SoundCue.Step?2:1,clip.channels,"Footsteps retain their supplied stereo layout; other bank cues remain mono."); }
             }
             Assert.GreaterOrEqual(bank.Find(SoundCue.Fire).variants.Length,3);
             Assert.GreaterOrEqual(bank.Find(SoundCue.Impact).variants.Length,3);

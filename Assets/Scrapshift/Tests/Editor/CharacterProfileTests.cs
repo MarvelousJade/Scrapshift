@@ -26,10 +26,52 @@ namespace Scrapshift.Tests
                 if(!(catalog.Weapon(id,c.minTier)?.available??false))continue;
                 var r=new RunRules(42);r.Configure(catalog);r.Start(c,id);
                 Assert.AreEqual(id,r.Inventory[0].id);
-                Assert.AreEqual(System.Math.Min(2,r.WeaponSlots),r.Inventory.Count,c.id);
-                if(r.Inventory.Count==2)Assert.AreEqual(c.DefaultWeapon,r.Inventory[1].id);
+                int expected=1+(string.IsNullOrEmpty(c.bonusWeapon)?0:1);
+                Assert.AreEqual(expected,r.Inventory.Count,c.id);
+                if(expected==2)
+                {
+                    Assert.AreEqual(c.bonusWeapon,r.Inventory[1].id,c.id);
+                    Assert.AreEqual(c.bonusTier,r.Inventory[1].tier,c.id);
+                }
                 Assert.AreEqual(UnityEngine.Mathf.Floor(r.MaxHealth),r.Health,c.id);
             }
+        }
+        [Test] public void CharacterGrantedWeaponsAndUnarmedCharactersFollowReference()
+        {
+            Assert.AreEqual(1,Start(0,"knife").Inventory.Count,"Well-Rounded has no starting-weapon effect.");
+            var brawler=Start(1,"hand");
+            CollectionAssert.AreEqual(new[]{"hand","fist"},brawler.Inventory.Select(w=>w.id));
+            foreach(var id in new[]{"bull","beast_master"})
+            {
+                var profile=catalog.data.characters.Single(c=>c.id==id);
+                var run=new RunRules(42);run.Configure(catalog);run.Start(profile);
+                Assert.IsEmpty(run.Inventory,id);
+            }
+            var cyborg=catalog.data.characters.Single(c=>c.id=="cyborg");
+            var cyborgRun=new RunRules(42);cyborgRun.Configure(catalog);cyborgRun.Start(cyborg,cyborg.startingWeapons[0]);
+            Assert.AreEqual("minigun",cyborgRun.Inventory[1].id);
+            Assert.AreEqual(3,cyborgRun.Inventory[1].tier);
+        }
+        [Test] public void BabyChoosesOneWeaponSlotPerLevelBeforeOrdinaryUpgrades()
+        {
+            var baby=catalog.data.characters.Single(c=>c.id=="baby");
+            var run=new RunRules(42);run.Configure(catalog);run.Start(baby,baby.startingWeapons[0]);
+            Assert.AreEqual(1,run.WeaponSlots);
+            Assert.AreEqual(36.8f,run.NextLevelExact,.001f);
+            run.Collect(36);
+            Assert.AreEqual(0,run.Level,"The reference keeps the fractional XP threshold.");
+            run.Collect(1);
+            Assert.AreEqual(1,run.Level);
+            Assert.AreEqual(.2f,run.XPProgress,.001f);
+            Assert.AreEqual(1,run.WeaponSlots,"Level-up alone does not grant the slot.");
+            run.Tick(run.Remaining);
+            Assert.AreEqual(RunPhase.Upgrade,run.Phase);
+            Assert.AreEqual(1,run.Offers.Length);
+            Assert.AreEqual(UpgradeKind.WeaponSlot,run.Offers[0].Kind);
+            Assert.IsFalse(run.CanReroll);
+            run.Choose(0);
+            Assert.AreEqual(2,run.WeaponSlots);
+            Assert.AreEqual(RunPhase.Shop,run.Phase);
         }
         [Test] public void RookieHasReferenceStartingStats()
         {
@@ -41,7 +83,8 @@ namespace Scrapshift.Tests
             Assert.AreEqual(1,r.Stat("burning_spread"));r.GainWeaponStat("elemental_damage",4);r.GainWeaponStat("melee_damage",8);r.GainWeaponStat("ranged_damage",8);r.GainWeaponStat("engineering",8);
             Assert.AreEqual(5,r.Stat("elemental_damage"));Assert.AreEqual(0,r.Stat("melee_damage"));Assert.AreEqual(0,r.Stat("ranged_damage"));Assert.AreEqual(4,r.Stat("engineering"));
             Assert.IsTrue(r.RollBurn(catalog.Weapon("pistol",1),.24,out float damage,out int ticks));Assert.AreEqual(6,damage);Assert.AreEqual(3,ticks);
-            Assert.IsFalse(r.RollBurn(catalog.Weapon("pistol",1),.25,out _,out _));
+            Assert.IsTrue(r.RollBurn(catalog.Weapon("pistol",1),.25,out _,out _));
+            Assert.IsFalse(r.RollBurn(catalog.Weapon("pistol",1),.2501,out _,out _));
         }
         [Test] public void GlobalBurnStacksChanceAndBaseDamageButNotDurationOrScaling()
         {

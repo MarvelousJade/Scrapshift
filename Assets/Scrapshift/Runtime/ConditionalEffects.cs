@@ -144,7 +144,7 @@ namespace Scrapshift
                 case "different_item":return Items.Select(i=>i.id).Distinct().Count();
                 case "common_item":return Items.Where(i=>i.tier==1).Select(i=>i.id).Distinct().Count();
                 case "legendary_item":return Items.Where(i=>i.tier==4).Select(i=>i.id).Distinct().Count();
-                case "percent_player_missing_health":return (1-Health/MaxHealth)*100;
+                case "percent_player_missing_health":return MaxHealth<=0?0:Mathf.Floor(Mathf.Max(0,1-Health/MaxHealth)*100+.5f);
             }
             if(source.StartsWith("item_"))return Items.Count(i=>"item_"+i.id==source);
             string key=source.Replace("stat_","");
@@ -183,7 +183,20 @@ namespace Scrapshift
                     if(effect.resetOnHit){resetOnHitStats.TryGetValue(effect.key,out var amount);resetOnHitStats[effect.key]=amount+effect.value;}
                 }
                 float loss=Stat("lose_hp_per_second");
-                if(loss>0){Health=Math.Max(0,Health-loss);DamageTriggers();if(Health==0)Phase=RunPhase.Lost;}
+                if(loss>0)
+                {
+                    // The source self-damage bypasses dodge, armor and invincibility,
+                    // but still consumes a hit-protection charge before damaging HP.
+                    LastHitProtected=false;LastHitDodged=false;DodgeRetaliation=0;
+                    if(HitProtection>0){HitProtection--;LastHitProtected=true;}
+                    else
+                    {
+                        Health=Stat("die_in_one_hit")>0?0:Math.Max(0,Health-loss);
+                        BeginRegenerationAfterDamage();
+                        DamageTriggers();if(Health==0)Phase=RunPhase.Lost;
+                    }
+                }
+                ReconcileMaximumHealth();
             }
         }
     }

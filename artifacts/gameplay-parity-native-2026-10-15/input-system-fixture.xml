@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.2758581">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="519" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.275858" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1603" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.260829" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="33524" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1604" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.254911" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1605" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="489" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.251764" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1271" name="InputSystemDeviceTests" fullname="Scrapshift.Tests.InputSystemDeviceTests" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.240963" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1276" name="DisabledControllerClearsVectorsAndCannotLeaveAButtonHeld" fullname="Scrapshift.Tests.InputSystemDeviceTests.DisabledControllerClearsVectorsAndCannotLeaveAButtonHeld" methodname="DisabledControllerClearsVectorsAndCannotLeaveAButtonHeld" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="415607467" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.195518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1275" name="KeyboardEventTakesAimFromControllerAndReleaseKeepsAimHistory" fullname="Scrapshift.Tests.InputSystemDeviceTests.KeyboardEventTakesAimFromControllerAndReleaseKeepsAimHistory" methodname="KeyboardEventTakesAimFromControllerAndReleaseKeepsAimHistory" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="1499319536" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.011780" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1274" name="OrderedMouseAndGamepadEventsSelectLastDeviceEvenWithinOneUpdate" fullname="Scrapshift.Tests.InputSystemDeviceTests.OrderedMouseAndGamepadEventsSelectLastDeviceEvenWithinOneUpdate" methodname="OrderedMouseAndGamepadEventsSelectLastDeviceEvenWithinOneUpdate" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="1501739931" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.005638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1273" name="SouthEastAndStartUseActualDevicePressAndReleaseState" fullname="Scrapshift.Tests.InputSystemDeviceTests.SouthEastAndStartUseActualDevicePressAndReleaseState" methodname="SouthEastAndStartUseActualDevicePressAndReleaseState" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="1412505818" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.004495" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1272" name="SticksAndDpadReadFromDeviceWithReferenceDeadzoneAppliedOnce" fullname="Scrapshift.Tests.InputSystemDeviceTests.SticksAndDpadReadFromDeviceWithReferenceDeadzoneAppliedOnce" methodname="SticksAndDpadReadFromDeviceWithReferenceDeadzoneAppliedOnce" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="1018177017" result="Passed" start-time="2026-10-15 15:06:27Z" end-time="2026-10-15 15:06:27Z" duration="0.004780" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/artifacts/input-system-fixture.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -13,9 +13,9 @@ namespace Scrapshift
         public Camera gameCamera;
         public GameObject titleModel;
         public RunRules Rules { get; } = new RunRules();
-        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles;public float moveRange,moveUpdate,boostDamage=25; }
-        sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec;public ProjectileReference projectileRef;public WeaponProjectileView projectileView;public int critBounces,critPierces;public bool projectileStopped,deleteOnOwnerDeath; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
-        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public float petAttractSpeed=5; public int value; public bool fruit; public ConsumableKind consumable; }
+        sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles;public float[] orbitDistances;public bool[] orbitPlayerContacts;public HashSet<Pet>[] orbitPetContacts;public float moveRange,moveUpdate,boostDamage=25;public Pet targetPet;public bool targetInitialized;public float targetUpdate; }
+        sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces;public int weaponIndex=-1; public BurnPayload burnPayload; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec;public ProjectileReference projectileRef;public WeaponProjectileView projectileView;public int critBounces,critPierces;public bool projectileStopped,deleteOnOwnerDeath,delayedHitboxPending; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
+        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public Enemy enemyCollector; public int value; public bool fruit; public ConsumableKind consumable; }
         sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
@@ -29,6 +29,8 @@ namespace Scrapshift
         CharacterWardrobe titleWardrobe;
         Vector2 playerPos;
         float elapsed, spawnClock, shootClock, orbitClock, pulseClock, invulnerable, pulseAge, shake;
+        bool? activePlayerContactBatch;
+        bool PlayerHurtboxActive=>activePlayerContactBatch??(invulnerable<=0);
         float smokeStart, screenshotAt;
         bool smoke, captured, muted, reducedMotion;
         bool previewCapture;
@@ -54,10 +56,10 @@ namespace Scrapshift
             gun = Instantiate(gunPrefab); gun.name = "Visible rivet pistol";
             pulse = Instantiate(weapons[2].effectPrefab); pulse.SetActive(false);
             for (int i = 0; i < 2; i++) { orbits[i] = Instantiate(weapons[1].effectPrefab); orbits[i].SetActive(false); }
-            muted = PlayerPrefs.GetInt("muted", 0) != 0;
+            muted = !GameSettings.IsFixture&&PlayerPrefs.GetInt("muted", 0) != 0;
             sound = gameObject.AddComponent<GameAudio>(); sound.Initialize(soundBank, muted);
             music=gameObject.AddComponent<GameMusic>();music.Initialize();
-            reducedMotion = PlayerPrefs.GetInt("reducedMotion", 0) != 0;
+            reducedMotion = !GameSettings.IsFixture&&PlayerPrefs.GetInt("reducedMotion", 0) != 0;
             string[] args = Environment.GetCommandLineArgs();
             int appearanceParityIndex=Array.IndexOf(args,"--appearance-parity-review");
             if(appearanceParityIndex>=0&&appearanceParityIndex+1<args.Length)BeginAppearanceParityReview(args[appearanceParityIndex+1]);
@@ -95,8 +97,12 @@ namespace Scrapshift
             if (enemyIndex >= 0 && enemyIndex + 1 < args.Length) BeginEnemyReview(args[enemyIndex + 1]);
             int campaignIndex = Array.IndexOf(args, "--campaign-check");
             if(campaignIndex>=0&&campaignIndex+1<args.Length)BeginCampaignCheck(args[campaignIndex+1]);
+            int controllerIndex=Array.IndexOf(args,"--controller-check");
+            if(controllerIndex>=0&&controllerIndex+1<args.Length)BeginControllerCheck(args[controllerIndex+1]);
             int lootIndex=Array.IndexOf(args,"--loot-review");
             if(lootIndex>=0&&lootIndex+1<args.Length)BeginLootReview(args[lootIndex+1]);
+            int economyIndex=Array.IndexOf(args,"--economy-native-review");
+            if(economyIndex>=0&&economyIndex+1<args.Length)BeginEconomyNativeReview(args[economyIndex+1]);
             int galleryIndex=Array.IndexOf(args,"--spring-gallery");
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
             int presentationIndex=Array.IndexOf(args,"--presentation-review");
@@ -117,22 +123,26 @@ namespace Scrapshift
 
         public void Begin()
         {
+            combatAccumulator=0;
             wardrobe?.Reset();
             ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
             gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
-            ClearCombat(); ghostKills.Clear(); Rules.Start(); StartWave(); playerPos = Vector2.zero;
+            ClearCombat(); ghostKills.Clear(); playerPos = CombatGeometry.PlayerBodyStart; Rules.Start(); StartWave();
             elapsed = spawnClock = shootClock = orbitClock = pulseClock = invulnerable = pulseAge = shake = 0;
             peakEnemies = shotsFired = pulseHits = orbitHits = 0;
             floaters.Clear();
-            player.transform.position = Vector3.zero; player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
+            player.transform.position = playerPos; player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             foreach (var o in orbits) o.SetActive(false); pulse.SetActive(false);
         }
 
+        double combatAccumulator;
         void Update()
         {
+            CombatInput.Poll();
+            TickMenuNavigation();
             if(appearanceParity){AppearanceParityTick();return;}
             if(itemIconReview){ItemIconReviewTick();return;}
             if(supportShowcase&&Input.GetKeyDown(KeyCode.F5))BeginSupportShowcase();
@@ -159,8 +169,9 @@ namespace Scrapshift
             if(Input.GetKeyDown(KeyCode.F11))ToggleFullscreen();
 #endif
             if (Input.GetKeyDown(KeyCode.M)) ToggleSound();
-            if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.P)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage>=4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
-            if (Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
+            if (Input.GetKeyUp(KeyCode.Escape)||Input.GetKeyUp(KeyCode.P)||CombatInput.PauseReleased||CombatInput.CancelReleased&&(Rules.Phase==RunPhase.Title||Rules.Phase==RunPhase.Paused||selectedWeapon>=0)) { sound.Play(SoundCue.UiPress); if(Rules.Phase==RunPhase.Title)menuPage=menuPage>=4?0:Mathf.Max(0,menuPage-1);else if(Rules.Phase==RunPhase.Paused&&pauseOptions)pauseOptions=false;else if(Rules.Phase==RunPhase.Paused&&pauseCodex)pauseCodex=false;else if(selectedWeapon>=0)selectedWeapon=-1;else Rules.Pause(); }
+            TickControllerShortcuts(Time.unscaledDeltaTime);
+            if (!menuNavigationActive&&Input.GetKeyDown(KeyCode.Return) && (Rules.Phase == RunPhase.Title || Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost)) ConfirmMenu();
             if (Rules.Phase == RunPhase.Upgrade)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1)) SelectUpgrade(0);
@@ -170,11 +181,20 @@ namespace Scrapshift
                 if ((Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.F))) RerollUpgrade();
                 if (smoke) SelectUpgrade(Rules.UpgradeCount < 2 ? 0 : 2);
             }
-            if (Rules.Phase == RunPhase.Shop && selectedWeapon<0) { if(Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if((Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.F))) RerollUpgrade(); }
+            if (Rules.Phase == RunPhase.Shop && selectedWeapon<0) { if(!menuNavigationActive&&Input.GetKeyDown(KeyCode.Return)) AdvanceWave(); if((Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.F))) RerollUpgrade(); }
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
-            { if(Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null) { float dt = Mathf.Min(Time.deltaTime, .05f); if(waveSweeping)TickWaveSweep(dt);else if(Arriving)TickArrival(dt);else {UpdateFeedback(dt); Simulate(dt);} }
+            { if(!menuNavigationActive&&Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
+            if (Rules.Phase == RunPhase.Playing && !economyNativeReview && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null)
+            {
+                int steps=ReferencePhysicsClock.Consume(ref combatAccumulator,Time.deltaTime);
+                for(int step=0;step<steps&&Rules.Phase==RunPhase.Playing;step++)
+                {
+                    const float dt=ReferencePhysicsClock.Step;
+                    if(waveSweeping)TickWaveSweep(dt);else {UpdateFeedback(dt);Simulate(dt);AdvanceArrivalPresentation(dt);}
+                }
+            }
+            else combatAccumulator=0;
             if (Rules.Phase == RunPhase.Title)
             { gameCamera.orthographicSize=7.5f; gameCamera.transform.position=new Vector3(0,0,-20); }
             if (Rules.Phase == RunPhase.Title && titleModel != null)
@@ -204,23 +224,40 @@ namespace Scrapshift
             EnemyReviewTick();EnemyFidelityReviewTick();
             CampaignCheckTick();
             LootReviewTick();
+            EconomyNativeReviewTick();
             SpringGalleryTick();
             AppearanceReviewTick();
             ScaleReviewTick();
             WorldReviewTick();
             CombatFeelReviewTick();
             PresentationReviewTick();
+            TickControllerCheck();
         }
 
+        static readonly Unity.Profiling.ProfilerMarker ProfileEquipment=new Unity.Profiling.ProfilerMarker("Scrapshift.Equipment");
+        static readonly Unity.Profiling.ProfilerMarker ProfileEnemies=new Unity.Profiling.ProfilerMarker("Scrapshift.Enemies");
+        static readonly Unity.Profiling.ProfilerMarker ProfileProjectiles=new Unity.Profiling.ProfilerMarker("Scrapshift.Projectiles");
+        static readonly Unity.Profiling.ProfilerMarker ProfileStarterEffects=new Unity.Profiling.ProfilerMarker("Scrapshift.StarterEffects");
+        static readonly Unity.Profiling.ProfilerMarker ProfileSlashes=new Unity.Profiling.ProfilerMarker("Scrapshift.Slashes");
+        static readonly Unity.Profiling.ProfilerMarker ProfileImplantAttacks=new Unity.Profiling.ProfilerMarker("Scrapshift.ImplantAttacks");
+        static readonly Unity.Profiling.ProfilerMarker ProfilePets=new Unity.Profiling.ProfilerMarker("Scrapshift.Pets");
+        static readonly Unity.Profiling.ProfilerMarker ProfileNightmare=new Unity.Profiling.ProfilerMarker("Scrapshift.Nightmare");
+        static readonly Unity.Profiling.ProfilerMarker ProfilePickups=new Unity.Profiling.ProfilerMarker("Scrapshift.Pickups");
+        static readonly Unity.Profiling.ProfilerMarker ProfileRules=new Unity.Profiling.ProfilerMarker("Scrapshift.Rules");
         void Simulate(float dt)
         {
             if(waveSweeping){TickWaveSweep(dt);return;}
             var before=Rules.Phase;
             elapsed += dt; invulnerable = Mathf.Max(0, invulnerable - dt);
-            Vector2 movement = new Vector2((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1 : 0),
-                (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1 : 0));
-            if(GameSettings.Flag("mouseMove",false))movement=Input.GetMouseButton(0)?(Vector2)gameCamera.ScreenToWorldPoint(Input.mousePosition)-playerPos:Vector2.zero;
-            if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(elapsed * .8f), Mathf.Sin(elapsed * .8f)) * .5f;
+            var negativeButtons=new Vector2(Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)?1:0,Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)?1:0);
+            var positiveButtons=new Vector2(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)?1:0,Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)?1:0);
+            bool gamepadMovement=GameSettings.Flag("gamepadMove");
+            Vector2 movement=CombatInput.PlayerMovement(negativeButtons,positiveButtons,gamepadMovement?CombatInput.DpadRaw:Vector2.zero,gamepadMovement?CombatInput.MoveRaw:Vector2.zero);
+            if(GameSettings.Flag("mouseMove",false))movement=CombatInput.MouseMovement((Vector2)gameCamera.ScreenToWorldPoint(Input.mousePosition)-playerPos,Input.GetMouseButton(0));
+            // The reference campaign fixture resets wave_age with each Main
+            // scene. Keep global elapsed for traces, but restart its input path.
+            float scriptedAge=campaignCheck?elapsed-campaignWaveStart:elapsed;
+            if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(scriptedAge * .8f), Mathf.Sin(scriptedAge * .8f)) * .5f;
             if(worldReview) movement=WorldReviewMovement();
             if (artReview) movement = ArtReviewMovement();
             if (enemyReview || lootReview) movement = Vector2.zero;
@@ -228,29 +265,35 @@ namespace Scrapshift
             int livingEnemies=0,livingTrees=0,burningEnemies=0;
             foreach(var e in enemies){if(e.marker==null){if(e.type.role=="Tree")livingTrees++;else livingEnemies++;}if(e.burnTicks>0)burningEnemies++;}
             Rules.LivingEnemies=livingEnemies;Rules.LivingTrees=livingTrees;Rules.BurningEnemies=burningEnemies;Rules.StructureCount=starterTurrets.Count+mines.Count;
-            playerVelocity=Vector2.ClampMagnitude(movement,1)*Rules.MoveSpeed;playerPos = RunRules.ClampPosition(playerPos + playerVelocity * dt);
+            playerVelocity=CombatInput.Velocity(movement,Rules.MoveSpeed);playerPos = CombatGeometry.ClampPlayerBody(playerPos + playerVelocity * dt);
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
-            playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(movement,dt);
+            playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(Arriving?Vector2.zero:movement,dt);
             player.transform.localScale = Vector3.one * ActorPresentation.PlayerScale;
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
             player.SetActive(true);
             if(supportShowcase)TickSupportShowcase(dt);else if(loadoutShowcase>=0)TickLoadoutShowcase(dt);else director.Tick(dt, QueueGroup, BeginSpawnGroup);
-            UpdateBirthQueue(dt); UpdateEquipment(dt);
-            UpdateEnemies(dt);
-            UpdateWeapons(dt); UpdateStarterEffects(dt); UpdateSlashes(dt);TickImplantAttacks(dt);
-            TickPets(dt);TickNightmare(dt);UpdatePickups(dt);
+            UpdateBirthQueue(dt);
+            activePlayerContactBatch=invulnerable<=0;
+            try
+            {
+                using(ProfileEquipment.Auto())UpdateEquipment(dt);using(ProfileEnemies.Auto())UpdateEnemies(dt);
+                using(ProfileProjectiles.Auto())UpdateWeapons(dt);using(ProfileStarterEffects.Auto())UpdateStarterEffects(dt);using(ProfileSlashes.Auto())UpdateSlashes(dt);using(ProfileImplantAttacks.Auto())TickImplantAttacks(dt);
+                using(ProfilePets.Auto())TickPets(dt);using(ProfileNightmare.Auto())TickNightmare(dt);
+            }
+            finally{activePlayerContactBatch=null;}
+            using(ProfilePickups.Auto())UpdatePickups(dt);
             ResolveImplantAttacks();ResolveImplantDamage();
             UpdateSparks(dt); UpdateCorpses(dt);
             shakeTime = Mathf.Max(0, shakeTime - dt);
             if (shakeTime <= 0) shake = 0;
             if(loadoutShowcase>=0)gameCamera.orthographicSize=Mathf.MoveTowards(gameCamera.orthographicSize,showcaseCleanFrame?3.2f:4.5f,dt*5);
-            Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect);
+            Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos+CombatGeometry.PlayerOriginOffset,gameCamera.aspect);
             gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
             if(supportShowcase||loadoutShowcase>=0)return;
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
-            float healthBefore=Rules.Health;Rules.Tick(dt);
-            if(Rules.Health<healthBefore){FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
+            float healthBefore=Rules.Health;using(ProfileRules.Auto())Rules.Tick(dt);
+            if(Rules.Health<healthBefore){AttractNearbyConsumables();FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
             if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); }
             if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) player.SetActive(true);
@@ -266,16 +309,34 @@ namespace Scrapshift
             for (int i = pickups.Count - 1; i >= 0; i--)
             {
                 var p = pickups[i];
-                if(p.petCollector==null)p.motion.Step(dt, playerPos, p.fruit && Rules.Health>=Rules.MaxHealth ? -1 : Rules.PickupRadius, reducedMotion);
+                if(p.petCollector!=null&&(p.petCollector.dead||p.petCollector.obj==null))
+                {p.petCollector=null;p.motion.ReleaseCollector();}
+                if(p.enemyCollector!=null&&(p.enemyCollector.hp<=0||p.enemyCollector.obj==null))
+                {p.enemyCollector=null;p.motion.ReleaseCollector();}
+                bool external=p.petCollector!=null||p.enemyCollector!=null;
+                Vector2 playerOrigin=playerPos+CombatGeometry.PlayerOriginOffset;
+                Vector2 collector=p.petCollector!=null?p.petCollector.pos+SupportBehavior.LootwormOriginOffset:p.enemyCollector!=null?p.enemyCollector.pos+CombatGeometry.OriginOffset(p.enemyCollector.type.id):playerOrigin;
+                p.motion.Step(dt,collector,-1,reducedMotion,external,false);
+                if(p.motion.AttractionEntered(ScrapMotion.PlayerCollector,playerOrigin,Rules.PickupRadius))
+                {
+                    if(!external&&(!p.fruit||Rules.Health<Rules.MaxHealth))p.motion.magnetized=true;
+                    else if(!p.fruit&&external&&p.motion.PlayerCanRetarget(playerOrigin,collector,Rules.PickupRadius))
+                    {p.petCollector=null;p.enemyCollector=null;p.motion.magnetized=true;external=false;}
+                }
                 Vector2 position = p.motion.position;
                 p.obj.transform.position = new Vector3(position.x, position.y + p.motion.height, -1.5f);
                 p.obj.transform.rotation = Quaternion.Euler(0, 0, p.motion.angle);
-                if (p.motion.age > .16f && RunRules.Touches(position, playerPos, .3f))
+                if (p.motion.ContactEntered(ScrapMotion.PlayerCollector,playerPos,.32f)&&!external)
                 {
                     CollectPickup(p);Destroy(p.obj);pickups.RemoveAt(i);
                     if (Rules.Phase == RunPhase.Upgrade) { sound.Play(SoundCue.LevelUp); break; }
                 }
             }
+        }
+        void AttractNearbyConsumables()
+        {
+            foreach(var pickup in pickups)
+                if(pickup.fruit&&pickup.petCollector==null&&pickup.enemyCollector==null&&!pickup.motion.magnetized&&pickup.motion.CanCollect&&pickup.motion.OverlapsCollector(playerPos+CombatGeometry.PlayerOriginOffset,Rules.PickupRadius))pickup.motion.magnetized=true;
         }
         void Burst(Vector2 pos, int count, Color tint)
         {
@@ -309,7 +370,7 @@ namespace Scrapshift
             foreach (var s in sparks) Destroy(s.obj); sparks.Clear();
         }
         void SelectUpgrade(int choice) { Rules.Choose(choice); FloatText(playerPos, "UPGRADED!", mint, true); Burst(playerPos, 24, mint); invulnerable = 1; player.SetActive(true); sound.Play(SoundCue.Install); }
-        void ToggleSound() { muted = !muted; sound.SetMuted(muted); PlayerPrefs.SetInt("muted", muted ? 1 : 0);PlayerPrefs.Save(); }
+        void ToggleSound() { muted = !muted; sound.SetMuted(muted); if(!GameSettings.IsFixture){PlayerPrefs.SetInt("muted", muted ? 1 : 0);PlayerPrefs.Save();} }
         void RerollUpgrade() { if (Rules.CanReroll) { Rules.Reroll(); sound.Play(SoundCue.Reroll); } }
 
         [Serializable] sealed class SmokeReport

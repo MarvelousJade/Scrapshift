@@ -22,8 +22,14 @@ namespace Scrapshift.Tests
         {
             var r=new RunRules(1);r.Configure(catalog);r.Start();r.GainWeaponStat("engineering",30);r.GainWeaponStat("elemental_damage",100);r.GainWeaponStat("percent_damage",100);
             var flame=Spec("turret_flame");Assert.IsTrue(r.RollBurn(flame.Equipment,0,out float damage,out int ticks,true));
-            Assert.AreEqual(flame.burn.burnDamage+30*flame.burn.burnScale,damage,.001);Assert.AreEqual((int)flame.burn.burnTicks,ticks);
+            // turret_flame_burning_data.tres: 5 + 30 Engineering * .33 = 14.9.
+            // WeaponService.apply_scaling_stats_to_damage assigns `as int`
+            // before init_burning_data applies the structure percentage.
+            Assert.AreEqual(14,damage);Assert.AreEqual(8,ticks);
             Assert.AreEqual(1,SpecialWeaponRules.StructureDamage(r,flame.Equipment));
+            r.GainWeaponStat("structure_percent_damage",50);
+            Assert.IsTrue(r.RollBurn(flame.Equipment,0,out damage,out ticks,true));
+            Assert.AreEqual(21,damage,"Truncate 14.9 to 14, then apply structure +50%; ordinary Damage and Elemental do not enter this native engineering burn.");
         }
         [Test] public void WrenchTiersShareTheSameStructureDefinitionAsTheirMatchingImplants()
         {

@@ -10,7 +10,7 @@ namespace Scrapshift
         public float Progress { get; private set; }
         readonly EnemyBehavior behavior;
         readonly Func<float> nextCooldown;
-        float remaining,chargeDistance;
+        float remaining,chargeDistance,chargeCooldown;
         int shots;
         float NextCooldown(){if(behavior.source!=null&&behavior.source.longEvery>0&&shots>=behavior.source.longEvery){shots=0;return behavior.source.longCooldown;}return nextCooldown();}
         public float WindupDuration => behavior.windup;
@@ -18,17 +18,28 @@ namespace Scrapshift
         {
             this.behavior = behavior; this.nextCooldown = nextCooldown;
             remaining = nextCooldown() + behavior.initial;
+            chargeCooldown=remaining;
+        }
+        void Prepare(Vector2 targetDirection,Func<Vector2> chargeTarget)
+        {
+            var target=behavior.charge&&chargeTarget!=null?chargeTarget():targetDirection;
+            chargeDistance=target.magnitude;Direction=target.normalized;
+            Phase=AttackPhase.Windup;remaining=WindupDuration;Progress=0;
         }
         // Ranged aim follows the target until release; charges commit at preparation.
-        // Active lasts for the dash or ranged animation tail, then normal cooldown.
+        // Source charge cooldown starts at release with the base dash duration.
+        // It runs concurrently with any extra duration caused by target range.
         public bool Step(float dt, Vector2 targetDirection, bool inRange,Func<Vector2> chargeTarget=null)
         {
             if (dt <= 0) return false;
             remaining -= dt;
+            if(behavior.charge)chargeCooldown-=dt;
+            if(behavior.charge&&Phase==AttackPhase.Active&&chargeCooldown<=.00001f&&inRange)
+            {Prepare(targetDirection,chargeTarget);return false;}
             if (Phase == AttackPhase.Approach)
             {
                 if (remaining <= .00001f && inRange)
-                { var target=behavior.charge&&chargeTarget!=null?chargeTarget():targetDirection;chargeDistance=target.magnitude;Direction=target.normalized; Phase = AttackPhase.Windup; remaining = WindupDuration; Progress = 0; }
+                    Prepare(targetDirection,chargeTarget);
                 return false;
             }
             if (Phase == AttackPhase.Windup)
@@ -43,10 +54,12 @@ namespace Scrapshift
                 if(behavior.charge&&behavior.source?.chargeTiming==1&&chargeTarget!=null){var target=chargeTarget();Direction=target.normalized;chargeDistance=target.magnitude;}
                 if(behavior.charge&&behavior.source?.scaleDuration==true)duration+=chargeDistance/150;
                 shots++;Phase = AttackPhase.Active; remaining += duration;
-                if (duration <= 0) { Phase = AttackPhase.Approach; remaining += NextCooldown(); }
+                if(behavior.charge)chargeCooldown=behavior.active+NextCooldown();
+                if (duration <= 0) { Phase = AttackPhase.Approach; remaining += behavior.charge?chargeCooldown:NextCooldown(); }
                 return true;
             }
-            Phase = AttackPhase.Approach; remaining += NextCooldown(); Progress = 0;
+            Phase = AttackPhase.Approach;
+            remaining=behavior.charge?chargeCooldown:remaining+NextCooldown();Progress=0;
             return false;
         }
     }

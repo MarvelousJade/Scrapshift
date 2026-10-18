@@ -1,0 +1,3475 @@
+{
+  "date": "2026-10-15",
+  "branch": "codex/gameplay-parity",
+  "primary_mode": "Normal time, source physics60Hz and Unity ordinary frame delta with60Hz pickup physics",
+  "scope": "Completed supplied-gear invulnerable scripted integration comparison. Not human survival playtesting or proof every gameplay rule is identical.",
+  "build_manifest": {
+    "runtimeSha256": "CDB71FBA2194FC45C1E413CABB4E866549A42415FEE2FF8A8B29549A700FA09E",
+    "buildBytes": 399937180,
+    "laterSourceChanges": "Optional controller diagnostics/profile isolation, deterministic weapon-combine ordering and the newer Input System controller migration are later changes, absent from this frozen full-run binary. Their verification is recorded separately.",
+    "buildLog": "E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/artifacts/remaining-parity-realtime-build.log",
+    "exeSha256": "001AEEBFB92718F8B49F0C0E0A03E313C54669552B08E952B2FEE3DDD143683A",
+    "purpose": "Normal-timing full campaign",
+    "tests": "503/503 before optional realtime mode; ordinary rules unchanged by the fixture mode",
+    "runtimePath": "E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Builds/Windows/Scrapshift_Data/Managed/Scrapshift.Runtime.dll",
+    "branch": "codex/gameplay-parity"
+  },
+  "input_sha256": {
+    "artifacts/gameplay-parity-reference-2026-10-15/realtime/trace.json": "98ac455148dba90b48f89771ea5fe720a8487f95d70f2bc2162fd6799d41a535",
+    "artifacts/gameplay-parity-reference-2026-10-15/realtime/summary.json": "d5f4fa85c3543f08b739990f1086e866b0072ce7f75abd4dacb1cacbbd672e1e",
+    "artifacts/gameplay-parity-reference-2026-10-15/realtime/source-manifest.json": "ce3fda2167bc1ca73b8cc2c67e89391b29f47f7bf3c5e2b66a06a4aa81b23316",
+    "artifacts/gameplay-parity-unity-2026-10-15/realtime/campaign-trace.json": "79b31bae2e47300735c31857a3d541cf3b7eae227761a4ed59a16564356109c2",
+    "artifacts/gameplay-parity-unity-2026-10-15/realtime/campaign-check.json": "6c3660566a85fcd7a1a8355422ad12e11fe2947ec209ed92376b2d2b880b8428",
+    "artifacts/gameplay-parity-unity-2026-10-15/realtime/build-manifest.json": "49bb929d017bb2f40248071077ed27acc467ae55e196d367c65941a4ebbd4806"
+  },
+  "initial_conditions": {
+    "reference": {
+      "gold": 0,
+      "level": 0,
+      "item_count": 0,
+      "harvesting": 0,
+      "luck": 0,
+      "banked_materials": 0,
+      "enemy_kills": 0,
+      "tree_kills": 0,
+      "material_pickups": 0,
+      "fixture_time_scale": 1,
+      "fixture_physics_hz": 60
+    },
+    "unity": {
+      "materials": 0,
+      "level": 0,
+      "itemCount": 0,
+      "harvesting": 0.0,
+      "luck": 0.0,
+      "bankedMaterials": 0,
+      "enemyKills": 0,
+      "materialPickups": 0
+    },
+    "reference_weapons": [
+      {
+        "id": "pistol",
+        "tier": 2
+      },
+      {
+        "id": "smg",
+        "tier": 2
+      },
+      {
+        "id": "double_barrel_shotgun",
+        "tier": 2
+      },
+      {
+        "id": "laser_gun",
+        "tier": 2
+      },
+      {
+        "id": "knife",
+        "tier": 2
+      },
+      {
+        "id": "spear",
+        "tier": 2
+      }
+    ],
+    "unity_weapons": [
+      {
+        "id": "pistol",
+        "tier": 2
+      },
+      {
+        "id": "smg",
+        "tier": 2
+      },
+      {
+        "id": "double_barrel_shotgun",
+        "tier": 2
+      },
+      {
+        "id": "laser_gun",
+        "tier": 2
+      },
+      {
+        "id": "knife",
+        "tier": 2
+      },
+      {
+        "id": "spear",
+        "tier": 2
+      }
+    ],
+    "equal_normalized_loadout": true
+  },
+  "event_counts": {
+    "reference": {
+      "boot": 1,
+      "scene": 40,
+      "wave_timer_end": 20,
+      "crate_take": 8,
+      "shop_exit": 19,
+      "upgrade": 17,
+      "purchase": 30,
+      "finished": 1
+    },
+    "unity": {
+      "boot": 1,
+      "wave_start": 20,
+      "wave_timer_end": 20,
+      "wave_completed": 20,
+      "shop_enter": 19,
+      "shop_exit": 19,
+      "upgrade": 23,
+      "crate_take": 11,
+      "purchase": 45,
+      "finished": 1
+    }
+  },
+  "final": {
+    "reference": {
+      "status": "won",
+      "wave_timer_ends": 20,
+      "shops": 19,
+      "purchases": 30,
+      "upgrades": 17,
+      "crates": 8,
+      "materials": 385,
+      "level": 17,
+      "item_entries": 34,
+      "unique_items": 31,
+      "banked": 1832,
+      "enemy_kills": 4968,
+      "tree_kills": 56,
+      "material_pickups": 1218,
+      "harvesting": 77,
+      "luck": 8,
+      "net_currency_after_other_effects": 3089,
+      "weapons": [
+        {
+          "id": "smg",
+          "tier": 2
+        },
+        {
+          "id": "double_barrel_shotgun",
+          "tier": 2
+        },
+        {
+          "id": "knife",
+          "tier": 2
+        },
+        {
+          "id": "laser_gun",
+          "tier": 3
+        },
+        {
+          "id": "spear",
+          "tier": 4
+        },
+        {
+          "id": "pistol",
+          "tier": 3
+        }
+      ]
+    },
+    "unity": {
+      "status": "Passed",
+      "phase": "Won",
+      "wave_timer_ends": 20,
+      "shops": 19,
+      "purchases": 45,
+      "upgrades": 23,
+      "crates": 11,
+      "materials": 2479,
+      "level": 24,
+      "item_entries": 52,
+      "unique_items": 43,
+      "banked": 8,
+      "enemy_kills": 4639,
+      "tree_kills": 46,
+      "material_pickups": 3641,
+      "harvesting": 31.0,
+      "luck": -9.0,
+      "net_currency_after_other_effects": 5722,
+      "weapons": [
+        {
+          "id": "pistol",
+          "tier": 3
+        },
+        {
+          "id": "smg",
+          "tier": 3
+        },
+        {
+          "id": "double_barrel_shotgun",
+          "tier": 3
+        },
+        {
+          "id": "laser_gun",
+          "tier": 2
+        },
+        {
+          "id": "knife",
+          "tier": 2
+        },
+        {
+          "id": "spear",
+          "tier": 3
+        }
+      ]
+    }
+  },
+  "purchase_debits": {
+    "reference_checked": 30,
+    "unity_checked": 45,
+    "reference_failures": [],
+    "unity_failures": [],
+    "reference_rows": [
+      {
+        "wave": 2,
+        "id": "item_toxic_sludge",
+        "price": 26,
+        "before": 35,
+        "after": 9,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 3,
+        "id": "item_scared_sausage",
+        "price": 35,
+        "before": 36,
+        "after": 1,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 5,
+        "id": "weapon_spear_2",
+        "price": 63,
+        "before": 109,
+        "after": 46,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 5,
+        "id": "item_charcoal",
+        "price": 35,
+        "before": 46,
+        "after": 11,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 6,
+        "id": "item_cyclops_worm",
+        "price": 78,
+        "before": 105,
+        "after": 27,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 6,
+        "id": "item_weird_ghost",
+        "price": 25,
+        "before": 27,
+        "after": 2,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 7,
+        "id": "item_banner",
+        "price": 100,
+        "before": 142,
+        "after": 42,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 7,
+        "id": "item_weird_food",
+        "price": 41,
+        "before": 42,
+        "after": 1,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 8,
+        "id": "item_lemonade",
+        "price": 35,
+        "before": 135,
+        "after": 100,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 9,
+        "id": "weapon_laser_gun_2",
+        "price": 67,
+        "before": 250,
+        "after": 183,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 9,
+        "id": "item_hedgehog",
+        "price": 66,
+        "before": 183,
+        "after": 117,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 9,
+        "id": "item_peaceful_bee",
+        "price": 43,
+        "before": 117,
+        "after": 74,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 10,
+        "id": "weapon_spear_3",
+        "price": 158,
+        "before": 257,
+        "after": 99,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 11,
+        "id": "item_acid",
+        "price": 147,
+        "before": 259,
+        "after": 112,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 12,
+        "id": "item_glass_cannon",
+        "price": 177,
+        "before": 254,
+        "after": 77,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 13,
+        "id": "item_cyberball",
+        "price": 82,
+        "before": 248,
+        "after": 166,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 13,
+        "id": "item_bait",
+        "price": 70,
+        "before": 166,
+        "after": 96,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 14,
+        "id": "item_honey",
+        "price": 182,
+        "before": 245,
+        "after": 63,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "item_mushroom",
+        "price": 77,
+        "before": 256,
+        "after": 179,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "weapon_pistol_2",
+        "price": 70,
+        "before": 179,
+        "after": 109,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "item_mutation",
+        "price": 77,
+        "before": 109,
+        "after": 32,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 16,
+        "id": "item_sunglasses",
+        "price": 146,
+        "before": 150,
+        "after": 4,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 17,
+        "id": "item_charcoal",
+        "price": 71,
+        "before": 361,
+        "after": 290,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 17,
+        "id": "item_gentle_alien",
+        "price": 98,
+        "before": 290,
+        "after": 192,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 18,
+        "id": "item_pencil",
+        "price": 40,
+        "before": 491,
+        "after": 451,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 18,
+        "id": "item_little_muscley_dude",
+        "price": 158,
+        "before": 451,
+        "after": 293,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 18,
+        "id": "item_landmines",
+        "price": 60,
+        "before": 293,
+        "after": 233,
+        "next_event": "shop_exit",
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "item_cute_monkey",
+        "price": 91,
+        "before": 635,
+        "after": 544,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "item_poisonous_tonic",
+        "price": 251,
+        "before": 544,
+        "after": 293,
+        "next_event": "purchase",
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "item_piggy_bank",
+        "price": 135,
+        "before": 293,
+        "after": 158,
+        "next_event": "shop_exit",
+        "matches": true
+      }
+    ],
+    "unity_rows": [
+      {
+        "wave": 3,
+        "id": "coupon",
+        "price": 22,
+        "before": 63,
+        "after": 41,
+        "matches": true
+      },
+      {
+        "wave": 4,
+        "id": "ugly_tooth",
+        "price": 37,
+        "before": 107,
+        "after": 70,
+        "matches": true
+      },
+      {
+        "wave": 4,
+        "id": "white_flag",
+        "price": 56,
+        "before": 70,
+        "after": 14,
+        "matches": true
+      },
+      {
+        "wave": 5,
+        "id": "beanie",
+        "price": 33,
+        "before": 107,
+        "after": 74,
+        "matches": true
+      },
+      {
+        "wave": 5,
+        "id": "toxic_sludge",
+        "price": 33,
+        "before": 74,
+        "after": 41,
+        "matches": true
+      },
+      {
+        "wave": 6,
+        "id": "spear",
+        "price": 64,
+        "before": 137,
+        "after": 73,
+        "matches": true
+      },
+      {
+        "wave": 6,
+        "id": "fertilizer",
+        "price": 28,
+        "before": 73,
+        "after": 45,
+        "matches": true
+      },
+      {
+        "wave": 6,
+        "id": "mutation",
+        "price": 43,
+        "before": 45,
+        "after": 2,
+        "matches": true
+      },
+      {
+        "wave": 7,
+        "id": "broken_mouth",
+        "price": 47,
+        "before": 151,
+        "after": 104,
+        "matches": true
+      },
+      {
+        "wave": 7,
+        "id": "coupon",
+        "price": 30,
+        "before": 104,
+        "after": 74,
+        "matches": true
+      },
+      {
+        "wave": 7,
+        "id": "ratzilla",
+        "price": 52,
+        "before": 74,
+        "after": 22,
+        "matches": true
+      },
+      {
+        "wave": 8,
+        "id": "claw_tree",
+        "price": 39,
+        "before": 133,
+        "after": 94,
+        "matches": true
+      },
+      {
+        "wave": 8,
+        "id": "charcoal",
+        "price": 39,
+        "before": 94,
+        "after": 55,
+        "matches": true
+      },
+      {
+        "wave": 10,
+        "id": "bait",
+        "price": 53,
+        "before": 364,
+        "after": 311,
+        "matches": true
+      },
+      {
+        "wave": 10,
+        "id": "pistol",
+        "price": 48,
+        "before": 311,
+        "after": 263,
+        "matches": true
+      },
+      {
+        "wave": 10,
+        "id": "lootworm",
+        "price": 62,
+        "before": 263,
+        "after": 201,
+        "matches": true
+      },
+      {
+        "wave": 11,
+        "id": "fuel_tank",
+        "price": 94,
+        "before": 786,
+        "after": 692,
+        "matches": true
+      },
+      {
+        "wave": 11,
+        "id": "pile_of_books",
+        "price": 123,
+        "before": 692,
+        "after": 569,
+        "matches": true
+      },
+      {
+        "wave": 11,
+        "id": "missile",
+        "price": 94,
+        "before": 569,
+        "after": 475,
+        "matches": true
+      },
+      {
+        "wave": 12,
+        "id": "baby_elephant",
+        "price": 54,
+        "before": 1119,
+        "after": 1065,
+        "matches": true
+      },
+      {
+        "wave": 12,
+        "id": "smg",
+        "price": 88,
+        "before": 1065,
+        "after": 977,
+        "matches": true
+      },
+      {
+        "wave": 13,
+        "id": "cute_monkey",
+        "price": 63,
+        "before": 1556,
+        "after": 1493,
+        "matches": true
+      },
+      {
+        "wave": 13,
+        "id": "butterfly",
+        "price": 73,
+        "before": 1493,
+        "after": 1420,
+        "matches": true
+      },
+      {
+        "wave": 13,
+        "id": "sharp_bullet",
+        "price": 63,
+        "before": 1420,
+        "after": 1357,
+        "matches": true
+      },
+      {
+        "wave": 14,
+        "id": "snowball",
+        "price": 120,
+        "before": 1740,
+        "after": 1620,
+        "matches": true
+      },
+      {
+        "wave": 14,
+        "id": "turret",
+        "price": 44,
+        "before": 1620,
+        "after": 1576,
+        "matches": true
+      },
+      {
+        "wave": 14,
+        "id": "wings",
+        "price": 196,
+        "before": 1576,
+        "after": 1380,
+        "matches": true
+      },
+      {
+        "wave": 14,
+        "id": "toxic_sludge",
+        "price": 55,
+        "before": 1380,
+        "after": 1325,
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "baby_gecko",
+        "price": 53,
+        "before": 1792,
+        "after": 1739,
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "helmet",
+        "price": 47,
+        "before": 1739,
+        "after": 1692,
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "head_injury",
+        "price": 69,
+        "before": 1692,
+        "after": 1623,
+        "matches": true
+      },
+      {
+        "wave": 15,
+        "id": "scar",
+        "price": 69,
+        "before": 1623,
+        "after": 1554,
+        "matches": true
+      },
+      {
+        "wave": 16,
+        "id": "recycling_machine",
+        "price": 96,
+        "before": 2026,
+        "after": 1930,
+        "matches": true
+      },
+      {
+        "wave": 16,
+        "id": "bean_teacher",
+        "price": 178,
+        "before": 1930,
+        "after": 1752,
+        "matches": true
+      },
+      {
+        "wave": 16,
+        "id": "cake",
+        "price": 49,
+        "before": 1752,
+        "after": 1703,
+        "matches": true
+      },
+      {
+        "wave": 17,
+        "id": "cute_monkey",
+        "price": 76,
+        "before": 2091,
+        "after": 2015,
+        "matches": true
+      },
+      {
+        "wave": 17,
+        "id": "turret",
+        "price": 51,
+        "before": 2015,
+        "after": 1964,
+        "matches": true
+      },
+      {
+        "wave": 17,
+        "id": "riposte",
+        "price": 112,
+        "before": 1964,
+        "after": 1852,
+        "matches": true
+      },
+      {
+        "wave": 17,
+        "id": "lumberjack_shirt",
+        "price": 51,
+        "before": 1852,
+        "after": 1801,
+        "matches": true
+      },
+      {
+        "wave": 18,
+        "id": "bait",
+        "price": 79,
+        "before": 2174,
+        "after": 2095,
+        "matches": true
+      },
+      {
+        "wave": 18,
+        "id": "dynamite",
+        "price": 66,
+        "before": 2095,
+        "after": 2029,
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "double_barrel_shotgun",
+        "price": 118,
+        "before": 2581,
+        "after": 2463,
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "alien_tongue",
+        "price": 82,
+        "before": 2463,
+        "after": 2381,
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "terrified_onion",
+        "price": 56,
+        "before": 2381,
+        "after": 2325,
+        "matches": true
+      },
+      {
+        "wave": 19,
+        "id": "alien_magic",
+        "price": 238,
+        "before": 2325,
+        "after": 2087,
+        "matches": true
+      }
+    ],
+    "scope": "Each run internal displayed-price debit consistency; independent random offers and discounts do not establish identical prices or distribution."
+  },
+  "stacks": {
+    "reference": {
+      "item_fresh_meat": 1,
+      "item_toxic_sludge": 2,
+      "item_scared_sausage": 1,
+      "item_helmet": 1,
+      "item_charcoal": 2,
+      "item_cyclops_worm": 1,
+      "item_weird_ghost": 2,
+      "item_banner": 1,
+      "item_weird_food": 1,
+      "item_injection": 1,
+      "item_lemonade": 1,
+      "item_hedgehog": 1,
+      "item_peaceful_bee": 1,
+      "item_acid": 1,
+      "item_crown": 1,
+      "item_glass_cannon": 1,
+      "item_cyberball": 1,
+      "item_bait": 1,
+      "item_honey": 1,
+      "item_toolbox": 1,
+      "item_mushroom": 1,
+      "item_mutation": 1,
+      "item_dynamite": 1,
+      "item_sunglasses": 1,
+      "item_gentle_alien": 1,
+      "item_pencil": 1,
+      "item_little_muscley_dude": 1,
+      "item_landmines": 1,
+      "item_cute_monkey": 1,
+      "item_poisonous_tonic": 1,
+      "item_piggy_bank": 1
+    },
+    "unity": {
+      "alien_magic": 1,
+      "alien_tongue": 1,
+      "baby_elephant": 1,
+      "baby_gecko": 1,
+      "bait": 2,
+      "bean_teacher": 1,
+      "beanie": 1,
+      "book": 1,
+      "broken_mouth": 1,
+      "butterfly": 1,
+      "cake": 1,
+      "charcoal": 1,
+      "claw_tree": 1,
+      "coupon": 2,
+      "cute_monkey": 2,
+      "defective_steroids": 1,
+      "dynamite": 2,
+      "fertilizer": 1,
+      "fresh_meat": 1,
+      "fuel_tank": 1,
+      "head_injury": 1,
+      "helmet": 2,
+      "insanity": 1,
+      "landmines": 1,
+      "lootworm": 1,
+      "lumberjack_shirt": 1,
+      "missile": 1,
+      "mutation": 1,
+      "pile_of_books": 1,
+      "ratzilla": 1,
+      "recycling_machine": 1,
+      "riposte": 1,
+      "scar": 1,
+      "sharp_bullet": 1,
+      "snowball": 1,
+      "sunglasses": 1,
+      "terrified_onion": 1,
+      "toxic_sludge": 3,
+      "turret": 3,
+      "ugly_tooth": 1,
+      "weird_ghost": 1,
+      "white_flag": 1,
+      "wings": 1
+    },
+    "reference_sum": 34,
+    "unity_sum": 52,
+    "unity_snapshot_sum_failures": [],
+    "scope": "Recorded acquisition multiplicities; dedicated tests, not these snapshots, establish each effect formula and stack cap."
+  },
+  "wave_timer_end_snapshots": [
+    {
+      "wave": 1,
+      "configured_seconds": 20,
+      "reference_sampled_interval": 19.851259,
+      "unity_active_interval": 20.00819969177246,
+      "materials": {
+        "reference": 10,
+        "unity": 3
+      },
+      "level": {
+        "reference": 0,
+        "unity": 0
+      },
+      "harvesting": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "banked": {
+        "reference": 0,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 25,
+        "unity": 27
+      },
+      "tree_kills": {
+        "reference": 1,
+        "unity": 1
+      },
+      "material_pickups": {
+        "reference": 10,
+        "unity": 3
+      },
+      "ground_objects": {
+        "reference": 18,
+        "unity": 27
+      },
+      "ground_value": {
+        "reference": 18,
+        "unity": 27
+      },
+      "wave_enemy_kills": {
+        "reference": 25,
+        "unity": 27
+      }
+    },
+    {
+      "wave": 2,
+      "configured_seconds": 25,
+      "reference_sampled_interval": 24.854399,
+      "unity_active_interval": 25.00370216369629,
+      "materials": {
+        "reference": 35,
+        "unity": 18
+      },
+      "level": {
+        "reference": 1,
+        "unity": 1
+      },
+      "harvesting": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "banked": {
+        "reference": 0,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 66,
+        "unity": 68
+      },
+      "tree_kills": {
+        "reference": 1,
+        "unity": 2
+      },
+      "material_pickups": {
+        "reference": 27,
+        "unity": 12
+      },
+      "ground_objects": {
+        "reference": 23,
+        "unity": 35
+      },
+      "ground_value": {
+        "reference": 33,
+        "unity": 56
+      },
+      "wave_enemy_kills": {
+        "reference": 41,
+        "unity": 41
+      }
+    },
+    {
+      "wave": 3,
+      "configured_seconds": 30,
+      "reference_sampled_interval": 29.858506000000006,
+      "unity_active_interval": 30.001174926757812,
+      "materials": {
+        "reference": 36,
+        "unity": 63
+      },
+      "level": {
+        "reference": 2,
+        "unity": 2
+      },
+      "harvesting": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "banked": {
+        "reference": 0,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 124,
+        "unity": 130
+      },
+      "tree_kills": {
+        "reference": 2,
+        "unity": 4
+      },
+      "material_pickups": {
+        "reference": 44,
+        "unity": 36
+      },
+      "ground_objects": {
+        "reference": 44,
+        "unity": 44
+      },
+      "ground_value": {
+        "reference": 67,
+        "unity": 79
+      },
+      "wave_enemy_kills": {
+        "reference": 58,
+        "unity": 62
+      }
+    },
+    {
+      "wave": 4,
+      "configured_seconds": 35,
+      "reference_sampled_interval": 34.854012,
+      "unity_active_interval": 35.00762176513672,
+      "materials": {
+        "reference": 41,
+        "unity": 107
+      },
+      "level": {
+        "reference": 3,
+        "unity": 4
+      },
+      "harvesting": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 0.0
+      },
+      "banked": {
+        "reference": 0,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 207,
+        "unity": 209
+      },
+      "tree_kills": {
+        "reference": 4,
+        "unity": 5
+      },
+      "material_pickups": {
+        "reference": 65,
+        "unity": 69
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 49
+      },
+      "ground_value": {
+        "reference": 116,
+        "unity": 95
+      },
+      "wave_enemy_kills": {
+        "reference": 83,
+        "unity": 79
+      }
+    },
+    {
+      "wave": 5,
+      "configured_seconds": 40,
+      "reference_sampled_interval": 39.861836999999994,
+      "unity_active_interval": 40.006019592285156,
+      "materials": {
+        "reference": 109,
+        "unity": 102
+      },
+      "level": {
+        "reference": 4,
+        "unity": 5
+      },
+      "harvesting": {
+        "reference": 0,
+        "unity": 5.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 5.0
+      },
+      "banked": {
+        "reference": 32,
+        "unity": 1
+      },
+      "enemy_kills": {
+        "reference": 339,
+        "unity": 333
+      },
+      "tree_kills": {
+        "reference": 6,
+        "unity": 7
+      },
+      "material_pickups": {
+        "reference": 99,
+        "unity": 113
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 50
+      },
+      "ground_value": {
+        "reference": 153,
+        "unity": 136
+      },
+      "wave_enemy_kills": {
+        "reference": 132,
+        "unity": 124
+      }
+    },
+    {
+      "wave": 6,
+      "configured_seconds": 45,
+      "reference_sampled_interval": 44.864506000000006,
+      "unity_active_interval": 44.99931335449219,
+      "materials": {
+        "reference": 99,
+        "unity": 131
+      },
+      "level": {
+        "reference": 5,
+        "unity": 6
+      },
+      "harvesting": {
+        "reference": 6,
+        "unity": 6.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 92,
+        "unity": 45
+      },
+      "enemy_kills": {
+        "reference": 498,
+        "unity": 489
+      },
+      "tree_kills": {
+        "reference": 9,
+        "unity": 8
+      },
+      "material_pickups": {
+        "reference": 142,
+        "unity": 155
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 50
+      },
+      "ground_value": {
+        "reference": 154,
+        "unity": 161
+      },
+      "wave_enemy_kills": {
+        "reference": 159,
+        "unity": 156
+      }
+    },
+    {
+      "wave": 7,
+      "configured_seconds": 50,
+      "reference_sampled_interval": 49.85531400000002,
+      "unity_active_interval": 49.99632263183594,
+      "materials": {
+        "reference": 127,
+        "unity": 136
+      },
+      "level": {
+        "reference": 7,
+        "unity": 7
+      },
+      "harvesting": {
+        "reference": 15,
+        "unity": 15.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 134,
+        "unity": 90
+      },
+      "enemy_kills": {
+        "reference": 704,
+        "unity": 684
+      },
+      "tree_kills": {
+        "reference": 9,
+        "unity": 10
+      },
+      "material_pickups": {
+        "reference": 204,
+        "unity": 221
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 50
+      },
+      "ground_value": {
+        "reference": 176,
+        "unity": 183
+      },
+      "wave_enemy_kills": {
+        "reference": 206,
+        "unity": 195
+      }
+    },
+    {
+      "wave": 8,
+      "configured_seconds": 55,
+      "reference_sampled_interval": 54.85227500000002,
+      "unity_active_interval": 54.99742126464844,
+      "materials": {
+        "reference": 119,
+        "unity": 117
+      },
+      "level": {
+        "reference": 8,
+        "unity": 8
+      },
+      "harvesting": {
+        "reference": 16,
+        "unity": 16.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 205,
+        "unity": 178
+      },
+      "enemy_kills": {
+        "reference": 858,
+        "unity": 830
+      },
+      "tree_kills": {
+        "reference": 15,
+        "unity": 10
+      },
+      "material_pickups": {
+        "reference": 259,
+        "unity": 267
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 49
+      },
+      "ground_value": {
+        "reference": 170,
+        "unity": 184
+      },
+      "wave_enemy_kills": {
+        "reference": 154,
+        "unity": 146
+      }
+    },
+    {
+      "wave": 9,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.84502199999997,
+      "unity_active_interval": 59.988128662109375,
+      "materials": {
+        "reference": 233,
+        "unity": 225
+      },
+      "level": {
+        "reference": 9,
+        "unity": 9
+      },
+      "harvesting": {
+        "reference": 17,
+        "unity": 15.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 261,
+        "unity": 231
+      },
+      "enemy_kills": {
+        "reference": 1275,
+        "unity": 1221
+      },
+      "tree_kills": {
+        "reference": 17,
+        "unity": 13
+      },
+      "material_pickups": {
+        "reference": 323,
+        "unity": 348
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 50
+      },
+      "ground_value": {
+        "reference": 359,
+        "unity": 377
+      },
+      "wave_enemy_kills": {
+        "reference": 417,
+        "unity": 391
+      }
+    },
+    {
+      "wave": 10,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.84865000000002,
+      "unity_active_interval": 60.00006103515625,
+      "materials": {
+        "reference": 235,
+        "unity": 348
+      },
+      "level": {
+        "reference": 10,
+        "unity": 10
+      },
+      "harvesting": {
+        "reference": 22,
+        "unity": 16.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 497,
+        "unity": 507
+      },
+      "enemy_kills": {
+        "reference": 1605,
+        "unity": 1535
+      },
+      "tree_kills": {
+        "reference": 20,
+        "unity": 14
+      },
+      "material_pickups": {
+        "reference": 397,
+        "unity": 399
+      },
+      "ground_objects": {
+        "reference": 49,
+        "unity": 50
+      },
+      "ground_value": {
+        "reference": 272,
+        "unity": 332
+      },
+      "wave_enemy_kills": {
+        "reference": 330,
+        "unity": 314
+      }
+    },
+    {
+      "wave": 11,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.86082699999997,
+      "unity_active_interval": 59.99456787109375,
+      "materials": {
+        "reference": 235,
+        "unity": 769
+      },
+      "level": {
+        "reference": 11,
+        "unity": 12
+      },
+      "harvesting": {
+        "reference": 24,
+        "unity": 17.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 657,
+        "unity": 548
+      },
+      "enemy_kills": {
+        "reference": 1839,
+        "unity": 1772
+      },
+      "tree_kills": {
+        "reference": 23,
+        "unity": 16
+      },
+      "material_pickups": {
+        "reference": 459,
+        "unity": 673
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 17
+      },
+      "ground_value": {
+        "reference": 222,
+        "unity": 34
+      },
+      "wave_enemy_kills": {
+        "reference": 234,
+        "unity": 237
+      }
+    },
+    {
+      "wave": 12,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.84884999999997,
+      "unity_active_interval": 59.986297607421875,
+      "materials": {
+        "reference": 228,
+        "unity": 1101
+      },
+      "level": {
+        "reference": 11,
+        "unity": 15
+      },
+      "harvesting": {
+        "reference": 26,
+        "unity": 18.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 773,
+        "unity": 243
+      },
+      "enemy_kills": {
+        "reference": 2126,
+        "unity": 2054
+      },
+      "tree_kills": {
+        "reference": 25,
+        "unity": 19
+      },
+      "material_pickups": {
+        "reference": 515,
+        "unity": 971
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 41
+      },
+      "ground_value": {
+        "reference": 270,
+        "unity": 82
+      },
+      "wave_enemy_kills": {
+        "reference": 287,
+        "unity": 282
+      }
+    },
+    {
+      "wave": 13,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.85171200000002,
+      "unity_active_interval": 59.98876953125,
+      "materials": {
+        "reference": 220,
+        "unity": 1537
+      },
+      "level": {
+        "reference": 12,
+        "unity": 16
+      },
+      "harvesting": {
+        "reference": 28,
+        "unity": 19.0
+      },
+      "luck": {
+        "reference": 0,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 925,
+        "unity": 27
+      },
+      "enemy_kills": {
+        "reference": 2410,
+        "unity": 2323
+      },
+      "tree_kills": {
+        "reference": 30,
+        "unity": 22
+      },
+      "material_pickups": {
+        "reference": 583,
+        "unity": 1234
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 35
+      },
+      "ground_value": {
+        "reference": 229,
+        "unity": 70
+      },
+      "wave_enemy_kills": {
+        "reference": 284,
+        "unity": 269
+      }
+    },
+    {
+      "wave": 14,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.85651699999994,
+      "unity_active_interval": 59.986572265625,
+      "materials": {
+        "reference": 213,
+        "unity": 1720
+      },
+      "level": {
+        "reference": 12,
+        "unity": 17
+      },
+      "harvesting": {
+        "reference": 32,
+        "unity": 20.0
+      },
+      "luck": {
+        "reference": 10,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 1047,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 2692,
+        "unity": 2595
+      },
+      "tree_kills": {
+        "reference": 31,
+        "unity": 27
+      },
+      "material_pickups": {
+        "reference": 640,
+        "unity": 1491
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 41
+      },
+      "ground_value": {
+        "reference": 225,
+        "unity": 44
+      },
+      "wave_enemy_kills": {
+        "reference": 282,
+        "unity": 272
+      }
+    },
+    {
+      "wave": 15,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.847533,
+      "unity_active_interval": 59.991943359375,
+      "materials": {
+        "reference": 219,
+        "unity": 1771
+      },
+      "level": {
+        "reference": 13,
+        "unity": 18
+      },
+      "harvesting": {
+        "reference": 37,
+        "unity": 21.0
+      },
+      "luck": {
+        "reference": 10,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 1150,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 3151,
+        "unity": 3047
+      },
+      "tree_kills": {
+        "reference": 37,
+        "unity": 32
+      },
+      "material_pickups": {
+        "reference": 712,
+        "unity": 1844
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 49
+      },
+      "ground_value": {
+        "reference": 344,
+        "unity": 83
+      },
+      "wave_enemy_kills": {
+        "reference": 459,
+        "unity": 452
+      }
+    },
+    {
+      "wave": 16,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.845695999999975,
+      "unity_active_interval": 59.9971923828125,
+      "materials": {
+        "reference": 108,
+        "unity": 2003
+      },
+      "level": {
+        "reference": 13,
+        "unity": 19
+      },
+      "harvesting": {
+        "reference": 42,
+        "unity": 23.0
+      },
+      "luck": {
+        "reference": 8,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 1409,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 3491,
+        "unity": 3356
+      },
+      "tree_kills": {
+        "reference": 42,
+        "unity": 35
+      },
+      "material_pickups": {
+        "reference": 747,
+        "unity": 2188
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 13
+      },
+      "ground_value": {
+        "reference": 298,
+        "unity": 13
+      },
+      "wave_enemy_kills": {
+        "reference": 340,
+        "unity": 309
+      }
+    },
+    {
+      "wave": 17,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.864304999999945,
+      "unity_active_interval": 59.99951171875,
+      "materials": {
+        "reference": 313,
+        "unity": 2066
+      },
+      "level": {
+        "reference": 15,
+        "unity": 20
+      },
+      "harvesting": {
+        "reference": 48,
+        "unity": 25.0
+      },
+      "luck": {
+        "reference": 8,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 1514,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 3720,
+        "unity": 3563
+      },
+      "tree_kills": {
+        "reference": 44,
+        "unity": 38
+      },
+      "material_pickups": {
+        "reference": 890,
+        "unity": 2522
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 26
+      },
+      "ground_value": {
+        "reference": 158,
+        "unity": 26
+      },
+      "wave_enemy_kills": {
+        "reference": 229,
+        "unity": 207
+      }
+    },
+    {
+      "wave": 18,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.855368999999996,
+      "unity_active_interval": 59.99346923828125,
+      "materials": {
+        "reference": 438,
+        "unity": 2147
+      },
+      "level": {
+        "reference": 15,
+        "unity": 21
+      },
+      "harvesting": {
+        "reference": 53,
+        "unity": 27.0
+      },
+      "luck": {
+        "reference": 8,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 1466,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 4100,
+        "unity": 3898
+      },
+      "tree_kills": {
+        "reference": 47,
+        "unity": 38
+      },
+      "material_pickups": {
+        "reference": 1009,
+        "unity": 2836
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 32
+      },
+      "ground_value": {
+        "reference": 159,
+        "unity": 32
+      },
+      "wave_enemy_kills": {
+        "reference": 380,
+        "unity": 335
+      }
+    },
+    {
+      "wave": 19,
+      "configured_seconds": 60,
+      "reference_sampled_interval": 59.85685000000001,
+      "unity_active_interval": 60.01409912109375,
+      "materials": {
+        "reference": 575,
+        "unity": 2552
+      },
+      "level": {
+        "reference": 16,
+        "unity": 23
+      },
+      "harvesting": {
+        "reference": 60,
+        "unity": 29.0
+      },
+      "luck": {
+        "reference": 8,
+        "unity": 4.0
+      },
+      "banked": {
+        "reference": 1427,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 4683,
+        "unity": 4377
+      },
+      "tree_kills": {
+        "reference": 48,
+        "unity": 40
+      },
+      "material_pickups": {
+        "reference": 1157,
+        "unity": 3304
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 34
+      },
+      "ground_value": {
+        "reference": 288,
+        "unity": 37
+      },
+      "wave_enemy_kills": {
+        "reference": 583,
+        "unity": 479
+      }
+    },
+    {
+      "wave": 20,
+      "configured_seconds": 90,
+      "reference_sampled_interval": 89.8544730000001,
+      "unity_active_interval": 90.06024169921875,
+      "materials": {
+        "reference": 317,
+        "unity": 2479
+      },
+      "level": {
+        "reference": 17,
+        "unity": 24
+      },
+      "harvesting": {
+        "reference": 68,
+        "unity": 31.0
+      },
+      "luck": {
+        "reference": 8,
+        "unity": -9.0
+      },
+      "banked": {
+        "reference": 1604,
+        "unity": 0
+      },
+      "enemy_kills": {
+        "reference": 4968,
+        "unity": 4639
+      },
+      "tree_kills": {
+        "reference": 55,
+        "unity": 46
+      },
+      "material_pickups": {
+        "reference": 1218,
+        "unity": 3641
+      },
+      "ground_objects": {
+        "reference": 50,
+        "unity": 8
+      },
+      "ground_value": {
+        "reference": 228,
+        "unity": 8
+      },
+      "wave_enemy_kills": {
+        "reference": 285,
+        "unity": 262
+      }
+    }
+  ],
+  "observed_ground_object_caps": {
+    "reference_max": 50,
+    "unity_max": 50
+  },
+  "lootworm_attribution": {
+    "unity_purchase_wave": 10,
+    "unity_purchase_price": 62,
+    "unity_purchase_recorded_stack": [
+      {
+        "id": "lootworm",
+        "count": 1
+      }
+    ],
+    "reference_acquired": false,
+    "configured_double_chance_both": 0.1,
+    "evidence": "Source items/all/lootworm/lootworm_effect_0.tres and lootworm.update_data; Unity serialized PetSpec doubleChance0.1 and CyberneticPets collection branch. Pickup counts jump after purchase; actual doubling successes were not individually logged. This is a supported contributor, not a complete quantitative attribution."
+  },
+  "post_run_fix": {
+    "rule": "Weapon combine ordering",
+    "evidence": "base_shop.gd buy_weapon/_combine_weapon removes two copies through RunData.remove_weapon (first equal copy); add_weapon appends upgrade.",
+    "tested_run_behavior": "Upgraded weapon replaced an old index.",
+    "current_source_fix": "Incoming purchase is appended, first two matching copies removed, upgrade appended; manual combine follows same order.",
+    "verification": "Five new WeaponCombineParityTests prepared; parent runs focused validation. This later source is not the frozen realtime run binary."
+  },
+  "native_capture_review": {
+    "reference_end": "Visibly Run Won, Crash Zone, Danger0; level17/Luck8/harvesting77 agree with telemetry.",
+    "unity_end": "Queued Drifter unlock card over wave20. Won is established by trace/report; this image does not visibly show a victory title."
+  },
+  "limitations": [
+    "Different RNG implementations, draws, gear, upgrades and actor interactions; no equal random outcome claim.",
+    "Neutral supplied six-tier2 loadout and invulnerability with scripted circular input and automatic UI callbacks; no normal survival or human controller/audio test.",
+    "Original source whole-engine simulated clock versus Unity active combat clock; wall differences include different scene/intermission processing and are not performance benchmarks.",
+    "A single pair does not isolate every item formula or stack cap, every unlock, every enemy behavior or device support.",
+    "Later controller fixture diagnostics, the final combine-order fix and the newer Input System migration are outside the frozen realtime DLL hash."
+  ],
+  "reference_diagnostics": {
+    "script_error_count": 0,
+    "script_errors": {},
+    "errors": {
+      "Could not create directory: user://logs": 1,
+      "CrashReporter: Failed to collect logs in C:/Users/FanSh/AppData/Roaming/Scrapshift Reference Parity Fixture 20261015/logs": 1,
+      "Condition \"!is_inside_tree()\" is true.": 1,
+      "Condition \"_first != nullptr\" is true.": 3,
+      "Resources still in use at exit (run with --verbose for details).": 1,
+      "There are still MemoryPool allocs in use at exit!": 1
+    },
+    "warnings": {
+      "Can't open unpacked mods folder res://mods-unpacked/.": 1,
+      "Node './Attach' was modified from inside an instance, but it has vanished.": 80,
+      "ObjectDB instances leaked at exit (run with --verbose for details).": 1
+    }
+  },
+  "historical_accelerated_comparison": {
+    "date": "2026-10-15",
+    "branch": "codex/gameplay-parity",
+    "classification": "Accelerated integration comparison; exact gameplay parity remains unverified",
+    "input_sha256": {
+      "artifacts/gameplay-parity-reference-2026-10-15/trace.json": "6da131b6ce1aa35ea3a1db2dd0fc883c9ba84620529c6c097beabda253ec8084",
+      "artifacts/gameplay-parity-reference-2026-10-15/summary.json": "8eed7d6a0ce83866d77df316fd5357925ecfa7d230d847606ec691d0397c33df",
+      "artifacts/gameplay-parity-unity-2026-10-15/final/campaign-trace.json": "acfd8a942ab28056b94d03aa9dc60eb6053be9841ec963ed5b7776bcc7211ae7",
+      "artifacts/gameplay-parity-unity-2026-10-15/final/campaign-check.json": "5f761be80d11e95a5a643691b6c0f581a090d53ffdb5b5663e587fd08bd57257"
+    },
+    "initial_conditions": {
+      "reference_materials": 0,
+      "unity_materials": 0,
+      "reference_level": 0,
+      "unity_level": 0,
+      "reference_items": 0,
+      "unity_items": 0,
+      "normalized_reference_weapons": [
+        "pistol_2",
+        "smg_2",
+        "double_barrel_shotgun_2",
+        "laser_gun_2",
+        "knife_2",
+        "spear_2"
+      ],
+      "normalized_unity_weapons": [
+        "pistol_2",
+        "smg_2",
+        "double_barrel_shotgun_2",
+        "laser_gun_2",
+        "knife_2",
+        "spear_2"
+      ],
+      "loadout_equal": true,
+      "neutral_stats_danger0_invulnerability": "Documented explicit overrides in both fixture implementations; reference character identity only, Unity null character"
+    },
+    "counts": {
+      "reference": {
+        "boot": 1,
+        "scene": 40,
+        "wave_timer_end": 20,
+        "shop_exit": 19,
+        "upgrade": 19,
+        "purchase": 38,
+        "crate_take": 5,
+        "finished": 1
+      },
+      "unity": {
+        "boot": 1,
+        "wave_start": 20,
+        "wave_timer_end": 20,
+        "wave_completed": 20,
+        "shop_enter": 19,
+        "shop_exit": 19,
+        "upgrade": 23,
+        "purchase": 37,
+        "crate_take": 12,
+        "finished": 1
+      },
+      "reference_shop_entries": 19,
+      "unity_shop_entries": 19
+    },
+    "purchase_debits": {
+      "reference_checked": 38,
+      "unity_checked": 37,
+      "reference_mismatches": [],
+      "unity_mismatches": [],
+      "reference_rows": [
+        {
+          "wave": 2,
+          "id": "item_boxing_glove",
+          "price": 23,
+          "materials_before": 23,
+          "materials_after": 0,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 3,
+          "id": "item_book",
+          "price": 22,
+          "materials_before": 49,
+          "materials_after": 27,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 4,
+          "id": "weapon_knife_2",
+          "price": 34,
+          "materials_before": 80,
+          "materials_after": 46,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 5,
+          "id": "item_pencil",
+          "price": 17,
+          "materials_before": 174,
+          "materials_after": 157,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 5,
+          "id": "item_gentle_alien",
+          "price": 50,
+          "materials_before": 157,
+          "materials_after": 107,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 6,
+          "id": "item_white_flag",
+          "price": 70,
+          "materials_before": 174,
+          "materials_after": 104,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 6,
+          "id": "item_lens",
+          "price": 38,
+          "materials_before": 104,
+          "materials_after": 66,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 6,
+          "id": "item_peaceful_bee",
+          "price": 34,
+          "materials_before": 66,
+          "materials_after": 32,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 7,
+          "id": "item_turret",
+          "price": 32,
+          "materials_before": 141,
+          "materials_after": 109,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 8,
+          "id": "item_energy_bracelet",
+          "price": 107,
+          "materials_before": 225,
+          "materials_after": 118,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 8,
+          "id": "item_cyberball",
+          "price": 62,
+          "materials_before": 118,
+          "materials_after": 56,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 9,
+          "id": "item_head_injury",
+          "price": 56,
+          "materials_before": 358,
+          "materials_after": 302,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 9,
+          "id": "item_cute_monkey",
+          "price": 56,
+          "materials_before": 302,
+          "materials_after": 246,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 10,
+          "id": "item_statue",
+          "price": 130,
+          "materials_before": 485,
+          "materials_after": 355,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 10,
+          "id": "item_baby_with_a_beard",
+          "price": 210,
+          "materials_before": 355,
+          "materials_after": 145,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 11,
+          "id": "weapon_spear_2",
+          "price": 92,
+          "materials_before": 396,
+          "materials_after": 304,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 11,
+          "id": "item_snake",
+          "price": 63,
+          "materials_before": 304,
+          "materials_after": 241,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 11,
+          "id": "item_weird_ghost",
+          "price": 36,
+          "materials_before": 241,
+          "materials_after": 205,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "item_strange_book",
+          "price": 166,
+          "materials_before": 432,
+          "materials_after": 266,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "item_broken_mouth",
+          "price": 67,
+          "materials_before": 266,
+          "materials_after": 199,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "item_propeller_hat",
+          "price": 73,
+          "materials_before": 199,
+          "materials_after": 126,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "item_weird_food",
+          "price": 56,
+          "materials_before": 126,
+          "materials_after": 70,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 13,
+          "id": "item_plant",
+          "price": 47,
+          "materials_before": 288,
+          "materials_after": 241,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 13,
+          "id": "item_baby_gecko",
+          "price": 54,
+          "materials_before": 241,
+          "materials_after": 187,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 14,
+          "id": "item_toolbox",
+          "price": 146,
+          "materials_before": 403,
+          "materials_after": 257,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 14,
+          "id": "item_scar",
+          "price": 74,
+          "materials_before": 257,
+          "materials_after": 183,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 14,
+          "id": "item_sad_tomato",
+          "price": 134,
+          "materials_before": 183,
+          "materials_after": 49,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 15,
+          "id": "item_handcuffs",
+          "price": 215,
+          "materials_before": 341,
+          "materials_after": 126,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 15,
+          "id": "item_plant",
+          "price": 52,
+          "materials_before": 126,
+          "materials_after": 74,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 16,
+          "id": "item_frozen_heart",
+          "price": 250,
+          "materials_before": 431,
+          "materials_after": 181,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 16,
+          "id": "item_turret",
+          "price": 55,
+          "materials_before": 181,
+          "materials_after": 126,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 17,
+          "id": "item_pencil",
+          "price": 38,
+          "materials_before": 495,
+          "materials_after": 457,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 17,
+          "id": "item_mastery",
+          "price": 165,
+          "materials_before": 457,
+          "materials_after": 292,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 17,
+          "id": "item_butterfly",
+          "price": 98,
+          "materials_before": 292,
+          "materials_after": 194,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 17,
+          "id": "item_turret_laser",
+          "price": 192,
+          "materials_before": 194,
+          "materials_after": 2,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 18,
+          "id": "item_turret_flame",
+          "price": 130,
+          "materials_before": 282,
+          "materials_after": 152,
+          "next_event": "shop_exit",
+          "matches": true
+        },
+        {
+          "wave": 19,
+          "id": "item_barricade",
+          "price": 236,
+          "materials_before": 520,
+          "materials_after": 284,
+          "next_event": "purchase",
+          "matches": true
+        },
+        {
+          "wave": 19,
+          "id": "item_mouse",
+          "price": 178,
+          "materials_before": 284,
+          "materials_after": 106,
+          "next_event": "shop_exit",
+          "matches": true
+        }
+      ],
+      "unity_rows": [
+        {
+          "wave": 2,
+          "id": "lumberjack_shirt",
+          "price": 20,
+          "materials_before": 24,
+          "materials_after": 4,
+          "matches": true
+        },
+        {
+          "wave": 3,
+          "id": "weird_ghost",
+          "price": 18,
+          "materials_before": 44,
+          "materials_after": 26,
+          "matches": true
+        },
+        {
+          "wave": 4,
+          "id": "pistol",
+          "price": 34,
+          "materials_before": 71,
+          "materials_after": 37,
+          "matches": true
+        },
+        {
+          "wave": 5,
+          "id": "goat_skull",
+          "price": 42,
+          "materials_before": 125,
+          "materials_after": 83,
+          "matches": true
+        },
+        {
+          "wave": 6,
+          "id": "baby_gecko",
+          "price": 34,
+          "materials_before": 156,
+          "materials_after": 122,
+          "matches": true
+        },
+        {
+          "wave": 6,
+          "id": "glasses",
+          "price": 38,
+          "materials_before": 122,
+          "materials_after": 84,
+          "matches": true
+        },
+        {
+          "wave": 6,
+          "id": "smg",
+          "price": 68,
+          "materials_before": 84,
+          "materials_after": 16,
+          "matches": true
+        },
+        {
+          "wave": 7,
+          "id": "tyler",
+          "price": 112,
+          "materials_before": 262,
+          "materials_after": 150,
+          "matches": true
+        },
+        {
+          "wave": 8,
+          "id": "laser_gun",
+          "price": 63,
+          "materials_before": 359,
+          "materials_after": 296,
+          "matches": true
+        },
+        {
+          "wave": 9,
+          "id": "boiling_water",
+          "price": 66,
+          "materials_before": 764,
+          "materials_after": 698,
+          "matches": true
+        },
+        {
+          "wave": 9,
+          "id": "tree",
+          "price": 37,
+          "materials_before": 698,
+          "materials_after": 661,
+          "matches": true
+        },
+        {
+          "wave": 10,
+          "id": "gambling_token",
+          "price": 110,
+          "materials_before": 1134,
+          "materials_after": 1024,
+          "matches": true
+        },
+        {
+          "wave": 10,
+          "id": "glass_cannon",
+          "price": 160,
+          "materials_before": 1024,
+          "materials_after": 864,
+          "matches": true
+        },
+        {
+          "wave": 10,
+          "id": "lemonade",
+          "price": 40,
+          "materials_before": 864,
+          "materials_after": 824,
+          "matches": true
+        },
+        {
+          "wave": 11,
+          "id": "mastery",
+          "price": 126,
+          "materials_before": 1154,
+          "materials_after": 1028,
+          "matches": true
+        },
+        {
+          "wave": 11,
+          "id": "coil",
+          "price": 158,
+          "materials_before": 1028,
+          "materials_after": 870,
+          "matches": true
+        },
+        {
+          "wave": 11,
+          "id": "mushroom",
+          "price": 63,
+          "materials_before": 870,
+          "materials_after": 807,
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "pencil",
+          "price": 29,
+          "materials_before": 1151,
+          "materials_after": 1122,
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "scared_sausage",
+          "price": 67,
+          "materials_before": 1122,
+          "materials_after": 1055,
+          "matches": true
+        },
+        {
+          "wave": 12,
+          "id": "dynamite",
+          "price": 56,
+          "materials_before": 1055,
+          "materials_after": 999,
+          "matches": true
+        },
+        {
+          "wave": 13,
+          "id": "mammoth",
+          "price": 266,
+          "materials_before": 1300,
+          "materials_after": 1034,
+          "matches": true
+        },
+        {
+          "wave": 13,
+          "id": "lootworm",
+          "price": 82,
+          "materials_before": 1034,
+          "materials_after": 952,
+          "matches": true
+        },
+        {
+          "wave": 14,
+          "id": "tree",
+          "price": 50,
+          "materials_before": 1332,
+          "materials_after": 1282,
+          "matches": true
+        },
+        {
+          "wave": 14,
+          "id": "metal_plate",
+          "price": 110,
+          "materials_before": 1282,
+          "materials_after": 1172,
+          "matches": true
+        },
+        {
+          "wave": 15,
+          "id": "sunglasses",
+          "price": 140,
+          "materials_before": 1660,
+          "materials_after": 1520,
+          "matches": true
+        },
+        {
+          "wave": 15,
+          "id": "reinforced_steel",
+          "price": 140,
+          "materials_before": 1520,
+          "materials_after": 1380,
+          "matches": true
+        },
+        {
+          "wave": 15,
+          "id": "wings",
+          "price": 227,
+          "materials_before": 1380,
+          "materials_after": 1153,
+          "matches": true
+        },
+        {
+          "wave": 16,
+          "id": "bait",
+          "price": 81,
+          "materials_before": 1529,
+          "materials_after": 1448,
+          "matches": true
+        },
+        {
+          "wave": 16,
+          "id": "pile_of_books",
+          "price": 172,
+          "materials_before": 1448,
+          "materials_after": 1276,
+          "matches": true
+        },
+        {
+          "wave": 16,
+          "id": "scared_sausage",
+          "price": 81,
+          "materials_before": 1276,
+          "materials_after": 1195,
+          "matches": true
+        },
+        {
+          "wave": 17,
+          "id": "boiling_water",
+          "price": 93,
+          "materials_before": 1612,
+          "materials_after": 1519,
+          "matches": true
+        },
+        {
+          "wave": 17,
+          "id": "acid",
+          "price": 182,
+          "materials_before": 1519,
+          "materials_after": 1337,
+          "matches": true
+        },
+        {
+          "wave": 18,
+          "id": "campfire",
+          "price": 123,
+          "materials_before": 1759,
+          "materials_after": 1636,
+          "matches": true
+        },
+        {
+          "wave": 18,
+          "id": "bandana",
+          "price": 216,
+          "materials_before": 1636,
+          "materials_after": 1420,
+          "matches": true
+        },
+        {
+          "wave": 18,
+          "id": "lens",
+          "price": 70,
+          "materials_before": 1420,
+          "materials_after": 1350,
+          "matches": true
+        },
+        {
+          "wave": 19,
+          "id": "reinforced_steel",
+          "price": 155,
+          "materials_before": 1854,
+          "materials_after": 1699,
+          "matches": true
+        },
+        {
+          "wave": 19,
+          "id": "double_barrel_shotgun",
+          "price": 125,
+          "materials_before": 1699,
+          "materials_after": 1574,
+          "matches": true
+        }
+      ],
+      "same_item_same_wave_purchase_pairs": 0
+    },
+    "stack_records": {
+      "reference_entries": 41,
+      "reference_unique_ids": 35,
+      "reference_duplicates": {
+        "item_propeller_hat": 2,
+        "item_pencil": 2,
+        "item_turret": 2,
+        "item_mastery": 2,
+        "item_broken_mouth": 2,
+        "item_plant": 2
+      },
+      "unity_entries": 45,
+      "unity_unique_ids": 40,
+      "unity_duplicates": {
+        "boiling_water": 2,
+        "metal_plate": 2,
+        "reinforced_steel": 2,
+        "scared_sausage": 2,
+        "tree": 2
+      },
+      "unity_snapshot_stack_sum_mismatches": [],
+      "establishes": "Acquisition and recorded multiplicities; does not prove all effect formulas or stack caps"
+    },
+    "final_weapons": {
+      "reference": [
+        "weapon_pistol_2",
+        "weapon_smg_2",
+        "weapon_double_barrel_shotgun_2",
+        "weapon_laser_gun_2",
+        "weapon_knife_3",
+        "weapon_spear_3"
+      ],
+      "unity": [
+        {
+          "id": "pistol",
+          "tier": 3
+        },
+        {
+          "id": "smg",
+          "tier": 3
+        },
+        {
+          "id": "double_barrel_shotgun",
+          "tier": 3
+        },
+        {
+          "id": "laser_gun",
+          "tier": 3
+        },
+        {
+          "id": "knife",
+          "tier": 2
+        },
+        {
+          "id": "spear",
+          "tier": 2
+        }
+      ]
+    },
+    "durations_equal": true,
+    "waves": [
+      {
+        "wave": 1,
+        "configured_seconds_reference": 20,
+        "configured_seconds_unity": 20,
+        "reference_sampled_seconds": 19.846,
+        "unity_active_seconds": 20.04998016357422,
+        "reference_end_materials": 7,
+        "unity_completed_materials": 6,
+        "reference_end_level": 0,
+        "unity_completed_level": 0,
+        "unity_cumulative_kills_including_trees": 28,
+        "unity_wave_kills_including_trees": 28,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 2,
+        "configured_seconds_reference": 25,
+        "configured_seconds_unity": 25,
+        "reference_sampled_seconds": 24.678,
+        "unity_active_seconds": 25.049617767333984,
+        "reference_end_materials": 23,
+        "unity_completed_materials": 24,
+        "reference_end_level": 1,
+        "unity_completed_level": 1,
+        "unity_cumulative_kills_including_trees": 69,
+        "unity_wave_kills_including_trees": 41,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 3,
+        "configured_seconds_reference": 30,
+        "configured_seconds_unity": 30,
+        "reference_sampled_seconds": 29.723,
+        "unity_active_seconds": 30.05038833618164,
+        "reference_end_materials": 49,
+        "unity_completed_materials": 44,
+        "reference_end_level": 2,
+        "unity_completed_level": 2,
+        "unity_cumulative_kills_including_trees": 132,
+        "unity_wave_kills_including_trees": 63,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 4,
+        "configured_seconds_reference": 35,
+        "configured_seconds_unity": 35,
+        "reference_sampled_seconds": 34.661,
+        "unity_active_seconds": 35.05213928222656,
+        "reference_end_materials": 75,
+        "unity_completed_materials": 71,
+        "reference_end_level": 3,
+        "unity_completed_level": 3,
+        "unity_cumulative_kills_including_trees": 212,
+        "unity_wave_kills_including_trees": 80,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 5,
+        "configured_seconds_reference": 40,
+        "configured_seconds_unity": 40,
+        "reference_sampled_seconds": 39.71,
+        "unity_active_seconds": 40.05243682861328,
+        "reference_end_materials": 168,
+        "unity_completed_materials": 125,
+        "reference_end_level": 5,
+        "unity_completed_level": 5,
+        "unity_cumulative_kills_including_trees": 343,
+        "unity_wave_kills_including_trees": 131,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 6,
+        "configured_seconds_reference": 45,
+        "configured_seconds_unity": 45,
+        "reference_sampled_seconds": 44.721,
+        "unity_active_seconds": 45.05274963378906,
+        "reference_end_materials": 167,
+        "unity_completed_materials": 156,
+        "reference_end_level": 6,
+        "unity_completed_level": 5,
+        "unity_cumulative_kills_including_trees": 501,
+        "unity_wave_kills_including_trees": 158,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 7,
+        "configured_seconds_reference": 50,
+        "configured_seconds_unity": 50,
+        "reference_sampled_seconds": 49.714,
+        "unity_active_seconds": 50.05305480957031,
+        "reference_end_materials": 124,
+        "unity_completed_materials": 262,
+        "reference_end_level": 7,
+        "unity_completed_level": 8,
+        "unity_cumulative_kills_including_trees": 714,
+        "unity_wave_kills_including_trees": 213,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 8,
+        "configured_seconds_reference": 55,
+        "configured_seconds_unity": 55,
+        "reference_sampled_seconds": 54.704,
+        "unity_active_seconds": 55.03981018066406,
+        "reference_end_materials": 207,
+        "unity_completed_materials": 359,
+        "reference_end_level": 8,
+        "unity_completed_level": 9,
+        "unity_cumulative_kills_including_trees": 872,
+        "unity_wave_kills_including_trees": 158,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 9,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.695,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 339,
+        "unity_completed_materials": 764,
+        "reference_end_level": 10,
+        "unity_completed_level": 11,
+        "unity_cumulative_kills_including_trees": 1292,
+        "unity_wave_kills_including_trees": 420,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 10,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.7,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 465,
+        "unity_completed_materials": 1134,
+        "reference_end_level": 11,
+        "unity_completed_level": 13,
+        "unity_cumulative_kills_including_trees": 1645,
+        "unity_wave_kills_including_trees": 353,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 11,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.708,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 375,
+        "unity_completed_materials": 1154,
+        "reference_end_level": 12,
+        "unity_completed_level": 14,
+        "unity_cumulative_kills_including_trees": 1883,
+        "unity_wave_kills_including_trees": 238,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 12,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.51,
+        "unity_active_seconds": 60.035369873046875,
+        "reference_end_materials": 409,
+        "unity_completed_materials": 1151,
+        "reference_end_level": 13,
+        "unity_completed_level": 15,
+        "unity_cumulative_kills_including_trees": 2176,
+        "unity_wave_kills_including_trees": 293,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 13,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.725,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 263,
+        "unity_completed_materials": 1300,
+        "reference_end_level": 13,
+        "unity_completed_level": 16,
+        "unity_cumulative_kills_including_trees": 2435,
+        "unity_wave_kills_including_trees": 259,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 14,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.528,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 376,
+        "unity_completed_materials": 1332,
+        "reference_end_level": 14,
+        "unity_completed_level": 17,
+        "unity_cumulative_kills_including_trees": 2698,
+        "unity_wave_kills_including_trees": 263,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 15,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.504,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 312,
+        "unity_completed_materials": 1660,
+        "reference_end_level": 15,
+        "unity_completed_level": 18,
+        "unity_cumulative_kills_including_trees": 3141,
+        "unity_wave_kills_including_trees": 443,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 16,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.604,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 390,
+        "unity_completed_materials": 1529,
+        "reference_end_level": 16,
+        "unity_completed_level": 20,
+        "unity_cumulative_kills_including_trees": 3430,
+        "unity_wave_kills_including_trees": 289,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 17,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.596,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 451,
+        "unity_completed_materials": 1612,
+        "reference_end_level": 17,
+        "unity_completed_level": 21,
+        "unity_cumulative_kills_including_trees": 3671,
+        "unity_wave_kills_including_trees": 241,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 18,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.573,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 235,
+        "unity_completed_materials": 1759,
+        "reference_end_level": 18,
+        "unity_completed_level": 22,
+        "unity_cumulative_kills_including_trees": 4009,
+        "unity_wave_kills_including_trees": 338,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 19,
+        "configured_seconds_reference": 60,
+        "configured_seconds_unity": 60,
+        "reference_sampled_seconds": 59.685,
+        "unity_active_seconds": 60.03533935546875,
+        "reference_end_materials": 470,
+        "unity_completed_materials": 1854,
+        "reference_end_level": 19,
+        "unity_completed_level": 23,
+        "unity_cumulative_kills_including_trees": 4479,
+        "unity_wave_kills_including_trees": 470,
+        "reference_cumulative_kills": null
+      },
+      {
+        "wave": 20,
+        "configured_seconds_reference": 90,
+        "configured_seconds_unity": 90,
+        "reference_sampled_seconds": 89.725,
+        "unity_active_seconds": 90.0107421875,
+        "reference_end_materials": 287,
+        "unity_completed_materials": 2031,
+        "reference_end_level": 19,
+        "unity_completed_level": 24,
+        "unity_cumulative_kills_including_trees": 4756,
+        "unity_wave_kills_including_trees": 277,
+        "reference_cumulative_kills": null
+      }
+    ],
+    "final": {
+      "reference": {
+        "status": "won",
+        "materials": 335,
+        "level": 19,
+        "item_count": 41
+      },
+      "unity": {
+        "status": "Passed",
+        "phase": "Won",
+        "materials": 2031,
+        "level": 24,
+        "item_count": 45
+      }
+    },
+    "unresolved": [
+      "Different acquired gear, offers, upgrades, crate counts, materials and levels prevent balance equality claims; this single pair cannot separate RNG from gameplay differences.",
+      "Unity fixed 50ms simulation steps and Godot engine time scale/physics settings differ. Movement is scripted in both but coordinate paths, collision and target selection are not identical.",
+      "Reference clock covers whole-engine scaled processing; Unity clock covers active combat. Wall time and final simulatedSeconds are not comparable performance metrics.",
+      "Unity timer measurements overshoot configured values by 0.011-0.053s; reference sampled intervals undershoot by 0.154-0.496s. Capture/event sampling and simulation phase differ; frame-accurate timing equality is unverified.",
+      "Invulnerability, supplied weapons, accelerated time and scripted choices mean this is not an ordinary human full-run survival/control acceptance test.",
+      "Run traces do not establish every item effect or stack formula, hardware controller bindings, audio listening or persistent saves.",
+      "Reference kill/projectile counters were not instrumented; Unity counts cannot be compared to absent reference counts."
+    ],
+    "trace_build_status": "Historical completed final run, before material pickup cap/banking/counter corrections; corrected runtime requires rebuilt validation.",
+    "confirmed_source_mismatches_after_trace": [
+      {
+        "rule": "material object cap and overflow",
+        "reference": "main.gd MAX_GOLDS=50; spawn_gold merges excess units into random active pickup",
+        "traced_unity": "cap240, SplitValue at most6 pieces, excess banked immediately",
+        "state": "corrected in source, pending rebuilt run"
+      },
+      {
+        "rule": "bank bonus timing",
+        "reference": "reserved when new material object spawns; merging does not consume",
+        "traced_unity": "consumed on pickup",
+        "state": "corrected in source, pending rebuilt run"
+      },
+      {
+        "rule": "Gatherer counter",
+        "reference": "one count per material object collected by player",
+        "traced_unity": "count equals boosted material currency amount",
+        "state": "corrected in source, pending rebuilt run"
+      }
+    ],
+    "next_fixture_instrumentation": [
+      "harvesting",
+      "luck",
+      "bankedMaterials",
+      "kills (includes trees)",
+      "enemyKills (excludes trees)",
+      "materialPickups (pickup objects)",
+      "materialObjects",
+      "groundMaterialValue"
+    ],
+    "reference_killrate_comparison": "Unavailable: the completed original trace and source debug logs contain no numeric kill counters; do not infer missing counts from materials or levels.",
+    "instrumented_reference_rerun": {
+      "artifact_folder": "artifacts/gameplay-parity-reference-2026-10-15/corrected",
+      "result": {
+        "event": "finished",
+        "wave": 20,
+        "wall_seconds": 176.408,
+        "simulated_seconds": 1133.016731,
+        "gold": 341,
+        "level": 20,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_2"
+        ],
+        "item_count": 45,
+        "harvesting": 24,
+        "luck": 39,
+        "banked_materials": 1280,
+        "enemy_kills": 5112,
+        "tree_kills": 43,
+        "material_pickups": 1521,
+        "ground_material_objects": 0,
+        "ground_material_value": 0,
+        "status": "won",
+        "waves_started": 20,
+        "purchases": 37,
+        "upgrades": 19,
+        "crates": 8,
+        "run_won": true
+      },
+      "fresh_profile_boot": {
+        "gold": 0,
+        "level": 0,
+        "item_count": 0,
+        "harvesting": 0,
+        "luck": 0,
+        "banked_materials": 0,
+        "enemy_kills": 0,
+        "tree_kills": 0,
+        "material_pickups": 0
+      },
+      "diagnostics": {
+        "script_error_count": 37,
+        "script_errors": {
+          "Assertion failed: Could not open log file, error code: 7": 37
+        },
+        "errors": {
+          "Could not create directory: user://logs": 1,
+          "CrashReporter: Failed to collect logs in C:/Users/FanSh/AppData/Roaming/Scrapshift Reference Parity Fixture 20261015/logs": 1,
+          "Condition \"_first != nullptr\" is true.": 3,
+          "Resources still in use at exit (run with --verbose for details).": 1,
+          "There are still MemoryPool allocs in use at exit!": 1
+        },
+        "warnings": {
+          "Can't open unpacked mods folder res://mods-unpacked/.": 1,
+          "Node './Attach' was modified from inside an instance, but it has vanished.": 80,
+          "ObjectDB instances leaked at exit (run with --verbose for details).": 1
+        }
+      },
+      "note": "Separate execution, not deterministic replay. Await corrected Unity trace for corresponding stats and bank comparison.",
+      "wave_snapshots": [
+        {
+          "wave": 1,
+          "gold": 10,
+          "level": 0,
+          "harvesting": 0,
+          "luck": 0,
+          "banked_materials": 0,
+          "enemy_kills": 25,
+          "tree_kills": 0,
+          "material_pickups": 10,
+          "ground_material_objects": 15,
+          "ground_material_value": 15,
+          "cumulative_kills_including_trees": 25,
+          "wave_kills_including_trees": 25
+        },
+        {
+          "wave": 2,
+          "gold": 30,
+          "level": 1,
+          "harvesting": 0,
+          "luck": 0,
+          "banked_materials": 0,
+          "enemy_kills": 65,
+          "tree_kills": 2,
+          "material_pickups": 23,
+          "ground_material_objects": 33,
+          "ground_material_value": 41,
+          "cumulative_kills_including_trees": 67,
+          "wave_kills_including_trees": 42
+        },
+        {
+          "wave": 3,
+          "gold": 47,
+          "level": 2,
+          "harvesting": 0,
+          "luck": 0,
+          "banked_materials": 0,
+          "enemy_kills": 124,
+          "tree_kills": 2,
+          "material_pickups": 43,
+          "ground_material_objects": 39,
+          "ground_material_value": 63,
+          "cumulative_kills_including_trees": 126,
+          "wave_kills_including_trees": 59
+        },
+        {
+          "wave": 4,
+          "gold": 68,
+          "level": 3,
+          "harvesting": -2,
+          "luck": 0,
+          "banked_materials": 0,
+          "enemy_kills": 209,
+          "tree_kills": 3,
+          "material_pickups": 69,
+          "ground_material_objects": 50,
+          "ground_material_value": 101,
+          "cumulative_kills_including_trees": 212,
+          "wave_kills_including_trees": 86
+        },
+        {
+          "wave": 5,
+          "gold": 91,
+          "level": 4,
+          "harvesting": -2,
+          "luck": 10,
+          "banked_materials": 18,
+          "enemy_kills": 336,
+          "tree_kills": 4,
+          "material_pickups": 102,
+          "ground_material_objects": 50,
+          "ground_material_value": 134,
+          "cumulative_kills_including_trees": 340,
+          "wave_kills_including_trees": 128
+        },
+        {
+          "wave": 6,
+          "gold": 94,
+          "level": 5,
+          "harvesting": -2,
+          "luck": 10,
+          "banked_materials": 65,
+          "enemy_kills": 490,
+          "tree_kills": 5,
+          "material_pickups": 139,
+          "ground_material_objects": 50,
+          "ground_material_value": 150,
+          "cumulative_kills_including_trees": 495,
+          "wave_kills_including_trees": 155
+        },
+        {
+          "wave": 7,
+          "gold": 217,
+          "level": 7,
+          "harvesting": -2,
+          "luck": 20,
+          "banked_materials": 81,
+          "enemy_kills": 685,
+          "tree_kills": 5,
+          "material_pickups": 223,
+          "ground_material_objects": 50,
+          "ground_material_value": 133,
+          "cumulative_kills_including_trees": 690,
+          "wave_kills_including_trees": 195
+        },
+        {
+          "wave": 8,
+          "gold": 234,
+          "level": 8,
+          "harvesting": 3,
+          "luck": 19,
+          "banked_materials": 76,
+          "enemy_kills": 826,
+          "tree_kills": 8,
+          "material_pickups": 313,
+          "ground_material_objects": 48,
+          "ground_material_value": 120,
+          "cumulative_kills_including_trees": 834,
+          "wave_kills_including_trees": 144
+        },
+        {
+          "wave": 9,
+          "gold": 358,
+          "level": 10,
+          "harvesting": 4,
+          "luck": 29,
+          "banked_materials": 0,
+          "enemy_kills": 1229,
+          "tree_kills": 12,
+          "material_pickups": 463,
+          "ground_material_objects": 50,
+          "ground_material_value": 217,
+          "cumulative_kills_including_trees": 1241,
+          "wave_kills_including_trees": 407
+        },
+        {
+          "wave": 10,
+          "gold": 393,
+          "level": 12,
+          "harvesting": 5,
+          "luck": 29,
+          "banked_materials": 55,
+          "enemy_kills": 1570,
+          "tree_kills": 14,
+          "material_pickups": 575,
+          "ground_material_objects": 50,
+          "ground_material_value": 236,
+          "cumulative_kills_including_trees": 1584,
+          "wave_kills_including_trees": 343
+        },
+        {
+          "wave": 11,
+          "gold": 403,
+          "level": 13,
+          "harvesting": 6,
+          "luck": 39,
+          "banked_materials": 131,
+          "enemy_kills": 1806,
+          "tree_kills": 15,
+          "material_pickups": 685,
+          "ground_material_objects": 50,
+          "ground_material_value": 161,
+          "cumulative_kills_including_trees": 1821,
+          "wave_kills_including_trees": 237
+        },
+        {
+          "wave": 12,
+          "gold": 437,
+          "level": 14,
+          "harvesting": 7,
+          "luck": 34,
+          "banked_materials": 129,
+          "enemy_kills": 2111,
+          "tree_kills": 18,
+          "material_pickups": 786,
+          "ground_material_objects": 50,
+          "ground_material_value": 266,
+          "cumulative_kills_including_trees": 2129,
+          "wave_kills_including_trees": 308
+        },
+        {
+          "wave": 13,
+          "gold": 341,
+          "level": 15,
+          "harvesting": 8,
+          "luck": 39,
+          "banked_materials": 242,
+          "enemy_kills": 2397,
+          "tree_kills": 19,
+          "material_pickups": 889,
+          "ground_material_objects": 50,
+          "ground_material_value": 169,
+          "cumulative_kills_including_trees": 2416,
+          "wave_kills_including_trees": 287
+        },
+        {
+          "wave": 14,
+          "gold": 320,
+          "level": 16,
+          "harvesting": 4,
+          "luck": 39,
+          "banked_materials": 277,
+          "enemy_kills": 2715,
+          "tree_kills": 22,
+          "material_pickups": 973,
+          "ground_material_objects": 50,
+          "ground_material_value": 193,
+          "cumulative_kills_including_trees": 2737,
+          "wave_kills_including_trees": 321
+        },
+        {
+          "wave": 15,
+          "gold": 258,
+          "level": 17,
+          "harvesting": 5,
+          "luck": 34,
+          "banked_materials": 333,
+          "enemy_kills": 3227,
+          "tree_kills": 25,
+          "material_pickups": 1060,
+          "ground_material_objects": 50,
+          "ground_material_value": 363,
+          "cumulative_kills_including_trees": 3252,
+          "wave_kills_including_trees": 515
+        },
+        {
+          "wave": 16,
+          "gold": 342,
+          "level": 18,
+          "harvesting": 6,
+          "luck": 39,
+          "banked_materials": 538,
+          "enemy_kills": 3601,
+          "tree_kills": 26,
+          "material_pickups": 1168,
+          "ground_material_objects": 50,
+          "ground_material_value": 218,
+          "cumulative_kills_including_trees": 3627,
+          "wave_kills_including_trees": 375
+        },
+        {
+          "wave": 17,
+          "gold": 235,
+          "level": 18,
+          "harvesting": 15,
+          "luck": 39,
+          "banked_materials": 616,
+          "enemy_kills": 3880,
+          "tree_kills": 29,
+          "material_pickups": 1258,
+          "ground_material_objects": 50,
+          "ground_material_value": 262,
+          "cumulative_kills_including_trees": 3909,
+          "wave_kills_including_trees": 282
+        },
+        {
+          "wave": 18,
+          "gold": 177,
+          "level": 19,
+          "harvesting": 16,
+          "luck": 39,
+          "banked_materials": 765,
+          "enemy_kills": 4285,
+          "tree_kills": 35,
+          "material_pickups": 1318,
+          "ground_material_objects": 50,
+          "ground_material_value": 295,
+          "cumulative_kills_including_trees": 4320,
+          "wave_kills_including_trees": 411
+        },
+        {
+          "wave": 19,
+          "gold": 212,
+          "level": 19,
+          "harvesting": 17,
+          "luck": 39,
+          "banked_materials": 931,
+          "enemy_kills": 4806,
+          "tree_kills": 36,
+          "material_pickups": 1397,
+          "ground_material_objects": 50,
+          "ground_material_value": 339,
+          "cumulative_kills_including_trees": 4842,
+          "wave_kills_including_trees": 522
+        },
+        {
+          "wave": 20,
+          "gold": 319,
+          "level": 20,
+          "harvesting": 22,
+          "luck": 39,
+          "banked_materials": 1096,
+          "enemy_kills": 5112,
+          "tree_kills": 43,
+          "material_pickups": 1521,
+          "ground_material_objects": 50,
+          "ground_material_value": 184,
+          "cumulative_kills_including_trees": 5155,
+          "wave_kills_including_trees": 313
+        }
+      ]
+    }
+  }
+}

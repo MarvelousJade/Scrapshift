@@ -14,7 +14,7 @@ namespace Scrapshift
  #else
             // Editor Game view and explicit command-line capture sizes remain under their caller's control.
             if(Application.isEditor || Array.Exists(args,a=>a.StartsWith("-screen-")))return;
-            SetFullscreen(PlayerPrefs.GetInt("fullscreen",1)!=0,false);
+            SetFullscreen(!GameSettings.IsFixture&&PlayerPrefs.GetInt("fullscreen",1)!=0,false);
 #endif
         }
         void SetFullscreen(bool enabled,bool save=true)
@@ -28,7 +28,7 @@ namespace Scrapshift
                 Screen.SetResolution(native.width,native.height,FullScreenMode.FullScreenWindow);
             }
             else Screen.SetResolution(1440,900,FullScreenMode.Windowed);
-            if(save){PlayerPrefs.SetInt("fullscreen",enabled?1:0);PlayerPrefs.Save();}
+            if(save&&!GameSettings.IsFixture){PlayerPrefs.SetInt("fullscreen",enabled?1:0);PlayerPrefs.Save();}
 #endif
         }
         void ToggleFullscreen()=>SetFullscreen(!Screen.fullScreen);

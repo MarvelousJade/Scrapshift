@@ -1,0 +1,264 @@
+{
+  "status": "Compared",
+  "scope": "Compare combat-window wall time from two completed Scrapshift campaigns.\n\nThis reports observed timing, not FPS, identical workloads or reference parity.\nShop/reward/cleanup time is excluded using wave_start -> wave_timer_end pairs.\n",
+  "before": {
+    "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\full-verification-2026-10-17\\unity-attempt-3",
+    "traceSha256": "605ffcfa5baf9c6b9c32891ba00f6218b53b399a965dbe94349536c3df92adf5",
+    "rows": [
+      {
+        "wave": 1,
+        "combatWall": 20.1821711063385,
+        "activeSeconds": 20.01653289794922,
+        "combatWallExcess": 0.16563820838928223
+      },
+      {
+        "wave": 2,
+        "combatWall": 24.983861923217773,
+        "activeSeconds": 25.016284942626953,
+        "combatWallExcess": -0.03242301940917969
+      },
+      {
+        "wave": 3,
+        "combatWall": 29.98249053955078,
+        "activeSeconds": 30.018733978271484,
+        "combatWallExcess": -0.036243438720703125
+      },
+      {
+        "wave": 4,
+        "combatWall": 35.007728576660156,
+        "activeSeconds": 35.024147033691406,
+        "combatWallExcess": -0.01641845703125
+      },
+      {
+        "wave": 5,
+        "combatWall": 39.99243927001953,
+        "activeSeconds": 40.015106201171875,
+        "combatWallExcess": -0.02266693115234375
+      },
+      {
+        "wave": 6,
+        "combatWall": 44.99955749511719,
+        "activeSeconds": 45.00567626953125,
+        "combatWallExcess": -0.0061187744140625
+      },
+      {
+        "wave": 7,
+        "combatWall": 49.99458312988281,
+        "activeSeconds": 50.00445556640625,
+        "combatWallExcess": -0.0098724365234375
+      },
+      {
+        "wave": 8,
+        "combatWall": 54.983489990234375,
+        "activeSeconds": 55.00325012207031,
+        "combatWallExcess": -0.0197601318359375
+      },
+      {
+        "wave": 9,
+        "combatWall": 59.995941162109375,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.006072998046875
+      },
+      {
+        "wave": 10,
+        "combatWall": 60.179901123046875,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 0.177886962890625
+      },
+      {
+        "wave": 11,
+        "combatWall": 59.983001708984375,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.019012451171875
+      },
+      {
+        "wave": 12,
+        "combatWall": 60.000396728515625,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.001617431640625
+      },
+      {
+        "wave": 13,
+        "combatWall": 62.5841064453125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 2.58209228515625
+      },
+      {
+        "wave": 14,
+        "combatWall": 72.3333740234375,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 12.33135986328125
+      },
+      {
+        "wave": 15,
+        "combatWall": 95.88238525390625,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 35.88037109375
+      },
+      {
+        "wave": 16,
+        "combatWall": 76.21923828125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 16.21722412109375
+      },
+      {
+        "wave": 17,
+        "combatWall": 75.48541259765625,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 15.4833984375
+      },
+      {
+        "wave": 18,
+        "combatWall": 91.80078125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 31.79876708984375
+      },
+      {
+        "wave": 19,
+        "combatWall": 100.500732421875,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": 40.49871826171875
+      },
+      {
+        "wave": 20,
+        "combatWall": 105.64501953125,
+        "activeSeconds": 90.0736083984375,
+        "combatWallExcess": 15.5714111328125
+      }
+    ],
+    "activeSeconds": 1050.199951171875,
+    "combatWall": 1220.7366125583649,
+    "combatWallExcess": 170.53666138648987
+  },
+  "after": {
+    "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\full-verification-2026-10-17\\unity-attempt-4",
+    "traceSha256": "869d64ac3ec44033979d8e9d3a3eae28edcd7c37e9d32e0c51e18232a0b01f2f",
+    "rows": [
+      {
+        "wave": 1,
+        "combatWall": 20.179044008255005,
+        "activeSeconds": 20.01653289794922,
+        "combatWallExcess": 0.16251111030578613
+      },
+      {
+        "wave": 2,
+        "combatWall": 24.999361038208008,
+        "activeSeconds": 25.016284942626953,
+        "combatWallExcess": -0.016923904418945312
+      },
+      {
+        "wave": 3,
+        "combatWall": 29.960304260253906,
+        "activeSeconds": 30.018733978271484,
+        "combatWallExcess": -0.058429718017578125
+      },
+      {
+        "wave": 4,
+        "combatWall": 34.99385070800781,
+        "activeSeconds": 35.024147033691406,
+        "combatWallExcess": -0.03029632568359375
+      },
+      {
+        "wave": 5,
+        "combatWall": 39.98980712890625,
+        "activeSeconds": 40.015106201171875,
+        "combatWallExcess": -0.025299072265625
+      },
+      {
+        "wave": 6,
+        "combatWall": 44.97016906738281,
+        "activeSeconds": 45.00567626953125,
+        "combatWallExcess": -0.0355072021484375
+      },
+      {
+        "wave": 7,
+        "combatWall": 49.96897888183594,
+        "activeSeconds": 50.00445556640625,
+        "combatWallExcess": -0.0354766845703125
+      },
+      {
+        "wave": 8,
+        "combatWall": 54.984466552734375,
+        "activeSeconds": 55.00325012207031,
+        "combatWallExcess": -0.0187835693359375
+      },
+      {
+        "wave": 9,
+        "combatWall": 59.989471435546875,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.012542724609375
+      },
+      {
+        "wave": 10,
+        "combatWall": 59.931121826171875,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.070892333984375
+      },
+      {
+        "wave": 11,
+        "combatWall": 59.957672119140625,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.044342041015625
+      },
+      {
+        "wave": 12,
+        "combatWall": 59.958740234375,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.04327392578125
+      },
+      {
+        "wave": 13,
+        "combatWall": 59.952392578125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.04962158203125
+      },
+      {
+        "wave": 14,
+        "combatWall": 59.966064453125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.03594970703125
+      },
+      {
+        "wave": 15,
+        "combatWall": 59.9581298828125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.04388427734375
+      },
+      {
+        "wave": 16,
+        "combatWall": 59.949462890625,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.05255126953125
+      },
+      {
+        "wave": 17,
+        "combatWall": 59.93310546875,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.06890869140625
+      },
+      {
+        "wave": 18,
+        "combatWall": 59.98150634765625,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.0205078125
+      },
+      {
+        "wave": 19,
+        "combatWall": 59.93798828125,
+        "activeSeconds": 60.00201416015625,
+        "combatWallExcess": -0.06402587890625
+      },
+      {
+        "wave": 20,
+        "combatWall": 89.9241943359375,
+        "activeSeconds": 90.0736083984375,
+        "combatWallExcess": -0.1494140625
+      }
+    ],
+    "activeSeconds": 1050.199951171875,
+    "combatWall": 1049.4858314990997,
+    "combatWallExcess": -0.7141196727752686
+  },
+  "excessReductionSeconds": 171.25078105926514,
+  "limits": "Separate evolving runs with engine-specific random combat and shop choices; not identical entity/shot counts, a human survival benchmark, FPS or proof that all performance issues are resolved. Trace callback timing can produce small negative per-wave excess."
+}

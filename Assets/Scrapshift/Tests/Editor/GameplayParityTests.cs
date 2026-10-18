@@ -60,6 +60,23 @@ namespace Scrapshift.Tests
             Assert.AreSame(offer,r.Shop[0]);Assert.AreEqual(price,r.Price(offer));
             Assert.Greater(r.Price(offer.Value),price);
         }
+        [Test] public void HealthShopAcceptsExactBalanceAndRemovesBaseMaxHp()
+        {
+            var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");
+            var character=new CharacterProfile {id="hp-shop-fixture",startingWeapons=new[]{"pistol"},stats=new[]{new StatEffect{key="hp_shop",value=1}},
+                gains=new[]{new StatEffect{key="max_hp",value=100}}};
+            var r=new RunRules(77);r.Configure(catalog);r.Start(character,"pistol");
+            r.Tick(r.Remaining);Assert.AreEqual(RunPhase.Shop,r.Phase);
+            var exact=new ShopOffer {item=new ItemEntry {id="fixture",value=347,effects=new StatEffect[0]},rolledWave=1};
+            r.Shop[0]=exact;
+            Assert.AreEqual(20,r.MaxHealth);Assert.AreEqual(20,r.Price(exact));
+            Assert.IsTrue(r.CanBuy(0));Assert.IsTrue(r.Buy(0));
+            Assert.AreEqual(1,r.MaxHealth);
+            var boosted=new RunRules(78);boosted.Configure(catalog);boosted.Start(character,"pistol");boosted.Tick(boosted.Remaining);
+            boosted.Shop[0]=new ShopOffer {item=new ItemEntry {id="fixture",value=170,effects=new StatEffect[0]},rolledWave=1};
+            Assert.AreEqual(10,boosted.Price(boosted.Shop[0]));
+            Assert.IsTrue(boosted.Buy(0));Assert.AreEqual(1,boosted.MaxHealth);
+        }
         [Test] public void NeutralBossAndSummonBirthsAreNotStarvedByNormalBacklog()
         {
             var q=new ReferenceBirthQueue<int>();var actual=new List<int>();

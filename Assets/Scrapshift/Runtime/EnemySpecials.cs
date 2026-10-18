@@ -23,30 +23,67 @@ namespace Scrapshift
             if(e.orbitProjectiles==null)
             {
                 e.orbitProjectiles=new GameObject[bossRadii.Length];
+                e.orbitDistances=new float[bossRadii.Length];e.orbitPlayerContacts=new bool[bossRadii.Length];e.orbitPetContacts=new HashSet<Pet>[bossRadii.Length];
+                for(int i=0;i<bossRadii.Length;i++)e.orbitPetContacts[i]=new HashSet<Pet>();
                 for(int i=0;i<bossRadii.Length;i++)e.orbitProjectiles[i]=PlasmaOrb("Rotating boss plasma",e.obj.transform);
             }
-            e.orbitAngle+=dt*e.orbitSign*1.2f*(e.secondPhase?1.25f:1);
-            Vector2 direction=new Vector2(Mathf.Cos(e.orbitAngle),Mathf.Sin(e.orbitAngle));
+            e.orbitAngle+=dt*e.orbitSign*1.2f*(e.secondPhase?1.25f:1)*GameSettings.Value("enemySpeed");
             for(int i=0;i<bossRadii.Length;i++)
             {
-                // Reference projectiles extend along one rotating arm at 100 px/s.
-                // Source sprite center is -88px, pivot -32px: 56px below our body center.
-                Vector2 pos=e.pos+Vector2.down*.56f+direction*Mathf.Min(bossRadii[i],e.activeAge);
+                // Both extension and rotation use the source accessibility speed.
+                e.orbitDistances[i]=AdvanceBossArmRadius(e.orbitDistances[i],bossRadii[i],dt,GameSettings.Value("enemySpeed"));
+                Vector2 pos=BossArmPosition(e,e.orbitDistances[i]);
                 e.orbitProjectiles[i].transform.position=new Vector3(pos.x,pos.y,-2);
                 var parentScale=e.obj.transform.lossyScale;
                 e.orbitProjectiles[i].transform.localScale=new Vector3(1/parentScale.x,1/parentScale.y,1);
                 e.orbitProjectiles[i].transform.rotation=Quaternion.identity;
-                if(RunRules.Touches(pos,PlayerHurtCenter,CombatGeometry.PlayerHurtRadius+CombatGeometry.HostileRadius))HurtPlayer(ProjectileDamage(e),e.type,e);
+                ResolveBossArmPetContacts(e,i,pos);
+                ResolveBossArmEntry(e,i,pos);
             }
+        }
+        float AdvanceBossArmRadius(float current,float target,float dt,float speed)=>current<target?current+dt*speed:current;
+        Vector2 BossArmPosition(Enemy e,float radius)
+        {
+            Vector2 direction=new Vector2(Mathf.Cos(e.orbitAngle),Mathf.Sin(e.orbitAngle));
+            return EnemyOrigin(e)+Vector2.up*.32f+direction*radius;
+        }
+        bool ResolveBossArmEntry(Enemy e,int index,Vector2 position)
+        {
+            bool touching=PlayerHurtboxActive&&Rules.Phase==RunPhase.Playing&&RunRules.Touches(position,PlayerHurtCenter,CombatGeometry.PlayerHurtRadius+CombatGeometry.HostileRadius);
+            bool entered=touching&&!e.orbitPlayerContacts[index];e.orbitPlayerContacts[index]=touching;
+            return entered&&ResolveBossArmContact(e,position);
+        }
+        void ResolveBossArmPetContacts(Enemy e,int index,Vector2 position)
+        {
+            var contacts=e.orbitPetContacts[index];
+            foreach(var pet in pets)
+            {
+                bool goat=pet.spec.kind=="scapegoat",shield=pet.spec.kind=="jellyshield";
+                bool touching=!pet.dead&&(shield||goat&&pet.invulnerable<=0)&&RunRules.Touches(position,pet.pos+(goat?SupportBehavior.ScapegoatHurtOffset:Vector2.zero),(goat?.32f:.3f)+CombatGeometry.HostileRadius);
+                if(!touching){contacts.Remove(pet);continue;}
+                if(!contacts.Add(pet))continue;
+                if(shield)OriginalSupportAudio.Play(sound,"shield_hit",pet.pos);
+                DamageScapegoat(pet);pet.attackPose=.3f;Burst(pet.pos,4,mint);
+            }
+            // Source destroy_on_hit=false keeps the arm alive after either contact.
+        }
+        bool ResolveBossArmContact(Enemy e,Vector2 position)
+        {
+            if(!PlayerHurtboxActive||Rules.Phase!=RunPhase.Playing||!RunRules.Touches(position,PlayerHurtCenter,CombatGeometry.PlayerHurtRadius+CombatGeometry.HostileRadius))return false;
+            // These are persistent Projectile subclasses: the hurtbox contact
+            // counts even when protection prevents health loss.
+            Rules.RecordProjectileHit();HurtPlayer(ProjectileDamage(e),e.type,e);return true;
         }
         void EatMaterials(Enemy e,float dt)
         {
             for(int i=pickups.Count-1;i>=0;i--)
             {
                 var p=pickups[i];
-                if(p.fruit || p.motion.magnetized || Vector2.Distance(p.motion.position,e.pos)>.65f)continue;
-                p.motion.position=Vector2.MoveTowards(p.motion.position,e.pos,dt*9);
-                if(Vector2.Distance(p.motion.position,e.pos)>.3f)continue;
+                if(p.fruit)continue;
+                Vector2 origin=e.pos+CombatGeometry.OriginOffset(e.type.id);
+                bool entered=p.motion.AttractionEntered(e,origin,1);
+                if(entered&&p.petCollector==null&&p.enemyCollector==null&&!p.motion.magnetized)p.enemyCollector=e;
+                if(!p.motion.ContactEntered(e,origin+Vector2.up*.1f,.3f))continue;
                 e.gold+=p.value;Destroy(p.obj);pickups.RemoveAt(i);e.hasDestination=false;
                 if(e.evolution<2 && e.gold>=(e.evolution+1)*10)
                 {
@@ -78,8 +115,8 @@ namespace Scrapshift
                 float[] widths={.3f,.79f,1.365f,.885f};
                 Vector2 local=PlayerHurtCenter-s.pos;
                 float along=Vector2.Dot(local,s.direction)-(s.forward?1.65f:0),across=Vector2.Dot(local,new Vector2(-s.direction.y,s.direction.x));
-                if(Mathf.Abs(along-centers[frame])<widths[frame]+CombatGeometry.PlayerHurtRadius && Mathf.Abs(across+.03f)<(frame==0?.17f:frame==1?.15f:frame==2?.14f:.12f)+CombatGeometry.PlayerHurtRadius)
-                { HurtPlayer(s.damage,s.owner.type,s.owner);s.hit=true; }
+                if(PlayerHurtboxActive&&Rules.Phase==RunPhase.Playing&&Mathf.Abs(along-centers[frame])<widths[frame]+CombatGeometry.PlayerHurtRadius && Mathf.Abs(across+.03f)<(frame==0?.17f:frame==1?.15f:frame==2?.14f:.12f)+CombatGeometry.PlayerHurtRadius)
+                {Rules.RecordProjectileHit();HurtPlayer(s.damage,s.owner.type,s.owner);s.hit=true;}
             }
         }
     }

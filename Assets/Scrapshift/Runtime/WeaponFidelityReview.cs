@@ -10,7 +10,7 @@ namespace Scrapshift
         bool weaponFidelityReview;string weaponReviewPath;int weaponReviewStage;float weaponReviewNext;
         readonly List<string> weaponReviewPassed=new List<string>(),weaponReviewFailed=new List<string>();
         GameObject projectileSample;
-        [Serializable] sealed class WeaponReviewReport {public string status,scope="All 205 weapon/tier attack checks against stationary targets; staged projectile and melee captures. Not a full survival/balance equivalence claim.";public string[] passed,failed;}
+        [Serializable] sealed class WeaponReviewReport {public string status,scope="Registered weapon/tier smoke checks against stationary targets at 60 Hz, targeted native contact probes, and staged projectile/melee captures. Direct method fixtures do not prove the real combat accumulator or full-run parity.";public string[] passed,failed;}
         void BeginWeaponFidelityReview(string folder)
         {weaponFidelityReview=true;weaponReviewPath=Path.GetFullPath(folder);Directory.CreateDirectory(weaponReviewPath);sound.SetMuted(true);weaponReviewNext=Time.realtimeSinceStartup+.5f;}
         void WeaponFidelityReviewTick()
@@ -21,7 +21,7 @@ namespace Scrapshift
                 var w=catalog.data.equipment[weaponReviewStage++];Begin();ClearCombat();Rules.Inventory.Clear();Rules.Inventory.Add(w);Rules.Items.Clear();SyncEquipment();
                 arrivalAge=ArrivalMotion.Duration;playerPos=Vector2.zero;
                 var targets=new List<Enemy>();for(int i=0;i<8;i++)targets.Add(FeelEnemy(Quaternion.Euler(0,0,i*45)*Vector2.right*.9f));
-                for(int step=0;step<480;step++){UpdateEquipment(1f/120);UpdateWeapons(1f/120);UpdateStarterEffects(1f/120);}
+                for(int step=0;step<240;step++){UpdateEquipment(1f/60);UpdateWeapons(1f/60);UpdateStarterEffects(1f/60);}
                 bool passed=targets.Any(e=>e.hp<1000);(passed?weaponReviewPassed:weaponReviewFailed).Add(w.id+":"+w.tier);
                 Debug.Log("Weapon reference fixture "+w.id+":"+w.tier+" "+passed);return;
             }
@@ -45,6 +45,7 @@ namespace Scrapshift
                 TickMeleeAttack(0,w,Vector2.zero,time);gameCamera.orthographicSize=2.5f;gameCamera.transform.position=new Vector3(0,0,-20);
                 ScreenCapture.CaptureScreenshot(Path.Combine(weaponReviewPath,id+"-"+stage%3+".png"));weaponReviewNext=Time.realtimeSinceStartup+.15f;return;
             }
+            CheckNativeContactTiming(weaponReviewPath);
             File.WriteAllText(Path.Combine(weaponReviewPath,"weapons.json"),JsonUtility.ToJson(new WeaponReviewReport{status=weaponReviewFailed.Count==0?"Passed":"Failed",passed=weaponReviewPassed.ToArray(),failed=weaponReviewFailed.ToArray()},true));
             Application.Quit(weaponReviewFailed.Count==0?0:1);weaponFidelityReview=false;
         }

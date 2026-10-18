@@ -1,4 +1,42 @@
+## October17: allocation-safe lookups in combat
+
+`CombatGeometry` builds an ordinal index once from the immutable enemy collision resource, preserving first-row selection and missing/null fallbacks. Crowd and projectile loops reuse the same authored shapes without creating a captured predicate per lookup. `WeaponSets` uses loops while retaining configured identity, explicit/legacy membership and source total-bonus selection. `GameSettings` caches only immutable launch classification; live values remain in the existing fixture dictionary or PlayerPrefs. No mutable stat cache or physics-clock change was introduced.
+
+The opt-in navigation fixture sets Input System IgnoreFocus only in its own process so desktop focus does not reset queued synthetic holds. It does not test ordinary focus policy or physical hardware. See [profiling investigation](late-wave-allocation-investigation-2026-10-17.md) and dated native evidence.
+
+## October 17 settlement lifecycle
+
+`RunFeedback.BeginWaveSweep` records wave-end facts and calls `RunRules.BeginWaveSettlement` before removing enemies or collecting remaining pickups. The rule stage applies end-wave permanent effects/conversions, credits materials/XP once, records a receipt, then clears temporary effects. The cleanup clock calls `AdvanceWaveSettlement`; after0.66 seconds growth reads the current effective harvesting value. `CompleteWaveSettlement` opens rewards after two seconds, or declares the final win after four seconds, once remaining pickup cleanup has finished.
+
+Standalone `RunRules.Tick` consumers use a documented atomic adapter that fast-forwards those stages. Native gameplay intercepts the deadline and advances the stages in real time. The lifecycle tests check ordering, temporary/permanent modifiers, pause, reset and duplicate protection; native checks verify the actual Update clock. A final boss kill starts a0.1-second timer so death/drop callbacks finish before normal settlement.
+
+Campaign receipts bind the materials immediately before and after settlement. A post-credit timer snapshot alone cannot prove whether harvesting was paid. R19's preserved missing-credit failure and R21's corrected34-material receipt demonstrate that distinction; see [current verification](full-verification-2026-10-17.md).
+
+## October 17 gameplay transform and validation update
+
+First-wave arrival is a presentation transform layered onto live combat. `ArenaGame` advances movement, wave time, projectiles and cooldowns once, then `AdvanceArrivalPresentation` advances the landing animation and reposes weapon views without ticking gameplay again. `ArrivalWeaponMotion` evaluates the supplied animation's numeric cubic keys; the body and weapon mounts share the registered landing translation. Weapons inherit that parent's visual rotation, while ranged velocity retains the reference weapon's local aim. These separate coordinate spaces matter during landing.
+
+`CombatGeometry.PlayerBodyStart` places the logical body .24 world units above the raw player origin. The camera follows the raw origin; an offset .24-radius collision circle determines straight-wall limits. This reproduces the inspected geometry, not the complete Godot collision solver or crowd ordering.
+
+Ranged projectile origins now come from authored numeric Sprite/Muzzle metadata (`WeaponReference.AuthoredMuzzleOffset`), composed through local aim and the animated parent. Replacement sprite bounds and reduced-motion artwork do not determine this gameplay position. `scripts/import_weapon_fidelity.py --numeric-muzzles-only` updates those fields without importing original artwork or regenerating the catalog; its source hashes are retained in `artifacts/authored-weapon-muzzles-2026-10-17.json`.
+
+Validation remains layered: source-derived EditMode assertions, actual native Update fixtures, and a scripted isolated20-wave comparison each support different claims. See [current verification](full-verification-2026-10-17.md) for dated results and limits. The independent native runner records the launched process, exit status and separate logs so a long campaign is not tied to an interactive tool session.
+
+## October 17 discrete gameplay cadence
+
+Combat advances at60 ticks per second with bounded catch-up, separate from rendering/input polling. Projectile/slow/support contacts use sampled overlaps; melee uses its current physics pose and beam geometry uses current animation thickness. Ordinary projectiles retain an initial spawn snapshot; delayed contacts resolve after the movement-time countdown and deferred-activation adapter. Source native fixtures establish selected geometry and timing cases, not complete physics-engine equivalence. Final selected validation: **524/524 passed**, zero failures/skips, Unity exit zero; all516 recorded inputs still match the isolated clone. Evidence: `gameplay-parity-final-checks-2026-10-17.md` and `artifacts/gameplay-parity-final-checks-2026-10-17/focused-summary.json`. No whole suite or full campaign ran. R9 is intermediate and predates final discrete-contact/starting-currency corrections. A current build, production support captures, physical Xbox verification and repaired-reference keyboard verification remain pending. Computer Use stopped when the user pressed physical Escape; no further UI input was sent.
+
+## October 17 combat state lifetimes
+
+Shots retain BurnPayload at fire time; explicit empty data prevents later effects attaching retroactively. DamageWithWeaponIndex captures live data for null/melee contacts and forwards one payload into explosion windows. Ghost counters belong to physical weapon slots. Explosions own hit sets and cumulative kills. Predator arm projectiles own player/pet overlap entries and persist after contact. These source adapters do not establish identical Godot/Unity physics scheduling. See `gameplay-parity-systems-2026-10-17.md`. Evidence: `artifacts/gameplay-parity-systems-2026-10-17/focused-summary.json`, both XML/log attempts, input manifest and catalog comparison. The same selected checks passed 434/434 on attempt 2, zero failures/skips, Unity exit zero. All 508 recorded input hashes still match the isolated clone after execution. No whole suite, new build, full campaign or physical-controller retest was run. R8 remains the last delivered gameplay build and predates these changes.
+
 # Architecture and tradeoffs
+
+## Current gameplay validation architecture — October 15, 2026
+
+`CombatInput` translates input into movement, aim mode and spatial menu navigation. `RunRules` owns shop/progression transactions; `ShopSpecialEffects` applies reroll, duplicate and theft hooks. `ReferenceCombat.Drop` owns ground material objects, with a 50-object cap and overflow merging. Bank bonuses attach at spawn; collection grants value while achievement progress counts collected objects. `ScrapMotion.SplitValue` remains a historical helper and no longer defines ordinary material drops.
+
+The isolated `CampaignCheck` player fixture records wave transitions, purchases, item multiplicity and progression snapshots. Its invulnerability and accelerated simulation make it an integration check, not a human survival or performance benchmark. See `gameplay-parity-controls-stacks-2026-10-15.md` and `full-run-comparison-2026-10-15.md` for dated results. The sections below include historical implementation context; current source and the dated reports take precedence.
 
 ## Original art integration
 

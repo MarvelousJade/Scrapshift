@@ -47,6 +47,12 @@ namespace Scrapshift.Tests
         {
             Assert.AreEqual(.3f,WeaponReference.Lifetime(2,10,false),.0001f);Assert.AreEqual(.25f,WeaponReference.Lifetime(2,10,true),.0001f);
             Assert.AreEqual(1,WeaponReference.DamageAfterHit(1,.9f,0));Assert.AreEqual(8,WeaponReference.DamageAfterHit(10,.5f,30),.0001f);
+            Assert.AreEqual(4,WeaponReference.DamageAfterHit(9,.5f,0),"The reference hitbox stores damage as an integer after each pierce or bounce");
+            Assert.AreEqual(2,WeaponReference.DamageAfterHit(WeaponReference.DamageAfterHit(9,.5f,0),.5f,0));
+            Assert.AreEqual(9,WeaponReference.DamageAfterHit(9,.5f,80),"Reduction is clamped before the integer conversion");
+            var flamethrower=new Equipment{id="flamethrower",tier=3,projectileSpeed=5.13f};
+            Assert.AreEqual(5.3f,WeaponReference.Speed(flamethrower,10),.0001f,"The source truncates scaled speed in pixels before converting to world units");
+            Assert.AreEqual(.5f,WeaponReference.Speed(flamethrower,-1000),.0001f);
         }
         [Test] public void ThrustDoesNotHitDuringWindupOrReturnUnlessConfigured()
         {

@@ -256,6 +256,16 @@ namespace Scrapshift.Tests
             r.GainWeaponStat("reroll_price",50);Assert.AreEqual(18,r.RerollPrice);
             r.GainWeaponStat("reroll_price",-250);Assert.AreEqual(2,r.RerollPrice);
         }
+        [Test] public void WeaponPriceAndRecyclingRetainFractionalAdjustedBaseUntilFinalConversion()
+        {
+            var r=new RunRules(42);r.Start();
+            r.SetShowcaseWave(6);
+            r.GainWeaponStat("weapons_price",25);
+            var offer=new ShopOffer{weapon=new Equipment{value=11},rolledWave=6};
+            Assert.AreEqual(28,r.Price(offer));
+            Assert.AreEqual(7,r.RecycleValue(11,true));
+            Assert.AreEqual(5,r.RecycleValue(11));
+        }
         [Test] public void UniqueWeaponShopRejectsDowngradesAndFinalTierDuplicates()
         {
             var catalog=AssetDatabase.LoadAssetAtPath<ReferenceCatalog>(ContentBuilder.Root+"/Definitions/ReferenceCatalog.asset");

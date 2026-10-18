@@ -1,0 +1,48 @@
+{
+    "status": "Passed",
+    "error": "",
+    "scope": "Opt-in staged final-wave native fixture, not a 20-wave playthrough. Neutral run, 100 materials and 15 Harvesting are staged through public rule APIs. Ordinary Update performs timer expiry, pickup sweep and final settlement for timer and delayed-boss routes. Boss death itself is not reenacted.",
+    "inMemoryProfile": true,
+    "samples": [
+        {
+            "route": "timer",
+            "phase": "Won",
+            "bossDelayed": true,
+            "sweepObserved": true,
+            "settledOnce": true,
+            "noFinalChoices": true,
+            "captureExists": true,
+            "materialsBefore": 100,
+            "materialsAfter": 115,
+            "levelBefore": 0,
+            "levelAfter": 0,
+            "pendingLevels": 0,
+            "pendingCrates": 0,
+            "harvestingBefore": 15.0,
+            "harvestingAfter": 16.0,
+            "xpBefore": 0.0,
+            "xpAfter": 15.0,
+            "remainingAfterTrigger": 0.02500152587890625
+        },
+        {
+            "route": "boss",
+            "phase": "Won",
+            "bossDelayed": true,
+            "sweepObserved": true,
+            "settledOnce": true,
+            "noFinalChoices": true,
+            "captureExists": true,
+            "materialsBefore": 100,
+            "materialsAfter": 115,
+            "levelBefore": 0,
+            "levelAfter": 0,
+            "pendingLevels": 0,
+            "pendingCrates": 0,
+            "harvestingBefore": 15.0,
+            "harvestingAfter": 16.0,
+            "xpBefore": 0.0,
+            "xpAfter": 15.0,
+            "remainingAfterTrigger": 0.10000000149011612
+        }
+    ]
+}

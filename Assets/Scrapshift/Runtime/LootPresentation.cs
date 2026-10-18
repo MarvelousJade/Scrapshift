@@ -6,9 +6,19 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int cratesSpawned;
+        bool collectingWaveRemainder;
         Texture2D cyberCrateTexture;
         Sprite cyberCrateSprite;
         Texture2D CrateTexture => cyberCrateTexture != null ? cyberCrateTexture : (cyberCrateTexture=Resources.Load<Texture2D>("CyberCrate"));
+        void RouteInstantMaterialCollector(Pickup pickup)
+        {
+            if(pickup.fruit||!pickup.motion.magnetized||pickup.petCollector!=null||pickup.enemyCollector!=null)return;
+            // entity_spawner.lootworms[player] stores the last spawned worm.
+            // Instant Gold attraction prefers that companion over the player.
+            var worm=pets.LastOrDefault(p=>p.spec?.kind=="lootworm"&&!p.dead&&p.obj!=null);
+            if(worm==null)return;
+            pickup.petCollector=worm;pickup.motion.magnetized=false;
+        }
         void DrawCrateIcon(Rect r)
         {
             GUI.DrawTexture(r,CrateTexture,ScaleMode.ScaleToFit,true);
@@ -26,7 +36,7 @@ namespace Scrapshift
             return obj;
         }
 
-        void DropConsumable(Vector2 position, ConsumableKind kind)
+        void DropConsumable(Vector2 position, ConsumableKind kind,float spread=0)
         {
             if(kind==ConsumableKind.None)return;
             bool crate=kind!=ConsumableKind.Fruit;
@@ -34,15 +44,15 @@ namespace Scrapshift
             var obj=crate?CrateObject(position,kind==ConsumableKind.LegendaryCrate):SpriteObject("Repair capsule",catalog.repairPickup,position,3);
             if(!crate)obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(catalog.repairPickup,.48f);
             else obj.transform.localScale=Vector3.one*(.85f/.64f);
-            pickups.Add(new Pickup {obj=obj,fruit=true,consumable=kind,
-                motion=new ScrapMotion {position=position,velocity=UnityEngine.Random.insideUnitCircle*3.2f,
-                    verticalSpeed=3,height=.06f,angle=crate?0:UnityEngine.Random.Range(0,360),spin=crate?0:90}});
+            var motion=ScrapMotion.CreateDrop(position,PickupPhysicsRate,spread);
+            motion.verticalSpeed=3;motion.height=.06f;motion.angle=crate?0:UnityEngine.Random.Range(0,360);motion.spin=crate?0:90;
+            pickups.Add(new Pickup {obj=obj,fruit=true,consumable=kind,motion=motion});
         }
 
         void CollectPickup(Pickup pickup)
         {
             int levelBefore=Rules.Level;float healthBefore=Rules.Health;
-            if(pickup.fruit){Rules.CollectConsumable(pickup.consumable);if(!waveSweeping)QueueImplantExplosions("explode_on_consumable",pickup.motion.position);}
+            if(pickup.fruit){Rules.CollectConsumable(pickup.consumable,waveSweeping||collectingWaveRemainder);if(!waveSweeping&&!collectingWaveRemainder)QueueImplantExplosions("explode_on_consumable",pickup.motion.position);}
             else Rules.Collect(pickup.value);
             float healed=Rules.Health-healthBefore;
             if(healed>0)FloatText(playerPos,$"+{healed:0} HP",mint,true);
@@ -58,8 +68,13 @@ namespace Scrapshift
             Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));
             // Source cleanup collects harmless consumables and banks unclaimed materials.
             // Do this while Playing, before RunRules selects the first reward phase.
-            foreach(var pickup in pickups)
-                if(pickup.fruit)CollectPickup(pickup);else Rules.BankMaterials(pickup.value);
+            collectingWaveRemainder=true;
+            try
+            {
+                foreach(var pickup in pickups)
+                    if(pickup.fruit)CollectPickup(pickup);else Rules.BankMaterials(pickup.value);
+            }
+            finally{collectingWaveRemainder=false;}
             foreach(var pickup in pickups)Destroy(pickup.obj);
             pickups.Clear();
         }
@@ -80,7 +95,7 @@ namespace Scrapshift
             Text(r.x+112,r.y+20,305,60,inspectionText.ItemName(item),new GUIStyle(inspectionTitle){normal={textColor=TierColor(item.tier)}});
             Text(r.x+112,r.y+85,305,28,"Item",inspectionBody);
             RichText(inspectionText.ItemDescription(item),new Rect(r.x+25,r.y+138,390,200),18);
-            if(Button(new Rect(335,586,440,56),"Take"))ResolveCrate(true);
+            if(MenuButton(new Rect(335,586,440,56),"Take",defaultFocus:true))ResolveCrate(true);
             if(Button(new Rect(335,654,440,56),$"Recycle (+{Rules.CrateRecycleValue})"))ResolveCrate(false);
             DrawSetTooltip();
         }

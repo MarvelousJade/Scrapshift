@@ -1,0 +1,224 @@
+{
+    "status": "Captured",
+    "error": "",
+    "loadoutPath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\full-verification-2026-10-17\\unity-attempt-3\\campaign-check.json",
+    "tracePath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\full-verification-2026-10-17\\unity-attempt-3\\campaign-trace.json",
+    "rawPath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\late-wave-profile-2026-10-17\\stat-crowd-combined\\crowded.raw",
+    "scope": "Synthetic crowded-wave Development-player CPU profile, not a reproduction of R21 or a parity/performance benchmark. Final weapon/item stacks and upgrade deltas are replayed if supplied. Enemy HP, 350 hostile and 50 friendly slow long-lived projectiles, 200 material piles and player protection are staged. Actual ArenaGame.Update drives all combat/rendering; non-Deep profile after three-second warmup.",
+    "development": true,
+    "profilerSupported": true,
+    "inMemoryProfile": true,
+    "baseline": false,
+    "allocationCallstacksBefore": false,
+    "allocationCallstacksDuring": false,
+    "statAllocationBench": [
+        {
+            "method": "Stat(enemy_speed)",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 6.2371,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "Stat(range)",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 6.197900000000001,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "Stat(max_hp)",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 1,
+            "allocatedBytes": -1,
+            "elapsedMs": 6.5602,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "Stat(all_weapons_count_for_sets)",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 6.0723,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "Stat(percent_damage)",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 6.1348,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "PermanentStat",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.017,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "SetStat",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 2.4356,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "EquipmentStat",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.1037,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "ConditionalStat",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 1,
+            "allocatedBytes": -1,
+            "elapsedMs": 2.4525,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "LinkedStat",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 1.3391,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "WeaponSets.Bonus",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 2.3386,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "WeaponSets.Count",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.1628,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "WeaponSets.For",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.1254,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "ConditionalEffects enumeration",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 1.3341,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "GameSettings.Value",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.023100000000000002,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "GameSettings.Flag",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.0258,
+            "bytesPerCall": -1.0
+        },
+        {
+            "method": "CombatGeometry.Enemy",
+            "allocationCounterAvailable": false,
+            "calls": 1000,
+            "collections": 0,
+            "allocatedBytes": -1,
+            "elapsedMs": 0.373,
+            "bytesPerCall": -1.0
+        }
+    ],
+    "frames": 4,
+    "initialEnemies": 134,
+    "initialShots": 400,
+    "initialHostileShots": 350,
+    "initialFriendlyShots": 50,
+    "initialPickups": 50,
+    "items": 42,
+    "upgradesApplied": 17,
+    "wallSeconds": 2.1184144020080566,
+    "combatSeconds": 0.5333328247070313,
+    "p50FrameMs": 495.3150634765625,
+    "p95FrameMs": 516.266845703125,
+    "maxFrameMs": 564.9185180664063,
+    "samples": [
+        {
+            "wall": 0.0009894371032714844,
+            "delta": 0.0009894371032714844,
+            "unityDelta": 0.3943431079387665,
+            "combat": 0.0,
+            "enemies": 134,
+            "shots": 400,
+            "pickups": 52,
+            "sparks": 181
+        },
+        {
+            "wall": 0.5172562599182129,
+            "delta": 0.5162668228149414,
+            "unityDelta": 0.4430634081363678,
+            "combat": 0.1333332061767578,
+            "enemies": 134,
+            "shots": 400,
+            "pickups": 52,
+            "sparks": 197
+        },
+        {
+            "wall": 1.0125713348388672,
+            "delta": 0.4953150749206543,
+            "unityDelta": 0.5205671787261963,
+            "combat": 0.2666664123535156,
+            "enemies": 134,
+            "shots": 400,
+            "pickups": 52,
+            "sparks": 188
+        },
+        {
+            "wall": 1.5774898529052734,
+            "delta": 0.5649185180664063,
+            "unityDelta": 0.4907507002353668,
+            "combat": 0.39999961853027344,
+            "enemies": 134,
+            "shots": 400,
+            "pickups": 52,
+            "sparks": 193
+        }
+    ]
+}

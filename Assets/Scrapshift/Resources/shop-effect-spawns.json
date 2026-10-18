@@ -1,0 +1,5261 @@
+{
+  "groups": [
+    {
+      "path": "zones/common/bait/group_bait.tres",
+      "group": {
+        "start": 2,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 2.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "lamprey",
+            "min": 7,
+            "max": 8,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/common/debug/group_debug.tres",
+      "group": {
+        "start": 1,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 5.0,
+        "edge": false,
+        "units": [],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/common/elite/group_elite.tres",
+      "group": {
+        "start": 1,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": true,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/common/endless/group_endless.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_all/group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "tree",
+            "min": 1,
+            "max": 2,
+            "chance": 0.33,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_all/group_2.tres",
+      "group": {
+        "start": 25,
+        "repeats": 3,
+        "interval": 15,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "looter",
+            "min": 1,
+            "max": 1,
+            "chance": 0.1,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": true
+      }
+    },
+    {
+      "path": "zones/zone_1/000_all/group_3.tres",
+      "group": {
+        "start": 10,
+        "repeats": 0,
+        "interval": 0,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "evil_mob",
+            "min": 1,
+            "max": 1,
+            "chance": 0.03,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_hordes/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "chaser",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_hordes/group_2.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 4,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_hordes/group_3.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_hordes/group_3b.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "chaser",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 10,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_hordes/group_4.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 2,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 4.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 8,
+            "max": 9,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 14,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_hordes/group_5.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 2,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 4.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 6,
+            "max": 7,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "chaser",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 15,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/000_loot/group_loot.tres",
+      "group": {
+        "start": 1,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 2.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "looter",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": true
+      }
+    },
+    {
+      "path": "zones/zone_1/001/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/002/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/002/group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/003/d1_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 1.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/003/d2_group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 1.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fly",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 2,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/003/d5_group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 5,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/003/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 5,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/003/group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 7,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/004/d1_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fly",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/004/d5_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 5,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/004/d6_group_horned_fly.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_fly",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/004/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/004/group_2.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 6,
+            "max": 7,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/004/group_3.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 7,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/d1_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 4,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "charger",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/d2_group_1.tres",
+      "group": {
+        "start": 7,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 2,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/d4_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 4,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/d6_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 12,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 4,
+        "reduce": 0,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 8,
+            "max": 8,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/group_2.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/005/group_3.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/d1_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 5,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "fly",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/d5_group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 5,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/d6_group_1.tres",
+      "group": {
+        "start": 0,
+        "repeats": 0,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "slasher_egg",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/d6_group_2.tres",
+      "group": {
+        "start": 0,
+        "repeats": 20,
+        "interval": 10,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/d6_group_3.tres",
+      "group": {
+        "start": 22,
+        "repeats": 0,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "slasher_egg",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "charger",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/group_2.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/006/group_3.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 5,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/d1_group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 15,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/d5_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 9998,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "slasher_egg",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 5,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/d6_group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": 9999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 1.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/d6_group_charger.tres",
+      "group": {
+        "start": 8,
+        "repeats": 9999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 1.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/d6_group_horned_spitter.tres",
+      "group": {
+        "start": 20,
+        "repeats": 2,
+        "interval": 20,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_spitter",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 2,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 6,
+            "max": 7,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 6,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/007/group_3.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/008/d1_group_1.tres",
+      "group": {
+        "start": 30,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/008/d3_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 6,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 3,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/008/d6_group_1.tres",
+      "group": {
+        "start": 40,
+        "repeats": 4,
+        "interval": 1,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/008/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 1,
+        "minimum": 6,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/008/group_2.tres",
+      "group": {
+        "start": 2,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/008/group_3.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/009/d1_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/009/d4_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 4,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/009/d6_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/009/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 2,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 4.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 6,
+            "max": 7,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/009/group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/009/group_3.tres",
+      "group": {
+        "start": 22,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/d1_group_1.tres",
+      "group": {
+        "start": 20,
+        "repeats": 999,
+        "interval": 12,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/d2_group_1.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 2,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/d6_group_1.tres",
+      "group": {
+        "start": 45,
+        "repeats": 8,
+        "interval": 1,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 2,
+        "reduce": 0,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 8,
+            "max": 9,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/group_2.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 1,
+        "minimum": 5,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/group_3.tres",
+      "group": {
+        "start": 20,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/010/group_4.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/d1_group_1.tres",
+      "group": {
+        "start": 12,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fly",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/d5_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "pursuer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 5,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/d6_group_horned_spitter.tres",
+      "group": {
+        "start": 6,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_spitter",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "pursuer",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/group_2.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 4.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/group_3.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/011/group_4.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/d1_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/d2_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 2,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/d6_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "tentacle",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": true,
+        "preventHorde": true,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 10,
+        "interval": 2,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 10,
+            "max": 10,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/group_2.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 2.5,
+        "edge": false,
+        "units": [
+          {
+            "id": "pursuer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/group_3.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/group_4.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/012/group_5.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/013/d1_group_1.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fly",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/013/d3_group_1.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "tentacle",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 3,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/013/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 4,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 8,
+            "max": 8,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/013/group_2.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 1,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/013/group_3.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/013/group_4.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/d1_group_1.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/d4_group_1.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 4,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/d6_group_1.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bloated_spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 1,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/group_2.tres",
+      "group": {
+        "start": 2,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/group_3.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 6,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/group_4.tres",
+      "group": {
+        "start": 40,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 1,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bruiser",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/014/group_5.tres",
+      "group": {
+        "start": 22,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "junkie",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/d1_group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 15,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "tentacle",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/d4_group_1.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 12,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 3.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "slasher_egg",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 4,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/d6_group_1.tres",
+      "group": {
+        "start": 2,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 3.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bloated_spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/d6_group_2.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 12,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 3.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "infected_slasher_egg",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": 5.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 8,
+            "max": 8,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/group_2.tres",
+      "group": {
+        "start": 2,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 6,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/group_3.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/group_4.tres",
+      "group": {
+        "start": 12,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/group_5.tres",
+      "group": {
+        "start": 20,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/015/group_6.tres",
+      "group": {
+        "start": 35,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 1,
+        "minimum": 5,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "junkie",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/d1_group_1.tres",
+      "group": {
+        "start": 20,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/d2_group_1.tres",
+      "group": {
+        "start": 3,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 2,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/d6_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 99,
+        "interval": 7,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "horned_fly",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/d6_group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 99,
+        "interval": 14,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "corrupted_buffer",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 4,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 5.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "buffer",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "helmet_alien",
+            "min": 10,
+            "max": 10,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/group_2.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/group_3.tres",
+      "group": {
+        "start": 20,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 4.5,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/016/group_4.tres",
+      "group": {
+        "start": 32,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 4.5,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/d1_group_1.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "tentacle",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/d6_group_1.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 15,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "bloated_spawner",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/d6_group_corrupted_buffer.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "corrupted_buffer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "pursuer",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_2.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "pursuer",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_2b.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "buffer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_3.tres",
+      "group": {
+        "start": 7,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_3b.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_4.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 3.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/017/group_5.tres",
+      "group": {
+        "start": 40,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 4,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/d1_group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 5,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/d4_group_1.tres",
+      "group": {
+        "start": 40,
+        "repeats": 99,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "slasher_egg",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 4,
+        "maxDifficulty": 5,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/d6_group_1.tres",
+      "group": {
+        "start": 5,
+        "repeats": 99,
+        "interval": 15,
+        "reduce": 0,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "bloated_spawner",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/d6_group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 99,
+        "interval": 6,
+        "reduce": 0,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "corrupted_buffer",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/d6_group_3.tres",
+      "group": {
+        "start": 14,
+        "repeats": 99,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "infected_slasher_egg",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 10,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 2,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 6,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "buffer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_2.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 10,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_3.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_4.tres",
+      "group": {
+        "start": 20,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "spitter",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_5.tres",
+      "group": {
+        "start": 24,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_6.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/018/group_7.tres",
+      "group": {
+        "start": 1,
+        "repeats": 35,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/d1_group_1.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 1.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "healer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "tentacle",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/d2_group_1.tres",
+      "group": {
+        "start": 8,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 1.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 4,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 1,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/d6_group_1.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 8,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "slasher_egg",
+            "min": 2,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/d6_group_2.tres",
+      "group": {
+        "start": 10,
+        "repeats": 99,
+        "interval": 12,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "corrupted_buffer",
+            "min": 3,
+            "max": 4,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 999,
+        "interval": 1,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 6,
+            "max": 6,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_2.tres",
+      "group": {
+        "start": 4,
+        "repeats": 999,
+        "interval": 1,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_3.tres",
+      "group": {
+        "start": 10,
+        "repeats": 999,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "buffer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_4.tres",
+      "group": {
+        "start": 15,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 4,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_bruiser",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_5.tres",
+      "group": {
+        "start": 25,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": 2.0,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "pursuer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_6.tres",
+      "group": {
+        "start": 32,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 2,
+            "max": 2,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/019/group_7.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 5,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/d6_group_1.tres",
+      "group": {
+        "start": 5,
+        "repeats": 999,
+        "interval": 15,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "bloated_spawner",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/d6_group_2.tres",
+      "group": {
+        "start": 60,
+        "repeats": 2,
+        "interval": 10,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "mad_slasher",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 6,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": 0,
+        "interval": 0,
+        "reduce": 0,
+        "minimum": 0,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": true,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_2.tres",
+      "group": {
+        "start": 1,
+        "repeats": 5,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "baby_alien",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_3.tres",
+      "group": {
+        "start": 10,
+        "repeats": 5,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_4.tres",
+      "group": {
+        "start": 15,
+        "repeats": 5,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "helmet_alien",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_5.tres",
+      "group": {
+        "start": 20,
+        "repeats": 5,
+        "interval": 1,
+        "reduce": 0,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "fin_alien",
+            "min": 5,
+            "max": 5,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_5b.tres",
+      "group": {
+        "start": 20,
+        "repeats": 5,
+        "interval": 1,
+        "reduce": 0,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/020/group_6.tres",
+      "group": {
+        "start": 30,
+        "repeats": 999,
+        "interval": 6,
+        "reduce": 1,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": true,
+        "units": [
+          {
+            "id": "spawner",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "buffer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "helmet_alien",
+            "min": 3,
+            "max": 3,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "horned_bruiser",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 99999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_1/021 (test)/group_1.tres",
+      "group": {
+        "start": 1,
+        "repeats": -1,
+        "interval": 3,
+        "reduce": 1,
+        "minimum": 1,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "horned_charger",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          },
+          {
+            "id": "buffer",
+            "min": 1,
+            "max": 1,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_2/001/wave_1_part_1_group_1.tres",
+      "group": {
+        "start": 0,
+        "repeats": 3,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "chaser",
+            "min": 20,
+            "max": 20,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    },
+    {
+      "path": "zones/zone_3/001/wave_1_part_1_group_1.tres",
+      "group": {
+        "start": 0,
+        "repeats": 3,
+        "interval": 3,
+        "reduce": 0,
+        "minimum": 3,
+        "chance": 1.0,
+        "area": -0.01,
+        "inset": 0.0,
+        "edge": false,
+        "units": [
+          {
+            "id": "charger",
+            "min": 20,
+            "max": 20,
+            "chance": 1.0,
+            "distance": 0.0
+          }
+        ],
+        "bucket": 0,
+        "minDifficulty": 0,
+        "maxDifficulty": 9999,
+        "minWave": 0,
+        "maxWave": 9999,
+        "preventElite": false,
+        "preventHorde": false,
+        "boss": false,
+        "loot": false
+      }
+    }
+  ]
+}

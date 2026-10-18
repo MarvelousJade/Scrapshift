@@ -11,10 +11,10 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
-        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));Rules.BeginWaveSettlement();RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
         void TickWaveSweep(float dt)
         {
-            waveSweepAge+=dt;
+            waveSweepAge+=dt;Rules.AdvanceWaveSettlement(dt);
             float scale=PresentationLayout.CanvasScale(Screen.width,Screen.height);
             Vector3 target=gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-140.5f*scale,20));
             for(int i=pickups.Count-1;i>=0;i--)
@@ -26,8 +26,9 @@ namespace Scrapshift
                 if(pickup.fruit)CollectPickup(pickup);else {Rules.BankMaterials(pickup.value);if(waveSweepAge-moneyArrivalTime>.12f)moneyArrivalAmount=0;moneyArrivalAmount+=pickup.value;moneyArrivalTime=waveSweepAge;}
                 Destroy(pickup.obj);pickups.RemoveAt(i);
             }
-            if(waveSweepAge<1.8f||pickups.Count>0)return;
-            waveSweeping=false;Rules.Tick(Rules.Remaining);
+            // Source EndWaveTimer is 2 seconds ordinarily and 4 on victory.
+            if(waveSweepAge<Rules.WaveSettlementDuration||pickups.Count>0)return;
+            if(Rules.CompleteWaveSettlement())waveSweeping=false;
         }
         void DrawMoneyCounter()
         {
@@ -90,7 +91,7 @@ namespace Scrapshift
             scroll=GUI.BeginScrollView(new Rect(x+20,y+116,326,visibleHeight),scroll,new Rect(0,0,310,textHeight));
             RichText(inspectionText.WeaponDescription(Rules,w),new Rect(0,0,310,textHeight));GUI.EndScrollView();detailScroll["weapon-action"]=scroll;
             if(combine){if(Button(new Rect(x+15,buttonsY,width-30,34),"Combine")){Rules.Combine(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}buttonsY+=42;}
-            if(Button(new Rect(x+15,buttonsY,width-30,34),"Recycle (+"+Rules.RecycleValue(w.value)+")"))
+            if(Button(new Rect(x+15,buttonsY,width-30,34),"Recycle (+"+Rules.RecycleValue(w.value,true)+")"))
             {Rules.Recycle(selectedWeapon);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
             if(Button(new Rect(x+15,buttonsY+42,width-30,34),"Cancel"))selectedWeapon=-1;
             DrawInspectionSets(WeaponSets.All.Where(s=>w.HasSet(s.Id)).ToArray(),x+width+8,y);

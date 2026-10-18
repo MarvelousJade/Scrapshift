@@ -5,7 +5,7 @@ namespace Scrapshift
 {
     public sealed partial class RunRules
     {
-        public int WeaponSlots=>Mathf.Clamp((Character?.weaponSlots??6)+(Stat("weapon_slot_upgrades")>0?Math.Min(Level,(int)Stat("weapon_slot_upgrades")-1):0),0,24);
+        public int WeaponSlots=>Mathf.Clamp((Character?.weaponSlots??6)+weaponSlotsEarned,0,24);
         public int MinimumWeaponTier=>Character?.minTier??1;
         public int MaximumWeaponTier=>Character?.maxTier??4;
         public bool CanAttack=>Character==null||Character.canAttackMoving||!moving;
@@ -23,7 +23,9 @@ namespace Scrapshift
         public int ExtraBaitGroups {get;private set;}
         public bool ExtraElite {get;private set;}
         int queuedBaits;
-        public int OwnedStructures=>Effects("structure").Sum(e=>(int)e.value)+Items.Count(i=>i.id=="pocket_factory")+Inventory.Count(w=>w.Trait("turret")!=null||w.Trait("garden")!=null||w.Trait("landmine")!=null)+Effects("pet").Where(e=>e.pet!=null&&e.pet.structure).Sum(e=>(int)e.value);
+        // RunData.get_nb_structures counts registered item structures, Pocket
+        // Factory and structure pets. Weapon-deployed actors are not entries.
+        public int OwnedStructures=>Effects("structure").Count()+Items.Count(i=>i.id=="pocket_factory")+Effects("pet").Count(e=>e.pet!=null&&e.pet.structure);
         public bool UsesHealthShop=>Stat("hp_shop")>0;
         public float ShopBalance=>UsesHealthShop?MaxHealth:Scrap;
         public float WantedTagChance=>Stat("boosted_wanted_item_tag")>0?.1f:.05f;

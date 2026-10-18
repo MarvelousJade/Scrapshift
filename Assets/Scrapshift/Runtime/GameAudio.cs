@@ -8,6 +8,8 @@ namespace Scrapshift
         public const int CombatVoices = 12, VoiceCount = 16;
         public SoundBank Bank { get; private set; }
         public int Played { get; private set; }
+        public int MenuFocusRequests {get;private set;}
+        public int FootstepRequests {get;private set;}
         public int Suppressed { get; private set; }
         public int PeakVoices { get; private set; }
         public bool Muted { get; private set; }
@@ -24,7 +26,7 @@ namespace Scrapshift
         {
             Bank = bank; Muted = muted;
             cyberSounds=Resources.Load<CyberSoundLibrary>("CyberSoundLibrary");
-            Volume = Mathf.Clamp01(PlayerPrefs.GetFloat("sfxVolume", .7f));
+            Volume = GameSettings.IsFixture?.7f:Mathf.Clamp01(PlayerPrefs.GetFloat("sfxVolume", .7f));
             int count = System.Enum.GetValues(typeof(SoundCue)).Length;
             last = new float[count]; previous = new int[count];
             for (int i=0;i<count;i++) { last[i] = -100; previous[i] = -1; }
@@ -43,6 +45,8 @@ namespace Scrapshift
         }
         public void Play(SoundCue cue, Vector2 position = default, AudioClip[] overrideClips = null, float? overrideGain = null, float? overridePitchVariation = null, bool independent = false, int? contextProfile = null)
         {
+            if(cue==SoundCue.UiFocus||cue==SoundCue.InventoryFocus)MenuFocusRequests++;
+            if(cue==SoundCue.Step)FootstepRequests++;
             if (Bank == null || Muted || Volume <= 0) return;
             var entry = Bank.Find(cue); int key = (int)cue; float now = Time.unscaledTime;
             if (entry == null || entry.variants == null || entry.variants.Length == 0) return;
@@ -90,6 +94,6 @@ namespace Scrapshift
         public void StopCombat() { for (int i=0;i<CombatVoices;i++) voices[i].Stop(); }
         public void StopAll() { foreach (var voice in voices) voice.Stop(); }
         public void SetMuted(bool muted) { Muted=muted; if (muted) StopAll(); }
-        public void SetVolume(float value) { Volume=Mathf.Clamp01(value); PlayerPrefs.SetFloat("sfxVolume",Volume);PlayerPrefs.Save(); }
+        public void SetVolume(float value) { Volume=Mathf.Clamp01(value); if(!GameSettings.IsFixture){PlayerPrefs.SetFloat("sfxVolume",Volume);PlayerPrefs.Save();} }
     }
 }

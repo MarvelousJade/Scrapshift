@@ -232,11 +232,11 @@ namespace Scrapshift.Tests
             var r=Run();
             r.BankMaterials(9);
             Assert.AreEqual(0,r.Scrap);
-            r.Collect(4);
+            r.Collect(r.PrepareMaterialDrop(4));
             Assert.AreEqual(8,r.Scrap);
             Assert.AreEqual(8,r.XP);
             Assert.AreEqual(5,r.Banked);
-            r.Collect(10);
+            r.Collect(r.PrepareMaterialDrop(10));
             Assert.AreEqual(23,r.Scrap);
             Assert.AreEqual(0,r.Banked);
         }
@@ -281,6 +281,9 @@ namespace Scrapshift.Tests
                 r.NextWave();
             }
             r.DefeatBoss();
+            Assert.AreEqual(RunPhase.Playing,r.Phase);
+            Assert.AreEqual(.1f,r.Remaining,.00001f);
+            r.Tick(.1f);
             Assert.AreEqual(RunPhase.Won,r.Phase);
         }
         [Test] public void UpgradeTiersUseReferenceValues()

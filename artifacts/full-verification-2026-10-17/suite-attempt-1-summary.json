@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "id": "2",
+    "testcasecount": "951",
+    "result": "Failed(Child)",
+    "total": "951",
+    "passed": "949",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-17 23:00:45Z",
+    "end-time": "2026-10-17 23:01:56Z",
+    "duration": "71.1441293"
+  },
+  "notPassed": [
+    {
+      "name": "Scrapshift.Tests.StructureImplantTests.FlameStructureUsesEngineeringAndDoesNotGainPlayerPercentDamage",
+      "result": "Failed",
+      "message": "  Expected: 14.900000393390656d +/- 0.001d\n  But was:  14.0d\n",
+      "stack": "at Scrapshift.Tests.StructureImplantTests.FlameStructureUsesEngineeringAndDoesNotGainPlayerPercentDamage () [0x00077] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Tests\\Editor\\StructureImplantTests.cs:25\n"
+    },
+    {
+      "name": "Scrapshift.Tests.TriggeredImplantTests.MissingHealthLinksRoundTheSourcePercentBeforeApplyingScaling",
+      "result": "Failed",
+      "message": "  Expected: 5\n  But was:  9.0f\n",
+      "stack": "at Scrapshift.Tests.TriggeredImplantTests.MissingHealthLinksRoundTheSourcePercentBeforeApplyingScaling () [0x000a1] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Tests\\Editor\\TriggeredImplantTests.cs:46\n"
+    }
+  ]
+}

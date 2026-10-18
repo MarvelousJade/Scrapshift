@@ -5,6 +5,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int selectedWeapon=-1;
+        readonly Rect[] controllerOfferRects=new Rect[4];
         float ContentLeft=>FullCanvas.xMin+24;
         float StatsLeft=>FullCanvas.xMax-360;
         float ContentWidth=>StatsLeft-24-ContentLeft;
@@ -16,28 +17,39 @@ namespace Scrapshift
         bool InventoryHover(string id,Rect local,Rect viewport,Vector2 scroll)
         {
             var root=new Rect(viewport.position+local.position-scroll,local.size);
-            bool over=inspectionReview?forcedInspection==id:keyboardInspection?focusedInspection==id:viewport.Contains(lastInspectionMouse)&&root.Contains(lastInspectionMouse);
+            var navigationRect=Rules.Phase==RunPhase.Shop||!id.StartsWith("weapon:")?local:new Rect(local.position+viewport.position,local.size);
+            InventoryNavigationSound(navigationRect);
+            bool navigationFocus=NavigationButton(navigationRect);
+            if(navigationFocus)
+            {
+                keyboardInspection=true;focusedInspection=id;
+                if(Rules.Phase==RunPhase.Shop){if(id.StartsWith("weapon:"))EnsureNavigationVisible(local,viewport,ref weaponScroll);else EnsureNavigationVisible(local,viewport,ref itemScroll);}
+                else if(!id.StartsWith("weapon:"))EnsureNavigationVisible(local,viewport,ref summaryScroll);
+            }
+            bool over=inspectionReview?forcedInspection==id:navigationFocus||keyboardInspection?focusedInspection==id:!menuNavigationActive&&viewport.Contains(lastInspectionMouse)&&root.Contains(lastInspectionMouse);
             if(over&&Event.current.type==EventType.Repaint)
             {
                 inventoryHoveredThisFrame=true;
-                if(inventoryHover!=id){inventoryHover=id;sound.Play(SoundCue.InventoryFocus);}
+                if(inventoryHover!=id){inventoryHover=id;if(!menuNavigationActive)sound.Play(SoundCue.InventoryFocus);}
             }
             return over;
         }
         bool RerollButton(Rect r)
         {
-            bool hover=r.Contains(Event.current.mousePosition);
+            bool navigationFocus=NavigationButton(r);
+            bool hover=navigationFocus||!menuNavigationActive&&r.Contains(Event.current.mousePosition);
             RoundedBox(r,hover?paper:Color.black,9);
             Rect key=new Rect(r.x+18,r.center.y-14,28,28);
             RoundedBox(key,new Color(.18f,.18f,.18f),3);RoundedBox(new Rect(key.x+3,key.y+3,22,22),new Color(.35f,.35f,.35f),2);
-            Text(key.x,key.y,28,28,"F",new GUIStyle(center){fontSize=18});
+            Text(key.x,key.y,28,28,CombatInput.UsingGamepad?"Y":"F",new GUIStyle(center){fontSize=18});
             var text=new GUIStyle(center){fontSize=27,wordWrap=false};text.normal.textColor=hover?ink:paper;
+            if(controllerRerollHold.Progress>0)RoundedBox(new Rect(r.x+4,r.yMax-7,(r.width-8)*controllerRerollHold.Progress,3),GameSettings.Positive,1);
             string label="REROLL - "+Rules.RerollPrice;
             while(text.fontSize>16&&text.CalcSize(new GUIContent(label)).x>r.width-120)text.fontSize--;
             Text(r.x+55,r.y,r.width-108,r.height,label,text);
             DrawIcon(catalog.scrapShapes[0],new Rect(r.xMax-49,r.center.y-17,34,34));
-            if(GUI.enabled&&hover&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
-            bool clicked=GUI.Button(r,GUIContent.none,GUIStyle.none);if(clicked)sound.Play(SoundCue.UiPress);return clicked;
+            if(!menuNavigationActive&&GUI.enabled&&hover&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
+            bool clicked=GUI.Button(r,GUIContent.none,GUIStyle.none);if(navigationFocus&&menuActivate){menuActivate=false;clicked=true;}if(clicked)sound.Play(SoundCue.UiPress);return clicked;
         }
         bool MoneyButton(Rect r,string label,bool large=false)
         {
@@ -140,6 +152,7 @@ namespace Scrapshift
             for(int i=0;i<4;i++)
             {
                 float x=OfferX(i),width=OfferWidth;var offer=Rules.Shop[i];
+                if(Event.current.type==EventType.Repaint)controllerOfferRects[i]=NavigationRect(new Rect(x,118,width,453));
                 TierCard(new Rect(x,118,width,402),offer==null?1:offer.Tier);
                 if(offer==null){Text(x+14,292,width-28,45,"Sold",center);continue;}
                 RoundedBox(new Rect(x+14,132,68,74),new Color(.075f,.072f,.065f),7);
@@ -158,8 +171,16 @@ namespace Scrapshift
                 GUI.enabled=true;
                 if(offer.weapon!=null&&Rules.Inventory.Count>=Rules.WeaponSlots&&!Rules.CanBuy(i)&&!Rules.Inventory.Any(w=>w.id==offer.weapon.id&&w.tier==offer.weapon.tier&&w.tier<Rules.MaximumWeaponTier))
                     Text(x+16,423,width-32,25,"Weapon slots full",new GUIStyle(body){fontSize=16,alignment=TextAnchor.MiddleCenter,normal={textColor=coral}});
-                if(Button(new Rect(x+12,528,width-24,43),offer.locked?"Locked":"Lock"))
+                float lockWidth=Rules.StealsRemaining>0?(width-30)/2:width-24;
+                if(Rules.CanLock(i)&&Button(new Rect(x+12,528,lockWidth,43),offer.locked?"Locked":"Lock"))
                 {Rules.ToggleLock(i);sound.Play(SoundCue.Reroll);}
+                if(Rules.StealsRemaining>0)
+                {
+                    GUI.enabled=Rules.CanSteal(i);
+                    if(Button(new Rect(x+18+lockWidth,528,lockWidth,43),$"Steal {Rules.StealCaughtChance(offer)*100:0.#}%"))
+                    {Rules.Steal(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
+                    GUI.enabled=true;
+                }
             }
             float weaponLeft=StatsLeft-292,itemWidth=weaponLeft-ContentLeft-24;
             Text(ContentLeft,618,100,40,"Items",heading);
@@ -197,7 +218,12 @@ namespace Scrapshift
                     InspectWeapon("weapon:"+i,w,new Rect(x,y,82,80),weaponViewport,weaponScroll);
                 }
                 if(w!=null&&GUI.enabled&&Event.current.type==EventType.MouseDown&&Event.current.button==1&&new Rect(x,y,82,80).Contains(Event.current.mousePosition)){selectedWeapon=i;Event.current.Use();}
-                if(w!=null&&GUI.Button(new Rect(x,y,82,80),GUIContent.none,GUIStyle.none))selectedWeapon=i;
+                if(w!=null)
+                {
+                    var tile=new Rect(x,y,82,80);bool focus=NavigationButton(tile);
+                    if(focus)EnsureNavigationVisible(tile,weaponViewport,ref weaponScroll);
+                    if(GUI.Button(tile,GUIContent.none,GUIStyle.none)||focus&&menuActivate){menuActivate=false;selectedWeapon=i;}
+                }
             }
             GUI.EndScrollView();
             if(Button(new Rect(StatsLeft,686,336,56),$"Go (Wave {Mathf.Max(1,Rules.Wave+1-(int)Rules.Stat("item_hourglass"))})")) {selectedWeapon=-1;AdvanceWave();}

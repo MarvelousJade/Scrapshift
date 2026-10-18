@@ -9,12 +9,9 @@ namespace Scrapshift
         public static float CanopyRotation(float time)=>time<.5f?Mathf.Lerp(0,8.2f,Mathf.SmoothStep(0,1,time/.5f)):
             time<.7f?Mathf.Lerp(8.2f,-4.2f,Mathf.SmoothStep(0,1,(time-.5f)/.2f)):
             Mathf.Lerp(-4.2f,0,Mathf.SmoothStep(0,1,(time-.7f)/.1f));
-        public static Vector2 Offset(float time)
-        {
-            if(time < .7f) return Vector2.Lerp(new Vector2(-2.65f,7.25f),new Vector2(-.01f,1.4f),1-Mathf.Pow(1-Mathf.Clamp01(time/.7f),3));
-            if(time < 1) return new Vector2(-.01f,1.4f);
-            return Vector2.Lerp(new Vector2(-.01f,1.4f),Vector2.zero,Mathf.Clamp01((time-1)/.1f));
-        }
+        // Sprite-local source keys plus its -24px Animation registration equal
+        // the Weapons-container keys. Share interpolation to keep them attached.
+        public static Vector2 Offset(float time)=>ArrivalWeaponMotion.Offset(time);
         public static Vector2 BodyScale(float time)
         {
             if(time<1) return Vector2.one;

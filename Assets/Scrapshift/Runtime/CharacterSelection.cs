@@ -15,7 +15,7 @@ namespace Scrapshift
         RunRules PreviewRules()
         {
             if(previewRules==null){previewRules=new RunRules(42);previewRules.Configure(catalog);}
-            previewRules.Start(SelectedCharacter,SelectedWeapon?.id);return previewRules;
+            previewRules.Start(SelectedCharacter,SelectedWeapon?.id,RunRules.ReferenceStartingMaterials);return previewRules;
         }
         void DrawLock(Rect r)
         {
@@ -25,6 +25,7 @@ namespace Scrapshift
             RoundedBox(new Rect(p.x-17,p.y-3,34,27),new Color(.48f,.47f,.43f),4);
             RoundedBox(new Rect(p.x-2,p.y+5,4,11),panelColor,2);
         }
+        bool SelectionPreviewFocused(Rect r)=>Event.current.type==EventType.Repaint&&CombatInput.PreviewFocus(menuNavigationActive,NavigationButton(r),r.Contains(Event.current.mousePosition));
         void CharacterGrid()
         {
             string lockedDescription=null;
@@ -34,20 +35,23 @@ namespace Scrapshift
                 var r=new Rect(FullCanvas.xMin+57+slot%columns*step,603+slot/columns*88,step-8,80);
                 if(slot==0)
                 {
-                    if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)randomCharacter=true;
+                    if(SelectionPreviewFocused(r))randomCharacter=true;
                     if(MenuButton(r,"?",randomCharacter)){randomCharacter=true;ConfirmMenu();}
                 }
                 else if(slot<=catalog.data.characters.Length&&CharacterUnlocked(catalog.data.characters[slot-1]))
                 {
                     int i=slot-1;
-                    if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint){randomCharacter=false;ChangeLook(i-playerAnimation.lookIndex);}
+                    if(SelectionPreviewFocused(r)){randomCharacter=false;ChangeLook(i-playerAnimation.lookIndex);}
                     if(MenuButton(r,"",!randomCharacter&&playerAnimation.lookIndex==i)){randomCharacter=false;ChangeLook(i-playerAnimation.lookIndex);ConfirmMenu();}
                     Portrait(r.center+Vector2.up*2,35,playerAnimation.looks[i]);
                 }
                 else
                 {
-                    RoundedBox(r,panelColor,7);DrawLock(r);
-                    if(r.Contains(Event.current.mousePosition)&&slot<=catalog.data.characters.Length)lockedDescription=progress.Requirement("character_"+catalog.data.characters[slot-1].id);
+                    bool focus=slot<=catalog.data.characters.Length&&NavigationButton(r);
+                    RoundedBox(r,focus?paper:panelColor,7);DrawLock(r);
+                    // Source special/locked elements receive focus but ignore selection.
+                    if(focus&&menuActivate)menuActivate=false;
+                    if((focus||!menuNavigationActive&&r.Contains(Event.current.mousePosition))&&slot<=catalog.data.characters.Length)lockedDescription=progress.Requirement("character_"+catalog.data.characters[slot-1].id);
                 }
             }
             if(lockedDescription!=null){RoundedBox(new Rect(360,490,720,78),Color.black,8);Text(380,505,680,55,lockedDescription,new GUIStyle(body){alignment=TextAnchor.MiddleCenter});}
@@ -68,7 +72,7 @@ namespace Scrapshift
                     continue;
                 }
                 int i=slot-1;var weapon=catalog.Weapon(choices[i],SelectedCharacter.minTier);
-                if(r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint)startingWeapon=i;
+                if(SelectionPreviewFocused(r))startingWeapon=i;
                 if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
                 DrawIcon(weapon.image,new Rect(r.x+5,r.y+7,r.width-10,54));
             }
@@ -85,11 +89,11 @@ namespace Scrapshift
             string details=randomCharacter&&menuPage==1?"Choose an unlocked\ncharacter at random.":SelectedCharacter.description;
             if(randomCharacter&&menuPage==1)Text(left+portraitWidth+40,229,menuPage==1?357:326,300,details,new GUIStyle(body){fontSize=20});
             else DrawCharacterEffects(SelectedCharacter,left+portraitWidth+40,229,menuPage==1?350:328);
-            if(!(randomCharacter&&menuPage==1)&&SelectedCharacter.weaponSlots>1&&!string.IsNullOrEmpty(SelectedCharacter.DefaultWeapon))
+            if(!(randomCharacter&&menuPage==1)&&!string.IsNullOrEmpty(SelectedCharacter.bonusWeapon))
             {
                 RoundedBox(new Rect(left+20,494,portraitWidth,66),new Color(.35f,.32f,.29f),8);
                 var r=new Rect(left+portraitWidth-34,501,48,49);RoundedBox(r,panelColor,5);
-                DrawIcon((catalog.Weapon(SelectedCharacter.DefaultWeapon,SelectedCharacter.bonusTier)??SelectedWeapon)?.image,new Rect(r.x+4,r.y+4,40,41));
+                DrawIcon(catalog.Weapon(SelectedCharacter.bonusWeapon,SelectedCharacter.bonusTier)?.image,new Rect(r.x+4,r.y+4,40,41));
             }
         }
         (Sprite image,string label) CharacterEffectText(CharacterProfile profile,CharacterEffectRow row)
@@ -119,7 +123,7 @@ namespace Scrapshift
             return string.Join("\n",profile.effectRows.Where(row=>row.kind!="weapon").Select(row=>
             {
                 string key=row.kind=="item"?"item:"+row.key:row.key;
-                return (StatPresentation.Icon(catalog,key)!=null?"[["+key+"]] ":"• ")+CharacterEffectText(profile,row).label;
+                return (StatPresentation.Icon(catalog,key)!=null?"[["+key+"]] ":"â€¢ ")+CharacterEffectText(profile,row).label;
             }));
         }
         void DrawCharacterEffects(CharacterProfile profile,float x,float y,float width)

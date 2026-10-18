@@ -1,0 +1,59 @@
+{
+  "scope": "Native source-scene Area2D fixture, custom receiver; not production damage or playtesting",
+  "engine": {
+    "major": 3,
+    "minor": 6,
+    "patch": 2,
+    "hex": 198146,
+    "status": "stable",
+    "build": "official",
+    "year": 2025,
+    "hash": "3cd3caab6779a7f3ec3bbeb9f200db50c735cfc8",
+    "string": "3.6.2-stable (official)"
+  },
+  "case_count": 9,
+  "checks": [
+    {
+      "case": "flame_cap_center",
+      "observed_contact": true
+    },
+    {
+      "case": "flame_cap_graze",
+      "observed_contact": false
+    },
+    {
+      "case": "ordinary_catalog_speed",
+      "observed_contact": true
+    },
+    {
+      "case": "delayed_catalog_speed",
+      "observed_contact": true
+    },
+    {
+      "case": "ordinary_static",
+      "observed_contact": true
+    },
+    {
+      "case": "delayed_static",
+      "observed_contact": true
+    },
+    {
+      "case": "ordinary_fast_crossing",
+      "observed_contact": false
+    },
+    {
+      "case": "delayed_target_crosses_before_enable",
+      "observed_contact": false
+    },
+    {
+      "case": "ordinary_target_crosses",
+      "observed_contact": true
+    }
+  ],
+  "source_files_identical": true,
+  "startup_and_shutdown_errors": "Present: user logging directory assertions and autoload shutdown resource leaks; see attempt4-stderr.log",
+  "full_run": false,
+  "checks_kind": "Post-run classification of observations, not predeclared regression assertions",
+  "observed_contact_cases": 6,
+  "observed_no_contact_cases": 3
+}

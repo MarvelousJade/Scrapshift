@@ -13,18 +13,70 @@ namespace Scrapshift
 
     public static class CombatGeometry
     {
-        [System.Serializable] sealed class CollisionEntry { public string id; public float[] radii, hurt, contact; }
+        [System.Serializable] sealed class CollisionEntry { public string id; public float[] radii, hurt, contact, body, origin;public int bodyLayer; }
         [System.Serializable] sealed class CollisionTable { public CollisionEntry[] entries; }
         static CollisionEntry[] profiles;
+        static System.Collections.Generic.Dictionary<string,CollisionEntry> profileById;
         static CollisionEntry Profile(string id)
         {
-            if (profiles == null) profiles = JsonUtility.FromJson<CollisionTable>(Resources.Load<TextAsset>("enemy-collisions").text).entries;
-            return System.Array.Find(profiles, p => p.id == id);
+            if (profiles == null)
+            {
+                profiles=JsonUtility.FromJson<CollisionTable>(Resources.Load<TextAsset>("enemy-collisions").text).entries;
+                profileById=new System.Collections.Generic.Dictionary<string,CollisionEntry>(System.StringComparer.Ordinal);
+                // The resource is immutable during play. Retain the old first-row
+                // lookup rule without allocating a predicate for every crowd pair.
+                foreach(var row in profiles)
+                    if(row.id!=null&&!profileById.ContainsKey(row.id))profileById.Add(row.id,row);
+            }
+            if(id==null)
+            {
+                for(int i=0;i<profiles.Length;i++)if(profiles[i].id==null)return profiles[i];
+                return null;
+            }
+            return profileById.TryGetValue(id,out var profile)?profile:null;
         }
         public const float PlayerHurtRadius = .21f;
         public const float BulletRadius = .44f;
         public const float HostileRadius = .170294f, FlashDuration = .1f;
         public static Vector2 PlayerHurtOffset => Vector2.down * .12f;
+        public static Vector2 PlayerOriginOffset => Vector2.down * .24f;
+        public static Vector2 PlayerBodyStart => -PlayerOriginOffset;
+        public const float PlayerBodyRadius=.24f;
+        public static Vector2 PlayerBodyOffset=>Vector2.down*.12f;
+        public static Vector2 ClampPlayerBody(Vector2 body)
+        {
+            // player.tscn's kinematic Collision circle is at raw(0,-12),
+            // radius24px. TileMap limits bound that circle, not a point root.
+            var center=body+PlayerBodyOffset;var half=ArenaGeometry.HalfSize-Vector2.one*PlayerBodyRadius;
+            return new Vector2(Mathf.Clamp(center.x,-half.x,half.x),Mathf.Clamp(center.y,-half.y,half.y))-PlayerBodyOffset;
+        }
+        public static Vector2 BodyOffset(string id)
+        {
+            var profile=Profile(id);
+            if(profile!=null)return new Vector2(profile.body[0],profile.body[1]);
+            if(id=="tree")return Vector2.down*.4f;
+            throw new System.ArgumentException("Unknown enemy body offset: "+id);
+        }
+        public static Vector2 OriginOffset(string id)
+        {
+            var profile=Profile(id);
+            if(profile!=null)return new Vector2(profile.origin[0],profile.origin[1]);
+            if(id=="tree")return Vector2.down*.56f;
+            throw new System.ArgumentException("Unknown enemy origin offset: "+id);
+        }
+        public static int BodyLayer(string id)=>id=="tree"?1:Profile(id)?.bodyLayer??0;
+        public static bool HealerZoneOverlaps(Vector2 healer,string allyId,Vector2 ally)
+        {
+            if((BodyLayer(allyId)&4)==0)return false;
+            float radius=2.00639f+Enemy(allyId).body;
+            return (ally+BodyOffset(allyId)-(healer+OriginOffset("healer"))).sqrMagnitude<=radius*radius;
+        }
+        public static bool BufferZoneOverlaps(string bufferId,Vector2 buffer,string allyId,Vector2 ally)
+        {
+            if((BodyLayer(allyId)&4)==0)return false;
+            float radius=3.0904f+Enemy(allyId).body;
+            return (ally+BodyOffset(allyId)-(buffer+OriginOffset(bufferId))).sqrMagnitude<=radius*radius;
+        }
         // Relative to the neutral body center (Animation at -24 source pixels).
         // Shapes do not inherit the animated visual squash or rotation.
         public static Vector2 HurtOffset(string id)
@@ -107,10 +159,12 @@ namespace Scrapshift
 
         public static float ContactSlow(float currentSlow, float baseSpeed)
         {
-            if (currentSlow > baseSpeed * .7f) return currentSlow;
-            float added = Mathf.Max(2, baseSpeed * .8f);
-            if (currentSlow > baseSpeed * .45f) added /= 20;
-            return currentSlow + Mathf.Min(added, baseSpeed * .9f);
+            int speed=EnemyReferenceRules.SourceRound(baseSpeed*100);
+            if(currentSlow*100>speed*.7f)return currentSlow;
+            int added=(int)-Mathf.Max(200,speed*.8f);
+            if(currentSlow*100>speed*.45f)added/=20;
+            added=(int)Mathf.Max(added,-speed*.9f);
+            return currentSlow-added/100f;
         }
 
         public static float Invulnerability(float damage, float maxHealth)

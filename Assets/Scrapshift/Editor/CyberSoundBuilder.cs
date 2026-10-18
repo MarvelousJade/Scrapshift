@@ -100,35 +100,79 @@ namespace Scrapshift.Editor
         [MenuItem("Scrapshift/Generate approved cyberpunk audio")]
         public static void Generate()
         {
+            ContentBuilder.EnsureFootstepImportSettings();
             Directory.CreateDirectory(Folder);
             var entries=Sources();var manifest=new List<string>();
             foreach(var e in entries)
             {
-                var source=e.source;source.LoadAudioData();
-                var samples=new float[source.samples*source.channels];
-                if(!source.GetData(samples,0))throw new Exception("Cannot decode source: "+source.name);
-                var processed=e.profile<100?Process(samples,source.frequency,source.channels,e.profile):ContextSoundDesign.Process(samples,source.frequency,source.channels,e.profile);
-                processed=ContextSoundDesign.Approved(source,e.profile,processed);
-                string guid=AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(source));
-                string path=Folder+"/"+guid+"-"+e.profile+".wav";
-                using(var writer=new BinaryWriter(File.Create(path)))
-                {
-                    int bytes=processed.Length*2;
-                    writer.Write(System.Text.Encoding.ASCII.GetBytes("RIFF"));writer.Write(36+bytes);writer.Write(System.Text.Encoding.ASCII.GetBytes("WAVEfmt "));writer.Write(16);writer.Write((short)1);writer.Write((short)source.channels);writer.Write(source.frequency);writer.Write(source.frequency*source.channels*2);writer.Write((short)(source.channels*2));writer.Write((short)16);writer.Write(System.Text.Encoding.ASCII.GetBytes("data"));writer.Write(bytes);
-                    foreach(float v in processed){if(float.IsNaN(v)||Mathf.Abs(v)>.9401f)throw new Exception("Invalid processed sample");writer.Write((short)Math.Round(v*32767));}
-                }
-                AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);
-                var importer=(AudioImporter)AssetImporter.GetAtPath(path);
-                importer.forceToMono=false; // Source channel layout is already baked; avoid mono normalization.
-                var settings=importer.defaultSampleSettings;settings.loadType=AudioClipLoadType.DecompressOnLoad;settings.compressionFormat=AudioCompressionFormat.PCM;settings.preloadAudioData=true;importer.defaultSampleSettings=settings;importer.SaveAndReimport();
-                e.edited=AssetDatabase.LoadAssetAtPath<AudioClip>(path);
-                manifest.Add(e.profile+"\t"+AssetDatabase.GetAssetPath(source)+"\t"+path);
+                string path=BakeEntry(e);
+                manifest.Add(e.profile+"\t"+AssetDatabase.GetAssetPath(e.source)+"\t"+path);
             }
             var library=AssetDatabase.LoadAssetAtPath<CyberSoundLibrary>(Library);
             if(library==null){library=ScriptableObject.CreateInstance<CyberSoundLibrary>();AssetDatabase.CreateAsset(library,Library);}
             library.SetEntries(entries.ToArray());EditorUtility.SetDirty(library);AssetDatabase.SaveAssets();
             File.WriteAllLines(Folder+"/provenance.tsv",new[]{"profile\tsupplied_source_asset\tderived_context_asset"}.Concat(manifest));
             Validate();Debug.Log("Context audio baked and validated: "+entries.Count+" source/profile pairs.");
+        }
+        static string BakeEntry(CyberSoundLibrary.Entry e)
+        {
+            var source=e.source;source.LoadAudioData();
+            var samples=new float[source.samples*source.channels];
+            if(!source.GetData(samples,0))throw new Exception("Cannot decode source: "+source.name);
+            var processed=e.profile<100?Process(samples,source.frequency,source.channels,e.profile):ContextSoundDesign.Process(samples,source.frequency,source.channels,e.profile);
+            processed=ContextSoundDesign.Approved(source,e.profile,processed);
+            string guid=AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(source));
+            string path=Folder+"/"+guid+"-"+e.profile+".wav";
+            using(var writer=new BinaryWriter(File.Create(path)))
+            {
+                int bytes=processed.Length*2;
+                writer.Write(System.Text.Encoding.ASCII.GetBytes("RIFF"));writer.Write(36+bytes);writer.Write(System.Text.Encoding.ASCII.GetBytes("WAVEfmt "));writer.Write(16);writer.Write((short)1);writer.Write((short)source.channels);writer.Write(source.frequency);writer.Write(source.frequency*source.channels*2);writer.Write((short)(source.channels*2));writer.Write((short)16);writer.Write(System.Text.Encoding.ASCII.GetBytes("data"));writer.Write(bytes);
+                foreach(float v in processed){if(float.IsNaN(v)||Mathf.Abs(v)>.9401f)throw new Exception("Invalid processed sample");writer.Write((short)Math.Round(v*32767));}
+            }
+            AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);
+            var importer=(AudioImporter)AssetImporter.GetAtPath(path);
+            importer.forceToMono=false; // Source channel layout is already baked; avoid mono normalization.
+            var settings=importer.defaultSampleSettings;settings.loadType=AudioClipLoadType.DecompressOnLoad;settings.compressionFormat=AudioCompressionFormat.PCM;settings.preloadAudioData=true;importer.defaultSampleSettings=settings;importer.SaveAndReimport();
+            e.edited=AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+            return path;
+        }
+        [Serializable] public sealed class FootstepMeasurement
+        {
+            public string source,edited;
+            public int sourceChannels,editedChannels;
+            public float sourcePeak,editedPeak,sourceRms,editedRms;
+            public double sourceEnergy,editedEnergy;
+        }
+        [Serializable] sealed class FootstepReport { public FootstepMeasurement[] entries; }
+        public static FootstepMeasurement MeasureFootstep(AudioClip source,AudioClip edited)
+        {
+            source.LoadAudioData();edited.LoadAudioData();
+            var before=new float[source.samples*source.channels];var after=new float[edited.samples*edited.channels];
+            if(!source.GetData(before,0)||!edited.GetData(after,0))throw new Exception("Cannot decode footstep measurement");
+            double beforeEnergy=before.Sum(v=>(double)v*v),afterEnergy=after.Sum(v=>(double)v*v);
+            return new FootstepMeasurement{source=AssetDatabase.GetAssetPath(source),edited=AssetDatabase.GetAssetPath(edited),sourceChannels=source.channels,editedChannels=edited.channels,
+                sourcePeak=before.Max(v=>Mathf.Abs(v)),editedPeak=after.Max(v=>Mathf.Abs(v)),sourceRms=(float)Math.Sqrt(beforeEnergy/before.Length),editedRms=(float)Math.Sqrt(afterEnergy/after.Length),sourceEnergy=beforeEnergy,editedEnergy=afterEnergy};
+        }
+        [MenuItem("Scrapshift/Regenerate footsteps only")]
+        public static void GenerateFootstepsOnly()
+        {
+            ContentBuilder.EnsureFootstepImportSettings();
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(ContentBuilder.Root+"/Definitions/GameSounds.asset");
+            var step=bank.Find(SoundCue.Step);int profile=CyberSoundLibrary.Profile(SoundCue.Step);
+            if(step.variants.Length!=6)throw new Exception("Expected the six supplied footstep recordings");
+            var library=AssetDatabase.LoadAssetAtPath<CyberSoundLibrary>(Library);
+            if(library==null)throw new Exception("Existing contextual library required for a footstep-only bake");
+            Directory.CreateDirectory(Folder);var measurements=new List<FootstepMeasurement>();
+            foreach(var source in step.variants)
+            {
+                var entry=library.entries.Single(e=>e.source==source&&e.profile==profile);
+                BakeEntry(entry);measurements.Add(MeasureFootstep(source,entry.edited));
+            }
+            library.SetEntries(library.entries);EditorUtility.SetDirty(library);AssetDatabase.SaveAssets();
+            Directory.CreateDirectory("artifacts");
+            File.WriteAllText("artifacts/footstep-audio-energy.json",JsonUtility.ToJson(new FootstepReport{entries=measurements.ToArray()},true));
+            Validate();
+            Debug.Log("Rebuilt only "+measurements.Count+" footstep edits with original stereo energy.");
         }
         public static void Validate()
         {

@@ -50,10 +50,11 @@ namespace Scrapshift.Tests
             Assert.IsTrue(ShopSelection.SharesSet(new Equipment{setIds=new[]{"a","shared"}},new Equipment{setIds=new[]{"b","shared"}}));
             var first=preferred[0];Assert.IsFalse(ShopSelection.ItemPool(catalog.data.items,ranger,1,false,new[]{first},empty).Contains(first));
         }
-        [Test] public void LimitsRemainHardEvenWhenPreferredPoolIsEmpty()
+        [Test] public void EmptyFilteredItemTierFallsBackToOriginalTierLikeReference()
         {
             Run();var limited=new ItemEntry{id="coffee",tier=1,maxCount=1,tags=new[]{"stat_attack_speed"}};
-            Assert.IsEmpty(ShopSelection.ItemPool(new[]{limited},null,1,true,Array.Empty<ItemEntry>(),new[]{limited}));
+            CollectionAssert.AreEqual(new[]{limited},ShopSelection.ItemPool(new[]{limited},null,1,true,Array.Empty<ItemEntry>(),new[]{limited}));
+            CollectionAssert.AreEqual(new[]{limited},ShopSelection.ItemPool(new[]{limited},null,1,false,new[]{limited},Array.Empty<ItemEntry>()));
         }
         [Test] public void ItemRollNeverSubstitutesALowerTier()
         {

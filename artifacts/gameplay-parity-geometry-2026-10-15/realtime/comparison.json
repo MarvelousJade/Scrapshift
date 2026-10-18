@@ -1,0 +1,2292 @@
+{
+  "purpose": "Saved normal-time integration comparison; not complete gameplay parity",
+  "label": "R8",
+  "allIntegrationChecksPassed": true,
+  "checks": {
+    "originalWon": true,
+    "originalExitZero": true,
+    "unityWon": true,
+    "originalTwentyTimersNineteenShops": true,
+    "unityTwentyTimersNineteenShops": true,
+    "timerWavesOneToTwenty": true,
+    "originalPurchaseDebits": true,
+    "unityPurchaseDebits": true,
+    "originalFinalStackSum": true,
+    "unityEverySnapshotStackSum": true,
+    "originalGroundCap": true,
+    "unityGroundCap": true,
+    "referenceOrdinaryTiming": true,
+    "unityOrdinaryTiming": true
+  },
+  "inputs": {
+    "referenceTrace": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\gameplay-parity-reference-2026-10-15\\realtime\\trace.json",
+      "sha256": "98ac455148dba90b48f89771ea5fe720a8487f95d70f2bc2162fd6799d41a535"
+    },
+    "referenceSummary": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\gameplay-parity-reference-2026-10-15\\realtime\\summary.json",
+      "sha256": "d5f4fa85c3543f08b739990f1086e866b0072ce7f75abd4dacb1cacbbd672e1e"
+    },
+    "unityTrace": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\gameplay-parity-geometry-2026-10-15\\realtime\\campaign-trace.json",
+      "sha256": "9d0da6893b7d8aef198e988e6b7ceeb25afdfdb9cdf6ca37f71227801dae8df8"
+    },
+    "unitySummary": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\gameplay-parity-geometry-2026-10-15\\realtime\\campaign-check.json",
+      "sha256": "21993f6b89a77f30262fd7493edbff5b0aeeaab91499b993c351ad8761258dd2"
+    },
+    "buildManifest": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\gameplay-parity-geometry-2026-10-15\\build-manifest.json",
+      "sha256": "b246db29a71b3d6dbff1df84217504ba32e60b36da9d79aef1c4b31720b49bb3"
+    }
+  },
+  "buildManifest": {
+    "branch": "codex/gameplay-parity",
+    "buildPath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\Builds\\GameplayParity20261015R8",
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "bytes": 401561639,
+    "tests": 620,
+    "passed": 620,
+    "failed": 0,
+    "skipped": 0,
+    "testDuration": 74.3181245,
+    "files": [
+      {
+        "sha256": "001AEEBFB92718F8B49F0C0E0A03E313C54669552B08E952B2FEE3DDD143683A",
+        "path": "Scrapshift.exe",
+        "bytes": 667136
+      },
+      {
+        "sha256": "D0A63A27C53081D9D82DE2F04A90FEB8569389B8EC5AF7AAEFD7DAC5C91A15F8",
+        "path": "Scrapshift.Runtime.dll",
+        "bytes": 521728
+      }
+    ],
+    "assetPayloads": [
+      {
+        "sha256": "EE8D160B41A3351AD0BADDA99318F2C2D1AC24883D901985BD87167AD16EFA53",
+        "path": "globalgamemanagers.assets",
+        "bytes": 70400
+      },
+      {
+        "sha256": "75877125745A6DF997ABB67C5BD1B2639A1ACFC2FF935134F998B223DA9C7668",
+        "path": "resources.assets",
+        "bytes": 70641224
+      },
+      {
+        "sha256": "68A096A2BCB7110E99850689EF7E2799B2D32DDD2876B1FD89AB12F170D06F9F",
+        "path": "resources.resource",
+        "bytes": 29917920
+      },
+      {
+        "sha256": "661A340DC721EFC05312D81F5D0969E9CB7CBFE0421861DEA3BE543EF6894414",
+        "path": "sharedassets0.assets",
+        "bytes": 139741896
+      },
+      {
+        "sha256": "724D24BC540B82D3A0B69CC063E429C57FB918FDB0BC3F8D65A41C9971A42565",
+        "path": "sharedassets0.resource",
+        "bytes": 6407264
+      }
+    ]
+  },
+  "eventCounts": {
+    "original": {
+      "boot": 1,
+      "scene": 40,
+      "wave_timer_end": 20,
+      "crate_take": 8,
+      "shop_exit": 19,
+      "upgrade": 17,
+      "purchase": 30,
+      "finished": 1
+    },
+    "unity": {
+      "boot": 1,
+      "wave_start": 20,
+      "wave_timer_end": 20,
+      "wave_completed": 20,
+      "shop_enter": 19,
+      "shop_exit": 19,
+      "upgrade": 18,
+      "purchase": 31,
+      "crate_take": 6,
+      "finished": 1
+    }
+  },
+  "final": {
+    "original": {
+      "wave": 20,
+      "materials": 385,
+      "level": 17,
+      "itemCount": 34,
+      "bankedMaterials": 1832,
+      "enemyKills": 4968,
+      "treeKills": 56,
+      "materialPickups": 1218,
+      "harvesting": 77,
+      "luck": 8,
+      "materialObjects": 0,
+      "groundMaterialValue": 0,
+      "weapons": [
+        "weapon_smg_2",
+        "weapon_double_barrel_shotgun_2",
+        "weapon_knife_2",
+        "weapon_laser_gun_3",
+        "weapon_spear_4",
+        "weapon_pistol_3"
+      ]
+    },
+    "unity": {
+      "wave": 20,
+      "materials": 344,
+      "level": 19,
+      "itemCount": 36,
+      "bankedMaterials": 2315,
+      "enemyKills": 4478,
+      "materialPickups": 1191,
+      "harvesting": 57.0,
+      "luck": 20.0,
+      "materialObjects": 0,
+      "groundMaterialValue": 0,
+      "weapons": [
+        {
+          "id": "pistol",
+          "tier": 2
+        },
+        {
+          "id": "double_barrel_shotgun",
+          "tier": 2
+        },
+        {
+          "id": "laser_gun",
+          "tier": 2
+        },
+        {
+          "id": "knife",
+          "tier": 2
+        },
+        {
+          "id": "spear",
+          "tier": 2
+        },
+        {
+          "id": "smg",
+          "tier": 3
+        }
+      ],
+      "treeKills": 31
+    }
+  },
+  "purchaseDebitChecks": {
+    "original": [
+      {
+        "wave": 2,
+        "id": "item_toxic_sludge",
+        "before": 35,
+        "after": 9,
+        "price": 26,
+        "passed": true
+      },
+      {
+        "wave": 3,
+        "id": "item_scared_sausage",
+        "before": 36,
+        "after": 1,
+        "price": 35,
+        "passed": true
+      },
+      {
+        "wave": 5,
+        "id": "weapon_spear_2",
+        "before": 109,
+        "after": 46,
+        "price": 63,
+        "passed": true
+      },
+      {
+        "wave": 5,
+        "id": "item_charcoal",
+        "before": 46,
+        "after": 11,
+        "price": 35,
+        "passed": true
+      },
+      {
+        "wave": 6,
+        "id": "item_cyclops_worm",
+        "before": 105,
+        "after": 27,
+        "price": 78,
+        "passed": true
+      },
+      {
+        "wave": 6,
+        "id": "item_weird_ghost",
+        "before": 27,
+        "after": 2,
+        "price": 25,
+        "passed": true
+      },
+      {
+        "wave": 7,
+        "id": "item_banner",
+        "before": 142,
+        "after": 42,
+        "price": 100,
+        "passed": true
+      },
+      {
+        "wave": 7,
+        "id": "item_weird_food",
+        "before": 42,
+        "after": 1,
+        "price": 41,
+        "passed": true
+      },
+      {
+        "wave": 8,
+        "id": "item_lemonade",
+        "before": 135,
+        "after": 100,
+        "price": 35,
+        "passed": true
+      },
+      {
+        "wave": 9,
+        "id": "weapon_laser_gun_2",
+        "before": 250,
+        "after": 183,
+        "price": 67,
+        "passed": true
+      },
+      {
+        "wave": 9,
+        "id": "item_hedgehog",
+        "before": 183,
+        "after": 117,
+        "price": 66,
+        "passed": true
+      },
+      {
+        "wave": 9,
+        "id": "item_peaceful_bee",
+        "before": 117,
+        "after": 74,
+        "price": 43,
+        "passed": true
+      },
+      {
+        "wave": 10,
+        "id": "weapon_spear_3",
+        "before": 257,
+        "after": 99,
+        "price": 158,
+        "passed": true
+      },
+      {
+        "wave": 11,
+        "id": "item_acid",
+        "before": 259,
+        "after": 112,
+        "price": 147,
+        "passed": true
+      },
+      {
+        "wave": 12,
+        "id": "item_glass_cannon",
+        "before": 254,
+        "after": 77,
+        "price": 177,
+        "passed": true
+      },
+      {
+        "wave": 13,
+        "id": "item_cyberball",
+        "before": 248,
+        "after": 166,
+        "price": 82,
+        "passed": true
+      },
+      {
+        "wave": 13,
+        "id": "item_bait",
+        "before": 166,
+        "after": 96,
+        "price": 70,
+        "passed": true
+      },
+      {
+        "wave": 14,
+        "id": "item_honey",
+        "before": 245,
+        "after": 63,
+        "price": 182,
+        "passed": true
+      },
+      {
+        "wave": 15,
+        "id": "item_mushroom",
+        "before": 256,
+        "after": 179,
+        "price": 77,
+        "passed": true
+      },
+      {
+        "wave": 15,
+        "id": "weapon_pistol_2",
+        "before": 179,
+        "after": 109,
+        "price": 70,
+        "passed": true
+      },
+      {
+        "wave": 15,
+        "id": "item_mutation",
+        "before": 109,
+        "after": 32,
+        "price": 77,
+        "passed": true
+      },
+      {
+        "wave": 16,
+        "id": "item_sunglasses",
+        "before": 150,
+        "after": 4,
+        "price": 146,
+        "passed": true
+      },
+      {
+        "wave": 17,
+        "id": "item_charcoal",
+        "before": 361,
+        "after": 290,
+        "price": 71,
+        "passed": true
+      },
+      {
+        "wave": 17,
+        "id": "item_gentle_alien",
+        "before": 290,
+        "after": 192,
+        "price": 98,
+        "passed": true
+      },
+      {
+        "wave": 18,
+        "id": "item_pencil",
+        "before": 491,
+        "after": 451,
+        "price": 40,
+        "passed": true
+      },
+      {
+        "wave": 18,
+        "id": "item_little_muscley_dude",
+        "before": 451,
+        "after": 293,
+        "price": 158,
+        "passed": true
+      },
+      {
+        "wave": 18,
+        "id": "item_landmines",
+        "before": 293,
+        "after": 233,
+        "price": 60,
+        "passed": true
+      },
+      {
+        "wave": 19,
+        "id": "item_cute_monkey",
+        "before": 635,
+        "after": 544,
+        "price": 91,
+        "passed": true
+      },
+      {
+        "wave": 19,
+        "id": "item_poisonous_tonic",
+        "before": 544,
+        "after": 293,
+        "price": 251,
+        "passed": true
+      },
+      {
+        "wave": 19,
+        "id": "item_piggy_bank",
+        "before": 293,
+        "after": 158,
+        "price": 135,
+        "passed": true
+      }
+    ],
+    "unity": [
+      {
+        "wave": 2,
+        "id": "boxing_glove",
+        "before": 24,
+        "after": 1,
+        "price": 23,
+        "passed": true
+      },
+      {
+        "wave": 3,
+        "id": "lens",
+        "before": 54,
+        "after": 25,
+        "price": 29,
+        "passed": true
+      },
+      {
+        "wave": 4,
+        "id": "bag",
+        "before": 84,
+        "after": 59,
+        "price": 25,
+        "passed": true
+      },
+      {
+        "wave": 4,
+        "id": "hedgehog",
+        "before": 59,
+        "after": 13,
+        "price": 46,
+        "passed": true
+      },
+      {
+        "wave": 5,
+        "id": "scope",
+        "before": 102,
+        "after": 25,
+        "price": 77,
+        "passed": true
+      },
+      {
+        "wave": 6,
+        "id": "turret_flame",
+        "before": 76,
+        "after": 6,
+        "price": 70,
+        "passed": true
+      },
+      {
+        "wave": 7,
+        "id": "terrified_onion",
+        "before": 83,
+        "after": 51,
+        "price": 32,
+        "passed": true
+      },
+      {
+        "wave": 8,
+        "id": "fresh_meat",
+        "before": 190,
+        "after": 137,
+        "price": 53,
+        "passed": true
+      },
+      {
+        "wave": 9,
+        "id": "bag",
+        "before": 226,
+        "after": 189,
+        "price": 37,
+        "passed": true
+      },
+      {
+        "wave": 10,
+        "id": "leather_vest",
+        "before": 367,
+        "after": 267,
+        "price": 100,
+        "passed": true
+      },
+      {
+        "wave": 10,
+        "id": "bag",
+        "before": 267,
+        "after": 227,
+        "price": 40,
+        "passed": true
+      },
+      {
+        "wave": 10,
+        "id": "scope",
+        "before": 227,
+        "after": 121,
+        "price": 106,
+        "passed": true
+      },
+      {
+        "wave": 11,
+        "id": "scar",
+        "before": 377,
+        "after": 314,
+        "price": 63,
+        "passed": true
+      },
+      {
+        "wave": 12,
+        "id": "terrified_onion",
+        "before": 429,
+        "after": 384,
+        "price": 45,
+        "passed": true
+      },
+      {
+        "wave": 12,
+        "id": "smg",
+        "before": 384,
+        "after": 287,
+        "price": 97,
+        "passed": true
+      },
+      {
+        "wave": 12,
+        "id": "hedgehog",
+        "before": 287,
+        "after": 209,
+        "price": 78,
+        "passed": true
+      },
+      {
+        "wave": 13,
+        "id": "dynamite",
+        "before": 385,
+        "after": 326,
+        "price": 59,
+        "passed": true
+      },
+      {
+        "wave": 13,
+        "id": "boiling_water",
+        "before": 326,
+        "after": 244,
+        "price": 82,
+        "passed": true
+      },
+      {
+        "wave": 13,
+        "id": "claw_tree",
+        "before": 244,
+        "after": 185,
+        "price": 59,
+        "passed": true
+      },
+      {
+        "wave": 13,
+        "id": "snowball",
+        "before": 185,
+        "after": 57,
+        "price": 128,
+        "passed": true
+      },
+      {
+        "wave": 14,
+        "id": "gentle_alien",
+        "before": 168,
+        "after": 82,
+        "price": 86,
+        "passed": true
+      },
+      {
+        "wave": 16,
+        "id": "white_flag",
+        "before": 387,
+        "after": 267,
+        "price": 120,
+        "passed": true
+      },
+      {
+        "wave": 16,
+        "id": "blood_leech",
+        "before": 267,
+        "after": 134,
+        "price": 133,
+        "passed": true
+      },
+      {
+        "wave": 17,
+        "id": "wheelbarrow",
+        "before": 666,
+        "after": 541,
+        "price": 125,
+        "passed": true
+      },
+      {
+        "wave": 17,
+        "id": "strange_book",
+        "before": 541,
+        "after": 335,
+        "price": 206,
+        "passed": true
+      },
+      {
+        "wave": 18,
+        "id": "propeller_hat",
+        "before": 637,
+        "after": 541,
+        "price": 96,
+        "passed": true
+      },
+      {
+        "wave": 18,
+        "id": "peacock",
+        "before": 541,
+        "after": 383,
+        "price": 158,
+        "passed": true
+      },
+      {
+        "wave": 18,
+        "id": "sad_tomato",
+        "before": 383,
+        "after": 225,
+        "price": 158,
+        "passed": true
+      },
+      {
+        "wave": 19,
+        "id": "will_o_the_wisp",
+        "before": 553,
+        "after": 302,
+        "price": 251,
+        "passed": true
+      },
+      {
+        "wave": 19,
+        "id": "recycling_machine",
+        "before": 302,
+        "after": 182,
+        "price": 120,
+        "passed": true
+      },
+      {
+        "wave": 19,
+        "id": "ice_cube",
+        "before": 182,
+        "after": 18,
+        "price": 164,
+        "passed": true
+      }
+    ]
+  },
+  "finalItemStacks": {
+    "original": {
+      "fresh_meat": 1,
+      "toxic_sludge": 2,
+      "scared_sausage": 1,
+      "helmet": 1,
+      "charcoal": 2,
+      "cyclops_worm": 1,
+      "weird_ghost": 2,
+      "banner": 1,
+      "weird_food": 1,
+      "injection": 1,
+      "lemonade": 1,
+      "hedgehog": 1,
+      "peaceful_bee": 1,
+      "acid": 1,
+      "crown": 1,
+      "glass_cannon": 1,
+      "cyberball": 1,
+      "bait": 1,
+      "honey": 1,
+      "toolbox": 1,
+      "mushroom": 1,
+      "mutation": 1,
+      "dynamite": 1,
+      "sunglasses": 1,
+      "gentle_alien": 1,
+      "pencil": 1,
+      "little_muscley_dude": 1,
+      "landmines": 1,
+      "cute_monkey": 1,
+      "poisonous_tonic": 1,
+      "piggy_bank": 1
+    },
+    "unity": {
+      "bag": 3,
+      "beanie": 2,
+      "blindfold": 1,
+      "blood_leech": 1,
+      "boiling_water": 1,
+      "boxing_glove": 1,
+      "claw_tree": 1,
+      "clover": 1,
+      "dynamite": 1,
+      "fresh_meat": 1,
+      "gentle_alien": 1,
+      "hedgehog": 2,
+      "ice_cube": 1,
+      "landmines": 2,
+      "leather_vest": 1,
+      "lens": 1,
+      "peacock": 1,
+      "propeller_hat": 1,
+      "recycling_machine": 1,
+      "sad_tomato": 1,
+      "scar": 1,
+      "scope": 2,
+      "snowball": 1,
+      "strange_book": 1,
+      "terrified_onion": 2,
+      "turret_flame": 1,
+      "wheelbarrow": 1,
+      "white_flag": 1,
+      "will_o_the_wisp": 1
+    }
+  },
+  "unityStackFailures": [],
+  "firstAcquisitions": {
+    "original": {
+      "fresh_meat": {
+        "wave": 1,
+        "event": "crate_take"
+      },
+      "toxic_sludge": {
+        "wave": 2,
+        "event": "purchase"
+      },
+      "scared_sausage": {
+        "wave": 3,
+        "event": "purchase"
+      },
+      "helmet": {
+        "wave": 5,
+        "event": "crate_take"
+      },
+      "charcoal": {
+        "wave": 5,
+        "event": "purchase"
+      },
+      "cyclops_worm": {
+        "wave": 6,
+        "event": "purchase"
+      },
+      "weird_ghost": {
+        "wave": 6,
+        "event": "purchase"
+      },
+      "banner": {
+        "wave": 7,
+        "event": "purchase"
+      },
+      "weird_food": {
+        "wave": 7,
+        "event": "purchase"
+      },
+      "injection": {
+        "wave": 8,
+        "event": "crate_take"
+      },
+      "lemonade": {
+        "wave": 8,
+        "event": "purchase"
+      },
+      "hedgehog": {
+        "wave": 9,
+        "event": "purchase"
+      },
+      "peaceful_bee": {
+        "wave": 9,
+        "event": "purchase"
+      },
+      "acid": {
+        "wave": 11,
+        "event": "purchase"
+      },
+      "crown": {
+        "wave": 12,
+        "event": "crate_take"
+      },
+      "glass_cannon": {
+        "wave": 12,
+        "event": "purchase"
+      },
+      "cyberball": {
+        "wave": 13,
+        "event": "purchase"
+      },
+      "bait": {
+        "wave": 13,
+        "event": "purchase"
+      },
+      "honey": {
+        "wave": 14,
+        "event": "purchase"
+      },
+      "toolbox": {
+        "wave": 15,
+        "event": "crate_take"
+      },
+      "mushroom": {
+        "wave": 15,
+        "event": "purchase"
+      },
+      "mutation": {
+        "wave": 15,
+        "event": "purchase"
+      },
+      "dynamite": {
+        "wave": 16,
+        "event": "crate_take"
+      },
+      "sunglasses": {
+        "wave": 16,
+        "event": "purchase"
+      },
+      "gentle_alien": {
+        "wave": 17,
+        "event": "purchase"
+      },
+      "pencil": {
+        "wave": 18,
+        "event": "purchase"
+      },
+      "little_muscley_dude": {
+        "wave": 18,
+        "event": "purchase"
+      },
+      "landmines": {
+        "wave": 18,
+        "event": "purchase"
+      },
+      "cute_monkey": {
+        "wave": 19,
+        "event": "purchase"
+      },
+      "poisonous_tonic": {
+        "wave": 19,
+        "event": "purchase"
+      },
+      "piggy_bank": {
+        "wave": 19,
+        "event": "purchase"
+      }
+    },
+    "unity": {
+      "boxing_glove": {
+        "wave": 2,
+        "event": "purchase"
+      },
+      "beanie": {
+        "wave": 3,
+        "event": "crate_take"
+      },
+      "lens": {
+        "wave": 3,
+        "event": "purchase"
+      },
+      "bag": {
+        "wave": 4,
+        "event": "purchase"
+      },
+      "hedgehog": {
+        "wave": 4,
+        "event": "purchase"
+      },
+      "scope": {
+        "wave": 5,
+        "event": "purchase"
+      },
+      "turret_flame": {
+        "wave": 6,
+        "event": "purchase"
+      },
+      "terrified_onion": {
+        "wave": 7,
+        "event": "purchase"
+      },
+      "blindfold": {
+        "wave": 8,
+        "event": "crate_take"
+      },
+      "landmines": {
+        "wave": 8,
+        "event": "crate_take"
+      },
+      "fresh_meat": {
+        "wave": 8,
+        "event": "purchase"
+      },
+      "leather_vest": {
+        "wave": 10,
+        "event": "purchase"
+      },
+      "clover": {
+        "wave": 11,
+        "event": "crate_take"
+      },
+      "scar": {
+        "wave": 11,
+        "event": "purchase"
+      },
+      "dynamite": {
+        "wave": 13,
+        "event": "purchase"
+      },
+      "boiling_water": {
+        "wave": 13,
+        "event": "purchase"
+      },
+      "claw_tree": {
+        "wave": 13,
+        "event": "purchase"
+      },
+      "snowball": {
+        "wave": 13,
+        "event": "purchase"
+      },
+      "gentle_alien": {
+        "wave": 14,
+        "event": "purchase"
+      },
+      "white_flag": {
+        "wave": 16,
+        "event": "purchase"
+      },
+      "blood_leech": {
+        "wave": 16,
+        "event": "purchase"
+      },
+      "wheelbarrow": {
+        "wave": 17,
+        "event": "purchase"
+      },
+      "strange_book": {
+        "wave": 17,
+        "event": "purchase"
+      },
+      "propeller_hat": {
+        "wave": 18,
+        "event": "purchase"
+      },
+      "peacock": {
+        "wave": 18,
+        "event": "purchase"
+      },
+      "sad_tomato": {
+        "wave": 18,
+        "event": "purchase"
+      },
+      "will_o_the_wisp": {
+        "wave": 19,
+        "event": "purchase"
+      },
+      "recycling_machine": {
+        "wave": 19,
+        "event": "purchase"
+      },
+      "ice_cube": {
+        "wave": 19,
+        "event": "purchase"
+      }
+    }
+  },
+  "timerEnds": [
+    {
+      "wave": 1,
+      "original": {
+        "wave": 1,
+        "materials": 10,
+        "level": 0,
+        "itemCount": 0,
+        "bankedMaterials": 0,
+        "enemyKills": 25,
+        "treeKills": 1,
+        "materialPickups": 10,
+        "harvesting": 0,
+        "luck": 0,
+        "materialObjects": 18,
+        "groundMaterialValue": 18,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_2"
+        ]
+      },
+      "unity": {
+        "wave": 1,
+        "materials": 4,
+        "level": 0,
+        "itemCount": 0,
+        "bankedMaterials": 0,
+        "enemyKills": 27,
+        "materialPickups": 4,
+        "harvesting": 0.0,
+        "luck": 0.0,
+        "materialObjects": 26,
+        "groundMaterialValue": 26,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 1
+      }
+    },
+    {
+      "wave": 2,
+      "original": {
+        "wave": 2,
+        "materials": 35,
+        "level": 1,
+        "itemCount": 1,
+        "bankedMaterials": 0,
+        "enemyKills": 66,
+        "treeKills": 1,
+        "materialPickups": 27,
+        "harvesting": 0,
+        "luck": 0,
+        "materialObjects": 23,
+        "groundMaterialValue": 33,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_2"
+        ]
+      },
+      "unity": {
+        "wave": 2,
+        "materials": 24,
+        "level": 1,
+        "itemCount": 0,
+        "bankedMaterials": 0,
+        "enemyKills": 71,
+        "materialPickups": 17,
+        "harvesting": 0.0,
+        "luck": 0.0,
+        "materialObjects": 34,
+        "groundMaterialValue": 53,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 2
+      }
+    },
+    {
+      "wave": 3,
+      "original": {
+        "wave": 3,
+        "materials": 36,
+        "level": 2,
+        "itemCount": 2,
+        "bankedMaterials": 0,
+        "enemyKills": 124,
+        "treeKills": 2,
+        "materialPickups": 44,
+        "harvesting": 0,
+        "luck": 0,
+        "materialObjects": 44,
+        "groundMaterialValue": 67,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_2"
+        ]
+      },
+      "unity": {
+        "wave": 3,
+        "materials": 54,
+        "level": 3,
+        "itemCount": 1,
+        "bankedMaterials": 0,
+        "enemyKills": 130,
+        "materialPickups": 49,
+        "harvesting": 0.0,
+        "luck": 0.0,
+        "materialObjects": 34,
+        "groundMaterialValue": 66,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 2
+      }
+    },
+    {
+      "wave": 4,
+      "original": {
+        "wave": 4,
+        "materials": 41,
+        "level": 3,
+        "itemCount": 3,
+        "bankedMaterials": 0,
+        "enemyKills": 207,
+        "treeKills": 4,
+        "materialPickups": 65,
+        "harvesting": 0,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 116,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_2"
+        ]
+      },
+      "unity": {
+        "wave": 4,
+        "materials": 79,
+        "level": 4,
+        "itemCount": 3,
+        "bankedMaterials": 0,
+        "enemyKills": 207,
+        "materialPickups": 80,
+        "harvesting": 5.0,
+        "luck": 0.0,
+        "materialObjects": 46,
+        "groundMaterialValue": 89,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 2
+      }
+    },
+    {
+      "wave": 5,
+      "original": {
+        "wave": 5,
+        "materials": 109,
+        "level": 4,
+        "itemCount": 3,
+        "bankedMaterials": 32,
+        "enemyKills": 339,
+        "treeKills": 6,
+        "materialPickups": 99,
+        "harvesting": 0,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 153,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_2"
+        ]
+      },
+      "unity": {
+        "wave": 5,
+        "materials": 96,
+        "level": 5,
+        "itemCount": 5,
+        "bankedMaterials": 0,
+        "enemyKills": 333,
+        "materialPickups": 122,
+        "harvesting": 6.0,
+        "luck": 0.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 135,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 3
+      }
+    },
+    {
+      "wave": 6,
+      "original": {
+        "wave": 6,
+        "materials": 99,
+        "level": 5,
+        "itemCount": 5,
+        "bankedMaterials": 92,
+        "enemyKills": 498,
+        "treeKills": 9,
+        "materialPickups": 142,
+        "harvesting": 6,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 154,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_3"
+        ]
+      },
+      "unity": {
+        "wave": 6,
+        "materials": 61,
+        "level": 5,
+        "itemCount": 6,
+        "bankedMaterials": 67,
+        "enemyKills": 498,
+        "materialPickups": 140,
+        "harvesting": 15.0,
+        "luck": 0.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 200,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 4
+      }
+    },
+    {
+      "wave": 7,
+      "original": {
+        "wave": 7,
+        "materials": 127,
+        "level": 7,
+        "itemCount": 7,
+        "bankedMaterials": 134,
+        "enemyKills": 704,
+        "treeKills": 9,
+        "materialPickups": 204,
+        "harvesting": 15,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 176,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_3"
+        ]
+      },
+      "unity": {
+        "wave": 7,
+        "materials": 67,
+        "level": 6,
+        "itemCount": 7,
+        "bankedMaterials": 187,
+        "enemyKills": 703,
+        "materialPickups": 170,
+        "harvesting": 16.0,
+        "luck": 0.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 233,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 7
+      }
+    },
+    {
+      "wave": 8,
+      "original": {
+        "wave": 8,
+        "materials": 119,
+        "level": 8,
+        "itemCount": 9,
+        "bankedMaterials": 205,
+        "enemyKills": 858,
+        "treeKills": 15,
+        "materialPickups": 259,
+        "harvesting": 16,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 170,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_3"
+        ]
+      },
+      "unity": {
+        "wave": 8,
+        "materials": 143,
+        "level": 7,
+        "itemCount": 8,
+        "bankedMaterials": 328,
+        "enemyKills": 842,
+        "materialPickups": 212,
+        "harvesting": 17.0,
+        "luck": -5.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 188,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 9
+      }
+    },
+    {
+      "wave": 9,
+      "original": {
+        "wave": 9,
+        "materials": 233,
+        "level": 9,
+        "itemCount": 11,
+        "bankedMaterials": 261,
+        "enemyKills": 1275,
+        "treeKills": 17,
+        "materialPickups": 323,
+        "harvesting": 17,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 359,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_laser_gun_2",
+          "weapon_knife_2",
+          "weapon_spear_3"
+        ]
+      },
+      "unity": {
+        "wave": 9,
+        "materials": 208,
+        "level": 8,
+        "itemCount": 11,
+        "bankedMaterials": 438,
+        "enemyKills": 1256,
+        "materialPickups": 240,
+        "harvesting": 18.0,
+        "luck": -5.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 443,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 11
+      }
+    },
+    {
+      "wave": 10,
+      "original": {
+        "wave": 10,
+        "materials": 235,
+        "level": 10,
+        "itemCount": 13,
+        "bankedMaterials": 497,
+        "enemyKills": 1605,
+        "treeKills": 20,
+        "materialPickups": 397,
+        "harvesting": 22,
+        "luck": 0,
+        "materialObjects": 49,
+        "groundMaterialValue": 272,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_spear_3",
+          "weapon_laser_gun_3"
+        ]
+      },
+      "unity": {
+        "wave": 10,
+        "materials": 348,
+        "level": 9,
+        "itemCount": 12,
+        "bankedMaterials": 754,
+        "enemyKills": 1586,
+        "materialPickups": 317,
+        "harvesting": 19.0,
+        "luck": -5.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 334,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 15
+      }
+    },
+    {
+      "wave": 11,
+      "original": {
+        "wave": 11,
+        "materials": 235,
+        "level": 11,
+        "itemCount": 14,
+        "bankedMaterials": 657,
+        "enemyKills": 1839,
+        "treeKills": 23,
+        "materialPickups": 459,
+        "harvesting": 24,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 222,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4"
+        ]
+      },
+      "unity": {
+        "wave": 11,
+        "materials": 267,
+        "level": 10,
+        "itemCount": 15,
+        "bankedMaterials": 979,
+        "enemyKills": 1827,
+        "materialPickups": 376,
+        "harvesting": 20.0,
+        "luck": -5.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 258,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 17
+      }
+    },
+    {
+      "wave": 12,
+      "original": {
+        "wave": 12,
+        "materials": 228,
+        "level": 11,
+        "itemCount": 15,
+        "bankedMaterials": 773,
+        "enemyKills": 2126,
+        "treeKills": 25,
+        "materialPickups": 515,
+        "harvesting": 26,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 270,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4"
+        ]
+      },
+      "unity": {
+        "wave": 12,
+        "materials": 408,
+        "level": 11,
+        "itemCount": 18,
+        "bankedMaterials": 1140,
+        "enemyKills": 2115,
+        "materialPickups": 423,
+        "harvesting": 21.0,
+        "luck": 15.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 330,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          }
+        ],
+        "treeKills": 18
+      }
+    },
+    {
+      "wave": 13,
+      "original": {
+        "wave": 13,
+        "materials": 220,
+        "level": 12,
+        "itemCount": 17,
+        "bankedMaterials": 925,
+        "enemyKills": 2410,
+        "treeKills": 30,
+        "materialPickups": 583,
+        "harvesting": 28,
+        "luck": 0,
+        "materialObjects": 50,
+        "groundMaterialValue": 229,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4"
+        ]
+      },
+      "unity": {
+        "wave": 13,
+        "materials": 362,
+        "level": 11,
+        "itemCount": 20,
+        "bankedMaterials": 1349,
+        "enemyKills": 2364,
+        "materialPickups": 494,
+        "harvesting": 23.0,
+        "luck": 10.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 223,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 18
+      }
+    },
+    {
+      "wave": 14,
+      "original": {
+        "wave": 14,
+        "materials": 213,
+        "level": 12,
+        "itemCount": 19,
+        "bankedMaterials": 1047,
+        "enemyKills": 2692,
+        "treeKills": 31,
+        "materialPickups": 640,
+        "harvesting": 32,
+        "luck": 10,
+        "materialObjects": 50,
+        "groundMaterialValue": 225,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4"
+        ]
+      },
+      "unity": {
+        "wave": 14,
+        "materials": 143,
+        "level": 12,
+        "itemCount": 24,
+        "bankedMaterials": 1479,
+        "enemyKills": 2608,
+        "materialPickups": 537,
+        "harvesting": 25.0,
+        "luck": 10.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 257,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 20
+      }
+    },
+    {
+      "wave": 15,
+      "original": {
+        "wave": 15,
+        "materials": 219,
+        "level": 13,
+        "itemCount": 21,
+        "bankedMaterials": 1150,
+        "enemyKills": 3151,
+        "treeKills": 37,
+        "materialPickups": 712,
+        "harvesting": 37,
+        "luck": 10,
+        "materialObjects": 50,
+        "groundMaterialValue": 344,
+        "weapons": [
+          "weapon_pistol_2",
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4"
+        ]
+      },
+      "unity": {
+        "wave": 15,
+        "materials": 119,
+        "level": 12,
+        "itemCount": 25,
+        "bankedMaterials": 1669,
+        "enemyKills": 3074,
+        "materialPickups": 554,
+        "harvesting": 27.0,
+        "luck": 10.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 505,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 23
+      }
+    },
+    {
+      "wave": 16,
+      "original": {
+        "wave": 16,
+        "materials": 108,
+        "level": 13,
+        "itemCount": 24,
+        "bankedMaterials": 1409,
+        "enemyKills": 3491,
+        "treeKills": 42,
+        "materialPickups": 747,
+        "harvesting": 42,
+        "luck": 8,
+        "materialObjects": 50,
+        "groundMaterialValue": 298,
+        "weapons": [
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4",
+          "weapon_pistol_3"
+        ]
+      },
+      "unity": {
+        "wave": 16,
+        "materials": 358,
+        "level": 13,
+        "itemCount": 25,
+        "bankedMaterials": 2032,
+        "enemyKills": 3377,
+        "materialPickups": 646,
+        "harvesting": 29.0,
+        "luck": 10.0,
+        "materialObjects": 50,
+        "groundMaterialValue": 254,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 25
+      }
+    },
+    {
+      "wave": 17,
+      "original": {
+        "wave": 17,
+        "materials": 313,
+        "level": 15,
+        "itemCount": 26,
+        "bankedMaterials": 1514,
+        "enemyKills": 3720,
+        "treeKills": 44,
+        "materialPickups": 890,
+        "harvesting": 48,
+        "luck": 8,
+        "materialObjects": 50,
+        "groundMaterialValue": 158,
+        "weapons": [
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4",
+          "weapon_pistol_3"
+        ]
+      },
+      "unity": {
+        "wave": 17,
+        "materials": 633,
+        "level": 15,
+        "itemCount": 27,
+        "bankedMaterials": 2029,
+        "enemyKills": 3577,
+        "materialPickups": 854,
+        "harvesting": 33.0,
+        "luck": 10.0,
+        "materialObjects": 49,
+        "groundMaterialValue": 129,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 27
+      }
+    },
+    {
+      "wave": 18,
+      "original": {
+        "wave": 18,
+        "materials": 438,
+        "level": 15,
+        "itemCount": 28,
+        "bankedMaterials": 1466,
+        "enemyKills": 4100,
+        "treeKills": 47,
+        "materialPickups": 1009,
+        "harvesting": 53,
+        "luck": 8,
+        "materialObjects": 50,
+        "groundMaterialValue": 159,
+        "weapons": [
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4",
+          "weapon_pistol_3"
+        ]
+      },
+      "unity": {
+        "wave": 18,
+        "materials": 586,
+        "level": 16,
+        "itemCount": 30,
+        "bankedMaterials": 1989,
+        "enemyKills": 3849,
+        "materialPickups": 974,
+        "harvesting": 51.0,
+        "luck": 10.0,
+        "materialObjects": 49,
+        "groundMaterialValue": 195,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 27
+      }
+    },
+    {
+      "wave": 19,
+      "original": {
+        "wave": 19,
+        "materials": 575,
+        "level": 16,
+        "itemCount": 31,
+        "bankedMaterials": 1427,
+        "enemyKills": 4683,
+        "treeKills": 48,
+        "materialPickups": 1157,
+        "harvesting": 60,
+        "luck": 8,
+        "materialObjects": 50,
+        "groundMaterialValue": 288,
+        "weapons": [
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4",
+          "weapon_pistol_3"
+        ]
+      },
+      "unity": {
+        "wave": 19,
+        "materials": 499,
+        "level": 18,
+        "itemCount": 33,
+        "bankedMaterials": 2045,
+        "enemyKills": 4242,
+        "materialPickups": 1070,
+        "harvesting": 54.0,
+        "luck": 20.0,
+        "materialObjects": 43,
+        "groundMaterialValue": 285,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 30
+      }
+    },
+    {
+      "wave": 20,
+      "original": {
+        "wave": 20,
+        "materials": 317,
+        "level": 17,
+        "itemCount": 34,
+        "bankedMaterials": 1604,
+        "enemyKills": 4968,
+        "treeKills": 55,
+        "materialPickups": 1218,
+        "harvesting": 68,
+        "luck": 8,
+        "materialObjects": 50,
+        "groundMaterialValue": 228,
+        "weapons": [
+          "weapon_smg_2",
+          "weapon_double_barrel_shotgun_2",
+          "weapon_knife_2",
+          "weapon_laser_gun_3",
+          "weapon_spear_4",
+          "weapon_pistol_3"
+        ]
+      },
+      "unity": {
+        "wave": 20,
+        "materials": 299,
+        "level": 19,
+        "itemCount": 36,
+        "bankedMaterials": 2160,
+        "enemyKills": 4478,
+        "materialPickups": 1191,
+        "harvesting": 57.0,
+        "luck": 20.0,
+        "materialObjects": 49,
+        "groundMaterialValue": 155,
+        "weapons": [
+          {
+            "id": "pistol",
+            "tier": 2
+          },
+          {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+          },
+          {
+            "id": "laser_gun",
+            "tier": 2
+          },
+          {
+            "id": "knife",
+            "tier": 2
+          },
+          {
+            "id": "spear",
+            "tier": 2
+          },
+          {
+            "id": "smg",
+            "tier": 3
+          }
+        ],
+        "treeKills": 31
+      }
+    }
+  ]
+}

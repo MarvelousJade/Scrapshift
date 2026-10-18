@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Passed" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:12Z" duration="5.0103641">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="549" result="Passed" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:12Z" duration="5.010364" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1638" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="519" result="Passed" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:12Z" duration="4.981931" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22368" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1639" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="519" result="Passed" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:12Z" duration="4.978037" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1640" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="519" result="Passed" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:12Z" duration="4.971858" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1069" name="AudioIntegrationTests" fullname="Scrapshift.Tests.AudioIntegrationTests" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:11Z" duration="3.454299" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1073" name="AssetScopeNavigatesAnActualSoundReferenceToItsBank" fullname="Scrapshift.Tests.AudioIntegrationTests.AssetScopeNavigatesAnActualSoundReferenceToItsBank" methodname="AssetScopeNavigatesAnActualSoundReferenceToItsBank" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="880142649" result="Passed" start-time="2026-10-15 21:57:07Z" end-time="2026-10-15 21:57:11Z" duration="3.380628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" fullname="Scrapshift.Tests.AudioIntegrationTests.EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" methodname="EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="1164832002" result="Passed" start-time="2026-10-15 21:57:11Z" end-time="2026-10-15 21:57:11Z" duration="0.016277" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1070" name="PlayerDamageUsesFourBodyImpactsWithoutZombieVoice" fullname="Scrapshift.Tests.AudioIntegrationTests.PlayerDamageUsesFourBodyImpactsWithoutZombieVoice" methodname="PlayerDamageUsesFourBodyImpactsWithoutZombieVoice" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="445866398" result="Passed" start-time="2026-10-15 21:57:11Z" end-time="2026-10-15 21:57:11Z" duration="0.003324" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1072" name="VariantSelectionNeverImmediatelyRepeats" fullname="Scrapshift.Tests.AudioIntegrationTests.VariantSelectionNeverImmediatelyRepeats" methodname="VariantSelectionNeverImmediatelyRepeats" classname="Scrapshift.Tests.AudioIntegrationTests" runstate="Runnable" seed="2147252416" result="Passed" start-time="2026-10-15 21:57:11Z" end-time="2026-10-15 21:57:11Z" duration="0.026908" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1163" name="CyberSoundTests" fullname="Scrapshift.Tests.CyberSoundTests" classname="Scrapshift.Tests.CyberSoundTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-15 21:57:11Z" end-time="2026-10-15 21:57:12Z" duration="1.066713" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1166" name="AllBankCuesAndHealingLoopHaveIntendedCoverage" fullname="Scrapshift.Tests.CyberSoundTests.AllBankCuesAndHealingLoopHaveIntendedCoverage" methodname="AllBankCuesAndHealingLoopHaveIntendedCoverage" classname="Scrapshift.Tests.CyberSoundTests" runstate="Runnable" seed="625676117" result="Passed" start-time="2026-10-15 21:57:11Z" end-time="2026-10-15 21:57:11Z" duration="0.058755" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1164" name="EveryWeaponAndImpactOverrideHasItsOwnBakedEdit" fullname="Scrapshift.Tests.CyberSoundTests.EveryWeaponAndImpactOverrideHasItsOwnBakedEdit" methodname="EveryWeaponAndImpactOverrideHasItsOwnBakedEdit" classname="Scrapshift.Tests.CyberSoundTests" runstate="Runnable" seed="55219829" result="Passed" start-time="2026-10-15 21:57:11Z" end-time="2026-10-15 21:57:12Z" duration="0.889310" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1167" name="PickupBypassesStylingAndRequestedReferenceVariantsAreRetained" fullname="Scrapshift.Tests.CyberSoundTests.PickupBypassesStylingAndRequestedReferenceVariantsAreRetained" methodname="PickupBypassesStylingAndRequestedReferenceVariantsAreRetained" classname="Scrapshift.Tests.CyberSoundTests" runstate="Runnable" seed="402592675" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000863" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1165" name="SharedRecordingsResolveByWeaponContext" fullname="Scrapshift.Tests.CyberSoundTests.SharedRecordingsResolveByWeaponContext" methodname="SharedRecordingsResolveByWeaponContext" classname="Scrapshift.Tests.CyberSoundTests" runstate="Runnable" seed="1249268183" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.011471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1215" name="FootstepAudioTests" fullname="Scrapshift.Tests.FootstepAudioTests" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.385191" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1222" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.168801" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1216" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(1)" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(1)" methodname="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="589907746" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.088847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1217" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(2)" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(2)" methodname="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="789951596" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.011565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1218" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(3)" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(3)" methodname="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="73750329" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.008501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1219" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(4)" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(4)" methodname="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="385532993" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.039376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1220" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(5)" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(5)" methodname="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="407976465" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.009220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1221" name="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(6)" fullname="Scrapshift.Tests.FootstepAudioTests.ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy(6)" methodname="ActualImportedAndBakedFootstepsPreserveStereoAndSourceEnergy" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="1114050347" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.009406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1224" name="FootstepBankMixAndOtherApprovedCueRoutingRemainIntact" fullname="Scrapshift.Tests.FootstepAudioTests.FootstepBankMixAndOtherApprovedCueRoutingRemainIntact" methodname="FootstepBankMixAndOtherApprovedCueRoutingRemainIntact" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="273704449" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.001039" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1223" name="ImportGuardIsIdempotentAndDoesNotChangeOtherCueImportSettings" fullname="Scrapshift.Tests.FootstepAudioTests.ImportGuardIsIdempotentAndDoesNotChangeOtherCueImportSettings" methodname="ImportGuardIsIdempotentAndDoesNotChangeOtherCueImportSettings" classname="Scrapshift.Tests.FootstepAudioTests" runstate="Runnable" seed="1525244421" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.161732" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1225" name="FootstepTimingTests" fullname="Scrapshift.Tests.FootstepTimingTests" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.008512" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1233" name="CadenceDoesNotDependOnFramePartition" fullname="Scrapshift.Tests.FootstepTimingTests.CadenceDoesNotDependOnFramePartition" methodname="CadenceDoesNotDependOnFramePartition" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="1115032832" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000587" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1226" name="FirstContactIsDelayedAndLoopContactsUseReferencePhase" fullname="Scrapshift.Tests.FootstepTimingTests.FirstContactIsDelayedAndLoopContactsUseReferencePhase" methodname="FirstContactIsDelayedAndLoopContactsUseReferencePhase" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="1830887524" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000278" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1230" name="ReferenceSpeedRatioScalesTheEntireAnimation" fullname="Scrapshift.Tests.FootstepTimingTests.ReferenceSpeedRatioScalesTheEntireAnimation" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.003109" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1227" name="ReferenceSpeedRatioScalesTheEntireAnimation(4.5f,2)" fullname="Scrapshift.Tests.FootstepTimingTests.ReferenceSpeedRatioScalesTheEntireAnimation(4.5f,2)" methodname="ReferenceSpeedRatioScalesTheEntireAnimation" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="1765906693" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1228" name="ReferenceSpeedRatioScalesTheEntireAnimation(9.0f,4)" fullname="Scrapshift.Tests.FootstepTimingTests.ReferenceSpeedRatioScalesTheEntireAnimation(9.0f,4)" methodname="ReferenceSpeedRatioScalesTheEntireAnimation" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="184887066" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1229" name="ReferenceSpeedRatioScalesTheEntireAnimation(2.25f,1)" fullname="Scrapshift.Tests.FootstepTimingTests.ReferenceSpeedRatioScalesTheEntireAnimation(2.25f,1)" methodname="ReferenceSpeedRatioScalesTheEntireAnimation" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="1955995546" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000082" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1231" name="SpeedChangePreservesContactPhase" fullname="Scrapshift.Tests.FootstepTimingTests.SpeedChangePreservesContactPhase" methodname="SpeedChangePreservesContactPhase" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="1008754390" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1232" name="StoppingAndRoomCleanupRestartTheInitialDelay" fullname="Scrapshift.Tests.FootstepTimingTests.StoppingAndRoomCleanupRestartTheInitialDelay" methodname="StoppingAndRoomCleanupRestartTheInitialDelay" classname="Scrapshift.Tests.FootstepTimingTests" runstate="Runnable" seed="1206833913" result="Passed" start-time="2026-10-15 21:57:12Z" end-time="2026-10-15 21:57:12Z" duration="0.000373" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/artifacts/footstep-audio-final.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

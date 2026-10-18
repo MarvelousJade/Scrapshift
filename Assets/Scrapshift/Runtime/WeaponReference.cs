@@ -7,7 +7,7 @@ namespace Scrapshift
     [Serializable] public sealed class WeaponReferenceProfile
     {
         public string id,scene;public int tier,attackType;public bool alternate,returnDamage,speedWithRange,canBounce=true;
-        public float accuracy=1,soundDb=-5;public float[] half,hitOffset;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
+        public float accuracy=1,soundDb=-5;public float[] half,hitOffset,muzzle,muzzleRecoil;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
     }
     [Serializable] public sealed class ExplosionReference
     {public int index;public string texture;public string[] clips;public float soundDb,radius;[NonSerialized] public Sprite sprite;[NonSerialized] public AudioClip[] audio;}
@@ -62,19 +62,94 @@ namespace Scrapshift
         public static void Fire(GameAudio audio,Equipment w,Vector2 position)
         {audio.Play(w.melee?SoundCue.Swing:SoundCue.Fire,position,w.sounds,Mathf.Pow(10,(Profile(w)?.soundDb??-5)/20),.2f,true,ContextSoundProfile.Weapon(w.id,w.melee));}
         public static float Speed(Equipment w,float rangeStat)
-        {return Profile(w)?.speedWithRange==true?Mathf.Clamp(w.projectileSpeed*(1+rangeStat/300),.5f,60):w.projectileSpeed;}
+        {return Profile(w)?.speedWithRange==true?(int)Mathf.Clamp(w.projectileSpeed*100*(1+rangeStat/300),50,6000)/100f:w.projectileSpeed;}
         public static float Spread(Equipment w,float addedProjectiles,float roll)
         {return Mathf.Lerp(-1,1,roll)*Mathf.Max(0,w.spread+addedProjectiles*.1f);}
         public static float Lifetime(float range,float speed,bool manual)=> (range+(manual?.5f:1))/Mathf.Max(.001f,speed);
-        public static float DamageAfterHit(float damage,float reduction,float bonus)=>damage<=0?0:Mathf.Max(1,damage*(1-Mathf.Clamp01(reduction-bonus/100)));
+        public static Vector2 AuthoredMuzzleOffset(Equipment weapon,float recoil=0)
+        {
+            var p=Profile(weapon);if(p?.muzzle==null||p.muzzle.Length!=2)return Vector2.zero;
+            var point=new Vector2(p.muzzle[0],p.muzzle[1]);
+            if(p.muzzleRecoil?.Length==2)point+=new Vector2(p.muzzleRecoil[0],p.muzzleRecoil[1])*recoil;
+            return point;
+        }
+        public static Vector2 MuzzlePosition(Equipment weapon,Vector2 mount,Vector2 localDirection,float arrivalTime,float recoil=0)
+        {
+            float angle=Mathf.Atan2(localDirection.y,localDirection.x)*Mathf.Rad2Deg+ArrivalWeaponMotion.Rotation(arrivalTime);
+            return mount+(Vector2)(Quaternion.Euler(0,0,angle)*AuthoredMuzzleOffset(weapon,recoil));
+        }
+        public static float DamageAfterHit(float damage,float reduction,float bonus)=>damage<=0?0:Mathf.Max(1,(int)(damage-damage*Math.Max(0,Math.Min(1,(double)reduction-bonus/100d))));
         public static int AttackType(Equipment w,int shot)
         {var p=Profile(w);return p==null?0:p.alternate?(p.attackType+shot-1)%2:p.attackType;}
+    }
+
+    public static class ReferenceBeam
+    {
+        public const float Duration=.2f;
+        // Contents:scale keys at source 0/.2/.4 seconds, playback speed 2.
+        // Godot 3 cubic interpolation duplicates the first/last neighbors.
+        static Vector4 Curve(bool first)
+        {
+            float a=first?.1f:1,b=first?1:.00001f;
+            float tangentA=(b-.1f)*.5f,tangentB=(.00001f-a)*.5f;
+            return new Vector4(2*a-2*b+tangentA+tangentB,-3*a+3*b-2*tangentA-tangentB,tangentA,a);
+        }
+        static float Evaluate(Vector4 curve,float t)=>((curve.x*t+curve.y)*t+curve.z)*t+curve.w;
+        public static float Thickness(float age)
+        {
+            if(age<=0)return .1f;if(age>=Duration)return .00001f;
+            bool first=age<.1f;return Evaluate(Curve(first),(age-(first?0:.1f))/.1f);
+        }
+        public static float MaximumThickness(float from,float to)
+        {
+            if(to<0||from>=Duration||to<from)return 0;
+            from=Mathf.Max(0,from);to=Mathf.Min(Duration,to);float result=0;
+            for(int segment=0;segment<2;segment++)
+            {
+                float begin=segment*.1f,end=begin+.1f;if(to<begin||from>end)continue;
+                float a=Mathf.Clamp01((from-begin)/.1f),b=Mathf.Clamp01((to-begin)/.1f);var curve=Curve(segment==0);
+                result=Mathf.Max(result,Mathf.Max(Evaluate(curve,a),Evaluate(curve,b)));
+                float discriminant=4*curve.y*curve.y-12*curve.x*curve.z;
+                if(discriminant<0)continue;
+                float root=Mathf.Sqrt(discriminant);
+                float t=(-2*curve.y-root)/(6*curve.x);
+                if(t>=a&&t<=b)result=Mathf.Max(result,Evaluate(curve,t));
+                t=(-2*curve.y+root)/(6*curve.x);
+                if(t>=a&&t<=b)result=Mathf.Max(result,Evaluate(curve,t));
+            }
+            return result;
+        }
+        public static Vector2 Half(ProjectileReference profile,float range,float width,float age)
+            =>new Vector2(profile.half[0]*Mathf.Max(1,(range+2*width)/width),profile.half[1]*Thickness(age));
+        public static Vector2 Center(ProjectileReference profile,float range,float width,float age)
+            =>new Vector2(profile.hitOffset[0]*Mathf.Max(1,(range+2*width)/width),profile.hitOffset[1]*Thickness(age));
+        static float HitAtThickness(ProjectileReference profile,float range,float width,float thickness,Vector2 origin,float angle,Vector2 target,float radius)
+        {
+            float scaleX=Mathf.Max(1,(range+2*width)/width);
+            Vector2 center=new Vector2(profile.hitOffset[0]*scaleX,profile.hitOffset[1]*thickness);
+            Vector2 half=new Vector2(profile.half[0]*scaleX,profile.half[1]*thickness);
+            Vector2 local=Quaternion.Euler(0,0,-angle)*(target-origin);
+            if(!ReferenceMeleeMotion.Overlaps(local,radius,center,0,half))return float.PositiveInfinity;
+            // The beam appears all at once. Retain deterministic along-beam hit
+            // ordering for our piercing resolution after testing its rectangle.
+            return Mathf.Clamp01((local.x-radius)/Mathf.Max(.00001f,half.x*2));
+        }
+        public static float HitFraction(ProjectileReference profile,float range,float width,float age,Vector2 origin,float angle,Vector2 target,float radius)
+            =>age<0||age>=Duration?float.PositiveInfinity:HitAtThickness(profile,range,width,Thickness(age),origin,angle,target,radius);
+        public static float IntervalHitFraction(ProjectileReference profile,float range,float width,float from,float to,Vector2 origin,float angle,Vector2 target,float radius)
+        {
+            float thickness=MaximumThickness(from,to);
+            return thickness<=0?float.PositiveInfinity:HitAtThickness(profile,range,width,thickness,origin,angle,target,radius);
+        }
+
     }
 
     // Sprite animation is driven by the same paused simulation clock as collision.
     public sealed class WeaponProjectileView : MonoBehaviour
     {
-        ProjectileReference data;SpriteRenderer sprite;Transform start,end;float range,lastAge;ParticleSystem trail;Material tint,trailMaterial;
+        ProjectileReference data;SpriteRenderer sprite;Transform start,end;float range,lastAge,beamWidth;ParticleSystem trail;Material tint,trailMaterial;
+        public float CapturedRange=>range;
+        public float BeamWidth=>beamWidth;
         public void Initialize(ProjectileReference profile,float weaponRange)
         {
             data=profile;range=weaponRange;var root=GetComponent<SpriteRenderer>();root.enabled=false;
@@ -83,6 +158,7 @@ namespace Scrapshift
             if(!string.IsNullOrEmpty(data.trail))CreateTrail();
             if(data.beam)
             {
+                beamWidth=data.Frame(0).rect.width/100;
                 start=Cap(data.start,"Beam start");end=Cap(data.end,"Beam end");
             }
             Pose(0);
@@ -95,10 +171,11 @@ namespace Scrapshift
             sprite.sprite=data.Frame(age);
             if(data.beam)
             {
-                float thickness=age<.1f?Mathf.Lerp(.1f,1,age/.1f):Mathf.Lerp(1,.00001f,(age-.1f)/.1f);
+                float thickness=ReferenceBeam.Thickness(age);
                 float width=sprite.sprite.rect.width/100;
-                sprite.transform.localPosition=Vector3.right*width;sprite.transform.localScale=new Vector3(Mathf.Max(1,range/width),thickness,1);
-                start.localScale=end.localScale=new Vector3(1,thickness,1);end.localPosition=Vector3.right*(range+width);
+                float y=(-data.offset[1]/100-sprite.sprite.rect.height/200)*thickness;
+                sprite.transform.localPosition=new Vector3(width,y,0);sprite.transform.localScale=new Vector3(Mathf.Max(1,range/width),thickness,1);
+                start.localScale=end.localScale=new Vector3(1,thickness,1);start.localPosition=new Vector3(0,y,0);end.localPosition=new Vector3(range+width,y,0);
             }
             else
             {

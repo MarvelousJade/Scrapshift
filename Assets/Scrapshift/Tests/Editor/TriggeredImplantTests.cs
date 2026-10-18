@@ -18,6 +18,36 @@ namespace Scrapshift.Tests
             Assert.AreEqual(18,r.MaxHealth);r.Hurt(5);r.CollectConsumable(ConsumableKind.Fruit);Assert.AreEqual(18,r.MaxHealth);
             Shop(r);r.NextWave();r.CollectConsumable(ConsumableKind.Fruit);Assert.AreEqual(19,r.MaxHealth);
         }
+        [Test] public void FullHealthConsumableCapsAreTrackedPerEffectEvenForTheSameStat()
+        {
+            var r=Run();r.Items.Add(new ItemEntry{effects=new StatEffect[0],conditionalEffects=new[]{
+                new ConditionalEffect{customKey="consumable_stats_while_max",key="stat_armor",value=1,per=1},
+                new ConditionalEffect{customKey="consumable_stats_while_max",key="stat_armor",value=2,per=3}}});
+            r.CollectConsumable(ConsumableKind.Fruit);
+            Assert.AreEqual(3,r.Stat("armor"));
+            r.CollectConsumable(ConsumableKind.Fruit);
+            Assert.AreEqual(5,r.Stat("armor"),"The first effect reached its own cap; the second did not.");
+            r.CollectConsumable(ConsumableKind.Fruit);
+            Assert.AreEqual(5,r.Stat("armor"));
+        }
+        [Test] public void DuplicateItemCopiesKeepIndependentConsumableCounters()
+        {
+            var r=Run();var item=new ItemEntry{effects=new StatEffect[0],conditionalEffects=new[]{
+                new ConditionalEffect{customKey="consumable_stats_while_max",key="stat_armor",value=1,per=1}}};
+            r.Items.Add(item);r.Items.Add(item);
+            r.CollectConsumable(ConsumableKind.Fruit);Assert.AreEqual(2,r.Stat("armor"));
+            r.CollectConsumable(ConsumableKind.Fruit);Assert.AreEqual(2,r.Stat("armor"));
+        }
+        [Test] public void MissingHealthLinksRoundTheSourcePercentBeforeApplyingScaling()
+        {
+            var r=Run();r.Items.Add(new ItemEntry{effects=new StatEffect[0],conditionalEffects=new[]{
+                new ConditionalEffect{customKey="stat_links",key="stat_percent_damage",stat="percent_player_missing_health",value=2,per=1}}});
+            // The reference keeps current HP when maximum HP falls mid-wave.
+            // Hurt first so the intended source ratio is 5/6, not 9/6.
+            r.Hurt(5);r.GainWeaponStat("max_hp",-4);
+            Assert.AreEqual(6,r.MaxHealth);Assert.AreEqual(5,r.Health);
+            Assert.AreEqual(34,r.Stat("percent_damage"),"The reference rounds 16.67% missing HP to 17% before applying 2 damage per percent.");
+        }
         [Test] public void RegenBonusStopsAtHalfHealthAndDoesNotBoostTorture()
         {
             var r=Run();Add(r,"potion");r.GainWeaponStat("hp_regeneration",1);r.Hurt(6);

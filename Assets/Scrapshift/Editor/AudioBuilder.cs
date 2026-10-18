@@ -41,14 +41,38 @@ namespace Scrapshift.Editor
             hurt.variants=clips;hurt.pitchVariation=.2f;
             EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
         }
+        static SerializedProperty FootstepNormalizationProperty(SerializedObject serialized)
+        {
+            var property=serialized.FindProperty("m_Normalize");
+            if(property==null)throw new Exception("AudioImporter normalization field was not found: "+AssetDatabase.GetAssetPath(serialized.targetObject));
+            return property;
+        }
+        public static bool FootstepNormalizationEnabled(AudioImporter importer)
+        {
+            using(var serialized=new SerializedObject(importer)){serialized.Update();return FootstepNormalizationProperty(serialized).boolValue;}
+        }
+        public static void EnsureFootstepImportSettings()
+        {
+            foreach(var path in Directory.GetFiles(Root+"/Audio","Step_*.mp3"))
+            {
+                var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));
+                if(!importer.forceToMono&&!FootstepNormalizationEnabled(importer))continue;
+                // Preserve the supplied stereo energy; mono normalization amplified quiet steps.
+                importer.forceToMono=false;
+                using(var serialized=new SerializedObject(importer))
+                {serialized.Update();FootstepNormalizationProperty(serialized).boolValue=false;serialized.ApplyModifiedPropertiesWithoutUndo();}
+                importer.SaveAndReimport();
+            }
+        }
         static void EnsureMovementUiAudio()
         {
+            EnsureFootstepImportSettings();
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
             var entries=bank.entries.ToList();
             foreach(var cue in new[]{SoundCue.Step,SoundCue.UiFocus,SoundCue.UiPress,SoundCue.Spawn,SoundCue.InventoryFocus,SoundCue.Consume})
             {
                 var paths=Directory.GetFiles(Root+"/Audio",cue+"_*").Where(p=>p.EndsWith(".wav")||p.EndsWith(".mp3")).OrderBy(p=>p).ToArray();
-                foreach(var path in paths){var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));if(!importer.forceToMono){importer.forceToMono=true;importer.SaveAndReimport();}}
+                foreach(var path in paths){var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));if(cue!=SoundCue.Step&&!importer.forceToMono){importer.forceToMono=true;importer.SaveAndReimport();}}
                 var clips=paths.Select(p=>AssetDatabase.LoadAssetAtPath<AudioClip>(p.Replace('\\','/'))).ToArray();
                 if(clips.Length==0||clips.Any(c=>c==null))throw new Exception("Missing presentation cue "+cue);
                 entries.RemoveAll(e=>e.cue==cue);entries.Add(new SoundEntry{cue=cue,variants=clips,gain=cue==SoundCue.Step?.18f:.35f,cooldown=cue==SoundCue.Step?.15f:.06f,pitchVariation=cue==SoundCue.Spawn?.2f:cue==SoundCue.Step?.1f:0,priority=cue==SoundCue.Step?0:2});

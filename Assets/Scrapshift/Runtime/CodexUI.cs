@@ -7,6 +7,11 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int codexTab, codexSelected, codexTier=1, codexSort;
+        void SwitchCodexTab(int tab)
+        {
+            codexTab=Mathf.Clamp(tab,0,3);codexSelected=0;codexTier=1;codexScroll=codexDetailScroll=Vector2.zero;
+            menuFocus=-1;menuActivate=false;
+        }
         bool codexReverse;
         Vector2 codexScroll, codexDetailScroll;
         void DrawCodexFace(CharacterProfile character,Rect r)
@@ -62,7 +67,7 @@ namespace Scrapshift
             RoundedBox(new Rect(left,35,width,820),new Color(.48f,.53f,.51f),25);
             RoundedBox(new Rect(left+13,125,width-26,610),new Color(.10f,.16f,.14f),15);
             string[] tabs={"Challenges","Items","Weapons","Enemies"};float tabW=(width-40)/4;
-            for(int i=0;i<4;i++)if(MenuButton(new Rect(left+20+i*tabW,55,tabW-8,62),tabs[i],codexTab==i)){codexTab=i;codexSelected=0;codexTier=1;codexScroll=codexDetailScroll=Vector2.zero;}
+            for(int i=0;i<4;i++)if(MenuButton(new Rect(left+20+i*tabW,55,tabW-8,62),tabs[i],codexTab==i))SwitchCodexTab(i);
             var entries=CodexEntries();if(entries.Length==0)return;
             codexSelected=Mathf.Clamp(codexSelected,0,entries.Length-1);
             int cols=codexTab==0?8:codexTab==1?7:codexTab==2?5:4;
@@ -70,7 +75,7 @@ namespace Scrapshift
             bool sortable=codexTab==1||codexTab==2;
             if(sortable){if(Button(new Rect(left+20,138,gridW-85,38),"Sorted by "+new[]{"rarity","name","times acquired"}[codexSort]+" ▾")){codexSort=(codexSort+1)%3;codexSelected=0;codexScroll=Vector2.zero;}if(Button(new Rect(left+gridW-58,138,58,38),codexReverse?"↑":"↓")){codexReverse=!codexReverse;codexSelected=0;codexScroll=Vector2.zero;}}
             var viewport=new Rect(left+20,sortable?190:140,gridW,sortable?535:585);
-            if(Event.current.type==EventType.KeyDown)
+            if(!menuNavigationActive&&Event.current.type==EventType.KeyDown)
             {
                 int step=Event.current.keyCode==KeyCode.RightArrow?1:Event.current.keyCode==KeyCode.LeftArrow?-1:Event.current.keyCode==KeyCode.DownArrow?cols:Event.current.keyCode==KeyCode.UpArrow?-cols:0;
                 if(step!=0){codexSelected=Mathf.Clamp(codexSelected+step,0,entries.Length-1);codexDetailScroll=Vector2.zero;codexScroll.y=Mathf.Clamp(codexSelected/cols*cell-viewport.height+cell,0,float.MaxValue);sound.Play(SoundCue.InventoryFocus);Event.current.Use();}
@@ -79,6 +84,9 @@ namespace Scrapshift
             for(int i=0;i<entries.Length;i++)
             {
                 var e=entries[i];var r=new Rect(i%cols*cell,i/cols*cell,cell-8,cell-8);
+                InventoryNavigationSound(r);
+                bool focus=NavigationButton(r);
+                if(focus){codexSelected=i;codexTier=e.tier;EnsureNavigationVisible(r,viewport,ref codexScroll);}
                 if(i==codexSelected)RoundedBox(r,paper,8);
                 else
                 {
@@ -88,7 +96,7 @@ namespace Scrapshift
                 }
                 if(e.locked)DrawLock(new Rect(r.x+12,r.y+12,r.width-24,r.height-24));
                 else {var old=GUI.color;if(!e.known)GUI.color=Color.black;if(e.challenge!=null)DrawAchievementIcon(e.challenge,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else if(e.character!=null)DrawCodexFace(e.character,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else DrawIcon(e.image,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));GUI.color=old;}
-                if(GUI.Button(r,GUIContent.none,GUIStyle.none)){codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
+                if(GUI.Button(r,GUIContent.none,GUIStyle.none)||focus&&menuActivate){menuActivate=false;codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
             }
             GUI.EndScrollView();
             var selected=entries[codexSelected];float x=left+gridW+40,w=width-gridW-65;

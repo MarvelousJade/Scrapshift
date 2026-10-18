@@ -1,0 +1,15 @@
+{
+  "comparedTo": "R19 completed20-wave campaign",
+  "changedInputs": [
+    "Assets/Scrapshift/Runtime/FinalSettlementReview.cs",
+    "Assets/Scrapshift/Runtime/FinalSettlementReview.cs.meta",
+    "Assets/Scrapshift/Runtime/RunRules.cs",
+    "Assets/Scrapshift/Tests/Editor/FinalWaveSettlementTests.cs",
+    "Assets/Scrapshift/Tests/Editor/FinalWaveSettlementTests.cs.meta",
+    "Assets/Scrapshift/Tests/Editor/ReferenceRulesTests.cs"
+  ],
+  "productionChanged": [
+    "Assets/Scrapshift/Runtime/RunRules.cs"
+  ],
+  "scope": "Final-wave payout before Won; final-boss completion shortens timer to .1 seconds. Nine new regressions and staged native timer/boss settlement fixture; other wave flow preserved."
+}
