@@ -1,3 +1,7 @@
+## October20 - registered support correction and character matrix
+
+Codex agents traced weapon effects into the source registration array, corrected character links/unlock counts and support placement consumers, and replaced an older fixture assumption about live turrets. Codex ran the corrected10,500-case static character/item comparison (zero mismatches) and complete1,200-test suite (all passed). The user supplied scope/reference and paused desktop control; these checks do not imply user-authored implementation or fresh native/physical acceptance. See [support evidence](support-registration-parity-2026-10-20.md) and [oracle](character-item-oracle-2026-10-20.md).
+
 ## October20 - headless campaign evidence
 
 At the user's request, Codex stopped desktop control and continued authorized CLI checks. Codex added opt-in headless/survival drivers, prepared isolated original fixtures and analyzed both completed natural-defeat runs. They are automated staged campaigns, not user-played runs or fresh physical-controller acceptance. The survival report records different sampling contexts, random loadouts and original startup diagnostics.

@@ -147,7 +147,8 @@ namespace Scrapshift
                 // actor multiplicity/deaths do not change linked stats.
                 case "pet":return Effects("pet").Count(e=>e.pet!=null&&!string.IsNullOrEmpty(e.pet.kind))
                     +Stat("jellyshield_count")
-                    +Effects("structure").Count(e=>e.structure!=null&&e.structure.pet);
+                    +Effects("structure").Count(e=>e.structure!=null&&e.structure.pet)
+                    +Inventory.Sum(w=>w.traits?.Count(t=>t.structure!=null&&t.structure.pet)??0);
                 case "different_item":return Items.Select(i=>i.id).Distinct().Count();
                 case "common_item":return Items.Where(i=>i.tier==1).Select(i=>i.id).Distinct().Count();
                 case "legendary_item":return Items.Where(i=>i.tier==4).Select(i=>i.id).Distinct().Count();

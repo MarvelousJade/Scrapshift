@@ -1,3 +1,7 @@
+## October20 - weapon structure registration and deployment consumers
+
+Wrench, Screwdriver and Pruner were omitted from registered structure counts. This undercounted character links and two unlock conditions. Following `add_weapon` into `StructureEffect.apply` disproved the earlier exclusion assumption; corrected regressions retain that distinction from live actors. Group placement now uses the correct registered count and source area rules; mines cannot group. The five-turret unlock now runs from registered effects at wave setup, preventing Pocket Factory live turrets from bypassing it. See [source chain and evidence](support-registration-parity-2026-10-20.md).
+
 ## October20 - starting item choices versus automatic grants
 
 Beast Master incorrectly received all four selectable pets plus Lootworm. The original selection screen adds one chosen item, then its character effect grants Lootworm. The import/catalog now distinguish selectable choices from automatic grants; selection, preview and run startup carry the chosen item ID. All four choices yield two items, zero weapons and +4 Speed. Focused tests passed **16/16**, and the corrected 30-case source/Unity stat preflight has zero mismatches. Interactive selection remains deferred under the user's desktop-control hold. See [starting-choice report](starting-item-choices-2026-10-20.md).

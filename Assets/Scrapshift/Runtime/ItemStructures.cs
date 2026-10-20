@@ -18,11 +18,14 @@ namespace Scrapshift
             return SupportArt.Structure(kind);
         }
         Vector2 structureGroupCenter;
+        Vector2 RandomSupportAreaPosition(Vector2 center,float span)
+        =>SpawnPlacement.SourceAreaPosition(center,span,UnityEngine.Random.value,UnityEngine.Random.value);
+        Vector2 RandomSupportGroupCenter()=>RandomSupportAreaPosition(Vector2.zero,Mathf.Floor(ArenaGeometry.HalfSize.x*200/3)/100);
         void DeployStructure(StructureSpec spec,Sprite image,Vector2? position=null)
         {
             image=StructureImage(spec.kind);
-            float span=Mathf.Min(6,4+Rules.OwnedStructures*.1f);
-            var pos=position??(Rules.Stat("group_structures")>0&&spec.kind!="wandering_bot"?RunRules.ClampPosition(structureGroupCenter+new Vector2(UnityEngine.Random.Range(-span/2,span/2),UnityEngine.Random.Range(-span/2,span/2))):RandomPosition(playerPos,0));
+            float span=SupportBehavior.GroupedSpawnSpan(Rules.RegisteredStructureCount);
+            var pos=position??(spec.kind=="wandering_bot"?RandomSupportAreaPosition(playerPos,2):Rules.Stat("group_structures")>0&&SupportBehavior.CanGroupStructure(spec.kind)?RandomSupportAreaPosition(structureGroupCenter,span):SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value,1.6f));
             var trait=new WeaponTrait{key=spec.kind,projectile=spec.stats,spawnInterval=spec.spawnInterval,animationSpeed=spec.animationSpeed,radius=spec.explosionRadius};
             var obj=SpriteObject("Cybernetic "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.6f);
             AddGroundShadow(obj,image.bounds.size.x,-.2f);
@@ -31,7 +34,6 @@ namespace Scrapshift
             structure.rig=SupportRig.Create(obj,spec.kind,true);
             if(spec.kind=="landmine"){Destroy(obj);structure.obj=null;structure.clock=spec.spawnInterval;mineSpawners.Add(structure);SpawnMine(structure,image);}
             else starterTurrets.Add(structure);
-            if(loadoutShowcase<0)progress?.Check("chal_turrets",starterTurrets.FindAll(t=>t.spec.kind!="garden"&&t.spec.kind!="wandering_bot").Count);
         }
         float StructureAnimationSpeed(StarterTurret turret)
         {float cooldown=Rules.StructureCooldown(turret.stats.interval*(turret.boostClock>0?.8f:1));return Mathf.Max(turret.spec.animationSpeed,Mathf.Min(3,.3f/Mathf.Max(.001f,cooldown)));}

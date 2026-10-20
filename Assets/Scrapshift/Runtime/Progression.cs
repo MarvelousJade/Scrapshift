@@ -123,9 +123,9 @@ namespace Scrapshift
             if(run.Wave<6)Check("chal_fast_learner",run.Level);
             Check("chal_baited",run.Items.Count(i=>i.id=="bait"));Check("chal_bourgeoisie",run.Inventory.Count(w=>w.tier==4));
             Check("chal_scavenger",run.Items.Where(i=>i.tier==1).Select(i=>i.id).Distinct().Count());
-            // ChallengeService checks the registered structures-effect array,
-            // not every spawned structure, weapon attachment or structure pet.
-            int challengeStructures=run.Effects("structure").Count();
+            // ChallengeService checks registered StructureEffect entries,
+            // including weapon effects, but excluding Pocket Factory/pet extras.
+            int challengeStructures=run.RegisteredStructureCount;
             if(run.Stat("ranged_damage")>=10&&challengeStructures>=3)Complete("chal_advanced_technology");
             if(run.Stat("elemental_damage")>=10&&challengeStructures>=3)Complete("chal_magic_and_machinery");
             if(run.Stat("hp_regeneration")>=10&&run.Stat("lifesteal")>=10)Complete("chal_doc_moth");

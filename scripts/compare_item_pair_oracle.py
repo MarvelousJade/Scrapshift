@@ -37,6 +37,7 @@ def main():
     parser.add_argument("--reference", type=Path, required=True)
     parser.add_argument("--unity", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--scope", default="static 16-stat intermission vector, Well-Rounded with tier-I pistol, full health, after zero, one or two acquired imported items; no live Player scene applies movement TempStats")
     args = parser.parse_args()
     cases, reference, unity = (load(path) for path in (args.cases, args.reference, args.unity))
     if set(cases) != set(reference) or set(cases) != set(unity):
@@ -60,7 +61,7 @@ def main():
         if differences:
             mismatches.append({"id": id_, "differences": differences})
     report = {
-        "scope": "static 16-stat intermission vector, Well-Rounded with tier-I pistol, full health, after zero, one or two acquired imported items; no live Player scene applies movement TempStats",
+        "scope": args.scope,
         "limits": "No timed, random/proc, enemy, combat, pickup, shop, transition, or acquisition-order parity claim; all mismatches require source triage.",
         "caseCount": len(cases), "compared": len(cases)-len(errors),
         "errorCount": len(errors), "mismatchCount": len(mismatches),

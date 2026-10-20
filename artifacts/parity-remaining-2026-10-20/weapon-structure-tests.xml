@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Passed" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 12:38:08Z" end-time="2026-10-20 12:38:09Z" duration="0.8222205">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1200" result="Passed" start-time="2026-10-20 12:38:08Z" end-time="2026-10-20 12:38:09Z" duration="0.822221" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2401" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1170" result="Passed" start-time="2026-10-20 12:38:08Z" end-time="2026-10-20 12:38:09Z" duration="0.780429" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="33088" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2402" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1170" result="Passed" start-time="2026-10-20 12:38:08Z" end-time="2026-10-20 12:38:09Z" duration="0.762619" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2403" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1170" result="Passed" start-time="2026-10-20 12:38:08Z" end-time="2026-10-20 12:38:09Z" duration="0.742742" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1148" name="CharacterRemainingParityTests" fullname="Scrapshift.Tests.CharacterRemainingParityTests" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.535972" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1154" name="CombiningOrRemovingStructureWeaponUpdatesStreamerArmor" fullname="Scrapshift.Tests.CharacterRemainingParityTests.CombiningOrRemovingStructureWeaponUpdatesStreamerArmor" methodname="CombiningOrRemovingStructureWeaponUpdatesStreamerArmor" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" seed="1311750780" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.510759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1155" name="DuplicateRegisteredStructuresEachContributeAndRemovalUpdatesLinkedArmor" fullname="Scrapshift.Tests.CharacterRemainingParityTests.DuplicateRegisteredStructuresEachContributeAndRemovalUpdatesLinkedArmor" methodname="DuplicateRegisteredStructuresEachContributeAndRemovalUpdatesLinkedArmor" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" seed="184324386" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.000722" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1153" name="StreamerCountsRealStructureItemsFactoryAndStructurePetButNotOtherPets" fullname="Scrapshift.Tests.CharacterRemainingParityTests.StreamerCountsRealStructureItemsFactoryAndStructurePetButNotOtherPets" methodname="StreamerCountsRealStructureItemsFactoryAndStructurePetButNotOtherPets" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" seed="250518923" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1152" name="StreamerCountsRegisteredStartingWeaponStructures" fullname="Scrapshift.Tests.CharacterRemainingParityTests.StreamerCountsRegisteredStartingWeaponStructures" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.004879" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1149" name="StreamerCountsRegisteredStartingWeaponStructures(&quot;wrench&quot;)" fullname="Scrapshift.Tests.CharacterRemainingParityTests.StreamerCountsRegisteredStartingWeaponStructures(&quot;wrench&quot;)" methodname="StreamerCountsRegisteredStartingWeaponStructures" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" seed="1033749364" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.000854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1150" name="StreamerCountsRegisteredStartingWeaponStructures(&quot;screwdriver&quot;)" fullname="Scrapshift.Tests.CharacterRemainingParityTests.StreamerCountsRegisteredStartingWeaponStructures(&quot;screwdriver&quot;)" methodname="StreamerCountsRegisteredStartingWeaponStructures" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" seed="1445520391" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.000199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1151" name="StreamerCountsRegisteredStartingWeaponStructures(&quot;pruner&quot;)" fullname="Scrapshift.Tests.CharacterRemainingParityTests.StreamerCountsRegisteredStartingWeaponStructures(&quot;pruner&quot;)" methodname="StreamerCountsRegisteredStartingWeaponStructures" classname="Scrapshift.Tests.CharacterRemainingParityTests" runstate="Runnable" seed="207302247" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.000150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1280" name="EconomyRemainingParityTests" fullname="Scrapshift.Tests.EconomyRemainingParityTests" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.075849" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1291" name="CharacterBannedItemRemainsInBackupWithoutRestoringExcludedOffers" fullname="Scrapshift.Tests.EconomyRemainingParityTests.CharacterBannedItemRemainsInBackupWithoutRestoringExcludedOffers" methodname="CharacterBannedItemRemainsInBackupWithoutRestoringExcludedOffers" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="1979348837" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.020394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1293" name="CharacterBanStillAppliesWhenPreferredPoolHasAnEligibleItem" fullname="Scrapshift.Tests.EconomyRemainingParityTests.CharacterBanStillAppliesWhenPreferredPoolHasAnEligibleItem" methodname="CharacterBanStillAppliesWhenPreferredPoolHasAnEligibleItem" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="2063513254" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001179" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1285" name="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling" fullname="Scrapshift.Tests.EconomyRemainingParityTests.HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.036439" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1281" name="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;knight&quot;,1,0.4f,0)" fullname="Scrapshift.Tests.EconomyRemainingParityTests.HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;knight&quot;,1,0.4f,0)" methodname="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="1270694477" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.017963" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1282" name="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;knight&quot;,101,20.6f,20)" fullname="Scrapshift.Tests.EconomyRemainingParityTests.HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;knight&quot;,101,20.6f,20)" methodname="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="1815325613" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.009565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1283" name="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;vagabond&quot;,1,1.0f,0)" fullname="Scrapshift.Tests.EconomyRemainingParityTests.HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;vagabond&quot;,1,1.0f,0)" methodname="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="967610386" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.002891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1284" name="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;vagabond&quot;,41,21.5f,20)" fullname="Scrapshift.Tests.EconomyRemainingParityTests.HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling(&quot;vagabond&quot;,41,21.5f,20)" methodname="HarvestGrowthUsesFractionalEffectiveStatBeforeCeiling" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="666595259" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.000982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1290" name="OneMultiSpawnEffectIsStillOneChallengeRegistration" fullname="Scrapshift.Tests.EconomyRemainingParityTests.OneMultiSpawnEffectIsStillOneChallengeRegistration" methodname="OneMultiSpawnEffectIsStillOneChallengeRegistration" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="1742025647" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.006051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1292" name="PreferredTagFailureMayUseCharacterBannedItemInBackup" fullname="Scrapshift.Tests.EconomyRemainingParityTests.PreferredTagFailureMayUseCharacterBannedItemInBackup" methodname="PreferredTagFailureMayUseCharacterBannedItemInBackup" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="126400310" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001178" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1289" name="StructurePetsDoNotCountAsStructureEffectChallengeEntries" fullname="Scrapshift.Tests.EconomyRemainingParityTests.StructurePetsDoNotCountAsStructureEffectChallengeEntries" methodname="StructurePetsDoNotCountAsStructureEffectChallengeEntries" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="1400553146" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1288" name="WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot" fullname="Scrapshift.Tests.EconomyRemainingParityTests.WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.005624" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1286" name="WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot(&quot;chal_advanced_technology&quot;,&quot;ranged_damage&quot;)" fullname="Scrapshift.Tests.EconomyRemainingParityTests.WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot(&quot;chal_advanced_technology&quot;,&quot;ranged_damage&quot;)" methodname="WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="625039762" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.003514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1287" name="WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot(&quot;chal_magic_and_machinery&quot;,&quot;elemental_damage&quot;)" fullname="Scrapshift.Tests.EconomyRemainingParityTests.WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot(&quot;chal_magic_and_machinery&quot;,&quot;elemental_damage&quot;)" methodname="WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot" classname="Scrapshift.Tests.EconomyRemainingParityTests" runstate="Runnable" seed="586247346" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.000875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1699" name="PetLinkParityTests" fullname="Scrapshift.Tests.PetLinkParityTests" classname="Scrapshift.Tests.PetLinkParityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.006900" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1700" name="BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" fullname="Scrapshift.Tests.PetLinkParityTests.BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" methodname="BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" classname="Scrapshift.Tests.PetLinkParityTests" runstate="Runnable" seed="62362832" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.005676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2026" name="SupportRegistrationBoundaryTests" fullname="Scrapshift.Tests.SupportRegistrationBoundaryTests" classname="Scrapshift.Tests.SupportRegistrationBoundaryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.004924" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2028" name="SpawnAreaUsesRegisteredEffectsAndClampsTheAreaBeforeSampling" fullname="Scrapshift.Tests.SupportRegistrationBoundaryTests.SpawnAreaUsesRegisteredEffectsAndClampsTheAreaBeforeSampling" methodname="SpawnAreaUsesRegisteredEffectsAndClampsTheAreaBeforeSampling" classname="Scrapshift.Tests.SupportRegistrationBoundaryTests" runstate="Runnable" seed="1602110094" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2027" name="TurretUnlockCountsRegistrationsBeforeDeploymentAndExcludesOtherStructures" fullname="Scrapshift.Tests.SupportRegistrationBoundaryTests.TurretUnlockCountsRegistrationsBeforeDeploymentAndExcludesOtherStructures" methodname="TurretUnlockCountsRegistrationsBeforeDeploymentAndExcludesOtherStructures" classname="Scrapshift.Tests.SupportRegistrationBoundaryTests" runstate="Runnable" seed="392463984" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001774" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2398" name="WeaponStructureRegistrationTests" fullname="Scrapshift.Tests.WeaponStructureRegistrationTests" classname="Scrapshift.Tests.WeaponStructureRegistrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.003020" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2400" name="PocketFactoryAndStructurePetsDoNotEnterRegisteredEffectCount" fullname="Scrapshift.Tests.WeaponStructureRegistrationTests.PocketFactoryAndStructurePetsDoNotEnterRegisteredEffectCount" methodname="PocketFactoryAndStructurePetsDoNotEnterRegisteredEffectCount" classname="Scrapshift.Tests.WeaponStructureRegistrationTests" runstate="Runnable" seed="1184305153" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2399" name="TechnomageCountsSelectedWrenchAlongsideTwoGrantedTurrets" fullname="Scrapshift.Tests.WeaponStructureRegistrationTests.TechnomageCountsSelectedWrenchAlongsideTwoGrantedTurrets" methodname="TechnomageCountsSelectedWrenchAlongsideTwoGrantedTurrets" classname="Scrapshift.Tests.WeaponStructureRegistrationTests" runstate="Runnable" seed="1829909846" result="Passed" start-time="2026-10-20 12:38:09Z" end-time="2026-10-20 12:38:09Z" duration="0.001156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/parity-remaining-2026-10-20/weapon-structure-tests.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

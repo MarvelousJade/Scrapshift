@@ -23,9 +23,12 @@ namespace Scrapshift
         public int ExtraBaitGroups {get;private set;}
         public bool ExtraElite {get;private set;}
         int queuedBaits;
-        // RunData.get_nb_structures counts registered item structures, Pocket
-        // Factory and structure pets. Weapon-deployed actors are not entries.
-        public int OwnedStructures=>Effects("structure").Count()+Items.Count(i=>i.id=="pocket_factory")+Effects("pet").Count(e=>e.pet!=null&&e.pet.structure);
+        // StructureEffect.apply registers one entry per item or weapon effect,
+        // including Wrench turrets and Screwdriver mines.
+        public int RegisteredStructureCount=>Effects("structure").Count()+Inventory.Sum(w=>w.traits?.Count(t=>t.structure!=null)??0);
+        public int RegisteredTurretCount=>Effects("structure").Count(e=>SupportBehavior.IsTurretStructure(e.structure))+Inventory.Sum(w=>w.traits?.Count(t=>SupportBehavior.IsTurretStructure(t.structure))??0);
+        public void CheckStructureDeploymentUnlock()=>Progress?.Check("chal_turrets",RegisteredTurretCount);
+        public int OwnedStructures=>RegisteredStructureCount+Items.Count(i=>i.id=="pocket_factory")+Effects("pet").Count(e=>e.pet!=null&&e.pet.structure);
         public bool UsesHealthShop=>Stat("hp_shop")>0;
         public float ShopBalance=>UsesHealthShop?(int)Stat("max_hp"):Scrap;
         public float WantedTagChance=>Stat("boosted_wanted_item_tag")>0?.1f:.05f;

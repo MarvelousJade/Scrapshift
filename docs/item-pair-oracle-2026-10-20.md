@@ -13,7 +13,7 @@ The supplied source's `RunData.add_item` applies each item effect and resets its
 3. Copy the current source to the established isolated Unity validation clone, verify the copied file hashes, then launch batchmode with `-executeMethod Scrapshift.Editor.ItemPairOracle.Export --item-oracle-cases <absolute path> --item-oracle-output <absolute path>`. Require `ITEM_ORACLE_UNITY_DONE` and process exit zero.
 4. Run `scripts/compare_item_pair_oracle.py --cases <cases> --reference <reference JSONL> --unity <Unity JSONL> --output <report JSON>`. It requires identical case sets, compares the ordered 16-stat vectors to `1e-4` absolute tolerance, records input SHA-256 hashes, reports export errors separately and preserves the first 100 stat differences. Preserve raw JSONL, logs, manifest and mismatch report even if comparison fails.
 
-Original and Unity exporters use actual item acquisition functions, not copied formulas. They intentionally use their respective runtime implementations; an exporter error, missing ID or baseline mismatch should be investigated before scaling to all 21,945 cases. A clean static result would close this one finite vector/state/order matrix only.
+Original and Unity exporters use actual item acquisition functions, not copied formulas. They intentionally use their respective runtime implementations; an exporter error, missing ID or baseline mismatch should be investigated before scaling to all 22,155 cases. A clean static result would close this one finite vector/state/order matrix only.
 
 ## Current result
 

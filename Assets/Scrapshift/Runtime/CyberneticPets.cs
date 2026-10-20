@@ -18,18 +18,20 @@ namespace Scrapshift
             public readonly HashSet<Enemy> meleeHits=new HashSet<Enemy>();
         }
         readonly List<Pet> pets=new List<Pet>();
+        Vector2 petGroupCenter;
         void InvalidateLootwormTargets(){foreach(var pet in pets)if(pet.spec.kind=="lootworm")pet.lootwormTarget.Invalidate();}
         void ClearPets(){foreach(var pet in pets)Destroy(pet.obj);pets.Clear();Rules.HealingDrones=0;Rules.PetCount=0;}
         void ResetPets()
         {
             ClearPets();
+            petGroupCenter=RandomSupportGroupCenter();
             foreach(var effect in Rules.Effects("pet"))if(effect.pet!=null&&!string.IsNullOrEmpty(effect.pet.kind))for(int i=0;i<(int)effect.value;i++)SpawnPet(effect.pet);
             int shields=(int)Rules.Stat("jellyshield_count");for(int i=0;i<shields;i++)SpawnPet(new PetSpec{kind="jellyshield",health=1,zone=1});
             Rules.PetCount=pets.Count;
         }
         void SpawnPet(PetSpec spec)
         {
-            var image=SupportArt.Pet(spec.kind);float span=Mathf.Min(6,4+Rules.OwnedStructures*.1f);var pos=RunRules.ClampPosition(structureGroupCenter+new Vector2(UnityEngine.Random.Range(-span/2,span/2),UnityEngine.Random.Range(-span/2,span/2)));
+            var image=SupportArt.Pet(spec.kind);float span=SupportBehavior.GroupedSpawnSpan(Rules.RegisteredStructureCount);var pos=RandomSupportAreaPosition(petGroupCenter,span);
             var obj=SpriteObject("Cybernetic companion: "+spec.kind,image,pos,7);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.65f);AddGroundShadow(obj,image.bounds.size.x,-.2f);
             var pet=new Pet{spec=spec,obj=obj,baseScale=obj.transform.localScale.x,pos=pos,destination=pos,health=spec.health+spec.healthGrowth*(Rules.Wave-1)};
             pet.rig=SupportRig.Create(obj,spec.kind,false);

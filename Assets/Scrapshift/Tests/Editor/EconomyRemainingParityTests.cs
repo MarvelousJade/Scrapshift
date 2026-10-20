@@ -38,21 +38,21 @@ namespace Scrapshift.Tests
 
         [TestCase("chal_advanced_technology","ranged_damage")]
         [TestCase("chal_magic_and_machinery","elemental_damage")]
-        public void WeaponStructuresAndFactoryDoNotReplaceThreeRegisteredStructureEffects(string challenge,string stat)
+        public void WeaponStructuresCountAsRegisteredChallengeEffectsButFactoryDoesNot(string challenge,string stat)
         {
             var progress=new Progression(definitions);
             var run=new RunRules(42){Progress=progress};run.Configure(catalog);run.Start();
             run.Inventory.Clear();
-            foreach(string id in new[]{"wrench","screwdriver","pruner"})run.Inventory.Add(catalog.Weapon(id,1));
+            foreach(string id in new[]{"wrench","screwdriver"})run.Inventory.Add(catalog.Weapon(id,1));
             run.Items.Add(catalog.data.items.Single(i=>i.id=="pocket_factory"));
             run.GainWeaponStat(stat,10);
-            Assert.AreEqual(1,run.OwnedStructures,"Only Pocket Factory counts; weapon-deployed actors are excluded.");
+            Assert.AreEqual(2,run.RegisteredStructureCount);
+            Assert.AreEqual(3,run.OwnedStructures,"Pocket Factory adds to owned structures, but not registered effects.");
             progress.CheckStats(run);
-            Assert.IsFalse(progress.Completed(challenge),"ChallengeService counts registered StructureEffect entries only.");
-            var turret=catalog.data.items.Single(i=>i.id=="turret");
-            run.Items.Add(turret);run.Items.Add(turret);
-            progress.CheckStats(run);Assert.IsFalse(progress.Completed(challenge));
-            run.Items.Add(turret);
+            Assert.IsFalse(progress.Completed(challenge));
+            run.Inventory.Add(catalog.Weapon("pruner",1));
+            Assert.AreEqual(3,run.RegisteredStructureCount);
+            Assert.AreEqual(4,run.OwnedStructures);
             progress.CheckStats(run);Assert.IsTrue(progress.Completed(challenge));
         }
 

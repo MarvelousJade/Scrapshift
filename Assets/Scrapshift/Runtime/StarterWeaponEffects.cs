@@ -109,7 +109,8 @@ namespace Scrapshift
         }
         void ResetStructures()
         {
-            ClearStarterEffects();float groupWidth=ArenaGeometry.HalfSize.x*2/3;structureGroupCenter=new Vector2(UnityEngine.Random.Range(-groupWidth/2,groupWidth/2),UnityEngine.Random.Range(-groupWidth/2,groupWidth/2));ResetPets();
+            if(loadoutShowcase<0)Rules.CheckStructureDeploymentUnlock();
+            ClearStarterEffects();structureGroupCenter=RandomSupportGroupCenter();ResetPets();
             foreach(var w in Rules.Inventory)
             {
                 var trait=w.Trait("turret")??w.Trait("garden")??w.Trait("landmine");if(trait?.projectile==null)continue;

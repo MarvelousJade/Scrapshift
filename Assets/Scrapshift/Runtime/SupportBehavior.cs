@@ -3,6 +3,11 @@ namespace Scrapshift
 {
     public static class SupportBehavior
     {
+        // EntitySpawner uses only the registered structures array here, not
+        // Pocket Factory or pets that contribute to get_nb_structures.
+        public static float GroupedSpawnSpan(int registeredStructures)=>Mathf.Min(6,4+registeredStructures*.1f);
+        public static bool CanGroupStructure(string kind)=>kind!="landmine";
+        public static bool IsTurretStructure(StructureSpec spec)=>spec!=null&&!string.IsNullOrEmpty(spec.kind)&&spec.kind!="landmine"&&spec.kind!="garden"&&spec.kind!="wandering_bot";
         // Lootworm Animation is at raw (0,-24), attraction at raw origin and
         // pickup collision at raw (0,-10), relative to its adapted body center.
         public static Vector2 LootwormOriginOffset=>Vector2.down*.24f;

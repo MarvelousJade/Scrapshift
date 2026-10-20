@@ -1,3 +1,7 @@
+## October20 - explicit support registration counts
+
+`RunRules.RegisteredStructureCount` derives item/character plus weapon structure registrations. `OwnedStructures` adds the Pocket Factory/structure-pet terms used by source stat links; `RegisteredTurretCount` filters the source turret class for deployment unlocks. Group placement uses registered count only, while live actors retain their combat lists. `ResetStructures` checks the deployment reward before spawning; tree-spawned actors do not feed it. The shared source position helper clamps an area before sampling and supports the distinct160-pixel ungrouped inset. See [registration correction](support-registration-parity-2026-10-20.md).
+
 ## October17 lifecycle integration (R25)
 
 DeathLifecycle separates immediate Lost state from the source 0.5s acknowledgment gate. ArenaGame stops work after lethal contact, clears combat actors, banks raw materials and advances cleanup while unpaused. RetryWaveState copies explicit persistent wave-start values, dictionaries and mutable shop offers; catalog references, global Progression and RNG stay live. StartWave captures before consuming encounter queues; retry rebuilds actors and checkpoints the restored wave. GameSettings.retryWave is functional and defaults false. Explicit snapshot fields need maintenance when new persistent run data is added.

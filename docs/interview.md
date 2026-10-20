@@ -1,3 +1,7 @@
+## October20 - follow the caller before deciding what a count means
+
+The original character matrix exposed Technomage at +6 Elemental Damage versus Unity's +4. A prior test had incorrectly asserted that Wrench was excluded. Following `RunData.add_weapon` into `StructureEffect.apply` established that a weapon registers its effect before spawning anything. Distinguish registered structures, broad character-owned counts, turret-class registrations and live actors. Each has different consumers. The fix updates links, achievements and placement without counting every spawned actor as a registration. Codex authored the investigation and corrections; reproduce the caller chain and explain the earlier mistaken test before presenting this story.
+
 ## October20 - compare runs without overstating the result
 
 The user paused desktop access, so Codex added explicit headless campaign modes rather than treating missing screenshots as visual evidence. The ordinary-damage mode accepts natural defeat only after cleanup and excludes the failed wave from completion. Original and Unity runs lost on different waves, with different random upgrades/items; health metrics also sample different boundaries. Explain why those totals cannot identify a damage-formula bug. Use source-derived controlled checks for causality and the full campaign for integration coverage. See [survival evidence](headless-survival-comparison-2026-10-20.md).

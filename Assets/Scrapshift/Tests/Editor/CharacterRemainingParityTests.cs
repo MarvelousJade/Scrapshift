@@ -20,12 +20,12 @@ namespace Scrapshift.Tests
         [TestCase("wrench")]
         [TestCase("screwdriver")]
         [TestCase("pruner")]
-        public void StreamerDoesNotGainStructureArmorFromStartingWeaponActors(string weapon)
+        public void StreamerCountsRegisteredStartingWeaponStructures(string weapon)
         {
             var run=Streamer(weapon);
             Assert.AreEqual(1,run.Inventory.Count);
-            Assert.AreEqual(0,run.OwnedStructures);
-            Assert.AreEqual(0,run.Stat("armor"),"linked_stats uses RunData.get_nb_structures, not live weapon deployments.");
+            Assert.AreEqual(1,run.OwnedStructures);
+            Assert.AreEqual(2,run.Stat("armor"),"add_weapon applies its StructureEffect to the registered structure array.");
         }
 
         [Test] public void StreamerCountsRealStructureItemsFactoryAndStructurePetButNotOtherPets()
@@ -33,23 +33,24 @@ namespace Scrapshift.Tests
             var run=Streamer("wrench");
             foreach(string id in new[]{"turret","pocket_factory","bot_o_mine"})
                 run.Items.Add(Item(id));
-            Assert.AreEqual(3,run.OwnedStructures);
-            Assert.AreEqual(6,run.Stat("armor"));
+            Assert.AreEqual(4,run.OwnedStructures);
+            Assert.AreEqual(8,run.Stat("armor"));
             run.Items.Add(Item("catling_gun"));run.Items.Add(Item("bonk_dog"));
-            Assert.AreEqual(3,run.OwnedStructures);
-            Assert.AreEqual(6,run.Stat("armor"),"Ordinary pets are not structure pets.");
+            Assert.AreEqual(4,run.OwnedStructures);
+            Assert.AreEqual(8,run.Stat("armor"),"Ordinary pets are not structure pets.");
         }
 
-        [Test] public void CombiningOrRemovingStructureWeaponCannotChangeStreamerArmor()
+        [Test] public void CombiningOrRemovingStructureWeaponUpdatesStreamerArmor()
         {
             var run=Streamer("wrench");
             run.Items.Add(Item("turret"));
             run.Inventory.Add(catalog.Weapon("screwdriver",1));
             run.Inventory.Add(catalog.Weapon("pruner",1));
-            Assert.AreEqual(2,run.Stat("armor"));
+            Assert.AreEqual(4,run.OwnedStructures);
+            Assert.AreEqual(8,run.Stat("armor"));
             run.Inventory.Clear();run.Inventory.Add(catalog.Weapon("wrench",4));
-            Assert.AreEqual(1,run.OwnedStructures);
-            Assert.AreEqual(2,run.Stat("armor"));
+            Assert.AreEqual(2,run.OwnedStructures);
+            Assert.AreEqual(4,run.Stat("armor"));
         }
 
         [Test] public void DuplicateRegisteredStructuresEachContributeAndRemovalUpdatesLinkedArmor()

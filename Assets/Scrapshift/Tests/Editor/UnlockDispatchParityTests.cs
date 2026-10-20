@@ -273,8 +273,12 @@ namespace Scrapshift.Tests
                     Call(game,"DeployStructure",spec,null,(Vector2?)Vector2.zero);
                     var list=(IList)typeof(ArenaGame).GetField("starterTurrets",Fields).GetValue(game);
                     var turret=list[list.Count-1];objects.Add((GameObject)turret.GetType().GetField("obj").GetValue(turret));
-                    if(i<4)Below(id);
+                    Below(id); // Live tree-created actors are not registrations.
                 }
+                for(int i=0;i<4;i++)game.Rules.Items.Add(Item("turret"));
+                game.Rules.CheckStructureDeploymentUnlock();Below(id);
+                game.Rules.Items.Add(Item("turret"));
+                game.Rules.CheckStructureDeploymentUnlock();
             }
             finally{foreach(var obj in objects)UnityEngine.Object.DestroyImmediate(obj);UnityEngine.Object.DestroyImmediate(host);}
         }
