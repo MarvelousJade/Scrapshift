@@ -1,3 +1,7 @@
+## October20 - additional headless shop boundaries
+
+All12 source-derived shop groups and14 built-player headless receipts passed, including rawHP0 material rerolls, inventory capacity rejection, both lock preferences, acquire/remove effects, Anvil eligibility and Candy's natural chance/consequence. No production shop mismatch was established. Retained failures were fixture defects: a C# scope collision and funding Entrepreneur before its legitimate purse-discard effect. See [shop evidence](headless-shops-2026-10-20.md). Display/input acceptance is still separate.
+
 ## October20 - weapon structure registration and deployment consumers
 
 Wrench, Screwdriver and Pruner were omitted from registered structure counts. This undercounted character links and two unlock conditions. Following `add_weapon` into `StructureEffect.apply` disproved the earlier exclusion assumption; corrected regressions retain that distinction from live actors. Group placement now uses the correct registered count and source area rules; mines cannot group. The five-turret unlock now runs from registered effects at wave setup, preventing Pocket Factory live turrets from bypassing it. See [source chain and evidence](support-registration-parity-2026-10-20.md).

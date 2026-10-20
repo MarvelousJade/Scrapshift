@@ -6,20 +6,20 @@ namespace Scrapshift
     {
         // Process arguments cannot change after launch. Do not re-read/copy them
         // for every enemy/projectile settings query; option values stay live.
-        static readonly bool fixture,controllerFixture;
+        static readonly bool fixture,mutableFixture;
         static GameSettings()
         {
             var args=System.Environment.GetCommandLineArgs();
             fixture=System.Array.Exists(args,a=>a.StartsWith("--"));
-            controllerFixture=System.Array.IndexOf(args,"--controller-check")>=0;
+            mutableFixture=System.Array.IndexOf(args,"--controller-check")>=0||System.Array.Exists(args,a=>a.StartsWith("--headless-"));
         }
         public static bool IsFixture=>fixture;
-        static readonly System.Collections.Generic.Dictionary<string,float> controllerOptions=new System.Collections.Generic.Dictionary<string,float>();
-        static bool ControllerFixture=>controllerFixture;
-        public static bool Flag(string key,bool fallback=true)=>IsFixture?(ControllerFixture&&controllerOptions.TryGetValue(key,out float value)?value!=0:fallback):PlayerPrefs.GetInt("options."+key,fallback?1:0)!=0;
-        public static float Value(string key,float fallback=1)=>IsFixture?(ControllerFixture&&controllerOptions.TryGetValue(key,out float value)?value:fallback):PlayerPrefs.GetFloat("options."+key,fallback);
-        public static void Set(string key,bool value){if(IsFixture){if(ControllerFixture)controllerOptions[key]=value?1:0;return;}PlayerPrefs.SetInt("options."+key,value?1:0);PlayerPrefs.Save();}
-        public static void Set(string key,float value){if(IsFixture){if(ControllerFixture)controllerOptions[key]=value;return;}PlayerPrefs.SetFloat("options."+key,value);PlayerPrefs.Save();}
+        static readonly System.Collections.Generic.Dictionary<string,float> fixtureOptions=new System.Collections.Generic.Dictionary<string,float>();
+        static bool FixtureOverrides=>mutableFixture;
+        public static bool Flag(string key,bool fallback=true)=>IsFixture?(FixtureOverrides&&fixtureOptions.TryGetValue(key,out float value)?value!=0:fallback):PlayerPrefs.GetInt("options."+key,fallback?1:0)!=0;
+        public static float Value(string key,float fallback=1)=>IsFixture?(FixtureOverrides&&fixtureOptions.TryGetValue(key,out float value)?value:fallback):PlayerPrefs.GetFloat("options."+key,fallback);
+        public static void Set(string key,bool value){if(IsFixture){if(FixtureOverrides)fixtureOptions[key]=value?1:0;return;}PlayerPrefs.SetInt("options."+key,value?1:0);PlayerPrefs.Save();}
+        public static void Set(string key,float value){if(IsFixture){if(FixtureOverrides)fixtureOptions[key]=value;return;}PlayerPrefs.SetFloat("options."+key,value);PlayerPrefs.Save();}
         public static Color Positive=>new[]{new Color(0,1,0),Color.cyan,Color.yellow}[(int)Value("positiveColor",0)%3];
         public static Color Negative=>new[]{Color.red,Color.magenta,new Color(1,.5f,0)}[(int)Value("negativeColor",0)%3];
         public static Color TextColor(Color color)=>color.g>.9f&&color.r<.5f&&color.b<.5f?Positive:color.r>.9f&&color.g<.35f&&color.b<.35f?Negative:color;

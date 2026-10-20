@@ -1,3 +1,7 @@
+## October20 - validate the setup before changing economy rules
+
+The expanded shop price check failed for Entrepreneur because the fixture supplied money before Start, and the character correctly discarded that starting purse. Codex followed the source startup modifier and moved staged funding after Start without generating pickup XP. The corrected12 shop groups and14 headless player receipts passed. Explain why a failed check can indicate an invalid setup rather than a gameplay defect, and why logic receipts do not prove displayed prices or mouse/controller behavior. Codex performed this investigation; reproduce the case before claiming personal execution.
+
 ## October20 - final integrated evidence
 
 Use [R29 final checkpoint](gameplay-final-checkpoint-2026-10-20.md) for the current rehearsal numbers:1,200 passing tests,10,500 character/item static cases and18/18 bounded checks after a current20-wave campaign. Explain why these are different evidence types. The original and R29 have different random purchases/stacks; each debit and settlement must reconcile internally. Do not claim deterministic cross-engine outcomes, a human survival victory or fresh controller acceptance. Codex ran these checks; reproduce and understand the source chain before presenting personal execution.
