@@ -1,8 +1,14 @@
 # Scrapshift
 
-[![Watch Scrapshift gameplay on YouTube](https://img.youtube.com/vi/vxglIsqjHaU/hqdefault.jpg)](https://youtu.be/vxglIsqjHaU)
-
-[![Play Demo on itch.io](https://img.shields.io/badge/Play_Demo-itch.io-FA5C5C?style=for-the-badge&logo=itchdotio&logoColor=white)](https://marvelousjade.itch.io/scrap-shift?password=scrapshift)
+<p align="center">
+  <a href="https://youtu.be/vxglIsqjHaU">
+    <img src="https://img.youtube.com/vi/vxglIsqjHaU/hqdefault.jpg" alt="Watch Scrapshift gameplay on YouTube" width="480">
+  </a>
+  <br>
+  <a href="https://marvelousjade.itch.io/scrap-shift?password=scrapshift">
+    <img src="https://img.shields.io/badge/Play_Demo-itch.io-FA5C5C?style=for-the-badge&amp;logo=itchdotio&amp;logoColor=white" alt="Play Demo on itch.io">
+  </a>
+</p>
 
 A cyberpunk arena-survival roguelite built in **Unity and C#**, inspired by [Brotato](https://store.steampowered.com/app/1942280/Brotato/). Fight through 20 waves, turn collected materials into upgrades, and assemble a build of weapons, cybernetic items and companions.
 
