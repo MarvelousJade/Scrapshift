@@ -1,3 +1,7 @@
+## October20 rehearsal - preserve a selected spawn point across helpers
+
+A support audit found that a helper discarded the spawn point computed by the source-derived placement rule and sampled again. Trace DeployStructure to SpawnMineAt, explain why initial and timed/global versus explicit pet-local routes differ, and reproduce a seeded inset check. Native software-input checks also follow all four companion choices through preview, run and retry; those do not establish physical Xbox support. Codex authored the investigation, fixes and tests under user direction. [Support evidence and limits](starting-support-native-followup-2026-10-20.md).
+
 ## October20 rehearsal - check subclass overrides before inferring lifecycle
 
 A source audit corrected an earlier AI-authored test expectation: Enemy inherits deferred Unit damage, while Player overrides damage and calls die synchronously. The wrong inheritance assumption introduced a pre-cleanup drain that awarded pending kills too early. Actual Main/Player/Enemy scene probes distinguished same-stack preemption from a death already finalized in an earlier flush. Explain the override, the cleanup gate and the three event orders; do not describe the initial wrong test as source proof. Codex authored the investigation and correction under the user's direction. [Evidence and limits](player-cleanup-followup-2026-10-20.md).

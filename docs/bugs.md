@@ -1,3 +1,7 @@
+## October20 - mine placement discarded the selected source point
+
+Initial StructureEffect deployment selected a source position, then SpawnMine ignored it and sampled the entire map again. Timed global mines also missed the source 160-pixel edge inset. Preserve the initial point through SpawnMineAt; use SourceRandomPosition with1.6 world-unit inset for timed ungrouped mines, retaining the explicit pet-local path. Three focused cases passed across64 seeds and direct/local controls. R36 native four-choice start/retry and support registration/placement checks passed; separate screenshot review found clipped selection titles and an unticked fixture-only shadow, tracked in the follow-up. [Evidence](starting-support-native-followup-2026-10-20.md).
+
 ## October20 - Player override preempts pending enemy rewards
 
 R35 incorrectly inferred Player scheduling from Unit.take_damage and drained pending enemy deaths before loss cleanup. Actual Player.take_damage overrides that method and calls die synchronously. Four corrected original probes Passed/exit0; actual Main/Player/Enemy scenes suppress pending kill/loot in both same-stack orders and retain one kill/material when enemy death already flushed. Removed the pre-cleanup drain; corrected focused checks passed. See [source receipts and correction](player-cleanup-followup-2026-10-20.md). Earlier Unit FIFO receipts remain valid for Unit, not Player. Initial fixture timer/instrumentation errors are preserved separately.

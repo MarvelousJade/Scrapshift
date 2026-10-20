@@ -172,8 +172,15 @@ namespace Scrapshift
         }
         void SpawnMine(StarterTurret spawner,Sprite image,Vector2? near=null)
         {
+            // Item and Screwdriver mines are ungrouped StructureEffects. Their
+            // timed deployments use EntitySpawner's global 160-pixel inset;
+            // Bot-O-Mine's explicit local-area call retains its separate path.
+            var pos=near.HasValue?RunRules.ClampPosition(near.Value+new Vector2(UnityEngine.Random.Range(-.5f,.5f),UnityEngine.Random.Range(-.5f,.5f))):SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value,1.6f);
+            SpawnMineAt(spawner,image,pos);
+        }
+        void SpawnMineAt(StarterTurret spawner,Sprite image,Vector2 pos)
+        {
             image=SupportArt.Structure("landmine");
-            var pos=near.HasValue?RunRules.ClampPosition(near.Value+new Vector2(UnityEngine.Random.Range(-.5f,.5f),UnityEngine.Random.Range(-.5f,.5f))):RandomPosition(playerPos,0);
             var obj=SpriteObject("Cybernetic proximity charge",image,pos,6);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.4f);
             mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,radius=SupportBehavior.ExplosionRadius(spawner.trait.radius,Rules.Stat("explosion_size"))});
         }

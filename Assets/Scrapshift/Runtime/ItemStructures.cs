@@ -32,7 +32,7 @@ namespace Scrapshift
             obj.GetComponent<GroundShadow>().Place(pos,obj.transform.localScale.x);
             var structure=new StarterTurret{obj=obj,pos=pos,baseScale=obj.transform.localScale.x,animationAge=spec.kind=="garden"?0:.3f,stats=spec.Equipment,trait=trait,spec=spec,clock=spec.kind=="garden"?.2f/spec.animationSpeed:0,firing=spec.kind=="garden",angle=spec.kind=="wandering_bot"?UnityEngine.Random.Range(0,Mathf.PI*2):0,orbitRadius=UnityEngine.Random.Range(1f,2f),orbitSpeed=UnityEngine.Random.Range(2f,2.5f)};
             structure.rig=SupportRig.Create(obj,spec.kind,true);
-            if(spec.kind=="landmine"){Destroy(obj);structure.obj=null;structure.clock=spec.spawnInterval;mineSpawners.Add(structure);SpawnMine(structure,image);}
+            if(spec.kind=="landmine"){Destroy(obj);structure.obj=null;structure.clock=spec.spawnInterval;mineSpawners.Add(structure);SpawnMineAt(structure,image,pos);}
             else starterTurrets.Add(structure);
         }
         float StructureAnimationSpeed(StarterTurret turret)
