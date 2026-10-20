@@ -72,3 +72,5 @@ No Scrapshift payout fix is justified by these results. The current Evil Mob sou
 ## Attribution and interview rehearsal
 
 Codex performed the saved-trace and source analysis under the user's direction; the user did not personally execute these steps in this record. Explain the difference between a callback count and unit value, then explain why an intermediate deferred-registration gap is insufficient to explain a residual that persists after cleanup. A useful engineering decision here is to preserve the unresolved observation and design a discriminating experiment before changing currency logic.
+
+Engine diagnostic limitation: all four cases exited0 and produced the expected boundary traces, but logs retain source DebugService log-open assertions (error7), startup CrashReporter diagnostics and shutdown resource warnings. No other SCRIPT ERROR text was present in the four captured stderr files. See `material-boundary-attempt-1/diagnostics.json`; do not describe these as clean engine logs.

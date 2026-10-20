@@ -4,7 +4,9 @@ This is a finite follow-up checklist, not an assertion of remaining bugs or a ne
 
 ## Latest packaged checkpoint
 
-R31 is the current unpacked review, with the Golem terminal-stat fix. Full suite1226/1226 Passed; its14 shop receipts and109 unlock callback scenarios Passed/exit0.608 source inputs and159 player files were hash-verified. R29 campaign receipts below remain historical campaign evidence, not R31 runs. See [completion report](headless-completion-2026-10-20.md). No desktop interaction occurred.
+R34 supersedes R31 for review:1251/1251 tests and25 focused cases Passed; packaged target/vulnerability acceptance Passed/exit0.616 inputs/159 player files verified. The new [item/material follow-up](item-material-followup-2026-10-20.md) covers416 acquisition sequences and source cleanup experiments. Broader lethal-preemption/deferred-corpse timing remains headless-feasible but unverified; physical/UI gates below remain deferred. Earlier R31 acceptance below is historical.
+
+R31 was the earlier unpacked review, with the Golem terminal-stat fix. Full suite1226/1226 Passed; its14 shop receipts and109 unlock callback scenarios Passed/exit0.608 source inputs and159 player files were hash-verified. R29 campaign receipts below remain historical campaign evidence, not R31 runs. See [completion report](headless-completion-2026-10-20.md). No desktop interaction occurred.
 
 ## Evidence boundary
 

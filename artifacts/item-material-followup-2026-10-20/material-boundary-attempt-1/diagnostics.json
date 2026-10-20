@@ -1,0 +1,29 @@
+{
+  "scope": "Known source diagnostic/log-file assertions retained, not an error-free engine execution",
+  "cases": [
+    {
+      "case": "fresh_normal",
+      "debugLogOpenAssertions": 37,
+      "otherScriptErrors": 0,
+      "hasShutdownResourceDiagnostics": true
+    },
+    {
+      "case": "pooled_normal",
+      "debugLogOpenAssertions": 37,
+      "otherScriptErrors": 0,
+      "hasShutdownResourceDiagnostics": true
+    },
+    {
+      "case": "fresh_optimized",
+      "debugLogOpenAssertions": 37,
+      "otherScriptErrors": 0,
+      "hasShutdownResourceDiagnostics": true
+    },
+    {
+      "case": "pooled_optimized",
+      "debugLogOpenAssertions": 37,
+      "otherScriptErrors": 0,
+      "hasShutdownResourceDiagnostics": true
+    }
+  ]
+}

@@ -49,7 +49,7 @@ Requires **Unity 6000.6.5f1**. Open this repository as a Unity project, open `As
 
 Move with **WASD / arrow keys**, use the **mouse** for menus, and press **Escape** to pause. Weapons attack automatically by default.
 
-For this workspace's unpacked Windows review build, launch `Builds/GameplayParity20261020R29/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout.
+For this workspace's unpacked Windows review build, launch `Builds/GameplayParity20261020R34/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout.
 
 With the project's Editor closed, run:
 
@@ -59,6 +59,8 @@ With the project's Editor closed, run:
 ```
 
 ## Validation
+
+Latest headless follow-up: **R34**, **1,251/1,251 tests passed**, with focused proc targeting and vulnerability fixes. The current [verification checklist](docs/gameplay-verification-status.md) separates this evidence from the historical full campaign below.
 
 The recorded **October 20, 2026 R29 checkpoint** passed **1,200/1,200 automated tests** and built with zero errors or warnings. A scripted 20-wave campaign completed, with **18/18 comparison checks** passing against a fresh supplied-reference run.
 

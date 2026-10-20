@@ -1,3 +1,7 @@
+## October20 - R34 item and material follow-up
+
+Two proc fixes: capture target before rolling and retain request-time vulnerability. Final suite1251/1251 and focused25/25 Passed; packaged192-row target review and forward89/reverse88 HP cases Passed/exit0.416 acquisition-order cases matched4576 snapshots. Material investigation disproved kill=currency as an invariant and reproduced a forced source cleanup race; no Scrapshift payout fix justified.616 inputs/159 player files verified. No desktop control or fresh full20 run. See [evidence and remaining limits](item-material-followup-2026-10-20.md).
+
 ## October20 - remaining headless acceptance complete
 
 R31 packages the Golem terminal-stat correction. Full suite1226/1226 Passed;53 dynamic source cases/397 snapshots match; packaged14 shop receipts and109 staged unlock callback cases Passed/exit0, with109 actual saves independently reread.608 inputs/159 player files verified. Material probe balances28=8+20 but does not resolve the older25/24 observation. Desktop/hardware/UI checks remain deferred. See [completion evidence and limits](headless-completion-2026-10-20.md). Codex performed these checks under user direction.
