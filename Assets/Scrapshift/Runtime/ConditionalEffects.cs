@@ -193,7 +193,7 @@ namespace Scrapshift
                     {
                         Health=Stat("die_in_one_hit")>0?0:Math.Max(0,Health-loss);
                         BeginRegenerationAfterDamage();
-                        DamageTriggers();if(Health==0)Phase=RunPhase.Lost;
+                        DamageTriggers();if(Health==0)BeginDeathCleanup();
                     }
                 }
                 ReconcileMaximumHealth();

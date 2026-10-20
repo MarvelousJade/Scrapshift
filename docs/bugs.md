@@ -1,3 +1,7 @@
+## October20 - periodic damage death transition
+
+Periodic lethal item damage bypassed BeginDeathCleanup and set Lost directly. Route it through the shared death lifecycle. Sixteen focused tests passed; native verification is pending. Intentional Abandon remains separate. See [remaining survival report](survival-parity-remaining-2026-10-20.md).
+
 Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
 
 ## Current priority follow-up - October17, R25

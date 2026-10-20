@@ -1,3 +1,7 @@
+## October20 - periodic damage death transition
+
+A shared state enum is insufficient when entering a state requires cleanup. Enemy hits entered BeginDeathCleanup, but periodic self-damage assigned Lost directly. Codex traced the source take_damage/die chain and corrected this alternate entry, then ran16 focused checks. Explain the missing transition side effects and why Abandon stays separate; native evidence is still pending. See [remaining survival report](survival-parity-remaining-2026-10-20.md).
+
 Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
 
 ## Current rehearsal - item, survival and unlock lifecycle corrections (R25)

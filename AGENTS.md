@@ -162,6 +162,8 @@ Updated: 2026-10-17, America/Toronto. This file records the user's instructions 
 
 ## Builds, previews and working practices
 
+- October20: finish remaining parity checks and fix confirmed mismatches, then refresh full comparison evidence. Commit each meaningful change separately with related tests/docs; do not make a commit for every small supporting edit.
+
 - October17 documentation: `docs/gameplay-verification-status.md` is the consolidated verified/partial/missing checklist. Keep source/model/native/human coverage separate and update it after new evidence.
 
 - October17 priority follow-up: R25 (`Builds/GameplayParity20261017R25/LaunchGame.cmd`) fixes combined burning timing, cleanup healing, defeat/retry lifecycle, raw HP-shop currency/presentation and retry unlock-pool lifetime. Full suite1181/1181 Passed; all115 unlock definitions have producer/save-reload/next-run cases plus one guard. Three R25 native fixtures Passed/exit0;12 captures reviewed,568 source inputs/160 player files verified. See `docs/gameplay-priority-followup-2026-10-17.md`. Staged checks do not establish exhaustive item pairs or human survival balance; R23 full20 remains historical.
