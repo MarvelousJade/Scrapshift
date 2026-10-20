@@ -35,9 +35,28 @@ scripts/corpse_membership_reference.gd stages source spawn connections and emits
 
 Between lifecycle stages it calls actual Entity.death_animation_finished, with an inert AnimationPlayer and replaced final pool insertion sink. The final enemy damage sink is replaced by a recording method. The full Main death handler, actual spawning, animation scheduling, actual Main pool insertion, and Unit.take_damage remain outside this probe.
 
-The integrated finalizer retains the dying zero-HP member through Main-equivalent callbacks, then removes it. `CorpseMembershipFollowupTests` adds two focused real-Arena cases: one and three pending Evil Mob victims resolve their actual deferred finalizers without drawing a Cyberball probability roll, because every sampled candidate is already at zero HP. They assert exactly-once kill/corpse counts and removal after callbacks. Test execution is reported by the integrating agent; the source probe alone does not establish that those Unity tests passed.
+The integrated finalizer retains the dying zero-HP member through Main-equivalent callbacks, then removes it. `CorpseMembershipFollowupTests` adds two focused real-Arena cases: one and three pending Evil Mob victims resolve their actual deferred finalizers without drawing a Cyberball probability roll, because every sampled candidate is already at zero HP. They assert membership during every callback, exactly-once kill/corpse counts, and removal after callbacks. Both passed in the 27/27 focused run (`focused-postfix-2.xml`, zero failures/skips) and the 1,271/1,271 integrated suite (`suite-attempt-2.xml`, zero failures/skips). Those XML results were read, not inferred from a successful process launch.
 
-`HeadlessDeathTimingReview.cs` provides the opt-in packaged check `--headless-death-timing-review <output-folder>` under batchmode/nographics. It first verifies that actual ArenaGame.Start installed both the target-capture and pre-defeat cleanup hooks. It uses real spawned Evil Mob NPCs with staged HP and no stored gold, disables ordinary Arena Update, and calls the actual damage/heal/deferred-boundary paths. Eight receipts cover immediate Lich damage, Giant Belt's later critical health calculation, pending versus finalized lethal Lich, enemy-first and player-first lethal ordering, and one/three dying Cyberball members. Packaging and execution results are recorded by the integrating agent; adding this fixture does not establish that a player build has passed it.
+`HeadlessDeathTimingReview.cs` provides the opt-in packaged check `--headless-death-timing-review <output-folder>` under batchmode/nographics. It first verifies that actual ArenaGame.Start installed both the target-capture and pre-defeat cleanup hooks. It uses real spawned Evil Mob NPCs with staged HP and no stored gold, disables ordinary Arena Update, and calls the actual damage/heal/deferred-boundary paths.
+
+## R35 packaged acceptance
+
+R35 was built from source commit `debe1cf`. The actual packaged death-timing report at `artifacts/death-item-followup-2026-10-20/death-player/headless-death-timing.json` is Passed with eight passed receipts; its process receipt reports exit zero. Both production startup-hook checks and fixture isolation are true.
+
+| Receipt | Observed result |
+| --- | --- |
+| Immediate Lich | Enemy HP 100 → 90 before deferred dispatch |
+| Giant Belt critical after Lich | Enemy HP 61 |
+| Lethal Lich before dispatch | HP 0, one active identity, zero kills/corpses |
+| Repeated deferred dispatch | One kill/corpse, no active identity |
+| Enemy lethal request before player lethal hit | Lost, one enemy kill/corpse |
+| Player lethal hit before later enemy damage | Lost, enemy HP 1, zero kills/corpses |
+| One dying Cyberball member | One capture, zero proc rolls, one kill/corpse after removal |
+| Three dying Cyberball members | Three captures, zero proc rolls, three kills/corpses after removal |
+
+The companion R35 proc report (`proc-player/headless-proc-target.json`) also Passed/exit zero: 192 candidate rows, zero-HP-only 0/64 captures, live-only 64/64, mixed 29/64. Rejected targets skipped probability rolls; removed/dead reservations did not redirect. Both synchronous vulnerability-order controls matched the source expectations: final HP 89 and 88.
+
+These are packaged callback checks, not ordinary Update/physics scheduling or a fresh campaign. The original signal probe remains a finite source callback fixture with recording sinks; the Unity player uses actual spawned NPCs with staged HP. No interactive controls, focus, UI, audio listening, human balance, exhaustive loadout orderings, or complete original death scene was verified here.
 
 ## Interview rehearsal
 

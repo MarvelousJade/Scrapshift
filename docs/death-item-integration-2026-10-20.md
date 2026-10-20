@@ -38,7 +38,7 @@ The 70-payload explosion probe does not instantiate explosion hitboxes. The corp
 | Combined focused checks | `focused-postfix-1.xml`: 25/25 Passed, including nine item-chain, seven death-dispatch, two corpse-membership and seven preserved target-context checks. |
 | Added cleanup boundaries | `focused-postfix-2.xml`: **27/27 Passed**, zero failures/skips, exit0, 0.6664488 seconds. Includes both additional cleanup-order cases. |
 | Complete test suite | `suite-attempt-2.xml`: **1,271/1,271 Passed**, zero failures/skips, exit0, 64.1649722 seconds. First attempt had one old immediate-global-kill assertion; corrected to check immediate explosion kills and deferred global totals separately. Its failing receipt is preserved. |
-| R35 packaged player | Build and execution pending. Do not treat fixture source or a successful compile as player acceptance. |
+| R35 packaged player | **Passed**: eight death rows, four explosion rows,14/15 Fireworks plus Beard control,192 target rows and109 unlock producer scenarios. Six packaged processes exit0, including preflight/survival below. Source `debe1cf`; build0 errors/warnings,401824411 bytes.626 inputs/159 player files hash-verified after execution. |
 
 The opt-in packaged fixtures are `--headless-death-timing-review <folder>` and `--headless-item-chain-review <fresh-folder>`, under `-batchmode -nographics`. They wait for actual ArenaGame initialization and verify its production hooks, then disable normal ArenaGame updates to stage synchronous callback orders using real spawned NPCs. The item fixture also records actual fresh JSON progression profiles for Fireworks and retains a Beard positive control. These are packaged callback checks, not normal collision or movement tests.
 
@@ -55,3 +55,11 @@ The engineering lesson is to separate immediate state changes from deferred life
 The user directed parity scope, supplied the reference and reported prior gameplay observations. Codex agents investigated these cases and authored the changes, probes and checks. This document supports rehearsal; it does not claim the user independently performed this debugging or new human playtesting. The user should reproduce and trace a focused case before describing it as hands-on experience.
 
 Further detail: [death dispatch](death-dispatch-followup-2026-10-20.md), [corpse membership](corpse-membership-followup-2026-10-20.md), [item chains](item-chain-followup-2026-10-20.md).
+
+## R35 actual simulation and package acceptance
+
+`survival-preflight/campaign-check.json` Passed after one wave/shop with28 global kills. It took zero damage and is not evidence of ordinary damage handling. The subsequent accelerated `survival-player` run Passed/exit0, completed8 waves and naturally lost in wave9. It recorded net damage142, healing115, minimumHP0 and cleanup age0.506141782s; no injected invulnerability. Both use actual Simulate, staged six tier-II weapons, scripted movement, fresh in-memory progression and240Hz pickup physics. Net deltas are not independent event counts. This is a bounded integration check, not a fresh original comparison, normal-speed survival balance or a20-wave completion. R29's normal-timing original comparison retains its historical scope.
+
+The six current player logs/stderr have no exception/error/assert matches in the saved scan. Original engine startup/settings/shutdown diagnostics remain in the source probe logs; those source processes are not described as error-free. Full receipts, runner specifications, source snapshots, manifests and post-execution hash checks are in `artifacts/death-item-followup-2026-10-20/`; `r35-input-verification.json` summarizes the acceptance.
+
+Local unpacked build: `Builds/GameplayParity20261020R35/LaunchGame.cmd`. No visible game is claimed to be running. Physical Xbox testing remains deferred; desktop access is allowed but was not used for this pass.

@@ -1,0 +1,13 @@
+extends Node
+func _ready():
+	get_tree().create_timer(45,true).connect("timeout",self,"timeout")
+	call_deferred("boot")
+func boot():
+	var script=load("res://"+OS.get_environment("SCRAPSHIFT_SOURCE_HELPER_ENTRY"))
+	if script==null:
+		get_tree().quit(4)
+		return
+	add_child(script.new())
+func timeout():
+	push_error("SOURCE_DRIVER watchdog")
+	get_tree().quit(5)

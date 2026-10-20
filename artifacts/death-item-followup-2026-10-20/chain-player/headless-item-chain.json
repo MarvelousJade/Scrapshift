@@ -1,0 +1,77 @@
+{
+    "status": "Passed",
+    "error": "",
+    "headless": true,
+    "capturesVerified": false,
+    "isolated": true,
+    "initializedProductionHook": true,
+    "beardBurns": true,
+    "beardStealsLife": true,
+    "scope": "Opt-in built-player synchronous item dispatch using real imported spawned NPCs after production ArenaGame.Start, then ArenaGame disabled. Post-unlock capped loadouts, HP and life-steal chance are staged. Actual QueueImplantExplosions/ResolveImplantAttacks and damage callbacks run. Fireworks uses real unlock definitions and fresh isolated profiles before global death flushing. Beard control applies its actual imported projectile stats through Damage; no projectile travel, ordinary Update/physics, rendered UI, audible, input or human acceptance.",
+    "explosions": [
+        {
+            "item": "rip_and_tear",
+            "copies": 5,
+            "greekFire": false,
+            "expectedHealth": 950.0,
+            "observedHealth": 950.0,
+            "playerHealthBefore": 12.0,
+            "playerHealthAfter": 12.0,
+            "burnTicks": 0,
+            "lifeStealTimerUntouched": true
+        },
+        {
+            "item": "rip_and_tear",
+            "copies": 5,
+            "greekFire": true,
+            "expectedHealth": 950.0,
+            "observedHealth": 950.0,
+            "playerHealthBefore": 12.0,
+            "playerHealthAfter": 12.0,
+            "burnTicks": 0,
+            "lifeStealTimerUntouched": true
+        },
+        {
+            "item": "spicy_sauce",
+            "copies": 2,
+            "greekFire": false,
+            "expectedHealth": 958.0,
+            "observedHealth": 958.0,
+            "playerHealthBefore": 18.0,
+            "playerHealthAfter": 18.0,
+            "burnTicks": 0,
+            "lifeStealTimerUntouched": true
+        },
+        {
+            "item": "spicy_sauce",
+            "copies": 2,
+            "greekFire": true,
+            "expectedHealth": 958.0,
+            "observedHealth": 958.0,
+            "playerHealthBefore": 18.0,
+            "playerHealthAfter": 18.0,
+            "burnTicks": 0,
+            "lifeStealTimerUntouched": true
+        }
+    ],
+    "fireworks": [
+        {
+            "living": 14,
+            "zeroHpControls": 1,
+            "pendingDeaths": 14,
+            "globalKillsBeforeFlush": 0,
+            "expected": false,
+            "completed": false,
+            "profile": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\death-item-followup-2026-10-20\\chain-player\\fireworks-14-profile.json"
+        },
+        {
+            "living": 15,
+            "zeroHpControls": 1,
+            "pendingDeaths": 15,
+            "globalKillsBeforeFlush": 0,
+            "expected": true,
+            "completed": true,
+            "profile": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\death-item-followup-2026-10-20\\chain-player\\fireworks-15-profile.json"
+        }
+    ]
+}

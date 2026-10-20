@@ -28,7 +28,7 @@ The exact event order is staged. These cases establish behavior when those callb
 
 An additional imported mixture covers one material pickup with Cute Monkey, Lich and Baby Elephant. Successful Monkey healing makes Lich kill the only target before Elephant selects it; Elephant then aborts before consuming its probability roll. The explicit finalization check drains the death boundary twice and requires exactly one kill/corpse, avoiding duplicate payouts.
 
-## Implementation under validation
+## Verified implementation — R35
 
 `CaptureImplantDamageTarget` now submits the selected target's hit synchronously. `DamageWithCapturedVulnerability` rejects zero-HP pending victims, clamps HP at zero like the original, and queues death finalization before later critical/healing/on-hit callbacks. `ResolveEnemyDeaths` drains that queue at an explicit safe boundary; the active enemy list remains stable during indexed traversal. Kill counts, corpse transfer, item death callbacks, drops and spawned children remain in the deferred finalizer. The private reflected damage wrappers remain available.
 
@@ -36,17 +36,27 @@ The queue is cleared with combat state. There is no automatic test-only flush ba
 
 `ResolveCombatCallbacks` drains pending deaths and newly requested implant attacks until stable. The zero-HP guard prevents duplicate deaths; spawned enemy children remain queued births rather than expanding the active target set inside the drain. `UpdateEnemies` uses a reverse identity snapshot so a player-lethal boundary can flush older deaths without invalidating integer indices.
 
-The death finalizer separates Cyberball damage, Beard/explosion creation, burning-item stat gains, loot, and progression counts in Main's source order. The existing public `KillEffects` API remains available for model callers. Corpse membership is being validated directly through Godot signal dispatch; pool reuse is not assumed to determine that order.
+The death finalizer separates Cyberball damage, Beard/explosion creation, burning-item stat gains, loot, and progression counts in Main's source order. The existing public `KillEffects` API remains available for model callers. The direct Godot signal-dispatch probe confirms that the production Main-before-spawner construction order exposes the corpse during Main's callbacks for both fresh and reused actors. An opposite-construction-order control removes first. Pool reuse therefore does not determine this behavior; no pool approximation was added.
 
-### Separate player-death ordering risk
+### Player-death ordering coverage
 
-Player also inherits Unit's deferred `die`. Enemy death queued before player death should dispatch first, while a player-death cleanup dispatched first suppresses later pending enemy death rewards. Immediate `RunRules.Hurt` terminal transition and a later enemy-only drain cannot by themselves establish that shared ordering. The source probe includes two narrow Unit FIFO receipts for both enqueue orders, but its counting sink does not execute complete Player/Main cleanup. This case remains open until a source-backed combined boundary check covers it.
+Player also inherits Unit's deferred `die`. Enemy death queued before player death dispatches first, while a player-death cleanup dispatched first suppresses later pending enemy death rewards. Immediate `RunRules.Hurt` terminal transition and a later enemy-only drain did not preserve that shared ordering. The original-source probe confirms Unit FIFO dispatch in both enqueue orders; its counting sink does not execute complete Player/Main cleanup.
 
-The implementation now installs `BeforeDeathCleanup` in ArenaGame, draining earlier enemy requests while the phase is still Playing. Two added Editor cases bind this production hook explicitly: enemy-lethal first must award exactly one enemy kill before Lost; player-lethal first must reject a subsequent enemy hit without awarding a kill. These are source-derived cleanup-order checks, not full-scene Godot Player/Main execution. Their execution result remains pending until the combined run is inspected.
+The implementation now installs `BeforeDeathCleanup` in ArenaGame, draining earlier enemy requests while the phase is still Playing. Two passing Editor cases bind this production hook explicitly: enemy-lethal first awards exactly one enemy kill before Lost; player-lethal first rejects a subsequent enemy hit without awarding a kill. R35's packaged fixture confirms that actual `ArenaGame.Start` installs the hook and passes both orders with spawned NPCs. These close the specified staged acceptance cases. Full-scene Godot Player/Main cleanup, ordinary physics scheduling and arbitrary overlapping death effects remain separate coverage.
 
 The Will-o'-the-Wisp achievement counter is distinct from the item's burn-kill stat gain. Original `unit.gd:698–700` advances the achievement synchronously after a lethal BurningTimer hit sets `_pending_die`; the item's burning-death stat gain runs later in Main's death callback. Moving both to deferred finalization would erase that distinction.
 
-Execution receipts and integration results are pending. No passing result is claimed here yet.
+## Inspected evidence
+
+All paths below are under `artifacts/death-item-followup-2026-10-20/`.
+
+- `death-source-attempt-2/reference.json` and `process.json`: original Main/Enemy/Unit probe, exit 0. Lethal Lich applies 10 damage immediately, sets pending death, rejects the later weapon hit, and dispatches one deferred death. Giant Belt ends at 61 HP after Lich leaves 90 HP. Both narrow Unit FIFO enqueue orders dispatch in that order.
+- `corpse-source-attempt-2/reference.json` and `process.json`: 1,024 signal-order rows, exit 0. Production construction order retains the dying member in both fresh and reused cases; the opposite-order control demonstrates removal before Main.
+- `focused-postfix-2.xml`: **27/27 Passed**, zero failures/skips, 0.6664488 seconds. Includes the nine death-dispatch cases plus the adjacent focused checks.
+- `suite-attempt-2.xml`: **1,271/1,271 Passed**, zero failures/skips, 64.1649722 seconds.
+- `death-player/headless-death-timing.json` and `process.json`: **Passed, eight rows, exit 0**. Actual packaged `ArenaGame.Start` installed both target-capture and pre-death-cleanup hooks. Spawned NPCs pass immediate Lich HP, Giant Belt 61 HP, pending membership, exactly-once finalization, both player/enemy lethal orders, and Cyberball membership for one and three pending victims. Arena Update is disabled; HP and callback order are staged, with an explicit deferred boundary.
+
+R35 was built from source `debe1cf`; the build summary records success with zero errors/warnings. These receipts establish bounded source, model and packaged callback coverage. They do not establish complete native physics, Godot scene cleanup, UI/input, audio listening or human playtesting.
 
 ## Attribution and remaining limits
 

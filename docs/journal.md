@@ -1,3 +1,7 @@
+## October20 - R35 death/item acceptance
+
+Source `debe1cf`: immediate HP/deferred death and plain explosion ownership fixes. Focused27/27, suite1271/1271 Passed; six packaged processes Passed/exit0, including109 unlock scenarios and actual accelerated ordinary-damage loss in wave9 after8 completed waves.626 inputs/159 files hash-verified. No current hardware/UI/human or fresh20-wave comparison claim. See [integration receipts and limits](death-item-integration-2026-10-20.md).
+
 ## October20 - R34 item and material follow-up
 
 Two proc fixes: capture target before rolling and retain request-time vulnerability. Final suite1251/1251 and focused25/25 Passed; packaged192-row target review and forward89/reverse88 HP cases Passed/exit0.416 acquisition-order cases matched4576 snapshots. Material investigation disproved kill=currency as an invariant and reproduced a forced source cleanup race; no Scrapshift payout fix justified.616 inputs/159 player files verified. No desktop control or fresh full20 run. See [evidence and remaining limits](item-material-followup-2026-10-20.md).
