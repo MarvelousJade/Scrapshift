@@ -46,3 +46,5 @@ The user requested parallel parity work, meaningful commits and no computer cont
 
 - First compile attempt found a C# local-name collision in the new scenario harness; no checks ran. The harness was corrected.
 - The first executed price scenario rejected Entrepreneur's purchase because its real wave-start effect discarded the initially staged purse. The test now funds the staged shop after starting the character through the immediate material-credit API, avoiding pickup XP and extra upgrades. This is a fixture setup correction, not a production economy bug. Preserve the failed XML alongside the corrected result.
+
+R31 repeat: `artifacts/headless-completion-2026-10-20/shops-r31-attempt-1/headless-shops-review.json` Passed/exit0 with14 receipts from the updated packaged build. No desktop/input/presentation acceptance is inferred.

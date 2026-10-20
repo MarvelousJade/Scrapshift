@@ -1,3 +1,7 @@
+## October20 - remaining headless acceptance complete
+
+R31 packages the Golem terminal-stat correction. Full suite1226/1226 Passed;53 dynamic source cases/397 snapshots match; packaged14 shop receipts and109 staged unlock callback cases Passed/exit0, with109 actual saves independently reread.608 inputs/159 player files verified. Material probe balances28=8+20 but does not resolve the older25/24 observation. Desktop/hardware/UI checks remain deferred. See [completion evidence and limits](headless-completion-2026-10-20.md). Codex performed these checks under user direction.
+
 ## October20 final checkpoint - R29
 
 All1,200 editor tests Passed/exit0; corrected character/item oracle10,500/10,500 matches. Current R29 completed20 waves/19 shops/Won/exit0; the unchanged comparison against the fresh original passed18/18. All40 current purchase debits reconcile and final harvesting credited96 materials. Ordinary damage reached natural defeat in wave8 after7 completions, no injected invulnerability. Source/package hashes596/159 remain unchanged. See [final receipts, fixes and limits](gameplay-final-checkpoint-2026-10-20.md). UI/hardware/browser checks remain on hold at the user's request; broader dynamic interactions are not certified by static vectors.

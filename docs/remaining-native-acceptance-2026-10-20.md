@@ -2,6 +2,10 @@
 
 This is a finite follow-up checklist, not an assertion of remaining bugs or a new authorization for computer control. **The user revoked computer control. Continue source/headless work only; visible UI/input/hardware checks below wait for explicit authorization.** Do not launch them from this document.
 
+## Latest packaged checkpoint
+
+R31 is the current unpacked review, with the Golem terminal-stat fix. Full suite1226/1226 Passed; its14 shop receipts and109 unlock callback scenarios Passed/exit0.608 source inputs and159 player files were hash-verified. R29 campaign receipts below remain historical campaign evidence, not R31 runs. See [completion report](headless-completion-2026-10-20.md). No desktop interaction occurred.
+
 ## Evidence boundary
 
 - R29 built with zero errors/warnings; 596 source inputs and 159 player files were recorded by the coordinator. Its full headless run Passed/Won20/exit0 with18/18 comparator checks; see the [final checkpoint](gameplay-final-checkpoint-2026-10-20.md). Its ordinary-damage run Passed/exit0 with natural defeat in wave8 after7 completed waves; see the survival report.
