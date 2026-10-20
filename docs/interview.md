@@ -1,3 +1,7 @@
+## October20 - optimized cleanup option
+
+The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; native validation pending. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).
+
 ## October20 - periodic damage death transition
 
 A shared state enum is insufficient when entering a state requires cleanup. Enemy hits entered BeginDeathCleanup, but periodic self-damage assigned Lost directly. Codex traced the source take_damage/die chain and corrected this alternate entry, then ran16 focused checks. Explain the missing transition side effects and why Abandon stays separate; native evidence is still pending. See [remaining survival report](survival-parity-remaining-2026-10-20.md).

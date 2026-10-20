@@ -1,3 +1,7 @@
+## October20 - optimized cleanup option
+
+The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; native validation pending. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).
+
 ## October20 - periodic damage death transition
 
 Periodic lethal item damage bypassed BeginDeathCleanup and set Lost directly. Route it through the shared death lifecycle. Sixteen focused tests passed; native verification is pending. Intentional Abandon remains separate. See [remaining survival report](survival-parity-remaining-2026-10-20.md).

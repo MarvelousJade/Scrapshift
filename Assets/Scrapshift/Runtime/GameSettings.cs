@@ -88,7 +88,7 @@ namespace Scrapshift
             settingsValue=new GUIStyle(center){fontSize=27};
             string[] tabs={"Sound","Video","Gameplay","Accessibility"};
             for(int i=0;i<4;i++)if(SettingsButton(new Rect(160+i*282,55,272,65),tabs[i],optionsTab==i))SwitchOptionsTab(i);
-            var view=new Rect(235,155,970,570);float content=optionsTab==2?700:optionsTab==3?(paused?1050:1130):optionsTab==1&&mapPicker?1010:545;
+            var view=new Rect(235,155,970,570);float content=optionsTab==2?762:optionsTab==3?(paused?1050:1130):optionsTab==1&&mapPicker?1010:545;
             optionsScroll=GUI.BeginScrollView(view,optionsScroll,new Rect(0,0,947,content));float y=0;
             if(optionsTab==0)
             {
@@ -115,6 +115,7 @@ namespace Scrapshift
                 OptionToggle("Manual aiming only while mouse is pressed","aimPressed",ref y,false);
                 OptionToggle("Pause when focus is lost","pauseFocus",ref y);
                 OptionToggle("Retry failed waves","retryWave",ref y,false);
+                OptionToggle("Optimize end waves","optimizeEndWaves",ref y,false);
                 OptionToggle("Boss HP bar","bossHp",ref y);
                 OptionToggle("Hold controller button to reroll","holdReroll",ref y);
                 OptionToggle("Keep items locked between shops","keepLock",ref y);

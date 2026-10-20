@@ -3,6 +3,15 @@ namespace Scrapshift
 {
     public sealed partial class RunRules
     {
+        // main.clean_up_room optimized mode runs only the common material
+        // multiplier, once per pile. It does not execute player pickup effects.
+        public int BankCleanupMaterials(int value,bool optimized)
+        {
+            value=Mathf.Max(0,value);
+            float chance=Stat("chance_double_gold")/100;
+            int boost=optimized&&chance!=0&&random.NextDouble()<=chance?2:1;
+            int bankedValue=value*boost;BankMaterials(bankedValue);return bankedValue;
+        }
         public const float DeathCleanupDuration=.5f;
         public bool DeathCleanupPending {get;private set;}
         public float DeathCleanupAge {get;private set;}
@@ -50,6 +59,7 @@ namespace Scrapshift
                 foreach(var shot in shots)Destroy(shot.obj);shots.Clear();
                 foreach(var spark in sparks)Destroy(spark.obj);sparks.Clear();
                 Rules.LivingEnemies=Rules.LivingTrees=Rules.BurningEnemies=Rules.StructureCount=0;
+                BankOptimizedCleanupMaterials();
                 sound.StopCombat();
             }
             // There are no living players to attract consumables. Raw material

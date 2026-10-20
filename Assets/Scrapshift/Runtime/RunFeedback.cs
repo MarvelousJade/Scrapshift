@@ -11,7 +11,22 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
-        void BeginWaveSweep(){Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));Rules.BeginWaveSettlement();RemoveWaveEnemies();waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;sound.StopCombat();sound.Play(SoundCue.WaveClear);}
+        void BeginWaveSweep()
+        {
+            Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));Rules.BeginWaveSettlement();RemoveWaveEnemies();
+            waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;
+            BankOptimizedCleanupMaterials();
+            sound.StopCombat();sound.Play(SoundCue.WaveClear);
+        }
+        void BankOptimizedCleanupMaterials()
+        {
+            if(!GameSettings.Flag("optimizeEndWaves",false))return;
+            for(int i=pickups.Count-1;i>=0;i--)
+            {
+                var pickup=pickups[i];if(pickup.fruit)continue;
+                Rules.BankCleanupMaterials(pickup.value,true);Destroy(pickup.obj);pickups.RemoveAt(i);
+            }
+        }
         void TickWaveSweep(float dt)
         {
             waveSweepAge+=dt;Rules.AdvanceWaveSettlement(dt);
