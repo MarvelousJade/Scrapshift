@@ -133,10 +133,10 @@ namespace Scrapshift
                 InspectWeapon("weapon:"+i,Rules.Inventory[i],r);
             }
             var viewport=new Rect(385,782,700,91);
-            intermissionItemScroll=GUI.BeginScrollView(viewport,intermissionItemScroll,new Rect(0,0,Mathf.Max(680,Rules.Items.Count*58),60));
+            intermissionItemScroll=BeginNavigationScrollView(viewport,intermissionItemScroll,new Rect(0,0,Mathf.Max(680,Rules.Items.Count*58),60));
             for(int i=0;i<Rules.Items.Count;i++)
             {var r=new Rect(i*58,0,52,56);RoundedBox(r,panelColor,5);DrawIcon(Rules.Items[i].image,new Rect(r.x+4,4,44,48));InspectItem("item:"+i,Rules.Items[i],r,viewport,intermissionItemScroll);}
-            GUI.EndScrollView();
+            EndNavigationScrollView();
         }
     }
 }

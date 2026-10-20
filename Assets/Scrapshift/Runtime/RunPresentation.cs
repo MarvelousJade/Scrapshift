@@ -89,6 +89,9 @@ namespace Scrapshift
         readonly System.Collections.Generic.HashSet<Rect> menuInventorySounds=new System.Collections.Generic.HashSet<Rect>();
         readonly System.Collections.Generic.HashSet<Rect> menuFrameInventorySounds=new System.Collections.Generic.HashSet<Rect>();
         Rect? menuNavigationDefault;
+        struct NavigationScrollContext
+        {public Vector2 origin,axisX,axisY,scroll;}
+        readonly System.Collections.Generic.Stack<NavigationScrollContext> navigationScrollContexts=new System.Collections.Generic.Stack<NavigationScrollContext>();
         bool menuPendingConfirm;
         Vector2 heldNavigation;
         float nextNavigation;
@@ -179,6 +182,8 @@ namespace Scrapshift
         void BeginNavigationFrame(bool repaint)
         {
             SynchronizeNavigationScreen();
+            navigationScrollContexts.Clear();
+            scrollNavigationReview?.BeginFrame(repaint);
             if(repaint){menuNavigationFrame.Clear();menuFrameInventorySounds.Clear();menuNavigationDefault=null;}
         }
         void CompleteNavigationFrame(bool repaint)
@@ -193,7 +198,28 @@ namespace Scrapshift
         }
         void BeginMenuNavigation()=>BeginNavigationFrame(Event.current.type==EventType.Repaint);
         void EndMenuNavigation()=>CompleteNavigationFrame(Event.current.type==EventType.Repaint);
-        Rect NavigationRect(Rect r)=>Rect.MinMaxRect(GUIUtility.GUIToScreenPoint(r.min).x,GUIUtility.GUIToScreenPoint(r.min).y,GUIUtility.GUIToScreenPoint(r.max).x,GUIUtility.GUIToScreenPoint(r.max).y);
+        Vector2 NavigationPoint(Vector2 local)
+        {
+            if(navigationScrollContexts.Count==0)return GUIUtility.GUIToScreenPoint(local);
+            var context=navigationScrollContexts.Peek();var point=local-context.scroll;
+            return context.origin+context.axisX*point.x+context.axisY*point.y;
+        }
+        Rect NavigationRect(Rect r)
+        {var min=NavigationPoint(r.min);var max=NavigationPoint(r.max);return Rect.MinMaxRect(min.x,min.y,max.x,max.y);}
+        Vector2 BeginNavigationScrollView(Rect viewport,Vector2 scroll,Rect content)
+        {
+            // GUIToScreenPoint inside a scaled IMGUI scroll view includes its
+            // clip translation in a different scale from the rendered canvas.
+            // Capture the parent transform before entering that clip instead.
+            var origin=NavigationPoint(viewport.position);
+            var axisX=NavigationPoint(viewport.position+Vector2.right)-origin;
+            var axisY=NavigationPoint(viewport.position+Vector2.up)-origin;
+            var renderedScroll=GUI.BeginScrollView(viewport,scroll,content);
+            navigationScrollContexts.Push(new NavigationScrollContext{origin=origin,axisX=axisX,axisY=axisY,scroll=renderedScroll});
+            return renderedScroll;
+        }
+        void EndNavigationScrollView()
+        {GUI.EndScrollView();navigationScrollContexts.Pop();}
         void EnsureNavigationVisible(Rect local,Rect viewport,ref Vector2 scroll)
         {
             if(local.yMin<scroll.y)scroll.y=local.yMin;
@@ -218,6 +244,7 @@ namespace Scrapshift
         }
         bool MenuButton(Rect r,string label,bool selected=false,bool cardAction=false,int fontSize=0,Rect? navigationRect=null,bool defaultFocus=false)
         {
+            bool activationPending=menuActivate;
             bool navigationFocus=NavigationButton(navigationRect??r,selected||defaultFocus);
             bool lit=navigationFocus||!menuNavigationActive&&(selected||r.Contains(Event.current.mousePosition));
             RoundedBox(r,lit?paper:cardAction?new Color(.16f,.16f,.16f):panelColor,9);
@@ -226,7 +253,9 @@ namespace Scrapshift
             if(Rules.Phase!=RunPhase.Playing&&!menuNavigationActive&&GUI.enabled&&r.Contains(Event.current.mousePosition)&&Event.current.type==EventType.Repaint&&lastUiHover!=r){lastUiHover=r;sound.Play(SoundCue.UiFocus);}
             bool clicked=GUI.Button(r,label,labelStyle);
             if(navigationFocus&&menuActivate){menuActivate=false;clicked=true;}
-            if(clicked)sound.Play(SoundCue.UiPress);return clicked;
+            if(clicked)sound.Play(SoundCue.UiPress);
+            scrollNavigationReview?.Control(navigationRect??r,label,navigationFocus,clicked,activationPending);
+            return clicked;
         }
         void Portrait(Vector2 origin,float scale,PlayerLook look,bool gear=false,float motionTime=-1)
         {

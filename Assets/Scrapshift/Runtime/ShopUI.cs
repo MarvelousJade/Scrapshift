@@ -93,9 +93,9 @@ namespace Scrapshift
             if(Button(new Rect(1266,94,135,35),"Secondary"))secondaryStats=true;
             if(secondaryStats)
             {
-                var viewport=new Rect(1124,143,310,505);secondaryStatsScroll=GUI.BeginScrollView(viewport,secondaryStatsScroll,new Rect(0,0,290,secondaryStatKeys.Length*57));
+                var viewport=new Rect(1124,143,310,505);secondaryStatsScroll=BeginNavigationScrollView(viewport,secondaryStatsScroll,new Rect(0,0,290,secondaryStatKeys.Length*57));
                 for(int i=0;i<secondaryStatKeys.Length;i++){string key=secondaryStatKeys[i];RichText(SpecialItemEffects.Description(key,Rules.Stat(key)),new Rect(7,i*57,272,55),17);}
-                GUI.EndScrollView();GUI.matrix=previousMatrix;return;
+                EndNavigationScrollView();GUI.matrix=previousMatrix;return;
             }
             Text(1133,138,250,30,$"Current Level                         {Rules.Level}",new GUIStyle(body){fontSize=17});
             var names=StatPresentation.Keys;
@@ -126,8 +126,8 @@ namespace Scrapshift
                 float height=RichHeight(content.text,width-18,style.fontSize);
                 var key=w.id+":"+x;
                 detailScroll.TryGetValue(key,out var scroll);
-                scroll=GUI.BeginScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
-                RichText(content.text,new Rect(0,0,width-18,height+4),style.fontSize);GUI.EndScrollView();detailScroll[key]=scroll;
+                scroll=BeginNavigationScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
+                RichText(content.text,new Rect(0,0,width-18,height+4),style.fontSize);EndNavigationScrollView();detailScroll[key]=scroll;
             }
             else
             {
@@ -135,8 +135,8 @@ namespace Scrapshift
                 var content=new GUIContent(inspectionText.ItemDescription(offer.item));
                 float height=RichHeight(content.text,width-18,style.fontSize);
                 var key="item:"+offer.item.id+":"+x;detailScroll.TryGetValue(key,out var scroll);
-                scroll=GUI.BeginScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
-                RichText(content.text,new Rect(0,0,width-18,height+4),style.fontSize);GUI.EndScrollView();detailScroll[key]=scroll;
+                scroll=BeginNavigationScrollView(new Rect(x,y,width,Mathf.Min(218,height+8)),scroll,new Rect(0,0,width-18,height+4));
+                RichText(content.text,new Rect(0,0,width-18,height+4),style.fontSize);EndNavigationScrollView();detailScroll[key]=scroll;
             }
         }
 
@@ -191,7 +191,7 @@ namespace Scrapshift
             Text(weaponLeft,618,280,40,$"Weapons ({Rules.Inventory.Count}/{Rules.WeaponSlots})",heading);
             int columns=Mathf.Max(1,Mathf.FloorToInt((itemWidth-16)/88));
             var itemViewport=new Rect(ContentLeft,670,itemWidth,180);var sortedItems=SortedItems();
-            itemScroll=GUI.BeginScrollView(itemViewport,itemScroll,new Rect(0,0,itemWidth-18,Mathf.Max(160,Mathf.Ceil((sortedItems.Length+1)/(float)columns)*88)));
+            itemScroll=BeginNavigationScrollView(itemViewport,itemScroll,new Rect(0,0,itemWidth-18,Mathf.Max(160,Mathf.Ceil((sortedItems.Length+1)/(float)columns)*88)));
             for(int i=0;i<sortedItems.Length;i++)
             {
                 float x=i%columns*88,y=i/columns*88;
@@ -207,9 +207,9 @@ namespace Scrapshift
             DrawHeroFace(new Rect(cx+13,cy+8,54,64));
             string description=CharacterEffectDescription(character);
             Inspect("character",characterRect,character.title,description,playerAnimation.idleFrames[0],"Character",1,itemViewport,new Rect(itemViewport.position+characterRect.position-itemScroll,characterRect.size));
-            GUI.EndScrollView();
+            EndNavigationScrollView();
             var weaponViewport=new Rect(weaponLeft,670,270,180);
-            weaponScroll=GUI.BeginScrollView(weaponViewport,weaponScroll,new Rect(0,0,254,Mathf.Max(174,Mathf.Ceil(Rules.Inventory.Count/3f)*86)));
+            weaponScroll=BeginNavigationScrollView(weaponViewport,weaponScroll,new Rect(0,0,254,Mathf.Max(174,Mathf.Ceil(Rules.Inventory.Count/3f)*86)));
             for(int i=0;i<Rules.Inventory.Count;i++)
             {
                 float x=2+i%3*84,y=2+i/3*86;var w=i<Rules.Inventory.Count?Rules.Inventory[i]:null;
@@ -228,7 +228,7 @@ namespace Scrapshift
                     if(GUI.Button(tile,GUIContent.none,GUIStyle.none)||focus&&menuActivate){menuActivate=false;selectedWeapon=i;}
                 }
             }
-            GUI.EndScrollView();
+            EndNavigationScrollView();
             if(Button(new Rect(StatsLeft,686,336,56),$"Go (Wave {Mathf.Max(1,Rules.Wave+1-(int)Rules.Stat("item_hourglass"))})")) {selectedWeapon=-1;AdvanceWave();}
             if(!string.IsNullOrEmpty(GUI.tooltip))
             {
@@ -246,7 +246,7 @@ namespace Scrapshift
             hoveredSet=null;
             Text(1130,531,266,28,"Weapon sets",new GUIStyle(body) {fontSize=20,fontStyle=FontStyle.Bold});
             var active=System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(WeaponSets.All,set=>Rules.SetCount(set)>0));
-            setScroll=GUI.BeginScrollView(new Rect(1124,565,283,100),setScroll,new Rect(0,0,265,active.Length*46));
+            setScroll=BeginNavigationScrollView(new Rect(1124,565,283,100),setScroll,new Rect(0,0,265,active.Length*46));
             for(int i=0;i<active.Length;i++)
             {
                 var set=active[i];int count=Rules.SetCount(set);float y=i*46;
@@ -255,7 +255,7 @@ namespace Scrapshift
                 Text(119,y,140,44,count>=2?set.Description(count):"Needs 2 weapons",label);
                 if(new Rect(0,y,265,44).Contains(Event.current.mousePosition))hoveredSet=set;
             }
-            GUI.EndScrollView();
+            EndNavigationScrollView();
         }
         void DrawSetTooltip()
         {

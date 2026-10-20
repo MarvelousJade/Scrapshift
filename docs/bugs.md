@@ -1,3 +1,7 @@
+## October20 - scaled scroll navigation bounds disagreed with pixels
+
+Native R37 traces and screenshots established a47/31-pixel offset at80% canvas scale between registered scroll controls and their rendered bounds. Actual D-pad/A confirmation still worked in that sampled case; no lost activation was claimed. Capture the parent origin/axes before BeginScrollView and retain that pass's returned scroll snapshot in a nested context stack. R38 bothscale probes Passed: maximum independent-coordinate error0.0153 pixels at80%, zero at100%; immediate/settled activation stayed correct. All8 captures were inspected. Updated shop/navigation fixtures and suite1274/1274 Passed. [Evidence and limits](scroll-navigation-native-followup-2026-10-20.md).
+
 ## October20 - clipped companion selection headings
 
 Native R36 screenshots showed all four two-line companion titles clipped by a fixed47-pixel text rectangle. Increased the title area to68 pixels with a measured font-size fallback, preserving the icon/detail layout. All13 R37 native captures were inspected; titles are complete, start/retry flows still pass. A large support shadow in an earlier capture was an unticked fixture artifact, corrected separately from gameplay. [Native review](starting-support-native-followup-2026-10-20.md).

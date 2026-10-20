@@ -1,3 +1,7 @@
+## October20 rehearsal - measure UI coordinates in the rendering context
+
+The project reproduced a geometric discrepancy with same-frame traces and actual rendered pixels, while keeping semantic input success separate. A scroll-view conversion mixed scaled canvas and clip translation; storing the parent's axes and the scroll snapshot restored matching registration coordinates. Actual virtual D-pad/A tests passed at80% and100% scales, with independent root-formula errors under0.016 pixels. Earlier observer-cap and invalid-GUID failures were fixture defects. Codex authored the investigation and fix under user direction; reproduce and explain the transformations before presenting this as hands-on debugging. [Evidence](scroll-navigation-native-followup-2026-10-20.md).
+
 ## October20 rehearsal - preserve a selected spawn point across helpers
 
 A support audit found that a helper discarded the spawn point computed by the source-derived placement rule and sampled again. Trace DeployStructure to SpawnMineAt, explain why initial and timed/global versus explicit pet-local routes differ, and reproduce a seeded inset check. Native software-input checks also follow all four companion choices through preview, run and retry; those do not establish physical Xbox support. Codex authored the investigation, fixes and tests under user direction. [Support evidence and limits](starting-support-native-followup-2026-10-20.md).

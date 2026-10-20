@@ -89,7 +89,7 @@ namespace Scrapshift
             string[] tabs={"Sound","Video","Gameplay","Accessibility"};
             for(int i=0;i<4;i++)if(SettingsButton(new Rect(160+i*282,55,272,65),tabs[i],optionsTab==i))SwitchOptionsTab(i);
             var view=new Rect(235,155,970,570);float content=optionsTab==2?762:optionsTab==3?(paused?1050:1130):optionsTab==1&&mapPicker?1010:545;
-            optionsScroll=GUI.BeginScrollView(view,optionsScroll,new Rect(0,0,947,content));float y=0;
+            optionsScroll=BeginNavigationScrollView(view,optionsScroll,new Rect(0,0,947,content));float y=0;
             if(optionsTab==0)
             {
                 OptionSlider("Master volume","master",ref y,0,1,.5f);
@@ -142,7 +142,7 @@ namespace Scrapshift
                 if(SettingsButton(new Rect(0,y,940,53),reducedMotion?"Reduced motion: On":"Reduced motion: Off")){reducedMotion=!reducedMotion;if(!GameSettings.IsFixture){PlayerPrefs.SetInt("reducedMotion",reducedMotion?1:0);PlayerPrefs.Save();}}y+=62;
                 foreach(var key in new[]{"positiveColor","negativeColor"}){int value=(int)GameSettings.Value(key,0);if(SettingsButton(new Rect(0,y,940,53),(key=="positiveColor"?"Positive text: ":"Negative text: ")+(key=="positiveColor"?new[]{"Green","Cyan","Yellow"}:new[]{"Red","Magenta","Orange"})[value%3]))GameSettings.Set(key,(float)((value+1)%3));y+=62;}
             }
-            GUI.EndScrollView();
+            EndNavigationScrollView();
             if(SettingsButton(new Rect(470,770,500,60),"Back")){if(paused)pauseOptions=false;else menuPage=0;}
         }
     }

@@ -80,7 +80,7 @@ namespace Scrapshift
                 int step=Event.current.keyCode==KeyCode.RightArrow?1:Event.current.keyCode==KeyCode.LeftArrow?-1:Event.current.keyCode==KeyCode.DownArrow?cols:Event.current.keyCode==KeyCode.UpArrow?-cols:0;
                 if(step!=0){codexSelected=Mathf.Clamp(codexSelected+step,0,entries.Length-1);codexDetailScroll=Vector2.zero;codexScroll.y=Mathf.Clamp(codexSelected/cols*cell-viewport.height+cell,0,float.MaxValue);sound.Play(SoundCue.InventoryFocus);Event.current.Use();}
             }
-            codexScroll=GUI.BeginScrollView(viewport,codexScroll,new Rect(0,0,gridW-20,Mathf.Max(584,Mathf.Ceil(entries.Length/(float)cols)*cell)));
+            codexScroll=BeginNavigationScrollView(viewport,codexScroll,new Rect(0,0,gridW-20,Mathf.Max(584,Mathf.Ceil(entries.Length/(float)cols)*cell)));
             for(int i=0;i<entries.Length;i++)
             {
                 var e=entries[i];var r=new Rect(i%cols*cell,i/cols*cell,cell-8,cell-8);
@@ -98,7 +98,7 @@ namespace Scrapshift
                 else {var old=GUI.color;if(!e.known)GUI.color=Color.black;if(e.challenge!=null)DrawAchievementIcon(e.challenge,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else if(e.character!=null)DrawCodexFace(e.character,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else DrawIcon(e.image,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));GUI.color=old;}
                 if(GUI.Button(r,GUIContent.none,GUIStyle.none)||focus&&menuActivate){menuActivate=false;codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
             }
-            GUI.EndScrollView();
+            EndNavigationScrollView();
             var selected=entries[codexSelected];float x=left+gridW+40,w=width-gridW-65;
             if(selected.challenge==null)RoundedBox(new Rect(x,140,w,585),new Color(0,0,0,.72f),10);
             DrawCodexDetails(selected,new Rect(x+20,158,w-40,550));
@@ -128,8 +128,8 @@ namespace Scrapshift
             }
             if(!reward&&entry.challenge==null&&codexTab!=3&&!entry.locked){Text(r.x,y,r.width,28,"Base price: "+entry.price,body);y+=36;}
             var viewport=new Rect(r.x,y,r.width,r.yMax-y);float h=RichHeight(description,r.width-24)+20;
-            codexDetailScroll=GUI.BeginScrollView(viewport,codexDetailScroll,new Rect(0,0,r.width-20,Mathf.Max(h,viewport.height-1)));
-            RichText(description,new Rect(0,0,r.width-24,h));GUI.EndScrollView();
+            codexDetailScroll=BeginNavigationScrollView(viewport,codexDetailScroll,new Rect(0,0,r.width-20,Mathf.Max(h,viewport.height-1)));
+            RichText(description,new Rect(0,0,r.width-24,h));EndNavigationScrollView();
         }
         void DrawChallengeDetails(CodexEntry entry,Rect r)
         {
@@ -162,8 +162,8 @@ namespace Scrapshift
             float top=Mathf.Max(116,nameHeight+78);
             var viewport=new Rect(card.x+16,card.y+top,width-32,card.height-top-16);
             float height=RichHeight(entry.description,viewport.width-24)+20;
-            codexDetailScroll=GUI.BeginScrollView(viewport,codexDetailScroll,new Rect(0,0,viewport.width-20,Mathf.Max(height,viewport.height-1)));
-            RichText(entry.description,new Rect(0,0,viewport.width-24,height));GUI.EndScrollView();
+            codexDetailScroll=BeginNavigationScrollView(viewport,codexDetailScroll,new Rect(0,0,viewport.width-20,Mathf.Max(height,viewport.height-1)));
+            RichText(entry.description,new Rect(0,0,viewport.width-24,height));EndNavigationScrollView();
         }
         bool DrawUnlockReward()
         {
