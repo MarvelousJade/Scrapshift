@@ -1,3 +1,7 @@
+## October20 - registered pets versus live actors
+
+Beast Master stat links incorrectly followed live actor counts. The source counts registered pet effects, scalar shields and pet structures instead. Exclude empty presentation-only PetSpec entries to avoid counting Jellyshield twice.10 selected checks passed; see [item report](items-parity-remaining-2026-10-20.md). Codex performed this investigation and validation.
+
 ## October20 - character gains on linked stats
 
 Linked-stat bonuses omitted target character gain modifiers. Source TempStats applies the gain after accumulating truncated links; Renegade now gains +2 effective Damage per distinct common item rather than +10. Actual Coffee direct penalties and acquire/remove order are included in the corrected regression. See [item interaction report](items-parity-remaining-2026-10-20.md).

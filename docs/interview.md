@@ -1,3 +1,7 @@
+## October20 - registered pets versus live actors
+
+Beast Master stat links incorrectly followed live actor counts. The source counts registered pet effects, scalar shields and pet structures instead. Exclude empty presentation-only PetSpec entries to avoid counting Jellyshield twice.10 selected checks passed; see [item report](items-parity-remaining-2026-10-20.md). Codex performed this investigation and validation.
+
 ## October20 - character gains on linked stats
 
 Trace a derived stat through its inherited source accessor: the link formula itself was correct, but its output bypassed character gain. Real catalog tests also exposed incorrect test assumptions about Coffee penalties and distinct-item removal. Codex corrected the test expectations against source rather than changing correct behavior to satisfy them.16 selected checks passed; native validation is pending. See [item interaction report](items-parity-remaining-2026-10-20.md).
