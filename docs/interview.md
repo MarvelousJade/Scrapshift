@@ -1,3 +1,7 @@
+## October20 - acquisition context and legal stack fixtures
+
+The follow-up source comparison matched416 acquisition/removal cases and4576 snapshots at intermission. Initial standing-stat differences came from omitted callbacks in an injected mid-wave fixture; no production fix was inferred.18 focused lifecycle/proc tests passed after source-backed setup corrections for level-up HP and delayed Max HP reconciliation. Explain why legal item caps, lifecycle context and unrelated level-up gains must be controlled before calling a mismatch. Codex authored and ran this evidence under user direction. See [acquisition evidence](item-acquisition-order-followup-2026-10-20.md).
+
 ## October20 - reconciling asynchronous event traces
 
 A bounded source-engine material probe balances28 deaths,28 requested/registered units and8 collected plus20 banked. Intermediate callbacks can run before deferred registration or currency credit, so compare complete lifecycle points before changing gameplay formulas. The older25/24 observation remains unexplained. Codex prepared and analyzed this probe; it is an evidence-quality rehearsal, not a user-discovered payout fix. See [material probe](material-accounting-probe-2026-10-20.md).
