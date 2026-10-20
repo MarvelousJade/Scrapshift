@@ -1,0 +1,206 @@
+[
+  {
+    "event": "material_requested",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.317,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": false,
+    "value": 1,
+    "count": 1
+  },
+  {
+    "event": "material_registered",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.329,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": false,
+    "node": 22243,
+    "value": 1
+  },
+  {
+    "event": "material_picked",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.376,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": true
+      }
+    ],
+    "cleaning_up": false,
+    "node": 22243,
+    "value": 1,
+    "player_index": -1
+  },
+  {
+    "event": "before_request",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.377,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": false
+  },
+  {
+    "event": "material_requested",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.378,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": false,
+    "value": 1,
+    "count": 1
+  },
+  {
+    "event": "material_registered",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.379,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": false,
+    "node": 22243,
+    "value": 1
+  },
+  {
+    "event": "before_cleanup",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.38,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": false,
+    "spawn_suspended": false
+  },
+  {
+    "event": "after_cleanup_before_idle",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.393,
+    "bank": 1,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": false,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true
+  },
+  {
+    "event": "after_deferred_registration",
+    "case": "pooled_optimized",
+    "wall_seconds": 3.41,
+    "bank": 1,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": false,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true
+  },
+  {
+    "event": "after_three_seconds",
+    "case": "pooled_optimized",
+    "wall_seconds": 6.405,
+    "bank": 1,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": false,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true
+  },
+  {
+    "event": "finished",
+    "case": "pooled_optimized",
+    "wall_seconds": 6.407,
+    "bank": 1,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22243,
+        "value": 1,
+        "visible": false,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true,
+    "reason": "completed"
+  }
+]

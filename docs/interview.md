@@ -1,3 +1,7 @@
+## October20 - choose a valid material invariant
+
+A kill counter and currency value measure different things. The supplied original can spawn an Evil Mob in wave1; its actual payout depends on consumed materials, including zero. Codex corrected the earlier kill-equals-material assumption, audited the matching Scrapshift path, and ran four windowless source boundary experiments. They show a forced deferred-registration race, but do not recover the old trace's missing event history. Explain why this evidence supports preserving currency formulas rather than inventing a payout fix. Codex performed the investigation; the user directed the work. See [material follow-up](material-reconciliation-followup-2026-10-20.md).
+
 ## October20 - acquisition context and legal stack fixtures
 
 The follow-up source comparison matched416 acquisition/removal cases and4576 snapshots at intermission. Initial standing-stat differences came from omitted callbacks in an injected mid-wave fixture; no production fix was inferred.18 focused lifecycle/proc tests passed after source-backed setup corrections for level-up HP and delayed Max HP reconciliation. Explain why legal item caps, lifecycle context and unrelated level-up gains must be controlled before calling a mismatch. Codex authored and ran this evidence under user direction. See [acquisition evidence](item-acquisition-order-followup-2026-10-20.md).

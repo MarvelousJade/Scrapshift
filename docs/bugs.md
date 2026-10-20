@@ -1,3 +1,7 @@
+## October20 - material ledger assumptions corrected
+
+The historical25-kill/24-unit observation is not proof of a payout defect: the original zone-wide Evil Mob can count as a zero-material kill or steal drops. Current Scrapshift consumed-value/evolution payout logic matches the inspected source. Four forced source cleanup-boundary cases also demonstrate that fresh deferred drops can miss attraction/banking while pooled controls bank normally. That injected source race does not assign the historical cause or justify changing Scrapshift payouts. See [follow-up evidence](material-reconciliation-followup-2026-10-20.md).
+
 ## October20 - reference material accounting investigation
 
 A new instrumented original-engine wave reconciles28 deaths with8 pickups plus20 cleanup-banked units. Deferred registration can leave intermediate event snapshots one unit behind. This did not reproduce or explain the historical25-kill/24-unit trace; no payout defect or fix is claimed. See [probe evidence](material-accounting-probe-2026-10-20.md).

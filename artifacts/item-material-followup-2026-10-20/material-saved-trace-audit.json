@@ -1,0 +1,99 @@
+{
+  "scope": "Read-only saved first-wave reconciliation",
+  "traces": [
+    {
+      "path": "artifacts\\parity-remaining-2026-10-20\\original-full-headless\\trace.json",
+      "sha256": "eee5a1481fdb279b91cda3d7d226d0b3cbce8775c4097f1c04eac61e24fa7d74",
+      "rows": 249,
+      "wave_one_rows": 6,
+      "instrumented": false,
+      "events": {
+        "boot": 1,
+        "fixture_pause_intervention": 1,
+        "scene": 2,
+        "shop_exit": 1,
+        "wave_timer_end": 1
+      },
+      "timer": {
+        "simulated_seconds": 20.100001,
+        "enemy_kills": 25,
+        "tree_kills": 0,
+        "material_pickups": 5,
+        "gold": 5,
+        "banked_materials": 0,
+        "ground_material_value": 19,
+        "item_count": 0,
+        "harvesting": 0,
+        "neutral_unit_hypothesis_residual": 1
+      },
+      "after_cleanup": {
+        "simulated_seconds": 23.066879,
+        "enemy_kills": 25,
+        "tree_kills": 0,
+        "material_pickups": 5,
+        "gold": 5,
+        "banked_materials": 19,
+        "ground_material_value": 0,
+        "item_count": 0,
+        "harvesting": 0,
+        "neutral_unit_hypothesis_residual": 1
+      },
+      "limit": "Finite first-wave saved-trace analysis. Evil Mob theft/zero-value kills invalidate kill-to-unit equality even in wave one. Missing event provenance cannot be reconstructed; kill residual alone does not establish lost payouts."
+    },
+    {
+      "path": "artifacts\\headless-completion-2026-10-20\\material-probe-attempt-1\\trace.json",
+      "sha256": "fde76560f74ff1ad658d232a99f24336916df3b148e9ddd90fce7b629ca5d87c",
+      "rows": 146,
+      "wave_one_rows": 146,
+      "instrumented": true,
+      "events": {
+        "boot": 1,
+        "finished": 1,
+        "fixture_pause_intervention": 1,
+        "material_enemy_counted": 28,
+        "material_loot_attempt": 28,
+        "material_picked": 28,
+        "material_registered": 28,
+        "material_requested": 28,
+        "scene": 2,
+        "wave_timer_end": 1
+      },
+      "timer": {
+        "simulated_seconds": 20.111225,
+        "enemy_kills": 28,
+        "tree_kills": 0,
+        "material_pickups": 8,
+        "gold": 8,
+        "banked_materials": 0,
+        "ground_material_value": 20,
+        "item_count": 0,
+        "harvesting": 0,
+        "neutral_unit_hypothesis_residual": 0
+      },
+      "after_cleanup": {
+        "simulated_seconds": 23.067753,
+        "enemy_kills": 28,
+        "tree_kills": 0,
+        "material_pickups": 8,
+        "gold": 8,
+        "banked_materials": 20,
+        "ground_material_value": 0,
+        "item_count": 0,
+        "harvesting": 0,
+        "neutral_unit_hypothesis_residual": 0
+      },
+      "unit_accounting": {
+        "requested": 28,
+        "registered": 28,
+        "cap_boosted": 0,
+        "player_picked_value": 8,
+        "cleanup_picked_value": 20,
+        "final_ground": 0,
+        "peak_requested_not_registered": 1,
+        "performance_removals": 0,
+        "balanced": true
+      },
+      "limit": "Finite first-wave saved-trace analysis. Evil Mob theft/zero-value kills invalidate kill-to-unit equality even in wave one. Missing event provenance cannot be reconstructed; kill residual alone does not establish lost payouts."
+    }
+  ]
+}
