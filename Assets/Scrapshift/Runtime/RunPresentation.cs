@@ -324,8 +324,9 @@ namespace Scrapshift
         void ReferenceEndUI()
         {
             if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending){Overlay();return;}
-            bool retryChoice=Rules.Phase==RunPhase.Lost&&!endSummary&&GameSettings.Flag("retryWave",false)&&Rules.CanRetryWave;
-            if(!retryChoice&&DrawUnlockReward())return;
+            // main._on_EndWaveTimer_timeout presents the loss acknowledgment
+            // before processing challenge rewards, with or without retry.
+            if((Rules.Phase!=RunPhase.Lost||endSummary)&&DrawUnlockReward())return;
             if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
             if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
             else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});

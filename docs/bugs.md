@@ -1,3 +1,7 @@
+## October20 - acknowledge loss before unlock rewards
+
+Full-screen unlock rewards could intercept the default loss acknowledgment. Defer that modal until the player selects OK/End run, preserving the global reward queue across Retry. R26 actual Update/virtual-A checks passed without suppressing Rookie rewards; all8 fresh captures reviewed. Actual Sick, Wounded and Golem boundary cases also passed. See [survival report](survival-parity-remaining-2026-10-20.md). Codex performed implementation and validation.
+
 ## October20 - registered pets versus live actors
 
 Beast Master stat links incorrectly followed live actor counts. The source counts registered pet effects, scalar shields and pet structures instead. Exclude empty presentation-only PetSpec entries to avoid counting Jellyshield twice.10 selected checks passed; see [item report](items-parity-remaining-2026-10-20.md). Codex performed this investigation and validation.

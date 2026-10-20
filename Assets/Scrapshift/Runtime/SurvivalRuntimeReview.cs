@@ -21,8 +21,8 @@ namespace Scrapshift
             public string folder;ArenaGame game;Gamepad pad;float started;
             [Serializable] sealed class SurvivalReport
             {
-                public string status,error,scope="Opt-in staged native survival fixture. Incoming hits use production hostile projectile contact through actual Update with invulnerability initially zero. Armor, regeneration, Torture, pickups and retry state are staged; pause calls use the production model API. Retry is confirmed through actual virtual A input/OnGUI; fixture-only IgnoreFocus prevents synthetic button resets, and pending full-screen unlock modals are cleared only in this in-memory profile to expose acknowledgment. Not human survival balance or a full campaign.";
-                public bool inMemoryProfile,fixtureIgnoreFocus,unlockModalsSuppressed,retryConfirmedThroughUi,armorContact,iframeBlocksSecondHit,regenHealed,cleanupTortureHealed,lethalContact,deathClearedActors,
+                public string status,error,scope="Opt-in staged native survival fixture. Incoming hits use production hostile projectile contact through actual Update with invulnerability initially zero. Armor, regeneration, Torture, pickups and retry state are staged; pause calls use the production model API. Retry is confirmed through actual virtual A input/OnGUI; fixture-only IgnoreFocus prevents synthetic button resets. Natural Rookie unlocks remain queued through acknowledgment/retry and are dismissed only through the actual post-end-run Continue button. Not human survival balance or a full campaign.";
+                public bool inMemoryProfile,fixtureIgnoreFocus,unlockModalsSuppressed,rookieUnlockPendingAtAck,retryPreservesUnlockQueue,unlockShownOnlyAfterEnd,unlockDismissedThroughUi,periodicLethalCleanup,retryConfirmedThroughUi,armorContact,iframeBlocksSecondHit,regenHealed,cleanupTortureHealed,lethalContact,deathClearedActors,
                     deathPauseFreezes,delayedAcknowledgment,rawBankNoIncome,noDeathHarvest,deadFruitUncollected,retryRestoresSameWave,capturesExist;
                 public float healthAfterContact,healthAfterRegen,healthAfterCleanupFruit,deathAgeBeforePause,deathAgeAfterPause,deathAgeAtAcknowledgment;
                 public int deathMaterials,deathXp,deathBanked,retries;
@@ -39,8 +39,8 @@ namespace Scrapshift
                     if(!more)break;yield return next;
                 }
                 if(pad!=null&&pad.added)InputSystem.RemoveDevice(pad);
-                report.error=error;report.capturesExist=new[]{"damaged.png","regenerated.png","torture-cleanup.png","defeat-ack.png","defeat-retry.png","retried.png"}.All(name=>File.Exists(Path.Combine(folder,name))&&new FileInfo(Path.Combine(folder,name)).Length>0);
-                bool passed=error==null&&report.inMemoryProfile&&report.fixtureIgnoreFocus&&report.retryConfirmedThroughUi&&report.armorContact&&report.iframeBlocksSecondHit&&report.regenHealed&&report.cleanupTortureHealed&&report.lethalContact&&report.deathClearedActors&&report.deathPauseFreezes&&report.delayedAcknowledgment&&report.rawBankNoIncome&&report.noDeathHarvest&&report.deadFruitUncollected&&report.retryRestoresSameWave&&report.capturesExist;
+                report.error=error;report.capturesExist=new[]{"damaged.png","regenerated.png","torture-cleanup.png","defeat-ack.png","defeat-retry.png","retried.png","unlock-after-end.png","end-summary.png"}.All(name=>File.Exists(Path.Combine(folder,name))&&new FileInfo(Path.Combine(folder,name)).Length>0);
+                bool passed=error==null&&report.inMemoryProfile&&report.fixtureIgnoreFocus&&report.retryConfirmedThroughUi&&report.rookieUnlockPendingAtAck&&report.retryPreservesUnlockQueue&&report.unlockShownOnlyAfterEnd&&report.unlockDismissedThroughUi&&report.periodicLethalCleanup&&report.armorContact&&report.iframeBlocksSecondHit&&report.regenHealed&&report.cleanupTortureHealed&&report.lethalContact&&report.deathClearedActors&&report.deathPauseFreezes&&report.delayedAcknowledgment&&report.rawBankNoIncome&&report.noDeathHarvest&&report.deadFruitUncollected&&report.retryRestoresSameWave&&report.capturesExist;
                 report.status=passed?"Passed":"Failed";Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"survival-review.json"),JsonUtility.ToJson(report,true));Application.Quit(passed?0:1);
             }
             IEnumerator Run()
@@ -66,7 +66,7 @@ namespace Scrapshift
                 wait=Time.realtimeSinceStartup;while(game.Rules.Health<7&&Time.realtimeSinceStartup-wait<.75f)yield return null;
                 report.healthAfterCleanupFruit=game.Rules.Health;report.cleanupTortureHealed=game.Rules.Health==7&&game.Rules.WaveSettlementPending;
                 Require(report.cleanupTortureHealed,"A real cleanup fruit must heal through Torture's cleaning_up exception.");Capture("torture-cleanup.png");yield return null;
-                Stage();GameSettings.Set("retryWave",false);game.Rules.GainWeaponStat("harvesting",20);game.Rules.CaptureWaveRetryState();
+                Stage();game.Rules.Progress=game.progress;game.recordedFinish=false;GameSettings.Set("retryWave",false);game.Rules.GainWeaponStat("harvesting",20);game.Rules.CaptureWaveRetryState();
                 float scale=PresentationLayout.CanvasScale(Screen.width,Screen.height);
                 Vector2 bag=game.gameCamera.ScreenToWorldPoint(new Vector3(42*scale,Screen.height-140.5f*scale,20));
                 game.Drop(bag,5,false);game.Drop(game.playerPos,1,true);Contact(1000);
@@ -87,7 +87,8 @@ namespace Scrapshift
                 report.noDeathHarvest=game.Rules.Stat("harvesting")==20&&!game.Rules.WaveSettlementPending;
                 report.deadFruitUncollected=game.pickups.Count(p=>p.fruit)==1&&game.Rules.Health==0&&game.Rules.PendingCrates==0;
                 Require(report.rawBankNoIncome&&report.noDeathHarvest&&report.deadFruitUncollected,"Death banks raw material only, without XP/Harvesting/healing/reward collection.");
-                game.progress.NewlyUnlocked.Clear();report.unlockModalsSuppressed=true;
+                report.rookieUnlockPendingAtAck=game.progress.Completed("chal_rookie")&&game.progress.NewlyUnlocked.Count>0;
+                Require(report.rookieUnlockPendingAtAck,"Natural death must queue Rookie without suppressing its reward.");int pendingUnlocks=game.progress.NewlyUnlocked.Count;
                 yield return null;Capture("defeat-ack.png");yield return null;
                 GameSettings.Set("retryWave",true);yield return null;yield return null;Capture("defeat-retry.png");yield return null;
                 InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.South));yield return new WaitForSecondsRealtime(.08f);
@@ -96,7 +97,28 @@ namespace Scrapshift
                 Require(report.retryConfirmedThroughUi,"Virtual A must activate the rendered Retry wave button through actual Update/OnGUI.");
                 report.retries=game.Rules.Retries;report.retryRestoresSameWave=game.Rules.Phase==RunPhase.Playing&&game.Rules.Wave==1&&game.Rules.Retries==1&&game.Rules.Scrap==100&&game.Rules.XP==0&&game.Rules.Banked==0&&game.Rules.Health==10;
                 Require(report.retryRestoresSameWave,"Retry must restore this wave's checkpoint, health and economy rather than restart progression.");
-                Capture("retried.png");yield return null;yield return new WaitForSecondsRealtime(.2f);
+                report.retryPreservesUnlockQueue=game.progress.Completed("chal_rookie")&&game.progress.NewlyUnlocked.Count==pendingUnlocks;
+                Require(report.retryPreservesUnlockQueue,"Retry must preserve the unsuppressed global unlock queue.");
+                Capture("retried.png");yield return null;
+                GameSettings.Set("retryWave",false);game.Rules.GainWeaponStat("lose_hp_per_second",1000);
+                wait=Time.realtimeSinceStartup;while(game.Rules.Phase==RunPhase.Playing&&Time.realtimeSinceStartup-wait<1.5f)yield return null;
+                report.periodicLethalCleanup=game.Rules.Phase==RunPhase.Lost&&game.Rules.DeathCleanupPending;
+                Require(report.periodicLethalCleanup,"Ordinary Update periodic self-damage must enter the same pending death cleanup.");
+                wait=Time.realtimeSinceStartup;while(game.Rules.DeathCleanupPending&&Time.realtimeSinceStartup-wait<1)yield return null;
+                yield return null;yield return null;
+                InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.South));yield return new WaitForSecondsRealtime(.08f);
+                InputSystem.QueueStateEvent(pad,new GamepadState());yield return new WaitForSecondsRealtime(.15f);
+                report.unlockShownOnlyAfterEnd=game.endSummary&&game.progress.NewlyUnlocked.Count==pendingUnlocks;
+                Require(report.unlockShownOnlyAfterEnd,"OK must end the run before the pending unlock reward intercepts summary.");
+                Capture("unlock-after-end.png");yield return null;
+                for(int dismissed=0;game.progress.NewlyUnlocked.Count>0&&dismissed<pendingUnlocks;dismissed++)
+                {
+                    InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.South));yield return new WaitForSecondsRealtime(.08f);
+                    InputSystem.QueueStateEvent(pad,new GamepadState());yield return new WaitForSecondsRealtime(.15f);
+                }
+                report.unlockDismissedThroughUi=game.endSummary&&game.progress.NewlyUnlocked.Count==0;
+                Require(report.unlockDismissedThroughUi,"Actual A on Continue must dismiss pending unlocks and reveal the summary.");
+                Capture("end-summary.png");yield return null;yield return new WaitForSecondsRealtime(.2f);
             }
             void Stage()
             {
