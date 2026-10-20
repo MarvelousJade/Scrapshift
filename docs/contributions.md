@@ -1,3 +1,7 @@
+## October20 - headless campaign evidence
+
+At the user's request, Codex stopped desktop control and continued authorized CLI checks. Codex added opt-in headless/survival drivers, prepared isolated original fixtures and analyzed both completed natural-defeat runs. They are automated staged campaigns, not user-played runs or fresh physical-controller acceptance. The survival report records different sampling contexts, random loadouts and original startup diagnostics.
+
 ## October20 - starting-item selection correction
 
 The user requested exact gameplay behavior and later paused desktop control. Codex's character/item comparison and source audit found that Beast Master received every selectable starting pet. Codex separated choice data from automatic grants, updated selection/startup, reviewed the targeted catalog diff and ran 16 passing focused tests plus a matching 30-case headless reference preflight. The user has not performed a fresh native selection/controller check for this change. Broader comparison evidence is recorded separately.

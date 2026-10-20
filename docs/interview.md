@@ -1,3 +1,7 @@
+## October20 - compare runs without overstating the result
+
+The user paused desktop access, so Codex added explicit headless campaign modes rather than treating missing screenshots as visual evidence. The ordinary-damage mode accepts natural defeat only after cleanup and excludes the failed wave from completion. Original and Unity runs lost on different waves, with different random upgrades/items; health metrics also sample different boundaries. Explain why those totals cannot identify a damage-formula bug. Use source-derived controlled checks for causality and the full campaign for integration coverage. See [survival evidence](headless-survival-comparison-2026-10-20.md).
+
 ## October20 - preserve selection semantics in imported data
 
 The character oracle exposed a schema mistake: Beast Master's selectable starting pets had been merged with automatic character grants. Separating `startingItemChoices` from `startingItems` preserves what the reference data means. Trace the selected item through the picker, preview and `RunRules.Start`, then explain why explicit effect grants happen afterward. The runtime stores selection IDs before refreshing unlock eligibility so list changes cannot change the chosen item by index. Focused tests cover every pet alternative, default/invalid input and pet-linked stats; source/Unity comparison checks static outcomes. Native picker/controller verification is pending. Codex investigated and implemented this change; reproduce it before presenting it as personally performed debugging.

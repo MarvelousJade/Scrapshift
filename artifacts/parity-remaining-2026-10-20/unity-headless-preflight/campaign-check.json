@@ -1,0 +1,85 @@
+{
+    "status": "Passed",
+    "scope": "HEADLESS state/trace verification only; no UI, screenshots, hardware or visual verification. ONE-WAVE PREFLIGHT ONLY; no full campaign. Normal timing Windows integration fixture: reference 60Hz accumulator, 60fps render target and normal 60Hz pickup physics. Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, invulnerability, mute and fresh in-memory progression. Health metrics sum net changes per simulation step, not all independent damage/healing events. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
+    "phase": "Shop",
+    "capturesVerified": false,
+    "realtime": true,
+    "preflight": true,
+    "headless": true,
+    "survival": false,
+    "invulnerabilityInjected": true,
+    "observedNetDamage": 0.0,
+    "observedNetHealing": 0.0,
+    "lowestObservedHealth": 10.0,
+    "deathCleanupAge": 0.0,
+    "pickupPhysicsRate": 60,
+    "completedWaves": 1,
+    "purchases": 0,
+    "shops": 1,
+    "upgrades": 0,
+    "crates": 0,
+    "peakEnemies": 8,
+    "charges": 0,
+    "rangedAttacks": 0,
+    "bossPhaseChanges": 0,
+    "finalMaterials": 5,
+    "finalLevel": 0,
+    "finalItemCount": 0,
+    "finalBankedMaterials": 25,
+    "finalKills": 28,
+    "finalEnemyKills": 27,
+    "finalMaterialPickups": 5,
+    "wallSeconds": 23.20967674255371,
+    "finalHarvesting": 0.0,
+    "finalLuck": 0.0,
+    "enemyIds": [
+        "baby_alien",
+        "tree"
+    ],
+    "waves": [
+        {
+            "wave": 1,
+            "kills": 28,
+            "shots": 62,
+            "materials": 5,
+            "level": 0,
+            "itemCount": 0,
+            "bankedMaterials": 25,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 27,
+            "materialPickups": 5,
+            "simulatedSeconds": 20.01653289794922,
+            "waveSimulatedSeconds": 20.01653289794922,
+            "harvesting": 0.0,
+            "luck": 0.0
+        }
+    ],
+    "finalWeapons": [
+        {
+            "id": "pistol",
+            "tier": 2
+        },
+        {
+            "id": "smg",
+            "tier": 2
+        },
+        {
+            "id": "double_barrel_shotgun",
+            "tier": 2
+        },
+        {
+            "id": "laser_gun",
+            "tier": 2
+        },
+        {
+            "id": "knife",
+            "tier": 2
+        },
+        {
+            "id": "spear",
+            "tier": 2
+        }
+    ],
+    "finalItemStacks": []
+}

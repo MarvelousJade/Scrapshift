@@ -8,7 +8,8 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        bool campaignCheck, campaignFinished,campaignRealtime,campaignPreflight;
+        bool campaignCheck, campaignFinished,campaignRealtime,campaignPreflight,campaignSurvival,campaignHeadless;
+        float campaignObservedDamage,campaignObservedHealing,campaignLowestHealth;
         double campaignAccumulator;
         int PickupPhysicsRate=>campaignCheck&&!campaignRealtime?240:60;
         string campaignPath;
@@ -41,7 +42,9 @@ namespace Scrapshift
         [Serializable] sealed class CampaignReport
         {
             public string status,scope,phase;
-            public bool capturesVerified,realtime,preflight;
+            public bool capturesVerified,realtime,preflight,headless;
+            public bool survival,invulnerabilityInjected;
+            public float observedNetDamage,observedNetHealing,lowestObservedHealth,deathCleanupAge;
             public int pickupPhysicsRate;
             public int completedWaves,purchases,shops,upgrades,crates,peakEnemies,charges,rangedAttacks,bossPhaseChanges,finalMaterials,finalLevel,finalItemCount,finalBankedMaterials,finalKills;
             public long finalEnemyKills,finalMaterialPickups;
@@ -57,6 +60,9 @@ namespace Scrapshift
             campaignCheck=true;campaignPath=folder;Directory.CreateDirectory(folder);
             campaignRealtime=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-realtime")>=0;
             campaignPreflight=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-preflight")>=0;
+            campaignSurvival=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-survival")>=0;
+            campaignHeadless=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-headless")>=0;
+            if(campaignHeadless&&!Application.isBatchMode)throw new InvalidOperationException("Headless campaign requires -batchmode.");
             campaignAccumulator=0;
             if(campaignRealtime){Application.targetFrameRate=60;QualitySettings.vSyncCount=0;}
             Application.runInBackground=true;
@@ -70,7 +76,9 @@ namespace Scrapshift
             progress.ChallengeCompleted+=_=>ApplyUnlocks();
             Rules.Progress=null;Rules.Difficulty=0;recordedFinish=false;progressClock=0;
             RefreshUnlockPoolForNewRun();Begin();Rules.Progress=progress;PlanEncounters(1);
-            // Explicit fixture loadout and invulnerability. Normal runs never enter this branch.
+            campaignLowestHealth=Rules.Health;campaignObservedDamage=campaignObservedHealing=0;
+            // Explicit fixture loadout. Only the legacy comparison injects
+            // invulnerability; the survival mode retains ordinary damage.
             Rules.Inventory.Clear();
             foreach(string id in new[]{"pistol","smg","double_barrel_shotgun","laser_gun","knife","spear"})
             {Rules.Inventory.Add(catalog.Weapon(id,2));progress.Count("weapon:"+id);}
@@ -80,7 +88,7 @@ namespace Scrapshift
             arrivalAge=0;arrivalImpact=false;
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             PoseArrival(0);
-            CampaignSnapshot("boot","Neutral base stats, no character effects, Danger 0; six tier-II weapons; fresh in-memory progression; seed 771. Random sequences are engine-specific.");
+            CampaignSnapshot("boot","Neutral base stats, no character effects, Danger 0; six tier-II weapons; fresh in-memory progression; seed 771. Random sequences are engine-specific. Invulnerability="+!campaignSurvival);
         }
 
         CampaignWeapon[] CampaignWeapons()=>Rules.Inventory.Select(w=>new CampaignWeapon{id=w.id,tier=w.tier}).ToArray();
@@ -105,10 +113,13 @@ namespace Scrapshift
             if(campaignFinished)
             {
                 if(Time.realtimeSinceStartup-campaignFinishAt<1)return;
-                bool captures=campaignPreflight?CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","end"):CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","wave-05","wave-10","wave-15","wave-20","end");
-                bool passed=captures&&(campaignPreflight?Rules.Phase==RunPhase.Shop&&campaignCompleted==1:Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0);
-                var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),capturesVerified=captures,realtime=campaignRealtime,preflight=campaignPreflight,pickupPhysicsRate=PickupPhysicsRate,
-                    scope=(campaignPreflight?"ONE-WAVE PREFLIGHT ONLY; no full campaign. ":"")+(campaignRealtime?"Normal timing Windows integration fixture: reference 60Hz accumulator, 60fps render target and normal 60Hz pickup physics. ":"Accelerated Windows integration fixture: twenty-four 60Hz combat steps per rendered frame and 240Hz pickup physics. ")+"Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, invulnerability, mute and fresh in-memory progression. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
+                bool survivalLoss=campaignSurvival&&Rules.Phase==RunPhase.Lost&&campaignObservedDamage>0&&!Rules.DeathCleanupPending;
+                bool captures=campaignHeadless||(survivalLoss?CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"end"):campaignPreflight?CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","end"):CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","wave-05","wave-10","wave-15","wave-20","end"));
+                bool passed=captures&&(survivalLoss||(campaignPreflight?Rules.Phase==RunPhase.Shop&&campaignCompleted==1:Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0));
+                var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),capturesVerified=!campaignHeadless&&captures,headless=campaignHeadless,realtime=campaignRealtime,preflight=campaignPreflight,pickupPhysicsRate=PickupPhysicsRate,
+                    survival=campaignSurvival,invulnerabilityInjected=!campaignSurvival,
+                    observedNetDamage=campaignObservedDamage,observedNetHealing=campaignObservedHealing,lowestObservedHealth=campaignLowestHealth,deathCleanupAge=Rules.DeathCleanupAge,
+                    scope=(campaignHeadless?"HEADLESS state/trace verification only; no UI, screenshots, hardware or visual verification. ":"")+(campaignPreflight?"ONE-WAVE PREFLIGHT ONLY; no full campaign. ":"")+(campaignRealtime?"Normal timing Windows integration fixture: reference 60Hz accumulator, 60fps render target and normal 60Hz pickup physics. ":"Accelerated Windows integration fixture: twenty-four 60Hz combat steps per rendered frame and 240Hz pickup physics. ")+"Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, "+(campaignSurvival?"ordinary damage enabled (no injected invulnerability); a natural loss is an accepted survival observation and is NOT twenty completed waves. ":"invulnerability, ")+"mute and fresh in-memory progression. Health metrics sum net changes per simulation step, not all independent damage/healing events. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
                     completedWaves=campaignCompleted,purchases=campaignPurchases,shops=campaignShops,upgrades=campaignUpgrades,crates=campaignCrates,peakEnemies=peakEnemies,
                     charges=chargeReleases,rangedAttacks=rangedReleases,bossPhaseChanges=bossMutations,wallSeconds=Time.realtimeSinceStartup-campaignStart,
                     enemyIds=campaignEnemyIds.OrderBy(x=>x).ToArray(),waves=campaignWaves.ToArray(),finalMaterials=Rules.Scrap,finalLevel=Rules.Level,finalItemCount=Rules.Items.Count,
@@ -117,6 +128,7 @@ namespace Scrapshift
                 File.WriteAllText(Path.Combine(campaignPath,"campaign-check.json"),JsonUtility.ToJson(report,true));
                 Application.Quit(passed?0:1);enabled=false;return;
             }
+            if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending)return;
             int steps=campaignRealtime?ReferencePhysicsClock.Consume(ref campaignAccumulator,Time.deltaTime):24;
             const float delta=ReferencePhysicsClock.Step;
             for(int step=0;step<steps;step++)
@@ -125,13 +137,18 @@ namespace Scrapshift
                 {
                     if(campaignStartedWave!=Rules.Wave){campaignStartedWave=Rules.Wave;campaignWaveStart=elapsed;CampaignSnapshot("wave_start");}
                     bool sweepingBefore=waveSweeping;
-                    invulnerable=.3f;UpdateFeedback(delta);Simulate(delta);AdvanceArrivalPresentation(delta);
+                    if(!campaignSurvival)invulnerable=.3f;
+                    float healthBefore=Rules.Health;
+                    UpdateFeedback(delta);Simulate(delta);AdvanceArrivalPresentation(delta);
+                    campaignObservedDamage+=Mathf.Max(0,healthBefore-Rules.Health);
+                    campaignObservedHealing+=Mathf.Max(0,Rules.Health-healthBefore);
+                    campaignLowestHealth=Mathf.Min(campaignLowestHealth,Rules.Health);
                     if(!sweepingBefore&&waveSweeping)CampaignSnapshot("wave_timer_end");
                     if(Rules.Remaining<RunRules.Durations[Rules.Wave-1]*.5f&&
                         (Rules.Wave==1||Rules.Wave==5||Rules.Wave==10||Rules.Wave==15||Rules.Wave==20)&&campaignCaptures.Add(Rules.Wave))
-                    { ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,$"wave-{Rules.Wave:00}.png"));break; }
+                    { CampaignCapture($"wave-{Rules.Wave:00}.png");break; }
                 }
-                if(Rules.Phase!=RunPhase.Playing&&Rules.Phase!=RunPhase.Paused&&Rules.Phase!=RunPhase.Title&&campaignCompleted<Rules.Wave)
+                if(Rules.Phase!=RunPhase.Playing&&Rules.Phase!=RunPhase.Lost&&Rules.Phase!=RunPhase.Paused&&Rules.Phase!=RunPhase.Title&&campaignCompleted<Rules.Wave)
                 {
                     campaignCompleted=Rules.Wave;
                     campaignWaves.Add(new WaveCheck { wave=Rules.Wave,kills=Rules.Kills,shots=shotsFired,simulatedSeconds=elapsed,waveSimulatedSeconds=elapsed-campaignWaveStart,materials=Rules.Scrap,level=Rules.Level,itemCount=Rules.Items.Count,
@@ -155,17 +172,20 @@ namespace Scrapshift
                     {
                         campaignFinished=true;campaignFinishAt=Time.realtimeSinceStartup;
                         CampaignSnapshot("preflight_finished","One wave and shop only; full campaign was not run.");
-                        ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,"end.png"));break;
+                        CampaignCapture("end.png");break;
                     }
                     AdvanceWave();
                 }
                 if(Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost)
                 {
+                    if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending)break;
                     campaignFinished=true;campaignFinishAt=Time.realtimeSinceStartup;
                     CampaignSnapshot("finished",Rules.Phase==RunPhase.Won?"won":"lost");
-                    ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,"end.png"));break;
+                    CampaignCapture("end.png");break;
                 }
             }
         }
+        void CampaignCapture(string name)
+        {if(!campaignHeadless)ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,name));}
     }
 }
