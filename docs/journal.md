@@ -1,3 +1,7 @@
+## October20 - fresh headless full campaign
+
+Both the supplied original and frozen R28 completed20 waves and19 shops, Won/exit0. The unchanged comparator passed18/18 bounded checks. The evidence is state/trace-only: no new UI, audio, controller, browser or human survival acceptance. This predates the subsequent Beast Master and registered weapon-structure corrections; it is not a latest-build campaign claim. See [full comparison](headless-full-comparison-2026-10-20.md). Startup diagnostics and an unresolved one-material aggregate reference observation are retained.
+
 ## Current priority follow-up - October17, R25
 
 The three requested tracks were audited and their confirmed differences fixed: combined burning cadence, Torture cleanup healing, lethal-frame/defeat cleanup and optional retry, raw health-shop currency/presentation, and unlock-pool lifetime across retry. Full suite **1181/1181 Passed**, zero failures/skips, exit0; Windows build zero errors/warnings. Three R25 native fixtures Passed/exit0 with 12 fresh captures reviewed; 568 source/settings/import inputs and 160 player files verified. Launch: `Builds/GameplayParity20261017R25/LaunchGame.cmd`.

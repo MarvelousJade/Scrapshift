@@ -1,3 +1,7 @@
+## October20 - fresh headless full campaign
+
+Both the supplied original and frozen R28 completed20 waves and19 shops, Won/exit0. The unchanged comparator passed18/18 bounded checks. The evidence is state/trace-only: no new UI, audio, controller, browser or human survival acceptance. This predates the subsequent Beast Master and registered weapon-structure corrections; it is not a latest-build campaign claim. See [full comparison](headless-full-comparison-2026-10-20.md). Startup diagnostics and an unresolved one-material aggregate reference observation are retained.
+
 Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
 
 ## Current priority follow-up - October17, R25
