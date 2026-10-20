@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.7459803">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1196" result="Passed" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.745980" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2395" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1166" result="Passed" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.725741" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37640" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2396" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1166" result="Passed" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.724268" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2397" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1166" result="Passed" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.723474" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1112" name="BeastMasterStartingChoiceTests" fullname="Scrapshift.Tests.BeastMasterStartingChoiceTests" classname="Scrapshift.Tests.BeastMasterStartingChoiceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.513158" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1115" name="AvailableStartingItemsFilterUnlocksAndSortBySourceTier" fullname="Scrapshift.Tests.BeastMasterStartingChoiceTests.AvailableStartingItemsFilterUnlocksAndSortBySourceTier" methodname="AvailableStartingItemsFilterUnlocksAndSortBySourceTier" classname="Scrapshift.Tests.BeastMasterStartingChoiceTests" runstate="Runnable" seed="1111965358" result="Passed" start-time="2026-10-20 12:25:10Z" end-time="2026-10-20 12:25:11Z" duration="0.466959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1113" name="BeastMasterChoosesOnePetInAdditionToGrantedLootworm" fullname="Scrapshift.Tests.BeastMasterStartingChoiceTests.BeastMasterChoosesOnePetInAdditionToGrantedLootworm" methodname="BeastMasterChoosesOnePetInAdditionToGrantedLootworm" classname="Scrapshift.Tests.BeastMasterStartingChoiceTests" runstate="Runnable" seed="1000660202" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.020006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1114" name="BeastMasterDefaultAndInvalidChoiceDoNotGrantEveryOption" fullname="Scrapshift.Tests.BeastMasterStartingChoiceTests.BeastMasterDefaultAndInvalidChoiceDoNotGrantEveryOption" methodname="BeastMasterDefaultAndInvalidChoiceDoNotGrantEveryOption" classname="Scrapshift.Tests.BeastMasterStartingChoiceTests" runstate="Runnable" seed="970076302" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.004518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1135" name="CharacterProfileTests" fullname="Scrapshift.Tests.CharacterProfileTests" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.095895" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1139" name="BabyChoosesOneWeaponSlotPerLevelBeforeOrdinaryUpgrades" fullname="Scrapshift.Tests.CharacterProfileTests.BabyChoosesOneWeaponSlotPerLevelBeforeOrdinaryUpgrades" methodname="BabyChoosesOneWeaponSlotPerLevelBeforeOrdinaryUpgrades" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="773527195" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.021595" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1138" name="CharacterGrantedWeaponsAndUnarmedCharactersFollowReference" fullname="Scrapshift.Tests.CharacterProfileTests.CharacterGrantedWeaponsAndUnarmedCharactersFollowReference" methodname="CharacterGrantedWeaponsAndUnarmedCharactersFollowReference" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="1367773026" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.001729" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1137" name="EveryUnlockedChoiceStartsWithSelectedWeaponAndReferenceBonus" fullname="Scrapshift.Tests.CharacterProfileTests.EveryUnlockedChoiceStartsWithSelectedWeaponAndReferenceBonus" methodname="EveryUnlockedChoiceStartsWithSelectedWeaponAndReferenceBonus" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="350845879" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.044180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1136" name="FiveProfilesKeepReferenceOrderAndCompleteStartingLists" fullname="Scrapshift.Tests.CharacterProfileTests.FiveProfilesKeepReferenceOrderAndCompleteStartingLists" methodname="FiveProfilesKeepReferenceOrderAndCompleteStartingLists" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="1784884963" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.009784" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1142" name="GlobalBurnStacksChanceAndBaseDamageButNotDurationOrScaling" fullname="Scrapshift.Tests.CharacterProfileTests.GlobalBurnStacksChanceAndBaseDamageButNotDurationOrScaling" methodname="GlobalBurnStacksChanceAndBaseDamageButNotDurationOrScaling" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="1778798276" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.001714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1144" name="HotheadRangeBonusAppliesOnlyToPreciseWeapons" fullname="Scrapshift.Tests.CharacterProfileTests.HotheadRangeBonusAppliesOnlyToPreciseWeapons" methodname="HotheadRangeBonusAppliesOnlyToPreciseWeapons" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="847752361" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.000895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1141" name="MageStartsWithBothBurningImplantsAndExactGainRestrictions" fullname="Scrapshift.Tests.CharacterProfileTests.MageStartsWithBothBurningImplantsAndExactGainRestrictions" methodname="MageStartsWithBothBurningImplantsAndExactGainRestrictions" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="39412177" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.001206" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="PugilistAttackSpeedAppliesOnlyToUnarmedWeapons" fullname="Scrapshift.Tests.CharacterProfileTests.PugilistAttackSpeedAppliesOnlyToUnarmedWeapons" methodname="PugilistAttackSpeedAppliesOnlyToUnarmedWeapons" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="43641227" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.000668" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1140" name="RookieHasReferenceStartingStats" fullname="Scrapshift.Tests.CharacterProfileTests.RookieHasReferenceStartingStats" methodname="RookieHasReferenceStartingStats" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="440198214" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.000499" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1145" name="SharpshotModifiesGainsAndRejectsMeleePurchases" fullname="Scrapshift.Tests.CharacterProfileTests.SharpshotModifiesGainsAndRejectsMeleePurchases" methodname="SharpshotModifiesGainsAndRejectsMeleePurchases" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="1272110945" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.003626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1146" name="SharpToothUsesCurrentMaxHealthIncludingPrimitiveSet" fullname="Scrapshift.Tests.CharacterProfileTests.SharpToothUsesCurrentMaxHealthIncludingPrimitiveSet" methodname="SharpToothUsesCurrentMaxHealthIncludingPrimitiveSet" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="351726298" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.001781" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1147" name="WeaponScalingAndStackingUseImportedCoefficients" fullname="Scrapshift.Tests.CharacterProfileTests.WeaponScalingAndStackingUseImportedCoefficients" methodname="WeaponScalingAndStackingUseImportedCoefficients" classname="Scrapshift.Tests.CharacterProfileTests" runstate="Runnable" seed="106148644" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.001564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1699" name="PetLinkParityTests" fullname="Scrapshift.Tests.PetLinkParityTests" classname="Scrapshift.Tests.PetLinkParityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.003056" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1700" name="BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" fullname="Scrapshift.Tests.PetLinkParityTests.BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" methodname="BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" classname="Scrapshift.Tests.PetLinkParityTests" runstate="Runnable" seed="891364842" result="Passed" start-time="2026-10-20 12:25:11Z" end-time="2026-10-20 12:25:11Z" duration="0.002253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/parity-remaining-2026-10-20/starting-choice-tests.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

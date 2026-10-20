@@ -148,7 +148,7 @@ namespace Scrapshift
             stats[name]=PermanentStat(name)+value;
         }
         public void ReturnToTitle() { Phase=RunPhase.Title; }
-        public void Start(CharacterProfile character=null,string weaponId=null,int startingMaterials=0)
+        public void Start(CharacterProfile character=null,string weaponId=null,int startingMaterials=0,string startingItemId=null)
         {
             initializingHealth=true;
             ResetWaveSettlement();
@@ -161,19 +161,30 @@ namespace Scrapshift
             Items.Clear();
             crates.Clear();CrateItem=null;ResetSurvival();
             if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
-            if(catalog!=null&&WeaponSlots>0)
+            var itemChoices=character?.startingItemChoices??Array.Empty<string>();
+            bool chooseItem=!string.IsNullOrEmpty(startingItemId)||WeaponSlots==0&&itemChoices.Length>0;
+            ItemEntry selectedStartingItem=null;
+            if(chooseItem)
+            {
+                string id=string.IsNullOrEmpty(startingItemId)?itemChoices[0]:startingItemId;
+                if(Array.IndexOf(itemChoices,id)<0)throw new ArgumentException("Invalid selected starting item for character");
+                selectedStartingItem=Array.Find(catalog.data.items,i=>i.id==id);
+                if(selectedStartingItem==null)throw new InvalidOperationException("Missing selected starting item: "+id);
+            }
+            if(catalog!=null&&WeaponSlots>0&&!chooseItem)
             {
                 var starting=catalog.Weapon(weaponId??"pistol",MinimumWeaponTier)??catalog.Weapon(weaponId??"pistol",1);
                 if(!CanEquip(starting)||character!=null&&Array.IndexOf(character.startingWeapons,starting.id)<0)throw new ArgumentException("Invalid starting weapon for character");
                 Inventory.Add(starting);
-                if(character!=null&&!string.IsNullOrEmpty(character.bonusWeapon))
-                {
-                    var bonus=catalog.Weapon(character.bonusWeapon,character.bonusTier);
-                    if(!CanEquip(bonus))throw new InvalidOperationException("Invalid character-granted starting weapon: "+character.bonusWeapon);
-                    Inventory.Add(bonus);
-                }
             }
             if(character!=null)foreach(var s in character.stats)stats[s.key]=s.value;
+            if(selectedStartingItem!=null)ApplyItem(selectedStartingItem);
+            if(character!=null&&!string.IsNullOrEmpty(character.bonusWeapon))
+            {
+                var bonus=catalog.Weapon(character.bonusWeapon,character.bonusTier);
+                if(!CanEquip(bonus))throw new InvalidOperationException("Invalid character-granted starting weapon: "+character.bonusWeapon);
+                Inventory.Add(bonus);
+            }
             if(character?.startingItems!=null)foreach(var id in character.startingItems)
             {var item=Array.Find(catalog.data.items,i=>i.id==id);if(item==null)throw new InvalidOperationException("Missing starting implant: "+id);ApplyItem(item);}
             foreach(var acquired in Inventory)Progress?.Count("weapon:"+acquired.id);

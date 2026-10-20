@@ -1,3 +1,7 @@
+## October20 - preserve selection semantics in imported data
+
+The character oracle exposed a schema mistake: Beast Master's selectable starting pets had been merged with automatic character grants. Separating `startingItemChoices` from `startingItems` preserves what the reference data means. Trace the selected item through the picker, preview and `RunRules.Start`, then explain why explicit effect grants happen afterward. The runtime stores selection IDs before refreshing unlock eligibility so list changes cannot change the chosen item by index. Focused tests cover every pet alternative, default/invalid input and pet-linked stats; source/Unity comparison checks static outcomes. Native picker/controller verification is pending. Codex investigated and implemented this change; reproduce it before presenting it as personally performed debugging.
+
 ## October20 - modal shop interaction
 
 Explain how a locally valid availability assignment can break an enclosing modal. GUI.enabled must combine parent interactivity with local affordability rather than overwrite it. Codex fixed this and verified actual UI actions; the initial fixture failure was a scroll-view lookup error and was retained separately. A possible navigation-coordinate issue remains unconfirmed and requires a same-frame origin receipt. See [shop report](shop-parity-remaining-2026-10-20.md). Further desktop checks are deferred at the user's request.

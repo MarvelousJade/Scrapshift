@@ -1,3 +1,7 @@
+## October20 - starting item choices versus automatic grants
+
+Beast Master incorrectly received all four selectable pets plus Lootworm. The original selection screen adds one chosen item, then its character effect grants Lootworm. The import/catalog now distinguish selectable choices from automatic grants; selection, preview and run startup carry the chosen item ID. All four choices yield two items, zero weapons and +4 Speed. Focused tests passed **16/16**, and the corrected 30-case source/Unity stat preflight has zero mismatches. Interactive selection remains deferred under the user's desktop-control hold. See [starting-choice report](starting-item-choices-2026-10-20.md).
+
 ## October20 - modal shop interaction
 
 The weapon action popup disabled ShopUI, but nested eligibility assignments re-enabled its background buttons. Preserve the inherited enabled state. R27 passed22 native action/modal assertions, including exactly3/2 popup controls and unchanged inventory/offers/currency on Cancel. See [shop report](shop-parity-remaining-2026-10-20.md). Further desktop checks are deferred at the user's request.

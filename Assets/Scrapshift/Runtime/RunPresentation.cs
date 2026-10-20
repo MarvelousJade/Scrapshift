@@ -20,10 +20,11 @@ namespace Scrapshift
         {var deck=GameObject.Find("Deck art");if(deck!=null)deck.transform.localScale=new Vector3(ArenaGeometry.HalfSize.x/ArenaGeometry.BaseHalfSize.x,ArenaGeometry.HalfSize.y/ArenaGeometry.BaseHalfSize.y,1);}
         void StartSelectedRun()
         {
+            var character=SelectedCharacter;string weaponId=SelectedWeapon?.id,itemId=SelectedStartingItem?.id;
             loadoutShowcase=-1;showcaseCleanFrame=false;
             if(mapChoice<0)ApplyMapTheme(new System.Random().Next(MapThemes.Names.Length));
             RefreshUnlockPoolForNewRun();
-            pauseOptions=pauseCodex=false;Begin();Rules.Progress=progress;Rules.Difficulty=selectedDifficulty;recordedFinish=false;Rules.Start(SelectedCharacter,SelectedWeapon?.id,RunRules.ReferenceStartingMaterials);ArenaGeometry.SetMapSize(Rules.Stat("map_size"));ScaleMapArt();PlanEncounters(Mathf.Clamp(Mathf.RoundToInt(GameSettings.Value("constantProjectile",1)),0,2));StartWave();
+            pauseOptions=pauseCodex=false;Begin();Rules.Progress=progress;Rules.Difficulty=selectedDifficulty;recordedFinish=false;Rules.Start(character,weaponId,RunRules.ReferenceStartingMaterials,itemId);ArenaGeometry.SetMapSize(Rules.Stat("map_size"));ScaleMapArt();PlanEncounters(Mathf.Clamp(Mathf.RoundToInt(GameSettings.Value("constantProjectile",1)),0,2));StartWave();
             music.StartOnce();
             arrivalAge=0;arrivalImpact=false;player.SetActive(true);
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
@@ -73,7 +74,7 @@ namespace Scrapshift
             {
                 if(menuPage==1&&randomCharacter){var unlocked=Array.FindAll(catalog.data.characters,c=>c.available);var chosen=unlocked[UnityEngine.Random.Range(0,unlocked.Length)];ChangeLook(Array.IndexOf(catalog.data.characters,chosen)-playerAnimation.lookIndex);randomCharacter=false;}
                 if(menuPage==1&&!SelectedCharacter.available)return;
-                if(menuPage==1&&SelectedCharacter.weaponSlots==0)menuPage=3;else if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();
+                if(menuPage==1&&StartingChoiceCount==0)menuPage=3;else if(menuPage<3)menuPage++;else if(menuPage==3)StartSelectedRun();
             }
             else if(!endSummary)endSummary=true;else StartSelectedRun();
         }
@@ -282,13 +283,14 @@ namespace Scrapshift
             }
             else
             {
-                var w=SelectedWeapon;
+                var w=SelectedWeapon;var item=SelectedStartingItem;
                 float wx=menuPage==3?630:822;
                 RoundedBox(new Rect(wx,155,330,420),panelColor);
-                Text(wx+20,174,290,47,w==null?"No weapons":w.id=="smg"?"SMG":w.title,heading);
-                DrawIcon(w?.image,new Rect(wx+20,246,86,83));
-                Text(wx+123,252,185,75,w==null?"Unarmed":WeaponSets.For(w)?.Name??"Weapon",body);
+                Text(wx+20,174,290,47,item!=null?inspectionText.ItemName(item):w==null?"No weapons":w.id=="smg"?"SMG":w.title,heading);
+                DrawIcon(item!=null?item.image:w?.image,new Rect(wx+20,246,86,83));
+                Text(wx+123,252,185,75,item!=null?"Starting item":w==null?"Unarmed":WeaponSets.For(w)?.Name??"Weapon",body);
                 if(w!=null)DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290,PreviewRules());
+                else if(item!=null)DrawOfferDetail(new ShopOffer{item=item},wx+20,352,290,PreviewRules());
                 if(menuPage==2)
                 {
                     WeaponGrid();

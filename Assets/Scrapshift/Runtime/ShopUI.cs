@@ -205,7 +205,7 @@ namespace Scrapshift
             var characterRect=new Rect(cx,cy,80,80);
             Frame(characterRect,InventoryHover("character",characterRect,itemViewport,itemScroll)?paper:InventoryTileColor(1),2);
             DrawHeroFace(new Rect(cx+13,cy+8,54,64));
-            string description=string.Join("\n",character.effectRows.Where(row=>row.kind!="weapon").Select(row=>(StatPresentation.Keys.Contains(row.key)?"[["+row.key+"]] ":"• ")+CharacterEffectText(character,row).label));
+            string description=CharacterEffectDescription(character);
             Inspect("character",characterRect,character.title,description,playerAnimation.idleFrames[0],"Character",1,itemViewport,new Rect(itemViewport.position+characterRect.position-itemScroll,characterRect.size));
             GUI.EndScrollView();
             var weaponViewport=new Rect(weaponLeft,670,270,180);

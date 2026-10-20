@@ -1,3 +1,7 @@
+## October20 - starting-item selection correction
+
+The user requested exact gameplay behavior and later paused desktop control. Codex's character/item comparison and source audit found that Beast Master received every selectable starting pet. Codex separated choice data from automatic grants, updated selection/startup, reviewed the targeted catalog diff and ran 16 passing focused tests plus a matching 30-case headless reference preflight. The user has not performed a fresh native selection/controller check for this change. Broader comparison evidence is recorded separately.
+
 ## October17 priority follow-up attribution (R25)
 
 The user selected combined item effects, ordinary survival and special-shop/unlock persistence as priorities. Codex agents inspected supplied read-only source, generated focused and per-definition tests, implemented corrections and ran isolated Unity/native checks. The user did not perform these automated checks and has not confirmed a new human survival playthrough. Results: 1181/1181 full suite, three native fixtures Passed/exit0. The 115 unlock producer scenarios are not 115 human playthroughs. See [priority report](gameplay-priority-followup-2026-10-17.md). This pass does not establish third-party redistribution rights.

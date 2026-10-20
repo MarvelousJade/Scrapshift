@@ -9,6 +9,12 @@ namespace Scrapshift
         public static string[] Available(ReferenceCatalog catalog,CharacterProfile profile)=>profile.startingWeapons
             .Select(id=>catalog.Weapon(id,profile.minTier)).Where(w=>w!=null&&w.available&&profile.Allows(w))
             .OrderBy(w=>w.melee?0:1).Select(w=>w.id).ToArray();
+        // Source weapon_selection.gd lists starting_items as choices and
+        // filters them through ProgressData.items_unlocked. The imported
+        // item's available flag reflects this run-start unlock snapshot.
+        public static ItemEntry[] AvailableItems(ReferenceCatalog catalog,CharacterProfile profile)=>(profile.startingItemChoices??Array.Empty<string>())
+            .Select(id=>catalog.data.items.FirstOrDefault(i=>i.id==id)).Where(i=>i!=null&&i.available)
+            .OrderBy(i=>i.tier).ToArray();
     }
     [Serializable] public sealed class CharacterProfile
     {
@@ -19,7 +25,7 @@ namespace Scrapshift
         public CharacterEffectRow[] effectRows;
         public AppearanceLayer[] appearances;
         public string id,title,description,bonusWeapon,classSet,classStat;
-        public string[] startingWeapons,bannedItemGroups,startingItems;
+        public string[] startingWeapons,bannedItemGroups,startingItems,startingItemChoices;
         public StatEffect[] stats,gains;
         public float classValue;
         public bool noMelee;

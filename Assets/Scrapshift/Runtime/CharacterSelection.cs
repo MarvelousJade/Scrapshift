@@ -10,12 +10,15 @@ namespace Scrapshift
         Vector2 characterEffectScroll;
         CharacterProfile SelectedCharacter=>catalog.data.characters[playerAnimation.lookIndex];
         string[] CharacterWeapons=>StarterChoices.Available(catalog,SelectedCharacter);
-        Equipment SelectedWeapon=>CharacterWeapons.Length==0?null:catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],SelectedCharacter.minTier)??catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],1);
+        ItemEntry[] CharacterStartingItems=>StarterChoices.AvailableItems(catalog,SelectedCharacter);
+        int StartingChoiceCount=>CharacterWeapons.Length+CharacterStartingItems.Length;
+        Equipment SelectedWeapon=>CharacterWeapons.Length==0||startingWeapon>=CharacterWeapons.Length?null:catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],SelectedCharacter.minTier)??catalog.Weapon(CharacterWeapons[Mathf.Clamp(startingWeapon,0,CharacterWeapons.Length-1)],1);
+        ItemEntry SelectedStartingItem=>startingWeapon<CharacterWeapons.Length||CharacterStartingItems.Length==0?null:CharacterStartingItems[Mathf.Clamp(startingWeapon-CharacterWeapons.Length,0,CharacterStartingItems.Length-1)];
         RunRules previewRules;
         RunRules PreviewRules()
         {
             if(previewRules==null){previewRules=new RunRules(42);previewRules.Configure(catalog);}
-            previewRules.Start(SelectedCharacter,SelectedWeapon?.id,RunRules.ReferenceStartingMaterials);return previewRules;
+            previewRules.Start(SelectedCharacter,SelectedWeapon?.id,RunRules.ReferenceStartingMaterials,SelectedStartingItem?.id);return previewRules;
         }
         void DrawLock(Rect r)
         {
@@ -58,23 +61,23 @@ namespace Scrapshift
         }
         void WeaponGrid()
         {
-            var choices=CharacterWeapons;
-            float step=Mathf.Min(76,1180f/(choices.Length+1));float left=720-((choices.Length+1)*step-10)/2f;
-            for(int slot=0;slot<=choices.Length;slot++)
+            var choices=CharacterWeapons;var items=CharacterStartingItems;int count=choices.Length+items.Length;
+            float step=Mathf.Min(76,1180f/(count+1));float left=720-((count+1)*step-10)/2f;
+            for(int slot=0;slot<=count;slot++)
             {
                 Rect r=new Rect(left+slot*step,626,step-10,68);
                 if(slot==0)
                 {
                     if(MenuButton(r,"?"))
                     {
-                        startingWeapon=UnityEngine.Random.Range(0,choices.Length);ConfirmMenu();
+                        startingWeapon=UnityEngine.Random.Range(0,count);ConfirmMenu();
                     }
                     continue;
                 }
-                int i=slot-1;var weapon=catalog.Weapon(choices[i],SelectedCharacter.minTier);
+                int i=slot-1;var weapon=i<choices.Length?catalog.Weapon(choices[i],SelectedCharacter.minTier):null;
                 if(SelectionPreviewFocused(r))startingWeapon=i;
                 if(MenuButton(r,"",i==startingWeapon)){startingWeapon=i;ConfirmMenu();}
-                DrawIcon(weapon.image,new Rect(r.x+5,r.y+7,r.width-10,54));
+                DrawIcon(weapon!=null?weapon.image:items[i-choices.Length].image,new Rect(r.x+5,r.y+7,r.width-10,54));
             }
         }
         void CharacterDetails(float left)
@@ -110,6 +113,8 @@ namespace Scrapshift
                 {var weapon=catalog.Weapon(row.key,1);image=weapon.image;label="You start with <color=#76FF40>"+row.value.ToString("0")+" "+inspectionText.WeaponName(weapon)+"</color>";}
                 else if(row.kind=="item")
                 {var item=Array.Find(catalog.data.items,i=>i.id==row.key);image=item.image;label="Start with <color=#76FF40>"+row.value.ToString("0")+" "+inspectionText.ItemName(item)+"</color>";}
+                else if(row.kind=="itemChoice")
+                {var item=Array.Find(catalog.data.items,i=>i.id==row.key);image=item.image;label="Starting choice: <color=#76FF40>"+inspectionText.ItemName(item)+"</color> (choose one)";}
                 else if(row.kind=="gain")label=stat+" modifications are "+(row.value<0?"reduced":"increased")+" by <color="+color+">"+Mathf.Abs(row.value).ToString("0")+"%</color>";
                 else if(row.kind=="effect")label=System.Text.RegularExpressions.Regex.Replace(profile.conditionalEffects[int.Parse(row.extra)].Description,@"(?<![\w])[+-]\d+(?:\.\d+)?%?",m=>"<color="+(m.Value.StartsWith("-")?"#FF3333":"#00FF00")+">"+m.Value+"</color>");
                 else if(row.key=="weapon_slot")label="Can equip <color=#00FF00>"+profile.weaponSlots+"</color> weapons";
@@ -122,7 +127,7 @@ namespace Scrapshift
         {
             return string.Join("\n",profile.effectRows.Where(row=>row.kind!="weapon").Select(row=>
             {
-                string key=row.kind=="item"?"item:"+row.key:row.key;
+                string key=row.kind=="item"||row.kind=="itemChoice"?"item:"+row.key:row.key;
                 return (StatPresentation.Icon(catalog,key)!=null?"[["+key+"]] ":"• ")+CharacterEffectText(profile,row).label;
             }));
         }
