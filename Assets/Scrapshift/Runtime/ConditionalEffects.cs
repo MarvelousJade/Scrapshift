@@ -111,7 +111,10 @@ namespace Scrapshift
                 if(effect.key.Replace("stat_","")!=name)continue;
                 switch(effect.customKey)
                 {
-                    case "stats_below_half_health":if(Health<MaxHealth/2)result+=effect.value;break;
+                    // Player.die and end_run._ready clear source TempStats.
+                    // A dead low-HP value must not recreate the cleared bonus
+                    // when the final stat panel queries this computed rule.
+                    case "stats_below_half_health":if(Phase!=RunPhase.Lost&&Phase!=RunPhase.Won&&Health<MaxHealth/2)result+=effect.value;break;
                     case "tier_iv_weapon_effects":result+=effect.value*Inventory.Count(w=>w.tier==4);break;
                     case "tier_i_weapon_effects":result+=effect.value*Inventory.Count(w=>w.tier==1);break;
                     case "unique_weapon_effects":result+=effect.value*Inventory.Select(w=>w.id).Distinct().Count();break;

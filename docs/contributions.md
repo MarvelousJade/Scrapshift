@@ -1,3 +1,7 @@
+## October20 - remaining headless acceptance
+
+The user authorized parallel agents, meaningful commits and headless checks while withholding desktop control. Codex authored source-derived dynamic item comparisons, additional shop and unlock callback fixtures, and the Golem terminal-stat correction. Codex ran53 dynamic cases/397 snapshots with zero differences,26 focused item/shop checks,14 shop runtime receipts and109 unlock scenarios with real isolated save/reload. Staged clocks, final-wave setup and synthetic pool snapshots are explicitly documented. These are assistant-run checks, not user playtesting or fresh physical-controller/UI acceptance. See [items](headless-items-2026-10-20.md), [shops](headless-shops-2026-10-20.md) and [unlocks](headless-unlocks-2026-10-20.md).
+
 ## October20 - registered support correction and character matrix
 
 Codex agents traced weapon effects into the source registration array, corrected character links/unlock counts and support placement consumers, and replaced an older fixture assumption about live turrets. Codex ran the corrected10,500-case static character/item comparison (zero mismatches) and complete1,200-test suite (all passed). The user supplied scope/reference and paused desktop control; these checks do not imply user-authored implementation or fresh native/physical acceptance. See [support evidence](support-registration-parity-2026-10-20.md) and [oracle](character-item-oracle-2026-10-20.md).

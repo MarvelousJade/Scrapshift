@@ -1,3 +1,11 @@
+## October20 - derived stats can recreate cleared state
+
+Golem's low-health bonus exposed a lifecycle issue: clearing stored temporary stats did not prevent a computed conditional from adding the bonus again at HP0. Codex traced the original death/end-run reset chain, limited the conditional to nonterminal phases, and added defeat/victory regressions while preserving paused-combat behavior. The dynamic source comparison passed53 cases/397 snapshots;26 focused item/shop cases passed. See [item evidence](headless-items-2026-10-20.md). Explain the difference between stored state and derived state, and why a reset alone was insufficient. The user directed this parity work; Codex investigated, implemented and ran these checks. Reproduce the example before presenting personal debugging claims.
+
+## October20 - staged producers and real persistence
+
+The remaining109 unlock definitions now have bounded runtime callback scenarios, lower-bound checks, exactly-once notifications and real isolated JSON save/reload receipts. Pool checks use separate active/fresh snapshots; clocks, threshold setup and final-wave state are staged. This is stronger than calling Complete directly, but does not reproduce109 natural playthroughs or UI interactions. See [unlock evidence](headless-unlocks-2026-10-20.md). Discuss how to isolate saves and distinguish a producer callback from its scheduling and presentation.
+
 ## October20 - validate the setup before changing economy rules
 
 The expanded shop price check failed for Entrepreneur because the fixture supplied money before Start, and the character correctly discarded that starting purse. Codex followed the source startup modifier and moved staged funding after Start without generating pickup XP. The corrected12 shop groups and14 headless player receipts passed. Explain why a failed check can indicate an invalid setup rather than a gameplay defect, and why logic receipts do not prove displayed prices or mouse/controller behavior. Codex performed this investigation; reproduce the case before claiming personal execution.

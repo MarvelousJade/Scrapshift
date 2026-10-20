@@ -1,0 +1,115 @@
+{
+  "caseCount": 51,
+  "snapshots": 266,
+  "errorCount": 18,
+  "mismatchCount": 0,
+  "errors": [
+    {
+      "id": "well_rounded:movement:barricade+chameleon+statue+hoodie",
+      "source": "",
+      "unity": "System.InvalidOperationException: Sequence contains no matching element\r\n  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <f1b392d8fe224ca2b1f9fab1000b77eb>:0 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x00124] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:37 "
+    },
+    {
+      "id": "doctor:timer:wisdom",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:timer:wisdom+wisdom",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:timer:medikit",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:timer:medikit+medikit",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:timer:wisdom+medikit",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:timer:wisdom+wisdom+medikit+medikit",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:movement:barricade",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:movement:chameleon",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:movement:statue",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:movement:barricade+chameleon+statue",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:movement:barricade+chameleon+statue+barricade+chameleon+statue",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:movement:barricade+chameleon+statue+hoodie",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "renegade:movement:barricade+chameleon+statue+hoodie",
+      "source": "",
+      "unity": "System.InvalidOperationException: Sequence contains no matching element\r\n  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <f1b392d8fe224ca2b1f9fab1000b77eb>:0 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x00124] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:37 "
+    },
+    {
+      "id": "streamer:movement:barricade+hoodie",
+      "source": "",
+      "unity": "System.InvalidOperationException: Sequence contains no matching element\r\n  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00070] in <f1b392d8fe224ca2b1f9fab1000b77eb>:0 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x00124] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:37 "
+    },
+    {
+      "id": "doctor:lifecycle:wisdom",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:lifecycle:medikit",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    },
+    {
+      "id": "doctor:lifecycle:barricade",
+      "source": "",
+      "unity": "System.ArgumentException: Invalid starting weapon for character\r\n  at Scrapshift.RunRules.Start (Scrapshift.CharacterProfile character, System.String weaponId, System.Int32 startingMaterials, System.String startingItemId) [0x004bf] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Runtime\\RunRules.cs:200 \r\n  at Scrapshift.Editor.HeadlessDynamicItemsOracle.Export () [0x000d2] in E:\\Codex Projects\\Job Search Assistant\\tmp\\ScrapshiftParity\\Assets\\Scrapshift\\Editor\\HeadlessDynamicItemsOracle.cs:36 "
+    }
+  ],
+  "mismatches": [],
+  "scope": "Original Player timer/movement/pre-healing consumable callbacks vs RunRules; six imported item IDs, three character gain contexts, deterministic state sequences",
+  "limits": "No real-time scheduling, scene lifecycle, live contact, audio, UI, arbitrary proc combinations or hardware verification",
+  "inputs": {
+    "cases": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\headless-completion-2026-10-20\\dynamic-items-attempt-2\\cases.jsonl",
+      "sha256": "ba11e705f63bdf2ab78aec42041dd0f6c71d68f0e3aa4e850347ae32af187002"
+    },
+    "reference": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\headless-completion-2026-10-20\\dynamic-items-attempt-2\\reference.jsonl",
+      "sha256": "77f8c8ac410b2a23e35311cae955af662642cc0f21d73b2c144b33be1b0b67ee"
+    },
+    "unity": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\headless-completion-2026-10-20\\dynamic-items-attempt-2\\unity.jsonl",
+      "sha256": "01c00444ccdcb362a10b15b46f38377dd535eed00c1966493b0c9d1fdcc0798c"
+    }
+  }
+}

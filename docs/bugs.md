@@ -1,3 +1,7 @@
+## October20 - Golem terminal stat cleanup
+
+Golem's computed below-half-health bonus could reappear after defeat or low-HP victory, even after temporary stats were cleared. The original clears these temporary bonuses on death/end-run. Exclude Lost/Won when evaluating this conditional; combat and paused low-HP bonuses remain valid. The source-derived dynamic oracle passed53 cases/397 snapshots with zero differences, and26 focused item/shop tests passed, including two terminal regressions. See [item evidence](headless-items-2026-10-20.md). This is source/model evidence; no new desktop playtest is claimed.
+
 ## October20 - additional headless shop boundaries
 
 All12 source-derived shop groups and14 built-player headless receipts passed, including rawHP0 material rerolls, inventory capacity rejection, both lock preferences, acquire/remove effects, Anvil eligibility and Candy's natural chance/consequence. No production shop mismatch was established. Retained failures were fixture defects: a C# scope collision and funding Entrepreneur before its legitimate purse-discard effect. See [shop evidence](headless-shops-2026-10-20.md). Display/input acceptance is still separate.
