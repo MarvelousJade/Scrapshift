@@ -1,3 +1,7 @@
+## October20 - reference material accounting investigation
+
+A new instrumented original-engine wave reconciles28 deaths with8 pickups plus20 cleanup-banked units. Deferred registration can leave intermediate event snapshots one unit behind. This did not reproduce or explain the historical25-kill/24-unit trace; no payout defect or fix is claimed. See [probe evidence](material-accounting-probe-2026-10-20.md).
+
 ## October20 - Golem terminal stat cleanup
 
 Golem's computed below-half-health bonus could reappear after defeat or low-HP victory, even after temporary stats were cleared. The original clears these temporary bonuses on death/end-run. Exclude Lost/Won when evaluating this conditional; combat and paused low-HP bonuses remain valid. The source-derived dynamic oracle passed53 cases/397 snapshots with zero differences, and26 focused item/shop tests passed, including two terminal regressions. See [item evidence](headless-items-2026-10-20.md). This is source/model evidence; no new desktop playtest is claimed.

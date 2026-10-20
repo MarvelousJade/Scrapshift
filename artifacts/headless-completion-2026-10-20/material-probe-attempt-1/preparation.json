@@ -1,0 +1,22 @@
+{
+  "clone": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoMaterialProbe20261020",
+  "baseline": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020",
+  "pathRedirects": [
+    "print_viewport.gd",
+    "singletons/bug_reporter_input.gd",
+    "singletons/progress_data.gd",
+    "singletons/progress_data_loader_v2.gd",
+    "singletons/progress_data_loader_v3.gd",
+    "addons/mod_loader/api/log.gd",
+    "addons/mod_loader/api/profile.gd",
+    "addons/mod_loader/internal/cache.gd",
+    "addons/mod_loader/internal/path.gd",
+    "addons/mod_loader/setup/setup_log.gd"
+  ],
+  "instrumented": [
+    "main.gd",
+    "global/entity_spawner.gd",
+    "parity_fixture.gd"
+  ],
+  "scope": "One-wave source accounting probe; event logging only, no added RNG calls. No original or R29 evidence edits."
+}

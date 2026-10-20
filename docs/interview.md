@@ -1,3 +1,7 @@
+## October20 - reconciling asynchronous event traces
+
+A bounded source-engine material probe balances28 deaths,28 requested/registered units and8 collected plus20 banked. Intermediate callbacks can run before deferred registration or currency credit, so compare complete lifecycle points before changing gameplay formulas. The older25/24 observation remains unexplained. Codex prepared and analyzed this probe; it is an evidence-quality rehearsal, not a user-discovered payout fix. See [material probe](material-accounting-probe-2026-10-20.md).
+
 ## October20 - derived stats can recreate cleared state
 
 Golem's low-health bonus exposed a lifecycle issue: clearing stored temporary stats did not prevent a computed conditional from adding the bonus again at HP0. Codex traced the original death/end-run reset chain, limited the conditional to nonterminal phases, and added defeat/victory regressions while preserving paused-combat behavior. The dynamic source comparison passed53 cases/397 snapshots;26 focused item/shop cases passed. See [item evidence](headless-items-2026-10-20.md). Explain the difference between stored state and derived state, and why a reset alone was insufficient. The user directed this parity work; Codex investigated, implemented and ran these checks. Reproduce the example before presenting personal debugging claims.
