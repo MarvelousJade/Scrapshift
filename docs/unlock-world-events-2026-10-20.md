@@ -32,4 +32,25 @@ This agent inspected all four actual PNGs: `fruit-contact-unlocks.png` shows ful
 
 No gameplay defect was found in these five world-event paths. No direct challenge adapters were used to produce their completions. The source and staging limits above remain applicable; the other 110 definitions have prior producer/model evidence, not this native-event evidence.
 
+## Narrow remaining native acceptance inventory
+
+All 115 imported definitions retain producer/save/reload/next-run model cases. R26 adds dedicated native producer acceptance for five IDs above. Rookie also has earlier native death/retry evidence (R25, expanded by the survival track). This is six specifically checked unlock producers, with **109 definitions lacking equivalent dedicated native threshold acceptance in this inventory**. Incidental completions during campaigns are not counted as a separate threshold/persistence scenario.
+
+The remaining 26 specific definitions fall into six targeted families:
+
+| Family | IDs | Required producer evidence still missing here |
+| --- | --- | --- |
+| Registered effects, timed lethal targets, healing and lifetime kills | `chal_turrets`, `chal_lumberjack`, `chal_medicine`, `chal_giant_slayer`, `chal_evil_hat` | Fifth registered structure-effect entry (not fifth live/deployed turret), tree/evil lifetime threshold checked at cleanup, 200 healing in one wave, and elite/boss death at/beyond 15 seconds |
+| Cleanup state | `chal_forest`, `chal_reckless`, `chal_lootworm` | Actual wave-end living trees, exactly one HP, and uncollected ground-material threshold |
+| Shop/acquisition inventory | `chal_hoarder`, `chal_recycling`, `chal_baited`, `chal_bourgeoisie`, `chal_scavenger`, `chal_experimentation` | Material threshold, twelfth actual recycle, second bait, required tier-IV weapons/distinct tier-I items/distinct weapons through acquisition callbacks |
+| Level and wave boundary | `chal_student`, `chal_fast_learner` | Actual pickup/XP level threshold and Level10 before wave6 |
+| Registered structures, raw scaling and compound unlock | `chal_advanced_technology`, `chal_magic_and_machinery`, `chal_bonk_dog`, `chal_catling_gun`, `chal_bot_o_mine`, `chal_blazemander`, `chal_doc_moth`, `chal_paws_n_claws` | Three registered structure effects plus relevant damage stat; six raw-scaling weapons per companion; regeneration/lifesteal thresholds; actual five-prerequisite compound completion |
+| Menu/run completion eligibility | `chal_hourglass`, `chal_candy_bag` | Actual return-to-selection with <5 seconds left, and win after no active locked offer was carried out of a shop |
+
+The other **83** definitions share generic dispatch families: 50 character wins, 10 plain-stat thresholds, 7 danger wins, 6 difficulty-system unlocks, and 10 lifetime kill/material thresholds. Their individual 115-matrix model scenarios do not constitute 83 native playthroughs. A future headless simulation can exercise producer/persistence assertions without verifying UI or human controls.
+
+R27's native recycle action is one recycle, not the twelve-recycle challenge. Its guaranteed bait offer is not the two-bait unlock trigger. Using Hourglass to repeat a wave is different from earning its late-wave-return reward. Candy Bag's forced encounter branch is different from its no-locks-win unlock. These distinctions prevent the shop action fixture from silently closing those trigger gaps.
+
+The October20 source correction makes `chal_turrets` depend on registered structure effects. An earlier checklist incorrectly called for the fifth deployed turret; that acceptance is withdrawn. Use acquisition/removal of the fifth qualifying registration, with four below threshold and weapon-created/live-body multiplicity excluded. The finite follow-up gates are in `docs/remaining-native-acceptance-2026-10-20.md`. R29 headless evidence is complete:20-wave Won/exit0 with18/18 bounded comparison checks, and ordinary-damage natural defeat in wave8 after7 completions. These do not close the individual native producer cases above; see the final checkpoint.
+
 The user requested the parity scope and separate commits; Codex authored these checks. No new user hands-on validation is implied.

@@ -24,11 +24,11 @@ Linked-stat bonuses omitted target character gain modifiers. Source TempStats ap
 
 ## October20 - optimized cleanup option
 
-The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; native validation pending. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).
+The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; both R26 native normal/lethal cleanup routes Passed/exit0 with two fresh captures reviewed. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).
 
 ## October20 - periodic damage death transition
 
-Periodic lethal item damage bypassed BeginDeathCleanup and set Lost directly. Route it through the shared death lifecycle. Sixteen focused tests passed; native verification is pending. Intentional Abandon remains separate. See [remaining survival report](survival-parity-remaining-2026-10-20.md).
+Periodic lethal item damage bypassed BeginDeathCleanup and set Lost directly. Route it through the shared death lifecycle. Sixteen focused tests passed; the R26 survival fixture also exercised periodic lethal damage through actual cleanup/acknowledgment, with eight captures reviewed across its scenarios. Intentional Abandon remains separate. See [remaining survival report](survival-parity-remaining-2026-10-20.md).
 
 Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
 

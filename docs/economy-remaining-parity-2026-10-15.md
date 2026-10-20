@@ -1,3 +1,7 @@
+## October20 correction to historical structure claims
+
+The statement below that Wrench/Screwdriver/Pruner effects never register is superseded. Source `RunData.add_weapon` applies `StructureEffect`, so those weapons count as registered structures before actors spawn. Broad character links, direct structure challenges and live actors still have different counting contracts. See [corrected caller chain and verified tests](support-registration-parity-2026-10-20.md). Historical test totals do not validate the old assumption.
+
 # Remaining economy and progression audit — October 15, 2026
 
 Branch: `codex/gameplay-parity`. Reference: `E:/UnityProjects/brotato-(3.x)`, inspected read-only. Codex performed this source audit and authored the bounded fixes below under the user's request to continue parallel parity work. Existing dirty changes and the accepted R6 audio were preserved. The confirmed one-selected-weapon starting rule and character exceptions are unchanged.

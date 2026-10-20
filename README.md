@@ -1,6 +1,6 @@
 # Scrapshift
 
-A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, six equipped weapons, stat upgrades and a separate item/weapon shop. Original AI-generated sheets provide player parts, wearable details, body-only enemies, weapons, pickups and UI icons. The cream human-like mascot uses cybernetic implants, swappable eyes/hair/beard and rounded silver tiny legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
+A Unity arena-survival study built around the supplied Brotato Crash Zone reference: 20 scheduled waves, warned enemy groups, equipped weapons, stat upgrades and a separate item/weapon shop. Original AI-generated sheets provide player parts, wearable details, body-only enemies, weapons, pickups and UI icons. The cream human-like mascot uses cybernetic implants, swappable eyes/hair/beard and rounded silver tiny legs. A slow idle spring and faster movement spring animate the body. The supplied reference sound effects remain.
 
 ## Why this exists
 
@@ -12,15 +12,17 @@ The user requested close reference analysis before implementation. See [the sour
 
 ## Play and develop
 
+Latest local review: `Builds/GameplayParity20261020R29/LaunchGame.cmd`; keep the entire unpacked player folder together. It built with zero errors/warnings; interactive checks are deferred until desktop control is allowed again. See [current verified coverage](docs/gameplay-verification-status.md). The older showcase builds described below are separate historical fixtures.
+
 Unity **6000.6.5f1**, Windows. Open this directory as a Unity project, then `Assets/Scrapshift/Content/Scenes/Deck.unity`. **Scrapshift > Generate Game Content** applies versioned content migrations while preserving existing asset GUIDs.
 
-- Start: Random or Rookie / Pugilist / Hothead / Sharpshot, then an eligible starting weapon. Characters have distinct reference modifiers and a fixed weapon plus your chosen weapon. Remaining character slots are locked.
+- Start: choose an unlocked character, then one eligible starting weapon or item. Only explicit character effects grant extra starting equipment. Beast Master chooses one pet and also receives Lootworm; weaponless exceptions are preserved.
 - WASD / arrows: move. Weapons attack automatically.
-- Escape: pause/resume. M: mute. Pause menu: Gameplay, Audio, Video and Controls tabs.
+- Escape or Xbox Menu/Start: pause/resume. Xbox A confirms and B returns/cancels menus; B does not open wave pause. M: mute. Options include Gameplay, Audio, Video and Controls tabs.
 - Collect materials for both spending and XP. Levels queue until the wave ends.
-- Crates heal 3 HP and queue a free item at wave end. Take with Enter or recycle with X; remaining crates are collected before level rewards.
+- Crates queue an item choice at wave end. Take or recycle it before level rewards.
 - 1–4 or mouse: choose a stat reward. R: paid reroll.
-- Shop: buy items/weapons, lock offers, select weapon slots to combine or recycle. Six slots maximum; buying a matching tier at capacity combines it.
+- Shop: buy items/weapons, lock offers, select weapon slots to combine or recycle. Capacity follows the character; buying a matching tier at capacity combines it when eligible.
 - Weapon sets: duplicates count; tiers count equally. Gun adds Range, Precise adds Critical Chance, Primitive adds Max HP. Hover the set rows for all thresholds.
 - Enter or GO: start the next wave. Enter also starts/restarts a run.
 
@@ -28,15 +30,14 @@ For screenshots and video, choose **Martial Monk**, **Cyberpunk Ranger**, **Auto
 
 The showcase Windows player is in `Builds/Showcase` (keep the full folder together). Source tests and the build passed, but repeated local Direct3D 12 runs reported a GPU device error during capture checks; runtime graphics stability remains unresolved on this machine.
 
-Run `Builds/ConditionalImplants/Scrapshift.exe`; keep its entire player folder together. Archive: `Builds/Scrapshift-Windows.zip`.
 
 Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor closed. If it is open, copy `Assets`, `Packages`, `ProjectSettings` and `scripts` to a separate validation project and run those scripts there. Do not start a second Editor on the same project folder. The October 11 checks used `E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity`; compare source hashes before attributing its results to this checkout. Binaries/raw logs are ignored; source, Unity metadata, test reports and selected visual evidence are tracked.
 
 ## Scope
 
-20 base-difficulty schedules; 18 enemy entries, including trees and a final boss. All 62 base weapon families / 205 tier resources are registered; 43 families / 148 tiers are currently obtainable. 119 of 209 base item definitions are implemented, 98 obtainable under the source unlock flags. Fifteen weapon sets and four gameplay profiles are supported. Cybernetic aliases preserve reference gameplay values and IDs. No DLC content.
+The imported reference catalog contains50 character profiles,62 weapon families /205 tier entries,209 items and115 unlock definitions. These are catalog counts, not proof of every gameplay interaction. Run-start availability depends on unlocks, character restrictions and minimum weapon tier.
 
-90 items and six explicitly gated weapon families remain unfinished; the locked Rail Gun also lacks its special behavior. Incomplete shop pools cannot reproduce full-catalog probabilities. Difficulty progression, full character unlocks and human balance acceptance remain outside the current verified scope. See [conditional implants and special weapons](docs/conditional-implants.md) for this pass's reference comparison and limitations.
+Current evidence and remaining checks: [gameplay verification status](docs/gameplay-verification-status.md). The static oracle covers22,155 item baseline/single/pair/double cases on Well-Rounded and10,500 character/single-item cases. Dynamic effects, native presentation and human survival have separate coverage. Historical prototype documents below retain their dated scope; they do not describe current completion status.
 
 ## Interview evidence
 
@@ -45,7 +46,7 @@ Run `./scripts/verify.ps1` and `./scripts/build.ps1` with this project's Editor 
 - [Enemy, spawn and UI comparison](docs/enemy-spawn-iteration.md)
 - [Remaining gaps, loot and survival comparison](docs/loot-sustain-audit.md)
 - [Weapon-set comparison and implementation](docs/weapon-sets.md)
-- [Latest gameplay parity audit and remaining differences](docs/gameplay-parity-audit.md)
+- [Current verified coverage and remaining checks](docs/gameplay-verification-status.md)
 - [Body-only sprite and spring-animation comparison](docs/spring-animation.md)
 - [Generated art, animation and pickup design](docs/original-art.md)
 - [Development journal](docs/journal.md)

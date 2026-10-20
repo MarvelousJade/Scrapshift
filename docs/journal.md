@@ -1,3 +1,7 @@
+## October20 final checkpoint - R29
+
+All1,200 editor tests Passed/exit0; corrected character/item oracle10,500/10,500 matches. Current R29 completed20 waves/19 shops/Won/exit0; the unchanged comparison against the fresh original passed18/18. All40 current purchase debits reconcile and final harvesting credited96 materials. Ordinary damage reached natural defeat in wave8 after7 completions, no injected invulnerability. Source/package hashes596/159 remain unchanged. See [final receipts, fixes and limits](gameplay-final-checkpoint-2026-10-20.md). UI/hardware/browser checks remain on hold at the user's request; broader dynamic interactions are not certified by static vectors.
+
 ## October20 - fresh headless full campaign
 
 Both the supplied original and frozen R28 completed20 waves and19 shops, Won/exit0. The unchanged comparator passed18/18 bounded checks. The evidence is state/trace-only: no new UI, audio, controller, browser or human survival acceptance. This predates the subsequent Beast Master and registered weapon-structure corrections; it is not a latest-build campaign claim. See [full comparison](headless-full-comparison-2026-10-20.md). Startup diagnostics and an unresolved one-material aggregate reference observation are retained.

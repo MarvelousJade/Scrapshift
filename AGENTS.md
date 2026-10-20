@@ -1,6 +1,6 @@
 # Scrapshift — project instructions and user preferences
 
-Updated: 2026-10-17, America/Toronto. This file records the user's instructions from this project's conversation. Read it before working in this repository. Keep it current when the user makes a new decision.
+Updated: 2026-10-20, America/Toronto. This file records the user's instructions from this project's conversation. Read it before working in this repository. Keep it current when the user makes a new decision.
 
 ## Scope and precedence
 
@@ -161,6 +161,9 @@ Updated: 2026-10-17, America/Toronto. This file records the user's instructions 
 - Verify the native character and UI portraits alone, in combinations, at gameplay size, mirrored and animated, with acquisition/removal checks. Tests alone do not prove that the image fits.
 
 ## Builds, previews and working practices
+
+- October20 final checkpoint: R29 (`Builds/GameplayParity20261020R29/LaunchGame.cmd`), source `1ff6bb1`, full suite1200/1200 Passed/exit0; corrected static character/item oracle10500/10500 and recorded neutral item-pair oracle22155/22155 match. Current R29 full20 Won/exit0 and unchanged18/18 comparison against fresh original; ordinary-damage run lost wave8 after7 completed, Passed/exit0. Build0 errors/warnings;596 source inputs/159 player files hash-verified after campaigns. See `docs/gameplay-final-checkpoint-2026-10-20.md`. Do not claim current UI/hardware/browser verification or exhaustive timed combinations. Wrench/Screwdriver/Pruner DO register StructureEffect through add_weapon; older exclusion claims are superseded.
+
 
 - October20 latest: continue source/code/headless automated parity work, but stop computer/desktop control for now. Defer physical controller, OS focus, browser and interactive native checks until the user explicitly allows computer access again. Preserve prior evidence; do not claim the newly detected Xbox was hardware-verified.
 

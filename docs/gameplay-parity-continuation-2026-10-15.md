@@ -1,3 +1,7 @@
+## October20 correction to historical structure claims
+
+The statement below that Wrench/Screwdriver/Pruner effects never register is superseded. Source `RunData.add_weapon` applies `StructureEffect`, so those weapons count as registered structures before actors spawn. Broad character links, direct structure challenges and live actors still have different counting contracts. See [corrected caller chain and verified tests](support-registration-parity-2026-10-20.md). Historical test totals do not validate the old assumption.
+
 # Gameplay parity continuation after R6 — October 15, 2026
 
 Branch: `codex/gameplay-parity`. The user confirmed R6's reported movement sound is gone, then requested further parallel agent fixes and continued bug/interview documentation. The accepted audio correction is retained.
