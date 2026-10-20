@@ -49,7 +49,15 @@ The review also found two issues that the passing JSON did not cover:
 1. **Production title clipping.** Every choice card's two-line companion name lost the bottom of its second line. The 47-pixel title region was too short. The fix uses the existing space from y=174 to y=242 (68 pixels), leaving four pixels before the icon at y=246, and reduces the existing heading font only when its measured wrapped height exceeds that region. No other selection layout was changed.
 2. **Fixture-only shadow presentation.** The support-placement capture showed an oversized pet shadow and a player shadow left at its prior position. The fixture disables Arena Update and stages positions directly; it had skipped the ordinary normalization in `TickPets` and player shadow placement. The fixture now calls `TickPets(0)` and places the player shadow before capture. The four ordinary run captures had normal companion shadows, so no ordinary gameplay shadow defect was established.
 
-These visual corrections target R37. Fresh captures from that exact build must be inspected before they are marked visually accepted. R36's mechanical acceptance remains preserved; its old images are not relabelled as fixed.
+R36's mechanical acceptance remains preserved; its old images are not relabelled as fixed.
+
+## R37 fresh acceptance
+
+The exact R37 player reran the fixture at `artifacts/native-followup-2026-10-20/starting-support-r37`. Its report is Passed/exit zero: all four choices retain every preview/OnGUI/start/retry flag, all three turret threshold guards are true, and all 64 placement cases pass (56 mines outside the staged structure group).
+
+The independent reviewer opened all 13 fresh original 1280×720 images. Every choice now shows its complete two-line companion socket name above the icon, without the R36 clipping. The four run captures retain the selected companion plus Lootworm and readable HUD; the four defeat captures retain the highlighted Retry wave control. The support-placement capture has a normalized pet shadow and no orphan center-player shadow. No additional issue was found within this inspected visual scope. Image hashes and observations are recorded in `starting-support-r37/visual-review-r37.json`.
+
+This closes the reported title clipping and fixture shadow staging issues at the captured resolution. It does not establish all resolutions/zoom levels, D-pad target navigation, physical controller input, ordinary focus behavior, audible output, natural support spawn distributions, or exhaustive gameplay parity. Character abilities extend below their visible scroll viewport; scrolling acceptance is a separate review.
 
 ## Existing fixture map
 

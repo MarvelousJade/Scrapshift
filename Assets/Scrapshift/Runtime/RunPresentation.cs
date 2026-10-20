@@ -286,7 +286,10 @@ namespace Scrapshift
                 var w=SelectedWeapon;var item=SelectedStartingItem;
                 float wx=menuPage==3?630:822;
                 RoundedBox(new Rect(wx,155,330,420),panelColor);
-                Text(wx+20,174,290,47,item!=null?inspectionText.ItemName(item):w==null?"No weapons":w.id=="smg"?"SMG":w.title,heading);
+                string choiceTitle=item!=null?inspectionText.ItemName(item):w==null?"No weapons":w.id=="smg"?"SMG":w.title;
+                var choiceHeading=new GUIStyle(heading);
+                while(choiceHeading.fontSize>20&&choiceHeading.CalcHeight(new GUIContent(choiceTitle),290)>68)choiceHeading.fontSize--;
+                Text(wx+20,174,290,68,choiceTitle,choiceHeading);
                 DrawIcon(item!=null?item.image:w?.image,new Rect(wx+20,246,86,83));
                 Text(wx+123,252,185,75,item!=null?"Starting item":w==null?"Unarmed":WeaponSets.For(w)?.Name??"Weapon",body);
                 if(w!=null)DrawOfferDetail(new ShopOffer{weapon=w},wx+20,352,290,PreviewRules());

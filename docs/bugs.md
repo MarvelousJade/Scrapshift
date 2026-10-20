@@ -1,3 +1,7 @@
+## October20 - clipped companion selection headings
+
+Native R36 screenshots showed all four two-line companion titles clipped by a fixed47-pixel text rectangle. Increased the title area to68 pixels with a measured font-size fallback, preserving the icon/detail layout. All13 R37 native captures were inspected; titles are complete, start/retry flows still pass. A large support shadow in an earlier capture was an unticked fixture artifact, corrected separately from gameplay. [Native review](starting-support-native-followup-2026-10-20.md).
+
 ## October20 - mine placement discarded the selected source point
 
 Initial StructureEffect deployment selected a source position, then SpawnMine ignored it and sampled the entire map again. Timed global mines also missed the source 160-pixel edge inset. Preserve the initial point through SpawnMineAt; use SourceRandomPosition with1.6 world-unit inset for timed ungrouped mines, retaining the explicit pet-local path. Three focused cases passed across64 seeds and direct/local controls. R36 native four-choice start/retry and support registration/placement checks passed; separate screenshot review found clipped selection titles and an unticked fixture-only shadow, tracked in the follow-up. [Evidence](starting-support-native-followup-2026-10-20.md).
