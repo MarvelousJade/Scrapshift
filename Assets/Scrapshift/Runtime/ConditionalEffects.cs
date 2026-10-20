@@ -127,7 +127,9 @@ namespace Scrapshift
             float value=0;
             foreach(var effect in ConditionalEffects())if(effect.customKey=="stat_links"&&effect.key.Replace("stat_","")==name&&effect.per!=0)
                 value+=(int)(effect.value*LinkSource(effect.stat,effect.permanentOnly)/effect.per);
-            return value;
+            // LinkedStats inherits TempStats.get_stat: the target stat's gain
+            // applies after each link is truncated and accumulated.
+            return value*(Character?.Gain(name)??1);
         }
         public int RemovedEnemies;public bool IsHordeWave;
         public int LivingEnemies,LivingTrees,BurningEnemies,StructureCount,PetCount;

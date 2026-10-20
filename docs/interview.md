@@ -1,3 +1,7 @@
+## October20 - character gains on linked stats
+
+Trace a derived stat through its inherited source accessor: the link formula itself was correct, but its output bypassed character gain. Real catalog tests also exposed incorrect test assumptions about Coffee penalties and distinct-item removal. Codex corrected the test expectations against source rather than changing correct behavior to satisfy them.16 selected checks passed; native validation is pending. See [item interaction report](items-parity-remaining-2026-10-20.md).
+
 ## October20 - optimized cleanup option
 
 The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; native validation pending. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).

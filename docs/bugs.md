@@ -1,3 +1,7 @@
+## October20 - character gains on linked stats
+
+Linked-stat bonuses omitted target character gain modifiers. Source TempStats applies the gain after accumulating truncated links; Renegade now gains +2 effective Damage per distinct common item rather than +10. Actual Coffee direct penalties and acquire/remove order are included in the corrected regression. See [item interaction report](items-parity-remaining-2026-10-20.md).
+
 ## October20 - optimized cleanup option
 
 The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; native validation pending. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).
