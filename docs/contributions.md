@@ -1,3 +1,7 @@
+## October20 - additional item and material follow-up
+
+Codex agents ran416 acquisition-order cases with4576 matching snapshots,18 legal combined-item regressions, a192-case original target callback probe and23 focused checks after the target-reservation fix. Codex also audited material traces, identified the valid zero-payout Evil Mob exception and ran four forced source cleanup-boundary experiments. The user authorized the work and withheld desktop control; no new UI, physical-input, audio or human playtesting is claimed. The historical material event cause and broader proc scheduling remain unproven. See [acquisition](item-acquisition-order-followup-2026-10-20.md), [proc](item-proc-followup-2026-10-20.md) and [material](material-reconciliation-followup-2026-10-20.md) evidence.
+
 ## October20 - remaining headless acceptance
 
 The user authorized parallel agents, meaningful commits and headless checks while withholding desktop control. Codex authored source-derived dynamic item comparisons, additional shop and unlock callback fixtures, and the Golem terminal-stat correction. Codex ran53 dynamic cases/397 snapshots with zero differences,26 focused item/shop checks,14 shop runtime receipts and109 unlock scenarios with real isolated save/reload. Staged clocks, final-wave setup and synthetic pool snapshots are explicitly documented. These are assistant-run checks, not user playtesting or fresh physical-controller/UI acceptance. See [items](headless-items-2026-10-20.md), [shops](headless-shops-2026-10-20.md) and [unlocks](headless-unlocks-2026-10-20.md).

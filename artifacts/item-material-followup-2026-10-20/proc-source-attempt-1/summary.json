@@ -1,0 +1,22 @@
+{
+  "status": "Passed",
+  "counts": {
+    "zero_hp_only": {
+      "trials": 64,
+      "aliveHits": 0,
+      "aborts": 64
+    },
+    "alive_only": {
+      "trials": 64,
+      "aliveHits": 64,
+      "aborts": 0
+    },
+    "pending_and_alive": {
+      "trials": 64,
+      "aliveHits": 26,
+      "aborts": 38
+    }
+  },
+  "referenceSha256": "ddb1e847201901acb8d8aa68f58be1bbb47be60984e937447811f23de98f781c",
+  "limits": "Actual source target and effect callbacks; final damage sink stubbed; no identical cross-engine RNG claim"
+}

@@ -1,0 +1,77 @@
+extends Node
+# Isolated autoload. Executes the original Main.handle_stat_damages and real
+# EntitySpawner.get_all_enemies. ProbeEnemy replaces only the final damage sink;
+# this is target eligibility evidence, not Unit.take_damage/physics acceptance.
+
+class ProbeEnemy:
+	extends Node
+	var current_stats = LiveStats.new()
+	var hit_count = 0
+	var total_damage = 0
+	func take_damage(value, _args):
+		var taken = min(current_stats.health, value)
+		current_stats.health = max(0, current_stats.health - value)
+		hit_count += 1
+		total_damage += taken
+		return [value, taken, false]
+
+func _ready():
+	get_tree().create_timer(30, true).connect("timeout", self, "watchdog")
+	call_deferred("run_probe")
+
+func watchdog():
+	push_error("ITEM_PROC_TARGET_REFERENCE watchdog")
+	get_tree().quit(5)
+
+func run_probe():
+	DebugService.disable_saving = true
+	RunData.reset()
+	var lich = null
+	for character in ItemService.characters:
+		if character.my_id == "character_lich":
+			lich = character
+	if lich == null:
+		push_error("Missing imported Lich")
+		get_tree().quit(4)
+		return
+	RunData.add_character(lich, 0)
+	RunData.wave_in_progress = true
+	RunData.reset_wave_caches()
+	var effects = RunData.get_player_effect(Keys.dmg_when_heal_hash, 0)
+	if effects.empty():
+		push_error("Imported Lich has no healing damage effect")
+		get_tree().quit(4)
+		return
+	var main = Main.new()
+	var spawner = EntitySpawner.new()
+	main._entity_spawner = spawner
+	var pending = ProbeEnemy.new()
+	var alive = ProbeEnemy.new()
+	var rows = []
+	for mode in ["zero_hp_only", "alive_only", "pending_and_alive"]:
+		for trial in range(64):
+			pending.current_stats.health = 0
+			pending.hit_count = 0
+			pending.total_damage = 0
+			alive.current_stats.health = 1000
+			alive.hit_count = 0
+			alive.total_damage = 0
+			spawner.enemies = [pending] if mode == "zero_hp_only" else ([alive] if mode == "alive_only" else [pending, alive])
+			spawner.bosses = []
+			spawner.charmed_enemies = []
+			spawner._all_enemy_dirty = true
+			seed(20201020 + trial)
+			var result = main.handle_stat_damages(effects, 0)
+			rows.append({"mode": mode, "seed": 20201020 + trial, "pending_hits": pending.hit_count, "alive_hits": alive.hit_count, "damage": alive.total_damage, "returned": result})
+	var output = File.new()
+	if output.open(OS.get_environment("SCRAPSHIFT_PROC_TARGET_OUTPUT"), File.WRITE) != OK:
+		get_tree().quit(2)
+		return
+	output.store_string(to_json({"scope": "original Main.handle_stat_damages + EntitySpawner.get_all_enemies; final damage sink stubbed", "rows": rows}))
+	output.close()
+	pending.free()
+	alive.free()
+	spawner.free()
+	main.free()
+	print("ITEM_PROC_TARGET_REFERENCE_DONE ", rows.size())
+	get_tree().quit(0)

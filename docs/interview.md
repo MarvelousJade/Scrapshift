@@ -1,3 +1,7 @@
+## October20 - preserve event identity across a queue
+
+The proc audit found an observable mismatch beyond different random streams: filtering targets later changed an attack that the original could waste into a guaranteed hit. Codex traced the original deferred-death path, confirmed target guards with192 original callback cases, and captured the selected enemy before probability rolls while keeping the existing queue for traversal safety.23 focused checks passed. Explain why queuing only damage loses target identity and why fixing that identity does not establish identical death scheduling. Codex investigated, implemented and tested this under user direction; reproduce the flow before presenting personal debugging claims. See [proc evidence](item-proc-followup-2026-10-20.md).
+
 ## October20 - choose a valid material invariant
 
 A kill counter and currency value measure different things. The supplied original can spawn an Evil Mob in wave1; its actual payout depends on consumed materials, including zero. Codex corrected the earlier kill-equals-material assumption, audited the matching Scrapshift path, and ran four windowless source boundary experiments. They show a forced deferred-registration race, but do not recover the old trace's missing event history. Explain why this evidence supports preserving currency formulas rather than inventing a payout fix. Codex performed the investigation; the user directed the work. See [material follow-up](material-reconciliation-followup-2026-10-20.md).

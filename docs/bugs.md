@@ -1,3 +1,7 @@
+## October20 - proc targets selected too late
+
+The source selects a random enemy before proc probability rolls and can abort on a zero-HP enemy awaiting deferred removal. Scrapshift instead selected a live enemy when draining its damage queue, guaranteeing a replacement target. A192-case original callback probe confirmed both hit and abort outcomes in mixed pools. The fix captures the target before rolling and preserves it through queued dispatch; dead/removed captured targets no longer redirect damage.23 focused checks passed. The queue still preserves traversal safety; full synchronous/deferred death timing is not claimed. See [proc evidence](item-proc-followup-2026-10-20.md).
+
 ## October20 - material ledger assumptions corrected
 
 The historical25-kill/24-unit observation is not proof of a payout defect: the original zone-wide Evil Mob can count as a zero-material kill or steal drops. Current Scrapshift consumed-value/evolution payout logic matches the inspected source. Four forced source cleanup-boundary cases also demonstrate that fresh deferred drops can miss attraction/banking while pooled controls bank normally. That injected source race does not assign the historical cause or justify changing Scrapshift payouts. See [follow-up evidence](material-reconciliation-followup-2026-10-20.md).

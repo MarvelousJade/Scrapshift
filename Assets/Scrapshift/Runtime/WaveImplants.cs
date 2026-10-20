@@ -9,6 +9,10 @@ namespace Scrapshift
         readonly Dictionary<string,float> nextWaveStats=new Dictionary<string,float>();
         readonly List<int> burnKillCounts=new List<int>();
         public event Action<float> RandomDamageRequested;
+        // The scene chooses a target before effect rolls, as Main does. Null
+        // means that the chosen target was absent/dead; do not roll or retarget.
+        // Model-only callers leave this unset and observe RandomDamageRequested.
+        public Func<Action<float>> CaptureRandomDamageTarget {get;set;}
         void QueueNextWaveEffects(ItemEntry item)
         {
             if(item.conditionalEffects==null)return;
@@ -59,10 +63,15 @@ namespace Scrapshift
         }
         void RandomDamageTrigger(string trigger)
         {
+            var entries=ConditionalEffects().Where(e=>e.customKey==trigger).ToArray();
+            if(entries.Length==0)return;
+            Action<float> captured=null;
+            if(CaptureRandomDamageTarget!=null)
+            {captured=CaptureRandomDamageTarget();if(captured==null)return;}
             float total=0;
-            foreach(var e in ConditionalEffects())if(e.customKey==trigger&&random.NextDouble()<e.chance)
+            foreach(var e in entries)if(random.NextDouble()<e.chance)
                 total+=EnemyReferenceRules.SourceRound(Mathf.Floor(Mathf.Max(1,e.value/100*Stat(e.key.Replace("stat_",""))))*DamageScale);
-            if(total>0)RandomDamageRequested?.Invoke(total);
+            if(total>0){captured?.Invoke(total);RandomDamageRequested?.Invoke(total);}
         }
     }
 }
