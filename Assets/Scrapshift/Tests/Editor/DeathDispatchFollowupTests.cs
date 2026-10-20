@@ -28,7 +28,6 @@ namespace Scrapshift.Tests
             game.Rules.CaptureRandomDamageTarget=()=> (Action<float>)Call("CaptureImplantDamageTarget");
             // ArenaGame.Start installs the same hook in an ordinary player.
             // These Editor tests bind it explicitly rather than invoking Start.
-            game.Rules.BeforeDeathCleanup=()=>Call("ResolveCombatCallbacks");
             typeof(ArenaGame).GetField("sound",Hidden).SetValue(game,owner.AddComponent<GameAudio>());
             game.sparkPrefab=new GameObject("Death dispatch spark");game.sparkPrefab.transform.SetParent(owner.transform);game.sparkPrefab.AddComponent<SpriteRenderer>();
             game.Rules.GainWeaponStat("lifesteal",-1000);
@@ -75,20 +74,15 @@ namespace Scrapshift.Tests
             Call("Damage",0,7f,-100f,0f,Vector2.up,null,true,false,false);
             Assert.AreEqual(83,Field<float>(target,"hp"));
         }
-        [Test] public void EarlierEnemyDeathDispatchesBeforeLaterPlayerLethalCleanup()
+        [Test] public void SynchronousPlayerDeathPreemptsAnEarlierPendingEnemyDeath()
         {
             var target=Enemy(1);Field<EnemyEntry>(target,"type").id="evil_mob";
             Call("Damage",0,1f,-100f,0f,Vector2.zero,null,true,false,false);
             Assert.AreEqual(0,game.Rules.Kills);
-            bool dispatchedWhilePlaying=false;
-            game.Rules.BeforeDeathCleanup=()=>
-            {
-                Call("ResolveCombatCallbacks");
-                dispatchedWhilePlaying=game.Rules.Phase==RunPhase.Playing&&game.Rules.Kills==1;
-            };
             game.Rules.Hurt(10000);
-            Assert.IsTrue(dispatchedWhilePlaying,"Earlier Unit death requests precede Player's later deferred die and cleanup.");
-            Assert.AreEqual(RunPhase.Lost,game.Rules.Phase);Assert.AreEqual(1,game.Rules.Kills);
+            Assert.AreEqual(RunPhase.Lost,game.Rules.Phase);Assert.AreEqual(0,game.Rules.Kills);
+            Call("ResolveCombatCallbacks");Call("ResolveCombatCallbacks");
+            Assert.AreEqual(0,game.Rules.Kills,"Actual Player override enters Main cleanup synchronously before the queued enemy die, suppressing its rewards.");
             Assert.AreEqual(0,((IList)Get("enemies")).Count);Assert.AreEqual(1,((IList)Get("corpses")).Count);
         }
         [Test] public void PlayerLethalCleanupRejectsALaterEnemyHitWithoutAwardingAKill()

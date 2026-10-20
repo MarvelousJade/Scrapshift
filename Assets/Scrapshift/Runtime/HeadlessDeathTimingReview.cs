@@ -30,7 +30,7 @@ namespace Scrapshift
             [Serializable] sealed class Report
             {
                 public string status,error;
-                public bool isolated,startInstalledCapture,startInstalledBeforeDeathCleanup;
+                public bool isolated,startInstalledCapture,synchronousPlayerCleanupPreemptsPendingDeath;
                 public string scope="Packaged ArenaGame.Start hooks and real spawned NPCs; disabled Arena Update with staged HP, explicit Damage/Heal/Hurt callbacks and manual deferred combat boundary. Imported Lich, Giant Belt, Cyberball; no ordinary physics scheduling, original full scene, UI, input, audio listening or human playtesting.";
                 public List<Row> rows=new List<Row>();
             }
@@ -68,10 +68,8 @@ namespace Scrapshift
                     Require(Application.isBatchMode&&report.isolated,"Requires isolated -batchmode -nographics --headless-death-timing-review.");
                     var game=FindAnyObjectByType<ArenaGame>();Require(game!=null,"Initialized ArenaGame required.");
                     var capture=game.Rules.CaptureRandomDamageTarget;
-                    var cleanup=game.Rules.BeforeDeathCleanup;
                     report.startInstalledCapture=capture!=null&&ReferenceEquals(capture.Target,game)&&capture.Method.Name=="CaptureImplantDamageTarget";
-                    report.startInstalledBeforeDeathCleanup=cleanup!=null&&ReferenceEquals(cleanup.Target,game)&&cleanup.Method.Name=="ResolveCombatCallbacks";
-                    Require(report.startInstalledCapture&&report.startInstalledBeforeDeathCleanup,"ArenaGame.Start must install both production hooks.");
+                    Require(report.startInstalledCapture,"ArenaGame.Start must install its production capture hook.");
                     game.enabled=false;game.sound.SetMuted(true);game.Rules.Progress=null;
 
                     Prepare(game);var target=Spawn(game,100);Health(game,9);
@@ -95,7 +93,10 @@ namespace Scrapshift
                     game.Damage(game.enemies.IndexOf(target),1,-100,0,Vector2.zero,null,true,true);
                     Require(game.Rules.Kills==0,"Enemy-first case must begin pending.");
                     game.Rules.Hurt(100000);
-                    Require(game.Rules.Phase==RunPhase.Lost&&game.Rules.Kills==1&&!game.enemies.Contains(target),"Already pending enemy death must dispatch before player defeat cleanup.");
+                    Require(game.Rules.Phase==RunPhase.Lost&&game.Rules.Kills==0,"Player damage must enter cleanup before the earlier queued enemy die.");
+                    game.ResolveCombatCallbacks();game.ResolveCombatCallbacks();
+                    report.synchronousPlayerCleanupPreemptsPendingDeath=game.Rules.Kills==0&&!game.enemies.Contains(target);
+                    Require(report.synchronousPlayerCleanupPreemptsPendingDeath,"Pending enemy death after synchronous cleanup must not grant a kill.");
                     Record(report,game,"Enemy first then lethal player hit",target);
 
                     Prepare(game,"well_rounded");target=Spawn(game,1);game.Rules.Hurt(100000);
