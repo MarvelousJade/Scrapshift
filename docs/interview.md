@@ -1,3 +1,7 @@
+## October20 - modal shop interaction
+
+Explain how a locally valid availability assignment can break an enclosing modal. GUI.enabled must combine parent interactivity with local affordability rather than overwrite it. Codex fixed this and verified actual UI actions; the initial fixture failure was a scroll-view lookup error and was retained separately. A possible navigation-coordinate issue remains unconfirmed and requires a same-frame origin receipt. See [shop report](shop-parity-remaining-2026-10-20.md). Further desktop checks are deferred at the user's request.
+
 ## October20 - acknowledge loss before unlock rewards
 
 Full-screen unlock rewards could intercept the default loss acknowledgment. Defer that modal until the player selects OK/End run, preserving the global reward queue across Retry. R26 actual Update/virtual-A checks passed without suppressing Rookie rewards; all8 fresh captures reviewed. Actual Sick, Wounded and Golem boundary cases also passed. See [survival report](survival-parity-remaining-2026-10-20.md). Codex performed implementation and validation.

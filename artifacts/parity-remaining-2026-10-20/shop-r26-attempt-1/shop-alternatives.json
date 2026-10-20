@@ -1,0 +1,66 @@
+{
+    "status": "Failed",
+    "error": "System.InvalidOperationException: Rendered enabled control missing at (x:870.00, y:672.00, width:82.00, height:80.00); phase=Shop selected=-1\r\n  at Scrapshift.ArenaGame+ShopAlternativesReview+<Activate>d__15.MoveNext () [0x001a0] in <a3f3a791a0934c61b3573b3abc511326>:0 \r\n  at Scrapshift.ArenaGame+ShopAlternativesReview+<Start>d__7.MoveNext () [0x00080] in <a3f3a791a0934c61b3573b3abc511326>:0 ",
+    "scope": "Isolated imported-content fixture. Virtual A/Y events traverse actual Update/OnGUI; focus positions, starting inventory/materials/offers and wave deadlines are staged. Entry effects use the production shop transition. Not natural acquisition, physical-controller verification, or a full campaign.",
+    "checks": [
+        {
+            "name": "coupon-source-price",
+            "evidence": "item_service.gd:get_value; imported Coupon -5%",
+            "passed": true,
+            "before": 16,
+            "after": 16,
+            "expected": 16
+        },
+        {
+            "name": "purchase-ui",
+            "evidence": "Virtual A on rendered price button",
+            "passed": true,
+            "before": 2008,
+            "after": 1992,
+            "expected": 1992
+        },
+        {
+            "name": "lock-ui",
+            "evidence": "Virtual A on Lock",
+            "passed": true,
+            "before": 0,
+            "after": 0,
+            "expected": 0
+        },
+        {
+            "name": "free-reroll-ui",
+            "evidence": "Virtual Y; imported Dangerous Bunny",
+            "passed": true,
+            "before": 1992,
+            "after": 1992,
+            "expected": 1992
+        },
+        {
+            "name": "locked-offer-retention",
+            "evidence": "Same locked offer and retained price after reroll",
+            "passed": true,
+            "before": 0,
+            "after": 0,
+            "expected": 0
+        },
+        {
+            "name": "paid-reroll-ui",
+            "evidence": "First paid wave-one reroll after free reroll",
+            "passed": true,
+            "before": 1992,
+            "after": 1991,
+            "expected": 1991
+        },
+        {
+            "name": "unlock-ui",
+            "evidence": "Virtual A on Locked",
+            "passed": true,
+            "before": 0,
+            "after": 0,
+            "expected": 0
+        }
+    ],
+    "captures": [
+        "coupon-free-paid-lock.png"
+    ]
+}

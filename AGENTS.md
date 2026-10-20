@@ -162,6 +162,8 @@ Updated: 2026-10-17, America/Toronto. This file records the user's instructions 
 
 ## Builds, previews and working practices
 
+- October20 latest: continue source/code/headless automated parity work, but stop computer/desktop control for now. Defer physical controller, OS focus, browser and interactive native checks until the user explicitly allows computer access again. Preserve prior evidence; do not claim the newly detected Xbox was hardware-verified.
+
 - October20: finish remaining parity checks and fix confirmed mismatches, then refresh full comparison evidence. Commit each meaningful change separately with related tests/docs; do not make a commit for every small supporting edit.
 
 - October17 documentation: `docs/gameplay-verification-status.md` is the consolidated verified/partial/missing checklist. Keep source/model/native/human coverage separate and update it after new evidence.

@@ -142,14 +142,15 @@ namespace Scrapshift
 
         void ShopUI()
         {
+            bool shopEnabled=GUI.enabled;
             if(Event.current.type==EventType.Repaint)inventoryHoveredThisFrame=false;
             Box(FullCanvas,new Color(.19f,.175f,.15f,.76f));
             OutlinedText(ContentLeft,32,420,52,$"Shop (Wave {Rules.Wave})",heading);
             DrawIcon(catalog.scrapShapes[0],new Rect(550,30,42,48));
             Text(602,30,180,48,Rules.Scrap.ToString("0"),new GUIStyle(number){fontSize=40,alignment=TextAnchor.MiddleLeft});
-            GUI.enabled=Rules.CanReroll;
+            GUI.enabled=shopEnabled&&Rules.CanReroll;
             if(RerollButton(new Rect(StatsLeft-318,27,294,56)))RerollUpgrade();
-            GUI.enabled=true;
+            GUI.enabled=shopEnabled;
             DrawStatsPanel();
             for(int i=0;i<4;i++)
             {
@@ -166,11 +167,11 @@ namespace Scrapshift
                 Text(x+93,132+titleHeight,width-107,54,offer.weapon!=null?inspectionText.Sets(offer.weapon):"Item",new GUIStyle(body){fontSize=18,normal={textColor=new Color(.89f,.85f,.62f)}});
                 if(offer.weapon!=null)InspectWeapon("offer:"+i,offer.weapon,new Rect(x+12,132,width-24,86));
                 DrawOfferDetail(offer,x+16,225,width-32);
-                GUI.enabled=Rules.CanBuy(i);
+                GUI.enabled=shopEnabled&&Rules.CanBuy(i);
                 string price=Rules.Price(offer).ToString();
                 if(MoneyButton(new Rect(x+(width-154)/2,451,154,55),price,true))
                 {Rules.Buy(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
-                GUI.enabled=true;
+                GUI.enabled=shopEnabled;
                 if(offer.weapon!=null&&Rules.Inventory.Count>=Rules.WeaponSlots&&!Rules.CanBuy(i)&&!Rules.Inventory.Any(w=>w.id==offer.weapon.id&&w.tier==offer.weapon.tier&&w.tier<Rules.MaximumWeaponTier))
                     Text(x+16,423,width-32,25,"Weapon slots full",new GUIStyle(body){fontSize=16,alignment=TextAnchor.MiddleCenter,normal={textColor=coral}});
                 float lockWidth=Rules.StealsRemaining>0?(width-30)/2:width-24;
@@ -178,10 +179,10 @@ namespace Scrapshift
                 {Rules.ToggleLock(i);sound.Play(SoundCue.Reroll);}
                 if(Rules.StealsRemaining>0)
                 {
-                    GUI.enabled=Rules.CanSteal(i);
+                    GUI.enabled=shopEnabled&&Rules.CanSteal(i);
                     if(Button(new Rect(x+18+lockWidth,528,lockWidth,43),$"Steal {Rules.StealCaughtChance(offer)*100:0.#}%"))
                     {Rules.Steal(i);selectedWeapon=-1;SyncEquipment();sound.Play(SoundCue.Install);}
-                    GUI.enabled=true;
+                    GUI.enabled=shopEnabled;
                 }
             }
             float weaponLeft=StatsLeft-292,itemWidth=weaponLeft-ContentLeft-24;

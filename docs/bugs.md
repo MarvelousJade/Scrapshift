@@ -1,3 +1,7 @@
+## October20 - modal shop interaction
+
+The weapon action popup disabled ShopUI, but nested eligibility assignments re-enabled its background buttons. Preserve the inherited enabled state. R27 passed22 native action/modal assertions, including exactly3/2 popup controls and unchanged inventory/offers/currency on Cancel. See [shop report](shop-parity-remaining-2026-10-20.md). Further desktop checks are deferred at the user's request.
+
 ## October20 - acknowledge loss before unlock rewards
 
 Full-screen unlock rewards could intercept the default loss acknowledgment. Defer that modal until the player selects OK/End run, preserving the global reward queue across Retry. R26 actual Update/virtual-A checks passed without suppressing Rookie rewards; all8 fresh captures reviewed. Actual Sick, Wounded and Golem boundary cases also passed. See [survival report](survival-parity-remaining-2026-10-20.md). Codex performed implementation and validation.
