@@ -26,12 +26,20 @@ namespace Scrapshift.Tests
             var lich=game.catalog.data.characters.Single(c=>c.id=="lich");
             game.Rules.Start(lich,StarterChoices.Available(game.catalog,lich).First());
             game.Rules.Inventory.Clear();game.Rules.CaptureRandomDamageTarget=Capture;
+            typeof(ArenaGame).GetField("sound",Hidden).SetValue(game,owner.AddComponent<GameAudio>());
+            game.sparkPrefab=new GameObject("Proc target spark");game.sparkPrefab.transform.SetParent(owner.transform);game.sparkPrefab.AddComponent<SpriteRenderer>();
         }
-        [TearDown] public void TearDown(){UnityEngine.Object.DestroyImmediate(owner);UnityEngine.Random.state=savedRandom;}
+        [TearDown] public void TearDown()
+        {
+            foreach(string list in new[]{"sparks","impacts"})foreach(var effect in (IEnumerable)Get(list))
+            {var obj=(GameObject)effect.GetType().GetField("obj").GetValue(effect);if(obj!=null)UnityEngine.Object.DestroyImmediate(obj);}
+            UnityEngine.Object.DestroyImmediate(owner);UnityEngine.Random.state=savedRandom;
+        }
         object Enemy(float hp)
         {
             var enemy=Activator.CreateInstance(typeof(ArenaGame).GetNestedType("Enemy",BindingFlags.NonPublic),true);
             Field(enemy,"hp",hp);Field(enemy,"maxHp",hp);Field(enemy,"type",new EnemyEntry{id="proc-target",role="Enemy"});
+            Field(enemy,"renderers",Array.Empty<Renderer>());
             ((IList)Get("enemies")).Add(enemy);return enemy;
         }
         sealed class NoRolls:System.Random
@@ -71,6 +79,19 @@ namespace Scrapshift.Tests
             Call("ResolveImplantDamage");
             Assert.AreEqual(1000f,other.GetType().GetField("hp").GetValue(other));
             Assert.AreEqual(0,Get("implantDamage").GetType().GetProperty("Count").GetValue(Get("implantDamage")));
+        }
+
+        [TestCase(0,10,90)][TestCase(10,0,89)]
+        public void QueuedDamageRetainsTheVulnerabilityAtItsSourceCallback(float before,float after,float expectedHealth)
+        {
+            // Original Main.handle_stat_damages applies Unit defense math at
+            // the healing callback, before later elemental hits/timer expiry.
+            var target=Enemy(100);Field(target,"iceClock",before>0?3f:0f);Field(target,"icePercent",before);
+            var submit=Capture();Assert.NotNull(submit);submit(10);
+            Field(target,"iceClock",after>0?3f:0f);Field(target,"icePercent",after);
+            Call("ResolveImplantDamage");
+            Assert.AreEqual(expectedHealth,target.GetType().GetField("hp").GetValue(target));
+            Assert.AreEqual(after,target.GetType().GetField("icePercent").GetValue(target),"Dispatch must not mutate the enemy's current status to simulate its captured context.");
         }
     }
 }

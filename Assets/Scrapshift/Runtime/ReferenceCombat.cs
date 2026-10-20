@@ -502,6 +502,8 @@ namespace Scrapshift
         bool Damage(int index,float damage,float crit=0,float knockback=1,Vector2 attackDirection=default,Equipment weapon=null,bool secondary=false,bool bypassArmor=false,bool structure=false)
             =>DamageWithWeaponIndex(index,damage,crit,knockback,attackDirection,weapon,secondary,bypassArmor,structure,-1);
         bool DamageWithWeaponIndex(int index,float damage,float crit,float knockback,Vector2 attackDirection,Equipment weapon,bool secondary,bool bypassArmor,bool structure,int weaponIndex,BurnPayload burnPayload=null)
+            =>DamageWithCapturedVulnerability(index,damage,crit,knockback,attackDirection,weapon,secondary,bypassArmor,structure,weaponIndex,burnPayload,null);
+        bool DamageWithCapturedVulnerability(int index,float damage,float crit,float knockback,Vector2 attackDirection,Equipment weapon,bool secondary,bool bypassArmor,bool structure,int weaponIndex,BurnPayload burnPayload,float? capturedVulnerability)
         {
             if(index<0||index>=enemies.Count)return false;
             float sourceDamage=damage;
@@ -524,7 +526,8 @@ namespace Scrapshift
             {
                 damage=EnemyReferenceRules.CriticalDamage((int)damage,weapon?.critMultiplier??2);
             }
-            if(e.iceClock>0)damage=EnemyReferenceRules.SourceRound(damage*(1+e.icePercent/100));
+            float vulnerability=capturedVulnerability??(e.iceClock>0?e.icePercent:0);
+            if(vulnerability!=0)damage=EnemyReferenceRules.SourceRound(damage*(1+vulnerability/100));
             damage=bypassArmor?(int)damage:EnemyReferenceRules.ArmoredDamage((int)damage,e.type.armor+e.type.armorGrowth*(Rules.Wave-1));
             if(critical)damage+=Rules.CriticalCurrentHealthDamage(e.hp,e.type.role=="Boss"||e.type.role=="Elite");
             if(bypassArmor||appliesBurn)damage+=Rules.BurnCurrentHealthDamage(e.hp,e.type.role=="Boss"||e.type.role=="Elite");

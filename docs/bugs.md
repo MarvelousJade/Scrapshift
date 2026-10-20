@@ -1,3 +1,7 @@
+## October20 - queued proc vulnerability changed after request
+
+An original Lich heal followed by an Ice Cube elemental hit leaves89 enemy HP. The unfixed R33 player left88: its delayed Lich damage picked up the later vulnerability. Capture the request-time percentage with the enemy and apply that override only to queued proc damage; preserve ordinary hit processing and the reflected damage signature.25 focused cases passed, including the reverse expiry boundary. Final integrated/player checks follow in [completion evidence](item-material-followup-2026-10-20.md).
+
 ## October20 - proc targets selected too late
 
 The source selects a random enemy before proc probability rolls and can abort on a zero-HP enemy awaiting deferred removal. Scrapshift instead selected a live enemy when draining its damage queue, guaranteeing a replacement target. A192-case original callback probe confirmed both hit and abort outcomes in mixed pools. The fix captures the target before rolling and preserves it through queued dispatch; dead/removed captured targets no longer redirect damage.23 focused checks passed. The queue still preserves traversal safety; full synchronous/deferred death timing is not claimed. See [proc evidence](item-proc-followup-2026-10-20.md).

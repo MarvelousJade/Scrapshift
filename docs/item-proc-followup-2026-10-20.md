@@ -49,3 +49,15 @@ This is assistant-run investigation and assistant-authored regression coverage. 
 Root focused attempt2:18/18 Passed, zero failures/skips, process exit0,0.9692116 seconds. Receipt: `artifacts/item-material-followup-2026-10-20/focused-attempt-2.xml`.
 
 Integrated suite after the target fix:1249/1249 Passed, zero failures/skips, exit0,87.9211516 seconds (`suite-attempt-1.xml`). A later source audit closed the unavailable Goblet recursion hypothesis but identified a separate queued vulnerability-timing case for follow-up; this checkpoint does not claim that case fixed.
+
+## Confirmed queued vulnerability timing difference
+
+Final source helper attempt3 uses actual Main.handle_stat_damages, Unit.get_damage_value and imported Ice Cube behavior with a declared narrow damage/lifecycle sink. Lich deals10 first, then a1-damage elemental hit applies10% vulnerability: final89 HP. The actual R33 baseline player instead ended88 HP. Its Passed status with vulnerabilityBaseline=true means the intentional mismatch was reproduced, not parity.
+
+Queued requests now capture the target vulnerability percentage with target identity. A differently named damage core accepts that context; the existing reflected11-argument DamageWithWeaponIndex remains a forwarding wrapper. Ordinary damage uses live vulnerability. No temporary mutation of enemy status is used.
+
+The reverse expiry case preserves11 healing-proc damage after vulnerability expires; with the preceding1-damage elemental hit it ends88 HP. Native contexts explicitly stage HP, timer expiry and remove life steal to isolate the intended heal. The new two Arena-object regressions cover vulnerability appearing and expiring before dispatch.
+
+Final focused receipt:25/25 Passed, zero failures/skips, exit0,0.756643 seconds. Integrated suite:1251/1251 Passed, zero failures/skips, exit0,73.4048644 seconds. Final packaged R34 Passed/exit0:192 target candidate rows, all startup/roll/stale-target flags true, forward89 HP and reverse-expiry88 HP. Build succeeded with zero errors/warnings,401807181 bytes;616 source inputs and159 player files hash-verified. Receipts: artifacts/item-material-followup-2026-10-20.
+
+No reachable Goblet/heal_on_kill carrier was found in the provided source resources/imported catalog; the proposed nested healing chain is unavailable here. Broader same-step lethal preemption and deferred-corpse membership remain unverified. The targeting and vulnerability fixes do not claim identical full death scheduling or every compound interaction.

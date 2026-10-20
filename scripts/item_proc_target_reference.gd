@@ -15,6 +15,19 @@ class ProbeEnemy:
 		total_damage += taken
 		return [value, taken, false]
 
+class DefenseProbeEnemy:
+	extends Enemy
+	var recorded_damage = []
+	func has_outline(_color: Color):
+		return true # Only the missing rendered-sprite outline dependency is suppressed.
+	# Keep the final sink narrow, but delegate the defense calculation to the
+	# original Unit.get_damage_value rather than reproducing vulnerability math.
+	func take_damage(value: int, _args: TakeDamageArgs) -> Array:
+		var calculated = get_damage_value(value, 0).value
+		current_stats.health -= calculated
+		recorded_damage.append(calculated)
+		return [calculated, calculated, false]
+
 func _ready():
 	get_tree().create_timer(30, true).connect("timeout", self, "watchdog")
 	call_deferred("run_probe")
@@ -67,7 +80,8 @@ func run_probe():
 	if output.open(OS.get_environment("SCRAPSHIFT_PROC_TARGET_OUTPUT"), File.WRITE) != OK:
 		get_tree().quit(2)
 		return
-	output.store_string(to_json({"scope": "original Main.handle_stat_damages + EntitySpawner.get_all_enemies; final damage sink stubbed", "rows": rows}))
+	var vulnerability = vulnerability_probe(main, spawner, effects)
+	output.store_string(to_json({"scope": "original Main.handle_stat_damages + EntitySpawner.get_all_enemies; final damage sink stubbed; added vulnerability case calls actual PercentDamageTakenEnemyEffectBehavior and Unit.get_damage_value", "rows": rows, "vulnerability": vulnerability}))
 	output.close()
 	pending.free()
 	alive.free()
@@ -75,3 +89,27 @@ func run_probe():
 	main.free()
 	print("ITEM_PROC_TARGET_REFERENCE_DONE ", rows.size())
 	get_tree().quit(0)
+
+func vulnerability_probe(main, spawner, healing_effects):
+	RunData.add_item(load("res://items/all/ice_cube/ice_cube_data.tres"), 0)
+	var victim = DefenseProbeEnemy.new()
+	victim.current_stats.health = 100
+	victim.max_stats.health = 100
+	victim.current_stats.armor = 0
+	var container = Node.new()
+	victim.add_child(container)
+	victim.effect_behaviors = container
+	var behavior = PercentDamageTakenEnemyEffectBehavior.new()
+	container.add_child(behavior)
+	behavior.init(victim)
+	spawner.enemies = [victim]
+	spawner._all_enemy_dirty = true
+	main.handle_stat_damages(healing_effects, 0)
+	var health_after_lich = victim.current_stats.health
+	var ice_effects = RunData.get_player_effect(Keys.enemy_percent_damage_taken_hash, 0)
+	behavior.try_add_effects(ice_effects, [[Keys.stat_elemental_damage_hash, 1.0]])
+	var elemental_hit = victim.get_damage_value(1, 0).value
+	victim.current_stats.health -= elemental_hit
+	var receipt = {"health_after_lich": health_after_lich, "lich_damage": victim.recorded_damage[0], "elemental_hit": elemental_hit, "percent_damage_taken": behavior.get_bonus_damage(null, 0), "final_health": victim.current_stats.health, "scope": "Actual Main handler, Unit defense math, and imported Ice Cube behavior; staged elemental scaling, no rendered actor/Unit hit lifecycle"}
+	victim.free()
+	return receipt

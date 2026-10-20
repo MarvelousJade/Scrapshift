@@ -1,3 +1,7 @@
+## October20 - snapshot context, not only target identity
+
+After preserving a queued attack's target, a second comparison still differed: original Lich→Ice Cube left89 HP while the baseline Unity player left88. Later vulnerability had changed an earlier hit. Codex reproduced both sides and captured the request-time percentage without temporarily mutating enemy status. A forwarding wrapper preserves existing reflected calls to the damage method.25 focused tests passed. Explain which state belongs to an event and which remains live, and why this fix does not claim identical death scheduling. The user directed the work; Codex performed the investigation and implementation. See [evidence](item-material-followup-2026-10-20.md).
+
 ## October20 - preserve event identity across a queue
 
 The proc audit found an observable mismatch beyond different random streams: filtering targets later changed an attack that the original could waste into a guaranteed hit. Codex traced the original deferred-death path, confirmed target guards with192 original callback cases, and captured the selected enemy before probability rolls while keeping the existing queue for traversal safety.23 focused checks passed. Explain why queuing only damage loses target identity and why fixing that identity does not establish identical death scheduling. Codex investigated, implemented and tested this under user direction; reproduce the flow before presenting personal debugging claims. See [proc evidence](item-proc-followup-2026-10-20.md).

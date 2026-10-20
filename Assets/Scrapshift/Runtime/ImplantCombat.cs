@@ -5,7 +5,7 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        readonly Queue<(Enemy target,float damage)> implantDamage=new Queue<(Enemy,float)>();
+        readonly Queue<(Enemy target,float damage,float vulnerability)> implantDamage=new Queue<(Enemy,float,float)>();
         Action<float> CaptureImplantDamageTarget()
         {
             // Unit.take_damage leaves its zero-HP victim in the source spawner
@@ -15,7 +15,10 @@ namespace Scrapshift
             if(candidates.Count==0)return null;
             var target=candidates[UnityEngine.Random.Range(0,candidates.Count)];
             if(target.hp<=0)return null;
-            return damage=>implantDamage.Enqueue((target,damage));
+            // Source applies this hit immediately. Preserve its defense context
+            // when safe list traversal delays dispatch past another elemental hit.
+            float vulnerability=target.iceClock>0?target.icePercent:0;
+            return damage=>implantDamage.Enqueue((target,damage,vulnerability));
         }
         void ResolveImplantDamage()
         {
@@ -24,7 +27,7 @@ namespace Scrapshift
             {
                 var attack=implantDamage.Dequeue();
                 if(Rules.Phase!=RunPhase.Playing||attack.target.hp<=0||!enemies.Contains(attack.target))continue;
-                Damage(enemies.IndexOf(attack.target),attack.damage,-100,0,Vector2.zero,null,true);
+                DamageWithCapturedVulnerability(enemies.IndexOf(attack.target),attack.damage,-100,0,Vector2.zero,null,true,false,false,-1,null,attack.vulnerability);
             }
         }
     }

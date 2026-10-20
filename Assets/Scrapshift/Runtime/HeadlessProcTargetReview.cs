@@ -25,7 +25,11 @@ namespace Scrapshift
             {
                 public string status,error;
                 public bool headless=true,capturesVerified=false,isolated,startInstalledHook,zeroHpSkippedRolls,deadTargetNotRedirected,removedTargetNotRedirected;
-                public string scope="Built-player target reservation and dispatch guards. Actual ArenaGame.Start installs the hook; real imported Lich and private Arena candidate list, with manually staged nonrendered Enemy records. No live damage sink, physics, deferred original death scheduling, UI, controller or human evidence.";
+                public bool vulnerabilityBaseline,vulnerabilityMatchesSource;
+                public float vulnerabilityExpectedHealth,vulnerabilityObservedHealth;
+                public bool expiredVulnerabilityMatchesSource;
+                public float expiredVulnerabilityExpectedHealth,expiredVulnerabilityObservedHealth;
+                public string scope="Built-player target reservation and dispatch guards. Actual ArenaGame.Start installs the hook; real imported Lich and private Arena candidate controls. Vulnerability check additionally spawns a real enemy and applies actual Wand Damage between Lich healing and queued dispatch. Enemy HP, callback order and timer contexts are staged; no ordinary Update/physics, deferred original death scheduling, UI, controller or human evidence.";
                 public List<Row> rows=new List<Row>();
             }
             sealed class NoProcRolls:System.Random
@@ -45,7 +49,7 @@ namespace Scrapshift
                     Require(Application.isBatchMode&&report.isolated,"Requires -batchmode -nographics and isolated --headless-proc-target-review.");
                     var game=FindAnyObjectByType<ArenaGame>();Require(game!=null,"Initialized ArenaGame required.");
                     var hook=game.Rules.CaptureRandomDamageTarget;
-                    report.startInstalledHook=hook!=null&&hook.Target==game&&hook.Method.Name=="CaptureImplantDamageTarget";
+                    report.startInstalledHook=hook!=null&&ReferenceEquals(hook.Target,game)&&hook.Method.Name=="CaptureImplantDamageTarget";
                     Require(report.startInstalledHook,"ArenaGame.Start must install the production target capture hook.");
                     game.enabled=false;game.sound.SetMuted(true);game.ClearCombat();game.Rules.Progress=null;
                     var lich=game.catalog.data.characters.Single(c=>c.id=="lich");
@@ -77,7 +81,13 @@ namespace Scrapshift
                     report.deadTargetNotRedirected=CheckStaleTarget(game,false);
                     report.removedTargetNotRedirected=CheckStaleTarget(game,true);
                     Require(report.deadTargetNotRedirected&&report.removedTargetNotRedirected,"Captured stale target must never redirect to a replacement.");
-                    game.enemies.Clear();report.status="Passed";
+                    game.enemies.Clear();
+                    report.vulnerabilityBaseline=Array.IndexOf(Environment.GetCommandLineArgs(),"--proc-vulnerability-baseline")>=0;
+                    CheckVulnerability(game,report);
+                    if(report.vulnerabilityBaseline)
+                        Require(!report.vulnerabilityMatchesSource&&report.vulnerabilityObservedHealth==88,"Baseline must reproduce the old extra vulnerability damage (88 HP versus source89).");
+                    else Require(report.vulnerabilityMatchesSource&&report.expiredVulnerabilityMatchesSource,"Queued Lich damage must retain its source-time vulnerability context (new vulnerability89HP; expired vulnerability88HP).");
+                    game.ClearCombat();report.status="Passed";
                 }
                 catch(Exception ex){report.status="Failed";report.error=ex.ToString();}
                 Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"headless-proc-target.json"),JsonUtility.ToJson(report,true));
@@ -90,6 +100,37 @@ namespace Scrapshift
                 var replacement=Target(1000);game.enemies.Add(replacement);submit(10);
                 if(remove)game.enemies.Remove(selected);else selected.hp=0;
                 game.ResolveImplantDamage();return replacement.hp==1000&&game.implantDamage.Count==0;
+            }
+            static void CheckVulnerability(ArenaGame game,Report report)
+            {
+                var target=PrepareVulnerabilityTarget(game);
+                game.Rules.Heal(1);Require(game.implantDamage.Count==1,"Imported Lich must queue one healing attack.");
+                game.Damage(game.enemies.IndexOf(target),1,-100,0,Vector2.zero,game.catalog.Weapon("wand",1));
+                Require(target.iceClock>0&&target.icePercent==10&&target.hp==99,"Actual elemental hit must activate imported Ice Cube before dispatch.");
+                game.ResolveImplantDamage();report.vulnerabilityExpectedHealth=89;report.vulnerabilityObservedHealth=target.hp;
+                report.vulnerabilityMatchesSource=target.hp==89;
+
+                target=PrepareVulnerabilityTarget(game);
+                game.Damage(game.enemies.IndexOf(target),1,-100,0,Vector2.zero,game.catalog.Weapon("wand",1));
+                Require(target.hp==99&&target.iceClock>0,"Reverse case needs the actual Ice Cube hit first.");
+                game.Rules.Heal(1);Require(game.implantDamage.Count==1,"Reverse case needs one Lich attack while vulnerability is active.");
+                target.iceClock=0; // Explicit timer-expiry context, not an ordinary Update timing claim.
+                game.ResolveImplantDamage();report.expiredVulnerabilityExpectedHealth=88;report.expiredVulnerabilityObservedHealth=target.hp;
+                report.expiredVulnerabilityMatchesSource=target.hp==88;
+            }
+            static Enemy PrepareVulnerabilityTarget(ArenaGame game)
+            {
+                game.ClearCombat();
+                var lich=game.catalog.data.characters.Single(c=>c.id=="lich");
+                game.Rules.Start(lich,StarterChoices.Available(game.catalog,lich).First());game.Rules.Inventory.Clear();
+                game.Rules.GrantItem(game.catalog.data.items.Single(item=>item.id=="ice_cube"));
+                game.Rules.GainWeaponStat("crit_chance",-1000);
+                // Isolate the explicit healing callback from Lich's native life
+                // steal; the elemental hit must only change the enemy context.
+                game.Rules.GainWeaponStat("lifesteal",-game.Rules.Stat("lifesteal")/lich.Gain("lifesteal"));
+                game.Spawn(game.catalog.Enemy("baby_alien"),game.playerPos+new Vector2(6,6));
+                var target=game.enemies.Last();Destroy(target.marker);target.marker=null;target.obj.SetActive(true);target.hp=target.maxHp=100;
+                typeof(RunRules).GetProperty("Health").GetSetMethod(true).Invoke(game.Rules,new object[]{9f});return target;
             }
         }
     }
