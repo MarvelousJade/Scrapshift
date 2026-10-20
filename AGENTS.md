@@ -201,6 +201,10 @@ Updated: 2026-10-20, America/Toronto. This file records the user's instructions 
 
 ## Interview preparation and portfolio documentation
 
+- October 20 README direction: keep the README a clear, concise portfolio showcase focused on the game, engineering highlights, local setup and linked evidence. Keep detailed development history in supporting documents and preserve accurate attribution and validation limits.
+- October 20 README follow-up: also showcase game design and UI design, including menus, character selection, combat HUD, shop/rewards, pause, Codex and settings. Remove the attribution section from the README; retain the supporting contribution/provenance records.
+- October 20 feature-writing direction: use Brotato's official online feature presentation as a structural reference for concise, player-facing Scrapshift highlights. Adapt the wording to verified Scrapshift features and its own identity rather than copying claims about Brotato-only features.
+
 - October 17 project motivation: the user enjoys Brotato and built Scrapshift to improve their Unity game development ability and practice C#. Present this as the README's reason for the project rather than a job requirement; the AssetScope and portfolio connections are secondary uses.
 - Scrapshift also serves as a Unity/C# portfolio project and a practical demonstration alongside the AssetScope Editor tool. Keep interview preparation useful as the game evolves, not frozen at the original small prototype.
 - After meaningful implementation, debugging, architecture, performance or validation work, update the relevant interview/supporting documents with concrete evidence. Small cosmetic edits do not require a new interview story unless they demonstrate a useful decision or lesson.
