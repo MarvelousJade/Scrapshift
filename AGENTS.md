@@ -166,7 +166,7 @@ Updated: 2026-10-20, America/Toronto. This file records the user's instructions 
 - October20 preserved campaign checkpoint: R29 (`Builds/GameplayParity20261020R29/LaunchGame.cmd`), source `1ff6bb1`, full suite1200/1200 Passed/exit0; corrected static character/item oracle10500/10500 and recorded neutral item-pair oracle22155/22155 match. Current R29 full20 Won/exit0 and unchanged18/18 comparison against fresh original; ordinary-damage run lost wave8 after7 completed, Passed/exit0. Build0 errors/warnings;596 source inputs/159 player files hash-verified after campaigns. See `docs/gameplay-final-checkpoint-2026-10-20.md`. Do not claim current UI/hardware/browser verification or exhaustive timed combinations. Wrench/Screwdriver/Pruner DO register StructureEffect through add_weapon; older exclusion claims are superseded.
 
 
-- October20 latest: continue source/code/headless automated parity work, but stop computer/desktop control for now. Defer physical controller, OS focus, browser and interactive native checks until the user explicitly allows computer access again. Preserve prior evidence; do not claim the newly detected Xbox was hardware-verified.
+- October20 latest authorization: computer/desktop access is allowed again. The user asks to leave physical controller testing for now if it requires their input. Automated virtual input can verify software handling, but cannot establish physical Xbox acceptance; do not ask for button presses in this pass. Preserve earlier hardware evidence as historical.
 
 - October20: finish remaining parity checks and fix confirmed mismatches, then refresh full comparison evidence. Commit each meaningful change separately with related tests/docs; do not make a commit for every small supporting edit.
 

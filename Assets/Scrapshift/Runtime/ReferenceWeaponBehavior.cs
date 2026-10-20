@@ -146,15 +146,15 @@ namespace Scrapshift
         {
             foreach(var explosion in weaponExplosions.ToArray())
             {
-                int before=Rules.Kills;
+                int directKills=0;
                 bool previous=resolvingWeaponExplosion;resolvingWeaponExplosion=true;
                 try
                 {
-                    foreach(var e in enemies.ToArray())if(e.marker==null&&!explosion.hit.Contains(e)&&SupportBehavior.ExplosionOverlaps(explosion.position,explosion.radius,e.type.id,e.pos))
-                    {explosion.hit.Add(e);DamageWithWeaponIndex(enemies.IndexOf(e),explosion.damage,explosion.weapon.crit,0,e.pos-explosion.position,explosion.weapon,true,false,explosion.structure,explosion.weaponIndex,explosion.burnPayload);}
+                    foreach(var e in enemies.ToArray())if(e.hp>0&&e.marker==null&&!explosion.hit.Contains(e)&&SupportBehavior.ExplosionOverlaps(explosion.position,explosion.radius,e.type.id,e.pos))
+                    {explosion.hit.Add(e);DamageWithWeaponIndex(enemies.IndexOf(e),explosion.damage,explosion.weapon.crit,0,e.pos-explosion.position,explosion.weapon,true,false,explosion.structure,explosion.weaponIndex,explosion.burnPayload);if(e.hp<=0)directKills++;}
                 }
                 finally{resolvingWeaponExplosion=previous;}
-                explosion.kills+=Rules.Kills-before;Rules.RecordExplosionKills(explosion.kills);explosion.age+=dt;
+                explosion.kills+=directKills;Rules.RecordExplosionKills(explosion.kills);explosion.age+=dt;
                 if(explosion.age>=.05f){if(explosion.obj!=null)Destroy(explosion.obj);weaponExplosions.Remove(explosion);}
             }
         }

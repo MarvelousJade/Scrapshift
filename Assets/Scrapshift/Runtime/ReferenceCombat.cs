@@ -27,9 +27,11 @@ namespace Scrapshift
         {
             // EntitySpawner calls die() with can_drop_loot=false, retaining
             // global death callbacks and counters but granting no loot batch.
-            enemy.hp=0;enemies.Remove(enemy);Rules.RemovedEnemies++;
+            enemy.hp=0;Rules.RemovedEnemies++;
+            Rules.LivingEnemies=Mathf.Max(0,Rules.LivingEnemies-1);
+            Rules.TriggerDeathDamage();EnemyImplantDeath(enemy);Rules.ApplyBurningDeathStats(enemy.burnTicks>0);
             Rules.RecordEnemy(enemy.type.id,false,enemy.activeAge,false);Rules.Kill();
-            EnemyImplantDeath(enemy);Rules.KillEffects(enemy.burnTicks>0);
+            enemies.Remove(enemy);
             SpawnEnemyChildren(enemy);enemy.deathAge=0;enemy.knockback=Vector2.zero;
             if(enemy.telegraph!=null)enemy.telegraph.enabled=false;corpses.Add(enemy);
         }
@@ -156,9 +158,15 @@ namespace Scrapshift
         void UpdateEnemies(float dt)
         {
             TickFriendlyBoost(dt);
-            for (int i = enemies.Count - 1; i >= 0; i--)
+            // A lethal player contact flushes older queued enemy deaths before
+            // terminal cleanup; iterate identities so that flush may remove
+            // earlier list entries without invalidating this traversal.
+            var enemyBatch=enemies.ToArray();Array.Reverse(enemyBatch);
+            foreach(var e in enemyBatch)
             {
-                var e = enemies[i]; e.age += dt;e.iceClock=Mathf.Max(0,e.iceClock-dt); e.flash = Mathf.Max(0, e.flash - dt);
+                if(Rules.Phase!=RunPhase.Playing)return;
+                if(e.hp<=0||!enemies.Contains(e))continue;
+                e.age += dt;e.iceClock=Mathf.Max(0,e.iceClock-dt); e.flash = Mathf.Max(0, e.flash - dt);
                 if (e.marker != null)
                 {
                     var mr = e.marker.GetComponent<SpriteRenderer>();
@@ -337,7 +345,7 @@ namespace Scrapshift
             {
                 var w=Rules.Inventory[i];WeaponMotion.Step(w,dt,ref swings[i],ref weaponClocks[i]);float range=Rules.WeaponRange(w);Vector2 mount=ArrivalWeaponMotion.TransformMount(playerPos,ActorPresentation.WeaponMount(Rules.Inventory.Count,i),WeaponArrivalTime);Enemy nearest=null;float distance=RunFeedback.DetectionRange(range)*RunFeedback.DetectionRange(range);foreach(var e in enemies)
                 {
-                    if(e.marker!=null)continue;float d=(e.pos-mount).sqrMagnitude;if(d<distance)
+                    if(e.marker!=null||e.hp<=0)continue;float d=(e.pos-mount).sqrMagnitude;if(d<distance)
                     {
                         distance=d;nearest=e;
                     }
@@ -468,7 +476,7 @@ namespace Scrapshift
                         int nearest = -1; float first = float.PositiveInfinity;
                         for (int j = 0; j < enemies.Count; j++)
                         {
-                            var e = enemies[j]; if (!damageContactActive || e.marker != null || s.hit.Contains(e)) continue;
+                            var e = enemies[j]; if (!damageContactActive || e.marker != null || e.hp<=0 || s.hit.Contains(e)) continue;
                             float t=ReferenceShotHitFraction(s,e,old,previousAge);
                             if (t < first) { first = t; nearest = j; }
                         }
@@ -505,13 +513,13 @@ namespace Scrapshift
             =>DamageWithCapturedVulnerability(index,damage,crit,knockback,attackDirection,weapon,secondary,bypassArmor,structure,weaponIndex,burnPayload,null);
         bool DamageWithCapturedVulnerability(int index,float damage,float crit,float knockback,Vector2 attackDirection,Equipment weapon,bool secondary,bool bypassArmor,bool structure,int weaponIndex,BurnPayload burnPayload,float? capturedVulnerability)
         {
-            if(index<0||index>=enemies.Count)return false;
+            if(Rules.Phase!=RunPhase.Playing||index<0||index>=enemies.Count)return false;
             float sourceDamage=damage;
             if(weapon!=null)burnPayload??=Rules.CaptureBurn(weapon,structure);
             // BurningTimer passes no hitbox in the reference: zero crit chance,
             // zero knockback and no weapon/projectile life-steal callback.
             knockback=bypassArmor||resolvingWeaponExplosion?0:knockback+Rules.Stat("knockback")/10;
-            var e=enemies[index];if(e.marker!=null)return false;
+            var e=enemies[index];if(e.marker!=null||e.hp<=0)return false;
             if(weapon!=null&&Rules.WeaponScalesWith(weapon,"elemental_damage"))TryVulnerability(e,"elemental_damage");
             if(weapon!=null&&e.type.role!="Tree")e.itemSlow=Rules.ItemSpeedReduction(e.itemSlow,EnemyStatSpeed(e));
             if(!resolvingWeaponExplosion&&TryInterceptWeaponExplosion(e,weapon,damage,secondary,weaponIndex,burnPayload))return false;
@@ -534,7 +542,7 @@ namespace Scrapshift
             if(e.type.role=="Tree"&&Rules.Stat("one_shot_trees")>0&&weapon!=null)damage=e.hp;
             if(!secondary&&SpecialWeaponRules.Execute(weapon,UnityEngine.Random.value)){damage=Mathf.Max(damage,e.hp);Burst(e.pos,18,mint);}
             if(!secondary){float currentSpeed=EnemyStatSpeed(e)-e.itemSlow;e.contactSlow=SpecialWeaponRules.Slow(e.contactSlow,currentSpeed,SpecialWeaponRules.EngineeringSlow(weapon,Rules.Stat("engineering"),currentSpeed));}
-            e.hp-=damage;e.flash=CombatGeometry.FlashDuration;
+            e.hp=Mathf.Max(0,e.hp-damage);e.flash=CombatGeometry.FlashDuration;
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
             if((e.type.id=="fly"||e.type.id=="horned_fly")&&!bypassArmor&&weapon!=null&&!weapon.melee&&UnityEngine.Random.value<.25f)FireEncounter(e);
@@ -550,11 +558,47 @@ namespace Scrapshift
             // item payouts, then resolves ordinary on-hit callbacks before die.
             if(!bypassArmor)ApplyStarterKillStatistics(weapon,weaponIndex);
             if(bypassArmor)Rules.RecordBurnKill();
+            // Unit queues die before its healing/critical callbacks. Keep the
+            // victim in the active list until the combat boundary, so nested
+            // procs cannot invalidate the caller's integer traversal indices.
+            pendingEnemyDeaths.Enqueue((e,bypassArmor,attackDirection,away,knockback));
             Rules.CriticalKillMaterials(critical);
             if(Rules.TryCriticalKillHeal(critical,UnityEngine.Random.value))FloatText(playerPos,"+1 HP",mint,false);
             if(!resolvingWeaponExplosion)ApplyStarterCriticalGold(weapon,critical);
             if(!bypassArmor)ApplyStarterHitEffects(e,weapon,critical,true,secondary,structure,sourceDamage,weaponIndex,burnPayload);
-            Rules.RecordEnemy(e.type.id,e.type.role=="Tree",e.activeAge,e.type.role=="Boss"||e.type.role=="Elite");Rules.Kill();
+            return critical;
+        }
+        readonly Queue<(Enemy enemy,bool burnDamage,Vector2 direction,Vector2 away,float knockback)> pendingEnemyDeaths=
+            new Queue<(Enemy,bool,Vector2,Vector2,float)>();
+        void ResolveEnemyDeaths()
+        {
+            // A die callback can synchronously kill another enemy through
+            // Cyberball. Process that newly queued death without recursion.
+            while(pendingEnemyDeaths.Count>0)
+            {
+                var death=pendingEnemyDeaths.Dequeue();var e=death.enemy;
+                if(!enemies.Contains(e))continue;
+                FinalizeEnemyDeath(e,death.burnDamage,death.direction,death.away,death.knockback);
+            }
+        }
+        void ResolveCombatCallbacks()
+        {
+            // Every lethal hit contributes one pending victim; its pending-HP
+            // guard prevents duplicate deaths. Newly spawned children are birth
+            // requests, so chained explosions/procs cannot grow this drain's
+            // target set without bound.
+            do
+            {
+                ResolveImplantDamage();ResolveEnemyDeaths();ResolveImplantAttacks();
+            }
+            while(pendingEnemyDeaths.Count>0||implantDamage.Count>0||implantExplosions.Count>0||implantRetaliations.Count>0);
+        }
+        void FinalizeEnemyDeath(Enemy e,bool bypassArmor,Vector2 attackDirection,Vector2 away,float knockback)
+        {
+            // Main updates its census before item callbacks, even though this
+            // dying identity remains in the spawner until its later callback.
+            if(e.type.role=="Tree")Rules.LivingTrees=Mathf.Max(0,Rules.LivingTrees-1);
+            else Rules.LivingEnemies=Mathf.Max(0,Rules.LivingEnemies-1);
             if(e.type.role=="Boss")
             {
                 if(enemies.FindAll(x=>x.type.role=="Boss"&&x.hp>0).Count==0)Rules.DefeatBoss();
@@ -562,10 +606,22 @@ namespace Scrapshift
             }
             Flash(e,0);if(e.telegraph!=null)e.telegraph.enabled=false;e.deathAge=0;
             e.knockback=bypassArmor?Vector2.zero:CombatGeometry.Knockback(attackDirection,away,Mathf.Max(knockback,1.5f),e.type.resistance);
-            corpses.Add(e);enemies.Remove(e);
-            if(e.type.role!="Tree"){EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0||bypassArmor);}else DeployTreeTurrets(e.pos);
-            DropEnemyLoot(e);SpawnEnemyChildren(e);
-            return critical;
+            corpses.Add(e);
+            // Source Main callbacks can observe the zero-HP dying member before
+            // the spawner removal callback. Keep membership through those
+            // callbacks; the headless source probe validates this boundary.
+            if(Rules.Phase==RunPhase.Playing)
+            {
+                if(e.type.role!="Tree")
+                {
+                    Rules.TriggerDeathDamage();EnemyImplantDeath(e);
+                    Rules.ApplyBurningDeathStats(e.burnTicks>0||bypassArmor);
+                }
+                else DeployTreeTurrets(e.pos);
+                DropEnemyLoot(e);SpawnEnemyChildren(e);
+                Rules.RecordEnemy(e.type.id,e.type.role=="Tree",e.activeAge,e.type.role=="Boss"||e.type.role=="Elite");Rules.Kill();
+            }
+            enemies.Remove(e);
         }
         void DropEnemyLoot(Enemy enemy)
         {
@@ -627,7 +683,7 @@ namespace Scrapshift
         }
         void ClearReferenceCombat()
         {
-            implantDamage.Clear();implantExplosions.Clear();implantRetaliations.Clear();alienClock=0;
+            implantDamage.Clear();implantExplosions.Clear();implantRetaliations.Clear();pendingEnemyDeaths.Clear();alienClock=0;
             ClearStarterEffects();encounterStates.Clear();extraAttackClocks.Clear();births.Clear();foreach(var slash in slashes)Destroy(slash.obj);slashes.Clear();foreach(var e in corpses)Destroy(e.obj);corpses.Clear();
         }
     }

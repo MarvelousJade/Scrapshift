@@ -48,6 +48,14 @@ namespace Scrapshift
         }
         public void KillEffects(bool burning)
         {
+            TriggerDeathDamage();ApplyBurningDeathStats(burning);
+        }
+        internal void TriggerDeathDamage()
+        {
+            if(Phase==RunPhase.Playing)RandomDamageTrigger("dmg_when_death");
+        }
+        internal void ApplyBurningDeathStats(bool burning)
+        {
             if(Phase!=RunPhase.Playing)return;
             if(burning)
             {
@@ -59,7 +67,6 @@ namespace Scrapshift
                     if(e.value>0&&kills%e.value==0&&kills/e.value<=e.limit)Add(e.key.Replace("stat_",""),e.per);
                 }
             }
-            RandomDamageTrigger("dmg_when_death");
         }
         void RandomDamageTrigger(string trigger)
         {

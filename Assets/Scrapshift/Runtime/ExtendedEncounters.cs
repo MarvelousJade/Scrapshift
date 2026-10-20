@@ -167,9 +167,9 @@ namespace Scrapshift
                 {
                     // The supplied egg calls die() with normal loot/global
                     // death callbacks when hatching, without a weapon hit.
-                    e.hp=0;enemies.Remove(e);
-                    Rules.RecordEnemy(e.type.id,false,e.activeAge,false);Rules.Kill();
-                    EnemyImplantDeath(e);Rules.KillEffects(e.burnTicks>0);DropEnemyLoot(e);
+                    e.hp=0;Rules.LivingEnemies=Mathf.Max(0,Rules.LivingEnemies-1);
+                    Rules.TriggerDeathDamage();EnemyImplantDeath(e);Rules.ApplyBurningDeathStats(e.burnTicks>0);DropEnemyLoot(e);
+                    Rules.RecordEnemy(e.type.id,false,e.activeAge,false);Rules.Kill();enemies.Remove(e);
                     if(e.obj!=null)Destroy(e.obj);
                 }
                 if(e.type.id=="mom"&&state==1&&d.extra.Length>0)FireEncounter(e,d.extra[0]);

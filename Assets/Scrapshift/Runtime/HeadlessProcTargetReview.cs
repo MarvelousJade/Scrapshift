@@ -29,7 +29,7 @@ namespace Scrapshift
                 public float vulnerabilityExpectedHealth,vulnerabilityObservedHealth;
                 public bool expiredVulnerabilityMatchesSource;
                 public float expiredVulnerabilityExpectedHealth,expiredVulnerabilityObservedHealth;
-                public string scope="Built-player target reservation and dispatch guards. Actual ArenaGame.Start installs the hook; real imported Lich and private Arena candidate controls. Vulnerability check additionally spawns a real enemy and applies actual Wand Damage between Lich healing and queued dispatch. Enemy HP, callback order and timer contexts are staged; no ordinary Update/physics, deferred original death scheduling, UI, controller or human evidence.";
+                public string scope="Built-player target reservation and dispatch guards. Actual ArenaGame.Start installs the hook; real imported Lich and private Arena candidate controls. Vulnerability check spawns a real enemy and applies synchronous Lich and Wand Damage in both orders. Enemy HP, callback order and timer contexts are staged; no ordinary Update/physics, complete original death scheduling, UI, controller or human evidence.";
                 public List<Row> rows=new List<Row>();
             }
             sealed class NoProcRolls:System.Random
@@ -86,7 +86,7 @@ namespace Scrapshift
                     CheckVulnerability(game,report);
                     if(report.vulnerabilityBaseline)
                         Require(!report.vulnerabilityMatchesSource&&report.vulnerabilityObservedHealth==88,"Baseline must reproduce the old extra vulnerability damage (88 HP versus source89).");
-                    else Require(report.vulnerabilityMatchesSource&&report.expiredVulnerabilityMatchesSource,"Queued Lich damage must retain its source-time vulnerability context (new vulnerability89HP; expired vulnerability88HP).");
+                    else Require(report.vulnerabilityMatchesSource&&report.expiredVulnerabilityMatchesSource,"Synchronous Lich damage must use its source-time vulnerability context (later vulnerability89HP; earlier active vulnerability88HP).");
                     game.ClearCombat();report.status="Passed";
                 }
                 catch(Exception ex){report.status="Failed";report.error=ex.ToString();}
@@ -97,23 +97,24 @@ namespace Scrapshift
             {
                 game.enemies.Clear();var selected=Target(1000);game.enemies.Add(selected);
                 var submit=game.Rules.CaptureRandomDamageTarget();Require(submit!=null,"Live initial reservation required.");
-                var replacement=Target(1000);game.enemies.Add(replacement);submit(10);
+                var replacement=Target(1000);game.enemies.Add(replacement);
                 if(remove)game.enemies.Remove(selected);else selected.hp=0;
+                submit(10);
                 game.ResolveImplantDamage();return replacement.hp==1000&&game.implantDamage.Count==0;
             }
             static void CheckVulnerability(ArenaGame game,Report report)
             {
                 var target=PrepareVulnerabilityTarget(game);
-                game.Rules.Heal(1);Require(game.implantDamage.Count==1,"Imported Lich must queue one healing attack.");
+                game.Rules.Heal(1);Require(target.hp==90&&game.implantDamage.Count==0,"Imported Lich applies its healing attack immediately.");
                 game.Damage(game.enemies.IndexOf(target),1,-100,0,Vector2.zero,game.catalog.Weapon("wand",1));
-                Require(target.iceClock>0&&target.icePercent==10&&target.hp==99,"Actual elemental hit must activate imported Ice Cube before dispatch.");
+                Require(target.iceClock>0&&target.icePercent==10&&target.hp==89,"Actual elemental hit follows the completed Lich damage.");
                 game.ResolveImplantDamage();report.vulnerabilityExpectedHealth=89;report.vulnerabilityObservedHealth=target.hp;
                 report.vulnerabilityMatchesSource=target.hp==89;
 
                 target=PrepareVulnerabilityTarget(game);
                 game.Damage(game.enemies.IndexOf(target),1,-100,0,Vector2.zero,game.catalog.Weapon("wand",1));
                 Require(target.hp==99&&target.iceClock>0,"Reverse case needs the actual Ice Cube hit first.");
-                game.Rules.Heal(1);Require(game.implantDamage.Count==1,"Reverse case needs one Lich attack while vulnerability is active.");
+                game.Rules.Heal(1);Require(target.hp==88&&game.implantDamage.Count==0,"Reverse case applies Lich damage while vulnerability is active.");
                 target.iceClock=0; // Explicit timer-expiry context, not an ordinary Update timing claim.
                 game.ResolveImplantDamage();report.expiredVulnerabilityExpectedHealth=88;report.expiredVulnerabilityObservedHealth=target.hp;
                 report.expiredVulnerabilityMatchesSource=target.hp==88;

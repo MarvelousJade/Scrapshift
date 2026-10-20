@@ -96,7 +96,7 @@ namespace Scrapshift
                 var def=game.catalog.Enemy(id);if(def==null&&tree)def=game.catalog.data.enemies.First(e=>e.role=="Tree");
                 if(def==null&&elite)def=game.catalog.data.enemies.First(e=>e.role=="Elite");Require(def!=null,"Missing lethal target "+id);
                 game.Spawn(def,game.playerPos+new Vector2(6,6));var target=game.enemies.Last();target.activeAge=age;target.hp=1;Destroy(target.marker);target.marker=null;target.obj.SetActive(true);
-                game.Damage(game.enemies.IndexOf(target),100000,-100,0);game.ClearCombat();
+                game.Damage(game.enemies.IndexOf(target),100000,-100,0);game.ResolveCombatCallbacks();game.ClearCombat();
             }
             void CollectMaterial(int value)
             {

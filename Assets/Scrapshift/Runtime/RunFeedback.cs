@@ -13,6 +13,7 @@ namespace Scrapshift
         bool waveSweeping;float waveSweepAge,moneyArrivalTime=-10;int moneyArrivalAmount;
         void BeginWaveSweep()
         {
+            ResolveCombatCallbacks();
             Rules.RecordWaveEnd(Rules.LivingTrees,pickups.Where(p=>!p.fruit).Sum(p=>p.value));Rules.BeginWaveSettlement();RemoveWaveEnemies();
             waveSweeping=true;waveSweepAge=0;moneyArrivalTime=-10;moneyArrivalAmount=0;
             BankOptimizedCleanupMaterials();

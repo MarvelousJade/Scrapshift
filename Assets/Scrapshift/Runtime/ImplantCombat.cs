@@ -15,14 +15,18 @@ namespace Scrapshift
             if(candidates.Count==0)return null;
             var target=candidates[UnityEngine.Random.Range(0,candidates.Count)];
             if(target.hp<=0)return null;
-            // Source applies this hit immediately. Preserve its defense context
-            // when safe list traversal delays dispatch past another elemental hit.
-            float vulnerability=target.iceClock>0?target.icePercent:0;
-            return damage=>implantDamage.Enqueue((target,damage,vulnerability));
+            // Main.handle_stat_damages applies HP immediately. Defer only die's
+            // list mutation, so later current-HP effects and hits see this hit.
+            return damage=>
+            {
+                if(Rules.Phase!=RunPhase.Playing||target.hp<=0||!enemies.Contains(target))return;
+                DamageWithCapturedVulnerability(enemies.IndexOf(target),damage,-100,0,Vector2.zero,null,true,false,false,-1,null,null);
+            };
         }
         void ResolveImplantDamage()
         {
-            // Resolve chained death effects iteratively, outside enemy/projectile list traversal.
+            // Retain the historical queue/wrapper for explicit staged requests;
+            // production stat procs now apply their HP synchronously above.
             while(implantDamage.Count>0)
             {
                 var attack=implantDamage.Dequeue();

@@ -15,13 +15,24 @@ namespace Scrapshift
         public const float DeathCleanupDuration=.5f;
         public bool DeathCleanupPending {get;private set;}
         public float DeathCleanupAge {get;private set;}
+        public System.Action BeforeDeathCleanup {get;set;}
+        bool enteringDeathCleanup;
         void ResetDeathCleanup(){DeathCleanupPending=false;DeathCleanupAge=0;}
         void BeginDeathCleanup()
         {
-            // main._on_player_died enters cleanup immediately. The default
-            // retry/OK gate appears only when its half-second timer expires.
-            Phase=RunPhase.Lost;DeathCleanupPending=true;DeathCleanupAge=0;
-            ResetWaveSettlement();ResetConditionalEffects();ResetSurvival();
+            if(enteringDeathCleanup)return;
+            enteringDeathCleanup=true;
+            try
+            {
+                // Earlier enemy die requests precede the player's deferred die in
+                // the source. Drain them before the run becomes Lost/cleaning up.
+                BeforeDeathCleanup?.Invoke();
+                // main._on_player_died enters cleanup immediately. The default
+                // retry/OK gate appears only when its half-second timer expires.
+                Phase=RunPhase.Lost;DeathCleanupPending=true;DeathCleanupAge=0;
+                ResetWaveSettlement();ResetConditionalEffects();ResetSurvival();
+            }
+            finally{enteringDeathCleanup=false;}
         }
         public void AdvanceDeathCleanup(float seconds)
         {

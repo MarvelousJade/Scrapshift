@@ -1,3 +1,7 @@
+## October20 - death timing and item-chain follow-up
+
+User: directed remaining parity checks and meaningful commits; supplied the original and clarified that desktop access is allowed again while physical controller checks may be deferred. Codex agents: investigated callback timing, tested original signal dispatch, rejected a speculative pool-order design, implemented deferred enemy finalization and corrected plain item explosion ownership, and authored automated checks/docs. No fresh physical Xbox or human campaign acceptance is claimed. See [integration evidence](death-item-integration-2026-10-20.md).
+
 ## October20 - final queued vulnerability acceptance
 
 Codex reproduced original89 HP versus unfixed Unity88 HP for staged Lich/Ice Cube ordering, captured request-time vulnerability, preserved the reflected method contract, and ran final suite1251/1251 plus focused25/25 (all Passed). R34 packaged target/forward/reverse checks Passed/exit0;616 inputs/159 files verified. The user supplied direction/reference and no new hands-on playtest is claimed. See [follow-up](item-material-followup-2026-10-20.md).

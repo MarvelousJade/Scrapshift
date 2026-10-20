@@ -41,10 +41,25 @@ namespace Scrapshift
             {
                 var explosion=implantExplosions.Dequeue();var effect=explosion.effect;var stats=effect.projectile.AsEquipment();
                 float damage=explosion.damage,radius=effect.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
-                int before=Rules.Kills;
-                foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(target.pos,explosion.position)<=radius)
-                    Damage(enemies.IndexOf(target),damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true);
-                Rules.RecordExplosionKills(Rules.Kills-before);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position,contextProfile:ContextSoundProfile.Explosion);
+                int kills=0;
+                // Imported Rip & Tear / Spicy Sauce use plain ItemExplodingEffect:
+                // handle_explode_effect forwards their empty burning data, and
+                // PlayerExplosion has no weapon/projectile life-steal callback.
+                var burnPayload=new BurnPayload();
+                bool previous=resolvingWeaponExplosion;resolvingWeaponExplosion=true;
+                try
+                {
+                    foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(target.pos,explosion.position)<=radius)
+                    {
+                        bool alive=target.hp>0;
+                        DamageWithWeaponIndex(enemies.IndexOf(target),damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true,false,false,-1,burnPayload);
+                        // Hitbox.killed_something is immediate, while the global
+                        // enemy die callback and Rules.Kills are deferred.
+                        if(alive&&target.hp<=0)kills++;
+                    }
+                }
+                finally{resolvingWeaponExplosion=previous;}
+                Rules.RecordExplosionKills(kills);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position,contextProfile:ContextSoundProfile.Explosion);
             }
         }
         void TryVulnerability(Enemy target,string scalingStat)

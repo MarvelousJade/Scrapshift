@@ -71,11 +71,12 @@ namespace Scrapshift.Tests
         }
 
         [TestCase(false)][TestCase(true)]
-        public void CapturedTargetCannotBeReplacedAfterItDiesOrLeavesTheActiveList(bool removed)
+        public void CapturedTargetCannotBeReplacedIfItDiesOrLeavesBeforeInvocation(bool removed)
         {
             var selected=Enemy(1000);var submit=Capture();Assert.NotNull(submit);
-            var other=Enemy(1000);submit(10);
+            var other=Enemy(1000);
             if(removed)((IList)Get("enemies")).Remove(selected);else Field(selected,"hp",0f);
+            submit(10);
             Call("ResolveImplantDamage");
             Assert.AreEqual(1000f,other.GetType().GetField("hp").GetValue(other));
             Assert.AreEqual(0,Get("implantDamage").GetType().GetProperty("Count").GetValue(Get("implantDamage")));

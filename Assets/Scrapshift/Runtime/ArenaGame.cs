@@ -47,6 +47,7 @@ namespace Scrapshift
             SupportArt.Apply(catalog);
             InitializeProgression();WeaponReference.Apply(catalog);ApplyAudioSettings();Application.targetFrameRate = GameSettings.Flag("limitFps",false)?60:120; Rules.Configure(catalog);
             Rules.CaptureRandomDamageTarget=CaptureImplantDamageTarget;
+            Rules.BeforeDeathCleanup=ResolveCombatCallbacks;
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
             playerAnimation = player.GetComponent<SpriteFrameAnimator>();
@@ -247,6 +248,17 @@ namespace Scrapshift
         static readonly Unity.Profiling.ProfilerMarker ProfileRules=new Unity.Profiling.ProfilerMarker("Scrapshift.Rules");
         void Simulate(float dt)
         {
+            try{SimulateCombatStep(dt);}
+            finally{ResolveCombatCallbacks();RefreshRuntimeCensus();}
+        }
+        void RefreshRuntimeCensus()
+        {
+            int livingEnemies=0,livingTrees=0,burningEnemies=0;
+            foreach(var e in enemies){if(e.marker==null){if(e.type.role=="Tree")livingTrees++;else livingEnemies++;}if(e.burnTicks>0)burningEnemies++;}
+            Rules.LivingEnemies=livingEnemies;Rules.LivingTrees=livingTrees;Rules.BurningEnemies=burningEnemies;Rules.StructureCount=starterTurrets.Count+mines.Count;
+        }
+        void SimulateCombatStep(float dt)
+        {
             if(waveSweeping){TickWaveSweep(dt);return;}
             var before=Rules.Phase;
             elapsed += dt; invulnerable = Mathf.Max(0, invulnerable - dt);
@@ -263,9 +275,7 @@ namespace Scrapshift
             if (artReview) movement = ArtReviewMovement();
             if (enemyReview || lootReview) movement = Vector2.zero;
             Rules.SetMoving(movement.sqrMagnitude>0);
-            int livingEnemies=0,livingTrees=0,burningEnemies=0;
-            foreach(var e in enemies){if(e.marker==null){if(e.type.role=="Tree")livingTrees++;else livingEnemies++;}if(e.burnTicks>0)burningEnemies++;}
-            Rules.LivingEnemies=livingEnemies;Rules.LivingTrees=livingTrees;Rules.BurningEnemies=burningEnemies;Rules.StructureCount=starterTurrets.Count+mines.Count;
+            RefreshRuntimeCensus();
             playerVelocity=CombatInput.Velocity(movement,Rules.MoveSpeed);playerPos = CombatGeometry.ClampPlayerBody(playerPos + playerVelocity * dt);
             player.transform.position = new Vector3(playerPos.x, playerPos.y, -1);
             playerAnimation.Tick(movement, dt, reducedMotion);TickFootsteps(Arriving?Vector2.zero:movement,dt);
@@ -292,7 +302,7 @@ namespace Scrapshift
             }
             finally{activePlayerContactBatch=null;}
             using(ProfilePickups.Auto())UpdatePickups(dt);
-            ResolveImplantAttacks();ResolveImplantDamage();
+            ResolveCombatCallbacks();RefreshRuntimeCensus();
             UpdateSparks(dt); UpdateCorpses(dt);
             shakeTime = Mathf.Max(0, shakeTime - dt);
             if (shakeTime <= 0) shake = 0;
@@ -302,6 +312,7 @@ namespace Scrapshift
             if(supportShowcase||loadoutShowcase>=0)return;
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
             float healthBefore=Rules.Health;using(ProfileRules.Auto())Rules.Tick(dt);
+            ResolveCombatCallbacks();RefreshRuntimeCensus();
             if(Rules.Health<healthBefore){AttractNearbyConsumables();FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
             if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); }

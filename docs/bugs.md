@@ -1,3 +1,7 @@
+## October20 - immediate damage and deferred death callback ownership
+
+Confirmed source differences: stat-triggered damage waited too long; dying candidates were removed before Cyberball callbacks; plain Rip & Tear/Spicy Sauce explosions inherited weapon burning and life steal. Apply HP immediately, defer finalization/removal, drain older enemy requests before player cleanup, and give plain explosions their original empty burning payload and callback context. Explosion unlocks count immediate lethal transitions. The integrated 27 focused checks passed; final suite and packaged acceptance are recorded separately in [integration evidence](death-item-integration-2026-10-20.md). Source runtime probes rejected the initial pool-only ordering hypothesis before integration. Broader Player/Main cleanup and arbitrary loadouts remain bounded coverage.
+
 ## October20 - queued proc vulnerability changed after request
 
 An original Lich heal followed by an Ice Cube elemental hit leaves89 enemy HP. The unfixed R33 player left88: its delayed Lich damage picked up the later vulnerability. Capture the request-time percentage with the enemy and apply that override only to queued proc damage; preserve ordinary hit processing and the reflected damage signature.25 focused cases passed, including the reverse expiry boundary. Final integrated/player checks follow in [completion evidence](item-material-followup-2026-10-20.md).

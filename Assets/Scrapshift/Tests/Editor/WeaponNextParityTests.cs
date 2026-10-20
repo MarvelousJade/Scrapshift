@@ -181,10 +181,12 @@ namespace Scrapshift.Tests
             var later=new List<object>();
             for(int i=0;i<15;i++){var enemy=Enemy(i<8?Vector2.zero:Vector2.right*8);Set(enemy,"hp",1f);if(i>=8)later.Add(enemy);}
             Call("QueueSupportExplosion",Vector2.zero,stats,10f,1.5f,true,null,null);
-            Call("TickReferenceExplosions",.01f);Assert.AreEqual(8,game.Rules.Kills);
+            Call("TickReferenceExplosions",.01f);Assert.AreEqual(0,game.Rules.Kills,"Global deaths remain deferred after immediate hitbox kills.");
+            var explosion=((IList)Get("weaponExplosions"))[0];Assert.AreEqual(8,Field<int>(explosion,"kills"));
+            Call("ResolveCombatCallbacks");Assert.AreEqual(8,game.Rules.Kills);
             foreach(var enemy in later)Set(enemy,"pos",Vector2.zero);
-            Call("TickReferenceExplosions",.01f);Assert.AreEqual(15,game.Rules.Kills);
-            var explosion=((IList)Get("weaponExplosions"))[0];
+            Call("TickReferenceExplosions",.01f);Assert.AreEqual(8,game.Rules.Kills);
+            Call("ResolveCombatCallbacks");Assert.AreEqual(15,game.Rules.Kills);
             Assert.AreEqual(15,Field<int>(explosion,"kills"),"PlayerExplosion's Fireworks counter belongs to the whole explosion, not an individual physics tick.");
         }
         void WisdomBurnSetup(bool sausage)
