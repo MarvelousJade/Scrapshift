@@ -89,6 +89,7 @@ namespace Scrapshift
         }
         void OnDestroy()
         {
+            if(enemyBloodSprite!=null)Destroy(enemyBloodSprite);
             if(menuGround!=null){menuGround.Release();Destroy(menuGround);}
             if(mittenMesh!=null)Destroy(mittenMesh);
         }

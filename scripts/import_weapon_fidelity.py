@@ -93,6 +93,10 @@ if '--numeric-muzzles-only' in sys.argv:
     print(json.dumps(dict(updated=updated,otherFieldsUnchanged=True,report=str(report))))
     raise SystemExit(0)
 
+# The explosion scene's smoke uses this shared source texture, not the flash sprite.
+smoke_source=ROOT/'particles/sprites/particle_3.png'
+shutil.copyfile(smoke_source,OUT/'particle_3.png')
+
 projectiles={}
 DEFAULT='projectiles/bullet/bullet_projectile.tscn'
 def projectile(path):
@@ -133,11 +137,11 @@ for i in re.findall(r'ExtResource\( (\d+) \)',line):
     for index,effect in enumerate(d.get('effects',[])):
         e=src.resource(effect)
         if 'explosion_scene' in e:
-            ex=scene(e['explosion_scene']);explosions.append(dict(index=index,texture=asset(ex['Sprite']['texture']),clips=[asset(v) for v in ex['.'].get('explosion_sounds',[])],soundDb=e.get('sound_db_mod',-10),radius=ex['Hitbox/Collision']['shape'].get('radius',147.34)/100))
+            ex=scene(e['explosion_scene']);explosions.append(dict(index=index,texture=asset(ex['Sprite']['texture']),clips=[asset(v) for v in ex['.'].get('explosion_sounds',[])],soundDb=e.get('sound_db_mod',-10),radius=ex['Hitbox/Collision']['shape'].get('radius',147.34)/100,smokeAmount=math.floor(e.get('scale',1)*e.get('base_smoke_amount',0)+.5)))
         if 'weapon_stats' in e:secondary.append(dict(index=index,scene=projectile(src.resource(e['weapon_stats']).get('projectile_scene'))))
     weapons.append(dict(id=wid,tier=int(Path(path).parts[-2]),scene='' if melee else projectile(s.get('projectile_scene')),secondary=secondary,explosions=explosions,
         attackType=s.get('attack_type',0),alternate=s.get('alternate_attack_type',False),returnDamage=s.get('deal_dmg_on_return',False),
-        accuracy=s.get('accuracy',1),soundDb=s.get('sound_db_mod',-5),speedWithRange=s.get('increase_projectile_speed_with_range',False),canBounce=s.get('can_bounce',True),
+        accuracy=s.get('accuracy',1),soundDb=s.get('sound_db_mod',-5),effectScale=s.get('effect_scale',1),speedWithRange=s.get('increase_projectile_speed_with_range',False),canBounce=s.get('can_bounce',True),
         half=[v/100 for v in shape.get('extents',[shape.get('radius',32)]*2)],hitOffset=[(p[0]+q[0])/100,-(p[1]+q[1])/100],**({} if melee else authored_muzzle(nodes))))
 unit=scene('entities/units/unit/unit.tscn')['.']
 audio=[dict(id=key,clips=[asset(p) for p in unit[key+'_sounds']]) for key in ['hurt','crit','burn']]

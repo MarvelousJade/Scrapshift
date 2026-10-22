@@ -3,6 +3,7 @@ using System.Linq;
 using AssetScope;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEngine;
 using Scrapshift.Editor;
 
 namespace Scrapshift.Tests
@@ -22,11 +23,46 @@ namespace Scrapshift.Tests
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath); Assert.NotNull(bank);
             foreach (SoundCue cue in Enum.GetValues(typeof(SoundCue)))
             {
+                Assert.AreEqual(1,bank.entries.Count(e=>e.cue==cue),"One assignment per cue: "+cue);
                 var entry=bank.Find(cue); Assert.NotNull(entry,cue.ToString()); Assert.IsNotEmpty(entry.variants);
-                foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.AreEqual(cue==SoundCue.Step?2:1,clip.channels,"Footsteps retain their supplied stereo layout; other bank cues remain mono."); }
+                foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.That(clip.channels,Is.InRange(1,2)); }
             }
             Assert.GreaterOrEqual(bank.Find(SoundCue.Fire).variants.Length,3);
             Assert.GreaterOrEqual(bank.Find(SoundCue.Impact).variants.Length,3);
+        }
+        [Test] public void CrateAndEndingsRetainSuppliedCuesAtOriginalRelativeGain()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath);
+            AssertCue(bank,SoundCue.CratePickup,new[]{"CratePickup_01"},1);
+            AssertCue(bank,SoundCue.WaveClear,new[]{"WaveClear_01"},1);
+            AssertCue(bank,SoundCue.WaveLetter,new[]{"WaveLetter_01","WaveLetter_02"},(float)Math.Pow(10,-10.0/20));
+            AssertCue(bank,SoundCue.Win,new[]{"Win_01"},(float)Math.Pow(10,-5.0/20),1);
+            AssertCue(bank,SoundCue.WinBeam,new[]{"WinBeam_01"},1);
+            Assert.IsNotNull(Resources.Load<Texture2D>("WinRing"),"The victory light must use the original blue circle sprite.");
+            AssertCue(bank,SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")).ToArray(),(float)Math.Pow(10,-5.0/20),1);
+        }
+        [Test] public void AchievementPopupUsesTheOriginalTwoSoundsAndTiming()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath);
+            AssertCue(bank,SoundCue.AchievementPopup,new[]{"AchievementPopup_01"},(float)Math.Pow(10,-5.0/20));
+            AssertCue(bank,SoundCue.AchievementPopout,new[]{"AchievementPopout_01"},1);
+            Assert.AreEqual(.2f,bank.Find(SoundCue.AchievementPopup).pitchVariation);
+            Assert.AreEqual(0,bank.Find(SoundCue.AchievementPopout).pitchVariation);
+            var queue=new AchievementToastQueue();
+            var challenge=new UnlockDefinition{id="chal_rookie",reward="character_chunky"};
+            queue.Enqueue(challenge);
+            Assert.AreSame(challenge,queue.Current);
+            Assert.AreEqual(0,queue.Tick(AchievementToastQueue.Duration-.01f));
+            Assert.AreEqual(1,queue.Tick(.02f));
+            Assert.IsNull(queue.Current);
+        }
+        static void AssertCue(SoundBank bank,SoundCue cue,string[] names,float gain,int channels=2)
+        {
+            var entry=bank.Find(cue);Assert.NotNull(entry);
+            CollectionAssert.AreEqual(names,entry.variants.Select(c=>c.name));
+            Assert.That(entry.gain,Is.EqualTo(gain).Within(.001f));
+            Assert.That(entry.priority,Is.GreaterThanOrEqualTo(2));
+            foreach(var clip in entry.variants)Assert.AreEqual(channels,clip.channels,clip.name);
         }
         [Test] public void VariantSelectionNeverImmediatelyRepeats()
         {
@@ -34,6 +70,25 @@ namespace Scrapshift.Tests
                 for (int previous=0;previous<count;previous++)
                     for (int roll=0;roll<100;roll++)
                     { int pick=GameAudio.VariantIndex(count,previous,roll); Assert.AreNotEqual(previous,pick); Assert.That(pick,Is.InRange(0,count-1)); }
+        }
+        [Test] public void LastFiveSecondsUseTheOriginalClockTick()
+        {
+            var tick=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath).Find(SoundCue.WaveTick);
+            Assert.NotNull(tick);
+            Assert.AreEqual("WaveTick_01",tick.variants.Single().name);
+            Assert.AreEqual(2,tick.priority);
+            Assert.AreEqual(1f,tick.gain);
+            Assert.AreEqual(.9f,tick.cooldown);
+            Assert.AreEqual(.1f,tick.pitchVariation);
+            Assert.AreEqual(2,tick.variants.Single().channels);
+            Assert.IsFalse(WaveCountdownFeedback.IsWarning(6));
+            for(int second=1;second<=5;second++)Assert.IsTrue(WaveCountdownFeedback.IsWarning(second));
+            Assert.IsFalse(WaveCountdownFeedback.IsWarning(0));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(5.9f,5.1f));
+            Assert.IsTrue(WaveCountdownFeedback.TickDue(5.01f,4.99f));
+            Assert.IsTrue(WaveCountdownFeedback.TickDue(4.01f,3.99f));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(4.9f,4.1f));
+            Assert.IsFalse(WaveCountdownFeedback.TickDue(1.01f,0f));
         }
         [Test] public void AssetScopeNavigatesAnActualSoundReferenceToItsBank()
         {

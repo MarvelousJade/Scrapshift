@@ -46,16 +46,23 @@ namespace Scrapshift
             bool fixture=Environment.GetCommandLineArgs().Any(a=>a.StartsWith("--"));
             progress=new Progression(definitions.challenges,fixture?null:Path.Combine(Application.persistentDataPath,"progress-v1.json"));
             runUnlockPool=new RunUnlockPool();
-            progress.ChallengeCompleted+=achievementToasts.Enqueue;
+            progress.ChallengeCompleted+=OnAchievementCompleted;
             progress.ChallengeCompleted+=_=>ApplyUnlocks();
             ApplyUnlocks();InitializeEncounters();
         }
         void ApplyUnlocks()=>runUnlockPool.Refresh(catalog,progress);
         void RefreshUnlockPoolForNewRun()=>runUnlockPool.BeginRun(catalog,progress);
         bool CharacterUnlocked(CharacterProfile character)=>character.available;
+        void OnAchievementCompleted(UnlockDefinition challenge)
+        {
+            bool first=achievementToasts.Current==null;
+            achievementToasts.Enqueue(challenge);
+            if(first)sound?.Play(SoundCue.AchievementPopup);
+        }
         void TickProgression(float dt)
         {
-            achievementToasts.Tick(dt);
+            var before=achievementToasts.Current;
+            if(achievementToasts.Tick(dt)>0){sound?.Play(SoundCue.AchievementPopout);if(achievementToasts.Current!=null&&achievementToasts.Current!=before)sound?.Play(SoundCue.AchievementPopup);}
             if(runUnlockPool?.Frozen==true)
                 runUnlockPool.RefreshAfterRun(catalog,progress,Rules.Phase,endSummary);
 #if UNITY_WEBGL && !UNITY_EDITOR

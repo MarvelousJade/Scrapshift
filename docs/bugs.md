@@ -571,3 +571,117 @@ White inventory seam follow-up: the previous rounded outline fix was incomplete.
 
 The initial continuation suite passed 592/594; two new structure-unlock fixtures threw NullReferenceException in ConditionalStat because their constructed ConditionalEffect objects omitted key. Real imported entries contain an empty-string key for these effects. Initialize the two synthetic keys to empty strings; runtime code is unchanged by this fixture repair. Initial XML/log are preserved under artifacts/gameplay-parity-continuation-2026-10-15/initial-tests.*. The full rerun is in progress.
 
+
+## October 13 - item pool and reroll parity (source-audit defect)
+
+**Trigger and expected behavior:** Shaoyu asked for shop, crate and level-reward randomization to match the supplied extracted game. Source review found that the default random item pool must reject zero-maximum-count items, a new shop excludes only locked prior offers, a reroll excludes the offers it replaces, and an empty rarity tier does not fall back to a lower tier. This was a code/source mismatch; no manual run is claimed to have displayed the rare bad item.
+
+**Cause:** `ConfigureShopItems` accepted `broken_hourglass` because it checked availability but not `maxCount`; item selection had a lower-tier fallback; shop exclusion and random draw order differed from the reference. The original allows `broken_hourglass` through a separate transformation, not ordinary shop/crate rolls.
+
+**Fix:** Filter zero-count items, keep the selected tier, distinguish fresh-shop from reroll exclusions, and align the shop/crate draw sequence. The level reward rarity formula already matched; only its draw order changed. See `item-randomization-parity.md` and commit `d6cd68c`.
+
+**Verification and limit:** The isolated item branch passed 330 Unity EditMode tests, including eligibility and reroll cases. This establishes the implemented selection rules for the imported pool, not identical individual offers from equal numeric seeds or full DLC/unlock parity.
+
+## October 13 - XP level label sat at the right of the bar (UI defect)
+
+**User report:** The laptop game's level text appeared at the right of the XP bar rather than centered like the health text.
+
+**Cause and fix:** `GameUI` drew `LV.#` in a narrow x=195, width=87 rectangle with right alignment. Commit `574f935` uses the XP bar's full x=24, width=262 rectangle and the shared centered style.
+
+**Verification and limit:** The Windows build succeeded with zero errors and warnings. A separate screenshot assertion or post-fix user acceptance was not recorded for this alignment change.
+
+## October 13 - auto melee swing stopped tracking its target (combat defect)
+
+**User report:** A melee weapon sometimes missed when Shaoyu moved during its attack. Some misses are expected: the original damages only when the animated hitbox overlaps an enemy, and ordinary weapons start attacks while the player is stationary. The report prompted a source comparison; it did not by itself prove every miss was a bug.
+
+**Cause:** The supplied `weapons/weapon.gd` keeps rotating an auto-aimed weapon toward its live target while shooting, and its melee behavior moves a timed collision hitbox. Scrapshift's `BeginMeleeAttack` stored the initial angle and `TickMeleeAttack` reused it for the whole swing. Movement could therefore leave the hitbox pointed at the target's old direction. Manual aim is intentionally fixed during a swing in the reference.
+
+**Fix:** Commit `137bbd4` updates the auto-aimed swing angle from the current weapon mount and live target each frame, preserves the spread chosen when the attack began, and stops tracking after the target leaves detection range. It leaves manual aim and the collision-based hit rule intact.
+
+**Verification and limit:** 331/331 Unity EditMode tests passed, the Windows build had zero errors/warnings, and the built-player fixture passed 205/205 stationary weapon attack checks. The new movement-angle regression checks direction and preserved spread. No human playthrough or proof that every moving-target miss disappeared is claimed. Shaoyu reported the symptom; Codex compared the source, implemented and ran these checks.
+
+## October 13 - missing red enemy hit burst (visual defect)
+
+**User report:** Enemy deaths lacked the red exploding effect visible in the supplied original game.
+
+**Source diagnosis:** `global/effects_manager.gd` emits `hit_particles.tscn` on every positive hit to an enemy with `generate_blood`, including a fatal hit. That scene uses eight dark red `particle_1.png` puffs, a half-second lifetime, outward motion and no gravity. Trees set `generate_blood = false`. The separate `entity.tscn` death animation shrinks, rotates and darkens the body; Scrapshift already had that part. Its generic coral sparks were the visible mismatch.
+
+**Fix:** Import the supplied original particle image and emit its dark red puffs from the hurt sprite's edge on enemy hits, including kills. Exclude trees, honor the visual-effects setting and reuse the existing particle cap and cleanup path. The fatal hit shows the burst alongside the existing corpse animation.
+
+**Verification and limit:** Unity Windows build succeeded with zero errors and warnings. The built-player combat-feel fixture passed, counted eight blood particles on the fatal hit and saved a fresh `enemy-death.png` capture, which was inspected. The fixture uses a staged one-HP enemy and explicit time advances; it does not establish frame-perfect Godot particle trajectories or human play acceptance. The first runtime launch hit a Direct3D 12 device-removed crash, so the successful fixture used Direct3D 11 and an absolute capture folder.
+## October 13 - rocket impact lacked the source smoke burst (visual and timing defect)
+
+**User report:** Shaoyu asked whether the rocket launcher contact explosion used the same effect as the original game, then requested the source appearance, duration, particle rate, radius, and damage area.
+
+**Cause:** The existing `ReferenceWeaponBehavior` used the source flash sprite, sound clips, and approximate area, but destroyed the whole effect after 0.05 seconds. The original `explosion.tscn` removes only the flash and hitbox at 0.05 seconds, emits smoke, and keeps the node alive until 1 second. The collision's 3-pixel downward offset also needed to scale with the effect size.
+
+**Fix:** Imported the original `particle_3.png`; added 48 dark smoke particles for rocket tiers with the source emission radius, offset, speed, rotation, fade, and 0.75-second lifetime. The flash and damage window remain 0.05 seconds, and the effect cleans up at 1 second. The radius is 1.76808 world units before explosion-size bonuses. A floating-point threshold tolerance prevents the smoke from slipping one frame late at exactly 0.05 seconds. See `rocket-explosion-parity.md`.
+
+**Verification and limit:** Windows build succeeded with zero errors and warnings. A Direct3D 11 built-player fixture passed flash, area, smoke count/radius/lifetime, and cleanup checks. Visible screenshots were inspected for the flash and smoke sequence. Unity and Godot random particle motion and rasterization are not asserted to be pixel-identical.
+## October 13 - other explosions and Baby With A Beard projectile parity
+
+**User report:** After the rocket fix, Shaoyu asked whether other weapons and items use explosions, how piercing works, and which item fires a projectile when an enemy dies.
+
+**Cause:** The rocket smoke fix covered only its three tiers. Twenty-one weapon/tier profiles reference the source explosion, but the other eighteen had no source smoke count in Scrapshift. Rip and Tear, Spicy Sauce, Bull, Glutton, mines, Rocket Turret, and Bonk Dog still used generic impact bursts. Item stacks were rolled separately instead of the source's combined chance and damage. Baby With A Beard already spawned a death projectile, but its default bullet scene was absent from the imported projectile selection.
+
+**Fix:** Import source smoke counts, radii, sound levels, and flesh-explosion art/audio for all weapon and item paths; use source-style overlap for item, structure, and pet explosions. Aggregate item stacks into one roll and one effect. Resolve special-spawn projectiles without a declared scene to the source default bullet. Preserve the existing travel-ordered piercing and bounce sequence.
+
+**Verification and limit:** Windows build passed with zero errors/warnings. Direct3D 11 built-player checks passed 21 weapon profiles, Shredder and Nuclear smoke, red Rip and Tear smoke, Baby's bullet scene and two-target piercing (100 then 50), and source structure metadata. Existing rocket and full starter/item/deployable reviews passed. Captures were inspected. See explosion-and-piercing-parity.md. Pixel-identical particle motion is not claimed.
+## October 13 - projectile count, bounce position, and post-hit damage parity
+
+**User report:** Shaoyu asked whether extra projectiles, bouncing, and piercing damage buffs or reductions behave like the supplied original game.
+
+**Cause:** The main gun path already added the projectile stat and spread, and bounce already took priority over piercing. Its minimum-one-shot clamp differed from the source when a base count is zero or modifiers take it to zero. Turrets and ranged pets did not apply the added projectile count or spread. Bounce redirects used the end of a frame's travel rather than the collision point and could select a boss or neutral tree, while the source spawner selects ordinary enemies. Damage retained after a bounce or pierce remained fractional in Unity; the source hitbox stores an integer and truncates the reduced amount.
+
+**Fix:** Use the source count/spread rule for held ranged weapons, turrets, and ranged pets. Move a bouncing shot to the collision position and restrict its random target pool to ordinary enemies. Truncate positive post-hit damage after clamping reduction, retaining at least one. Preserve bounce-before-pierce, ignored prior targets, and the Particle Accelerator no-bounce gate.
+
+**Verification and limit:** The Windows build passed with zero errors/warnings, nine focused Unity EditMode tests passed, and a Direct3D 11 built-player fixture fired three shots with +2 projectiles, bounced for 11 then 5 damage, and pierced for 11 then 7 with Pumpkin's +15 bonus. Full starter/deployable and companion reviews passed. See projectile-rules-parity.md. Random trajectories and crowded-wave target choices are not asserted to be deterministic.
+
+## October 13 - showcase helpers appeared instantly in fixed rows
+
+**User report:** The Auto Turret demo started with turrets at fixed points, and pets appeared immediately. Shaoyu asked for wave-start spawning like the supplied game and stronger item-based Ranger, Engineer, and Druid builds.
+
+**Cause:** `BeginLoadoutShowcase` called `StartWave`, which deployed all structures and pets immediately, then overwrote their positions with hardcoded rows. The reference `entity_spawner.gd` queues them from the one-second `StructureTimer` and releases one structure and one pet every three physics frames.
+
+**Fix:** Showcase wave start now queues owned structures and pets, waits about 1.05 seconds, then releases one of each every 0.05 seconds using ordinary random placement. The Ranger receives real Bandana, Ricochet, Pumpkin, and attack-speed items. The Engineer and Druid receive additional helper items plus attack-speed, Engineering, and structure-crit buffs. No projectile-count stat is injected. Seashell is a DLC item outside the supplied base-game catalog and was excluded after Shaoyu clarified the desired item effects.
+
+**Verification and limit:** 363/363 EditMode tests passed, including item-derived stat checks and queue cadence boundaries. The Windows build succeeded; the first run had one unrelated deprecated-API warning in the performance review, which was corrected before the final build. The timing is a 60 Hz approximation of the source timer and queue; see `showcase-loadouts.md` for the exact scope.
+**Built-player check:** Hidden headless player runs logged the Engineer queue draining to 11 turrets/gardens plus 3 pets, and the Druid queue draining to 1 structure plus 12 pets, both at 1.61 seconds. The twelfth Engineer structure request is a landmine spawner, tracked separately from visible turrets. The final build had zero errors and warnings. Visual placement was not inspected in this headless check.
+
+## October 13 - wave countdown warning missing
+
+**User report:** The final five-second wave counter should turn red and play the original clock sound.
+
+**Cause:** The Unity HUD always rendered its normal timer color, and the sound bank had no wave-tick cue. The source `wave_timer.gd` starts a one-second tick when less than six seconds remain; its first timeout changes the label to the configurable negative color and plays `clock_tick_01.wav`.
+
+**Fix:** Color displayed seconds 5 through 1 with the configured negative color. Add the byte-identical stereo clock WAV as a dedicated cue, playing once per displayed-second crossing with the source ±0.1 pitch variation. Keep its notification voice audible without ducking combat.
+
+**Verification and limit:** The Windows build succeeded with zero errors and warnings. All 364 EditMode tests passed. A hidden Direct3D 11 built-player mixer check passed all 22 cues, including the clock tick. A visual screenshot at exactly five seconds was not captured; see `wave-countdown-parity.md` for source and timing details.
+
+## October 13 - unlock popup used the install sound
+
+**User report:** Shaoyu asked for the original unlock sound, including unlocks earned on a lost run.
+
+**Cause:** Scrapshift played its generic install cue when an achievement toast was drawn. The end-of-run reward card had no matching sound. The original challenge_completed_ui.gd uses a dedicated popup clip and a separate popout whoosh.
+
+**Fix:** Import the two original clips byte for byte. Play the popup when a challenge completes, including Rookie on the first loss, and play the whoosh when its toast expires. Queued challenges announce each popup. Keep the end-run reward card silent so a reward is not announced twice.
+
+**Verification and limit:** See unlock-sound-parity.md for the source trace and hashes. The cue and queue tests check imported clips, gain, pitch, and expiry; the full build and runtime checks are recorded with the integration build. Scrapshift's 2.6-second toast duration and end-run card layout still differ from the source.
+## October 14 - end-of-run inventory overlapped unlock review
+
+**User report:** The loss summary needed to show newly unlocked rewards clearly.
+
+**Cause:** The inventory panel occupied the horizontal space reserved for the Progress and unlock review area. The presentation review also assumed the starting SMG was the only inventory entry, which no longer held after item integration.
+
+**Fix:** Narrow and reposition the inventory panel, accept an SMG anywhere in the starting inventory during review, and clear the review's newly unlocked state before restart. The integrated Windows build succeeded with zero errors and warnings; 387 EditMode tests passed.
+
+
+## October 14 - Web release exposed local showcase mode
+
+**User report:** The itch.io Web build should contain the normal game without the photo/video demo mode.
+
+**Cause:** The WebGL build excluded diagnostic review controls but still compiled the title screen showcase buttons and F5-F10 shortcuts from the desktop presentation code.
+
+**Fix:** Compile those buttons, shortcuts, and showcase command-line entry points only for non-Web builds. Keep the desktop showcase for capture work. Rebuild the WebGL release from main and replace the upload ZIP.
+
+**Verification and limit:** Final WebGL release build succeeded with zero errors and warnings. The upload ZIP has index.html at its root. Browser UI inspection and itch.io iframe testing remain open.

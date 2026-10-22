@@ -11,6 +11,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -33,6 +34,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -55,6 +57,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -77,6 +80,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -99,6 +103,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -121,6 +126,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -143,6 +149,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -165,6 +172,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -187,6 +195,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -209,6 +218,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -231,6 +241,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -261,6 +272,7 @@
       "returnDamage": false,
       "accuracy": 0.85,
       "soundDb": -15,
+      "effectScale": 0.1,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -291,6 +303,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -326,7 +339,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 48
         }
       ],
       "attackType": 0,
@@ -334,6 +348,7 @@
       "returnDamage": false,
       "accuracy": 0.8,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -364,6 +379,7 @@
       "returnDamage": false,
       "accuracy": 0.7,
       "soundDb": -10,
+      "effectScale": 0.2,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -394,6 +410,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -424,6 +441,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -446,6 +464,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -468,6 +487,7 @@
       "returnDamage": false,
       "accuracy": 0.95,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -498,6 +518,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -528,6 +549,7 @@
       "returnDamage": false,
       "accuracy": 0.6,
       "soundDb": -5,
+      "effectScale": 0.1,
       "speedWithRange": true,
       "canBounce": true,
       "half": [
@@ -558,6 +580,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -588,6 +611,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -623,7 +647,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 48
         }
       ],
       "attackType": 0,
@@ -631,6 +656,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -661,6 +687,7 @@
       "returnDamage": false,
       "accuracy": 0.75,
       "soundDb": -10,
+      "effectScale": 0.2,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -691,6 +718,7 @@
       "returnDamage": false,
       "accuracy": 0.8,
       "soundDb": -10,
+      "effectScale": 0.2,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -721,6 +749,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -751,6 +780,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -781,6 +811,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -803,6 +834,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -825,6 +857,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -847,6 +880,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -869,6 +903,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -891,6 +926,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -913,6 +949,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -935,6 +972,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -957,6 +995,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -979,6 +1018,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1001,6 +1041,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1023,6 +1064,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1045,6 +1087,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1067,6 +1110,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1089,6 +1133,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1119,6 +1164,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1149,6 +1195,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1184,6 +1231,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1211,6 +1259,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1238,6 +1287,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1265,6 +1315,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1292,6 +1343,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1319,6 +1371,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1341,6 +1394,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1363,6 +1417,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1385,6 +1440,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1407,6 +1463,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1429,6 +1486,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1451,6 +1509,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1473,6 +1532,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1495,6 +1555,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1517,6 +1578,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1539,6 +1601,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1561,6 +1624,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1583,6 +1647,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1605,6 +1670,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1627,6 +1693,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1649,6 +1716,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1671,6 +1739,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1693,6 +1762,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1715,6 +1785,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1745,6 +1816,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1775,6 +1847,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1805,6 +1878,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1835,6 +1909,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1865,6 +1940,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1900,7 +1976,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -15,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 8
         }
       ],
       "attackType": 0,
@@ -1908,6 +1985,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -8,
+      "effectScale": 0.5,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1943,7 +2021,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -15,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 8
         }
       ],
       "attackType": 0,
@@ -1951,6 +2030,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -8,
+      "effectScale": 0.5,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -1986,7 +2066,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -15,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 9
         }
       ],
       "attackType": 0,
@@ -1994,6 +2075,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -8,
+      "effectScale": 0.5,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2024,6 +2106,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2054,6 +2137,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2084,6 +2168,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2114,6 +2199,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2144,6 +2230,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2174,6 +2261,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2209,6 +2297,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2231,6 +2320,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2253,6 +2343,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2275,6 +2366,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2297,6 +2389,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2319,6 +2412,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2341,6 +2435,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2363,6 +2458,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2385,6 +2481,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2407,6 +2504,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2429,6 +2527,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2451,6 +2550,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2473,6 +2573,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2495,6 +2596,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2517,6 +2619,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2544,6 +2647,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2566,6 +2670,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2588,6 +2693,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2610,6 +2716,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2640,6 +2747,7 @@
       "returnDamage": false,
       "accuracy": 0.6,
       "soundDb": -5,
+      "effectScale": 0.1,
       "speedWithRange": true,
       "canBounce": true,
       "half": [
@@ -2670,6 +2778,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2700,6 +2809,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2730,6 +2840,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 0.1,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2760,6 +2871,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2795,7 +2907,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 48
         }
       ],
       "attackType": 0,
@@ -2803,6 +2916,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2838,7 +2952,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -15,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 9
         }
       ],
       "attackType": 0,
@@ -2846,6 +2961,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -8,
+      "effectScale": 0.5,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2876,6 +2992,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2906,6 +3023,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2936,6 +3054,7 @@
       "returnDamage": false,
       "accuracy": 0.85,
       "soundDb": -10,
+      "effectScale": 0.2,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2966,6 +3085,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -2996,6 +3116,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3026,6 +3147,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3048,6 +3170,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3070,6 +3193,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3092,6 +3216,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3114,6 +3239,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3144,6 +3270,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3174,6 +3301,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3204,6 +3332,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3234,6 +3363,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3256,6 +3386,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3278,6 +3409,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3300,6 +3432,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3322,6 +3455,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3344,6 +3478,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3366,6 +3501,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3388,6 +3524,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3415,7 +3552,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 10
         }
       ],
       "attackType": 1,
@@ -3423,6 +3561,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3450,7 +3589,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 13
         }
       ],
       "attackType": 1,
@@ -3458,6 +3598,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3485,7 +3626,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 10
         }
       ],
       "attackType": 0,
@@ -3493,6 +3635,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3520,7 +3663,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 25
         }
       ],
       "attackType": 0,
@@ -3528,6 +3672,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3550,6 +3695,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3572,6 +3718,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3594,6 +3741,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3616,6 +3764,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3643,6 +3792,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3670,6 +3820,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3697,7 +3848,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 80
         }
       ],
       "attackType": 0,
@@ -3705,6 +3857,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3740,7 +3893,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -10,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 90
         }
       ],
       "attackType": 0,
@@ -3748,6 +3902,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3778,6 +3933,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3808,6 +3964,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3838,6 +3995,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -8,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3868,6 +4026,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3898,6 +4057,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3928,6 +4088,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3950,6 +4111,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -3980,6 +4142,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4010,6 +4173,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4040,6 +4204,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4075,6 +4240,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4110,6 +4276,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -12,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4145,7 +4312,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -20,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 8
         }
       ],
       "attackType": 1,
@@ -4153,6 +4321,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4180,7 +4349,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -20,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 8
         }
       ],
       "attackType": 1,
@@ -4188,6 +4358,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4215,7 +4386,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -20,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 8
         }
       ],
       "attackType": 1,
@@ -4223,6 +4395,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4250,7 +4423,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -20,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 8
         }
       ],
       "attackType": 1,
@@ -4258,6 +4432,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4280,6 +4455,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4302,6 +4478,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4324,6 +4501,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4346,6 +4524,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4368,6 +4547,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4390,6 +4570,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4412,6 +4593,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4434,6 +4616,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4456,6 +4639,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4486,6 +4670,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4516,6 +4701,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4546,6 +4732,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4576,6 +4763,7 @@
       "returnDamage": false,
       "accuracy": 0.75,
       "soundDb": -15,
+      "effectScale": 0.1,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4606,6 +4794,7 @@
       "returnDamage": false,
       "accuracy": 0.8,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4636,6 +4825,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4658,6 +4848,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4680,6 +4871,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4702,6 +4894,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4724,6 +4917,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4746,6 +4940,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4768,6 +4963,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4790,6 +4986,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4812,6 +5009,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4834,6 +5032,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4856,6 +5055,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4878,6 +5078,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4900,6 +5101,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4922,6 +5124,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4944,6 +5147,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -4966,6 +5170,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": false,
       "half": [
@@ -4996,6 +5201,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": false,
       "half": [
@@ -5026,6 +5232,7 @@
       "returnDamage": false,
       "accuracy": 0.85,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5056,6 +5263,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5086,6 +5294,7 @@
       "returnDamage": false,
       "accuracy": 0.95,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5116,6 +5325,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -10,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5151,7 +5361,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -999,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 10
         }
       ],
       "attackType": 0,
@@ -5159,6 +5370,7 @@
       "returnDamage": false,
       "accuracy": 0.9,
       "soundDb": 0,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5194,7 +5406,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -999,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 10
         }
       ],
       "attackType": 0,
@@ -5202,6 +5415,7 @@
       "returnDamage": false,
       "accuracy": 0.95,
       "soundDb": 0,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5237,7 +5451,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -999,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 10
         }
       ],
       "attackType": 0,
@@ -5245,6 +5460,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": 0,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5275,6 +5491,7 @@
       "returnDamage": false,
       "accuracy": 0.6,
       "soundDb": -5,
+      "effectScale": 0.1,
       "speedWithRange": true,
       "canBounce": true,
       "half": [
@@ -5315,7 +5532,8 @@
             "WeaponReference/explosion_small_short_01_45129eb9"
           ],
           "soundDb": -20,
-          "radius": 1.4734
+          "radius": 1.4734,
+          "smokeAmount": 31
         }
       ],
       "attackType": 0,
@@ -5323,6 +5541,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5345,6 +5564,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5367,6 +5587,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5389,6 +5610,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -5,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5411,6 +5633,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5441,6 +5664,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5471,6 +5695,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [
@@ -5501,6 +5726,7 @@
       "returnDamage": false,
       "accuracy": 1.0,
       "soundDb": -15,
+      "effectScale": 1.0,
       "speedWithRange": false,
       "canBounce": true,
       "half": [

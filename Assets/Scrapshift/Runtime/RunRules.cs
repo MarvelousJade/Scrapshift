@@ -204,6 +204,7 @@ namespace Scrapshift
             if(wave<1||wave>WaveCount)throw new ArgumentOutOfRangeException(nameof(wave));
             Wave=wave;
             Remaining=Durations[wave-1];
+            ResetConditionalEffects();ApplyNextWaveEffects();BeginItemWave();
         }
         public void Tick(float seconds)
         {

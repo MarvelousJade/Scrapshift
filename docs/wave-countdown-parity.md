@@ -1,0 +1,7 @@
+# Final five seconds of a wave
+
+October 13, 2026. The original game's `ui/hud/wave_timer.gd` starts a one-second `TickTimer` when less than six seconds remain. Its first timeout plays `ui/sounds/clock_tick_01.wav` with ±0.1 pitch variation and signals `main.gd` to tint the wave timer label with the configurable negative color, red by default. The label displays `ceil(time_left)`.
+
+Scrapshift now colors the displayed 5, 4, 3, 2, and 1 with `GameSettings.Negative`. The original stereo WAV was copied byte for byte into `Assets/Scrapshift/Content/Audio/WaveTick_01.wav` (SHA-256 `0932FFCD6DD43B5F53E358B4430515DC64E06F58E81875552349D54713721783`). A dedicated `WaveTick` cue plays once as each displayed second changes, with ±0.1 pitch variation. It uses a reserved notification voice so crowded combat does not suppress the clock, without ducking combat audio. Pausing holds the current color and number; the next wave starts in the normal color.
+
+Verification: Unity Windows build succeeded with zero errors and warnings. All 364 EditMode tests passed, including the 6-to-5 boundary, later ticks, 0 exclusion, stereo sample, and sound-bank settings. The hidden Direct3D 11 built-player audio check passed all 22 cues, including `WaveTick`; its mixer output had a sampled peak of 0.293. These checks confirm cue playback and timing rules, though they do not measure a visual screenshot at exactly five seconds or certify the subjective mix during crowded combat.

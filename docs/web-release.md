@@ -1,5 +1,11 @@
 # Browser release — October 13, 2026
 
+## October 14 release update
+
+Rebuilt the itch.io WebGL package from the final `main` branch, which includes the crowded-combat lookup optimization. The Web release omits the photo/video showcase buttons and their F5-F10 shortcuts; the desktop build retains those local capture tools. The Web package is a release build without `SCRAPSHIFT_WEB_REVIEW`. Use the refreshed `Builds/Scrapshift-Web.zip` for upload.
+
+The rebuilt package is 71,842,784 bytes (about 68.5 MiB). Unity reported zero build errors and warnings, and the ZIP has `index.html` at its root. The combat CPU optimization was measured in a Windows headless player; WebGL performance and the itch.io iframe still need direct browser measurement. This release is larger than the October 13 package because of subsequently added game content, so the earlier 36.52 MB figure below does not describe this build.
+
 The desktop-browser build is in `Builds/Web`; `Builds/Scrapshift-Web.zip` has `index.html` at its root for an itch.io HTML game upload. Serve the folder over HTTP, not `file://`. Nothing has been published.
 
 ## Changes

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         sealed class StarterTurret { public GameObject obj; public Vector2 pos; public Equipment stats; public float clock,boostClock; public int shotsTaken;public WeaponTrait trait; public StructureSpec spec;public SupportRig rig;public float angle,orbitRadius,orbitSpeed,animationAge=.3f,baseScale;public bool firing;public readonly HashSet<Enemy> touched=new HashSet<Enemy>(); }
-        sealed class Mine { public GameObject obj; public Vector2 pos; public Equipment stats; public float radius; public readonly HashSet<Enemy> occupants=new HashSet<Enemy>(); public bool playerOn; }
+        sealed class Mine { public GameObject obj; public Vector2 pos; public Equipment stats; public StructureSpec spec; public float radius; public readonly HashSet<Enemy> occupants=new HashSet<Enemy>(); public bool playerOn; }
         readonly List<Mine> mines=new List<Mine>();
         readonly List<StarterTurret> mineSpawners=new List<StarterTurret>();
         readonly List<StarterTurret> starterTurrets=new List<StarterTurret>();
@@ -110,14 +111,18 @@ namespace Scrapshift
         void ResetStructures()
         {
             if(loadoutShowcase<0)Rules.CheckStructureDeploymentUnlock();
-            ClearStarterEffects();structureGroupCenter=RandomSupportGroupCenter();ResetPets();
+            ClearStarterEffects();ClearShowcaseSupportQueue();structureGroupCenter=RandomSupportGroupCenter();
+            bool queue=loadoutShowcase>=0;
+            ResetPets(queue?(Action<PetSpec>)QueueShowcasePet:null);
             foreach(var w in Rules.Inventory)
             {
                 var trait=w.Trait("turret")??w.Trait("garden")??w.Trait("landmine");if(trait?.projectile==null)continue;
-                DeployStructure(trait.structure??new StructureSpec{kind=trait.key,stats=trait.projectile,spawnInterval=trait.spawnInterval,animationSpeed=trait.animationSpeed,explosionRadius=trait.radius},w.image);
+                var spec=trait.structure??new StructureSpec{kind=trait.key,stats=trait.projectile,spawnInterval=trait.spawnInterval,animationSpeed=trait.animationSpeed,explosionRadius=trait.radius};
+                if(queue)QueueShowcaseStructure(spec);else DeployStructure(spec,w.image);
             }
             foreach(var item in Rules.Items)if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)
-                if(effect.customKey=="structure"&&effect.structure!=null)for(int i=0;i<(int)effect.value;i++)DeployStructure(effect.structure,StructureImage(effect.structure.kind));
+                if(effect.customKey=="structure"&&effect.structure!=null)for(int i=0;i<(int)effect.value;i++)
+                {if(queue)QueueShowcaseStructure(effect.structure);else DeployStructure(effect.structure,StructureImage(effect.structure.kind));}
         }
         void UpdateStarterEffects(float dt)
         {
@@ -137,7 +142,8 @@ namespace Scrapshift
                 }
                 if(!left)continue;
                 QueueSupportExplosion(mine.pos,mine.stats,SpecialWeaponRules.StructureDamage(Rules,mine.stats,Rules.Stat("explosion_damage")),mine.radius,true);
-                Burst(mine.pos,18,amber);sound.Play(SoundCue.Impact,mine.pos,contextProfile:ContextSoundProfile.Explosion);Destroy(mine.obj);mines.RemoveAt(i);
+                SpawnReferenceExplosionVisual(mine.pos,mine.radius/1.4734f,mine.spec?.explosionSmokeAmount??0,mine.spec?.explosionSoundDb??-10);
+                Destroy(mine.obj);mines.RemoveAt(i);
             }
             foreach(var e in enemies.ToArray())if(e.burnTicks>0&&e.marker==null)
             {
@@ -154,7 +160,7 @@ namespace Scrapshift
         void ClearStarterEffects()
         {
             ghostKills.Clear();
-            foreach(var explosion in weaponExplosions)if(explosion.obj!=null)Destroy(explosion.obj);weaponExplosions.Clear();
+            foreach(var explosion in weaponExplosions){if(explosion.obj!=null)Destroy(explosion.obj);if(explosion.smoke!=null)Destroy(explosion.smoke.gameObject);}weaponExplosions.Clear();
             System.Array.Clear(meleeAttacks,0,meleeAttacks.Length);
             foreach(var t in starterTurrets)Destroy(t.obj);starterTurrets.Clear();
             foreach(var mine in mines)Destroy(mine.obj);mines.Clear();mineSpawners.Clear();
@@ -182,7 +188,7 @@ namespace Scrapshift
         {
             image=SupportArt.Structure("landmine");
             var obj=SpriteObject("Cybernetic proximity charge",image,pos,6);obj.transform.localScale=Vector3.one*ActorPresentation.SpriteLengthScale(image,.4f);
-            mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,radius=SupportBehavior.ExplosionRadius(spawner.trait.radius,Rules.Stat("explosion_size"))});
+            mines.Add(new Mine{obj=obj,pos=pos,stats=spawner.stats,spec=spawner.spec,radius=SupportBehavior.ExplosionRadius(spawner.trait.radius,Rules.Stat("explosion_size"))});
         }
     }
 }

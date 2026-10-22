@@ -64,7 +64,9 @@ namespace Scrapshift
                 for (int i=min+1;i<max;i++) if (started[i] < started[index]) index = i;
             }
             var clips = overrideClips != null && overrideClips.Length > 0 ? overrideClips : entry.variants;
-            int variant = VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
+            int variant = cue == SoundCue.Lose || cue == SoundCue.WaveLetter
+                ? Random.Range(0, clips.Length)
+                : VariantIndex(clips.Length, previous[key] % clips.Length, Random.Range(0, 100000));
             previous[key] = variant; last[key] = now;
             var voice = voices[index]; voice.Stop(); voice.clip = cyberSounds!=null?cyberSounds.Resolve(clips[variant],cue,contextProfile):clips[variant];
             float pitchVariation=overridePitchVariation??entry.pitchVariation;
@@ -76,7 +78,7 @@ namespace Scrapshift
             }
             voice.panStereo = important ? 0 : Mathf.Clamp(position.x / 18, -.6f, .6f);
             gains[index] = overrideGain??entry.gain; started[index] = now;
-            if (important) duckUntil = now + .22f;
+            if (important && cue != SoundCue.WaveTick) duckUntil = now + .22f;
             voice.volume = gains[index] * Volume * (!important && !pickup && now < duckUntil ? .4f : 1);
             voice.Play(); Played++;
         }

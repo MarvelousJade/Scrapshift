@@ -2,6 +2,17 @@ using UnityEngine;
 
 namespace Scrapshift
 {
+    public static class WaveCountdownFeedback
+    {
+        public static int Display(float remaining) => Mathf.CeilToInt(remaining);
+        public static bool IsWarning(int displayed) => displayed >= 1 && displayed <= 5;
+        public static bool TickDue(float before, float after)
+        {
+            int displayed = Display(after);
+            return IsWarning(displayed) && displayed < Display(before);
+        }
+    }
+
     public sealed partial class ArenaGame
     {
         GUIStyle damageSmall, damageBig, cardTitle, center, icon;
@@ -65,6 +76,11 @@ namespace Scrapshift
             var boss=enemies.Find(e=>(e.type.role=="Boss"||e.type.role=="Elite")&&e.marker==null); if(boss!=null&&GameSettings.Flag("bossHp")){Frame(new Rect(400,111,640,25),panelColor,2);Box(new Rect(404,115,632*Mathf.Clamp01(boss.hp/boss.maxHp),17),coral);Text(400,140,640,30,boss.type.id.ToUpperInvariant(),center);}
             DrawFeedback();
             DrawSupportShowcase();
+            if(waveSweeping&&Rules.Wave==RunRules.WaveCount&&waveSweepAge>=2.05f)
+            {
+                int visible=Mathf.Clamp(7-waveLettersRemaining,0,7);
+                OutlinedText(120,75,1200,240,"RUN WON".Substring(0,visible),new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
+            }
             if (Rules.Phase == RunPhase.Upgrade) UpgradeUI();
             else if (Rules.Phase == RunPhase.Shop) ShopUI();
             else if (Rules.Phase == RunPhase.Paused) PauseUI();
@@ -106,9 +122,10 @@ namespace Scrapshift
             if(Rules.Phase==RunPhase.Playing||Rules.Phase==RunPhase.Paused)
             {
                 int duration=RunRules.Durations[Mathf.Clamp(Rules.Wave-1,0,RunRules.WaveCount-1)];
-                int remaining=supportShowcase||loadoutShowcase>=0?
+                int remaining=supportShowcase?
                     Mathf.CeilToInt(duration-Mathf.Repeat(elapsed,duration)):
                     waveSweeping?0:Mathf.CeilToInt(Rules.Remaining);
+                if(WaveCountdownFeedback.IsWarning(remaining))timer.normal.textColor=GameSettings.Negative;
                 OutlinedText(630,61,180,56,remaining.ToString(),timer);
             }
             DrawPendingRewards();

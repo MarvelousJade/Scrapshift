@@ -27,6 +27,8 @@ namespace Scrapshift
             else {float t=Ease((age-strike)/back);result.offset=Vector2.Lerp(finish,Vector2.zero,t);result.angle=sweep?Mathf.Lerp(-angle,0,t):0;}
             return result;
         }
+        public static float TrackedAngle(Vector2 mount,Vector2 target,float spreadDegrees)=>
+            Mathf.Atan2(target.y-mount.y,target.x-mount.x)*Mathf.Rad2Deg+spreadDegrees;
         public static bool Overlaps(Vector2 point,float radius,Vector2 center,float angle,Vector2 half)
         {
             Vector2 local=Quaternion.Euler(0,0,-angle)*(point-center);
@@ -38,7 +40,7 @@ namespace Scrapshift
     {
         sealed class MeleeAttack
         {
-            public float age,recoilTime,recoil,strike,back,range,angle;public bool sweep,flip,returnDamage,sounded;
+            public float age,recoilTime,recoil,strike,back,range,angle,trackingSpread;public bool sweep,flip,returnDamage,sounded;
             public Vector2 direction;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();
         }
         readonly MeleeAttack[] meleeAttacks=new MeleeAttack[24];
@@ -49,6 +51,12 @@ namespace Scrapshift
             float speed=Rules.WeaponAttackSpeed(w);var attack=new MeleeAttack{direction=direction,angle=Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,
                 range=range,sweep=sweep,flip=direction.x<0,returnDamage=p?.returnDamage??false,
                 recoilTime=w.recoilHalf/Mathf.Max(1,1+speed),recoil=w.recoil/Mathf.Max(1,1+speed),strike=ReferenceMeleeMotion.StrikeDuration(speed,range),back=ReferenceMeleeMotion.ReturnDuration(speed)};
+            var target=weaponTargets[index];
+            if(target!=null&&enemies.Contains(target))
+            {
+                Vector2 mount=playerPos+ActorPresentation.WeaponMount(Rules.Inventory.Count,index);
+                attack.trackingSpread=Mathf.DeltaAngle(ReferenceMeleeMotion.TrackedAngle(mount,target.pos,0),attack.angle);
+            }
             meleeAttacks[index]=attack;swings[index]=attack.recoilTime+attack.strike+attack.back;
         }
         void TickMeleeAttack(int index,Equipment w,Vector2 mount,float dt)
@@ -98,8 +106,35 @@ namespace Scrapshift
             if(WeaponReference.Profile(shot.weapon)?.canBounce==false)shot.bounces=0;
         }
         sealed class ReferenceExplosion
-        {public Vector2 position;public float age,radius,damage;public Equipment weapon;public BurnPayload burnPayload;public int weaponIndex=-1,kills;public bool structure;public GameObject obj;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();}
+        {public Vector2 position;public float age,radius,scale,damage;public Equipment weapon;public BurnPayload burnPayload;public int weaponIndex=-1,kills;public bool structure,finished,visualOnly,flesh;public GameObject obj;public ParticleSystem smoke;public int smokeAmount;public readonly HashSet<Enemy> hit=new HashSet<Enemy>();}
         readonly List<ReferenceExplosion> weaponExplosions=new List<ReferenceExplosion>();
+        AudioClip[] fleshExplosionClips;
+        void SpawnReferenceExplosionVisual(Vector2 position,float scale,int smokeAmount,float soundDb=-10,bool flesh=false)
+        {
+            scale=Mathf.Max(.1f,scale);
+            var reference=WeaponReference.Profile(catalog.Weapon("rocket_launcher",2)).explosions[0];
+            if(reference.sprite==null)reference.sprite=ProjectileReference.MakeSprite(reference.texture);
+            var explosion=new ReferenceExplosion{position=position,scale=scale,radius=reference.radius*scale,smokeAmount=smokeAmount,visualOnly=true,flesh=flesh};
+            explosion.obj=SpriteObject(flesh?"Flesh explosion":"Explosion",reference.sprite,position,14);
+            explosion.obj.transform.localScale=Vector3.one*scale*1.36719f;
+            explosion.obj.GetComponent<SpriteRenderer>().color=new Color(.788235f,.788235f,.788235f,.392157f);
+            if(soundDb>-50)
+            {
+                AudioClip[] clips;
+                if(flesh)
+                {
+                    if(fleshExplosionClips==null)fleshExplosionClips=new[]{Resources.Load<AudioClip>("WeaponReference/flesh_impact_01"),Resources.Load<AudioClip>("WeaponReference/flesh_impact_02")};
+                    clips=fleshExplosionClips;
+                }
+                else
+                {
+                    if(reference.audio==null)reference.audio=System.Array.ConvertAll(reference.clips,path=>Resources.Load<AudioClip>(path));
+                    clips=reference.audio;
+                }
+                sound.Play(SoundCue.Impact,position,clips,Mathf.Pow(10,soundDb/20),.2f,true,ContextSoundProfile.Explosion);
+            }
+            weaponExplosions.Add(explosion);
+        }
         bool resolvingWeaponExplosion;
         void QueueSupportExplosion(Vector2 sourceOrigin,Equipment stats,float damage,float radius,bool structure,Enemy directHit=null,BurnPayload burnPayload=null)
         {
@@ -128,12 +163,13 @@ namespace Scrapshift
             // Explosive percentage is already included additively in the weapon
             // damage stat before contact, even when this explosion roll fails.
             Vector2 position=EnemyOrigin(victim);
-            var explosion=new ReferenceExplosion{position=position,radius=(reference?.radius??1.4734f)*scale,damage=damage,weapon=weapon,weaponIndex=weaponIndex,burnPayload=burnPayload??Rules.CaptureBurn(weapon)};if(excludeVictim)explosion.hit.Add(victim);
+            var explosion=new ReferenceExplosion{position=position,radius=(reference?.radius??1.4734f)*scale,scale=scale,damage=damage,weapon=weapon,weaponIndex=weaponIndex,burnPayload=burnPayload??Rules.CaptureBurn(weapon)};if(excludeVictim)explosion.hit.Add(victim);
             if(reference!=null)
             {
                 if(reference.sprite==null)reference.sprite=ProjectileReference.MakeSprite(reference.texture);
                 explosion.obj=SpriteObject("Weapon explosion",reference.sprite,position,14);explosion.obj.transform.localScale=Vector3.one*scale*1.36719f;
                 explosion.obj.GetComponent<SpriteRenderer>().color=new Color(.788235f,.788235f,.788235f,.392157f);
+                explosion.smokeAmount=reference.smokeAmount;
                 if(reference.soundDb>-50)
                 {
                     if(reference.audio==null)reference.audio=System.Array.ConvertAll(reference.clips,path=>Resources.Load<AudioClip>(path));
@@ -146,16 +182,34 @@ namespace Scrapshift
         {
             foreach(var explosion in weaponExplosions.ToArray())
             {
-                int directKills=0;
-                bool previous=resolvingWeaponExplosion;resolvingWeaponExplosion=true;
-                try
+                if(!explosion.finished&&!explosion.visualOnly)
                 {
-                    foreach(var e in enemies.ToArray())if(e.hp>0&&e.marker==null&&!explosion.hit.Contains(e)&&SupportBehavior.ExplosionOverlaps(explosion.position,explosion.radius,e.type.id,e.pos))
-                    {explosion.hit.Add(e);DamageWithWeaponIndex(enemies.IndexOf(e),explosion.damage,explosion.weapon.crit,0,e.pos-explosion.position,explosion.weapon,true,false,explosion.structure,explosion.weaponIndex,explosion.burnPayload);if(e.hp<=0)directKills++;}
+                    int directKills=0;
+                    bool previous=resolvingWeaponExplosion;resolvingWeaponExplosion=true;
+                    try
+                    {
+                        foreach(var e in enemies.ToArray())if(e.hp>0&&e.marker==null&&!explosion.hit.Contains(e)&&SupportBehavior.ExplosionOverlaps(explosion.position,explosion.radius,e.type.id,e.pos))
+                        {explosion.hit.Add(e);DamageWithWeaponIndex(enemies.IndexOf(e),explosion.damage,explosion.weapon.crit,0,e.pos-explosion.position,explosion.weapon,true,false,explosion.structure,explosion.weaponIndex,explosion.burnPayload);if(e.hp<=0)directKills++;}
+                    }
+                    finally{resolvingWeaponExplosion=previous;}
+                    explosion.kills+=directKills;Rules.RecordExplosionKills(explosion.kills);
                 }
-                finally{resolvingWeaponExplosion=previous;}
-                explosion.kills+=directKills;Rules.RecordExplosionKills(explosion.kills);explosion.age+=dt;
-                if(explosion.age>=.05f){if(explosion.obj!=null)Destroy(explosion.obj);weaponExplosions.Remove(explosion);}
+                explosion.age+=dt;
+                // Damage lifetime remains the verified source interval. Smoke
+                // may outlive it, but finished explosions cannot hit new units.
+                if(!explosion.finished&&explosion.age>=.05f)
+                {
+                    explosion.finished=true;
+                    if(explosion.obj!=null)explosion.obj.GetComponent<SpriteRenderer>().enabled=false;
+                    if(explosion.smokeAmount>0&&GameSettings.Flag("effects"))
+                        explosion.smoke=ReferenceExplosionSmoke.Emit(explosion.position,explosion.scale,explosion.smokeAmount,explosion.flesh);
+                }
+                if(explosion.age>=1f||(explosion.finished&&explosion.smokeAmount<=0))
+                {
+                    if(explosion.obj!=null)Destroy(explosion.obj);
+                    if(explosion.smoke!=null)Destroy(explosion.smoke.gameObject);
+                    weaponExplosions.Remove(explosion);
+                }
             }
         }
         Vector2 ProjectileHitOffset(Shot shot)

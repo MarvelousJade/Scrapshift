@@ -63,7 +63,7 @@ namespace Scrapshift
             if(loadoutShowcase<0&&Rules.CanUnlockHourglassOnReturn)progress?.Complete("chal_hourglass");
             loadoutShowcase=-1;showcaseCleanFrame=false;
             ClearCombat();if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;
-            Rules.ReturnToTitle();menuPage=page;endSummary=false;player.SetActive(false);sound.StopAll();
+            Rules.ReturnToTitle();menuPage=page;endSummary=false;waveLettersRemaining=0;waveLetterClock=0;player.SetActive(false);sound.StopAll();
         }
         void ConfirmMenu()
         {
@@ -346,11 +346,13 @@ namespace Scrapshift
             if(MenuButton(new Rect(30,545,200,65),"Start"))menuPage=1;
             if(MenuButton(new Rect(30,705,200,58),"Codex"))menuPage=5;
             if(MenuButton(new Rect(30,627,200,58),"Options"))menuPage=4;
+#if !UNITY_WEBGL
             Text(256,496,360,35,"PHOTO / VIDEO SHOWCASES",new GUIStyle(heading){fontSize=23});
             if(MenuButton(new Rect(254,545,280,65),"Martial Monk"))BeginLoadoutShowcase(0);
             if(MenuButton(new Rect(254,627,280,58),"Cyberpunk Ranger"))BeginLoadoutShowcase(1);
             if(MenuButton(new Rect(254,705,280,58),"Auto Turret"))BeginLoadoutShowcase(2);
             if(MenuButton(new Rect(254,783,280,58),"Druid Pets"))BeginLoadoutShowcase(3);
+#endif
 #if !UNITY_WEBGL || UNITY_EDITOR
             if(MenuButton(new Rect(30,783,200,58),"Quit"))Application.Quit();
 #endif
@@ -358,12 +360,13 @@ namespace Scrapshift
         void ReferenceEndUI()
         {
             if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending){Overlay();return;}
+            if(Rules.Phase==RunPhase.Won)endSummary=true;
             // main._on_EndWaveTimer_timeout presents the loss acknowledgment
             // before processing challenge rewards, with or without retry.
             if((Rules.Phase!=RunPhase.Lost||endSummary)&&DrawUnlockReward())return;
             if(endSummary)MenuBackdrop();else Overlay();bool won=Rules.Phase==RunPhase.Won;
             if(!endSummary)OutlinedText(120,100,1200,115,won?"RUN WON":"RUN LOST",new GUIStyle(title){alignment=TextAnchor.MiddleCenter});
-            else OutlinedText(300,28,1100,58,$"{(won?"Run Won":"Run Lost")} - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
+            else OutlinedText(300,28,1100,58,won?$"Run Won - Salvage Yard     Danger {Rules.Difficulty}":$"Run Lost - Salvage Yard     Wave {Rules.Wave} - Danger {Rules.Difficulty}",new GUIStyle(heading){alignment=TextAnchor.MiddleCenter});
             if(!endSummary)
             {
                 if(won){Portrait(new Vector2(720,417),160,playerAnimation.Look,true);Text(460,625,520,45,"20 waves survived",center);}
@@ -382,7 +385,7 @@ namespace Scrapshift
                 return;
             }
             DrawStatsPanel(true);
-            DrawRunInventory(new Rect(390,104,990,680));
+            DrawRunInventory(new Rect(440,104,610,680));
             Text(1090,123,260,45,"Progress",heading);
             Text(1090,188,260,80,$"Level {Rules.Level}\n{Rules.Kills} enemies defeated",body);
             DrawInventoryTooltip();

@@ -112,7 +112,7 @@ namespace Scrapshift
         {
             float radius=SupportBehavior.ExplosionRadius(spec.explosionRadius,Rules.Stat("explosion_size"));
             QueueSupportExplosion(position,spec.Equipment,damage,radius,true,burnPayload:payload);
-            Burst(position,16,amber);sound.Play(SoundCue.Impact,position,contextProfile:ContextSoundProfile.Explosion);
+            SpawnReferenceExplosionVisual(position,radius/1.4734f,spec.explosionSmokeAmount,spec.explosionSoundDb);
         }
     }
 }

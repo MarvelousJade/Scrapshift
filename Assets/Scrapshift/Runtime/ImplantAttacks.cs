@@ -59,7 +59,7 @@ namespace Scrapshift
                     }
                 }
                 finally{resolvingWeaponExplosion=previous;}
-                Rules.RecordExplosionKills(kills);Burst(explosion.position,18,amber);sound.Play(SoundCue.Impact,explosion.position,contextProfile:ContextSoundProfile.Explosion);
+                Rules.RecordExplosionKills(kills);SpawnReferenceExplosionVisual(explosion.position,radius/1.4734f,effect.smokeAmount,effect.soundDb,effect.fleshExplosion);
             }
         }
         void TryVulnerability(Enemy target,string scalingStat)

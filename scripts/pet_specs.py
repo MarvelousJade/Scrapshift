@@ -1,6 +1,6 @@
 from pathlib import Path
 import analyze_reference as source
-from structure_specs import stats_data,structure
+from structure_specs import stats_data,structure,smoke_amount
 
 def pet(e):
     scene=source.resource(e['scene']);kind=Path(e['scene']).stem
@@ -12,6 +12,7 @@ def pet(e):
     if 'ranged_weapon_stats' in e:result['secondary']=stats_data(source.resource(e['ranged_weapon_stats']))
     if 'explosion_effect' in e:
         explosion=source.resource(e['explosion_effect']);result['secondary']=stats_data(source.resource(explosion['stats']));result['explosionRadius']=explosion['scale']*1.4734
+        result['explosionSmokeAmount']=smoke_amount(explosion);result['explosionSoundDb']=explosion.get('sound_db_mod',-10)
     if 'landmine_effect_stat' in e:
         mine=source.resource(e['landmine_effect_stat']);result['mine']=structure(mine);result['mineInterval']=mine['spawn_cooldown']/60
     if 'burning_data' in e:

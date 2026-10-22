@@ -396,7 +396,7 @@ namespace Scrapshift
                     // reduced-motion visual recoil do not move this spawn point.
                     Vector2 muzzle = WeaponReference.MuzzlePosition(w,mount,direction,WeaponArrivalTime);
                     if (muzzleViews[i] != null) { muzzleViews[i].enabled = true; muzzleViews[i].sprite = catalog.muzzleFrames[0]; }
-                    int pellets=Mathf.Max(1,w.pellets+(int)Rules.Stat("projectiles"));
+                    int pellets=WeaponReference.ProjectileCount(w.pellets,(int)Rules.Stat("projectiles"));
                     for(int p=0;p<pellets;p++)
                     {
                         Vector2 dir=Quaternion.Euler(0,0,WeaponReference.Spread(w,Rules.Stat("projectiles"),UnityEngine.Random.value)*Mathf.Rad2Deg) * direction;var obj=SpriteObject("Rivet tracer",catalog.muzzleFrames[2],muzzle,13);obj.transform.localScale=Vector3.one*.45f;obj.transform.rotation=Quaternion.Euler(0,0,Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg);shots.Add(new Shot
@@ -514,6 +514,7 @@ namespace Scrapshift
         bool DamageWithCapturedVulnerability(int index,float damage,float crit,float knockback,Vector2 attackDirection,Equipment weapon,bool secondary,bool bypassArmor,bool structure,int weaponIndex,BurnPayload burnPayload,float? capturedVulnerability)
         {
             if(Rules.Phase!=RunPhase.Playing||index<0||index>=enemies.Count)return false;
+            if(loadoutShowcase>=0)damage*=ShowcaseLoadouts.DamageMultiplier;
             float sourceDamage=damage;
             if(weapon!=null)burnPayload??=Rules.CaptureBurn(weapon,structure);
             // BurningTimer passes no hitbox in the reference: zero crit chance,
@@ -546,9 +547,9 @@ namespace Scrapshift
             Vector2 away=e.pos-playerPos; if(attackDirection==Vector2.zero)attackDirection=away;
             e.knockback=CombatGeometry.Knockback(attackDirection,away,knockback,e.evolution>0?(int)(.5f+.25f*e.evolution):e.type.resistance);
             if((e.type.id=="fly"||e.type.id=="horned_fly")&&!bypassArmor&&weapon!=null&&!weapon.melee&&UnityEngine.Random.value<.25f)FireEncounter(e);
-            Shake(Mathf.Min(damage/3,3)/100);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);
+            Shake(Mathf.Min(damage/3,3)/100);if(e.type.role!="Tree")EnemyBloodParticles(e,attackDirection,WeaponReference.Profile(weapon)?.effectScale??1);ImpactBurst(e.pos,attackDirection,critical);Flash(e,1);
             FloatText(e.pos,Mathf.CeilToInt(damage)+(critical?"!":""),critical?amber:Color.white,critical);
-            Burst(e.pos,critical?7:3,critical?amber:coral);WeaponReference.Impact(sound,e.pos,critical,bypassArmor);
+            WeaponReference.Impact(sound,e.pos,critical,bypassArmor);
             if(e.hp>0)
             {
                 if(!bypassArmor)ApplyStarterHitEffects(e,weapon,critical,false,secondary,structure,sourceDamage,weaponIndex,burnPayload);

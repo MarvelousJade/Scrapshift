@@ -7,10 +7,10 @@ namespace Scrapshift
     [Serializable] public sealed class WeaponReferenceProfile
     {
         public string id,scene;public int tier,attackType;public bool alternate,returnDamage,speedWithRange,canBounce=true;
-        public float accuracy=1,soundDb=-5;public float[] half,hitOffset,muzzle,muzzleRecoil;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
+        public float accuracy=1,soundDb=-5,effectScale=1;public float[] half,hitOffset,muzzle,muzzleRecoil;public SecondaryReference[] secondary;public ExplosionReference[] explosions;
     }
     [Serializable] public sealed class ExplosionReference
-    {public int index;public string texture;public string[] clips;public float soundDb,radius;[NonSerialized] public Sprite sprite;[NonSerialized] public AudioClip[] audio;}
+    {public int index,smokeAmount;public string texture;public string[] clips;public float soundDb,radius;[NonSerialized] public Sprite sprite;[NonSerialized] public AudioClip[] audio;}
     [Serializable] public sealed class SecondaryReference {public int index;public string scene;}
     [Serializable] public sealed class ProjectileReference
     {
@@ -43,7 +43,7 @@ namespace Scrapshift
         public static WeaponReferenceProfile Profile(Equipment w)
         {Load();if(w==null)return null;weapons.TryGetValue(w.id+":"+w.tier,out var p);return p;}
         public static ProjectileReference Projectile(Equipment w)
-        {Load();string path=w?.projectileScene??Profile(w)?.scene;if(string.IsNullOrEmpty(path))return null;projectiles.TryGetValue(path,out var p);return p;}
+        {Load();string path=w?.projectileScene??Profile(w)?.scene;if(string.IsNullOrEmpty(path)&&w?.specialSpawn==true)path="projectiles/bullet/bullet_projectile.tscn";if(string.IsNullOrEmpty(path))return null;projectiles.TryGetValue(path,out var p);return p;}
         public static ProjectileReference[] Projectiles {get{Load();return data.projectiles;}}
         public static WeaponReferenceProfile[] Profiles {get{Load();return data.weapons;}}
         public static void Apply(ReferenceCatalog catalog)
@@ -65,6 +65,7 @@ namespace Scrapshift
         {return Profile(w)?.speedWithRange==true?(int)Mathf.Clamp(w.projectileSpeed*100*(1+rangeStat/300),50,6000)/100f:w.projectileSpeed;}
         public static float Spread(Equipment w,float addedProjectiles,float roll)
         {return Mathf.Lerp(-1,1,roll)*Mathf.Max(0,w.spread+addedProjectiles*.1f);}
+        public static int ProjectileCount(int baseCount,int addedProjectiles)=>baseCount>0?Mathf.Max(0,baseCount+addedProjectiles):baseCount;
         public static float Lifetime(float range,float speed,bool manual)=> (range+(manual?.5f:1))/Mathf.Max(.001f,speed);
         public static Vector2 AuthoredMuzzleOffset(Equipment weapon,float recoil=0)
         {

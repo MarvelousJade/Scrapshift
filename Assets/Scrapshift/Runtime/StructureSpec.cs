@@ -5,7 +5,8 @@ namespace Scrapshift
     {
         public string kind;
         public ProjectileStats stats;
-        public float spawnInterval=-1,animationSpeed=1,accuracy=1,explosionRadius;
+        public float spawnInterval=-1,animationSpeed=1,accuracy=1,explosionRadius,explosionSoundDb=-10;
+        public int explosionSmokeAmount;
         public bool healing,delayed,pet;
         public StructureBurn burn;
         [NonSerialized] Equipment equipment;

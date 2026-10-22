@@ -6,7 +6,8 @@ namespace Scrapshift
     [Serializable] public sealed class PetSpec
     {
         public string kind;
-        public float speed,health,healthGrowth,doubleChance,revive=2,zone=2,explosionRadius,mineInterval;
+        public float speed,health,healthGrowth,doubleChance,revive=2,zone=2,explosionRadius,mineInterval,explosionSoundDb=-10;
+        public int explosionSmokeAmount;
         public bool structure;
         public ProjectileStats stats,secondary;
         public StructureSpec mine;

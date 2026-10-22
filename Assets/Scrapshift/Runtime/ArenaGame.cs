@@ -15,8 +15,8 @@ namespace Scrapshift
         public RunRules Rules { get; } = new RunRules();
         sealed class Enemy { public GameObject obj, marker; public GroundShadow shadow; public EnemyEntry type; public float hp, age, flash, action; public Vector2 pos, knockback, charge; public Renderer[] renderers; public float speed, maxHp, cooldown, deathAge, burnClock,burnDamage,slowUntil; public int burnTicks,burnSpread; public bool boosted,iceApplied;public float iceClock,icePercent;public string burnStat; public Vector2 wander; public EnemyAttack attack; public LineRenderer telegraph; public float activeAge, spacing, supportFlash, orbitAngle, contactSlow,itemSlow; public EnemyBehavior behavior; public Vector2 destination; public bool hasDestination, secondPhase; public int phaseCheck, orbitSign, gold, evolution; public GameObject[] orbitProjectiles;public float[] orbitDistances;public bool[] orbitPlayerContacts;public HashSet<Pet>[] orbitPetContacts;public float moveRange,moveUpdate,boostDamage=25;public Pet targetPet;public bool targetInitialized;public float targetUpdate; }
         sealed class Shot { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, damage, crit, knockback; public int pierce,bounces;public int weaponIndex=-1; public BurnPayload burnPayload; public bool hostile,secondary,structure,pillar;public StructureSpec structureSpec;public ProjectileReference projectileRef;public WeaponProjectileView projectileView;public int critBounces,critPierces;public bool projectileStopped,deleteOnOwnerDeath,delayedHitboxPending; public float hitDelay,slow; public readonly HashSet<Enemy> slowed=new HashSet<Enemy>(); public Equipment weapon; public EnemyEntry attacker;public Enemy sourceEnemy; public readonly HashSet<Enemy> hit = new HashSet<Enemy>(); }
-        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public Enemy enemyCollector; public int value; public bool fruit; public ConsumableKind consumable; }
-        sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max; }
+        sealed class Pickup { public GameObject obj; public ScrapMotion motion; public Pet petCollector;public Enemy enemyCollector; public int value; public bool fruit; public ConsumableKind consumable;public float petAttractSpeed=5; }
+        sealed class Spark { public GameObject obj; public Vector2 pos, velocity,sinusoidal,sinSpeed; public float age; public float life, max, scale; }
         readonly List<Enemy> enemies = new List<Enemy>();
         readonly List<Shot> shots = new List<Shot>();
         readonly List<Pickup> pickups = new List<Pickup>();
@@ -47,6 +47,7 @@ namespace Scrapshift
             SupportArt.Apply(catalog);
             InitializeProgression();WeaponReference.Apply(catalog);ApplyAudioSettings();Application.targetFrameRate = GameSettings.Flag("limitFps",false)?60:120; Rules.Configure(catalog);
             Rules.CaptureRandomDamageTarget=CaptureImplantDamageTarget;
+            gameObject.AddComponent<GameCursor>().Initialize(this);
 
             player = Instantiate(playerPrefab); player.name = "Scavenger";
             playerAnimation = player.GetComponent<SpriteFrameAnimator>();
@@ -89,6 +90,9 @@ namespace Scrapshift
             }
             int supportIndex=Array.IndexOf(args,"--support-motion-review");if(supportIndex>=0&&supportIndex+1<args.Length)BeginSupportReview(args[supportIndex+1]);
             int weaponReviewIndex=Array.IndexOf(args,"--weapon-fidelity-review");if(weaponReviewIndex>=0&&weaponReviewIndex+1<args.Length)BeginWeaponFidelityReview(args[weaponReviewIndex+1]);
+            int rocketReviewIndex=Array.IndexOf(args,"--rocket-explosion-review");if(rocketReviewIndex>=0&&rocketReviewIndex+1<args.Length)BeginRocketExplosionReview(args[rocketReviewIndex+1]);
+            int explosionParityIndex=Array.IndexOf(args,"--explosion-parity-review");if(explosionParityIndex>=0&&explosionParityIndex+1<args.Length)BeginExplosionParityReview(args[explosionParityIndex+1]);
+            int projectileParityIndex=Array.IndexOf(args,"--projectile-parity-review");if(projectileParityIndex>=0&&projectileParityIndex+1<args.Length)BeginProjectileParityReview(args[projectileParityIndex+1]);
             int petIndex=Array.IndexOf(args,"--pet-review");if(petIndex>=0&&petIndex+1<args.Length)BeginPetReview(args[petIndex+1]);
             int artIndex = Array.IndexOf(args, "--art-review");
             if (artIndex >= 0 && artIndex + 1 < args.Length) BeginArtReview(args[artIndex + 1]);
@@ -107,6 +111,8 @@ namespace Scrapshift
             if(galleryIndex>=0&&galleryIndex+1<args.Length)BeginSpringGallery(args[galleryIndex+1]);
             int presentationIndex=Array.IndexOf(args,"--presentation-review");
             if(presentationIndex>=0&&presentationIndex+1<args.Length)BeginPresentationReview(args[presentationIndex+1]);
+            int winReviewIndex=Array.IndexOf(args,"--win-review");
+            if(winReviewIndex>=0&&winReviewIndex+1<args.Length)BeginWinReview(args[winReviewIndex+1]);
             int feelIndex=Array.IndexOf(args,"--combat-feel-review");
             if(feelIndex>=0&&feelIndex+1<args.Length)BeginCombatFeelReview(args[feelIndex+1]);
             int worldIndex=Array.IndexOf(args,"--world-review");
@@ -115,17 +121,19 @@ namespace Scrapshift
             if(scaleIndex>=0&&scaleIndex+1<args.Length)BeginScaleReview(args[scaleIndex+1]);
             int appearanceIndex=Array.IndexOf(args,"--appearance-review");
             if(appearanceIndex>=0&&appearanceIndex+1<args.Length)BeginAppearanceReview(args[appearanceIndex+1]);
+#if !UNITY_WEBGL
             if(Array.IndexOf(args,"--support-showcase")>=0)BeginSupportShowcase();
             int loadoutIndex=Array.IndexOf(args,"--loadout-showcase");
             if(loadoutIndex>=0&&loadoutIndex+1<args.Length)BeginLoadoutShowcase(ShowcaseLoadouts.Index(args[loadoutIndex+1]));
             if(loadoutShowcase>=0&&Array.IndexOf(args,"--showcase-clean")>=0)showcaseCleanFrame=true;
+#endif
         }
 
         public void Begin()
         {
             combatAccumulator=0;deathSweepStarted=lossSoundPlayed=false;
-            wardrobe?.Reset();
-            ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;selectedWeapon=-1;
+            wardrobe?.Reset();ClearVictoryRing();
+                        ArenaGeometry.SetMapSize(0);ScaleMapArt();waveSweeping=false;waveSweepAge=0;waveLettersRemaining=0;selectedWeapon=-1;
             if(parachute!=null)Destroy(parachute);arrivalAge=ArrivalMotion.Duration;endSummary=false;lastAttacker=null;
             sound.StopAll(); sound.Play(SoundCue.Install);
             gameCamera.orthographicSize = ArenaGeometry.CameraHalfHeight;
@@ -145,6 +153,7 @@ namespace Scrapshift
             TickMenuNavigation();
             if(appearanceParity){AppearanceParityTick();return;}
             if(itemIconReview){ItemIconReviewTick();return;}
+#if !UNITY_WEBGL
             if(supportShowcase&&Input.GetKeyDown(KeyCode.F5))BeginSupportShowcase();
             if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F5))BeginLoadoutShowcase(loadoutShowcase);
             if(Input.GetKeyDown(KeyCode.F6))BeginLoadoutShowcase(0);
@@ -152,6 +161,7 @@ namespace Scrapshift
             if(Input.GetKeyDown(KeyCode.F9))BeginLoadoutShowcase(2);
             if(Input.GetKeyDown(KeyCode.F10))BeginLoadoutShowcase(3);
             if(loadoutShowcase>=0&&Input.GetKeyDown(KeyCode.F8))showcaseCleanFrame=!showcaseCleanFrame;
+#endif
 #if UNITY_WEBGL && SCRAPSHIFT_WEB_REVIEW
             TickWebReview();
 #endif
@@ -185,7 +195,7 @@ namespace Scrapshift
             // Process after Shop input so taking the final crate cannot also start a wave.
             if(Rules.Phase==RunPhase.Loot)
             { if(!menuNavigationActive&&Input.GetKeyDown(KeyCode.Return)||smoke)ResolveCrate(true);else if(Input.GetKeyDown(KeyCode.X))ResolveCrate(false); }
-            if (Rules.Phase == RunPhase.Playing && !economyNativeReview && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null)
+            if (Rules.Phase == RunPhase.Playing && !economyNativeReview && !campaignCheck && !springGallery && !appearanceReview && !scaleReview && !combatFeelReview && !presentationReview && !starterReview && !petReview && !weaponFidelityReview && !rocketExplosionReview && !explosionParityReview && !projectileParityReview && !enemyFidelityReview && !inspectionReview && supportReviewPath==null)
             {
                 int steps=ReferencePhysicsClock.Consume(ref combatAccumulator,Time.deltaTime);
                 for(int step=0;step<steps&&Rules.Phase==RunPhase.Playing;step++)
@@ -207,10 +217,11 @@ namespace Scrapshift
             if (audioPhase != Rules.Phase)
             {
                 if (Rules.Phase != RunPhase.Playing) sound.StopCombat();
-                if (Rules.Phase == RunPhase.Won) sound.Play(SoundCue.Win);
+                if (Rules.Phase == RunPhase.Won) endSummary=true;
                 if (Rules.Phase == RunPhase.Lost&&!lossSoundPlayed){lossSoundPlayed=true;sound.Play(SoundCue.Lose);}
                 audioPhase = Rules.Phase;
             }
+            TickEndAudio(Time.deltaTime);
             if (smoke) SmokeTick();
             foreach(var pet in pets)if(pet.reviveSound!=null){pet.reviveSound.volume=sound.Muted?0:sound.Volume;if(Rules.Phase!=RunPhase.Playing)pet.reviveSound.Stop();}
             foreach(var pet in pets)if(pet.obj!=null)foreach(var renderer in pet.obj.GetComponentsInChildren<SpriteRenderer>()){var c=renderer.color;c.a=GameSettings.Value("petOpacity");renderer.color=c;}
@@ -220,6 +231,9 @@ namespace Scrapshift
             FinishInspectionReview();
             if(enabled)InspectionReviewTick();
             SupportReviewTick();PetReviewTick();WeaponFidelityReviewTick();StarterReviewTick();
+            RocketExplosionReviewTick();
+            ExplosionParityReviewTick();
+            ProjectileParityReviewTick();
             ReviewTick();
             ArtReviewTick();
             EnemyReviewTick();EnemyFidelityReviewTick();
@@ -232,7 +246,7 @@ namespace Scrapshift
             WorldReviewTick();
             CombatFeelReviewTick();
             PresentationReviewTick();
-            TickControllerCheck();
+            TickControllerCheck();WinReviewTick();
         }
 
         static readonly Unity.Profiling.ProfilerMarker ProfileEquipment=new Unity.Profiling.ProfilerMarker("Scrapshift.Equipment");
@@ -282,7 +296,7 @@ namespace Scrapshift
             playerShadow.Place(playerPos, ActorPresentation.PlayerScale);
             player.transform.rotation = Quaternion.identity;
             player.SetActive(true);
-            if(supportShowcase)TickSupportShowcase(dt);else if(loadoutShowcase>=0)TickLoadoutShowcase(dt);else director.Tick(dt, QueueGroup, BeginSpawnGroup);
+            if(supportShowcase)TickSupportShowcase(dt);else {if(loadoutShowcase>=0){invulnerable=10;TickShowcaseSupportQueue(dt);}director.Tick(dt, QueueGroup, BeginSpawnGroup);}
             UpdateBirthQueue(dt);
             activePlayerContactBatch=invulnerable<=0;
             try
@@ -303,18 +317,21 @@ namespace Scrapshift
             using(ProfilePickups.Auto())UpdatePickups(dt);
             ResolveCombatCallbacks();RefreshRuntimeCensus();
             UpdateSparks(dt); UpdateCorpses(dt);
-            shakeTime = Mathf.Max(0, shakeTime - dt);
-            if (shakeTime <= 0) shake = 0;
+            Vector2 cameraShake = ReferenceScreenShake.Tick(ref shake, ref shakeTime, dt,
+                new Vector2(UnityEngine.Random.value, UnityEngine.Random.value));
             if(loadoutShowcase>=0)gameCamera.orthographicSize=Mathf.MoveTowards(gameCamera.orthographicSize,showcaseCleanFrame?3.2f:4.5f,dt*5);
             Vector2 cameraCenter = ArenaGeometry.CameraPosition(playerPos+CombatGeometry.PlayerOriginOffset,gameCamera.aspect);
-            gameCamera.transform.position = new Vector3(cameraCenter.x + (reducedMotion ? 0 : Mathf.Sin(elapsed * 111) * shake), cameraCenter.y + (reducedMotion ? 0 : Mathf.Cos(elapsed * 94) * shake), -20);
-            if(supportShowcase||loadoutShowcase>=0)return;
+            if(reducedMotion)cameraShake=Vector2.zero;
+            gameCamera.transform.position = new Vector3(cameraCenter.x + cameraShake.x, cameraCenter.y + cameraShake.y, -20);
+            if(supportShowcase)return;
+            if(loadoutShowcase>=0&&Rules.Remaining<=dt){BeginLoadoutShowcase(loadoutShowcase);return;}
             if(Rules.Phase==RunPhase.Playing && Rules.Remaining<=dt){BeginWaveSweep();return;}
-            float healthBefore=Rules.Health;using(ProfileRules.Auto())Rules.Tick(dt);
+            float healthBefore=Rules.Health,remainingBefore=Rules.Remaining;using(ProfileRules.Auto())Rules.Tick(dt);
+            if(WaveCountdownFeedback.TickDue(remainingBefore,Rules.Remaining))sound.Play(SoundCue.WaveTick);
             ResolveCombatCallbacks();RefreshRuntimeCensus();
             if(Rules.Health<healthBefore){AttractNearbyConsumables();FloatText(playerPos,$"-{Mathf.CeilToInt(healthBefore-Rules.Health)}",coral,true);playerFlash=CombatGeometry.FlashDuration;sound.Play(SoundCue.Hurt);PlayerHitParticles();}
             if(Rules.Health>healthBefore)FloatText(playerPos,$"+{Rules.Health-healthBefore:0} HP",mint,false);
-            if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); }
+            if (Rules.Phase != before && (Rules.Phase == RunPhase.Loot || Rules.Phase == RunPhase.Upgrade || Rules.Phase == RunPhase.Shop || Rules.Phase == RunPhase.Won)) { ClearCombat(); sound.Play(SoundCue.WaveClear); BeginWaveLetters(14); }
             if (Rules.Phase == RunPhase.Won || Rules.Phase == RunPhase.Lost) player.SetActive(true);
         }
 
@@ -375,12 +392,13 @@ namespace Scrapshift
             for (int i = sparks.Count - 1; i >= 0; i--)
             {
                 var s = sparks[i]; s.life -= dt; s.pos += s.velocity * dt;
-                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * .9f;
+                s.obj.transform.position = new Vector3(s.pos.x, s.pos.y, -3); s.obj.transform.localScale = Vector3.one * Mathf.Max(0, s.life / s.max) * (s.scale > 0 ? s.scale : .9f);
                 if (s.life <= 0) { Destroy(s.obj); sparks.RemoveAt(i); }
             }
         }
         void ClearCombat()
         {
+            ClearShowcaseSupportQueue();
             ClearPets();
             ClearReferenceCombat(); ClearImpacts(); ClearFootDust(); floaters.Clear();
             foreach (var e in enemies) { Destroy(e.obj); if (e.marker != null) Destroy(e.marker); } enemies.Clear();

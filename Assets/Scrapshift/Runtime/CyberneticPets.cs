@@ -21,12 +21,13 @@ namespace Scrapshift
         Vector2 petGroupCenter;
         void InvalidateLootwormTargets(){foreach(var pet in pets)if(pet.spec.kind=="lootworm")pet.lootwormTarget.Invalidate();}
         void ClearPets(){foreach(var pet in pets)Destroy(pet.obj);pets.Clear();Rules.HealingDrones=0;Rules.PetCount=0;}
-        void ResetPets()
+        void ResetPets(Action<PetSpec> create=null)
         {
             ClearPets();
             petGroupCenter=RandomSupportGroupCenter();
-            foreach(var effect in Rules.Effects("pet"))if(effect.pet!=null&&!string.IsNullOrEmpty(effect.pet.kind))for(int i=0;i<(int)effect.value;i++)SpawnPet(effect.pet);
-            int shields=(int)Rules.Stat("jellyshield_count");for(int i=0;i<shields;i++)SpawnPet(new PetSpec{kind="jellyshield",health=1,zone=1});
+            if(create==null)create=SpawnPet;
+            foreach(var effect in Rules.Effects("pet"))if(effect.pet!=null&&!string.IsNullOrEmpty(effect.pet.kind))for(int i=0;i<(int)effect.value;i++)create(effect.pet);
+            int shields=(int)Rules.Stat("jellyshield_count");for(int i=0;i<shields;i++)create(new PetSpec{kind="jellyshield",health=1,zone=1});
             Rules.PetCount=pets.Count;
         }
         void SpawnPet(PetSpec spec)
@@ -134,7 +135,7 @@ namespace Scrapshift
                     if(spec.kind=="bot_o_mine"&&p.secondaryClock<=0)
                     {
                         p.attackPose=.3f;p.secondaryClock=spec.mineInterval;
-                        var spawner=new StarterTurret{pos=p.pos,stats=Rules.PetWeapon(spec.mine.stats,spec),trait=new WeaponTrait{radius=spec.mine.explosionRadius}};
+                        var spawner=new StarterTurret{pos=p.pos,stats=Rules.PetWeapon(spec.mine.stats,spec),spec=spec.mine,trait=new WeaponTrait{radius=spec.mine.explosionRadius}};
                         // SpawnMine supplies the square's +/- .5 offsets. Clamp the
                         // entire square before that sampling, as ZoneService does.
                         SpawnMine(spawner,SupportArt.Structure("landmine"),SupportBehavior.BotMineSpawnCenter(p.pos+SupportBehavior.PetOriginOffset));
@@ -185,7 +186,7 @@ namespace Scrapshift
             float radius=SupportBehavior.ExplosionRadius(pet.spec.explosionRadius,Rules.Stat("explosion_size"));
             Vector2 origin=pet.pos+SupportBehavior.PetOriginOffset;
             QueueSupportExplosion(origin,pet.secondary,Rules.WeaponDamage(pet.secondary,Rules.Stat("explosion_damage")),radius,false);
-            Burst(pet.pos,20,amber);
+            SpawnReferenceExplosionVisual(origin,radius/1.4734f,pet.spec.explosionSmokeAmount,pet.spec.explosionSoundDb);
         }
         bool PetBlocksProjectile(Vector2 from,Vector2 to,float shotRadius=CombatGeometry.HostileRadius,bool friendlyHealing=false)
         {

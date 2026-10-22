@@ -42,6 +42,11 @@ namespace Scrapshift.Tests
         {
             var w=new Equipment{spread=.2f};Assert.AreEqual(-.2f,WeaponReference.Spread(w,0,0));Assert.AreEqual(.2f,WeaponReference.Spread(w,0,1));
             Assert.AreEqual(0,WeaponReference.Spread(w,0,.5f));w.spread=0;Assert.AreEqual(0,WeaponReference.Spread(w,0,.9f));
+            Assert.AreEqual(-.2f,WeaponReference.Spread(w,2,0),.0001f);
+            Assert.AreEqual(.2f,WeaponReference.Spread(w,2,1),.0001f);
+            Assert.AreEqual(3,WeaponReference.ProjectileCount(1,2));
+            Assert.AreEqual(0,WeaponReference.ProjectileCount(0,2));
+            Assert.AreEqual(0,WeaponReference.ProjectileCount(1,-2));
         }
         [Test] public void RangeSpeedAndManualLifetimeFollowReference()
         {
@@ -53,6 +58,9 @@ namespace Scrapshift.Tests
             var flamethrower=new Equipment{id="flamethrower",tier=3,projectileSpeed=5.13f};
             Assert.AreEqual(5.3f,WeaponReference.Speed(flamethrower,10),.0001f,"The source truncates scaled speed in pixels before converting to world units");
             Assert.AreEqual(.5f,WeaponReference.Speed(flamethrower,-1000),.0001f);
+            Assert.AreEqual(7,WeaponReference.DamageAfterHit(11,.5f,15)); // Pumpkin: 35% reduction.
+            Assert.AreEqual(3,WeaponReference.DamageAfterHit(11,.5f,-20)); // Sharp Bullet: 70% reduction.
+            Assert.AreEqual(5,WeaponReference.DamageAfterHit(11,.5f,0)); // Godot's integer hitbox damage.
         }
         [Test] public void ThrustDoesNotHitDuringWindupOrReturnUnlessConfigured()
         {
@@ -67,6 +75,12 @@ namespace Scrapshift.Tests
             var b=ReferenceMeleeMotion.Pose(.499f,.1f,.25f,.4f,.2f,2,true,false,false);
             Assert.Less(a.offset.y,0);Assert.Greater(b.offset.y,0);Assert.Less(a.angle,0);Assert.Greater(b.angle,0);
             Assert.AreEqual(Vector2.zero,ReferenceMeleeMotion.Pose(.7f,.1f,.25f,.4f,.2f,2,true,false,false).offset);
+        }
+        [Test] public void AutoMeleeAimFollowsTargetDuringPlayerMovementAndKeepsSpread()
+        {
+            Vector2 target=Vector2.right;
+            Assert.AreEqual(12,ReferenceMeleeMotion.TrackedAngle(Vector2.zero,target,12),.0001f);
+            Assert.AreEqual(-33,ReferenceMeleeMotion.TrackedAngle(Vector2.up,target,12),.0001f);
         }
         [Test] public void RotatedHitboxRejectsEnemiesOutsideWeaponWidth()
         {

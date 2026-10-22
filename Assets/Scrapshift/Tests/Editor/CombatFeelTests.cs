@@ -7,6 +7,69 @@ namespace Scrapshift.Tests
 {
     public sealed class CombatFeelTests
     {
+        [Test] public void CameraShakeUsesSourceRetriggerAndPositiveRandomOffset()
+        {
+            float intensity = 0, remaining = 0;
+            ReferenceScreenShake.Begin(ref intensity, ref remaining, .03f);
+            Assert.That(remaining, Is.EqualTo(.1f));
+            ReferenceScreenShake.Begin(ref intensity, ref remaining, .03f);
+            Assert.That(remaining, Is.EqualTo(.1f), "Equal hits must not restart the timer");
+            Vector2 offset = ReferenceScreenShake.Tick(ref intensity, ref remaining, .04f, new Vector2(.25f, .75f));
+            Assert.That(offset.x, Is.EqualTo(.0075f).Within(.000001f));
+            Assert.That(offset.y, Is.EqualTo(.0225f).Within(.000001f));
+            ReferenceScreenShake.Begin(ref intensity, ref remaining, .02f);
+            Assert.That(remaining, Is.EqualTo(.06f).Within(.00001f));
+            ReferenceScreenShake.Begin(ref intensity, ref remaining, .05f);
+            Assert.That(remaining, Is.EqualTo(.1f));
+            ReferenceScreenShake.Tick(ref intensity, ref remaining, .11f, Vector2.one);
+            Assert.That(ReferenceScreenShake.Tick(ref intensity, ref remaining, .01f, Vector2.one), Is.EqualTo(Vector2.zero));
+            Assert.That(intensity, Is.Zero);
+        }
+
+        [Test] public void BloodEmitterMatchesSourceAmountRadiusSpreadSpeedAndScale()
+        {
+            Assert.That(ReferenceBloodSpray.Count(1), Is.EqualTo(8));
+            Assert.That(ReferenceBloodSpray.Count(.5f), Is.EqualTo(4));
+            Assert.That(ReferenceBloodSpray.Count(.2f), Is.EqualTo(1));
+            Assert.That(ReferenceBloodSpray.Count(.1f), Is.EqualTo(1));
+            Assert.That(ReferenceBloodSpray.Count(0), Is.Zero);
+            Assert.That(ReferenceBloodSpray.EmissionOffset(0, 0).magnitude, Is.EqualTo(.15f).Within(.00001f));
+            Assert.That(ReferenceBloodSpray.EmissionOffset(1, .5f), Is.EqualTo(Vector2.zero));
+            Assert.That(ReferenceBloodSpray.Velocity(Vector2.right, .5f, 0), Is.EqualTo(Vector2.left * 3));
+            Assert.That(ReferenceBloodSpray.Velocity(Vector2.right, 0, 1).x, Is.EqualTo(6).Within(.00001f),
+                "The source's 180 degree spread covers the full circle");
+            Assert.That(ReferenceBloodSpray.Scale(0), Is.EqualTo(.5f));
+            Assert.That(ReferenceBloodSpray.Scale(1), Is.EqualTo(.625f));
+            Assert.That(ReferenceBloodSpray.Lifetime, Is.EqualTo(.5f));
+        }
+
+        [Test] public void BloodEmitterWithoutAnActorDoesNotAllocateParticlesOrConsumeRandomness()
+        {
+            const System.Reflection.BindingFlags hidden=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var owner=new GameObject("Absent blood surface test");
+            var saved=UnityEngine.Random.state;
+            try
+            {
+                var game=owner.AddComponent<ArenaGame>();
+                var enemy=System.Activator.CreateInstance(typeof(ArenaGame).GetNestedType("Enemy",System.Reflection.BindingFlags.NonPublic),true);
+                var method=typeof(ArenaGame).GetMethod("EnemyBloodParticles",hidden);
+                method.Invoke(game,new object[]{enemy,Vector2.right,1f});
+                method.Invoke(game,new object[]{null,Vector2.right,1f});
+                Assert.AreEqual(saved,UnityEngine.Random.state);
+                Assert.IsFalse((bool)typeof(ArenaGame).GetField("enemyBloodSpriteLoaded",hidden).GetValue(game));
+                Assert.AreEqual(0,((System.Collections.ICollection)typeof(ArenaGame).GetField("sparks",hidden).GetValue(game)).Count);
+            }
+            finally{UnityEngine.Object.DestroyImmediate(owner);UnityEngine.Random.state=saved;}
+        }
+
+        [Test] public void ImportedRapidFireWeaponsKeepSourceBloodScale()
+        {
+            var profiles = WeaponReference.Profiles;
+            Assert.That(System.Array.Find(profiles, p => p.id == "minigun" && p.tier == 4).effectScale, Is.EqualTo(.1f));
+            Assert.That(System.Array.Find(profiles, p => p.id == "smg" && p.tier == 4).effectScale, Is.EqualTo(.2f));
+            Assert.That(System.Array.Find(profiles, p => p.id == "gatling_laser" && p.tier == 4).effectScale, Is.EqualTo(.1f));
+        }
+
         [Test] public void EnemyCrowdingTargetAndContactUseDistinctCircles()
         {
             var baby = CombatGeometry.Enemy("baby_alien");

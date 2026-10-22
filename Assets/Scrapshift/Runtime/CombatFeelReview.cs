@@ -16,8 +16,9 @@ namespace Scrapshift
         {
             public string status, scope;
             public bool capturesVerified, northShotSurvived, nearestFirst, whiteFlash, pushDisplaced,
-                outsideContactSafe, insideContactHurt, contactSlow, secondHitBlocked, playerWhiteFlash, flashExpired, playerRemainsVisible, hitEffectsExpired;
+                outsideContactSafe, insideContactHurt, contactSlow, secondHitBlocked, playerWhiteFlash, flashExpired, playerRemainsVisible, hitEffectsExpired, enemyDeathBlood;
             public float nearDamage, farDamage, pushDistance, invulnerabilitySeconds;
+            public int enemyBloodParticles;
         }
         CombatFeelReport feelReport;
         Enemy FeelEnemy(Vector2 position)
@@ -35,7 +36,7 @@ namespace Scrapshift
             playerPos = new Vector2(0,6.5f); player.transform.position = playerPos;
             player.SetActive(true); playerAnimation.Tick(Vector2.zero,0,false); playerShadow.Place(playerPos,ActorPresentation.PlayerScale);
             gameCamera.transform.position = (Vector3)ArenaGeometry.CameraPosition(playerPos,gameCamera.aspect)+Vector3.back*20;
-            feelReport = new CombatFeelReport { scope = "Controlled runtime checks with fixed enemies, supplied shots and 1000 enemy HP. Normal camera; simulation advanced explicitly for reproducible impact captures. Not normal-run balance or a human playthrough." };
+            feelReport = new CombatFeelReport { scope = "Controlled runtime checks with fixed enemies, supplied shots, 1000 HP hit targets and a 1 HP death target. Normal camera; simulation advanced explicitly for reproducible impact captures. Not normal-run balance or a human playthrough." };
         }
         void CombatFeelReviewTick()
         {
@@ -97,10 +98,20 @@ namespace Scrapshift
             }
             else if (combatFeelStage == 5 && t > 4.2f)
             {
-                feelReport.capturesVerified=CaptureVerification.Fresh(combatFeelPath,combatFeelStartedUtc,"piercing-impact","knockback","player-hit","player-hit-recovery","player-hit-finished");
+                var doomed = FeelEnemy(playerPos + Vector2.right * 1.5f);
+                doomed.hp = 1;
+                Damage(enemies.Count - 1, 10, crit: -1, attackDirection: Vector2.right);
+                UpdateFeedback(.06f); UpdateSparks(.06f); UpdateCorpses(.06f);
+                feelReport.enemyBloodParticles = sparks.FindAll(s => s.obj.name == "Enemy blood particle").Count;
+                feelReport.enemyDeathBlood = feelReport.enemyBloodParticles == 8 && corpses.Contains(doomed);
+                ScreenCapture.CaptureScreenshot(Path.Combine(combatFeelPath,"enemy-death.png"));combatFeelStage++;
+            }
+            else if (combatFeelStage == 6 && t > 5.2f)
+            {
+                feelReport.capturesVerified=CaptureVerification.Fresh(combatFeelPath,combatFeelStartedUtc,"piercing-impact","knockback","player-hit","player-hit-recovery","player-hit-finished","enemy-death");
                 bool passed=feelReport.capturesVerified&&feelReport.northShotSurvived&&feelReport.nearestFirst&&feelReport.whiteFlash&&feelReport.pushDisplaced
                     &&feelReport.outsideContactSafe&&feelReport.insideContactHurt&&feelReport.contactSlow&&feelReport.secondHitBlocked&&feelReport.playerWhiteFlash
-                    &&feelReport.flashExpired&&feelReport.playerRemainsVisible&&feelReport.hitEffectsExpired;
+                    &&feelReport.flashExpired&&feelReport.playerRemainsVisible&&feelReport.hitEffectsExpired&&feelReport.enemyDeathBlood;
                 feelReport.status=passed?"Passed":"Failed";
                 File.WriteAllText(Path.Combine(combatFeelPath,"combat-feel.json"),JsonUtility.ToJson(feelReport,true));
                 Application.Quit(passed?0:1);enabled=false;

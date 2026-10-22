@@ -86,5 +86,6 @@ namespace Scrapshift.Editor
             ApplyDedicatedWeaponArt(catalog);
             EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
         }
+
     }
 }

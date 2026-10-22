@@ -13,5 +13,3 @@ for enemy in json.loads((PROJECT/'Assets/Scrapshift/Resources/extended-encounter
         body=offset('', 'Collision'),origin=[-center[0]/100,center[1]/100],bodyLayer=n['.'].get('collision_layer',1)))
 (PROJECT/'Assets/Scrapshift/Resources/enemy-collisions.json').write_text(json.dumps(dict(entries=rows),indent=2)+'\n')
 print('Imported',len(rows),'source collision profiles')
-
-

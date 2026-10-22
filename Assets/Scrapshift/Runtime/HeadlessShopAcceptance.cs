@@ -36,7 +36,11 @@ namespace Scrapshift
                     string receipt="";
                     for(int i=0;i<ids.Length;i++)
                     {
-                        r=Run(c,877,ids[i]);r.SetShowcaseWave(5);Shop(r);
+                        r=Run(c,877,ids[i]);r.SetShowcaseWave(5);
+                        // Showcase setup now runs the ordinary wave-start effects,
+                        // including Entrepreneur's material reset. Fund only after it.
+                        if(r.Scrap<10000)r.GainWeaponCriticalMaterials(10000-r.Scrap);
+                        Shop(r);
                         var item=Offer(c,"coffee",5);var weapon=new ShopOffer{weapon=c.Weapon("pistol",1),rolledWave=5};
                         Check(r.Price(item)==coffee[i]&&r.Price(weapon)==pistol[i],ids[i]+" source integer price");
                         r.Shop[0]=item;int purchaseBalance=r.Scrap;Check(r.Buy(0)&&r.Scrap==purchaseBalance-coffee[i],ids[i]+" exact item debit");
