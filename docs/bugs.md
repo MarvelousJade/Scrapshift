@@ -1,3 +1,7 @@
+## October21 - controlled campaign policy and completed receipts
+
+The unfiltered R36 comparison legitimately lost to two Blood Donation copies: both engines' debug invulnerability blocks contacts, not periodic HP costs. Preserve that Failed objective rather than altering damage rules. Added an opt-in acquisition policy, disabled in survival, to skip positive periodic self-damage offers and recycle such crate rewards. Both fresh matched-policy runs completed20 waves/19 shops/exit0.12 focused and1286 integrated checks passed. Completed Python runner receipts omit the older native status field; summary/comparison now accept that schema while requiring actual exitCode. First metadata-only comparator failure is preserved; final18/18 passed. [Policy and limits](campaign-safe-loadout-policy-2026-10-20.md).
+
 ## October20 - scaled scroll navigation bounds disagreed with pixels
 
 Native R37 traces and screenshots established a47/31-pixel offset at80% canvas scale between registered scroll controls and their rendered bounds. Actual D-pad/A confirmation still worked in that sampled case; no lost activation was claimed. Capture the parent origin/axes before BeginScrollView and retain that pass's returned scroll snapshot in a nested context stack. R38 bothscale probes Passed: maximum independent-coordinate error0.0153 pixels at80%, zero at100%; immediate/settled activation stayed correct. All8 captures were inspected. Updated shop/navigation fixtures and suite1274/1274 Passed. [Evidence and limits](scroll-navigation-native-followup-2026-10-20.md).

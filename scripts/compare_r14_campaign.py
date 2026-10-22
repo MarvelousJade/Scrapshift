@@ -122,7 +122,7 @@ def main():
     checks = {
         "referenceWonAndExitedZero": ref_end.get("run_won") is True and ref_summary.get("process_exit_code") == 0,
         "unityFinalPositiveHarvestCredited": final_material_credit >= minimum_final_harvest,
-        "unityProcessExitedZero": unity_process.get("status") == "exited" and unity_process.get("exitCode") == 0,
+        "unityProcessExitedZero": unity_process.get("status") in (None, "exited") and unity_process.get("exitCode") == 0,
         "unityWon": unity_end.get("phase") == "Won" and unity_summary.get("status") == "Passed"
                     and unity_summary.get("phase") == "Won" and not unity_summary.get("preflight", False),
         "referenceTwentyTimersNineteenShops": numbered(ref, "wave_timer_end") == list(range(1, 21))

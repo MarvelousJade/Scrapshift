@@ -43,7 +43,9 @@ def final_inventory(text):
 def summarize(folder, debug_log=None):
     trace_path, process_path = folder / "trace.json", folder / "process.json"
     trace, process = read(trace_path), read(process_path)
-    if process.get("status") != "exited" or "exitCode" not in process:
+    # The Python runner writes exitCode only after subprocess.run returns;
+    # the older native runner also supplies an explicit "exited" status.
+    if process.get("status") not in (None, "exited") or "exitCode" not in process:
         raise ValueError("Current process record does not contain a finished exit result.")
     end = next((row for row in reversed(trace) if row.get("event") == "finished"), None)
     boot = next((row for row in trace if row.get("event") == "boot"), None)

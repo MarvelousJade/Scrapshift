@@ -1,3 +1,7 @@
+## October21 rehearsal - distinguish a failed experiment from a gameplay defect
+
+The full-run fixture lost after acquiring periodic HP costs. Source inspection showed that contact immunity never blocked those costs, so adding blanket immunity would have changed the experiment and concealed valid behavior. Instead, keep the loss and explicitly control acquisition in both isolated engines. Explain the unchanged damage path, declared policy, fresh20-wave evidence and why random totals need not match. Codex authored this investigation and validation under user direction; it is not a user-performed human campaign. [Fresh comparison](full-run-r40-comparison-2026-10-21.md).
+
 ## October20 rehearsal - measure UI coordinates in the rendering context
 
 The project reproduced a geometric discrepancy with same-frame traces and actual rendered pixels, while keeping semantic input success separate. A scroll-view conversion mixed scaled canvas and clip translation; storing the parent's axes and the scroll snapshot restored matching registration coordinates. Actual virtual D-pad/A tests passed at80% and100% scales, with independent root-formula errors under0.016 pixels. Earlier observer-cap and invalid-GUID failures were fixture defects. Codex authored the investigation and fix under user direction; reproduce and explain the transformations before presenting this as hands-on debugging. [Evidence](scroll-navigation-native-followup-2026-10-20.md).

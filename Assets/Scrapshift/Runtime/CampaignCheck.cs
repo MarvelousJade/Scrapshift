@@ -9,6 +9,17 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool campaignCheck, campaignFinished,campaignRealtime,campaignPreflight,campaignSurvival,campaignHeadless;
+        bool campaignSafeLoadout;
+        int campaignSkippedSelfDamageOffers,campaignRecycledSelfDamageCrates;
+        // Controlled comparison policy only. The original debug invulnerability
+        // disables contact hurtboxes, not Blood Donation's periodic self-damage.
+        static bool CampaignSafeLoadoutEnabled(bool requested,bool survival)=>requested&&!survival;
+        static bool CampaignHasPeriodicSelfDamage(string key,float value)=>value>0&&(key=="lose_hp_per_second"||key=="stat_lose_hp_per_second");
+        static bool CampaignAllowsItem(ItemEntry item,bool safeLoadout)=>!safeLoadout||item==null||
+            !(item.effects??Array.Empty<StatEffect>()).Any(e=>e!=null&&CampaignHasPeriodicSelfDamage(e.key,e.value))&&
+            !(item.conditionalEffects??Array.Empty<ConditionalEffect>()).Any(e=>e!=null&&CampaignHasPeriodicSelfDamage(e.key,e.value));
+        static bool CampaignAllowsWeapon(Equipment weapon,bool safeLoadout)=>!safeLoadout||weapon==null||
+            !(weapon.traits??Array.Empty<WeaponTrait>()).Any(e=>e!=null&&CampaignHasPeriodicSelfDamage(e.key,e.value));
         float campaignObservedDamage,campaignObservedHealing,campaignLowestHealth;
         double campaignAccumulator;
         int PickupPhysicsRate=>campaignCheck&&!campaignRealtime?240:60;
@@ -41,9 +52,12 @@ namespace Scrapshift
         [Serializable] sealed class WaveCheck { public int wave,kills,shots,materials,level,itemCount,bankedMaterials,materialObjects,groundMaterialValue; public long enemyKills,materialPickups;public float simulatedSeconds,waveSimulatedSeconds,harvesting,luck; }
         [Serializable] sealed class CampaignReport
         {
-            public string status,scope,phase;
+            public string status,scope,phase,damageImmunityScope;
             public bool capturesVerified,realtime,preflight,headless;
             public bool survival,invulnerabilityInjected;
+            public bool safeLoadoutPolicy;
+            public int skippedSelfDamageOffers,recycledSelfDamageCrates;
+            public string[] excludedPeriodicSelfDamageIds;
             public float observedNetDamage,observedNetHealing,lowestObservedHealth,deathCleanupAge;
             public int pickupPhysicsRate;
             public int completedWaves,purchases,shops,upgrades,crates,peakEnemies,charges,rangedAttacks,bossPhaseChanges,finalMaterials,finalLevel,finalItemCount,finalBankedMaterials,finalKills;
@@ -61,6 +75,8 @@ namespace Scrapshift
             campaignRealtime=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-realtime")>=0;
             campaignPreflight=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-preflight")>=0;
             campaignSurvival=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-survival")>=0;
+            campaignSafeLoadout=CampaignSafeLoadoutEnabled(Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-safe-loadout")>=0,campaignSurvival);
+            campaignSkippedSelfDamageOffers=campaignRecycledSelfDamageCrates=0;
             campaignHeadless=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-headless")>=0;
             if(campaignHeadless&&!Application.isBatchMode)throw new InvalidOperationException("Headless campaign requires -batchmode.");
             campaignAccumulator=0;
@@ -88,7 +104,8 @@ namespace Scrapshift
             arrivalAge=0;arrivalImpact=false;
             if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
             PoseArrival(0);
-            CampaignSnapshot("boot","Neutral base stats, no character effects, Danger 0; six tier-II weapons; fresh in-memory progression; seed 771. Random sequences are engine-specific. Invulnerability="+!campaignSurvival);
+            CampaignSnapshot("boot","Neutral base stats, no character effects, Danger 0; six tier-II weapons; fresh in-memory progression; seed 771. Random sequences are engine-specific. ContactInvulnerability="+!campaignSurvival);
+            if(campaignSafeLoadout)CampaignSnapshot("safe_loadout_policy","Opt-in controlled purchase/reward policy: skip positive lose_hp_per_second offers and recycle such crate rewards. Contact immunity only; no HP override or damage-rule change. Historical original campaign did not use this policy.");
         }
 
         CampaignWeapon[] CampaignWeapons()=>Rules.Inventory.Select(w=>new CampaignWeapon{id=w.id,tier=w.tier}).ToArray();
@@ -118,8 +135,11 @@ namespace Scrapshift
                 bool passed=captures&&(survivalLoss||(campaignPreflight?Rules.Phase==RunPhase.Shop&&campaignCompleted==1:Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0));
                 var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),capturesVerified=!campaignHeadless&&captures,headless=campaignHeadless,realtime=campaignRealtime,preflight=campaignPreflight,pickupPhysicsRate=PickupPhysicsRate,
                     survival=campaignSurvival,invulnerabilityInjected=!campaignSurvival,
+                    damageImmunityScope=campaignSurvival?"none":"contact_hurtbox_only",
+                    safeLoadoutPolicy=campaignSafeLoadout,skippedSelfDamageOffers=campaignSkippedSelfDamageOffers,recycledSelfDamageCrates=campaignRecycledSelfDamageCrates,
+                    excludedPeriodicSelfDamageIds=campaignSafeLoadout?catalog.data.items.Where(i=>!CampaignAllowsItem(i,true)).Select(i=>i.id).Concat(catalog.data.equipment.Where(w=>!CampaignAllowsWeapon(w,true)).Select(w=>w.id)).Distinct().OrderBy(id=>id).ToArray():Array.Empty<string>(),
                     observedNetDamage=campaignObservedDamage,observedNetHealing=campaignObservedHealing,lowestObservedHealth=campaignLowestHealth,deathCleanupAge=Rules.DeathCleanupAge,
-                    scope=(campaignHeadless?"HEADLESS state/trace verification only; no UI, screenshots, hardware or visual verification. ":"")+(campaignPreflight?"ONE-WAVE PREFLIGHT ONLY; no full campaign. ":"")+(campaignRealtime?"Normal timing Windows integration fixture: reference 60Hz accumulator, 60fps render target and normal 60Hz pickup physics. ":"Accelerated Windows integration fixture: twenty-four 60Hz combat steps per rendered frame and 240Hz pickup physics. ")+"Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, "+(campaignSurvival?"ordinary damage enabled (no injected invulnerability); a natural loss is an accepted survival observation and is NOT twenty completed waves. ":"invulnerability, ")+"mute and fresh in-memory progression. Health metrics sum net changes per simulation step, not all independent damage/healing events. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
+                    scope=(campaignHeadless?"HEADLESS state/trace verification only; no UI, screenshots, hardware or visual verification. ":"")+(campaignPreflight?"ONE-WAVE PREFLIGHT ONLY; no full campaign. ":"")+(campaignRealtime?"Normal timing Windows integration fixture: reference 60Hz accumulator, 60fps render target and normal 60Hz pickup physics. ":"Accelerated Windows integration fixture: twenty-four 60Hz combat steps per rendered frame and 240Hz pickup physics. ")+"Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, "+(campaignSurvival?"ordinary damage enabled (no injected invulnerability); a natural loss is an accepted survival observation and is NOT twenty completed waves. ":"contact hurtbox immunity (periodic self-damage remains active), ")+(campaignSafeLoadout?"Opt-in safe-loadout purchase/reward policy excludes positive periodic self-damage carriers; historical original offers were not filtered. ":"")+"mute and fresh in-memory progression. Health metrics sum net changes per simulation step, not all independent damage/healing events. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
                     completedWaves=campaignCompleted,purchases=campaignPurchases,shops=campaignShops,upgrades=campaignUpgrades,crates=campaignCrates,peakEnemies=peakEnemies,
                     charges=chargeReleases,rangedAttacks=rangedReleases,bossPhaseChanges=bossMutations,wallSeconds=Time.realtimeSinceStartup-campaignStart,
                     enemyIds=campaignEnemyIds.OrderBy(x=>x).ToArray(),waves=campaignWaves.ToArray(),finalMaterials=Rules.Scrap,finalLevel=Rules.Level,finalItemCount=Rules.Items.Count,
@@ -156,7 +176,13 @@ namespace Scrapshift
                     CampaignSnapshot("wave_completed");
                 }
                 while(Rules.Phase==RunPhase.Loot)
-                {string id=Rules.CrateItem?.id;if(!Rules.ResolveCrate(true))break;campaignCrates++;CampaignSnapshot("crate_take",id);}
+                {
+                    string id=Rules.CrateItem?.id;bool take=CampaignAllowsItem(Rules.CrateItem,campaignSafeLoadout);
+                    int beforeMaterials=Rules.Scrap,value=take?0:Rules.CrateRecycleValue;
+                    if(!Rules.ResolveCrate(take))break;campaignCrates++;
+                    if(take)CampaignSnapshot("crate_take",id);
+                    else{campaignRecycledSelfDamageCrates++;CampaignSnapshot("crate_recycle_policy",id,value,beforeMaterials);}
+                }
                 while(Rules.Phase==RunPhase.Upgrade)
                 {var choice=Rules.Offers[0];Rules.Choose(0);campaignUpgrades++;CampaignSnapshot("upgrade",$"{choice.Stat}:{choice.Amount}:tier{choice.Tier}");}
                 if(Rules.Phase==RunPhase.Shop)
@@ -165,6 +191,8 @@ namespace Scrapshift
                     for(int i=0;i<4;i++)if(Rules.CanBuy(i))
                     {
                         var offer=Rules.Shop[i];string id=offer.item?.id??offer.weapon?.id;int price=Rules.Price(offer),beforeMaterials=Rules.Scrap;
+                        if(!CampaignAllowsItem(offer.item,campaignSafeLoadout)||!CampaignAllowsWeapon(offer.weapon,campaignSafeLoadout))
+                        {campaignSkippedSelfDamageOffers++;CampaignSnapshot("purchase_skipped_policy",id,price,beforeMaterials);continue;}
                         if(Rules.Buy(i)){campaignPurchases++;CampaignSnapshot("purchase",id,price,beforeMaterials);}
                     }
                     CampaignSnapshot("shop_exit");
