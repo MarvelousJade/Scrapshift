@@ -1,3 +1,7 @@
+## October21 - physical Xbox core retest passed
+
+The user operated the Xbox controller and confirmed all requested core controls worked. R40 logs268 samples/136 Playing, physical navigation/movement/aim and Menu pause/resume, with zero combat menu-focus cue requests. No virtual device or code fix was needed. Ranged projectile firing and other controller shortcuts were not independently exercised. [Hardware evidence](controller-hardware-2026-10-21.md).
+
 ## October21 - controlled campaign policy and completed receipts
 
 The unfiltered R36 comparison legitimately lost to two Blood Donation copies: both engines' debug invulnerability blocks contacts, not periodic HP costs. Preserve that Failed objective rather than altering damage rules. Added an opt-in acquisition policy, disabled in survival, to skip positive periodic self-damage offers and recycle such crate rewards. Both fresh matched-policy runs completed20 waves/19 shops/exit0.12 focused and1286 integrated checks passed. Completed Python runner receipts omit the older native status field; summary/comparison now accept that schema while requiring actual exitCode. First metadata-only comparator failure is preserved; final18/18 passed. [Policy and limits](campaign-safe-loadout-policy-2026-10-20.md).

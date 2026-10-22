@@ -1,3 +1,7 @@
+## October21 - actual Xbox operation
+
+The user personally operated the physical Xbox controller and confirmed the requested core menu, movement, aiming and pause controls worked. Codex configured an isolated R40 observer session, enabled manual aiming, inspected268 snapshots and recorded the bounded acceptance. No virtual controller or production code change was used. [Scope](controller-hardware-2026-10-21.md).
+
 ## October21 - remaining parity and fresh comparison
 
 User: authorized continued computer use, requested meaningful commits and accurate notes, and deferred physical controller input. Codex agents: source audits, synchronous Player cleanup/mine/title/scroll fixes, fixture-policy design, automated/native visual/software checks, scoped real keyboard/mouse/focus interaction and fresh matched-policy20-wave comparison. Both runs are scripted, not user-played campaigns; source material remains third-party and the supplied project is unchanged. Interview stories require the user to reproduce and explain the case. [Evidence](gameplay-verification-status.md).

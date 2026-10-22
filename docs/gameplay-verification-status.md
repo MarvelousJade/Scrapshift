@@ -2,7 +2,7 @@
 
 Current Windows review: **R40**, branch `codex/gameplay-parity`, source checkpoint `ede4094`. Launch `Builds/GameplayParity20261020R40/LaunchGame.cmd`; keep its unpacked folder together. This checklist separates source/model, packaged callbacks, native software/visual evidence, scripted campaigns and human hardware evidence. It does not claim universal parity.
 
-Desktop access is authorized. Physical Xbox testing is deferred at the user's request. The user supplied direction/reference and earlier hardware feedback; Codex agents performed the investigation, changes, automated/native checks and comparison below.
+Desktop access is authorized. Fresh core physical Xbox controls passed on R40 with user operation and matching input evidence; broader controller cases retain their limits. The user supplied direction/reference and earlier hardware feedback; Codex agents performed the investigation, changes, automated/native checks and comparison below.
 
 ## Current verified evidence
 
@@ -18,6 +18,7 @@ Desktop access is authorized. Physical Xbox testing is deferred at the user's re
 | Item matrices and interactions | [Static pairs](item-pair-oracle-2026-10-20.md), [acquisition order](item-acquisition-order-followup-2026-10-20.md), [item chains](item-chain-followup-2026-10-20.md) |22,155 static vectors;10,500 character/single-item vectors;416 acquisition cases/4,576 snapshots;53 dynamic cases/397 snapshots. Plain explosion burn/life-steal ownership, Fireworks14/15 and Beard controls have finite source/packaged checks. Arbitrary loadouts/timing are not exhaustive. |
 | Fresh full20 comparison | [R40 comparison](full-run-r40-comparison-2026-10-21.md) | **Both engines Won/20 waves/19 shops/exit0;18/18 checks Passed.** Normal60Hz timing, neutral six-tier-II-weapon fixture, contact immunity, scripted movement, mute and fresh progression. Both use the declared opt-in acquisition rule that skips periodic self-damage carriers. All29 source and36 Unity purchase debits reconcile. Random totals/loadouts need not match. |
 | Preserved failed run | [Acquisition policy](campaign-safe-loadout-policy-2026-10-20.md) | Unfiltered R36 lost in wave13 after12 completed waves with two Blood Donations. This is valid periodic self-damage, not a gameplay defect. No HP or damage rule was changed to force completion. R29 full20 and ordinary-damage runs remain historical. |
+| Physical Xbox core controls | [Human-operated session](controller-hardware-2026-10-21.md) |User confirmed all requested actions worked.268 snapshots/136 Playing; physical stick/D-pad motion, resulting movement/aim, A/B and Menu pause/resume recorded. No virtual injection. Manual aiming enabled; projectile-shot counter stayed0, so no independent ranged-firing claim. |
 | Keyboard, mouse and OS focus | [Final native checkpoint](native-final-checkpoint-2026-10-21.md) | R38 actual keyboard menu confirmation/direction, mouse Start and recorded movement; R40 observed two-window focus loss pauses, return remains paused, mouse Resume and Escape pause. Focus uses an isolated staged support showcase; samples lack an OS-focus field and do not prove all background/platform cases. Godot app approval timed out and its UI was left untouched. |
 | Packaging and integrity | [Final native checkpoint](native-final-checkpoint-2026-10-21.md), `final-postrun-verification.json` | R40 build0 errors/warnings,401850858 bytes.634 repo/clone inputs and159 player files verified.3,816 original source inputs remain unchanged;3,819 prepared clone inputs match after execution.66 reviewed capture hashes verified. R38 toR40 changes only campaign fixture/policy tests, so native presentation evidence retains its stated build scope. |
 
@@ -29,7 +30,7 @@ No unresolved confirmed implementation difference from this pass remains. These 
 
 | Area | Remaining acceptance |
 | --- | --- |
-| Physical Xbox | Deferred. Earlier human confirmation remains historical; virtual input, device detection and screenshots cannot establish fresh hardware acceptance. |
+| Additional controller cases | Core physical left-stick/D-pad navigation, A/B, movement, right-stick manual aim and Menu pause/resume passed. X/Y shops, shoulders/triggers, reconnect/transport/remapping and independently recorded ranged firing remain untested in this session. |
 | Arbitrary timed interactions and encounter breadth | Finite source/model/native matrices do not cover every larger loadout, order, simultaneous collision, character/danger/elite/boss permutation or human survival balance. |
 | Every organic unlock and native UI route | All definitions have mapped producer evidence, but109 staged callbacks are not109 natural threshold playthroughs; every reward/popup/current next-run UI route is not individually captured. |
 | Broader focus/window geometry | A real two-window OS-focus case and two scale samples passed; all minimize/resize/multimonitor/controller-background cases and every cross-container transition remain unverified. |

@@ -1,3 +1,7 @@
+## October21 rehearsal - validate on the actual input device
+
+The user physically tested R40's Xbox core controls after software fixtures had passed. Instrumentation observed raw device events and resulting menu, movement, aim and pause state rather than injecting input. Explain why simulated events and device detection were insufficient, and why a zero projectile counter limits the firing claim even when the user reports success. User contribution: actual hands-on controller testing. Codex contribution: isolated setup, logging analysis and documentation. [Evidence](controller-hardware-2026-10-21.md).
+
 ## October21 rehearsal - distinguish a failed experiment from a gameplay defect
 
 The full-run fixture lost after acquiring periodic HP costs. Source inspection showed that contact immunity never blocked those costs, so adding blanket immunity would have changed the experiment and concealed valid behavior. Instead, keep the loss and explicitly control acquisition in both isolated engines. Explain the unchanged damage path, declared policy, fresh20-wave evidence and why random totals need not match. Codex authored this investigation and validation under user direction; it is not a user-performed human campaign. [Fresh comparison](full-run-r40-comparison-2026-10-21.md).
