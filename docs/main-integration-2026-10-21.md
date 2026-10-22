@@ -21,9 +21,11 @@ Entrepreneur staged-funding assumption after showcase wave-start effects, and
 accumulating victory foot offsets. These were corrected. Returning to selection
 also clears queued letter sounds. The first suite failed 45/1269; this attempt is
 retained. Focused follow-up passed **208/208**, including every failed case and
-three new victory/return checks. A new combined full suite and performance/native
-build remain required in the optimization phase; R40 evidence is historical for
-this integrated source. No exact gameplay or current WebGL acceptance is implied.
+three new victory/return checks. The subsequent combined suite passed **1309/1309**
+with no failures/skips and exit0. Focused optimization/death/item/victory checks
+passed **40/40**. The Windows build and measured optimization are documented in
+`crowded-wave-optimization-2026-10-21.md`. R40 campaign/hardware evidence remains
+attached to its own source. Current Web release acceptance is documented separately.
 
 Evidence: `artifacts/optimization-2026-10-21/integration-{suite,focused}.xml`.
 The user performed the Xbox test; Codex performed this merge and validation.

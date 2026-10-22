@@ -10,8 +10,8 @@ The opt-in `--performance-review <folder> --performance-rendered` fixture uses
 steps and360 measured steps. The benchmark forces neutral movement, uses automatic
 aim from isolated fixture defaults, and does not inject controller events.
 
-Simulation CPU timing excludes rendering. Frame intervals include rendering and
-scheduling at one fixed60Hz simulation step per uncapped rendered frame. The
+Simulation CPU timing excludes rendering. Frame intervals include graphics-device
+work and scheduling at one fixed60Hz simulation step per uncapped frame. The
 ArenaGame Update/OnGUI are disabled; this is a controlled combat/rendering
 benchmark, not normal whole-game FPS or a low-end hardware guarantee.
 
@@ -37,7 +37,7 @@ run exited0 with both scenarios complete.
 
 Two baseline and two final runs, without concurrent Unity builds, produced:
 
-| Enemies | Mean simulation CPU, before | After | Reduction | Mean rendered interval, before / after |
+| Enemies | Mean simulation CPU, before | After | Reduction | Mean observed frame interval, before / after |
 | --- | ---: | ---: | ---: | ---: |
 |100|5.333 ms|4.218 ms|20.9%|5.716 /4.673 ms|
 |200|20.012 ms|12.002 ms|40.0%|20.575 /12.511 ms|
@@ -46,7 +46,11 @@ Position, health, shots-fired and remaining-shot checksums match exactly for
 every scenario/run. `final-comparison.json` binds the input reports by SHA256.
 Direct3D12,1280x720, Ryzen5 3600/RX5700. Timing variation remains visible in the
 individual receipts; neither these values nor their reciprocals are normal-game
-FPS. UI is disabled in this fixture.
+FPS. UI is disabled in this fixture. These processes were launched hidden with a
+Direct3D12 device. The separate manual screenshot helper produced blank captures;
+there is no independent visual proof that every native frame was presented. The
+simulation CPU measurements and matching gameplay checksums remain valid. Actual
+browser rendering is inspected separately.
 
 Memory optimization removes repeated snapshot arrays and reduces string
 construction from N to min(1,N) per query. Peak snapshot capacity is retained for
@@ -64,11 +68,17 @@ the traversal, nested-buffer lifetime, arithmetic and lazy-key semantics.
 All2626 synchronized Unity inputs matched before the Web build began.
 Launch `Builds/Optimization20261021/LaunchGame.cmd`; keep the full folder together.
 
-The native victory fixture reached Won/summary at4.0167 seconds/exit0. Its manual
-ReadPixels helper returned blank images with diagnostics on both D3D12 and D3D11;
-those attempts are retained and **are not visual acceptance**. Foot attachment
-is covered by repeated-pose regression tests. R40's earlier native/hardware/full20
-evidence remains attached to its own source, not silently upgraded to this build.
+The first native victory fixture reached Won/summary, but its manual ReadPixels
+helper returned blank images on D3D12 and D3D11. Those attempts remain invalid as
+visual evidence. The helper now schedules `ScreenCapture.CaptureScreenshot` after
+rendering. **R2**, `Builds/Optimization20261021R2/LaunchGame.cmd`, was rebuilt and
+five actual captures were inspected: jump, ascent, partial win text, rings/complete
+win text, and the results screen. No blank image or accumulating foot offset was
+observed. A separate fresh fixture reached Won/summary at4.0167 seconds with an
+actual process exit0. This is a staged animation fixture, not a20-wave playthrough.
+`native-r2-package.json` hashes159 files; its named source manifest contains2629
+verified inputs. `victory-r2-reviewed.json` hashes the five inspected images.
+R40's earlier hardware/full20 evidence retains its own source scope.
 
 Web audio/build-size experiments and browser acceptance are recorded separately
 when complete. No new full20 comparison was performed for this optimization.

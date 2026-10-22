@@ -1,3 +1,7 @@
+## 2026-10-21 - Native victory diagnostic capture fixed
+
+The manual ReadPixels coroutine returned blank captures outside a drawing frame. ScreenCapture now schedules the capture after rendering. R2 produced five inspected nonblank frames; a fresh staged Won/summary fixture exited 0. Earlier blank attempts remain invalid visual evidence. See docs/crowded-wave-optimization-2026-10-21.md. This does not add a new full campaign or hardware claim.
+
 ## October21 - integration and crowded combat optimization
 
 Main presentation/support/audio work was combined with verified R40 gameplay.

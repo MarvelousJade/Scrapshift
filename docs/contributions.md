@@ -1,3 +1,7 @@
+## 2026-10-21 - Native review instrumentation
+
+User: requested continued validation and documented meaningful commits. Codex: fixed the native screenshot helper, inspected five R2 frames, recorded package/source/image hashes and actual Won fixture exit 0. Scope is a staged presentation check, not a human 20-wave campaign.
+
 ## October21 - integration and optimization attribution
 
 User: personally completed the physical Xbox core check and selected crowded-wave
