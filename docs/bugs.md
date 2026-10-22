@@ -1,3 +1,7 @@
+## 2026-10-21 - Web crowd fixture loadout corrected
+
+The diagnostic crowd replaced six inventory weapons without rebuilding their scene views. Knife updates repeatedly threw and interrupted physics. Added SyncEquipment in the review-only command; ordinary game transitions already call it. Earlier Web crowd FPS samples are invalid. Fresh normal-exception-settings sample:1293 frames,7.738 ms mean,11 ms p95,minimum200 enemies/six weapons,zero console warnings/errors. Full-stack diagnostic timing is separate. See docs/web-crowd-fixture-2026-10-21.md.
+
 ## 2026-10-21 - Native victory diagnostic capture fixed
 
 The manual ReadPixels coroutine returned blank captures outside a drawing frame. ScreenCapture now schedules the capture after rendering. R2 produced five inspected nonblank frames; a fresh staged Won/summary fixture exited 0. Earlier blank attempts remain invalid visual evidence. See docs/crowded-wave-optimization-2026-10-21.md. This does not add a new full campaign or hardware claim.

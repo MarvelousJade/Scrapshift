@@ -1,3 +1,7 @@
+## 2026-10-21 - Rehearsal: reject a misleading benchmark
+
+Codex found repeated browser errors during the requested optimization review. Full stacks led to a diagnostic loadout that skipped scene synchronization. It corrected the fixture, rejected previous FPS claims and reran a release-like crowd with no errors. Explain the difference between valid package-size evidence and invalid simulation timings. This was AI-assisted work under user direction, not independent user debugging.
+
 ## 2026-10-21 - Rehearsal: validate the measuring tool
 
 Under the user's direction, Codex traced blank victory images to a capture helper running outside the drawing frame, changed it to scheduled ScreenCapture, and checked actual native images plus a fresh process exit. Explain why a successful game-state report did not establish visual correctness. AI-assisted rehearsal; this is not a claim the user independently implemented or debugged it.

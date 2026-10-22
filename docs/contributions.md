@@ -1,3 +1,7 @@
+## 2026-10-21 - Browser stress-test correctness
+
+User: set crowded-wave FPS/memory as the priority. Codex: found and fixed missing weapon-view initialization in the Web diagnostic fixture, retained failed evidence, invalidated old FPS samples and measured a clean corrected crowd. The Windows checksum/CPU comparison used a separate correctly initialized fixture.
+
 ## 2026-10-21 - Native review instrumentation
 
 User: requested continued validation and documented meaningful commits. Codex: fixed the native screenshot helper, inspected five R2 frames, recorded package/source/image hashes and actual Won fixture exit 0. Scope is a staged presentation check, not a human 20-wave campaign.
