@@ -1,3 +1,30 @@
+## 2026-10-21 - Guard Web atlas imports and restore settings
+
+A compression attempt would resize an oversized wearable atlas, so the invariant guard rejected it and restored settings before building. The accepted candidate compresses only two compatible weapon sheets;21 audited textures retain their original import. All23 texture and464 audio records restore with unchanged source hashes. Packed atlas data falls9MiB; no total-RAM claim. LTO enlarged Wasm and has no valid speed-gain proof, so it stays opt-in. See docs/web-build-experiment-2026-10-21.md; final release package acceptance is separate.
+
+## 2026-10-21 - Web crowd fixture loadout corrected
+
+The diagnostic crowd replaced six inventory weapons without rebuilding their scene views. Knife updates repeatedly threw and interrupted physics. Added SyncEquipment in the review-only command; ordinary game transitions already call it. Earlier Web crowd FPS samples are invalid. Fresh normal-exception-settings sample:1293 frames,7.738 ms mean,11 ms p95,minimum200 enemies/six weapons,zero console warnings/errors. Full-stack diagnostic timing is separate. See docs/web-crowd-fixture-2026-10-21.md.
+
+## 2026-10-21 - Native victory diagnostic capture fixed
+
+The manual ReadPixels coroutine returned blank captures outside a drawing frame. ScreenCapture now schedules the capture after rendering. R2 produced five inspected nonblank frames; a fresh staged Won/summary fixture exited 0. Earlier blank attempts remain invalid visual evidence. See docs/crowded-wave-optimization-2026-10-21.md. This does not add a new full campaign or hardware claim.
+
+## October21 - integration and crowded combat optimization
+
+Main presentation/support/audio work was combined with verified R40 gameplay.
+Integration corrected objectless blood-emitter assumptions in logic fixtures,
+Entrepreneur staged funding after wave setup, accumulating victory foot offsets,
+and queued letter cues surviving return to title. Failed first suite45/1269 is
+retained; focused208/208 then complete1309/1309 passed.
+
+Pooled enemy identity snapshots, invariant collision lookups and lazy stat-key
+construction preserve traversal/death semantics. Two-run200-enemy synthetic CPU
+mean20.012 to12.002ms (40.0% lower), exact gameplay checksums. UI disabled; no
+ordinary-game FPS or retained-RAM claim. Native victory state passed, but its
+ReadPixels captures were blank and are not visual acceptance. See
+crowded-wave-optimization-2026-10-21.md and main-integration-2026-10-21.md.
+
 ## October21 - physical Xbox core retest passed
 
 The user operated the Xbox controller and confirmed all requested core controls worked. R40 logs268 samples/136 Playing, physical navigation/movement/aim and Menu pause/resume, with zero combat menu-focus cue requests. No virtual device or code fix was needed. Ranged projectile firing and other controller shortcuts were not independently exercised. [Hardware evidence](controller-hardware-2026-10-21.md).

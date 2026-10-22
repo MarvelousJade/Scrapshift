@@ -147,6 +147,8 @@ namespace Scrapshift
         }
 
         double combatAccumulator;
+        // Set only by the opt-in deterministic performance fixture.
+        bool performanceInputIsolation;
         void Update()
         {
             CombatInput.Poll();
@@ -286,7 +288,7 @@ namespace Scrapshift
             if (smoke || review || campaignCheck) movement = new Vector2(Mathf.Cos(scriptedAge * .8f), Mathf.Sin(scriptedAge * .8f)) * .5f;
             if(worldReview) movement=WorldReviewMovement();
             if (artReview) movement = ArtReviewMovement();
-            if (enemyReview || lootReview) movement = Vector2.zero;
+            if (enemyReview || lootReview || performanceInputIsolation) movement = Vector2.zero;
             Rules.SetMoving(movement.sqrMagnitude>0);
             RefreshRuntimeCensus();
             playerVelocity=CombatInput.Velocity(movement,Rules.MoveSpeed);playerPos = CombatGeometry.ClampPlayerBody(playerPos + playerVelocity * dt);

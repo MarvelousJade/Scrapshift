@@ -1,6 +1,6 @@
 # Gameplay verification status - October 21, 2026
 
-Current Windows review: **R40**, branch `codex/gameplay-parity`, source checkpoint `ede4094`. Launch `Builds/GameplayParity20261020R40/LaunchGame.cmd`; keep its unpacked folder together. This checklist separates source/model, packaged callbacks, native software/visual evidence, scripted campaigns and human hardware evidence. It does not claim universal parity.
+Latest integrated Windows build: `Builds/Optimization20261021R2/LaunchGame.cmd`, from `codex/crowded-wave-optimization-20261021`; keep its full folder together. Full integrated suite1309/1309 Passed. [Optimization results and limits](crowded-wave-optimization-2026-10-21.md). **R40** (`ede4094`) remains the latest full20 comparison and physical Xbox checkpoint. This checklist separates source/model, packaged callbacks, native software/visual evidence, scripted campaigns and human hardware evidence. It does not claim universal parity.
 
 Desktop access is authorized. Fresh core physical Xbox controls passed on R40 with user operation and matching input evidence; broader controller cases retain their limits. The user supplied direction/reference and earlier hardware feedback; Codex agents performed the investigation, changes, automated/native checks and comparison below.
 
@@ -8,6 +8,7 @@ Desktop access is authorized. Fresh core physical Xbox controls passed on R40 wi
 
 | Area | Evidence | Established scope |
 | --- | --- | --- |
+| Main integration and optimization | [Integration](main-integration-2026-10-21.md), [optimization](crowded-wave-optimization-2026-10-21.md) |1309/1309 full integrated tests and40/40 focused Passed.200-enemy synthetic CPU mean20.012 to12.002ms with matching checksums; UI disabled. R2 native capture helper fixed; five actual victory images inspected and fresh Won/summary process exit0.2629 R2 inputs/159 package files recorded. No total retained-RAM or new full20 claim. |
 | Integrated suite | `artifacts/native-followup-2026-10-20/suite-r40.xml` | **1,286/1,286 Passed**, zero failures/skips, exit0,69.8165485 seconds. Cleanup/placement focused12/12 and campaign-policy focused12/12 also passed. |
 | Actual Player cleanup ordering | [Cleanup correction](player-cleanup-followup-2026-10-20.md) | Four corrected original probes Passed/exit0/no SCRIPT ERROR. Actual Main/Player/Enemy scenes suppress pending kill/loot when synchronous Player cleanup preempts enemy death; prior-flushed death retains one kill/material. R36 packaged8 death rows Passed. **R35's pre-cleanup drain was incorrect and is superseded.** Natural collision interleavings remain broader than these staged orders. |
 | Starting companions and support | [Native support evidence](starting-support-native-followup-2026-10-20.md) | Four actual software-A picker/start/retry routes, registered turret0/4/5 boundaries and64 placement seeds Passed. Fixed discarded initial mine point and timed global inset. All13 R37 captures inspected: corrected complete titles and fixture shadows. Logical focus/unlock availability are staged. |

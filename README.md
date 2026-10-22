@@ -41,6 +41,7 @@ Explore the implementation in [GameUI](Assets/Scrapshift/Runtime/GameUI.cs), [Sh
 - **Gameplay rules separated from presentation.** [RunRules](Assets/Scrapshift/Runtime/RunRules.cs) manages inventory, economy and run transitions; [SpawnDirector](Assets/Scrapshift/Runtime/SpawnDirector.cs) processes scheduled enemy groups. This supports focused tests alongside playable integration checks.
 - **Reference-driven debugging.** Source comparisons and isolated fixtures cover starting equipment, stacked effects, shop transactions and defeat/retry sequencing. See the [architecture](docs/architecture.md) and [bug investigations](docs/bugs.md).
 - **Measured performance work.** Profiling identified allocations in repeated combat lookups. Targeted changes reduced allocations in the synthetic per-tick diagnostic by 99.27%; this is not an FPS measurement. [Investigation and evidence](docs/late-wave-allocation-investigation-2026-10-17.md).
+- **Crowded combat CPU work.** A controlled 200-enemy Windows benchmark reduced mean simulation CPU time from 20.012 to 12.002 ms (40.0%), with matching gameplay checksums. This excludes UI and is not ordinary-game FPS or a total-RAM claim. [Measurements and limits](docs/crowded-wave-optimization-2026-10-21.md).
 - **Editor tooling integration.** The embedded AssetScope package traces serialized asset references to their owners, using the game's scenes, catalog and audio as practical examples. [Reproducible walkthrough](docs/assetscope-demo.md).
 
 ## Run locally
@@ -49,7 +50,7 @@ Requires **Unity 6000.6.5f1**. Open this repository as a Unity project, open `As
 
 Move with **WASD / arrow keys**, use the **mouse** for menus, and press **Escape** to pause. Weapons attack automatically by default.
 
-For this workspace's unpacked Windows review build, launch `Builds/GameplayParity20261020R40/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout.
+For this workspace's integrated Windows review build, launch `Builds/Optimization20261021R2/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout. R40 remains the separately documented full campaign/hardware checkpoint.
 
 With the project's Editor closed, run:
 
@@ -60,8 +61,8 @@ With the project's Editor closed, run:
 
 ## Validation
 
-Latest review: **R40**, **1,286/1,286 tests passed**. Native software/visual checks cover companion starts, retry, shops and scaled navigation. See the [verification checklist](docs/gameplay-verification-status.md) for coverage and remaining limits.
+Latest integrated suite: **1,309/1,309 tests passed**, plus **40/40** focused snapshot/death/item/victory checks. **R40** remains the latest full campaign and physical Xbox checkpoint. Native software/visual checks cover companion starts, retry, shops and scaled navigation. See the [verification checklist](docs/gameplay-verification-status.md) for coverage and remaining limits.
 
 The [fresh R40 comparison](docs/full-run-r40-comparison-2026-10-21.md) completed **20 waves in both engines**, with **18/18 checks passing**. It uses normal timing, scripted movement, contact immunity and an explicit matched acquisition policy; it is separate from human survival balance and physical controller verification.
 
-That campaign used scripted movement and invulnerability. It does not establish human survival balance or exhaustive gameplay parity. Current physical-controller, presentation and browser acceptance remain separate checks. See the [checkpoint](docs/gameplay-final-checkpoint-2026-10-20.md) and [coverage checklist](docs/gameplay-verification-status.md).
+That campaign used scripted movement and contact immunity. It does not establish human survival balance or exhaustive gameplay parity. The user separately confirmed R40's core physical Xbox controls; additional buttons, reconnect and transport cases retain their limits. Browser acceptance is documented separately. See the [hardware check](docs/controller-hardware-2026-10-21.md), [Web release](docs/web-release.md) and [coverage checklist](docs/gameplay-verification-status.md).

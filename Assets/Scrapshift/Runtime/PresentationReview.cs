@@ -30,10 +30,10 @@ namespace Scrapshift
         }
         System.Collections.IEnumerator CaptureWinFrame(string name)
         {
-            yield return new WaitForEndOfFrame();
-            var image=new Texture2D(Screen.width,Screen.height,TextureFormat.RGB24,false);
-            image.ReadPixels(new Rect(0,0,Screen.width,Screen.height),0,0);
-            image.Apply();File.WriteAllBytes(Path.Combine(winReviewPath,name+".png"),image.EncodeToPNG());Destroy(image);
+            // Unity schedules this capture after rendering, including OnGUI.
+            // ReadPixels from this fixture's coroutine did not have an active drawing frame.
+            ScreenCapture.CaptureScreenshot(Path.Combine(winReviewPath,name+".png"));
+            yield return null;
         }
         void WinReviewTick()
         {

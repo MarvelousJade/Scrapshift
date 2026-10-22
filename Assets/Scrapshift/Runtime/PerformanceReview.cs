@@ -16,11 +16,17 @@ namespace Scrapshift
             public bool allocationCounterValid;
             public double simulationMeanMs, simulationP95Ms, simulationMaxMs, allocatedBytesPerFrame;
             public double positionChecksum, healthChecksum;
+            public double frameIntervalMeanMs, frameIntervalP95Ms, frameIntervalMaxMs;
+            public int gen0Collections, gen1Collections, gen2Collections;
+            public long monoUsedBeforeBytes, monoUsedAfterBytes;
+            public long totalAllocatedBeforeBytes, totalAllocatedAfterBytes;
+            public long totalReservedBeforeBytes, totalReservedAfterBytes;
         }
         [Serializable] sealed class PerformanceReport
         {
             public string scope = "Controlled headless Windows player CPU benchmark: 100/200 durable enemies, six tier-II weapons, fixed 60 Hz simulation, fixed seeds, 120 warmup + 360 measured steps. CPU times measure Simulate and UpdateFeedback only; excludes rendering, UI, startup and setup. Optional Unity allocation counter covers entire frames and is -1 if its positive control fails. Not a whole-game FPS measurement.";
-            public string unity, cpu;
+            public string unity, cpu, graphicsDevice, inputPolicy;
+            public bool renderedRequested, graphicsDeviceAvailable;
             public PerformanceSample[] samples;
         }
 
@@ -31,14 +37,15 @@ namespace Scrapshift
             int index = Array.IndexOf(args, "--performance-review");
             if (index < 0 || index + 1 >= args.Length) return;
             var game = UnityEngine.Object.FindAnyObjectByType<ArenaGame>();
-            if (game != null) game.StartCoroutine(game.PerformanceReview(args[index + 1]));
+            if (game != null) game.StartCoroutine(game.PerformanceReview(args[index + 1], Array.IndexOf(args, "--performance-rendered") >= 0));
         }
 
-        IEnumerator PerformanceReview(string folder)
+        IEnumerator PerformanceReview(string folder, bool rendered = false)
         {
             // Start must finish creating scene dependencies before the controlled simulation begins.
             yield return null;
             enabled = false;
+            performanceInputIsolation = true;
             Application.runInBackground = true;
             Application.targetFrameRate = -1;
             QualitySettings.vSyncCount = 0;
@@ -77,9 +84,18 @@ namespace Scrapshift
                 yield return null;
                 const int warmup = 120, measured = 360;
                 var times = new double[measured];
-                long allocated = 0;
+                var frameIntervals = new double[measured];
+                long allocated = 0, monoBefore = 0, allocatedBefore = 0, reservedBefore = 0;
+                int gen0Before = 0, gen1Before = 0, gen2Before = 0;
                 for (int frame = 0; frame < warmup + measured; frame++)
                 {
+                    if (frame == warmup)
+                    {
+                        monoBefore = UnityEngine.Profiling.Profiler.GetMonoUsedSizeLong();
+                        allocatedBefore = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
+                        reservedBefore = UnityEngine.Profiling.Profiler.GetTotalReservedMemoryLong();
+                        gen0Before = GC.CollectionCount(0); gen1Before = GC.CollectionCount(1); gen2Before = GC.CollectionCount(2);
+                    }
                     invulnerable = 1;
                     long start = Stopwatch.GetTimestamp();
                     UpdateFeedback(1f / 60);
@@ -89,9 +105,23 @@ namespace Scrapshift
                     {
                         times[frame - warmup] = (end - start) * 1000.0 / Stopwatch.Frequency;
                     }
+                    // With a graphics device this yields through the rendered frame.
+                    // The interval includes scheduling/rendering as well as this simulation
+                    // step; it is deliberately separate from the CPU-only stopwatch above.
                     yield return null;
-                    if (frame >= warmup && allocationCounterValid) allocated += allocationRecorder.LastValue;
+                    if (frame >= warmup)
+                    {
+                        frameIntervals[frame - warmup] = (Stopwatch.GetTimestamp() - start) * 1000.0 / Stopwatch.Frequency;
+                        if (allocationCounterValid) allocated += allocationRecorder.LastValue;
+                    }
                 }
+                long monoAfter = UnityEngine.Profiling.Profiler.GetMonoUsedSizeLong();
+                long allocatedAfter = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();
+                long reservedAfter = UnityEngine.Profiling.Profiler.GetTotalReservedMemoryLong();
+                int gen0Delta = GC.CollectionCount(0) - gen0Before, gen1Delta = GC.CollectionCount(1) - gen1Before, gen2Delta = GC.CollectionCount(2) - gen2Before;
+                double frameSum = 0;
+                foreach (double interval in frameIntervals) frameSum += interval;
+                Array.Sort(frameIntervals);
                 double sum = 0, positions = 0, health = 0;
                 foreach (double time in times) sum += time;
                 for (int i = 0; i < enemies.Count; i++)
@@ -102,10 +132,21 @@ namespace Scrapshift
                 Array.Sort(times);
                 results.Add(new PerformanceSample { enemies = enemies.Count, frames = measured, shotsFired = shotsFired,
                     remainingShots = shots.Count, allocationCounterValid = allocationCounterValid, simulationMeanMs = sum / measured,
+                    frameIntervalMeanMs = frameSum / measured, frameIntervalP95Ms = frameIntervals[(int)((measured - 1) * .95)], frameIntervalMaxMs = frameIntervals[measured - 1],
+                    gen0Collections = gen0Delta, gen1Collections = gen1Delta, gen2Collections = gen2Delta,
+                    monoUsedBeforeBytes = monoBefore, monoUsedAfterBytes = monoAfter,
+                    totalAllocatedBeforeBytes = allocatedBefore, totalAllocatedAfterBytes = allocatedAfter,
+                    totalReservedBeforeBytes = reservedBefore, totalReservedAfterBytes = reservedAfter,
                     simulationP95Ms = times[(int)((measured - 1) * .95)], simulationMaxMs = times[measured - 1],
                     allocatedBytesPerFrame = allocationCounterValid ? allocated / (double)measured : -1, positionChecksum = positions, healthChecksum = health });
                 File.WriteAllText(Path.Combine(folder, "performance.json"), JsonUtility.ToJson(new PerformanceReport {
-                    unity = Application.unityVersion, cpu = SystemInfo.processorType, samples = results.ToArray() }, true));
+                    scope = rendered
+                        ? "Controlled rendered Windows player benchmark: 100/200 durable enemies, six tier-II weapons, fixed seeds, 120 warmup + 360 measured steps; one fixed 1/60-second simulation step per rendered frame with uncapped frame rate. ArenaGame Update/OnGUI are disabled. Simulation CPU excludes rendering/UI; frame intervals include render/scheduling and are not normal-game FPS. Memory fields are process-wide snapshots; GC deltas cover measured frames. Allocation bytes require the 64 KiB positive control."
+                        : new PerformanceReport().scope,
+                    unity = Application.unityVersion, cpu = SystemInfo.processorType, graphicsDevice = SystemInfo.graphicsDeviceType.ToString(),
+                    renderedRequested = rendered, graphicsDeviceAvailable = SystemInfo.graphicsDeviceType != UnityEngine.Rendering.GraphicsDeviceType.Null,
+                    inputPolicy = "Benchmark-only movement guard; automatic aim from isolated fixture defaults. No physical or virtual device events injected.",
+                    samples = results.ToArray() }, true));
             }
             Application.Quit(0);
         }

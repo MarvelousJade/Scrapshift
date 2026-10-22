@@ -1,0 +1,7 @@
+Result: Failed before build report
+Output: Builds/WebTexture20261021
+CodeOptimization: BuildTimes
+System.InvalidOperationException: Web texture preparation changed dimensions, readability or source pixels: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-09.png
+  at Scrapshift.Editor.WebTextureImports.Prepare () [0x0017d] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Editor\WebTextureImports.cs:84 
+  at Scrapshift.Editor.WebTextureImports.Begin (System.String receiptPath) [0x00040] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Editor\WebTextureImports.cs:64 
+  at Scrapshift.Editor.WebBuild.Build () [0x000ac] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Editor\WebBuild.cs:95 

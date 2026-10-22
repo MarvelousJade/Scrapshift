@@ -1,0 +1,92 @@
+{
+  "status": "Passed",
+  "scope": "Synthetic 100/200-enemy rendered fixture, fixed simulation step, UI disabled. CPU and frame intervals differ; no whole-game FPS or byte-allocation claim. Memory snapshots are not retained-heap/leak measurements.",
+  "inputs": [
+    {
+      "path": "artifacts\\optimization-2026-10-21\\baseline-rendered\\performance.json",
+      "sha256": "06f9f086ccd572b7bd5f523ef88c779d907e3590e845c8a8e48c4758a838a37a"
+    },
+    {
+      "path": "artifacts\\optimization-2026-10-21\\baseline-repeat\\performance.json",
+      "sha256": "8e23c998f772fe4a6f51da4252a901793ce1dda73b8c7b05652d742895b3acfa"
+    },
+    {
+      "path": "artifacts\\optimization-2026-10-21\\final-rendered\\performance.json",
+      "sha256": "4713f39576e344147ff51c095e22fd26799d080e2c972ce1b511d347fe5e675e"
+    },
+    {
+      "path": "artifacts\\optimization-2026-10-21\\final-repeat\\performance.json",
+      "sha256": "46502c20b524686fae74d7f566186b4d618e82b4745e7516a1d27c3a8fd70677"
+    }
+  ],
+  "rows": [
+    {
+      "enemies": 100,
+      "checksumsMatch": true,
+      "baselineCpuMeanMs": 5.333099722222222,
+      "optimizedCpuMeanMs": 4.217838055555556,
+      "cpuReductionPercent": 20.912072242331025,
+      "baselineFrameMeanMs": 5.716180138888889,
+      "optimizedFrameMeanMs": 4.672584722222221,
+      "baselineP95FrameMs": [
+        7.8343,
+        8.1854
+      ],
+      "optimizedP95FrameMs": [
+        5.5041,
+        7.3192
+      ],
+      "baselineGen0": [
+        27,
+        27
+      ],
+      "optimizedGen0": [
+        26,
+        26
+      ],
+      "baselineManagedAfter": [
+        5578752,
+        5574656
+      ],
+      "optimizedManagedAfter": [
+        5648384,
+        5652480
+      ],
+      "allocationCounterAvailable": false
+    },
+    {
+      "enemies": 200,
+      "checksumsMatch": true,
+      "baselineCpuMeanMs": 20.011872222222234,
+      "optimizedCpuMeanMs": 12.001773611111108,
+      "cpuReductionPercent": 40.02673274225832,
+      "baselineFrameMeanMs": 20.57493986111112,
+      "optimizedFrameMeanMs": 12.510679027777778,
+      "baselineP95FrameMs": [
+        28.2051,
+        26.661
+      ],
+      "optimizedP95FrameMs": [
+        15.3882,
+        16.2004
+      ],
+      "baselineGen0": [
+        47,
+        47
+      ],
+      "optimizedGen0": [
+        46,
+        46
+      ],
+      "baselineManagedAfter": [
+        6029312,
+        6119424
+      ],
+      "optimizedManagedAfter": [
+        6156288,
+        6193152
+      ],
+      "allocationCounterAvailable": false
+    }
+  ]
+}

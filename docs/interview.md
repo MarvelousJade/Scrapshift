@@ -1,3 +1,28 @@
+## 2026-10-21 - Rehearsal: optimize without changing asset registration
+
+Codex compared real Web outputs under user direction. Small SFX quality savings were measured; a codec request added no useful saving. Texture checks rejected resizing, then retained21 incompatible atlases and compressed two compatible sheets. Explain source/settings restoration, packed bytes versus downloaded bytes, and why neither proves a total-RAM reduction. AI-assisted rehearsal; do not present it as independent user implementation.
+
+## 2026-10-21 - Rehearsal: reject a misleading benchmark
+
+Codex found repeated browser errors during the requested optimization review. Full stacks led to a diagnostic loadout that skipped scene synchronization. It corrected the fixture, rejected previous FPS claims and reran a release-like crowd with no errors. Explain the difference between valid package-size evidence and invalid simulation timings. This was AI-assisted work under user direction, not independent user debugging.
+
+## 2026-10-21 - Rehearsal: validate the measuring tool
+
+Under the user's direction, Codex traced blank victory images to a capture helper running outside the drawing frame, changed it to scheduled ScreenCapture, and checked actual native images plus a fresh process exit. Explain why a successful game-state report did not establish visual correctness. AI-assisted rehearsal; this is not a claim the user independently implemented or debugged it.
+
+## October21 - measuring after integration
+
+The user chose crowded-wave FPS/memory, then web loading size. Codex merged the
+branches, corrected integration issues, and measured controlled100/200-enemy
+workloads before and after narrow loop/allocation changes. The200-enemy CPU mean
+fell20.012 to12.002ms across two runs each, with identical position/health/shot
+checksums;1309/1309 tests passed. Explain why stable identity snapshots are needed
+when player death removes enemies during traversal, and why pooled buffers must
+be distinct for nested calls and cleared in finally. Memory snapshots do not
+prove retained-RAM reduction; the allocation counter failed its positive control.
+This is AI-assisted project evidence, not personal profiling work by the user.
+Reproduce and explain the benchmark before using it as a personal interview claim.
+
 ## October21 rehearsal - validate on the actual input device
 
 The user physically tested R40's Xbox core controls after software fixtures had passed. Instrumentation observed raw device events and resulting menu, movement, aim and pause state rather than injecting input. Explain why simulated events and device detection were insufficient, and why a zero projectile counter limits the firing claim even when the user reports success. User contribution: actual hands-on controller testing. Codex contribution: isolated setup, logging analysis and documentation. [Evidence](controller-hardware-2026-10-21.md).

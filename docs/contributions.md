@@ -1,3 +1,25 @@
+## 2026-10-21 - Reversible Web resource optimization
+
+User: selected FPS/memory then Web size and required meaningful commits. Codex agents: measured six diagnostic builds, implemented guarded temporary texture imports, verified source/settings restoration, preserved rejected attempts and kept LTO/codec/full-stack experiments opt-in. Two atlas payloads shrink9MiB packed; whole release measurements remain a separate final checkpoint.
+
+## 2026-10-21 - Browser stress-test correctness
+
+User: set crowded-wave FPS/memory as the priority. Codex: found and fixed missing weapon-view initialization in the Web diagnostic fixture, retained failed evidence, invalidated old FPS samples and measured a clean corrected crowd. The Windows checksum/CPU comparison used a separate correctly initialized fixture.
+
+## 2026-10-21 - Native review instrumentation
+
+User: requested continued validation and documented meaningful commits. Codex: fixed the native screenshot helper, inspected five R2 frames, recorded package/source/image hashes and actual Won fixture exit 0. Scope is a staged presentation check, not a human 20-wave campaign.
+
+## October21 - integration and optimization attribution
+
+User: personally completed the physical Xbox core check and selected crowded-wave
+FPS/memory before browser loading-size work. Codex and agents: merged committed
+branches while preserving the dirty main worktree, corrected integration issues,
+implemented snapshot/lookup/string changes, and ran tests/benchmarks. Complete
+suite1309/1309 passed.200-enemy synthetic CPU mean40.0% lower; no normal-game FPS,
+retained-RAM, new full20 or valid native victory screenshot claim. See
+crowded-wave-optimization-2026-10-21.md for exact scope and artifacts.
+
 ## October21 - actual Xbox operation
 
 The user personally operated the physical Xbox controller and confirmed the requested core menu, movement, aiming and pause controls worked. Codex configured an isolated R40 observer session, enabled manual aiming, inspected268 snapshots and recorded the bounded acceptance. No virtual controller or production code change was used. [Scope](controller-hardware-2026-10-21.md).
