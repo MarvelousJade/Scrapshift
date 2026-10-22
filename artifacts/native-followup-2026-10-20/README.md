@@ -7,3 +7,5 @@ The five largest raw JSON/JSONL traces remain unchanged in the working folder. G
 Generated engine userdata/profile caches are not committed. The fresh source summary preserves its actual final debug inventory in original-safe-full/reference-run-data.log; use that file with summarize_original_campaign.py --debug-log when reproducing the summary outside this machine. Engine diagnostics, failed attempts and the metadata-only first comparator failure are preserved.
 
 Builds are separate, unpacked local Windows folders. R40 replaces the older reviews; R39 was not verified/shared because its input gate caught a late fixture-counter edit. These archives are test evidence, not a zipped game distribution.
+
+The local .gitattributes disables text conversion for this immutable evidence folder. Hashes bind original bytes, including line endings; verify_evidence_index.py checks staged Git objects against those bytes.
