@@ -12,6 +12,16 @@ namespace Scrapshift
         }
         readonly ReferenceBirthQueue<Birth> births=new ReferenceBirthQueue<Birth>();
         readonly List<Enemy> corpses=new List<Enemy>();
+        // Nested callbacks may invoke another traversal while its caller is active.
+        // Each invocation owns a distinct identity snapshot until its finally block.
+        readonly Stack<List<Enemy>> enemySnapshotPool=new Stack<List<Enemy>>();
+        List<Enemy> RentEnemySnapshot()
+        {
+            var snapshot=enemySnapshotPool.Count>0?enemySnapshotPool.Pop():new List<Enemy>();
+            snapshot.AddRange(enemies);return snapshot;
+        }
+        void ReturnEnemySnapshot(List<Enemy> snapshot)
+        {snapshot.Clear();enemySnapshotPool.Push(snapshot);}
         readonly GameObject[] equipmentViews=new GameObject[24];
         readonly SpriteRenderer[] muzzleViews = new SpriteRenderer[24];
         readonly int[] weaponShots=new int[24];
@@ -161,121 +171,128 @@ namespace Scrapshift
             // A lethal player contact flushes older queued enemy deaths before
             // terminal cleanup; iterate identities so that flush may remove
             // earlier list entries without invalidating this traversal.
-            var enemyBatch=enemies.ToArray();Array.Reverse(enemyBatch);
-            foreach(var e in enemyBatch)
+            var enemyBatch=RentEnemySnapshot();
+            try
             {
-                if(Rules.Phase!=RunPhase.Playing)return;
-                if(e.hp<=0||!enemies.Contains(e))continue;
-                e.age += dt;e.iceClock=Mathf.Max(0,e.iceClock-dt); e.flash = Mathf.Max(0, e.flash - dt);
-                if (e.marker != null)
+                for(int enemyIndex=enemyBatch.Count-1;enemyIndex>=0;enemyIndex--)
                 {
-                    var mr = e.marker.GetComponent<SpriteRenderer>();
-                    mr.color = RunFeedback.SpawnColor(e.type.role=="Tree",Mathf.Repeat(e.age * (2 + e.age * 8), 1) < .3f ? .35f : 1);
-                    e.marker.transform.localScale = Vector3.one * (.52f + .12f * e.age);
-                    if (e.age < 1) continue;
-                    if (e.type.role!="Boss" && e.type.role!="Elite" && e.type.role!="Tree" && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
+                    var e=enemyBatch[enemyIndex];
+                    if(Rules.Phase!=RunPhase.Playing)return;
+                    if(e.hp<=0||!enemies.Contains(e))continue;
+                    e.age += dt;e.iceClock=Mathf.Max(0,e.iceClock-dt); e.flash = Mathf.Max(0, e.flash - dt);
+                    if (e.marker != null)
                     {
-                e.pos=SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value)-CombatGeometry.OriginOffset(e.type.id);e.marker.transform.position=EnemyOrigin(e);e.age=0;
-                        spawnRelocations++; continue;
-                    }
-                    Destroy(e.marker); e.marker = null; e.obj.SetActive(true); e.activeAge = 0;
-                    if(e.type.role=="Tree")InvalidateLootwormTargets();
-                }
-                e.activeAge += dt;TickEncounterState(e,dt);
-                TickEnemyTarget(e,dt);Vector2 targetPosition=EnemyTarget(e),origin=EnemyOrigin(e);
-                Vector2 toward = (targetPosition-origin).normalized;
-                float distance = Vector2.Distance(origin,targetPosition),speed=EnemyStatSpeed(e);
-                e.cooldown -= dt; e.action += dt;
-                string role = e.type.role;
-                if (e.type.id=="predator" && !encounterDefinitions.ContainsKey(e.type.id) && !e.secondPhase && Mathf.Floor(e.activeAge)>e.phaseCheck)
-                {
-                    e.phaseCheck=Mathf.FloorToInt(e.activeAge);
-                    if(e.hp<=e.maxHp*.5f || e.phaseCheck>=45)
-                    { e.secondPhase=true; bossMutations++; e.behavior=EnemyBehavior.For(e.type.id,true); e.attack=MakeAttack(e.behavior); e.hasDestination=false; FloatText(e.pos,"MUTATION",coral,true); }
-                }
-                bool charge = e.behavior.charge;
-                switch(e.behavior.movement)
-                {
-                    case EnemyMovement.KeepRange:
-                        toward *= Mathf.Sign(distance-e.spacing);
-                        speed = Mathf.Min(speed, Mathf.Abs(distance-e.spacing)/dt); break;
-                    case EnemyMovement.Offset:
-                        toward=(targetPosition+e.wander-origin).normalized;speed=Mathf.Min(speed,Vector2.Distance(targetPosition+e.wander,origin)/dt);break;
-                    case EnemyMovement.Destination: case EnemyMovement.AroundPlayer: case EnemyMovement.Materials:
-                        e.moveUpdate+=dt;
-                        if(!e.hasDestination || Vector2.Distance(origin,e.destination)<.1f || e.behavior.updateInterval>=0&&e.moveUpdate>=e.behavior.updateInterval)
+                        var mr = e.marker.GetComponent<SpriteRenderer>();
+                        mr.color = RunFeedback.SpawnColor(e.type.role=="Tree",Mathf.Repeat(e.age * (2 + e.age * 8), 1) < .3f ? .35f : 1);
+                        e.marker.transform.localScale = Vector3.one * (.52f + .12f * e.age);
+                        if (e.age < 1) continue;
+                        if (e.type.role!="Boss" && e.type.role!="Elite" && e.type.role!="Tree" && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
                         {
-                            e.hasDestination=true;e.moveUpdate=0;
-                            e.destination=e.behavior.movement==EnemyMovement.AroundPlayer?SpawnPlacement.SourceAreaPosition(targetPosition,e.moveRange,UnityEngine.Random.value,UnityEngine.Random.value):SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value);
-                            if(e.behavior.movement==EnemyMovement.Materials)
+                    e.pos=SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value)-CombatGeometry.OriginOffset(e.type.id);e.marker.transform.position=EnemyOrigin(e);e.age=0;
+                            spawnRelocations++; continue;
+                        }
+                        Destroy(e.marker); e.marker = null; e.obj.SetActive(true); e.activeAge = 0;
+                        if(e.type.role=="Tree")InvalidateLootwormTargets();
+                    }
+                    e.activeAge += dt;TickEncounterState(e,dt);
+                    TickEnemyTarget(e,dt);Vector2 targetPosition=EnemyTarget(e),origin=EnemyOrigin(e);
+                    Vector2 toward = (targetPosition-origin).normalized;
+                    float distance = Vector2.Distance(origin,targetPosition),speed=EnemyStatSpeed(e);
+                    e.cooldown -= dt; e.action += dt;
+                    string role = e.type.role;
+                    if (e.type.id=="predator" && !encounterDefinitions.ContainsKey(e.type.id) && !e.secondPhase && Mathf.Floor(e.activeAge)>e.phaseCheck)
+                    {
+                        e.phaseCheck=Mathf.FloorToInt(e.activeAge);
+                        if(e.hp<=e.maxHp*.5f || e.phaseCheck>=45)
+                        { e.secondPhase=true; bossMutations++; e.behavior=EnemyBehavior.For(e.type.id,true); e.attack=MakeAttack(e.behavior); e.hasDestination=false; FloatText(e.pos,"MUTATION",coral,true); }
+                    }
+                    bool charge = e.behavior.charge;
+                    switch(e.behavior.movement)
+                    {
+                        case EnemyMovement.KeepRange:
+                            toward *= Mathf.Sign(distance-e.spacing);
+                            speed = Mathf.Min(speed, Mathf.Abs(distance-e.spacing)/dt); break;
+                        case EnemyMovement.Offset:
+                            toward=(targetPosition+e.wander-origin).normalized;speed=Mathf.Min(speed,Vector2.Distance(targetPosition+e.wander,origin)/dt);break;
+                        case EnemyMovement.Destination: case EnemyMovement.AroundPlayer: case EnemyMovement.Materials:
+                            e.moveUpdate+=dt;
+                            if(!e.hasDestination || Vector2.Distance(origin,e.destination)<.1f || e.behavior.updateInterval>=0&&e.moveUpdate>=e.behavior.updateInterval)
                             {
-                                var materials=pickups.FindAll(p=>!p.fruit);
-                                if(materials.Count>0) e.destination=materials[placementRandom.Next(materials.Count)].motion.position;
+                                e.hasDestination=true;e.moveUpdate=0;
+                                e.destination=e.behavior.movement==EnemyMovement.AroundPlayer?SpawnPlacement.SourceAreaPosition(targetPosition,e.moveRange,UnityEngine.Random.value,UnityEngine.Random.value):SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value);
+                                if(e.behavior.movement==EnemyMovement.Materials)
+                                {
+                                    var materials=pickups.FindAll(p=>!p.fruit);
+                                    if(materials.Count>0) e.destination=materials[placementRandom.Next(materials.Count)].motion.position;
+                                }
+                            }
+                            toward=(e.destination-origin).normalized;
+                            speed=Mathf.Min(speed,Vector2.Distance(e.destination,origin)/dt); break;
+                        case EnemyMovement.Pursuer: speed+=Mathf.Min(10,Mathf.FloorToInt(e.action))*EnemyReferenceRules.AdditiveSpeedBonus(.45f,GameSettings.Value("enemySpeed")); break;
+                    }
+                    if(e.type.id=="evil_mob") { speed=Mathf.Max(0,speed-e.evolution*1.25f); EatMaterials(e,dt); }
+                    if (role == "Tree") speed = 0;
+                    if (e.attack != null)
+                    {
+                        var previous = e.attack.Phase;
+                        bool released = e.attack.Step(dt,targetPosition-origin,distance>=e.behavior.minRange&&distance<=e.behavior.maxRange,()=>ChargeTarget(e,targetPosition));
+                        if (previous != AttackPhase.Windup && e.attack.Phase == AttackPhase.Windup && charge)
+                            sound.Play(SoundCue.Charge, e.pos);
+                        if (charge && e.attack.Phase == AttackPhase.Windup) speed = 0;
+                        else if (charge && e.attack.Phase == AttackPhase.Active)
+                        { toward = e.attack.Direction; speed = EnemyStatSpeed(e) + EnemyReferenceRules.AdditiveSpeedBonus(e.behavior.chargeSpeed,GameSettings.Value("enemySpeed")); }
+                        if (released)
+                        {
+                            if (charge) chargeReleases++;
+                            else
+                            {
+                                rangedReleases++;
+                                if(encounterDefinitions.ContainsKey(e.type.id))FireEncounter(e);
+                                else if(e.type.id=="slasher") EnemySlash(e);
+                                else for(int p=0;p<(role=="Boss"?16:1);p++)
+                                {
+                                    Vector2 direction = role=="Boss" ? UnityEngine.Random.insideUnitCircle.normalized :
+                                        (Vector2)(Quaternion.Euler(0,0,UnityEngine.Random.Range(-e.behavior.spread,e.behavior.spread)*Mathf.Rad2Deg)*e.attack.Direction);
+                                    EnemyBullet(e,direction);
+                                }
                             }
                         }
-                        toward=(e.destination-origin).normalized;
-                        speed=Mathf.Min(speed,Vector2.Distance(e.destination,origin)/dt); break;
-                    case EnemyMovement.Pursuer: speed+=Mathf.Min(10,Mathf.FloorToInt(e.action))*EnemyReferenceRules.AdditiveSpeedBonus(.45f,GameSettings.Value("enemySpeed")); break;
-                }
-                if(e.type.id=="evil_mob") { speed=Mathf.Max(0,speed-e.evolution*1.25f); EatMaterials(e,dt); }
-                if (role == "Tree") speed = 0;
-                if (e.attack != null)
-                {
-                    var previous = e.attack.Phase;
-                    bool released = e.attack.Step(dt,targetPosition-origin,distance>=e.behavior.minRange&&distance<=e.behavior.maxRange,()=>ChargeTarget(e,targetPosition));
-                    if (previous != AttackPhase.Windup && e.attack.Phase == AttackPhase.Windup && charge)
-                        sound.Play(SoundCue.Charge, e.pos);
-                    if (charge && e.attack.Phase == AttackPhase.Windup) speed = 0;
-                    else if (charge && e.attack.Phase == AttackPhase.Active)
-                    { toward = e.attack.Direction; speed = EnemyStatSpeed(e) + EnemyReferenceRules.AdditiveSpeedBonus(e.behavior.chargeSpeed,GameSettings.Value("enemySpeed")); }
-                    if (released)
-                    {
-                        if (charge) chargeReleases++;
-                        else
-                        {
-                            rangedReleases++;
-                            if(encounterDefinitions.ContainsKey(e.type.id))FireEncounter(e);
-                            else if(e.type.id=="slasher") EnemySlash(e);
-                            else for(int p=0;p<(role=="Boss"?16:1);p++)
-                            {
-                                Vector2 direction = role=="Boss" ? UnityEngine.Random.insideUnitCircle.normalized :
-                                    (Vector2)(Quaternion.Euler(0,0,UnityEngine.Random.Range(-e.behavior.spread,e.behavior.spread)*Mathf.Rad2Deg)*e.attack.Direction);
-                                EnemyBullet(e,direction);
-                            }
-                        }
                     }
-                }
-                speed = Mathf.Max(0,speed-e.contactSlow-e.itemSlow);
-                e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
-                if (role == "Buffer" && e.cooldown <= 0)
-                {
-                    e.cooldown = 4;
-                    int count=encounterDefinitions.TryGetValue(e.type.id,out var spec)?spec.boostCount:1;
-                    for(int boost=0;boost<count;boost++)BoostNearbyEntity(e,spec?.boostDamage??25);
+                    speed = Mathf.Max(0,speed-e.contactSlow-e.itemSlow);
+                    e.contactSlow = Mathf.Max(0, e.contactSlow - 3 * dt);
+                    if (role == "Buffer" && e.cooldown <= 0)
+                    {
+                        e.cooldown = 4;
+                        int count=encounterDefinitions.TryGetValue(e.type.id,out var spec)?spec.boostCount:1;
+                        for(int boost=0;boost<count;boost++)BoostNearbyEntity(e,spec?.boostDamage??25);
 
-                }
-                Vector2 separation = Vector2.zero;
-                foreach (var other in enemies)
-                {
-                    if (other == e || other.marker != null) continue;
-                    var delta=e.pos+CombatGeometry.BodyOffset(e.type.id)-other.pos-CombatGeometry.BodyOffset(other.type.id);float d=delta.magnitude,gap=Radius(e)+Radius(other);
-                    if (d > .001f && d < gap) separation += delta / d * (gap - d) * 5;
-                }
-                bool winding = charge && e.attack != null && e.attack.Phase == AttackPhase.Windup;
-                if (winding) separation = Vector2.zero;
-                if (charge && e.attack.Phase == AttackPhase.Active) separation *= .15f;
-                Vector2 push = CombatGeometry.StepKnockback(ref e.knockback, dt);
-                e.pos = RunRules.ClampPosition(EnemyOrigin(e)+(toward*speed+separation)*dt+push)-CombatGeometry.OriginOffset(e.type.id);
-                UpdateEnemyPresentation(e, toward * speed, dt);
-                if(e.type.id=="predator") UpdateBossArm(e,dt);
-                foreach(var pet in pets)if(!pet.dead&&pet.spec.kind=="scapegoat"&&Vector2.Distance(e.pos,pet.pos)<ContactRadius(e)+.3f)DamageScapegoat(pet);
-                if (role != "Tree" && PlayerHurtboxActive && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
-                {
-                    HurtPlayer(EnemyReferenceRules.ScaledDamage(e.type.damage+e.type.damageGrowth*(Rules.Wave-1),Rules.EnemyDamageFactor*(e.boosted?1+e.boostDamage/100:1)*(role=="Boss"||role=="Elite"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1)),e.type,e);
-                    e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, EnemyStatSpeed(e)-e.itemSlow);
-                    if (role == "Pursuer") e.action = 0;
+                    }
+                    Vector2 separation = Vector2.zero;
+                    Vector2 bodyOffset=CombatGeometry.BodyOffset(e.type.id);
+                    float bodyRadius=Radius(e);
+                    foreach (var other in enemies)
+                    {
+                        if (other == e || other.marker != null) continue;
+                        var delta=e.pos+bodyOffset-other.pos-CombatGeometry.BodyOffset(other.type.id);float d=delta.magnitude,gap=bodyRadius+Radius(other);
+                        if (d > .001f && d < gap) separation += delta / d * (gap - d) * 5;
+                    }
+                    bool winding = charge && e.attack != null && e.attack.Phase == AttackPhase.Windup;
+                    if (winding) separation = Vector2.zero;
+                    if (charge && e.attack.Phase == AttackPhase.Active) separation *= .15f;
+                    Vector2 push = CombatGeometry.StepKnockback(ref e.knockback, dt);
+                    e.pos = RunRules.ClampPosition(EnemyOrigin(e)+(toward*speed+separation)*dt+push)-CombatGeometry.OriginOffset(e.type.id);
+                    UpdateEnemyPresentation(e, toward * speed, dt);
+                    if(e.type.id=="predator") UpdateBossArm(e,dt);
+                    foreach(var pet in pets)if(!pet.dead&&pet.spec.kind=="scapegoat"&&Vector2.Distance(e.pos,pet.pos)<ContactRadius(e)+.3f)DamageScapegoat(pet);
+                    if (role != "Tree" && PlayerHurtboxActive && CombatGeometry.ContactEnabled(e.knockback, speed) && RunRules.Touches(ContactCenter(e), PlayerHurtCenter, ContactRadius(e) + CombatGeometry.PlayerHurtRadius))
+                    {
+                        HurtPlayer(EnemyReferenceRules.ScaledDamage(e.type.damage+e.type.damageGrowth*(Rules.Wave-1),Rules.EnemyDamageFactor*(e.boosted?1+e.boostDamage/100:1)*(role=="Boss"||role=="Elite"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1)),e.type,e);
+                        e.contactSlow = CombatGeometry.ContactSlow(e.contactSlow, EnemyStatSpeed(e)-e.itemSlow);
+                        if (role == "Pursuer") e.action = 0;
+                    }
                 }
             }
+            finally{ReturnEnemySnapshot(enemyBatch);}
         }
 
         LineRenderer MakeLine(string name, Transform parent, Color color, float width, bool loop = false)

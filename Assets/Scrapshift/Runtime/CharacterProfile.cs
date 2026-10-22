@@ -94,9 +94,9 @@ namespace Scrapshift
         }
         float EquipmentStat(string key)
         {
-            float value=0;
+            float value=0;string prefixedKey=null;
             foreach(var w in Inventory)if(w.traits!=null)foreach(var t in w.traits)
-                if(string.IsNullOrEmpty(t.customKey)&&(t.key=="stat_"+key||t.key==key))
+                if(string.IsNullOrEmpty(t.customKey)&&(t.key==(prefixedKey??(prefixedKey="stat_"+key))||t.key==key))
                     value+=t.per>0?Mathf.Floor((1-Mathf.Clamp01(Health/MaxHealth))*100/t.per)*t.value:t.value;
             return value;
         }

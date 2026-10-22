@@ -1,3 +1,16 @@
+## October21 - measuring after integration
+
+The user chose crowded-wave FPS/memory, then web loading size. Codex merged the
+branches, corrected integration issues, and measured controlled100/200-enemy
+workloads before and after narrow loop/allocation changes. The200-enemy CPU mean
+fell20.012 to12.002ms across two runs each, with identical position/health/shot
+checksums;1309/1309 tests passed. Explain why stable identity snapshots are needed
+when player death removes enemies during traversal, and why pooled buffers must
+be distinct for nested calls and cleared in finally. Memory snapshots do not
+prove retained-RAM reduction; the allocation counter failed its positive control.
+This is AI-assisted project evidence, not personal profiling work by the user.
+Reproduce and explain the benchmark before using it as a personal interview claim.
+
 ## October21 rehearsal - validate on the actual input device
 
 The user physically tested R40's Xbox core controls after software fixtures had passed. Instrumentation observed raw device events and resulting menu, movement, aim and pause state rather than injecting input. Explain why simulated events and device detection were insufficient, and why a zero projectile counter limits the firing claim even when the user reports success. User contribution: actual hands-on controller testing. Codex contribution: isolated setup, logging analysis and documentation. [Evidence](controller-hardware-2026-10-21.md).

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="40" result="Passed" total="40" passed="40" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="1.0537316">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1307" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="1.053732" total="40" passed="40" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2539" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1277" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="1.033099" total="40" passed="40" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="39672" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2540" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1277" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="1.025097" total="40" passed="40" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2541" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1277" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="1.021462" total="40" passed="40" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1223" name="CombatTimingParityTests" fullname="Scrapshift.Tests.CombatTimingParityTests" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.472132" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1239" name="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown" fullname="Scrapshift.Tests.CombatTimingParityTests.ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.432734" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1236" name="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown(0,1)" fullname="Scrapshift.Tests.CombatTimingParityTests.ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown(0,1)" methodname="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="154377203" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.422560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1237" name="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown(1,1)" fullname="Scrapshift.Tests.CombatTimingParityTests.ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown(1,1)" methodname="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="2141373732" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1238" name="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown(2,2)" fullname="Scrapshift.Tests.CombatTimingParityTests.ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown(2,2)" methodname="ActualDelayedProjectileActivatesAfterItsSourceDeferredCountdown" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1340407457" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1227" name="AlreadyEnabledShotDoesNotSweepAcrossPastPositions" fullname="Scrapshift.Tests.CombatTimingParityTests.AlreadyEnabledShotDoesNotSweepAcrossPastPositions" methodname="AlreadyEnabledShotDoesNotSweepAcrossPastPositions" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="373936563" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000698" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1232" name="BeamCannotReplayAnIntermediateThicknessPeakBetweenPhysicsSamples" fullname="Scrapshift.Tests.CombatTimingParityTests.BeamCannotReplayAnIntermediateThicknessPeakBetweenPhysicsSamples" methodname="BeamCannotReplayAnIntermediateThicknessPeakBetweenPhysicsSamples" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="368009425" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1231" name="BeamCannotUseThicknessFromAfterItsRemainingLifetime" fullname="Scrapshift.Tests.CombatTimingParityTests.BeamCannotUseThicknessFromAfterItsRemainingLifetime" methodname="BeamCannotUseThicknessFromAfterItsRemainingLifetime" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1082163061" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000877" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1234" name="CompletedExplosionCannotHitAUnitEnteringOnALaterUpdate" fullname="Scrapshift.Tests.CombatTimingParityTests.CompletedExplosionCannotHitAUnitEnteringOnALaterUpdate" methodname="CompletedExplosionCannotHitAUnitEnteringOnALaterUpdate" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1577738153" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001754" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1224" name="DelayedShotCannotHitAnEnemyPassedBeforeItsHitboxEnabled" fullname="Scrapshift.Tests.CombatTimingParityTests.DelayedShotCannotHitAnEnemyPassedBeforeItsHitboxEnabled" methodname="DelayedShotCannotHitAnEnemyPassedBeforeItsHitboxEnabled" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1285413934" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000633" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1225" name="EnabledShotCanHitItsCurrentPhysicsPosition" fullname="Scrapshift.Tests.CombatTimingParityTests.EnabledShotCanHitItsCurrentPhysicsPosition" methodname="EnabledShotCanHitItsCurrentPhysicsPosition" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1504680676" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1233" name="MeleeCannotReplayAnAttackThatFinishedBeforeTheCurrentPhysicsPose" fullname="Scrapshift.Tests.CombatTimingParityTests.MeleeCannotReplayAnAttackThatFinishedBeforeTheCurrentPhysicsPose" methodname="MeleeCannotReplayAnAttackThatFinishedBeforeTheCurrentPhysicsPose" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="2136718743" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.006693" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1228" name="OrdinaryShotKeepsItsInitialSpawnOverlapWithoutSweeping" fullname="Scrapshift.Tests.CombatTimingParityTests.OrdinaryShotKeepsItsInitialSpawnOverlapWithoutSweeping" methodname="OrdinaryShotKeepsItsInitialSpawnOverlapWithoutSweeping" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="949155205" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1230" name="PendingShotCannotAcquireAContactBeforeItsFirstPhysicsActivation" fullname="Scrapshift.Tests.CombatTimingParityTests.PendingShotCannotAcquireAContactBeforeItsFirstPhysicsActivation" methodname="PendingShotCannotAcquireAContactBeforeItsFirstPhysicsActivation" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1294434038" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1235" name="RandomEnemyCallbacksExcludeNeutralTreesAndBossPoolEntries" fullname="Scrapshift.Tests.CombatTimingParityTests.RandomEnemyCallbacksExcludeNeutralTreesAndBossPoolEntries" methodname="RandomEnemyCallbacksExcludeNeutralTreesAndBossPoolEntries" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="825728539" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002803" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1229" name="SourceFlameAtReachableSpeedCapMissesGrazingTargetBetweenPhysicsPositions" fullname="Scrapshift.Tests.CombatTimingParityTests.SourceFlameAtReachableSpeedCapMissesGrazingTargetBetweenPhysicsPositions" methodname="SourceFlameAtReachableSpeedCapMissesGrazingTargetBetweenPhysicsPositions" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="859920235" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002080" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1226" name="StillDisabledShotCannotHitAtItsCurrentPosition" fullname="Scrapshift.Tests.CombatTimingParityTests.StillDisabledShotCannotHitAtItsCurrentPosition" methodname="StillDisabledShotCannotHitAtItsCurrentPosition" classname="Scrapshift.Tests.CombatTimingParityTests" runstate="Runnable" seed="1731235384" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1296" name="DeathDispatchFollowupTests" fullname="Scrapshift.Tests.DeathDispatchFollowupTests" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.046214" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1301" name="BurnAchievementCounterPrecedesDeferredBurningItemStatGains" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.BurnAchievementCounterPrecedesDeferredBurningItemStatGains" methodname="BurnAchievementCounterPrecedesDeferredBurningItemStatGains" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="993696020" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.020535" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1304" name="DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.006326" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1302" name="DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus(False)" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus(False)" methodname="DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="694640813" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1303" name="DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus(True)" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus(True)" methodname="DeferredDeathUpdatesLinkedEnemyOrTreeStatsBeforeTheNextCensus" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="1122206323" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1305" name="GiantBeltReadsHealthAfterTheEarlierLichHit" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.GiantBeltReadsHealthAfterTheEarlierLichHit" methodname="GiantBeltReadsHealthAfterTheEarlierLichHit" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="1039918416" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.004225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1306" name="LethalLichPreemptsTheLaterWeaponAndKeepsAStablePendingMember" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.LethalLichPreemptsTheLaterWeaponAndKeepsAStablePendingMember" methodname="LethalLichPreemptsTheLaterWeaponAndKeepsAStablePendingMember" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="771537476" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001381" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1298" name="LichDamageChangesHealthBeforeAnUnrelatedLaterWeaponHit" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.LichDamageChangesHealthBeforeAnUnrelatedLaterWeaponHit" methodname="LichDamageChangesHealthBeforeAnUnrelatedLaterWeaponHit" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="1373764024" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000924" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1297" name="MonkeyLichLethalPickupLeavesElephantNoEligibleTargetBeforeItsRoll" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.MonkeyLichLethalPickupLeavesElephantNoEligibleTargetBeforeItsRoll" methodname="MonkeyLichLethalPickupLeavesElephantNoEligibleTargetBeforeItsRoll" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="1852823255" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.007024" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1300" name="PlayerLethalCleanupRejectsALaterEnemyHitWithoutAwardingAKill" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.PlayerLethalCleanupRejectsALaterEnemyHitWithoutAwardingAKill" methodname="PlayerLethalCleanupRejectsALaterEnemyHitWithoutAwardingAKill" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="827168483" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001790" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1299" name="SynchronousPlayerDeathPreemptsAnEarlierPendingEnemyDeath" fullname="Scrapshift.Tests.DeathDispatchFollowupTests.SynchronousPlayerDeathPreemptsAnEarlierPendingEnemyDeath" methodname="SynchronousPlayerDeathPreemptsAnEarlierPendingEnemyDeath" classname="Scrapshift.Tests.DeathDispatchFollowupTests" runstate="Runnable" seed="513542480" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001107" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1414" name="EnemySnapshotSafetyTests" fullname="Scrapshift.Tests.EnemySnapshotSafetyTests" classname="Scrapshift.Tests.EnemySnapshotSafetyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.013586" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1418" name="FailedEnemyUpdateStillReleasesItsSnapshot" fullname="Scrapshift.Tests.EnemySnapshotSafetyTests.FailedEnemyUpdateStillReleasesItsSnapshot" methodname="FailedEnemyUpdateStillReleasesItsSnapshot" classname="Scrapshift.Tests.EnemySnapshotSafetyTests" runstate="Runnable" seed="1565025265" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.007514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1416" name="NestedSnapshotCannotOverwriteAnActiveOuterTraversal" fullname="Scrapshift.Tests.EnemySnapshotSafetyTests.NestedSnapshotCannotOverwriteAnActiveOuterTraversal" methodname="NestedSnapshotCannotOverwriteAnActiveOuterTraversal" classname="Scrapshift.Tests.EnemySnapshotSafetyTests" runstate="Runnable" seed="779497374" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002868" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1417" name="NonPlayingEarlyReturnReleasesItsSnapshot" fullname="Scrapshift.Tests.EnemySnapshotSafetyTests.NonPlayingEarlyReturnReleasesItsSnapshot" methodname="NonPlayingEarlyReturnReleasesItsSnapshot" classname="Scrapshift.Tests.EnemySnapshotSafetyTests" runstate="Runnable" seed="1736330513" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000674" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1415" name="SnapshotPreservesIdentitiesAcrossRemovalAndDoesNotIncludeLaterSpawns" fullname="Scrapshift.Tests.EnemySnapshotSafetyTests.SnapshotPreservesIdentitiesAcrossRemovalAndDoesNotIncludeLaterSpawns" methodname="SnapshotPreservesIdentitiesAcrossRemovalAndDoesNotIncludeLaterSpawns" classname="Scrapshift.Tests.EnemySnapshotSafetyTests" runstate="Runnable" seed="957305673" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000777" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1580" name="ItemChainFollowupTests" fullname="Scrapshift.Tests.ItemChainFollowupTests" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.046535" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1592" name="FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates" fullname="Scrapshift.Tests.ItemChainFollowupTests.FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.028836" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1590" name="FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates(14,False)" fullname="Scrapshift.Tests.ItemChainFollowupTests.FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates(14,False)" methodname="FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="298319840" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.022212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1591" name="FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates(15,True)" fullname="Scrapshift.Tests.ItemChainFollowupTests.FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates(15,True)" methodname="FireworksCountsDirectExplosionKillsBeforeDeferredDeathsAndIgnoresZeroHpCandidates" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1502404171" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.005799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1586" name="OrdinarySpecialProjectileStillReceivesSausageBurn" fullname="Scrapshift.Tests.ItemChainFollowupTests.OrdinarySpecialProjectileStillReceivesSausageBurn" methodname="OrdinarySpecialProjectileStillReceivesSausageBurn" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1106419853" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1589" name="PlainItemExplosionHasNoWeaponLifeStealCallback" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.007672" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1587" name="PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5)" methodname="PlainItemExplosionHasNoWeaponLifeStealCallback" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="207307622" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1588" name="PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2)" methodname="PlainItemExplosionHasNoWeaponLifeStealCallback" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="191392944" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.002427" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1585" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.005444" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1581" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,False)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,False)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1940171077" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.001522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1582" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,True)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,True)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1292044867" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1583" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,False)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,False)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1127771654" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1584" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,True)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,True)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="535478331" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:37Z" duration="0.000674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1800" name="MergePresentationTests" fullname="Scrapshift.Tests.MergePresentationTests" classname="Scrapshift.Tests.MergePresentationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="0.295881" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1803" name="RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift" fullname="Scrapshift.Tests.MergePresentationTests.RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift" classname="Scrapshift.Tests.MergePresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="0.286503" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1801" name="RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift(0.45f)" fullname="Scrapshift.Tests.MergePresentationTests.RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift(0.45f)" methodname="RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift" classname="Scrapshift.Tests.MergePresentationTests" runstate="Runnable" seed="1211399829" result="Passed" start-time="2026-10-22 01:32:37Z" end-time="2026-10-22 01:32:38Z" duration="0.282920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1802" name="RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift(1.7f)" fullname="Scrapshift.Tests.MergePresentationTests.RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift(1.7f)" methodname="RepeatedVictoryPoseKeepsFeetAttachedWithoutAccumulatingLift" classname="Scrapshift.Tests.MergePresentationTests" runstate="Runnable" seed="743093499" result="Passed" start-time="2026-10-22 01:32:38Z" end-time="2026-10-22 01:32:38Z" duration="0.002259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1804" name="ReturningDuringSettlementCancelsPendingLetterCues" fullname="Scrapshift.Tests.MergePresentationTests.ReturningDuringSettlementCancelsPendingLetterCues" methodname="ReturningDuringSettlementCancelsPendingLetterCues" classname="Scrapshift.Tests.MergePresentationTests" runstate="Runnable" seed="1693881107" result="Passed" start-time="2026-10-22 01:32:38Z" end-time="2026-10-22 01:32:38Z" duration="0.007110" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/optimization-2026-10-21/optimization-focused.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

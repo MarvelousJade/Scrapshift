@@ -1,3 +1,18 @@
+## October21 - integration and crowded combat optimization
+
+Main presentation/support/audio work was combined with verified R40 gameplay.
+Integration corrected objectless blood-emitter assumptions in logic fixtures,
+Entrepreneur staged funding after wave setup, accumulating victory foot offsets,
+and queued letter cues surviving return to title. Failed first suite45/1269 is
+retained; focused208/208 then complete1309/1309 passed.
+
+Pooled enemy identity snapshots, invariant collision lookups and lazy stat-key
+construction preserve traversal/death semantics. Two-run200-enemy synthetic CPU
+mean20.012 to12.002ms (40.0% lower), exact gameplay checksums. UI disabled; no
+ordinary-game FPS or retained-RAM claim. Native victory state passed, but its
+ReadPixels captures were blank and are not visual acceptance. See
+crowded-wave-optimization-2026-10-21.md and main-integration-2026-10-21.md.
+
 ## October21 - physical Xbox core retest passed
 
 The user operated the Xbox controller and confirmed all requested core controls worked. R40 logs268 samples/136 Playing, physical navigation/movement/aim and Menu pause/resume, with zero combat menu-focus cue requests. No virtual device or code fix was needed. Ranged projectile firing and other controller shortcuts were not independently exercised. [Hardware evidence](controller-hardware-2026-10-21.md).
