@@ -1,3 +1,7 @@
+## 2026-10-22 - Rehearsal: publish a verified artifact
+
+User authorized Git push and itch.io upload and completed authentication. Codex pushed main, uploaded the hash-verified package, preserved access settings and performed a bounded hosted smoke. Explain build provenance versus server success versus gameplay acceptance; do not claim independent user implementation or exhaustive hosted testing. See docs/web-release.md.
+
 ## 2026-10-21 - Rehearsal: complete an optimization release with evidence
 
 User directed the priorities and performed the earlier physical Xbox check. Codex agents implemented/measured combat changes, caught a faulty Web stress fixture, rejected invalid timings, preserved asset registration and verified a local release. Explain20.012->12.002ms synthetic CPU with matching checksums, corrected129FPS Web crowd scope,5.35%current-source build reduction, settings restoration and ZIP hash readback. These are separate measurements, not a claim of40%whole-game FPS or total-RAM savings. AI-assisted rehearsal; do not claim independent user coding/debugging or a human20-wave campaign.

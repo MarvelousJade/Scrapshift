@@ -55,7 +55,7 @@ For this workspace's integrated Windows review build, launch `Builds/Optimizatio
 The current local Web build is `Builds/Web`; `Builds/Scrapshift-Web.zip` is the
 verified upload package. Serve the folder over HTTP. Browser controls, save/reload,
 focus, fullscreen and the corrected crowd diagnostic are recorded in the
-[Web release notes](docs/web-release.md). This pass did not upload a new demo.
+[Web release notes](docs/web-release.md). The verified package was uploaded on October22 to [Scrap Shift on itch.io](https://marvelousjade.itch.io/scrap-shift), retaining restricted/password access.
 
 With the project's Editor closed, run:
 

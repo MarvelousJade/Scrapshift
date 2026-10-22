@@ -1,11 +1,29 @@
-# Browser release - October 21, 2026
+# Browser release - October 22, 2026
+
+## October22 publication follow-up
+
+The user explicitly authorized pushing main and uploading this verified build to
+the existing itch.io project. Main was pushed successfully: remote
+`MarvelousJade/Scrapshift` main resolved to
+`444f29334d1865b8b619c1be4c0454ea20d931b7`. The ZIP still matches the SHA256 below.
+Upload completed on October22. itch.io reported `Scrapshift-Web.zip - Success`,
+70mb, Today at3:48AM; the saved page reports Updated22October2026@07:48UTC.
+The single upload is enabled for browser play. Restricted visibility and password
+access remain enabled; embed960x600/fullscreen settings are retained.
+Hosted asset `html/19943159/index.html?v=1792655326` loaded the current title,
+Rookie/Pistol/Danger0 selection, active wave1 and ordinary defeat with an unlock
+popup. Captured warning/error console was empty. The smoke run died before the
+movement/pause attempt could establish those controls; local release evidence
+remains their acceptance. No hosted full campaign or physical gamepad claim.
+See `artifacts/itch-release-2026-10-22/receipt.json` and screenshots.
+
 
 ## Current local release
 
 Gameplay was merged to main, then `codex/crowded-wave-optimization-20261021` was
 created, validated and merged back at **8fd3186**. The final Web build uses that
 merged source, without `SCRAPSHIFT_WEB_REVIEW`. Local files are **`Builds/Web`**;
-upload package **`Builds/Scrapshift-Web.zip`**. Nothing was uploaded in this pass.
+upload package **`Builds/Scrapshift-Web.zip`**. It was uploaded on October22.
 The earlier folder/ZIP are preserved as `Builds/WebBeforeOptimization20261021`
 and `Builds/Scrapshift-Web-before-20261021.zip`.
 

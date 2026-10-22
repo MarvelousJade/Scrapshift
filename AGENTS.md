@@ -1,6 +1,6 @@
 # Scrapshift — project instructions and user preferences
 
-Updated: 2026-10-21, America/Toronto. This file records the user's instructions from this project's conversation. Read it before working in this repository. Keep it current when the user makes a new decision.
+Updated: 2026-10-22, America/Toronto. This file records the user's instructions from this project's conversation. Read it before working in this repository. Keep it current when the user makes a new decision.
 
 ## Scope and precedence
 
@@ -164,6 +164,10 @@ Updated: 2026-10-21, America/Toronto. This file records the user's instructions 
 - Verify the native character and UI portraits alone, in combinations, at gameplay size, mirrored and animated, with acquisition/removal checks. Tests alone do not prove that the image fits.
 
 ## Builds, previews and working practices
+
+- October22 publication: main444f293 pushed; verified73,347,695-byte ZIP uploaded successfully to existing itch.io5154937. Browser-play enabled; restricted/password and embed settings retained. Hosted asset19943159 loads title, Rookie/Pistol/Danger0, wave1 and ordinary defeat/unlock popup; captured warn/error console empty. No hosted movement/pause/full20/gamepad acceptance. Release receipt: artifacts/itch-release-2026-10-22/receipt.json.
+
+- October22 release authorization: the user explicitly requested pushing main and uploading the verified updated Web build to the existing Scrap Shift itch.io project. This supersedes the earlier local-only release scope for this upload. Preserve existing page visibility, password protection and other unrelated project settings. Authentication may require the user's signed-in session; do not request their password in chat. Use the verified package/source receipts and record the actual remote result before claiming upload success.
 
 - October21 next phase: user explicitly requests merging gameplay work to main, a new optimization branch, then merging validated optimization back to main and updating the web build. Priority confirmed: crowded-wave FPS and memory first, then web loading/build size. Measure before/after and preserve gameplay parity; commit meaningful changes with evidence. Updating the local web build is authorized; publication/account upload remains subject to the separate release instructions.
 

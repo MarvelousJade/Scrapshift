@@ -1,3 +1,7 @@
+## 2026-10-22 - itch.io release uploaded
+
+Verified ZIP uploaded and browser-play saved to existing project5154937; restricted/password access retained. Hosted title, selection, wave1 and ordinary defeat/unlock popup render; captured warn/error console empty. Hosted movement/pause attempt was inconclusive because the smoke run died first. No new gameplay mismatch established; full hosted campaign and browser gamepad remain unchecked. See docs/web-release.md.
+
 ## 2026-10-21 - Merged main Web release verified
 
 Optimization merged into local main8fd3186 after gameplay merge992e4d2. Final nonreview Web build:0errors/warnings/exit0,73,477,798bytes; ZIP73,347,695bytes,CRC/per-fileSHA readback Passed.2629 source inputs and all5 built/tested/packaged files match;464audio/23texture imports restore. Actual release Rookie/Pistol1-weapon start, movement/pause/Resume/Escape, focus pause,1920x1080fullscreen,42%settings afterreload and console[] passed. Current-source build baseline shrinks5.35%; historical older-content ZIP is not that baseline. Prior builds preserved; no push/upload/newfull20/browserhardware/total-RAM claim. See docs/web-release.md.
