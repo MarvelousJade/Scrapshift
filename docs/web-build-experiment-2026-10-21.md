@@ -2,7 +2,7 @@
 
 ## Scope and current decision
 
-These are diagnostic WebGL builds from the optimization branch, with `SCRAPSHIFT_WEB_REVIEW` enabled. They are experiments, not the final browser release or an itch.io publication. The corrected normal-exception diagnostic crowd now passes. The final release build and acceptance remain pending; no future release result is claimed here.
+The first six builds below are diagnostic WebGL experiments from the optimization branch, with `SCRAPSHIFT_WEB_REVIEW` enabled. The corrected normal-exception crowd passed. The branch subsequently merged to main8fd3186, and a final nonreview local release also passed its package/browser checks; [current release acceptance](web-release.md) records that separate result. Nothing was uploaded in this pass.
 
 The builder now defaults to `BuildTimes`, authored SFX codecs with quality 0.65, and compression on two eligible weapon atlases. `RuntimeSpeedLTO`, `--web-vorbis-sfx` and `--web-full-stacktraces` remain explicit alternatives; full stack traces are diagnostic only. Baseline is already an optimized release: Development and debugging are disabled, C++ compilation uses `-O3`, and its linker uses `-O2` with assertions disabled. The `debug_WebGL_wasm` intermediate directory name does not establish a debug build. Its dedicated runtime-speed/size/LTO preset flags were false.
 
@@ -74,4 +74,20 @@ The revised candidate checks existing dimensions against the preserved maximum a
 - `runtime-source-manifest.json` preserves the original committed 2,626-input Windows checkpoint byte-for-byte. `final-package.json` now explicitly references this immutable snapshot, rather than the subsequently updated Web candidate manifest. Package file hashes are unchanged.
 - `scripts/sync_validation_project.py --manifest release-source-manifest.json` can write a distinct future release manifest. Synchronization rejects extra, missing or mismatched clone inputs; it does not silently delete them.
 
-A final release build without review commands, its browser controls/save/audio/fullscreen and visual checks, and the final package refresh remain outstanding at this checkpoint. The corrected diagnostic crowd is verified separately from that release acceptance.
+## Final local release
+
+Main8fd3186 produced a nonreview release with default quality-only SFX and the two
+eligible atlases: **73,477,798 bytes**, zero errors/warnings, exit0. This is
+4,150,688 bytes/5.35% below the current-source baseline; compressed data is
+66,749,502 bytes (5.83% below baseline). All464 audio and23 texture records restore.
+The ZIP is73,347,695 bytes; its CRC and every extracted hash pass. Built, browser
+and packaged copies match across all five files, and2629 source inputs match the
+prebuild manifest. These whole-build savings include omitted diagnostic code;
+the9MiB packed atlas delta remains the direct texture evidence.
+
+Actual release controls, an ordinary wave1 pistol run, pause/focus, fullscreen,
+42% saved volume after reload and zero console errors passed. Source/playback
+audio evidence keeps its diagnostic/listening limits. See `web-final/`,
+`web-final-package.json`, `web-final-verification.json`, `browser/final-release.json`
+and [the release record](web-release.md). The release-like crowd is separately
+verified; neither result is a fresh full20 campaign or universal-browser claim.

@@ -36,7 +36,8 @@ its loadout, so its matching-checksum CPU comparison is unaffected.
 Evidence: `artifacts/optimization-2026-10-21/browser/texture-diagnosis-errors.json`,
 `corrected-crowd.json`, `release-like-crowd.json`, `release-like-crowd.jpg`, and the
 separate `web-corrected`/`web-release-like` build/restoration receipts. The final
-release without diagnostic commands still requires its own package/browser check.
+release without diagnostic commands subsequently passed its own package/browser
+checks, documented in [Web release](web-release.md).
 
 Codex diagnosed and corrected this fixture under the user's direction. This is
 AI-assisted project work, not a claim of independent user debugging.

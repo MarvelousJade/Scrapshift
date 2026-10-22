@@ -1,3 +1,7 @@
+## 2026-10-21 - Latest integrated checkpoint
+
+Local main8fd3186 contains gameplay and optimization merges. Latest full integrated suite1309/1309 and focused40/40 Passed; latest full20/physicalXbox remains R40 with documented limits. Native R2 staged victory capture fixed and inspected. Final nonreview Web0errors/warnings/exit0;2629 inputs and5 built/tested/packaged files verified; ZIP readback Passed. Actual final Chromium ordinary-run controls, pause/focus/fullscreen/save-reload/console checks Passed; corrected synthetic crowd129FPS is separate. Current checklist: docs/gameplay-verification-status.md; release evidence: docs/web-release.md. No universal parity/total-RAM/all-browser/newfull20/upload claim.
+
 ## October21 - final R40 evidence
 
 R40 suite1286/1286 Passed; focused12cleanup/mine and12policy Passed. Fresh source/R40 normal-timing matched-policy20 waves/19shops/exit0;18/18 checks.634 source inputs/159 files and3816 original/3819 clone inputs verify after execution.66 capture hashes reviewed/verified. Source diagnostics and one startup pause intervention retained; no universal parity or hardware/browser claim. [Comparison](full-run-r40-comparison-2026-10-21.md), [native checkpoint](native-final-checkpoint-2026-10-21.md).

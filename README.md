@@ -52,6 +52,11 @@ Move with **WASD / arrow keys**, use the **mouse** for menus, and press **Escape
 
 For this workspace's integrated Windows review build, launch `Builds/Optimization20261021R2/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout. R40 remains the separately documented full campaign/hardware checkpoint.
 
+The current local Web build is `Builds/Web`; `Builds/Scrapshift-Web.zip` is the
+verified upload package. Serve the folder over HTTP. Browser controls, save/reload,
+focus, fullscreen and the corrected crowd diagnostic are recorded in the
+[Web release notes](docs/web-release.md). This pass did not upload a new demo.
+
 With the project's Editor closed, run:
 
 ```powershell

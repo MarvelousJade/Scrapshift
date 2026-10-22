@@ -1,3 +1,7 @@
+## 2026-10-21 - Merged main Web release verified
+
+Optimization merged into local main8fd3186 after gameplay merge992e4d2. Final nonreview Web build:0errors/warnings/exit0,73,477,798bytes; ZIP73,347,695bytes,CRC/per-fileSHA readback Passed.2629 source inputs and all5 built/tested/packaged files match;464audio/23texture imports restore. Actual release Rookie/Pistol1-weapon start, movement/pause/Resume/Escape, focus pause,1920x1080fullscreen,42%settings afterreload and console[] passed. Current-source build baseline shrinks5.35%; historical older-content ZIP is not that baseline. Prior builds preserved; no push/upload/newfull20/browserhardware/total-RAM claim. See docs/web-release.md.
+
 ## 2026-10-21 - Guard Web atlas imports and restore settings
 
 A compression attempt would resize an oversized wearable atlas, so the invariant guard rejected it and restored settings before building. The accepted candidate compresses only two compatible weapon sheets;21 audited textures retain their original import. All23 texture and464 audio records restore with unchanged source hashes. Packed atlas data falls9MiB; no total-RAM claim. LTO enlarged Wasm and has no valid speed-gain proof, so it stays opt-in. See docs/web-build-experiment-2026-10-21.md; final release package acceptance is separate.

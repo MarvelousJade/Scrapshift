@@ -1,3 +1,7 @@
+## 2026-10-21 - Integration, release and attribution
+
+Completed the requested gameplay-to-main, new optimization branch, optimization-to-main and local Web refresh workflow. User set priorities and supplied reference/hardware feedback. Codex coordinated disjoint agents, measured/fixed runtime work and review instrumentation, updated evidence/docs and committed meaningful changes. Final Web source8fd3186; package/browser/restore checks Passed. No public upload or remote push; historical user worktree preserved. See docs/web-release.md and artifacts/optimization-2026-10-21/web-final-verification.json.
+
 ## 2026-10-21 - Reversible Web resource optimization
 
 User: selected FPS/memory then Web size and required meaningful commits. Codex agents: measured six diagnostic builds, implemented guarded temporary texture imports, verified source/settings restoration, preserved rejected attempts and kept LTO/codec/full-stack experiments opt-in. Two atlas payloads shrink9MiB packed; whole release measurements remain a separate final checkpoint.

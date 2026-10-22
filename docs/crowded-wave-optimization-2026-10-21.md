@@ -80,8 +80,15 @@ actual process exit0. This is a staged animation fixture, not a20-wave playthrou
 verified inputs. `victory-r2-reviewed.json` hashes the five inspected images.
 R40's earlier hardware/full20 evidence retains its own source scope.
 
-Web audio/build-size experiments and browser acceptance are recorded separately
-when complete. No new full20 comparison was performed for this optimization.
+The optimization branch merged back into main at8fd3186. The final local Web
+release built from that main is73,477,798 bytes,5.35% below this pass's baseline;
+its verified ZIP is73,347,695 bytes. Two compatible weapon atlases reduce packed
+texture payload9MiB, with dimensions/source pixels preserved and all temporary
+settings restored. This is not a total-RAM measurement. The corrected diagnostic
+200+enemy crowd runs about129FPS with no console errors; old faulty fixture
+timings are withdrawn. Actual final release controls/save/focus/fullscreen and
+package checks passed. [Web release and limits](web-release.md). No upload or new
+full20 comparison was performed for this optimization.
 
 Codex implemented and measured this work under the user's direction. The user
 personally performed the separately documented physical Xbox test.

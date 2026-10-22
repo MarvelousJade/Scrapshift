@@ -1,4 +1,89 @@
-# Browser release — October 13, 2026
+# Browser release - October 21, 2026
+
+## Current local release
+
+Gameplay was merged to main, then `codex/crowded-wave-optimization-20261021` was
+created, validated and merged back at **8fd3186**. The final Web build uses that
+merged source, without `SCRAPSHIFT_WEB_REVIEW`. Local files are **`Builds/Web`**;
+upload package **`Builds/Scrapshift-Web.zip`**. Nothing was uploaded in this pass.
+The earlier folder/ZIP are preserved as `Builds/WebBeforeOptimization20261021`
+and `Builds/Scrapshift-Web-before-20261021.zip`.
+
+Unity6000.6.5f1 reported **Succeeded, zero errors/warnings**, process exit0.
+Build size is **73,477,798 bytes**; ZIP **73,347,695 bytes**, with `index.html` at
+its root. ZIP CRC and every extracted file hash passed. The built output, tested
+HTTP copy and packaged folder match across all five files. All2629 source inputs
+match the prebuild manifest. ZIP SHA256:
+`9a074d0460a548729788aac30f4a4ce2631892cc8004bb772ae4e9a8f1099fdc`.
+
+Compared with this pass's same-content diagnostic baseline of77,628,486 bytes,
+the final build is **5.35% smaller**; compressed data falls from70,884,507 to
+66,749,502 bytes (**5.83%**). This is an observed whole-build comparison, including
+removal of diagnostics. Direct per-asset evidence shows the two weapon atlases
+reduce packed payload by **9,437,184 bytes (9 MiB)**. This does not establish total
+RAM savings. The older October14 ZIP below contains different content and is
+smaller than this new release; it is not the optimization baseline.
+
+### Accepted settings and restoration
+
+- Keep the existing optimized release `BuildTimes` code preset. LTO remains
+  optional: it enlarged Wasm and has no valid measured Web speed-gain proof here.
+- Temporarily use SFX quality0.65 with authored codecs/load/preload/sample-rate/
+  channel settings; music retains0.45/compressed-in-memory. The four canonical
+  preview recordings remain excluded. Source recordings/approved pixels remain
+  unchanged. No subjective compressed-audio listening acceptance is claimed.
+- Temporarily use Web DXT5 on only the two compatible weapon atlases. Preserve
+  their dimensions, pivots, readability and sprite registration. Skip21 other
+  audited textures; a rejected resizing attempt was safely restored. The tested
+  Chromium browser reports support and two actual DXT5 textures. Other devices'
+  decompression/fallback memory behavior remains unverified.
+- All **464 audio** and **23 texture** import records restored; source hashes are
+  unchanged. The prior code preset also restored. Portable per-path audio hash
+  summaries are committed; the147 MB raw importer receipts remain local.
+
+### Current browser checks
+
+The final nonreview release was served on isolated localhost port8787 at
+`/release/`, with the temporary viewport override reset. This is local Chromium
+evidence, not a claim about every browser or an actual itch.io iframe.
+
+- Keyboard title entry; mouse Rookie/Pistol/Danger0/Start; ordinary wave1 combat;
+  D/A movement; P pause; mouse Resume; Escape closes Options. Pause inventory
+  shows exactly **Weapons (1/6)**. Health15→12→11 and materials30→31→32 establish
+  an ordinary short run, not an invulnerable full campaign.
+- Moving focus from the playing canvas to the page control pauses. Returning
+  focus leaves the run paused. The pause timer stayed fixed through inspection.
+- Fullscreen entry/exit passed. Actual stage and canvas bounds are1920x1080;
+  the inspected image fits the screen. Embedded canvas is1280x673.
+- Saved master volume **42%** appears in the actual release Options before and
+  after a final release reload. Diagnostic progression probe1/master0.42 also
+  persisted across same-URL diagnostic build replacements. This is not a new
+  organic-unlock campaign or cross-origin migration test.
+- Final console warnings/errors: **0** before and after reload. No save-test or
+  benchmark buttons appear. First observed final-build load: **2.30 seconds on
+  localhost**, not an internet loading-speed guarantee.
+- The separate corrected diagnostic records music stopped before Start, playing
+  during the run,323 SFX requests and a peak16 voices. Final release has no audio
+  console errors. These are source/playback-state checks, not subjective listening.
+
+The corrected, normal-exception diagnostic crowd sampled **1293 frames**, mean
+**7.738 ms**/p95 **11.000 ms** (about129 FPS), with at least200 enemies, peak204,
+six synchronized weapons and no console warnings/errors. Actual canvas1280x613;
+ten-second sample after two-second warmup; no concurrent Unity build. It uses
+original SFX imports and is separate from final-release ordinary gameplay.
+Earlier current-pass crowd FPS samples are invalid because their knife view was
+not initialized; [the fixture investigation](web-crowd-fixture-2026-10-21.md)
+records the correction. This is not a before/after Web speed ratio or full run.
+
+Evidence: `artifacts/optimization-2026-10-21/web-final-package.json`,
+`web-final-verification.json`, `release-source-manifest.json`, `web-final/`,
+`browser/final-release.json` and inspected images. See
+[experiments and rejected attempts](web-build-experiment-2026-10-21.md).
+Firefox, Safari, mobile, storage-denied/private modes, physical browser gamepads
+and an actual hosted iframe remain untested. R40's physical Xbox acceptance is
+Windows evidence. Publication and sound licensing retain their separate scope.
+
+## Historical release notes
 
 ## October 14 release update
 

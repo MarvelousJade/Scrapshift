@@ -1,3 +1,7 @@
+## 2026-10-21 - Rehearsal: complete an optimization release with evidence
+
+User directed the priorities and performed the earlier physical Xbox check. Codex agents implemented/measured combat changes, caught a faulty Web stress fixture, rejected invalid timings, preserved asset registration and verified a local release. Explain20.012->12.002ms synthetic CPU with matching checksums, corrected129FPS Web crowd scope,5.35%current-source build reduction, settings restoration and ZIP hash readback. These are separate measurements, not a claim of40%whole-game FPS or total-RAM savings. AI-assisted rehearsal; do not claim independent user coding/debugging or a human20-wave campaign.
+
 ## 2026-10-21 - Rehearsal: optimize without changing asset registration
 
 Codex compared real Web outputs under user direction. Small SFX quality savings were measured; a codec request added no useful saving. Texture checks rejected resizing, then retained21 incompatible atlases and compressed two compatible sheets. Explain source/settings restoration, packed bytes versus downloaded bytes, and why neither proves a total-RAM reduction. AI-assisted rehearsal; do not present it as independent user implementation.

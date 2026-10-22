@@ -29,3 +29,11 @@ attached to its own source. Current Web release acceptance is documented separat
 
 Evidence: `artifacts/optimization-2026-10-21/integration-{suite,focused}.xml`.
 The user performed the Xbox test; Codex performed this merge and validation.
+
+Gameplay merged into main at992e4d2. The requested optimization branch then
+measured/fixed combat work and Web resource handling, and merged back at8fd3186.
+The tracked remote README history is also integrated, preserving the video/demo
+presentation and newer verification notes. The final local Web release was built
+from8fd3186 and its tested/packaged file hashes match. See [Web release](web-release.md).
+No push or account upload was performed in this pass; the separate dirty worktree
+remains preserved on its named backup branch.

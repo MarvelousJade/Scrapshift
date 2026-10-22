@@ -1,5 +1,5 @@
 {
-  "status": "Build-size experiments and corrected diagnostic crowd verified; final release build and acceptance pending",
+  "status": "Nonreview final release built successfully with verified import restoration; ZIP/final browser acceptance completion owned by root",
   "builds": [
     {
       "name": "web-baseline",
@@ -318,6 +318,73 @@
       },
       "buildReceipt": "web-release-like/web-build.json",
       "buildReceiptSha256": "e89863a4436e9677585709b7797a18d9974f657fb21668ae6d1a374473820243"
+    },
+    {
+      "name": "web-final",
+      "sourceCommit": "8fd3186",
+      "sourceManifest": "release-source-manifest.json",
+      "sourceManifestSha256": "7642ba396d026dd64252a378c5358f097f91f989546d8e82d3e1651a78700a28",
+      "sourceInputs": 2629,
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": false,
+      "output": "Builds/WebRelease20261021",
+      "buildReportBytes": 73477798,
+      "codeOptimization": "BuildTimes",
+      "originalSfxAudio": false,
+      "sfxVorbisCompression": false,
+      "buildFiles": [
+        {
+          "path": "Build/WebRelease20261021.data.unityweb",
+          "bytes": 66749502,
+          "sha256": "e3c67aa1bbb11266bafa34feb1bf390a94d8a6a09870f19506cd799f81051cb9"
+        },
+        {
+          "path": "Build/WebRelease20261021.framework.js.unityweb",
+          "bytes": 73663,
+          "sha256": "529aa81983b9ed28ae5d616febc5a724072a302dfb94c9db7d935056d67742bc"
+        },
+        {
+          "path": "Build/WebRelease20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "4767a5a25356f58e0deb20d184f566f14bbb86dd0c3d2c967eb624cca9abf18f"
+        },
+        {
+          "path": "Build/WebRelease20261021.wasm.unityweb",
+          "bytes": 6601533,
+          "sha256": "6686b154ad3f517d434995ad3a05edc058e22303dabf6596feb1e1bd6013843e"
+        },
+        {
+          "path": "index.html",
+          "bytes": 4321,
+          "sha256": "cdda0d75fa6c49f664456ef61b986e5ec5f2a54ebb9aedd142fd2f311c05b18e"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "restorationPassed": true,
+        "codeOptimizationRestored": true,
+        "receipt": "web-final/web-audio-imports.json",
+        "receiptSha256": "0904d25a0b481ee134c1f3113004010a39ea1628fd471f36fe59ebcb97afe6d7",
+        "portableSummary": "web-final/audio-import-summary.json",
+        "portableSummarySha256": "71e1cc059d17e4862764480d8aee57fa2958475c840ac0821bc4eebedc53c070"
+      },
+      "textureVerification": {
+        "entries": 23,
+        "attempted": 2,
+        "skipped": 21,
+        "restored": 23,
+        "unchangedSourceFiles": 23,
+        "restorationPassed": true,
+        "receipt": "web-final/web-texture-imports.json",
+        "receiptSha256": "2141c31126c1b0272ee66f846c9bfe55b32f801ddd8c4d480344f5704cef0432"
+      },
+      "buildReceipt": "web-final/web-build.json",
+      "buildReceiptSha256": "501af7ade03d1bb7a929e9edb03b94d429876f62eaf4645ee446aba07a3b420d",
+      "packaging": "Root creating final ZIP; no ZIP size claimed in this record."
     }
   ],
   "differences": {
@@ -593,5 +660,21 @@
     "source": "PerformanceReview.cs",
     "reason": "Native diagnostic already calls SyncEquipment after loadout mutation; its separate40.03% CPU result is not invalidated by the WebReview bug.",
     "evidence": "final-comparison.json"
+  },
+  "finalBuild": {
+    "result": "Succeeded; nonreview release built; final packaging/browser save reload verification in progress",
+    "sourceCommit": "8fd3186",
+    "baseline": "web-baseline current-source optimization phase; not historic itch release",
+    "buildReportBytes": 73477798,
+    "buildReportReductionBytes": 4150688,
+    "buildReportReductionPercent": 5.3468619753836215,
+    "compressedDataBytes": 66749502,
+    "compressedDataReductionBytes": 4135005,
+    "compressedDataReductionPercent": 5.833439738813451,
+    "limits": [
+      "Observed current-source baseline vs final package sizes include review-script and configuration differences; not a pure one-factor attribution.",
+      "ZIP bytes are pending and not invented.",
+      "No physical browser gamepad, internet transfer-speed or subjective audio acceptance claim."
+    ]
   }
 }
