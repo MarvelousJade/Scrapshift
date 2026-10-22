@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.3157129">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1286" result="Passed" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.315713" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2514" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1256" result="Passed" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.302633" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22952" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2515" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1256" result="Passed" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.301320" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2516" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1256" result="Passed" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.297180" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1127" name="CampaignLoadoutPolicyTests" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.274656" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1140" name="ConditionalAndWeaponEffectCarriersAreRecognizedWithoutMutation" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.ConditionalAndWeaponEffectCarriersAreRecognizedWithoutMutation" methodname="ConditionalAndWeaponEffectCarriersAreRecognizedWithoutMutation" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="577123802" result="Passed" start-time="2026-10-20 17:08:11Z" end-time="2026-10-20 17:08:12Z" duration="0.235987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1133" name="ImportedBloodDonationIsExcludedOnlyFromTheOptInPolicy" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.ImportedBloodDonationIsExcludedOnlyFromTheOptInPolicy" methodname="ImportedBloodDonationIsExcludedOnlyFromTheOptInPolicy" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1444638902" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.001160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1141" name="OrdinaryBloodDonationStillAppliesItsModifierAndPeriodicDamage" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.OrdinaryBloodDonationStillAppliesItsModifierAndPeriodicDamage" methodname="OrdinaryBloodDonationStillAppliesItsModifierAndPeriodicDamage" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1680787118" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.014785" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1132" name="PolicyRequiresExplicitOptInAndNeverChangesSurvival" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyRequiresExplicitOptInAndNeverChangesSurvival" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.005600" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1128" name="PolicyRequiresExplicitOptInAndNeverChangesSurvival(False,False,False)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyRequiresExplicitOptInAndNeverChangesSurvival(False,False,False)" methodname="PolicyRequiresExplicitOptInAndNeverChangesSurvival" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1509834831" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.002097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1129" name="PolicyRequiresExplicitOptInAndNeverChangesSurvival(False,True,False)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyRequiresExplicitOptInAndNeverChangesSurvival(False,True,False)" methodname="PolicyRequiresExplicitOptInAndNeverChangesSurvival" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="278187217" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1130" name="PolicyRequiresExplicitOptInAndNeverChangesSurvival(True,True,False)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyRequiresExplicitOptInAndNeverChangesSurvival(True,True,False)" methodname="PolicyRequiresExplicitOptInAndNeverChangesSurvival" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="283861911" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1131" name="PolicyRequiresExplicitOptInAndNeverChangesSurvival(True,False,True)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyRequiresExplicitOptInAndNeverChangesSurvival(True,False,True)" methodname="PolicyRequiresExplicitOptInAndNeverChangesSurvival" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1782088511" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1139" name="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.002189" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1134" name="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;lose_hp_per_second&quot;,1,False)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;lose_hp_per_second&quot;,1,False)" methodname="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1361383298" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1135" name="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;stat_lose_hp_per_second&quot;,2,False)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;stat_lose_hp_per_second&quot;,2,False)" methodname="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="359577974" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1136" name="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;lose_hp_per_second&quot;,0,True)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;lose_hp_per_second&quot;,0,True)" methodname="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1867895951" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1137" name="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;lose_hp_per_second&quot;,-1,True)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;lose_hp_per_second&quot;,-1,True)" methodname="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1237330392" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1138" name="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;percent_damage&quot;,-20,True)" fullname="Scrapshift.Tests.CampaignLoadoutPolicyTests.PolicyUsesPositiveEffectSemanticsRatherThanAnItemId(&quot;percent_damage&quot;,-20,True)" methodname="PolicyUsesPositiveEffectSemanticsRatherThanAnItemId" classname="Scrapshift.Tests.CampaignLoadoutPolicyTests" runstate="Runnable" seed="1279709741" result="Passed" start-time="2026-10-20 17:08:12Z" end-time="2026-10-20 17:08:12Z" duration="0.000111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/native-followup-2026-10-20/campaign-policy-focused.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

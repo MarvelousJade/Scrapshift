@@ -1,0 +1,60 @@
+{
+  "review": "Independent Codex agent JSON validation and native PNG visual inspection",
+  "build": "R38",
+  "canvasScalePercent": 80,
+  "resolution": [
+    1280,
+    720
+  ],
+  "fixtureStatus": "Passed",
+  "processExitCode": 0,
+  "traceRows": 5868,
+  "optionRepaintRows": 4015,
+  "maximumRegisteredCoordinateErrorPixels": 0.01527013722807169,
+  "registeredCoordinatesMatchRoot": true,
+  "semanticChecks": {
+    "actualStart": true,
+    "scrolled": true,
+    "scrollBefore": 0.0,
+    "scrollAfter": 41.0,
+    "focusBefore": "holdReroll",
+    "focusAfter": "keepLock",
+    "immediateActivated": "keepLock",
+    "settledActivated": "keepLock",
+    "immediateToggle": true,
+    "settledToggle": true,
+    "onlyExpectedSettingChanged": true
+  },
+  "captures": [
+    {
+      "path": "initial-options.png",
+      "sha256": "8ABBE6086FCF8F4BCD8C59AA92E5C2D184A79DBFC19FBEE0BDAD069488CCD53C",
+      "reviewed": true,
+      "observed": "Gameplay tab highlighted; unscrolled option strips align with the root canvas."
+    },
+    {
+      "path": "before-scroll-edge.png",
+      "sha256": "8D58332440F3171F8CFFF27B321EA4FD33C943C498F7AFB941EA32EAF0C83B76",
+      "reviewed": true,
+      "observed": "Hold controller button to reroll has white On focus before scrolling."
+    },
+    {
+      "path": "after-immediate-confirm.png",
+      "sha256": "40E175FD4060C1B8C7D637DAD27EB8AA87F218A3B8429AF9E706486BABE05ECF",
+      "reviewed": true,
+      "observed": "Keep items locked between shops is visible and highlighted white Off after immediate A."
+    },
+    {
+      "path": "after-settled-confirm.png",
+      "sha256": "154CE486F31509ECF26DB40B1A686397A836E24C42CA07D77F87B9CA76A957CB",
+      "reviewed": true,
+      "observed": "The same Keep items locked between shops row remains highlighted and shows On after settled A."
+    }
+  ],
+  "conclusion": "Corrected registered option bounds agree with independent same-event root geometry and inspected rendered pixels; actual D-pad navigation and both A activations still work. Raw inside-scroll conversion remains separately recorded.",
+  "limits": [
+    "One Gameplay options scroll edge per resolution; not exhaustive nested/cross-container navigation.",
+    "Virtual Gamepad with IgnoreFocus; no physical Xbox or ordinary OS focus evidence.",
+    "No audio or full-campaign acceptance."
+  ]
+}

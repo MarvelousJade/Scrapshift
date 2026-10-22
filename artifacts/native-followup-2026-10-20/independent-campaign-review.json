@@ -1,0 +1,43 @@
+{
+  "scope": "Independent read-only review of saved full campaign evidence; no game/UI launch",
+  "reviewedDate": "2026-10-21",
+  "original": {
+    "won": true,
+    "completedWaves": 20,
+    "exitCode": 0,
+    "purchases": 29,
+    "purchaseDebitFailures": 0,
+    "shops": 19,
+    "crates": 16,
+    "finalItems": 43,
+    "pauseInterventions": 1,
+    "scriptErrors": 0,
+    "engineErrorRecords": 7
+  },
+  "unity": {
+    "won": true,
+    "completedWaves": 20,
+    "exitCode": 0,
+    "purchases": 36,
+    "purchaseDebitFailures": 0,
+    "shops": 19,
+    "crates": 6,
+    "finalItems": 41,
+    "stackSumFailures": 0,
+    "sourceInputRecords": 634,
+    "buildFileRecords": 159
+  },
+  "safeLoadoutPolicyBoth": true,
+  "physicalControllerVerified": false,
+  "comparatorExecutedByReviewer": false,
+  "findings": [
+    "No confirmed production mismatch established by aggregate campaign differences",
+    "Exact callback, RNG, physics and arbitrary interaction parity not established",
+    "Original engine diagnostics preserved despite exit0"
+  ],
+  "report": "docs/full-run-r40-comparison-2026-10-21.md",
+  "actualComparatorChecksRead": 18,
+  "actualComparatorAllPassed": true,
+  "referenceCloneInputHashes": 3819,
+  "processReceiptCompatibilityCorrection": "Root accepted completed exitCode-only Python runner receipt as well as explicit exited status; same campaign game inputs, preserved initial metadata-only17of18 attempt; no gameplay invariant weakened"
+}

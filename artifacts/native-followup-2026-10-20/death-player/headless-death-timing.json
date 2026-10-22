@@ -1,0 +1,90 @@
+{
+    "status": "Passed",
+    "error": "",
+    "isolated": true,
+    "startInstalledCapture": true,
+    "synchronousPlayerCleanupPreemptsPendingDeath": true,
+    "scope": "Packaged ArenaGame.Start hooks and real spawned NPCs; disabled Arena Update with staged HP, explicit Damage/Heal/Hurt callbacks and manual deferred combat boundary. Imported Lich, Giant Belt, Cyberball; no ordinary physics scheduling, original full scene, UI, input, audio listening or human playtesting.",
+    "rows": [
+        {
+            "name": "Lich immediate 100 to 90",
+            "phase": "Playing",
+            "health": 90.0,
+            "kills": 0,
+            "active": 1,
+            "corpses": 0,
+            "captures": 0,
+            "passed": true
+        },
+        {
+            "name": "Lich then Giant Belt critical 61",
+            "phase": "Playing",
+            "health": 61.0,
+            "kills": 0,
+            "active": 1,
+            "corpses": 0,
+            "captures": 0,
+            "passed": true
+        },
+        {
+            "name": "Lethal Lich pending member",
+            "phase": "Playing",
+            "health": 0.0,
+            "kills": 0,
+            "active": 1,
+            "corpses": 0,
+            "captures": 0,
+            "passed": true
+        },
+        {
+            "name": "Lethal Lich finalized once",
+            "phase": "Playing",
+            "health": 0.0,
+            "kills": 1,
+            "active": 0,
+            "corpses": 1,
+            "captures": 0,
+            "passed": true
+        },
+        {
+            "name": "Enemy first then lethal player hit",
+            "phase": "Lost",
+            "health": 0.0,
+            "kills": 0,
+            "active": 0,
+            "corpses": 1,
+            "captures": 0,
+            "passed": true
+        },
+        {
+            "name": "Player first ignores later enemy hit",
+            "phase": "Lost",
+            "health": 1.0,
+            "kills": 0,
+            "active": 1,
+            "corpses": 0,
+            "captures": 0,
+            "passed": true
+        },
+        {
+            "name": "Dying Cyberball members 1",
+            "phase": "Playing",
+            "health": 0.0,
+            "kills": 1,
+            "active": 0,
+            "corpses": 1,
+            "captures": 1,
+            "passed": true
+        },
+        {
+            "name": "Dying Cyberball members 3",
+            "phase": "Playing",
+            "health": 0.0,
+            "kills": 3,
+            "active": 0,
+            "corpses": 3,
+            "captures": 3,
+            "passed": true
+        }
+    ]
+}

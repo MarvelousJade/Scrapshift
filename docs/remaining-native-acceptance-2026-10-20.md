@@ -1,8 +1,8 @@
 # Remaining runtime, UI and hardware acceptance - October 20, 2026
 
-This is a finite follow-up checklist, not an assertion of remaining bugs or a new authorization for computer control. **The user revoked computer control. Continue source/headless work only; visible UI/input/hardware checks below wait for explicit authorization.** Do not launch them from this document.
+This is a dated acceptance inventory. **Superseded by the [October21 consolidated status](gameplay-verification-status.md). Desktop access is authorized; physical Xbox testing is deferred.** R37 companion/support visuals, R38 scaled navigation/shop software checks, R36 survival, R37 world unlock events and fresh R40 matched-policy20-wave comparison now have executed evidence. Historical rows below retain their original scope and are not current unresolved defect claims.
 
-## Latest packaged checkpoint
+## Historical packaged checkpoints
 
 R34 supersedes R31 for review:1251/1251 tests and25 focused cases Passed; packaged target/vulnerability acceptance Passed/exit0.616 inputs/159 player files verified. The new [item/material follow-up](item-material-followup-2026-10-20.md) covers416 acquisition sequences and source cleanup experiments. Broader lethal-preemption/deferred-corpse timing remains headless-feasible but unverified; physical/UI gates below remain deferred. Earlier R31 acceptance below is historical.
 

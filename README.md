@@ -49,7 +49,7 @@ Requires **Unity 6000.6.5f1**. Open this repository as a Unity project, open `As
 
 Move with **WASD / arrow keys**, use the **mouse** for menus, and press **Escape** to pause. Weapons attack automatically by default.
 
-For this workspace's unpacked Windows review build, launch `Builds/GameplayParity20261020R35/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout.
+For this workspace's unpacked Windows review build, launch `Builds/GameplayParity20261020R40/LaunchGame.cmd`. Keep the full player folder together; binaries are not included in the source checkout.
 
 With the project's Editor closed, run:
 
@@ -60,8 +60,8 @@ With the project's Editor closed, run:
 
 ## Validation
 
-Latest headless follow-up: **R35**, **1,271/1,271 tests passed**, with death callback timing and item explosion interaction fixes. The current [verification checklist](docs/gameplay-verification-status.md) separates this evidence from the historical full campaign below.
+Latest review: **R40**, **1,286/1,286 tests passed**. Native software/visual checks cover companion starts, retry, shops and scaled navigation. See the [verification checklist](docs/gameplay-verification-status.md) for coverage and remaining limits.
 
-The recorded **October 20, 2026 R29 checkpoint** passed **1,200/1,200 automated tests** and built with zero errors or warnings. A scripted 20-wave campaign completed, with **18/18 comparison checks** passing against a fresh supplied-reference run.
+The [fresh R40 comparison](docs/full-run-r40-comparison-2026-10-21.md) completed **20 waves in both engines**, with **18/18 checks passing**. It uses normal timing, scripted movement, contact immunity and an explicit matched acquisition policy; it is separate from human survival balance and physical controller verification.
 
 That campaign used scripted movement and invulnerability. It does not establish human survival balance or exhaustive gameplay parity. Current physical-controller, presentation and browser acceptance remain separate checks. See the [checkpoint](docs/gameplay-final-checkpoint-2026-10-20.md) and [coverage checklist](docs/gameplay-verification-status.md).

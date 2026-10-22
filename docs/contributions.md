@@ -1,3 +1,7 @@
+## October21 - remaining parity and fresh comparison
+
+User: authorized continued computer use, requested meaningful commits and accurate notes, and deferred physical controller input. Codex agents: source audits, synchronous Player cleanup/mine/title/scroll fixes, fixture-policy design, automated/native visual/software checks, scoped real keyboard/mouse/focus interaction and fresh matched-policy20-wave comparison. Both runs are scripted, not user-played campaigns; source material remains third-party and the supplied project is unchanged. Interview stories require the user to reproduce and explain the case. [Evidence](gameplay-verification-status.md).
+
 ## October20 - death timing and item-chain follow-up
 
 User: directed remaining parity checks and meaningful commits; supplied the original and clarified that desktop access is allowed again while physical controller checks may be deferred. Codex agents: investigated callback timing, tested original signal dispatch, rejected a speculative pool-order design, implemented deferred enemy finalization and corrected plain item explosion ownership, and authored automated checks/docs. No fresh physical Xbox or human campaign acceptance is claimed. See [integration evidence](death-item-integration-2026-10-20.md).

@@ -1,0 +1,18 @@
+{
+  "status": "Passed",
+  "outcome": "won",
+  "completed_waves": 20,
+  "waves_started": 20,
+  "headless": true,
+  "captures_verified": false,
+  "survival": false,
+  "invulnerability_injected": true,
+  "observed_net_damage": 3,
+  "observed_net_healing": 41,
+  "lowest_observed_health": 10,
+  "scope": "Headless scripted reference fixture; six supplied tier-II weapons, neutral character effects, Danger0 and engine-specific RNG. Survival mode accepts natural defeat only after the source retry/OK acknowledgment; a loss is NOT twenty completed waves. Health values are net changes sampled per physics callback, not every hit/heal event. No captures, human play, ordinary input/focus or visual/audio validation. Explicit matched safe-loadout acquisition policy: positive periodic self-damage offers skipped and such crates recycled; no production damage changes. Historical original campaign used unfiltered choices.",
+  "safe_loadout_policy": true,
+  "damage_immunity_scope": "contact_hurtbox_only",
+  "skipped_self_damage_offers": 0,
+  "recycled_self_damage_crates": 0
+}

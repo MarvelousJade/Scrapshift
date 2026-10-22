@@ -1,0 +1,79 @@
+{
+  "reviewedUtc": "2026-10-20T16:59:12.6109881Z",
+  "reviewer": "Codex independent delegated visual review",
+  "declaredBuild": "Builds/GameplayParity20261020R36/Scrapshift.exe",
+  "report": "shop-alternatives.json",
+  "reportSha256": "9ae793551ff743508fcb9656392dd5260f55305b66175e6328ab575427c26975",
+  "statusObserved": "Passed",
+  "processExitCode": 0,
+  "processSha256": "f4a7a7be55de0a522ee668c0c4cbdcda6a733dcce490dc737a637249a8151acf",
+  "runnerSpecSha256": "9992176d43dacd4cc4e1aba7134d26e41e1d39dd579e37ebe7efc88fdd769f1f",
+  "capturesInspected": 8,
+  "captures": [
+    {
+      "file": "coupon-free-paid-lock.png",
+      "sha256": "bf0623083bf3243f146bf6550022bb643d2477ed554623f674c5d6bd5f3de467",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Wave-1 shop reads currency 1991 and reroll price 2; four offers and price/currency buttons, first Lock selection, inventory and Weapons 1/6 are visible."
+    },
+    {
+      "file": "weapon-combine-actions.png",
+      "sha256": "180a970a7a40c0df1897801ab58988d02e342a369a2333d80353b8900bfc3a3d",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Dimmed shop behind Stick popup; Combine is selected, Recycle (+6) and Cancel visible; weapon-set tooltip remains readable to the right."
+    },
+    {
+      "file": "recycled-inventory.png",
+      "sha256": "56711cc8433cc06f8aab69006702e27a66baea2f5382f81b8f2806581bd75321",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Shop currency reads 2004, Weapons 0/6, popup absent; offers remain visible and reroll is highlighted."
+    },
+    {
+      "file": "crate-disposal-actions.png",
+      "sha256": "197f962dcda53dded8d6ffaca2021203375d5ea9e015b381bb8e69f237f70eb2",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Item found Gyroscopic Crown card has readable effects, selected Take and Recycle (+7); no bottom weapons/items inventory strip."
+    },
+    {
+      "file": "arms-dealer-shop.png",
+      "sha256": "a65d12e71601d3a310b4daeb7f8d86426ab98688a7799fe7b15eba50b41ab8c9",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Shop shows Weapons 0/6 with Hand and Wrench offers, item/character inventory and reroll price 0."
+    },
+    {
+      "file": "fisherman-guaranteed-bait.png",
+      "sha256": "761ac338ee39d386cb5f3c7be0be992a93484df7f952027d0385dd5e779a0de6",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Threat Beacon Implant (imported bait) is present at price 1 with 7-8 charging-enemies description; Weapons 1/6 and Fisherman portrait visible."
+    },
+    {
+      "file": "hourglass-repeated-wave.png",
+      "sha256": "29a02da1073334fe4fb21aa7790c05c0f5b876fbc214ff961b4624c9538bde8b",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Combat capture shows Wave 1, timer 20 and player at 1/15 HP with a knife; receipt supplies Hourglass replacement/repeat assertions."
+    },
+    {
+      "file": "candy-extra-elite.png",
+      "sha256": "cd934b14aef366ecbcab5f30dc2947ef440f841211c7dc30d2e761a970d1766f",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Wave 2, timer 24, player at 15/15 HP and red spawn-warning markers are visible; snapshot alone does not identify an Elite actor."
+    }
+  ],
+  "scope": "All saved PNGs inspected individually through view_image; actual staged Windows fixture receipts read. Snapshots support visible presentation only, report supplies state/timing assertions. Virtual Gamepad input is not physical controller verification; fixture IgnoreFocus is not OS focus verification. No audio listening, natural acquisition, survival balance, probability-distribution or full campaign acceptance."
+}

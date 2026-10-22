@@ -1,5 +1,7 @@
 # Death timing and item chains — integration, October 20, 2026
 
+**Superseded cleanup interpretation:** R35 incorrectly inferred Player scheduling from Unit. Actual Player overrides damage and enters cleanup synchronously; R36+ removes the pre-cleanup drain. See [corrected full-scene receipts](player-cleanup-followup-2026-10-20.md) and [current status](gameplay-verification-status.md). Original R35 receipts below remain historical.
+
 Branch: `codex/gameplay-parity`. This pass follows R34's captured-target and vulnerability fixes. It checks when damage happens, when a death becomes final, and which effects an item explosion may activate. Agents used source inspection and isolated windowless fixtures; the supplied original remains read-only.
 
 ## Confirmed fixes

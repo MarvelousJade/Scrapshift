@@ -1,0 +1,423 @@
+{
+  "source_count": 634,
+  "player_file_count": 159,
+  "repo_source_mismatches": [],
+  "clone_source_mismatches": [],
+  "player_mismatches": [],
+  "changes_from_r38": [
+    "Assets/Scrapshift/Runtime/CampaignCheck.cs",
+    "Assets/Scrapshift/Tests/Editor/CampaignLoadoutPolicyTests.cs",
+    "Assets/Scrapshift/Tests/Editor/CampaignLoadoutPolicyTests.cs.meta"
+  ],
+  "tests": {
+    "suite-r40.xml": {
+      "result": "Passed",
+      "total": "1286",
+      "passed": "1286",
+      "failed": "0",
+      "skipped": "0",
+      "duration": "69.8165485"
+    },
+    "campaign-policy-focused.xml": {
+      "result": "Passed",
+      "total": "12",
+      "passed": "12",
+      "failed": "0",
+      "skipped": "0",
+      "duration": "0.3157129"
+    }
+  },
+  "visual_review_hashes": [
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r37\\visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r37\\initial-options.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r37\\before-scroll-edge.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r37\\after-immediate-confirm.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r37\\after-settled-confirm.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-100\\visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-100\\initial-options.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-100\\before-scroll-edge.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-100\\after-immediate-confirm.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-100\\after-settled-confirm.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-80\\visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-80\\initial-options.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-80\\before-scroll-edge.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-80\\after-immediate-confirm.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\scroll-navigation-r38-80\\after-settled-confirm.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\independent-visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\coupon-free-paid-lock.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\weapon-combine-actions.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\recycled-inventory.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\crate-disposal-actions.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\arms-dealer-shop.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\fisherman-guaranteed-bait.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\hourglass-repeated-wave.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives\\candy-extra-elite.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\starting-support\\visual-review-r36.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\choice-bonk_dog.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\run-bonk_dog.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\retry-bonk_dog.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\choice-catling_gun.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\run-catling_gun.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\retry-catling_gun.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\choice-blazemander.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\run-blazemander.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\retry-blazemander.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\choice-bot_o_mine.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\run-bot_o_mine.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\retry-bot_o_mine.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support\\support-placement.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\visual-review-r37.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\choice-bonk_dog.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\run-bonk_dog.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\retry-bonk_dog.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\choice-catling_gun.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\run-catling_gun.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\retry-catling_gun.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\choice-blazemander.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\run-blazemander.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\retry-blazemander.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\choice-bot_o_mine.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\run-bot_o_mine.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\retry-bot_o_mine.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\starting-support-r37\\support-placement.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\survival-native\\independent-visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\damaged.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\regenerated.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\torture-cleanup.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\defeat-ack.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\defeat-retry.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\retried.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\unlock-after-end.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\survival-native\\end-summary.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\world-unlocks-r37\\independent-visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\world-unlocks-r37\\fruit-contact-unlocks.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\world-unlocks-r37\\hostile-contact-unlock.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\world-unlocks-r37\\burn-death-unlock.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\world-unlocks-r37\\explosion-death-unlock.png",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "review": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\independent-visual-review.json",
+      "captures": [
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\coupon-free-paid-lock.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\weapon-combine-actions.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\recycled-inventory.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\crate-disposal-actions.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\arms-dealer-shop.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\fisherman-guaranteed-bait.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\hourglass-repeated-wave.png",
+          "matches": true
+        },
+        {
+          "path": "artifacts\\native-followup-2026-10-20\\shop-alternatives-r38\\candy-extra-elite.png",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "reviewDate": "2026-10-21 America/Toronto",
+  "reviewer": "Independent Codex delegated read-only inspection; no UI or process launch",
+  "scope": "634 recorded build source/settings/import inputs, both repo and isolated clone;159 packaged files. Does not prove omitted assets or universal gameplay parity.",
+  "buildSummary": "Result: Succeeded\nErrors: 0\nWarnings: 0\nBytes: 401850858",
+  "receipts": {
+    "survival-native": {
+      "report": "survival-review.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "aacd8dd6168b485ef945488309122124d09760ea845d0653aebaa4a44cf4094f"
+    },
+    "shop-alternatives": {
+      "report": "shop-alternatives.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "9ae793551ff743508fcb9656392dd5260f55305b66175e6328ab575427c26975"
+    },
+    "shop-alternatives-r38": {
+      "report": "shop-alternatives.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "ca597828bf2e19a7181f04e802b0922e4fc2a0ad03841df6bf46a9ecdb169f4b"
+    },
+    "starting-support-r37": {
+      "report": "starting-support.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "2d5c161451d56f874ec1d9cf64b7641a3cd9ed46f6d011770629427c1a32bd89"
+    },
+    "world-unlocks-r37": {
+      "report": "unlock-world-events.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "dda68e3acb665c54da3a76e504c267aa5d28b7947682f07dbeee3c8e4e5c1386"
+    },
+    "scroll-navigation-r38-80": {
+      "report": "scroll-navigation.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "61bf5e3aa7baf149e4a453f3814e15dca340d164ceae022235b7c44f5db550ce"
+    },
+    "scroll-navigation-r38-100": {
+      "report": "scroll-navigation.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "3d38306f08ac50ea193e7b6d63315f3dc30ebb8f6320b6e3d47a106dcbdfabb8"
+    },
+    "navigation-r38": {
+      "report": "navigation-check.json",
+      "status": true,
+      "processExitCode": 0,
+      "reportSha256": "0c2e325946fa9aae959006cfd9f264e7faac0b06a75cc4839abadd0f58d5ca22"
+    },
+    "full-campaign-r40": {
+      "report": "campaign-check.json",
+      "status": "Passed",
+      "processExitCode": 0,
+      "reportSha256": "bd09524854164238326b178e8c549654f92ec383df1e39eda78e1dd0994e6951"
+    }
+  },
+  "manualInputBoundary": {
+    "manual-r38": "Title page transitions and Playing recorded, position x0 to0.07875; shots0, manualAim false. Does not independently establish continuous keyboard motion, aiming or firing. Xbox detection not physical input acceptance.",
+    "focus-r40": "Snapshots Paused\u2192Playing\u2192Paused, shots47\u219232331\u219232339\u219232360 across long-lived support showcase. No focus boolean or explicit OS-switch event recorded; logger suppresses unfocused samples. Does not prove no background simulation.",
+    "hardware": "Deferred per user; no new physical-controller button/stick input claimed."
+  },
+  "historicalFailedAttempts": [
+    "R36 unfiltered full campaign lost after12 completed waves; contact hurtbox immunity did not suppress item periodic self damage. Preserve as failed fixture campaign, not full20 success.",
+    "R39 source counter-reset source inputs did not match the inputs built; no validated R39 campaign attribution. Preserve r39-unvalidated-built-inputs.json."
+  ],
+  "captureHashCount": 66,
+  "reviewLimits": [
+    "Existing visual-review JSON claims prior image inspection; this independent pass rechecked hashes, not every image visually.",
+    "R36/R37/R38 native fixtures remain version-labelled; R40 campaign-only changes do not establish fresh R40 presentation acceptance.",
+    "Current code under active root edits must be rehashed before final commit claims."
+  ],
+  "actualImagesInspectedThisPass": 8,
+  "r38Navigation": {
+    "snapshotCount": 17,
+    "passed": true,
+    "processExitCode": 0,
+    "scope": "Virtual Gamepad through Update/OnGUI with IgnoreFocus; title/character/weapon/B-release/difficulty, movement stick+D-pad, right-stick manual aiming, pause/resume, staged shop shortcuts and paused/resumed Loot/Upgrade. No physical controller or OS focus acceptance."
+  }
+}

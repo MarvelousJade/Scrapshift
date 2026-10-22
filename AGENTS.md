@@ -1,6 +1,6 @@
 # Scrapshift — project instructions and user preferences
 
-Updated: 2026-10-20, America/Toronto. This file records the user's instructions from this project's conversation. Read it before working in this repository. Keep it current when the user makes a new decision.
+Updated: 2026-10-21, America/Toronto. This file records the user's instructions from this project's conversation. Read it before working in this repository. Keep it current when the user makes a new decision.
 
 ## Scope and precedence
 
@@ -161,6 +161,9 @@ Updated: 2026-10-20, America/Toronto. This file records the user's instructions 
 - Verify the native character and UI portraits alone, in combinations, at gameplay size, mirrored and animated, with acquisition/removal checks. Tests alone do not prove that the image fits.
 
 ## Builds, previews and working practices
+
+- October21 current checkpoint: R40 (`Builds/GameplayParity20261020R40/LaunchGame.cmd`), source `ede4094`; suite1286/1286 Passed, focused cleanup/mine12/12 and policy12/12. Actual Player override enters cleanup synchronously: R35 pre-cleanup drain was wrong and is superseded. Corrected mine placement, clipped companion titles and scaled scroll bounds; R37/R38 native receipts cover four start/retry choices,64 placement seeds,22 shop checks,23 world-unlock checks and17 virtual-navigation stages.66 capture hashes reviewed/verified. Fresh source and R40 normal-timing matched-policy campaigns both Won/20/19shops/exit0;18/18 comparison passed. Debug immunity is contact-only: unfiltered R36 lost legitimately with BloodDonation2; matched opt-in acquisition policy excludes periodic HP-cost carriers without changing damage.634 source inputs/159 player files/3816 original inputs/3819 clone inputs hash-verified; build0 errors/warnings. Physical Xbox deferred; finite matrices do not establish exhaustive interactions/human balance/WebGL. See `docs/gameplay-verification-status.md` and `docs/full-run-r40-comparison-2026-10-21.md`.
+
 
 - October20 death/item checkpoint: R35 (`Builds/GameplayParity20261020R35/LaunchGame.cmd`), source `debe1cf`; focused27/27 and suite1271/1271 Passed/exit0. Synchronous stat-proc HP with deferred enemy finalization, dying Cyberball membership, pre-defeat drain, plain explosion empty burning/no weapon life steal, and direct explosion kill counters corrected. Six packaged processes Passed/exit0:8 death rows,4 explosion cases/Fireworks14-15/Beard,192 target rows,109 unlock scenarios, one-wave smoke and accelerated natural defeat after8 completed waves. Source4 death receipts/1024 corpse rows/70 payloads; pool-only ordering hypothesis rejected. Build0 errors/warnings;626 inputs/159 player files hash-verified. Broader original Player/Main cleanup, arbitrary interactions, current presentation/hardware and normal-speed balance remain bounded or unchecked. R29 full20 remains historical. See `docs/death-item-integration-2026-10-20.md`.
 

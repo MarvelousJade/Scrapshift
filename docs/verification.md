@@ -1,3 +1,7 @@
+## October21 - final R40 evidence
+
+R40 suite1286/1286 Passed; focused12cleanup/mine and12policy Passed. Fresh source/R40 normal-timing matched-policy20 waves/19shops/exit0;18/18 checks.634 source inputs/159 files and3816 original/3819 clone inputs verify after execution.66 capture hashes reviewed/verified. Source diagnostics and one startup pause intervention retained; no universal parity or hardware/browser claim. [Comparison](full-run-r40-comparison-2026-10-21.md), [native checkpoint](native-final-checkpoint-2026-10-21.md).
+
 ## October20 - R35 death/item acceptance
 
 Source `debe1cf`: immediate HP/deferred death and plain explosion ownership fixes. Focused27/27, suite1271/1271 Passed; six packaged processes Passed/exit0, including109 unlock scenarios and actual accelerated ordinary-damage loss in wave9 after8 completed waves.626 inputs/159 files hash-verified. No current hardware/UI/human or fresh20-wave comparison claim. See [integration receipts and limits](death-item-integration-2026-10-20.md).

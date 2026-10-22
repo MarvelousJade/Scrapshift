@@ -1,3 +1,7 @@
+## October21 - R40 current parity checkpoint
+
+Committed synchronous Player cleanup, mine placement, companion heading and scaled scroll geometry fixes separately. Suite1286/1286; both fresh matched-policy20-wave runs Won/exit0 and18/18 comparison checks passed. Preserve the legitimate Blood Donation loss and failed fixture/provenance/schema attempts. Native software/visual and scoped keyboard/mouse/focus checks remain distinct from physical Xbox and human balance. [Current status](gameplay-verification-status.md).
+
 ## October20 - R35 death/item acceptance
 
 Source `debe1cf`: immediate HP/deferred death and plain explosion ownership fixes. Focused27/27, suite1271/1271 Passed; six packaged processes Passed/exit0, including109 unlock scenarios and actual accelerated ordinary-damage loss in wave9 after8 completed waves.626 inputs/159 files hash-verified. No current hardware/UI/human or fresh20-wave comparison claim. See [integration receipts and limits](death-item-integration-2026-10-20.md).
