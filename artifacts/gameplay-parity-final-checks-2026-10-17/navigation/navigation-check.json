@@ -1,0 +1,22 @@
+{
+    "passed": false,
+    "error": "System.InvalidOperationException: First A enters character selection.\r\n  at Scrapshift.ArenaGame+NativeControllerCheck+<Run>d__7.MoveNext () [0x00534] in <37c6f82f6124405a84fc537ba6249859>:0 \r\n  at Scrapshift.ArenaGame+NativeControllerCheck+<Start>d__6.MoveNext () [0x00042] in <37c6f82f6124405a84fc537ba6249859>:0 ",
+    "evidence": "Virtual Gamepad events through actual player Update/OnGUI; not a physical-controller test",
+    "snapshots": [
+        {
+            "stage": "title",
+            "phase": "Title",
+            "character": "well_rounded",
+            "weapon": "knife",
+            "page": 0,
+            "focus": -1,
+            "weapons": 0,
+            "menuCues": 0,
+            "steps": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.0
+            }
+        }
+    ]
+}

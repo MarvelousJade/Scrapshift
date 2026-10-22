@@ -1,0 +1,71 @@
+Mono path[0] = 'E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/CatBoost/Scrapshift_Data/Managed'
+Mono config path = 'E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/CatBoost/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.6.5f1 (3ff58d469c8a)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/Builds/CatBoost/Scrapshift_Data/UnitySubsystems
+[D3D12 Device Filter] Vendor Name: ATI
+[D3D12 Device Filter] Device Name: AMD Radeon RX 5700
+[D3D12 Device Filter] Driver Version: 32.0.21030.2001
+[D3D12 Device Filter] Feature Level: 12.1
+[D3D12 Device Filter] Graphics Memory: 8150 MB
+[D3D12 Device Filter] Processor Count: 12
+[D3D12 Device Filter] Device Type: Discrete
+GfxDevice: creating device client; kGfxThreadingModeSplitJobs
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        AMD Radeon RX 5700 (ID=0x731f)
+    Vendor:          ATI
+    VRAM:            8150 MB
+    App VRAM Budget: 7382 MB
+    Driver:          32.0.21030.2001
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.013 seconds
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+D3D11 device created for Microsoft Media Foundation video decoding.
+<RI> Input initialized.
+UnloadTime: 1.114100 ms
+Companion fixture bonk_dog: True
+Companion fixture catling_gun: True
+Companion fixture bot_o_mine: True
+Companion fixture blazemander: True
+Companion fixture ratzilla: True
+Companion fixture doc_moth: True
+Companion fixture lootworm: True
+Companion fixture scapegoat: True
+Companion fixture jellyshield: True
+Support behavior fixture same-kind target reservations: True
+Support behavior fixture cats wander and do not boost each other: True
+Support behavior fixture cat proximity stops movement and boosts fire: True
+Support behavior fixture cat alternate independent guns: True
+Support behavior fixture overlapping moth zones stack regeneration: True
+Support behavior fixture lootworm prioritizes tree over material: True
+Support behavior fixture decoy revival retains progress and grown max HP: True
+Support behavior fixture structure: turret: True
+Support behavior fixture structure: turret_flame: True
+Support behavior fixture structure: turret_healing: True
+Support behavior fixture structure: turret_laser: True
+Support behavior fixture structure: turret_rocket: True
+Support behavior fixture structure: tyler: True
+Support behavior fixture structure: garden: True
+Support behavior fixture structure: landmines: True
+Support behavior fixture structure: wandering_bot: True
+Support behavior fixture structure: pocket_factory: True
+Support behavior fixture player presses mine; leaving detonates: True
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+CodeReloadManager destroyed

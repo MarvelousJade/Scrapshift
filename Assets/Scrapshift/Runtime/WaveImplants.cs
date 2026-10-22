@@ -9,11 +9,27 @@ namespace Scrapshift
         readonly Dictionary<string,float> nextWaveStats=new Dictionary<string,float>();
         readonly List<int> burnKillCounts=new List<int>();
         public event Action<float> RandomDamageRequested;
+        // The scene chooses a target before effect rolls, as Main does. Null
+        // means that the chosen target was absent/dead; do not roll or retarget.
+        // Model-only callers leave this unset and observe RandomDamageRequested.
+        public Func<Action<float>> CaptureRandomDamageTarget {get;set;}
         void QueueNextWaveEffects(ItemEntry item)
         {
             if(item.conditionalEffects==null)return;
             foreach(var e in item.conditionalEffects)if(e.customKey=="stats_next_wave")
             {nextWaveStats.TryGetValue(e.key,out float value);nextWaveStats[e.key]=value+e.value;}
+        }
+        void CancelQueuedItemEffects(ItemEntry item)
+        {
+            // Source unapply only changes entries still present in the next-wave
+            // queue. It does not remove a temporary bonus already active this wave.
+            if(item.id=="bait"&&queuedBaits>0)queuedBaits--;
+            foreach(var effect in item.conditionalEffects??Array.Empty<ConditionalEffect>())
+                if(effect.customKey=="stats_next_wave"&&nextWaveStats.TryGetValue(effect.key,out float value))
+                {
+                    value-=effect.value;
+                    if(value==0)nextWaveStats.Remove(effect.key);else nextWaveStats[effect.key]=value;
+                }
         }
         void ApplyNextWaveEffects()
         {foreach(var e in nextWaveStats)AddTemporary(e.Key,e.Value);nextWaveStats.Clear();burnKillCounts.Clear();}
@@ -23,10 +39,22 @@ namespace Scrapshift
             {
                 var candidates=Inventory.Where(w=>w.tier<MaximumWeaponTier&&catalog.Weapon(w.id,w.tier+1)!=null).ToArray();
                 if(candidates.Length==0){Add(e.key.Replace("stat_",""),e.value);continue;}
-                var chosen=candidates[random.Next(candidates.Length)];int index=Inventory.IndexOf(chosen);Inventory[index]=catalog.Weapon(chosen.id,chosen.tier+1);
+                var chosen=candidates[random.Next(candidates.Length)];
+                // base_shop._combine_weapon(is_upgrade=true) removes the first
+                // equal copy through RunData.remove_weapon, then appends its upgrade.
+                int index=Inventory.FindIndex(w=>w.id==chosen.id&&w.tier==chosen.tier);
+                Inventory.RemoveAt(index);Inventory.Add(catalog.Weapon(chosen.id,chosen.tier+1));
             }
         }
         public void KillEffects(bool burning)
+        {
+            TriggerDeathDamage();ApplyBurningDeathStats(burning);
+        }
+        internal void TriggerDeathDamage()
+        {
+            if(Phase==RunPhase.Playing)RandomDamageTrigger("dmg_when_death");
+        }
+        internal void ApplyBurningDeathStats(bool burning)
         {
             if(Phase!=RunPhase.Playing)return;
             if(burning)
@@ -39,14 +67,18 @@ namespace Scrapshift
                     if(e.value>0&&kills%e.value==0&&kills/e.value<=e.limit)Add(e.key.Replace("stat_",""),e.per);
                 }
             }
-            RandomDamageTrigger("dmg_when_death");
         }
         void RandomDamageTrigger(string trigger)
         {
+            var entries=ConditionalEffects().Where(e=>e.customKey==trigger).ToArray();
+            if(entries.Length==0)return;
+            Action<float> captured=null;
+            if(CaptureRandomDamageTarget!=null)
+            {captured=CaptureRandomDamageTarget();if(captured==null)return;}
             float total=0;
-            foreach(var e in ConditionalEffects())if(e.customKey==trigger&&random.NextDouble()<e.chance)
-                total+=Mathf.Round(Mathf.Floor(Mathf.Max(1,e.value/100*(e.key=="stat_max_hp"?MaxHealth:Stat(e.key.Replace("stat_","")))))*DamageScale);
-            if(total>0)RandomDamageRequested?.Invoke(total);
+            foreach(var e in entries)if(random.NextDouble()<e.chance)
+                total+=EnemyReferenceRules.SourceRound(Mathf.Floor(Mathf.Max(1,e.value/100*Stat(e.key.Replace("stat_",""))))*DamageScale);
+            if(total>0){captured?.Invoke(total);RandomDamageRequested?.Invoke(total);}
         }
     }
 }

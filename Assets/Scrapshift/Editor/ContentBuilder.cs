@@ -21,7 +21,7 @@ namespace Scrapshift.Editor
         public static void Generate()
         {
             // Safe to invoke again: authored content is never overwritten by the generator.
-            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureMovementUiAudio(); EnsureWaveTickAudio(); EnsureFeedbackAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureCombatPresentation(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); EnsureStarterProfiles(); EnsureInspectionUI(); return; }
+            if (File.Exists(ScenePath)) { UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureMovementUiAudio(); EnsureWaveTickAudio(); EnsureFeedbackAudio(); EnsureEndRunReferenceAudio(); EnsureAlienEyesAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureCombatPresentation(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); EnsureStarterProfiles(); EnsureInspectionUI(); CyberSoundBuilder.Generate(); return; }
             foreach (var sub in new[] { "Meshes", "Materials", "Prefabs", "Definitions", "Scenes" }) Directory.CreateDirectory(Root + "/" + sub);
             AssetDatabase.Refresh();
             quad = Polygon("Quad", 4, 45, 1.41421356f);
@@ -93,7 +93,7 @@ namespace Scrapshift.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };
             AssetDatabase.SaveAssets();
-            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureMovementUiAudio(); EnsureWaveTickAudio(); EnsureFeedbackAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); EnsureStarterProfiles(); EnsureInspectionUI(); Scan(); Debug.Log("Scrapshift content generated.");
+            UpgradePresentation(); EnsureWeaponArt(); EnsureAudio(); EnsureReference(); EnsurePlayerHitAudio(); EnsureMovementUiAudio(); EnsureWaveTickAudio(); EnsureFeedbackAudio(); EnsureEndRunReferenceAudio(); EnsureAlienEyesAudio(); EnsureOriginalArt(); EnsureWardrobe(); EnsureSpringArt(); EnsureModularAppearance(); EnsureWideLegs(); EnsureArenaGeometry(); EnsureYardPresentation(); EnsureSilverLegs(); EnsureStatIcons(); EnsureRoundCanopy(); EnsureStarterProfiles(); EnsureInspectionUI(); CyberSoundBuilder.Generate(); Scan(); Debug.Log("Scrapshift content generated.");
         }
 
         static Color Hex(string hex) { ColorUtility.TryParseHtmlString(hex, out var c); return c; }
@@ -183,6 +183,13 @@ namespace Scrapshift.Editor
             Directory.CreateDirectory("artifacts"); File.WriteAllText("artifacts/assetscope-report.json", JsonUtility.ToJson(ScanReport.From(session), true));
             if (session.State != ScanState.Complete || session.Total == 0 || session.Findings.Count != 0) throw new Exception("Game content failed AssetScope validation.");
             Debug.Log($"AssetScope scanned {session.Total} game assets: zero validation findings.");
+        }
+        public static void BuildControllerCheck()
+        {
+            Directory.CreateDirectory("Builds/ControllerCheck");
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions {scenes=new[]{ScenePath},locationPathName="Builds/ControllerCheck/Scrapshift.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
+            File.WriteAllText("artifacts/controller-build.txt",$"Result: {report.summary.result}\nErrors: {report.summary.totalErrors}\nWarnings: {report.summary.totalWarnings}\nBytes: {report.summary.totalSize}\n");
+            if(report.summary.result!=BuildResult.Succeeded||report.summary.totalErrors!=0)throw new Exception("Controller review build failed.");
         }
         [MenuItem("Scrapshift/Build Windows Player")]
         public static void Build()

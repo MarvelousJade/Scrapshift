@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.6484214">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1192" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.648421" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2389" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1162" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.627672" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="33264" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2390" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1162" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.618088" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2391" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1162" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.610357" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1586" name="ItemsCombinedParityTests" fullname="Scrapshift.Tests.ItemsCombinedParityTests" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.471880" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1589" name="MaximumHealthChangeReevaluatesConditionalRegenAndMissingHealthLink" fullname="Scrapshift.Tests.ItemsCombinedParityTests.MaximumHealthChangeReevaluatesConditionalRegenAndMissingHealthLink" methodname="MaximumHealthChangeReevaluatesConditionalRegenAndMissingHealthLink" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="954954530" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.450747" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1590" name="MixedStatLinksReadBaseStatsWithoutFeedingEachOther" fullname="Scrapshift.Tests.ItemsCombinedParityTests.MixedStatLinksReadBaseStatsWithoutFeedingEachOther" methodname="MixedStatLinksReadBaseStatsWithoutFeedingEachOther" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="477627211" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000674" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1591" name="PotionBoostedRegenerationTriggersOneCombinedHealingAttack" fullname="Scrapshift.Tests.ItemsCombinedParityTests.PotionBoostedRegenerationTriggersOneCombinedHealingAttack" methodname="PotionBoostedRegenerationTriggersOneCombinedHealingAttack" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="866935693" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.002322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1588" name="ScaredSausageCopiesMergeGlobalBurnButKeepNativeBurnTiming" fullname="Scrapshift.Tests.ItemsCombinedParityTests.ScaredSausageCopiesMergeGlobalBurnButKeepNativeBurnTiming" methodname="ScaredSausageCopiesMergeGlobalBurnButKeepNativeBurnTiming" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="41051805" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.002285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1587" name="StackedCooldownItemsAndPenaltyShareHalfSecondBurnTimer" fullname="Scrapshift.Tests.ItemsCombinedParityTests.StackedCooldownItemsAndPenaltyShareHalfSecondBurnTimer" methodname="StackedCooldownItemsAndPenaltyShareHalfSecondBurnTimer" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="523070256" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000578" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1592" name="ItemsRemainingParityTests" fullname="Scrapshift.Tests.ItemsRemainingParityTests" classname="Scrapshift.Tests.ItemsRemainingParityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.003655" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1593" name="RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" fullname="Scrapshift.Tests.ItemsRemainingParityTests.RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" methodname="RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" classname="Scrapshift.Tests.ItemsRemainingParityTests" runstate="Runnable" seed="1386384349" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.002492" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1594" name="LinkedImplantTests" fullname="Scrapshift.Tests.LinkedImplantTests" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.019678" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1599" name="CapFreezesAtPurchaseButDoesNotDeleteLaterGains" fullname="Scrapshift.Tests.LinkedImplantTests.CapFreezesAtPurchaseButDoesNotDeleteLaterGains" methodname="CapFreezesAtPurchaseButDoesNotDeleteLaterGains" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="789855994" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.014292" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1597" name="CommunityAndBurningCountsChangeLinkedStats" fullname="Scrapshift.Tests.LinkedImplantTests.CommunityAndBurningCountsChangeLinkedStats" methodname="CommunityAndBurningCountsChangeLinkedStats" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="715339551" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000583" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1598" name="FairyCountsDistinctItemIdsInsteadOfStacks" fullname="Scrapshift.Tests.LinkedImplantTests.FairyCountsDistinctItemIdsInsteadOfStacks" methodname="FairyCountsDistinctItemIdsInsteadOfStacks" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="146892038" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000375" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1601" name="LinksDoNotRecursivelyUseOtherLinkedBonuses" fullname="Scrapshift.Tests.LinkedImplantTests.LinksDoNotRecursivelyUseOtherLinkedBonuses" methodname="LinksDoNotRecursivelyUseOtherLinkedBonuses" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="1332688149" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1596" name="NegativeSpeedRegenUsesSignedDivisor" fullname="Scrapshift.Tests.LinkedImplantTests.NegativeSpeedRegenUsesSignedDivisor" methodname="NegativeSpeedRegenUsesSignedDivisor" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="410486029" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1595" name="PaddingTracksMaterialsAndTruncatesAfterScaling" fullname="Scrapshift.Tests.LinkedImplantTests.PaddingTracksMaterialsAndTruncatesAfterScaling" methodname="PaddingTracksMaterialsAndTruncatesAfterScaling" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="1067701263" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.000303" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1600" name="SpeedCapAffectsMovementWithoutErasingDisplayedStats" fullname="Scrapshift.Tests.LinkedImplantTests.SpeedCapAffectsMovementWithoutErasingDisplayedStats" methodname="SpeedCapAffectsMovementWithoutErasingDisplayedStats" classname="Scrapshift.Tests.LinkedImplantTests" runstate="Runnable" seed="740340373" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.001164" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2054" name="SurvivalCharacterBoundaryTests" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.010361" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2057" name="ImportedGolemCannotHealFromOrdinaryTortureOrCleanupHealing" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests.ImportedGolemCannotHealFromOrdinaryTortureOrCleanupHealing" methodname="ImportedGolemCannotHealFromOrdinaryTortureOrCleanupHealing" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" seed="1715519365" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.004198" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2055" name="ImportedSickPeriodicDamageCanCauseNormalDelayedDefeat" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests.ImportedSickPeriodicDamageCanCauseNormalDelayedDefeat" methodname="ImportedSickPeriodicDamageCanCauseNormalDelayedDefeat" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" seed="1288878392" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.001657" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2056" name="ImportedWoundedDiesFromOneUnblockedHitAndRetryRestoresItsAbilities" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests.ImportedWoundedDiesFromOneUnblockedHitAndRetryRestoresItsAbilities" methodname="ImportedWoundedDiesFromOneUnblockedHitAndRetryRestoresItsAbilities" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" seed="49957345" result="Passed" start-time="2026-10-20 11:45:22Z" end-time="2026-10-20 11:45:22Z" duration="0.003123" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/parity-remaining-2026-10-20/linked-stat-tests-attempt-3.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

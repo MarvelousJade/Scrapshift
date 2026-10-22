@@ -95,11 +95,11 @@ MonoBehaviour:
     priority: 2
   - cue: 8
     variants:
-    - {fileID: 8300000, guid: 7238d472537ab4b4595ca9a396387c85, type: 3}
-    - {fileID: 8300000, guid: 778e93056af200d43a15cb78d5dd23e9, type: 3}
-    gain: 0.35
+    - {fileID: 8300000, guid: e6c88f0e69ed4f42b7690dd52fc67e89, type: 3}
+    - {fileID: 8300000, guid: b525e17c009e48b3936b1547153c7a36, type: 3}
+    gain: 1
     cooldown: 0.1
-    pitchVariation: 0.06
+    pitchVariation: 0.1
     priority: 0
   - cue: 9
     variants:
@@ -114,6 +114,35 @@ MonoBehaviour:
     variants:
     - {fileID: 8300000, guid: 4801f2aa95a7b694a8f2be459c414116, type: 3}
     gain: 0.35
+    cooldown: 0.1
+    pitchVariation: 0
+    priority: 2
+  - cue: 11
+    variants:
+    - {fileID: 8300000, guid: e06fa7ae65fb46d8a910a979a9416051, type: 3}
+    gain: 0.56234133
+    cooldown: 0.1
+    pitchVariation: 0
+    priority: 2
+  - cue: 12
+    variants:
+    - {fileID: 8300000, guid: 428a046f957a44ad9199c831b65fa6b9, type: 3}
+    - {fileID: 8300000, guid: 60beb3192ee84ec0a7b467bbe0a1dbdd, type: 3}
+    - {fileID: 8300000, guid: c35cedf811184b5b9a9d710dc6759a49, type: 3}
+    - {fileID: 8300000, guid: 8c57c284e54443f38aa7b6190bbe8766, type: 3}
+    - {fileID: 8300000, guid: 2ad231d4d52e426694109c039db60ac0, type: 3}
+    - {fileID: 8300000, guid: ee91672def044b148a025e14e5d0af44, type: 3}
+    - {fileID: 8300000, guid: 631f18aeae3440048dd1921e42eb17f9, type: 3}
+    - {fileID: 8300000, guid: 911316a40820499284d479336697dc82, type: 3}
+    - {fileID: 8300000, guid: b58029445443421f881c6af3c4253b7d, type: 3}
+    gain: 0.56234133
+    cooldown: 0.1
+    pitchVariation: 0
+    priority: 2
+  - cue: 13
+    variants:
+    - {fileID: 8300000, guid: c6c1f1670f7712b4cb1fcce6d598a682, type: 3}
+    gain: 1
     cooldown: 0.1
     pitchVariation: 0
     priority: 2
@@ -208,13 +237,6 @@ MonoBehaviour:
     cooldown: 0
     pitchVariation: 0
     priority: 2
-  - cue: 13
-    variants:
-    - {fileID: 8300000, guid: c6c1f1670f7712b4cb1fcce6d598a682, type: 3}
-    gain: 1
-    cooldown: 0
-    pitchVariation: 0
-    priority: 2
   - cue: 23
     variants:
     - {fileID: 8300000, guid: 2889e617de494b8bb094b608dc84cc0d, type: 3}
@@ -222,26 +244,4 @@ MonoBehaviour:
     gain: 0.31622776
     cooldown: 0
     pitchVariation: 0.2
-    priority: 2
-  - cue: 12
-    variants:
-    - {fileID: 8300000, guid: 36b3167ad407442780517e7444974b19, type: 3}
-    - {fileID: 8300000, guid: b860cccc44054460909efcf8db27b3e5, type: 3}
-    - {fileID: 8300000, guid: 6cc4393b70ba4bebad247b03124a3751, type: 3}
-    - {fileID: 8300000, guid: a6ec093400594f80935f1f17ca86ab86, type: 3}
-    - {fileID: 8300000, guid: 9c47aef958ed40a5ab313a0f21d67d20, type: 3}
-    - {fileID: 8300000, guid: fe4697fb956840e0b95f5b9b9249c47d, type: 3}
-    - {fileID: 8300000, guid: 0828e350b40a489d80b117280d73c061, type: 3}
-    - {fileID: 8300000, guid: 674450c8801f40978abe235cc6b40a5b, type: 3}
-    - {fileID: 8300000, guid: 711688b1693f447a80cbac989e0c13e0, type: 3}
-    gain: 0.56234133
-    cooldown: 0
-    pitchVariation: 0
-    priority: 2
-  - cue: 11
-    variants:
-    - {fileID: 8300000, guid: 4451bd172fb5494f8c8408792f1c9a28, type: 3}
-    gain: 0.56234133
-    cooldown: 0
-    pitchVariation: 0
     priority: 2

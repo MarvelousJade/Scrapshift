@@ -11,16 +11,18 @@ namespace Scrapshift
         public static ItemEntry[] ItemPool(ItemEntry[] items,CharacterProfile character,int tier,bool preferTags,
             System.Collections.Generic.IEnumerable<ItemEntry> excluded,System.Collections.Generic.IEnumerable<ItemEntry> owned)
         {
-            var pool=items.Where(i=>i.tier==tier&&RunRules.IsShopItem(i.id)).ToArray();
-            // The reference rolls from the chosen tier; an empty tier is not replaced by a lower one.
-            pool=pool.Where(i=>!(character?.bannedItems??Array.Empty<string>()).Any(id=>id==i.id||id=="item_"+i.id)&&
-                !(character?.bannedItemGroups??Array.Empty<string>()).Intersect(i.groups??Array.Empty<string>()).Any()&&
+            var tierPool=items.Where(i=>i.tier==tier&&RunRules.IsShopItem(i.id)).ToArray();
+            // item_service.gd keeps a backup before wanted-tag and banned-group filters.
+            // Its final fallback is the original pool at the same rarity tier.
+            var backup=tierPool.Where(i=>!excluded.Any(e=>e.id==i.id)&&
                 (i.maxCount<0||owned.Count(a=>a.id==i.id)<i.maxCount)).ToArray();
-            var fresh=pool.Where(i=>!excluded.Any(e=>e.id==i.id)).ToArray();
-            if(fresh.Length>0)pool=fresh;
-            if(preferTags&&character?.wantedTags!=null)
-            {var preferred=pool.Where(i=>(i.tags??Array.Empty<string>()).Intersect(character.wantedTags).Any()).ToArray();if(preferred.Length>0)pool=preferred;}
-            return pool;
+            // Character bans are preference filters in the source, unlike the
+            // run's explicit banned-item list. They do not change its backup.
+            var pool=backup.Where(i=>!(character?.bannedItems??Array.Empty<string>()).Any(id=>id==i.id||id=="item_"+i.id)&&
+                !(character?.bannedItemGroups??Array.Empty<string>()).Intersect(i.groups??Array.Empty<string>()).Any()).ToArray();
+            if(preferTags&&character?.wantedTags?.Length>0)
+                pool=pool.Where(i=>(i.tags??Array.Empty<string>()).Intersect(character.wantedTags).Any()).ToArray();
+            return pool.Length>0?pool:backup.Length>0?backup:tierPool;
         }
     }
 }

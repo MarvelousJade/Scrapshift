@@ -1,0 +1,66 @@
+{
+    "status": "Passed",
+    "error": "",
+    "scope": "Finite production RunRules action receipts using the built catalog. Inventory and offers explicitly staged. Candy additionally exercises AddWaveEncounters and an empty SpawnDirector emission callback, without spawning world actors. No displayed-price, GUI, input, physics, audible or human evidence.",
+    "headless": true,
+    "capturesVerified": false,
+    "isolated": true,
+    "checks": [
+        {
+            "name": "character-prices",
+            "details": "mutant:52/30;saver:52/30;entrepreneur:26/15;glutton:43/25;baby:28/16;ArmsDealerKnifeIV:7;FishermanBait:1"
+        },
+        {
+            "name": "demon-budget",
+            "details": "rawHP 1 -> 0; next HP-grant rejected; paid reroll debits material only"
+        },
+        {
+            "name": "capacity",
+            "details": "capacity duplicate -> one tierII; unmatched/max tier/unusable rejected without debit"
+        },
+        {
+            "name": "bunny-paid-order",
+            "details": "two separately purchased Bunnies each grant one immediate roll; paid count retained"
+        },
+        {
+            "name": "sold-out-order",
+            "details": "sold-out bonus -> Bunny -> cost1 -> next cost2"
+        },
+        {
+            "name": "locked-rejection",
+            "details": "4 locks reject without mutation/token use; unlocking permits free roll; unaffordable paid roll preserves offers/count/balance"
+        },
+        {
+            "name": "lock-transition-keep-True",
+            "details": "temporary lock unused; carried offer same identity, original price, UsedLocks true"
+        },
+        {
+            "name": "lock-transition-keep-False",
+            "details": "temporary lock unused; carried offer same identity, original price, UsedLocks true"
+        },
+        {
+            "name": "coupon-removal",
+            "details": "wave5 coffee 35 -> 33 -> 35"
+        },
+        {
+            "name": "recycling-removal",
+            "details": "wave5 pistol recycle 5 -> 12 -> 5; one actual credit"
+        },
+        {
+            "name": "anvil-targets",
+            "details": "96 seeds eligible targets counts=31,31,34; removal inactive; max-only/empty fallback +2 armor; purchase first acts next shop"
+        },
+        {
+            "name": "hourglass-once",
+            "details": "7 -> 7 -> 8; one broken replacement"
+        },
+        {
+            "name": "candy-seeds",
+            "details": "256 seeds natural10% outcomes: 26 successes, 230 failures; deterministic replay; removal clears future chance"
+        },
+        {
+            "name": "candy-actual-encounter-request",
+            "details": "4 bounded natural trials; success=1, failure=3; eligible single-elite callback IDs=gargoyle; no actors/physics/UI claimed"
+        }
+    ]
+}

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="24" result="Failed(Child)" total="24" passed="23" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.5861564">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="519" result="Failed" site="Child" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.586156" total="24" passed="23" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1603" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="489" result="Failed" site="Child" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.566298" total="24" passed="23" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="26036" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1604" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="489" result="Failed" site="Child" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.561119" total="24" passed="23" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1605" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="489" result="Failed" site="Child" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.559756" total="24" passed="23" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1132" name="ControlsParityTests" fullname="Scrapshift.Tests.ControlsParityTests" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.372286" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1153" name="CharacterGridNavigationCanVisitALockedSlotBetweenUnlockedCards" fullname="Scrapshift.Tests.ControlsParityTests.CharacterGridNavigationCanVisitALockedSlotBetweenUnlockedCards" methodname="CharacterGridNavigationCanVisitALockedSlotBetweenUnlockedCards" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1802088346" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.016783" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1152" name="FocusedSelectionPreviewIgnoresStationaryMouseOverADifferentCard" fullname="Scrapshift.Tests.ControlsParityTests.FocusedSelectionPreviewIgnoresStationaryMouseOverADifferentCard" methodname="FocusedSelectionPreviewIgnoresStationaryMouseOverADifferentCard" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="733579791" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1150" name="GamepadAimHistoryChangesOnlyDuringManualGamepadAimAndSurvivesStickRelease" fullname="Scrapshift.Tests.ControlsParityTests.GamepadAimHistoryChangesOnlyDuringManualGamepadAimAndSurvivesStickRelease" methodname="GamepadAimHistoryChangesOnlyDuringManualGamepadAimAndSurvivesStickRelease" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="988411384" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.001939" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1149" name="ManualRangedAimTracksDuringAttackButMeleeLocksUntilAnimationEnds" fullname="Scrapshift.Tests.ControlsParityTests.ManualRangedAimTracksDuringAttackButMeleeLocksUntilAnimationEnds" methodname="ManualRangedAimTracksDuringAttackButMeleeLocksUntilAnimationEnds" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="604686904" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000184" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="MenuNavigationSelectsNearestControlInRequestedDirection" fullname="Scrapshift.Tests.ControlsParityTests.MenuNavigationSelectsNearestControlInRequestedDirection" methodname="MenuNavigationSelectsNearestControlInRequestedDirection" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1842677961" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000337" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1151" name="MouseCanTakeAimFromSteadyHeldStickUntilANewValidControllerEvent" fullname="Scrapshift.Tests.ControlsParityTests.MouseCanTakeAimFromSteadyHeldStickUntilANewValidControllerEvent" methodname="MouseCanTakeAimFromSteadyHeldStickUntilANewValidControllerEvent" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="390006283" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000414" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1140" name="MouseOnlyMovementFollowsWithoutPressAndPressStops" fullname="Scrapshift.Tests.ControlsParityTests.MouseOnlyMovementFollowsWithoutPressAndPressStops" methodname="MouseOnlyMovementFollowsWithoutPressAndPressStops" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="2068469539" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000463" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1141" name="MovementUsesFullSpeedAfterDeadzoneEvenNearCursorOrPartialStick" fullname="Scrapshift.Tests.ControlsParityTests.MovementUsesFullSpeedAfterDeadzoneEvenNearCursorOrPartialStick" methodname="MovementUsesFullSpeedAfterDeadzoneEvenNearCursorOrPartialStick" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="100936091" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.002081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1139" name="NamedGamepadAxesExistInUnitySerializedSettings" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.013091" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1133" name="NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadHorizontal&quot;,0,False)" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadHorizontal&quot;,0,False)" methodname="NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="139803122" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.008180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1134" name="NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadVertical&quot;,1,True)" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadVertical&quot;,1,True)" methodname="NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1492956954" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1135" name="NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadAimHorizontal&quot;,3,False)" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadAimHorizontal&quot;,3,False)" methodname="NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="116406481" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1136" name="NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadAimVertical&quot;,4,True)" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadAimVertical&quot;,4,True)" methodname="NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="850665779" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1137" name="NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadDpadHorizontal&quot;,5,False)" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadDpadHorizontal&quot;,5,False)" methodname="NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1483393583" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1138" name="NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadDpadVertical&quot;,6,False)" fullname="Scrapshift.Tests.ControlsParityTests.NamedGamepadAxesExistInUnitySerializedSettings(&quot;GamepadDpadVertical&quot;,6,False)" methodname="NamedGamepadAxesExistInUnitySerializedSettings" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1859059545" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1147" name="OptionsNavigationReachesEachRowBeforeBackFromEveryActiveTab" fullname="Scrapshift.Tests.ControlsParityTests.OptionsNavigationReachesEachRowBeforeBackFromEveryActiveTab" methodname="OptionsNavigationReachesEachRowBeforeBackFromEveryActiveTab" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1453141233" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000623" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1148" name="PausedCrateCannotBeConsumedAndResumesTheSameRewardBeforeUpgrade" fullname="Scrapshift.Tests.ControlsParityTests.PausedCrateCannotBeConsumedAndResumesTheSameRewardBeforeUpgrade" methodname="PausedCrateCannotBeConsumedAndResumesTheSameRewardBeforeUpgrade" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="375794399" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.309036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1146" name="PauseFreezesAndRestoresShopAndUpgrade" fullname="Scrapshift.Tests.ControlsParityTests.PauseFreezesAndRestoresShopAndUpgrade" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.005707" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1144" name="PauseFreezesAndRestoresShopAndUpgrade(False)" fullname="Scrapshift.Tests.ControlsParityTests.PauseFreezesAndRestoresShopAndUpgrade(False)" methodname="PauseFreezesAndRestoresShopAndUpgrade" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="558068410" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.004251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1145" name="PauseFreezesAndRestoresShopAndUpgrade(True)" fullname="Scrapshift.Tests.ControlsParityTests.PauseFreezesAndRestoresShopAndUpgrade(True)" methodname="PauseFreezesAndRestoresShopAndUpgrade" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="317904779" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1142" name="PressOnlyAimRespondsToMouseOrRightStickWithoutDisablingAutomaticFire" fullname="Scrapshift.Tests.ControlsParityTests.PressOnlyAimRespondsToMouseOrRightStickWithoutDisablingAutomaticFire" methodname="PressOnlyAimRespondsToMouseOrRightStickWithoutDisablingAutomaticFire" classname="Scrapshift.Tests.ControlsParityTests" runstate="Runnable" seed="1513573674" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:44Z" duration="0.000287" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1271" name="InputSystemDeviceTests" fullname="Scrapshift.Tests.InputSystemDeviceTests" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.167535" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1276" name="DisabledControllerClearsVectorsAndCannotLeaveAButtonHeld" fullname="Scrapshift.Tests.InputSystemDeviceTests.DisabledControllerClearsVectorsAndCannotLeaveAButtonHeld" methodname="DisabledControllerClearsVectorsAndCannotLeaveAButtonHeld" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="535426156" result="Passed" start-time="2026-10-15 15:03:44Z" end-time="2026-10-15 15:03:45Z" duration="0.142792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1275" name="KeyboardEventTakesAimFromControllerAndReleaseKeepsAimHistory" fullname="Scrapshift.Tests.InputSystemDeviceTests.KeyboardEventTakesAimFromControllerAndReleaseKeepsAimHistory" methodname="KeyboardEventTakesAimFromControllerAndReleaseKeepsAimHistory" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="1694582660" result="Passed" start-time="2026-10-15 15:03:45Z" end-time="2026-10-15 15:03:45Z" duration="0.004504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1274" name="OrderedMouseAndGamepadEventsSelectLastDeviceEvenWithinOneUpdate" fullname="Scrapshift.Tests.InputSystemDeviceTests.OrderedMouseAndGamepadEventsSelectLastDeviceEvenWithinOneUpdate" methodname="OrderedMouseAndGamepadEventsSelectLastDeviceEvenWithinOneUpdate" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="137740001" result="Passed" start-time="2026-10-15 15:03:45Z" end-time="2026-10-15 15:03:45Z" duration="0.003657" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1273" name="SouthEastAndStartUseActualDevicePressAndReleaseState" fullname="Scrapshift.Tests.InputSystemDeviceTests.SouthEastAndStartUseActualDevicePressAndReleaseState" methodname="SouthEastAndStartUseActualDevicePressAndReleaseState" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="1563065788" result="Failed" start-time="2026-10-15 15:03:45Z" end-time="2026-10-15 15:03:45Z" duration="0.008301" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Scrapshift.Tests.InputSystemDeviceTests.SouthEastAndStartUseActualDevicePressAndReleaseState () [0x0002b] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\InputSystemDeviceTests.cs:51
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1272" name="SticksAndDpadReadFromDeviceWithReferenceDeadzoneAppliedOnce" fullname="Scrapshift.Tests.InputSystemDeviceTests.SticksAndDpadReadFromDeviceWithReferenceDeadzoneAppliedOnce" methodname="SticksAndDpadReadFromDeviceWithReferenceDeadzoneAppliedOnce" classname="Scrapshift.Tests.InputSystemDeviceTests" runstate="Runnable" seed="766323110" result="Passed" start-time="2026-10-15 15:03:45Z" end-time="2026-10-15 15:03:45Z" duration="0.001768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/artifacts/input-system-focused.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,186 @@
+--- original/addons/mod_loader/api/log.gd
++++ clone/addons/mod_loader/api/log.gd
+@@ -3,7 +3,7 @@
+ extends Node
+ 
+ 
+-const MOD_LOG_PATH: = "user://logs/modloader.log"
++const MOD_LOG_PATH: = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/logs/modloader.log"
+ 
+ const LOG_NAME: = "ModLoader:Log"
+ 
+--- original/addons/mod_loader/api/profile.gd
++++ clone/addons/mod_loader/api/profile.gd
+@@ -6,7 +6,7 @@
+ const LOG_NAME: = "ModLoader:UserProfile"
+ 
+ 
+-const FILE_PATH_USER_PROFILES: = "user://mod_user_profiles.json"
++const FILE_PATH_USER_PROFILES: = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/mod_user_profiles.json"
+ 
+ 
+ 
+--- original/addons/mod_loader/internal/cache.gd
++++ clone/addons/mod_loader/internal/cache.gd
+@@ -4,7 +4,7 @@
+ 
+ 
+ 
+-const CACHE_FILE_PATH = "user://mod_loader_cache.json"
++const CACHE_FILE_PATH = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/mod_loader_cache.json"
+ const LOG_NAME = "ModLoader:Cache"
+ 
+ 
+--- original/addons/mod_loader/internal/path.gd
++++ clone/addons/mod_loader/internal/path.gd
+@@ -6,7 +6,7 @@
+ 
+ 
+ const LOG_NAME: = "ModLoader:Path"
+-const MOD_CONFIG_DIR_PATH: = "user://configs"
++const MOD_CONFIG_DIR_PATH: = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/configs"
+ 
+ 
+ 
+--- original/addons/mod_loader/setup/setup_log.gd
++++ clone/addons/mod_loader/setup/setup_log.gd
+@@ -3,7 +3,7 @@
+ 
+ 
+ 
+-const MOD_LOG_PATH: = "user://logs/modloader.log"
++const MOD_LOG_PATH: = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/logs/modloader.log"
+ 
+ enum VERBOSITY_LEVEL{
+ 	ERROR, 
+--- original/entities/units/movement_behaviors/player_movement_behavior.gd
++++ clone/entities/units/movement_behaviors/player_movement_behavior.gd
+@@ -7,6 +7,8 @@
+ 
+ 
+ func get_movement() -> Vector2:
++	if get_node("/root/ParityFixture").active:
++		return get_node("/root/ParityFixture").movement()
+ 	var movement: Vector2 = Vector2.ZERO
+ 
+ 	if ProgressData.settings.mouse_only and not RunData.is_coop_run:
+--- original/print_viewport.gd
++++ clone/print_viewport.gd
+@@ -6,7 +6,7 @@
+ func _process(delta):
+ 	if Input.is_action_pressed("ui_ban"):
+ 		var capture: = get_texture().get_data()
+-		var file_path = "user://" + file_name + "_" + str(frame_index).pad_zeros(6) + ".png"
++		var file_path = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/" + file_name + "_" + str(frame_index).pad_zeros(6) + ".png"
+ 		capture.save_png(file_path)
+ 
+ 		frame_index += 1
+--- original/project.godot
++++ clone/project.godot
+@@ -2432,9 +2432,10 @@
+ 
+ [application]
+ 
+-config/name="Brotato (3.x)"
+-run/main_scene="res://pause.tscn"
++config/name="Brotato Full Comparison 20261017 Attempt 2"
++run/main_scene="res://parity_bootstrap.tscn"
+ config/use_custom_user_dir=true
++config/custom_user_dir_name="BrotatoFullComparison20261017Attempt2"
+ boot_splash/image="res://splash.png"
+ boot_splash/bg_color=Color( 0.109804, 0.109804, 0.109804, 1 )
+ config/icon="res://brotato_icon.png"
+@@ -2446,6 +2447,7 @@
+ default_bus_layout="res://resources/music/default_bus_layout.tres"
+ 
+ [autoload]
++
+ 
+ CrashReporter="*res://singletons/crash_reporter.gd"
+ BugReporter="*res://singletons/bug_reporter.tscn"
+@@ -2482,6 +2484,7 @@
+ UIService="*res://singletons/ui_service.gd"
+ SoundService="*res://singletons/sound_service.tscn"
+ OS_Seaven="*res://singletons/os_seaven.gd"
++CharacterItemOracle="*res://reference_character_item_oracle.gd"
+ 
+ [debug]
+ 
+@@ -2738,3 +2741,6 @@
+ [steam]
+ 
+ initialization/embed_callbacks=true
++
++
++
+--- original/singletons/bug_reporter_input.gd
++++ clone/singletons/bug_reporter_input.gd
+@@ -170,8 +170,8 @@
+ 	text = _hash_user_ids(text, salt)
+ 
+ 	
+-	var user_path: = ProjectSettings.globalize_path("user://")
+-	text = text.replace(user_path, "user/" if for_filename else "<user://>")
++	var user_path: = ProjectSettings.globalize_path("E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/")
++	text = text.replace(user_path, "user/" if for_filename else "<E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/>")
+ 
+ 	return text
+ 
+--- original/singletons/progress_data.gd
++++ clone/singletons/progress_data.gd
+@@ -139,7 +139,9 @@
+ 		load_game_file()
+ 		add_unlocked_by_default()
+ 
++	print("PARITY_PROGRESS_BEFORE_MAX")
+ 	set_max_selectable_difficulty()
++	print("PARITY_PROGRESS_AFTER_MAX")
+ 
+ 	for available_dlc in available_dlcs:
+ 		if settings.deactivated_dlcs.has(available_dlc.my_id) or get_tree().current_scene.name == "GutRunner":
+@@ -585,7 +587,7 @@
+ 	return run_state
+ 
+ 
+-func init_save_paths(user_dir_override: = "user://") -> void :
++func init_save_paths(user_dir_override: = "E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/") -> void :
+ 	var dir = Directory.new()
+ 	var dir_path = user_dir_override + Platform.get_user_id()
+ 	var directory_exists = dir.dir_exists(dir_path)
+@@ -670,7 +672,9 @@
+ 	difficulties_unlocked.clear()
+ 	load_game_file()
+ 	add_unlocked_by_default()
++	print("PARITY_PROGRESS_BEFORE_MAX")
+ 	set_max_selectable_difficulty()
++	print("PARITY_PROGRESS_AFTER_MAX")
+ 	RunData.reset()
+ 	print("ProgressData: Loaded profile id %s." % [current_profile_id])
+ 
+@@ -1489,3 +1493,4 @@
+ 		if data.has(k):
+ 			
+ 			data[k] = int(data[k])
++
+--- original/singletons/progress_data_loader_v2.gd
++++ clone/singletons/progress_data_loader_v2.gd
+@@ -236,7 +236,7 @@
+ 	var dir: = Directory.new()
+ 
+ 	
+-	var _res = dir.open("user://");
++	var _res = dir.open("E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/");
+ 
+ 	
+ 	var do_backup: = true
+--- original/singletons/progress_data_loader_v3.gd
++++ clone/singletons/progress_data_loader_v3.gd
+@@ -487,7 +487,7 @@
+ 	var dir: = Directory.new()
+ 
+ 	
+-	var _res = dir.open("user://");
++	var _res = dir.open("E:/Codex Projects/Job Search Assistant/tmp/BrotatoCharacterOracle20261020/userdata-attempt-2-20261017/");
+ 
+ 	
+ 	var do_backup: = true

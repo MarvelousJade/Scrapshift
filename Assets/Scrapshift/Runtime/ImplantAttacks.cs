@@ -29,13 +29,8 @@ namespace Scrapshift
         }
         void QueueImplantExplosions(string trigger,Vector2 position)
         {
-            var effects=Rules.Effects(trigger).ToArray();
-            if(effects.Length==0||UnityEngine.Random.value>=Mathf.Min(1,effects.Sum(e=>e.chance)))return;
-            float damage=effects.Sum(e=>Rules.WeaponDamage(e.projectile.AsEquipment(),Rules.Stat("explosion_damage")));
-            // RunData.handle_explode_effect rolls once for the summed chance and damage,
-            // then places one explosion within a 10-pixel square around the event.
-            position+=new Vector2(UnityEngine.Random.Range(-10,11),UnityEngine.Random.Range(-10,11))*.01f;
-            implantExplosions.Enqueue((position,effects[0],damage));
+            if(Rules.TryItemExplosion(trigger,UnityEngine.Random.value,out var effect,out float damage))
+                implantExplosions.Enqueue((position,effect,damage));
         }
         void ResolveImplantAttacks()
         {
@@ -45,13 +40,26 @@ namespace Scrapshift
             while(implantExplosions.Count>0)
             {
                 var explosion=implantExplosions.Dequeue();var effect=explosion.effect;var stats=effect.projectile.AsEquipment();
-                float scale=Mathf.Max(.1f,effect.radius/1.4734f*(1+Rules.Stat("explosion_size")/100));
-                float radius=1.4734f*scale;
-                SpawnReferenceExplosionVisual(explosion.position,scale,effect.smokeAmount,effect.soundDb,effect.fleshExplosion);
-                int before=Rules.Kills;
-                foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(HurtCenter(target),explosion.position+Vector2.down*.03f*scale)<radius+HurtRadius(target))
-                    Damage(enemies.IndexOf(target),explosion.damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true);
-                Rules.RecordExplosionKills(Rules.Kills-before);
+                float damage=explosion.damage,radius=effect.radius*Mathf.Max(0,1+Rules.Stat("explosion_size")/100);
+                int kills=0;
+                // Imported Rip & Tear / Spicy Sauce use plain ItemExplodingEffect:
+                // handle_explode_effect forwards their empty burning data, and
+                // PlayerExplosion has no weapon/projectile life-steal callback.
+                var burnPayload=new BurnPayload();
+                bool previous=resolvingWeaponExplosion;resolvingWeaponExplosion=true;
+                try
+                {
+                    foreach(var target in enemies.ToArray())if(target.marker==null&&Vector2.Distance(target.pos,explosion.position)<=radius)
+                    {
+                        bool alive=target.hp>0;
+                        DamageWithWeaponIndex(enemies.IndexOf(target),damage,stats.crit,stats.knockback,target.pos-explosion.position,stats,true,false,false,-1,burnPayload);
+                        // Hitbox.killed_something is immediate, while the global
+                        // enemy die callback and Rules.Kills are deferred.
+                        if(alive&&target.hp<=0)kills++;
+                    }
+                }
+                finally{resolvingWeaponExplosion=previous;}
+                Rules.RecordExplosionKills(kills);SpawnReferenceExplosionVisual(explosion.position,radius/1.4734f,effect.smokeAmount,effect.soundDb,effect.fleshExplosion);
             }
         }
         void TryVulnerability(Enemy target,string scalingStat)
@@ -63,10 +71,30 @@ namespace Scrapshift
     }
     public sealed partial class RunRules
     {
+        public bool TryItemExplosion(string trigger,double roll,out ConditionalEffect template,out float damage)
+        {
+            var effects=Effects(trigger).ToArray();template=effects.FirstOrDefault();damage=0;
+            // run_data.gd:handle_explode_effect rolls the summed chance once, then
+            // sums every copy's independently calculated damage into one explosion.
+            float chance=effects.Sum(e=>e.chance);
+            if(template==null||chance<=0||roll>chance)return false;
+            damage=effects.Sum(ItemExplosionDamage);
+            return true;
+        }
+        float ItemExplosionDamage(ConditionalEffect effect)
+        {
+            // Unlike init_ranged_stats(..., true), get_explosion_damage explicitly
+            // applies Nail/Frozen Heart scaling, even to an item-created explosion.
+            float scaled=effect.projectile.damage+AddedWeaponScaling;
+            foreach(var stat in effect.projectile.scaling??Array.Empty<StatEffect>())
+                scaled+=(stat.key=="levels"?Level:Stat(stat.key))*stat.value;
+            int basis=Mathf.Max(1,(int)scaled);
+            return Mathf.Max(1,Mathf.Floor(basis*(1+(Stat("percent_damage")+Stat("explosion_damage"))/100)+.5f));
+        }
         public float DodgeRetaliation {get;private set;}
         public bool LastHitDodged {get;private set;}
         void RetaliationTriggers()
-        {foreach(var e in Effects("dmg_on_dodge"))if(random.NextDouble()<e.chance)DodgeRetaliation+=(int)(Mathf.Max(1,Stat(e.key.Replace("stat_",""))*e.value/100)*DamageScale);}
+        {foreach(var e in Effects("dmg_on_dodge"))if(random.NextDouble()<e.chance)DodgeRetaliation+=Mathf.Max(1,Mathf.Floor((int)Mathf.Max(1,Stat(e.key.Replace("stat_",""))*e.value/100)*DamageScale+.5f));}
         public bool WeaponScalesWith(Equipment weapon,string stat)=>weapon?.scaling!=null&&weapon.scaling.Any(s=>s.key==stat)||weapon!=null&&!weapon.specialSpawn&&Effects("weapon_scaling_stats").Any(e=>e.key=="stat_"+stat);
     }
 }

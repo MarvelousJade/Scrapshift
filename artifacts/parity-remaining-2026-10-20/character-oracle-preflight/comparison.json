@@ -1,0 +1,90 @@
+{
+  "scope": "Static intermission character plus single item: five character preflight",
+  "limits": "No timed, random/proc, enemy, combat, pickup, shop, transition, or acquisition-order parity claim; all mismatches require source triage.",
+  "caseCount": 30,
+  "compared": 30,
+  "errorCount": 0,
+  "mismatchCount": 6,
+  "mismatchByStat": {
+    "speed": 6
+  },
+  "errors": [],
+  "mismatches": [
+    {
+      "id": "beast_master:baseline",
+      "differences": {
+        "speed": {
+          "reference": 2,
+          "unity": 10.0,
+          "delta": 8.0
+        }
+      }
+    },
+    {
+      "id": "beast_master:single:coffee",
+      "differences": {
+        "speed": {
+          "reference": 2,
+          "unity": 10.0,
+          "delta": 8.0
+        }
+      }
+    },
+    {
+      "id": "beast_master:single:jellyshield",
+      "differences": {
+        "speed": {
+          "reference": 4,
+          "unity": 12.0,
+          "delta": 8.0
+        }
+      }
+    },
+    {
+      "id": "beast_master:single:wandering_bot",
+      "differences": {
+        "speed": {
+          "reference": 4,
+          "unity": 12.0,
+          "delta": 8.0
+        }
+      }
+    },
+    {
+      "id": "beast_master:single:retromations_hoodie",
+      "differences": {
+        "speed": {
+          "reference": 2,
+          "unity": 10.0,
+          "delta": 8.0
+        }
+      }
+    },
+    {
+      "id": "beast_master:single:power_generator",
+      "differences": {
+        "speed": {
+          "reference": 2,
+          "unity": 10.0,
+          "delta": 8.0
+        }
+      }
+    }
+  ],
+  "truncatedErrors": 0,
+  "truncatedMismatches": 0,
+  "inputs": {
+    "cases": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\character-oracle-preflight\\cases.jsonl",
+      "sha256": "c995131b4e068a87fd0a8881dd8816151124006750817e19a972a6db11c1a845"
+    },
+    "reference": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\character-oracle-preflight\\reference.jsonl",
+      "sha256": "d3735d57ae10cdfd7a6f44dbc763461dae5bf38607fc7ab1cd593bc9d4cb921e"
+    },
+    "unity": {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\character-oracle-preflight\\unity.jsonl",
+      "sha256": "cc0c2ac382428e9ba28cbfa6504fa8a744dca7c8069dd541c204b4a322c6574b"
+    }
+  }
+}

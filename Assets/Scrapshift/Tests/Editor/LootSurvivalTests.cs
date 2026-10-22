@@ -37,6 +37,22 @@ namespace Scrapshift.Tests
             Assert.AreEqual(ConsumableKind.Crate,ReferenceLoot.Roll("spitter",0,0,.029,.099));
             Assert.AreEqual(ConsumableKind.None,ReferenceLoot.Roll("tree",-100,0,0,0));
         }
+        [Test] public void CrateChanceModifierAppliesAfterLuckAndWaveCrateDilution()
+        {
+            // tree: 100% consumable drop, 20% base crate chance (tree_stats.tres).
+            // main.gd: itemChance = .2 * (1 + luck / 100) / (1 + crates);
+            // itemChance += itemChance * crateChance / 100.
+            Assert.AreEqual(ConsumableKind.Crate,ReferenceLoot.Roll("tree",0,1,0,.19,100));
+            Assert.AreEqual(ConsumableKind.Fruit,ReferenceLoot.Roll("tree",0,1,0,.201,100));
+            Assert.AreEqual(ConsumableKind.Fruit,ReferenceLoot.Roll("tree",0,1,0,.001,-100));
+            Assert.AreEqual(ConsumableKind.Crate,ReferenceLoot.Roll("tree",50,2,0,.14,50));
+            Assert.AreEqual(ConsumableKind.Fruit,ReferenceLoot.Roll("tree",50,2,0,.151,50));
+        }
+        [Test] public void ReferenceEliteBossInheritanceMakesBothCratesLegendaryDuringNormalRun()
+        {
+            Assert.AreEqual(ConsumableKind.LegendaryCrate,ReferenceLoot.Roll("croc",0,0,.99,.99,0,"Elite",11));
+            Assert.AreEqual(ConsumableKind.LegendaryCrate,ReferenceLoot.Roll("predator",0,0,.99,.99,0,"Boss",20));
+        }
         [Test] public void CratesHealImmediatelyAndResolveBeforeLevelsThenShop()
         {
             var r=Run();r.Hurt(5);r.CollectConsumable(ConsumableKind.Crate);
@@ -51,6 +67,14 @@ namespace Scrapshift.Tests
             Assert.IsTrue(r.ResolveCrate(false));Assert.AreEqual(money+recycle,r.Scrap);
             Assert.AreEqual(1,r.Items.Count);Assert.AreEqual(RunPhase.Upgrade,r.Phase);
             Assert.IsFalse(r.ResolveCrate(true));r.Choose(0);Assert.AreEqual(RunPhase.Shop,r.Phase);
+        }
+        [Test] public void LegendaryCrateUsesItsOwnHealingEffect()
+        {
+            var ordinary=Run();ordinary.Hurt(9);ordinary.CollectConsumable(ConsumableKind.Crate);
+            Assert.AreEqual(4,ordinary.Health);
+            var legendary=Run();legendary.Hurt(9);legendary.CollectConsumable(ConsumableKind.LegendaryCrate);
+            Assert.AreEqual(legendary.MaxHealth,legendary.Health);
+            Assert.AreEqual(1,legendary.PendingCrates);
         }
         [Test] public void TakingItemAppliesEveryEffectExactlyOnce()
         {
@@ -79,19 +103,19 @@ namespace Scrapshift.Tests
         [TestCase(1,5)] [TestCase(10,1)] [TestCase(19,5.0/9)]
         public void RegenerationUsesSourceInterval(float stat,double interval)=>Assert.AreEqual(interval,RunRules.RegenerationInterval(stat),1e-6);
 
-        [Test] public void RegenerationTicksInWholeHealthAndPausesAndResetsAtFull()
+        [Test] public void RegenerationTicksInWholeHealthPausesAndRetainsProgressAcrossExternalHealing()
         {
             var r=Run();GrantStat(r,"hp_regeneration",1);r.Hurt(4);float health=r.Health;
             r.Tick(4.9f);Assert.AreEqual(health,r.Health);
             r.Pause();r.Tick(20);Assert.AreEqual(health,r.Health);r.Pause();
             r.Tick(.1f);Assert.AreEqual(health+1,r.Health);
             r.Tick(2);r.Heal(100);r.Hurt(2);health=r.Health;
-            r.Tick(4.9f);Assert.AreEqual(health,r.Health);r.Tick(.1f);Assert.AreEqual(health+1,r.Health);
+            r.Tick(2.9f);Assert.AreEqual(health,r.Health);r.Tick(.1f);Assert.AreEqual(health+1,r.Health);
         }
         [Test] public void NonpositiveRegenDoesNotHealOrDamage()
         {
             var r=Run();GrantStat(r,"hp_regeneration",-5);r.Hurt(3);float health=r.Health;
-            r.Tick(6);Assert.AreEqual(health,r.Health);Assert.IsTrue(double.IsPositiveInfinity(RunRules.RegenerationInterval(0)));
+            r.Tick(6);Assert.AreEqual(health,r.Health);Assert.AreEqual(99,RunRules.RegenerationInterval(0));
         }
         [Test] public void LifeStealSharesCooldownAcrossHitsAndPauses()
         {

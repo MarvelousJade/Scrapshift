@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Passed" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:32Z" duration="1.4245843">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1226" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:32Z" duration="1.424584" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2432" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1196" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:32Z" duration="1.404874" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25776" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2433" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1196" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:32Z" duration="1.395857" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2434" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1196" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:32Z" duration="1.386869" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1481" name="HeadlessDynamicProcTests" fullname="Scrapshift.Tests.HeadlessDynamicProcTests" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:31Z" duration="0.445749" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1495" name="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:31Z" duration="0.387998" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1492" name="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent(0.499999d,True)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent(0.499999d,True)" methodname="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="995935374" result="Passed" start-time="2026-10-20 13:59:30Z" end-time="2026-10-20 13:59:31Z" duration="0.380403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1493" name="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent(0.5d,False)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent(0.5d,False)" methodname="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="506288577" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1494" name="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent(0.500001d,False)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent(0.500001d,False)" methodname="AdrenalineUsesStrictHalfChanceAndLichReceivesOneHealingEvent" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="2142957842" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000226" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1497" name="GolemHalfHealthBonusClearsAfterOrdinaryFinalWaveSettlement" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.GolemHalfHealthBonusClearsAfterOrdinaryFinalWaveSettlement" methodname="GolemHalfHealthBonusClearsAfterOrdinaryFinalWaveSettlement" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="1299995845" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.039713" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1496" name="GolemHalfHealthBonusPersistsDuringCombatPauseButClearsOnLethalDefeat" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.GolemHalfHealthBonusPersistsDuringCombatPauseButClearsOnLethalDefeat" methodname="GolemHalfHealthBonusPersistsDuringCombatPauseButClearsOnLethalDefeat" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="282945717" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.001057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1491" name="NoncriticalKillDoesNotRollTrophyEntries" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.NoncriticalKillDoesNotRollTrophyEntries" methodname="NoncriticalKillDoesNotRollTrophyEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="1644835478" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000673" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1490" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.005619" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1482" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(0)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(0)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="159224188" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.002823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1483" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(1)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(1)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="594812101" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1484" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(2)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(2)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="1186524003" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1485" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(3)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(3)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="1183241712" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1486" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(4)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(4)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="2128455094" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1487" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(5)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(5)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="338792966" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1488" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(6)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(6)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="742131301" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1489" name="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(7)" fullname="Scrapshift.Tests.HeadlessDynamicProcTests.ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries(7)" methodname="ThreeLegalTrophiesRollIndependentlyAndPayOnlySuccessfulEntries" classname="Scrapshift.Tests.HeadlessDynamicProcTests" runstate="Runnable" seed="1647277727" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1498" name="HeadlessShopAcceptanceTests" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:32Z" duration="0.882678" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1511" name="SourceDerivedShopActionBoundaries" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:32Z" duration="0.881830" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1499" name="SourceDerivedShopActionBoundaries(&quot;character-prices&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;character-prices&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="2027356991" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.026069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1500" name="SourceDerivedShopActionBoundaries(&quot;demon-budget&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;demon-budget&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="945711724" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.002373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1501" name="SourceDerivedShopActionBoundaries(&quot;capacity&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;capacity&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="1907990422" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.002774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1502" name="SourceDerivedShopActionBoundaries(&quot;bunny-paid-order&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;bunny-paid-order&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="209411549" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.002045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1503" name="SourceDerivedShopActionBoundaries(&quot;sold-out-order&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;sold-out-order&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="739597831" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.005086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1504" name="SourceDerivedShopActionBoundaries(&quot;locked-rejection&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;locked-rejection&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="613263569" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.002294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1505" name="SourceDerivedShopActionBoundaries(&quot;lock-transition&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;lock-transition&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="767608272" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.001553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1506" name="SourceDerivedShopActionBoundaries(&quot;coupon-removal&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;coupon-removal&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="1310122145" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.001027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1507" name="SourceDerivedShopActionBoundaries(&quot;recycling-removal&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;recycling-removal&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="504876702" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.000976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1508" name="SourceDerivedShopActionBoundaries(&quot;anvil-targets&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;anvil-targets&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="1039265332" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.228428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1509" name="SourceDerivedShopActionBoundaries(&quot;hourglass-once&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;hourglass-once&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="2097002721" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:31Z" duration="0.001845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1510" name="SourceDerivedShopActionBoundaries(&quot;candy-seeds&quot;)" fullname="Scrapshift.Tests.HeadlessShopAcceptanceTests.SourceDerivedShopActionBoundaries(&quot;candy-seeds&quot;)" methodname="SourceDerivedShopActionBoundaries" classname="Scrapshift.Tests.HeadlessShopAcceptanceTests" runstate="Runnable" seed="655605675" result="Passed" start-time="2026-10-20 13:59:31Z" end-time="2026-10-20 13:59:32Z" duration="0.604482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/headless-completion-2026-10-20/focused-attempt-4.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

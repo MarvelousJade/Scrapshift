@@ -1,0 +1,136 @@
+[
+  {
+    "event": "before_request",
+    "case": "fresh_normal",
+    "wall_seconds": 3.354,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": false
+  },
+  {
+    "event": "material_requested",
+    "case": "fresh_normal",
+    "wall_seconds": 3.355,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": false,
+    "value": 1,
+    "count": 1
+  },
+  {
+    "event": "before_cleanup",
+    "case": "fresh_normal",
+    "wall_seconds": 3.356,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": false,
+    "spawn_suspended": true
+  },
+  {
+    "event": "after_cleanup_before_idle",
+    "case": "fresh_normal",
+    "wall_seconds": 3.4,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 0,
+    "registered_value": 0,
+    "nodes": [
+
+    ],
+    "cleaning_up": true
+  },
+  {
+    "event": "material_registered",
+    "case": "fresh_normal",
+    "wall_seconds": 3.41,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22214,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true,
+    "node": 22214,
+    "value": 1
+  },
+  {
+    "event": "after_deferred_registration",
+    "case": "fresh_normal",
+    "wall_seconds": 3.472,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22214,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true
+  },
+  {
+    "event": "after_three_seconds",
+    "case": "fresh_normal",
+    "wall_seconds": 6.466,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22214,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true
+  },
+  {
+    "event": "finished",
+    "case": "fresh_normal",
+    "wall_seconds": 6.467,
+    "bank": 0,
+    "player_gold": 0,
+    "registered_count": 1,
+    "registered_value": 1,
+    "nodes": [
+      {
+        "id": 22214,
+        "value": 1,
+        "visible": true,
+        "attracted": false,
+        "picked": false
+      }
+    ],
+    "cleaning_up": true,
+    "reason": "completed"
+  }
+]

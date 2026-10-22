@@ -1,0 +1,100 @@
+{
+  "status": "Passed",
+  "validation_errors": [
+
+  ],
+  "mode": "full",
+  "case": "enemy_flushed",
+  "rows": [
+    {
+      "event": "before",
+      "player_health": 1,
+      "player_dead": false,
+      "main_cleaning": false,
+      "spawner_cleaning": false,
+      "enemy_hp": 1,
+      "enemy_pending": false,
+      "enemy_dead": false,
+      "enemy_kills": 0,
+      "ground_material_value": 0,
+      "banked_materials": 0,
+      "enemy_death_signals": [
+
+      ]
+    },
+    {
+      "event": "after_enemy_before_player_hit",
+      "player_health": 1,
+      "player_dead": false,
+      "main_cleaning": false,
+      "spawner_cleaning": false,
+      "enemy_hp": 0,
+      "enemy_pending": true,
+      "enemy_dead": false,
+      "enemy_kills": 0,
+      "ground_material_value": 0,
+      "banked_materials": 0,
+      "enemy_death_signals": [
+
+      ]
+    },
+    {
+      "event": "after_enemy_deferred_flush",
+      "player_health": 1,
+      "player_dead": false,
+      "main_cleaning": false,
+      "spawner_cleaning": false,
+      "enemy_hp": 0,
+      "enemy_pending": true,
+      "enemy_dead": true,
+      "enemy_kills": 1,
+      "ground_material_value": 1,
+      "banked_materials": 0,
+      "enemy_death_signals": [
+        {
+          "cleaning_up": false,
+          "enemy_killed_by_player": true
+        }
+      ]
+    },
+    {
+      "event": "after_calls_before_deferred_flush",
+      "player_health": 0,
+      "player_dead": true,
+      "main_cleaning": true,
+      "spawner_cleaning": true,
+      "enemy_hp": 0,
+      "enemy_pending": true,
+      "enemy_dead": true,
+      "enemy_kills": 1,
+      "ground_material_value": 1,
+      "banked_materials": 0,
+      "enemy_death_signals": [
+        {
+          "cleaning_up": false,
+          "enemy_killed_by_player": true
+        }
+      ]
+    },
+    {
+      "event": "after_deferred_flush",
+      "player_health": 0,
+      "player_dead": true,
+      "main_cleaning": true,
+      "spawner_cleaning": true,
+      "enemy_hp": 0,
+      "enemy_pending": true,
+      "enemy_dead": true,
+      "enemy_kills": 1,
+      "ground_material_value": 1,
+      "banked_materials": 0,
+      "enemy_death_signals": [
+        {
+          "cleaning_up": false,
+          "enemy_killed_by_player": true
+        }
+      ]
+    }
+  ],
+  "scope": "Full mode uses actual Main/Player/Enemy scenes and production damage, died signals and cleanup; natural Update/physics/timers frozen, HP and event order staged. Minimal mode substitutes terminal/rendering sinks. No human controls, balance or audio/visual acceptance."
+}

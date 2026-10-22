@@ -1,0 +1,114 @@
+extends Node
+# Windowless autoload for an isolated reference clone. The signal connections
+# follow the inspected fresh / pooled lifecycle. Main's large death handler is
+# narrowed to its actual handle_stat_damages call; spawning/physics is not run.
+
+class ProbeEnemy:
+	extends Enemy
+	var received = 0
+	var pool_returned = false
+	func free_entity() -> void:
+		pool_returned = true # Replace only the final Main pool insertion sink.
+	func take_damage(value: int, _args: TakeDamageArgs) -> Array:
+		var amount = min(current_stats.health, value)
+		current_stats.health = max(0, current_stats.health - value)
+		received += amount
+		return [value, amount, false]
+
+var main
+var spawner
+var pending
+var alive
+var effects
+var callback_rows = []
+
+func _ready():
+	get_tree().create_timer(30, true).connect("timeout", self, "watchdog")
+	call_deferred("run_probe")
+
+func watchdog():
+	push_error("CORPSE_MEMBERSHIP_REFERENCE watchdog")
+	get_tree().quit(5)
+
+func on_main_death(enemy, _args):
+	var before = spawner.get_all_enemies(false)
+	var members = before.size()
+	var corpse_present = before.has(enemy)
+	var result = main.handle_stat_damages(effects, 0)
+	callback_rows.append({"members_at_main": members, "corpse_at_main": corpse_present, "alive_damage": alive.received, "returned": result})
+
+func run_probe():
+	DebugService.disable_saving = true
+	RunData.reset()
+	var character = null
+	for entry in ItemService.characters:
+		if entry.my_id == "character_well_rounded": character = entry
+	if character == null:
+		push_error("Missing character_well_rounded")
+		get_tree().quit(4)
+		return
+	RunData.add_character(character, 0)
+	RunData.add_item(load("res://items/all/cyberball/cyberball_data.tres"), 0)
+	RunData.wave_in_progress = true
+	RunData.reset_wave_caches()
+	effects = RunData.get_player_effect(Keys.dmg_when_death_hash, 0)
+	if effects.empty():
+		push_error("Imported Cyberball missing death effect")
+		get_tree().quit(4)
+		return
+	main = Main.new()
+	spawner = EntitySpawner.new()
+	main._entity_spawner = spawner
+	pending = ProbeEnemy.new()
+	alive = ProbeEnemy.new()
+	var animation = AnimationPlayer.new()
+	animation.add_animation("RESET", Animation.new())
+	pending._animation_player = animation
+	pending.entity_signal_node = spawner
+	var rows = []
+	var connections = {}
+	# Source spawn_entity connects spawner, then emits enemy_spawned to Main.
+	pending.connect("died", spawner, "_on_enemy_died")
+	pending.connect("died", self, "on_main_death")
+	pending.connect("wanted_to_spawn_an_enemy", spawner, "on_enemy_wanted_to_spawn_an_enemy")
+	pending.connect("charmed", spawner, "on_enemy_charmed")
+	for lifecycle in ["fresh", "pooled"]:
+		if lifecycle == "pooled":
+			# Entity.death_animation_finished disconnects spawner only. The
+			# pooled spawn branch reconnects it, retaining Main's connection.
+			pending.death_animation_finished()
+			pending.connect("died", spawner, "_on_enemy_died")
+		var order = []
+		for connection in pending.get_signal_connection_list("died"):
+			order.append(connection.method)
+		connections[lifecycle] = order
+		for trial in range(256):
+			pending.current_stats.health = 0
+			pending.received = 0
+			alive.current_stats.health = 1000
+			alive.received = 0
+			spawner.enemies = [pending, alive]
+			spawner.bosses = []
+			spawner.charmed_enemies = []
+			spawner._all_enemy_dirty = true
+			seed(20201020 + trial)
+			pending.emit_signal("died", pending, Entity.DieArgs.new())
+			var row = callback_rows.pop_back()
+			row.lifecycle = lifecycle
+			row.seed = 20201020 + trial
+			row.members_after_signal = spawner.enemies.size()
+			row.source_pool_return_path = pending.pool_returned
+			rows.append(row)
+	var output = File.new()
+	if output.open(OS.get_environment("SCRAPSHIFT_CORPSE_OUTPUT"), File.WRITE) != OK:
+		get_tree().quit(2)
+		return
+	output.store_string(to_json({"scope": "Actual Godot signal dispatch, Entity.death_animation_finished disconnection, EntitySpawner removal/get_all_enemies, Main.handle_stat_damages, and imported Cyberball. Source-derived spawn connection staging; final damage/pool insertion sinks replaced. No actual spawn, animation scheduling, Unit.take_damage or full Main death handler.", "connections": connections, "rows": rows}))
+	output.close()
+	pending.free()
+	alive.free()
+	main.free()
+	spawner.free()
+	animation.free()
+	print("CORPSE_MEMBERSHIP_REFERENCE_DONE ", rows.size())
+	get_tree().quit(0)

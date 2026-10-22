@@ -26,6 +26,36 @@ namespace Scrapshift.Tests
         }
 
         [Test]
+        public void EmptyShopGrantsOneBonusRerollBeforeItemGrantedFreeRerolls()
+        {
+            var run=new RunRules(8);run.Configure(catalog);run.Start();run.Collect(1000);
+            run.Tick(run.Remaining);
+            while(run.Phase==RunPhase.Upgrade)run.Choose(0);
+            for(int i=1;i<run.Shop.Length;i++)run.Shop[i]=null;
+            run.Shop[0]=new ShopOffer{item=catalog.data.items.Single(item=>item.id=="dangerous_bunny"),rolledWave=run.Wave};
+            Assert.IsTrue(run.Buy(0));
+            Assert.AreEqual(0,run.RerollPrice);
+            int before=run.Scrap;
+            run.Reroll();Assert.AreEqual(before,run.Scrap);
+            Assert.AreEqual(0,run.RerollPrice,"The item-granted reroll remains after the empty-shop bonus.");
+            run.Reroll();Assert.AreEqual(before,run.Scrap);
+            Assert.Greater(run.RerollPrice,0);
+        }
+
+        [Test]
+        public void FourLockedShopOffersCannotBeRerolled()
+        {
+            var run=new RunRules(8);run.Configure(catalog);run.Start();run.Collect(1000);
+            run.Tick(run.Remaining);
+            while(run.Phase==RunPhase.Upgrade)run.Choose(0);
+            for(int i=0;i<run.Shop.Length;i++)run.Shop[i]=new ShopOffer{item=catalog.data.items.First(item=>item.id=="coffee"),locked=true,rolledWave=run.Wave};
+            int before=run.Scrap;
+            Assert.IsFalse(run.CanReroll);
+            run.Reroll();Assert.AreEqual(before,run.Scrap);
+            Assert.IsTrue(run.Shop.All(offer=>offer.locked));
+        }
+
+        [Test]
         public void AlienBabyHealthModifierAlsoAppliesToBossesAndElites()
         {
             var run=Buy("alien_baby");
@@ -80,6 +110,18 @@ namespace Scrapshift.Tests
             chunky.Start(catalog.data.characters.Single(profile=>profile.id=="chunky"),"fist");
             Assert.AreEqual(12.5f,chunky.Stat("max_hp"),.0001f);
             Assert.AreEqual(12,chunky.MaxHealth);
+        }
+        [Test]
+        public void PlayerDamageRoundsAfterPositiveAndNegativeArmor()
+        {
+            var run=new RunRules(8);
+            run.Start();
+            run.GainWeaponStat("armor",15);
+            run.Hurt(3); // 3 * 0.5 = 1.5, rounded to 2 HP.
+            Assert.AreEqual(8,run.Health);
+            run.GainWeaponStat("armor",-30);
+            run.Hurt(3); // 3 * 1.5 = 4.5, rounded to 5 HP.
+            Assert.AreEqual(3,run.Health);
         }
     }
 }

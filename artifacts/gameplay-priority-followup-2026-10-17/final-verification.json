@@ -1,0 +1,57 @@
+{
+  "branch": "codex/gameplay-parity",
+  "baseline": "affceae",
+  "build": "Builds/GameplayParity20261017R25",
+  "sourceInputsVerified": 568,
+  "playerFilesVerified": 160,
+  "catalogEqualAfterLineEndingNormalization": true,
+  "tests": {
+    "focused-attempt-1": {
+      "result": "Passed",
+      "total": "45",
+      "passed": "45",
+      "failed": "0",
+      "skipped": "0",
+      "duration": "0.9727439"
+    },
+    "unlocks-attempt-1": {
+      "result": "Passed",
+      "total": "116",
+      "passed": "116",
+      "failed": "0",
+      "skipped": "0",
+      "duration": "6.064891"
+    },
+    "suite-attempt-1": {
+      "result": "Passed",
+      "total": "1181",
+      "passed": "1181",
+      "failed": "0",
+      "skipped": "0",
+      "duration": "67.9761842"
+    }
+  },
+  "native": {
+    "items": {
+      "status": "Passed",
+      "exitCode": 0,
+      "pngCount": 3,
+      "logErrorWarningMatches": [],
+      "scope": "Opt-in staged native item-combination fixture. Neutral wave-one rules, empty spawn groups, high-HP stationary enemy and cleared weapons isolate one manually applied burn. The actual ArenaGame.Update 60 Hz simulation advances every tick. Synthetic setup does not establish normal combat hit probability, human input, other survival effects or a full playthrough."
+    },
+    "survival": {
+      "status": "Passed",
+      "exitCode": 0,
+      "pngCount": 6,
+      "logErrorWarningMatches": [],
+      "scope": "Opt-in staged native survival fixture. Incoming hits use production hostile projectile contact through actual Update with invulnerability initially zero. Armor, regeneration, Torture, pickups and retry state are staged; pause calls use the production model API. Retry is confirmed through actual virtual A input/OnGUI; fixture-only IgnoreFocus prevents synthetic button resets, and pending full-screen unlock modals are cleared only in this in-memory profile to expose acknowledgment. Not human survival balance or a full campaign."
+    },
+    "shop": {
+      "status": "Passed",
+      "exitCode": 0,
+      "pngCount": 3,
+      "logErrorWarningMatches": [],
+      "scope": "Opt-in staged native shop/unlock fixture; not a normal run. Stages Demon, a real catalog Bag offer, raw HP currency, lifetime counters and an immediate Fruit Basket threshold. Actual Update handles death, Rookie recording and frozen-pool lifecycle; real RetryCurrentWave restores the checkpoint. Saves/reloads only a unique artifact-path fixture profile. Screenshots render real ShopUI; screenshot existence does not itself verify pixels."
+    }
+  }
+}

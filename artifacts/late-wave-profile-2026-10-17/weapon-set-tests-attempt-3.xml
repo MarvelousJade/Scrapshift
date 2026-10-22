@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.3668406">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1028" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.366841" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2210" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="998" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.339326" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31724" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2211" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="998" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.322733" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2212" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="998" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.302819" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2181" name="WeaponSetAllocationParityTests" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.281554" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2183" name="CatalogTotalsMatchLegacyAcrossMixedAndDuplicateLoadouts" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.CatalogTotalsMatchLegacyAcrossMixedAndDuplicateLoadouts" methodname="CatalogTotalsMatchLegacyAcrossMixedAndDuplicateLoadouts" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="709771818" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.258281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2192" name="DataNullUsesUnchangedLegacyIncrementAndStatFilter" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.DataNullUsesUnchangedLegacyIncrementAndStatFilter" methodname="DataNullUsesUnchangedLegacyIncrementAndStatFilter" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="308775220" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2190" name="DuplicateRowsEffectsAndFloatingSumRetainLegacyRules" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.DuplicateRowsEffectsAndFloatingSumRetainLegacyRules" methodname="DuplicateRowsEffectsAndFloatingSumRetainLegacyRules" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="1099765165" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2182" name="EveryCatalogMembershipRetainsConfiguredIdentity" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.EveryCatalogMembershipRetainsConfiguredIdentity" methodname="EveryCatalogMembershipRetainsConfiguredIdentity" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="1198331451" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000920" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2189" name="FirstDuplicateConfiguredIdentityWins" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.FirstDuplicateConfiguredIdentityWins" methodname="FirstDuplicateConfiguredIdentityWins" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="792781969" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000367" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2187" name="LegacyFallbackAndUnknownExplicitSetMatch" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.LegacyFallbackAndUnknownExplicitSetMatch" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.003014" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2184" name="LegacyFallbackAndUnknownExplicitSetMatch(null,&quot;pistol&quot;)" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.LegacyFallbackAndUnknownExplicitSetMatch(null,&quot;pistol&quot;)" methodname="LegacyFallbackAndUnknownExplicitSetMatch" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="1592451939" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2185" name="LegacyFallbackAndUnknownExplicitSetMatch(&quot;empty&quot;,&quot;knife&quot;)" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.LegacyFallbackAndUnknownExplicitSetMatch(&quot;empty&quot;,&quot;knife&quot;)" methodname="LegacyFallbackAndUnknownExplicitSetMatch" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="707946931" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2186" name="LegacyFallbackAndUnknownExplicitSetMatch(&quot;missing&quot;,&quot;pistol&quot;)" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.LegacyFallbackAndUnknownExplicitSetMatch(&quot;missing&quot;,&quot;pistol&quot;)" methodname="LegacyFallbackAndUnknownExplicitSetMatch" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="952426954" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2191" name="MissingCountStillThrowsInsteadOfSilentlyReturningZero" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.MissingCountStillThrowsInsteadOfSilentlyReturningZero" methodname="MissingCountStillThrowsInsteadOfSilentlyReturningZero" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="1639661067" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.002593" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2188" name="MultipleAndDuplicateMembershipsCountOncePerWeapon" fullname="Scrapshift.Tests.WeaponSetAllocationParityTests.MultipleAndDuplicateMembershipsCountOncePerWeapon" methodname="MultipleAndDuplicateMembershipsCountOncePerWeapon" classname="Scrapshift.Tests.WeaponSetAllocationParityTests" runstate="Runnable" seed="1674497653" result="Passed" start-time="2026-10-18 01:54:43Z" end-time="2026-10-18 01:54:43Z" duration="0.000672" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/late-wave-profile-2026-10-17/weapon-set-tests-attempt-3.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,3 +1,7 @@
+## October20 gameplay example and limits
+
+The latest starting-choice and structure fixes can support a short trace: launch R29 later, show the selected starting pet or a Wrench-linked stat, then inspect `ReferenceCatalog.asset` and the corresponding runtime/source tests. AssetScope can navigate the catalog's Sprite references and owning serialized objects. It does not validate the meaning of `startingItemChoices` or prove gameplay formulas; inspect those fields in the Unity Inspector/source and use the documented comparisons. This walkthrough is prepared from source paths/menu declarations, not newly performed UI acceptance while desktop control is paused.
+
 # AssetScope in Scrapshift
 
 Embedded version: **0.3.0**, copied from companion commit `b7aac0df08a31f7ae951792c34e440163ef42d34`. The companion project was not modified. This supersedes the original 0.1.0 snapshot.
@@ -13,6 +17,8 @@ Embedded version: **0.3.0**, copied from companion commit `b7aac0df08a31f7ae9517
 7. Export the scan, or use **Scrapshift > Export AssetScope Scan** for the game's saved-scene/property validation preset.
 
 ## Verified integration
+
+Historical integration evidence below records the earlier 53-game-test checkpoint and its asset scan. It is not the current suite total or a fresh scan. Current gameplay validation is in [gameplay verification status](gameplay-verification-status.md). On October 15 the menu declarations were rechecked in `Packages/com.shaoyu.assetscope/Editor/AssetScopeWindow.cs` and `Assets/Scrapshift/Editor/ContentBuilder.cs`; the actions above still exist. No new AssetScope scan or companion test total is claimed by the gameplay pass.
 
 53 game EditMode tests pass. A game-specific test scans actual content, locates the Fire_01 sound reference, calls source navigation, and verifies Unity selects the GameSounds bank. It also verifies the scene's soundBank property is present in the analysis. The latest build-time scan completed on 198 assets with 1,337 serialized reference usages and zero findings.
 

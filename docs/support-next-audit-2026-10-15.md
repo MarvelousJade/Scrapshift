@@ -1,0 +1,67 @@
+## October 17 root validation result
+
+See `gameplay-parity-systems-2026-10-17.md`. Evidence: `artifacts/gameplay-parity-systems-2026-10-17/focused-summary.json`, both XML/log attempts, input manifest and catalog comparison. The same selected checks passed 434/434 on attempt 2, zero failures/skips, Unity exit zero. All 508 recorded input hashes still match the isolated clone after execution. No whole suite, new build, full campaign or physical-controller retest was run. R8 remains the last delivered gameplay build and predates these changes. Earlier pending statements below reflect the handoff before root execution.
+
+# Support behavior source pass — 2026-10-15
+
+## Scope and validation status
+
+This pass inspected all nine registered companion kinds, ordinary/flame/rocket/laser/healing turrets, Tyler, Garden, Wandering Bot, and the Builder turret source. The supplied reference at `E:/UnityProjects/brotato-(3.x)` was read only. Existing Scrapshift art, approved audio, disabled companion leg motion, and the preceding pickup/cache fixes were preserved.
+
+The preceding combined 213 focused checks are historical evidence for the preceding pass. This pass adds **58 expanded cases** in `Assets/Scrapshift/Tests/Editor/SupportNextParityTests.cs`. They have not been executed by this agent. Parent integration runs focused checks after the tracks freeze. Whole-suite tests, player builds and full campaigns remain on hold at the user's request. These changes do not establish complete gameplay parity or physical playtesting.
+
+Source collision snapshots and SHA-256 provenance: `artifacts/native/support-next-audit/source-shapes.json`. This is metadata, not copied playable artwork.
+
+## Confirmed differences corrected
+
+| Area | Supplied reference | Correction |
+| --- | --- | --- |
+| Melee companion targets | `closest_enemy_target_behavior.gd:update_target`, `Range_body_entered/exited`: nearest in-range body; first eligible enemy as outside fallback; retain a live target on exit; clear when an empty range receives a new body | Persist range occupants separately from the selected target. Preserve same-kind reservations, Rat boss exclusion, Dog shared bosses and Blaze elite exceptions. |
+| Blazemander targets | `closest_non_burning_enemy_target_behavior.gd`: no outside fallback; an unburned target can replace a burning target | Retain the source selection lifecycle and burning priority; detect bodies with their own radii/offsets. |
+| Melee hit geometry | Rat circle 33.39px at raw `(0,10)`; Dog/Blaze circle 49.8px at raw `(0,-20)`; Lootworm circle 49.8px at raw `(0,-12)` | Adapt the source centers and use enemy hurt centers/radii. Mark primary melee pet equipment as melee so incoming melee hits do not trigger ranged-only enemy reactions. |
+| Opportunistic Tree hits | `neutral/neutral.tscn` Hurtbox mask1032 accepts pet Hitbox layer1024, although pet targeting Range mask4 excludes Trees | Remove the invented Tree immunity from melee damage; keep Trees excluded from pet navigation targeting. Runtime tests distinguish these two contracts. |
+| Lootworm tree attacks | `lootworm.gd`: TreeArea 60px tests tree bodies; entry raises hitbox damage to at least tree maxHP/5; that raised damage persists. A pulse deals damage to its first hit, independently of the movement target. | Keep navigation caching unchanged; track nearby trees separately, retain raised damage per worm and reset the one-physics-frame pulse cooldown on the next tick. |
+| Melee attack pulses | Rat/Dog `_is_shooting` freezes primary cooldown for the active physics frame, then disables/reset | Represent the active frame separately from the cooldown. |
+| Blazemander delayed hitbox | `blazemander.gd:_physics_process` resets `_is_attacking` on the next physics frame, while `attack()` independently enables the hitbox after 0.15s | Separate the attack flag, delayed enable and hitbox-active/ignored-enemy lifetime. The cooldown does **not** remain frozen for the whole 0.15s timer. A new enemy entering the still-active hitbox remains eligible until the next attack reset. |
+| Ranged pet reach | `weapon_service.gd:init_ranged_pet_stats` adds Range; `init_structure_pet_stats` adds structure_range. All clamp reach to 25px | `RunRules.PetRange` uses the appropriate stat and minimum. Parent weapon track uses it for projectile lifetime too. Bot gun cooldown uses the pet cooldown, rather than turret structure-attack-speed adjustment. |
+| Cat target/firing geometry | Fixed 400px TargetTriggerZone; nearest target measured from the selected muzzle; firing direction measured from pet root | Keep the fixed body-detection pool, use modified firing reach and the attached gun muzzle; aim projectile direction from adapted source root. Preserve half-interval gun staggering and the approved boost art. |
+| Cat proximity boost | PlayerTriggerZone radius150px, mask514: player bodies and layer512 companions | Include player/companion body radii. Rat, Dog, Blaze and Bot can boost; Cat, Lootworm, Moth, Goat and Jellyshield do not qualify as another source trigger body. |
+| Scapegoat | Hurtbox radius32px at raw `(0,-5)`; revival area radius100px at raw `(0,-20)`; hurtbox disabled for 0.6s | Expose consistent origin/body/hurt/revival offsets, include the player's 24px body radius for revival and let projectiles pass through the invulnerable goat's disabled hurtbox. Parent enemy-target track consumes the raw-origin helper. |
+| Scapegoat revival and friendly contact | `scapegoat.gd` retains floating revival progress, exposes integer health, rises on the next physics tick and does not count down invulnerability while dead. Its custom Hurtbox accepts layer16 healing shots and calls ordinary `take_damage(1)`; Jellyshield explicitly rejects PlayerProjectile | Preserve fractional revival progress and post-death invulnerability. Add the source-friendly-healing contact filter, so healing shots pass Jellyshield but can hit Scapegoat for1. Native fixture timing was adjusted without executing it. |
+| Jellyshield | Orbit around the player raw origin; visual/hurt center raw `(0,-18)`; hurt radius30px | Adapt its orbit/body position and add the projectile radius when testing interception. Root passes the actual hostile or pillar radius. |
+| Turret roots/muzzles | `turret.tscn`: root to neutral art center is24px; muzzle is12px above that art center. Tyler art center raw-40/muzzle raw-56; Builder muzzle local+2 | Target and aim from raw roots; launch from adapted muzzle positions. Healing aims at the player's raw root; Garden drops fruit from its own raw root. |
+| Turret projectiles and modifiers | Common ranged initialization adds projectiles/spread; native projectile scenes supply collision offset, lifetime and delay | Apply count/spread and accuracy effects. New `SupportProjectileBehavior` binds metadata without replacing approved support sprites. Flame stops at0.35s and its speed responds to ordinary Range; healing radius1.04/offset0; Tyler delay0–0.05s with offset(.03,.01); laser is a moving bullet, not a beam. |
+| Support explosions | `explosion.tscn`: radius147.34px, collision raw `(0,3)`, hitbox disabled at0.05s; `player_explosion.gd:set_area` has minimum scale0.1 | Use minimum radius0.14734, scaled collision offset and enemy hurt geometry. Bonk/rocket queue the common 0.05s explosion lifecycle supplied by the weapon track. Root suppresses rocket direct damage and includes the struck victim in the AoE. Projectile damage/burn snapshots pass through the rocket helper. |
+| Wandering Bot | Orbit uses player raw root; SlowHitbox raw `(-24,4)` plus child `(25,0)`, radius171px | Adapt orbit and shifted hurt-area overlap; preserve entry/exit tracking and the existing source slow formula. |
+
+## Actor coverage and preserved behavior
+
+- **Ratzilla:** target reservations, boss exclusion, fallback/retention, movement toward raw target origin, melee geometry and pulse. Multiple copies retain independent target state.
+- **Mouse item:** the supplied `items/all/mouse/mouse_effect_1/2/3.tres` grant +5 Life Steal, +10% enemies and -5 Harvesting; they do not register a companion. The rat companion is the separate Ratzilla PetEffect. This distinction follows the supplied resources, rather than assuming every animal inventory icon spawns an actor.
+- **Bonk Dog:** shared boss targeting, strongest-maxHP jump target, raw-origin minimum-distance/landing destination, half-second exponential leap and queued explosion. Its secondary cooldown still resets on landing.
+- **Blazemander:** burning preference, body-based close-zone detection, separate fire/melee clocks, fixed six-shot circle, source spread and delayed persistent melee hitbox.
+- **Lootworm:** preceding idle sentinel, spawn invalidation and selected-object removal/cache fixes remain. Collection/doubling and raw pickup destinations remain separate from the new tree attack occupancy.
+- **Catling:** fixed detection zone, per-muzzle selection, dual clocks/staggering, root-directed shots, Range and proximity boost. Existing red eyes, gun mounts and omitted leg animation remain.
+- **Bot O' Mine:** player following, structure-pet gun reach, pet firing clock, periodic mine square centered at raw origin. Its landmine effect explicitly sets **is_pet=true** (`bot_o_mine_landmines_effect.tres:24`); therefore the existing pet damage/scaling path is intentionally preserved. Structure entity type alone does not imply an ordinary non-pet damage formula.
+- **Doc Moth:** preceding body-zone entry/exit and additive regeneration fixes remain; no speculative extra life-steal stacking was added.
+- **Scapegoat/Jellyshield:** source hurt-area eligibility and projectile geometry, revival/orbit origin as above.
+- **Ordinary, Flame, Rocket, Laser, Healing turrets:** root/muzzle, acquisition masks and source projectile mechanics. Ordinary turrets can target neutral Trees (mask5); Tyler excludes Trees (mask4); healing tests player (mask2). Flame direct damage remains forced to1 by its source override.
+- **Garden, Wandering Bot, Landmines:** fruit origin/orbit slow corrected here; existing production mine player/enemy entry/exit behavior remains covered by earlier focused checks. This pass does not change the accepted mine trigger semantics.
+
+## Coordinate and integration boundaries
+
+Pet/player geometry uses the project's normalized neutral body-center convention: source Animation rawY=-24 becomes a raw-origin offset down0.24. The player's physical body center is down0.12; that is also the vector used by existing player geometry, not an invented upward standalone body offset. Scapegoat rawY=-5 therefore becomes down0.19. These nonanimated collision shapes do not inherit the own-art visual squash.
+
+Animated firing ports must stay attached to Scrapshift's own art. Cat uses its existing fitted gun rig. Bot's supplied source uses a deeply animated head Muzzle; fitting an own-art port is being coordinated with the parent and must not be described as visually verified from these automated fixtures alone.
+
+The reference physics engine can order simultaneous area contacts differently from a list-based deterministic simulation. Source eligibility and state transitions are explicit here; passing fixtures will not establish identical random trajectories, same-seed footage or artistic alignment. A full run comparison remains outstanding until the requested remaining-fix work is complete.
+
+## October 17 source recheck before focused integration
+
+- Re-read `entities/units/pet/bot_o_mine/bot_o_mine_landmines_effect.tres`: line24 explicitly sets `is_pet=true`. The Bot mine continues through pet scaling, ordinary Damage plus structure Damage plus explosion Damage. A new numeric test contrasts the same base10 mine at +50% ordinary/+20% structure/+30% explosion: pet20 damage, ordinary15. This is preventive coverage of a source exception, not a newly observed player bug.
+- Re-read Scapegoat's custom area callback and the healing projectile's inherited Hitbox. The callback applies ordinary `take_damage(1)` when `deals_damage` is true and has no healing branch; the healing projectile does not disable damage. Friendly healing contact can hurt Scapegoat while Jellyshield rejects PlayerProjectile. Parent integrated the four-argument projectile interception hook.
+- Corrected a remaining Wandering Bot difference: its slow now uses finalized enemy stat speed after permanent on-hit reduction, rather than raw spawn speed. The supplied `wandering_bot.gd` calls `add_decaying_speed(-250)`; `unit.gd:729` caps against `current_stats.speed`. The added regression uses current150px/s and checks the source90% cap of135px/s.
+- Source-derived support projectile profiles and the parent's flame presentation hook remain connected; own support art and audio are preserved. The rocket helper accepts captured burn data and the parent's projectile path supplies actual projectile damage and payload.
+- `boostClock` has no production writer in current Runtime. The dormant speculative turret damage addition is not represented as a reachable reference-buffer effect: supplied normal/corrupted Buffer masks see enemy layer4, not turrets.
+
+Source review and `git diff --check` completed; this agent did not execute Unity, focused tests, a build or native play. Parent owns the combined focused run. Remaining limits are actual movement/contact timing under live play, own-art muzzle alignment, audiovisual review, and the held full campaign comparison. No complete parity claim is made.

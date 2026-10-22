@@ -23,6 +23,31 @@ namespace Scrapshift
     }
     [Serializable] public sealed class DifficultyEntry {public int level;public StatEffect[] effects;}
     [Serializable] public sealed class ExtendedEncounterData {public EncounterEntry[] enemies;public DifficultyEntry[] difficulties;}
+    public static class NightmareEventRules
+    {
+        // run_data.gd generates event waves only for mode 1. main.gd runs a
+        // projectile event on every wave for mode 2, except active fog waves.
+        public static void Plan(int difficulty,int projectileMode,System.Random random,IEnumerable<int> occupied,ISet<int> fog,ISet<int> bullets)
+        {
+            if(difficulty<=5)return;
+            int firstFog=random.Next(5,8);fog.Add(firstFog);
+            if(projectileMode==1)
+            {
+                var third=new[]{5,6,7}.Where(w=>w!=firstFog).ToArray();
+                bullets.Add(random.Next(1,3));bullets.Add(random.Next(3,5));
+                bullets.Add(third[random.Next(third.Length)]);bullets.Add(random.Next(8,11));
+            }
+            var blocked=new HashSet<int>(occupied);
+            var remaining=Enumerable.Range(11,9).Where(w=>!blocked.Contains(w)).ToList();
+            for(int i=0;i<2;i++){int pick=random.Next(remaining.Count);fog.Add(remaining[pick]);remaining.RemoveAt(pick);}
+            if(projectileMode==1)
+                for(int i=0;i<3;i++){int pick=random.Next(remaining.Count);bullets.Add(remaining[pick]);remaining.RemoveAt(pick);}
+            else if(projectileMode==2)
+            {
+                for(int wave=1;wave<=20;wave++)if(!fog.Contains(wave))bullets.Add(wave);
+            }
+        }
+    }
     public sealed partial class ArenaGame
     {
         ExtendedEncounterData encounterData;
@@ -44,7 +69,7 @@ namespace Scrapshift
                 catalog.data.enemies=catalog.data.enemies.Concat(new[]{entry}).ToArray();
             }
         }
-        void PlanEncounters()
+        void PlanEncounters(int projectileMode=1)
         {
             eliteWaves.Clear();hordeWaves.Clear();fogWaves.Clear();bulletWaves.Clear();
             var pool=encounterData.enemies.Where(e=>e.role=="Elite").Select(e=>e.id).ToList();
@@ -55,11 +80,7 @@ namespace Scrapshift
                 if(i<2&&Rules.Character?.id!="jack"&&Rules.Character?.id!="gangster"&&(Rules.Character?.id=="ogre"||placementRandom.NextDouble()<.4)){hordeWaves.Add(wave);continue;}
                 int pick=placementRandom.Next(pool.Count);eliteWaves[wave]=pool[pick];pool.RemoveAt(pick);
             }
-            if(Rules.Difficulty<6)return;
-            int fog=placementRandom.Next(5,8);fogWaves.Add(fog);
-            bulletWaves.UnionWith(new[]{placementRandom.Next(1,3),placementRandom.Next(3,5),Enumerable.Range(5,3).Where(w=>w!=fog).OrderBy(_=>placementRandom.Next()).First(),placementRandom.Next(8,11)});
-            var remaining=Enumerable.Range(11,9).Where(w=>!eliteWaves.ContainsKey(w)&&!hordeWaves.Contains(w)).OrderBy(_=>placementRandom.Next()).ToArray();
-            fogWaves.UnionWith(remaining.Take(2));bulletWaves.UnionWith(remaining.Skip(2).Take(3));
+            NightmareEventRules.Plan(Rules.Difficulty,projectileMode,placementRandom,eliteWaves.Keys.Concat(hordeWaves),fogWaves,bulletWaves);
         }
         EnemyBehavior EncounterBehavior(EncounterEntry d,int state)
         {
@@ -88,41 +109,73 @@ namespace Scrapshift
             {var extra=d.extra[Math.Min(next,d.extra.Length-1)];FireEncounter(e,extra);clock=e.type.id=="croc"?.75f:e.type.id=="mantis"?.25f:extra.cooldown;}
             extraAttackClocks[e]=clock;
         }
-        readonly HashSet<Enemy> healerPlayerOccupants=new HashSet<Enemy>();
         readonly Dictionary<Enemy,HashSet<Enemy>> healerOccupants=new Dictionary<Enemy,HashSet<Enemy>>();
         void HealNearbyEnemies(Enemy healer)
         {
             if(!healerOccupants.TryGetValue(healer,out var prior))prior=new HashSet<Enemy>();
             var current=new HashSet<Enemy>();
-            foreach(var ally in enemies)if(ally!=healer&&ally.marker==null&&ally.hp>0&&Vector2.Distance(ally.pos,healer.pos)<=2.00639f)
-            {current.Add(ally);if(!prior.Contains(ally)){ally.hp=Mathf.Min(ally.maxHp,ally.hp+100+10*(Rules.Wave-1));ally.supportFlash=.2f;}}
+            foreach(var ally in enemies)if(ally!=healer&&ally.marker==null&&ally.hp>0&&CombatGeometry.HealerZoneOverlaps(healer.pos,ally.type.id,ally.pos))
+            {current.Add(ally);if(!prior.Contains(ally)&&ally.hp<ally.maxHp){ally.hp=Mathf.Min(ally.maxHp,ally.hp+100+10*(Rules.Wave-1));ally.supportFlash=.2f;}}
             healerOccupants[healer]=current;
-            bool inside=Vector2.Distance(playerPos,healer.pos)<=2.00639f;
-            if(inside&&healerPlayerOccupants.Add(healer))Rules.Heal((int)(1+.5f*(Rules.Wave-1)));else if(!inside)healerPlayerOccupants.Remove(healer);
+            // The supplied healer BoostZone masks enemy bodies (4); player
+            // bodies use layer 2. Its Player callback branch is unreachable
+            // in the supplied scene, so proximity must not heal the player.
         }
         readonly Dictionary<Enemy,int> summonCounts=new Dictionary<Enemy,int>();
         readonly Dictionary<Enemy,float> volleySigns=new Dictionary<Enemy,float>();
+        Vector2 EnemyOrigin(Enemy e)=>e.pos+CombatGeometry.OriginOffset(e.type.id);
+        Vector2 PlayerOrigin=>playerPos+CombatGeometry.PlayerOriginOffset;
+        void SelectEnemyTarget(Enemy e)
+        {
+            Vector2 origin=EnemyOrigin(e);int nearest=int.MaxValue;e.targetPet=null;
+            // enemy.gd visits pets first, then players with a strict comparison.
+            foreach(var pet in pets)if(!pet.dead&&pet.spec.kind=="scapegoat")
+            {
+                float distance=(pet.pos+SupportBehavior.ScapegoatOriginOffset-origin).sqrMagnitude*10000;
+                if(distance<nearest){nearest=(int)distance;e.targetPet=pet;}
+            }
+            if((PlayerOrigin-origin).sqrMagnitude*10000<nearest)e.targetPet=null;
+            e.targetInitialized=true;e.targetUpdate=0;
+        }
+        void TickEnemyTarget(Enemy e,float dt)
+        {
+            if(!e.targetInitialized||e.targetPet!=null&&e.targetPet.dead){SelectEnemyTarget(e);return;}
+            if(!pets.Any(p=>!p.dead&&p.spec.kind=="scapegoat"))return;
+            e.targetUpdate+=dt;if(e.targetUpdate>=.25f)SelectEnemyTarget(e);
+        }
         Vector2 EnemyTarget(Enemy e)
-        {Vector2 target=playerPos;foreach(var p in pets)if(!p.dead&&p.spec.kind=="scapegoat"&&(p.pos-e.pos).sqrMagnitude<(target-e.pos).sqrMagnitude)target=p.pos;return target;}
+        {
+            if(!e.targetInitialized||e.targetPet!=null&&e.targetPet.dead)SelectEnemyTarget(e);
+            return e.targetPet==null?PlayerOrigin:e.targetPet.pos+SupportBehavior.ScapegoatOriginOffset;
+        }
         void FireEncounter(Enemy e,EncounterAttack a=null)
         {
+            Vector2 origin=EnemyOrigin(e);
             var d=encounterDefinitions[e.type.id];encounterStates.TryGetValue(e,out int state);a=a??d.states[state].attack;
             if(a.spawn)
             {
                 summonCounts.TryGetValue(e,out int spawned);var type=catalog.Enemy(a.summon);
-                int count=a.count;if(e.type.role=="Boss"||e.type.role=="Elite")count=Mathf.Max(1,Mathf.RoundToInt(count*(1+Rules.Stat("number_of_enemies")/100)));
+                int count=a.count;if(e.type.role=="Boss"||e.type.role=="Elite")count=EnemyReferenceRules.SummonCount(count,Rules.Stat("number_of_enemies"));
                 if(a.spawnLimit>=0&&spawned>=a.spawnLimit)return;
                 if(type!=null)for(int i=0;i<count;i++,spawned++)
                 {
-                    Vector2 pos=a.spawnRandom?RandomPosition(playerPos,0):RunRules.ClampPosition(e.pos+new Vector2(UnityEngine.Random.Range(-.5f,.5f),UnityEngine.Random.Range(-.5f,.5f))*Mathf.Max(0,a.spawnSpread));
-                    births.Push(new Birth{type=type,pos=pos},BirthLane.Summon);
+                    Vector2 pos=a.spawnRandom?SpawnPlacement.SourceRandomPosition(UnityEngine.Random.value,UnityEngine.Random.value):a.spawnSpread<0?origin:SpawnPlacement.SourceAreaPosition(origin,a.spawnSpread,UnityEngine.Random.value,UnityEngine.Random.value);
+                    births.Push(new Birth{type=type,pos=pos-CombatGeometry.OriginOffset(type.id)},BirthLane.Summon);
                 }
                 summonCounts[e]=spawned;
-                if(e.type.id=="slasher_egg"||e.type.id=="infected_slasher_egg"){e.hp=0;Destroy(e.obj);enemies.Remove(e);}
+                if(e.type.id=="slasher_egg"||e.type.id=="infected_slasher_egg")
+                {
+                    // The supplied egg calls die() with normal loot/global
+                    // death callbacks when hatching, without a weapon hit.
+                    e.hp=0;Rules.LivingEnemies=Mathf.Max(0,Rules.LivingEnemies-1);
+                    Rules.TriggerDeathDamage();EnemyImplantDeath(e);Rules.ApplyBurningDeathStats(e.burnTicks>0);DropEnemyLoot(e);
+                    Rules.RecordEnemy(e.type.id,false,e.activeAge,false);Rules.Kill();enemies.Remove(e);
+                    if(e.obj!=null)Destroy(e.obj);
+                }
                 if(e.type.id=="mom"&&state==1&&d.extra.Length>0)FireEncounter(e,d.extra[0]);
                 return;
             }
-            Vector2 target=a.inDirection?e.pos+(e.attack?.Direction??Vector2.right):EnemyTarget(e);
+            Vector2 target=a.inDirection?origin+(e.attack?.Direction??Vector2.right):EnemyTarget(e);
             float baseSpread=UnityEngine.Random.Range(-a.baseSpread,a.baseSpread);
             if(a.baseConstant)
             {
@@ -132,12 +185,12 @@ namespace Scrapshift
             float ring=UnityEngine.Random.Range(0,a.ringRotation),rotation=UnityEngine.Random.Range(-a.rotationRandom,a.rotationRandom);
             for(int i=0;i<a.count;i++)
             {
-                float baseAngle=Mathf.Atan2(target.y-e.pos.y,target.x-e.pos.x)+baseSpread;
-                Vector2 pos=a.onTarget?target:e.pos;
+                float baseAngle=Mathf.Atan2(target.y-origin.y,target.x-origin.x)+baseSpread;
+                Vector2 pos=a.onTarget?target:origin;
                 if(a.borders)
                 {
                     float angle=a.constant?ring+i*Mathf.PI*2/a.count:UnityEngine.Random.Range(0,Mathf.PI*2);
-                    if(a.degrees!=null&&i<a.degrees.Length)angle=-a.degrees[i]*Mathf.Deg2Rad+Mathf.Atan2(target.y-e.pos.y,target.x-e.pos.x);
+                    if(a.degrees!=null&&i<a.degrees.Length)angle=-a.degrees[i]*Mathf.Deg2Rad+Mathf.Atan2(target.y-origin.y,target.x-origin.x);
                     pos+=new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*a.spawnSpread*.5f;
                 }
                 else if(!a.onTargetOnce||i!=0)pos+=new Vector2(UnityEngine.Random.Range(-.5f,.5f),UnityEngine.Random.Range(-.5f,.5f))*a.spawnSpread;
@@ -145,9 +198,9 @@ namespace Scrapshift
                 if(a.constant&&a.count>1)shotAngle=baseAngle-a.spread+i*2*a.spread/(a.count-1);
                 if(a.away||a.towards||a.fromPosition)
                 {
-                    target=a.fromPosition?EnemyTarget(e):a.towards?e.pos:pos;
-                    Vector2 rotated=e.pos+(Vector2)(Quaternion.Euler(0,0,rotation*Mathf.Rad2Deg)*(target-e.pos));
-                    Vector2 delta=rotated-(a.away?e.pos:pos);shotAngle=Mathf.Atan2(delta.y,delta.x);
+                    target=a.fromPosition?EnemyTarget(e):a.towards?origin:pos;
+                    Vector2 rotated=origin+(Vector2)(Quaternion.Euler(0,0,rotation*Mathf.Rad2Deg)*(target-origin));
+                    Vector2 delta=rotated-(a.away?origin:pos);shotAngle=Mathf.Atan2(delta.y,delta.x);
                 }
                 Vector2 dir=new Vector2(Mathf.Cos(shotAngle),Mathf.Sin(shotAngle));
                 float damage=EnemyReferenceRules.ScaledDamage(a.damage+a.growth*(Rules.Wave-1),Rules.EnemyDamageFactor*(e.boosted?1+e.boostDamage/100:e.type.role=="Elite"||e.type.role=="Boss"?EnemyReferenceRules.BossDamageFactor(Rules.Wave):1));
@@ -165,7 +218,7 @@ namespace Scrapshift
         }
         void AddWaveEncounters()
         {
-            friendlyBoostClock=0;friendlyBoostHP=0;Rules.RemovedEnemies=0;Rules.IsHordeWave=hordeWaves.Contains(Rules.Wave);healerOccupants.Clear();encounterStates.Clear();extraAttackClocks.Clear();summonCounts.Clear();volleySigns.Clear();healerPlayerOccupants.Clear();PrepareProjectileEvent();
+            friendlyBoostClock=0;friendlyBoostHP=0;Rules.RemovedEnemies=0;Rules.IsHordeWave=hordeWaves.Contains(Rules.Wave);healerOccupants.Clear();encounterStates.Clear();extraAttackClocks.Clear();summonCounts.Clear();volleySigns.Clear();PrepareProjectileEvent();
             for(int i=0;i<Rules.ExtraBaitGroups;i++)director.AddExtra(new SpawnGroup{start=2,interval=3,minimum=1,repeats=-1,chance=1,area=-1,inset=2,units=new[]{new UnitEntry{id="lamprey",min=7,max=8,chance=1}}});
             int baits=Rules.Items.Count(i=>i.id=="bait");
             if(Rules.Stat("upgraded_baits")>0&&baits>0)
@@ -176,8 +229,9 @@ namespace Scrapshift
             if(Rules.Stat("trees_start_wave")>0)director.AddExtra(new SpawnGroup{start=0,repeats=-1,chance=1,area=-1,inset=2,units=new[]{new UnitEntry{id="tree",min=1,max=1,chance=1}}});
             if(eliteWaves.TryGetValue(Rules.Wave,out var elite))QueueElite(elite);
             if(Rules.ExtraElite){var pool=encounterData.enemies.Where(e=>e.role=="Elite").ToArray();QueueElite(pool[placementRandom.Next(pool.Length)].id);}
+            AddShopEffectEncounters();
         }
-        void QueueElite(string id)=>director.AddExtra(new SpawnGroup{start=0,repeats=-1,chance=1,area=-1,edge=true,units=new[]{new UnitEntry{id=id,min=1,max=1,chance=1}}});
+        void QueueElite(string id)=>director.AddExtra(ShopSpawnCatalog.EliteGroup(id));
         void TickNightmare(float dt)=>TickProjectileEvent(dt);
         Texture2D fogTexture;
         void DrawNightmareFog()

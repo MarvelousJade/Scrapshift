@@ -23,22 +23,23 @@ namespace Scrapshift.Tests
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath); Assert.NotNull(bank);
             foreach (SoundCue cue in Enum.GetValues(typeof(SoundCue)))
             {
+                Assert.AreEqual(1,bank.entries.Count(e=>e.cue==cue),"One assignment per cue: "+cue);
                 var entry=bank.Find(cue); Assert.NotNull(entry,cue.ToString()); Assert.IsNotEmpty(entry.variants);
                 foreach (var clip in entry.variants) { Assert.NotNull(clip); Assert.Greater(clip.length,.05f); Assert.That(clip.channels,Is.InRange(1,2)); }
             }
             Assert.GreaterOrEqual(bank.Find(SoundCue.Fire).variants.Length,3);
             Assert.GreaterOrEqual(bank.Find(SoundCue.Impact).variants.Length,3);
         }
-        [Test] public void CrateAndEndingsUseOriginalStereoCuesAtOriginalRelativeGain()
+        [Test] public void CrateAndEndingsRetainSuppliedCuesAtOriginalRelativeGain()
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(BankPath);
             AssertCue(bank,SoundCue.CratePickup,new[]{"CratePickup_01"},1);
             AssertCue(bank,SoundCue.WaveClear,new[]{"WaveClear_01"},1);
             AssertCue(bank,SoundCue.WaveLetter,new[]{"WaveLetter_01","WaveLetter_02"},(float)Math.Pow(10,-10.0/20));
-            AssertCue(bank,SoundCue.Win,new[]{"Win_01"},(float)Math.Pow(10,-5.0/20));
+            AssertCue(bank,SoundCue.Win,new[]{"Win_01"},(float)Math.Pow(10,-5.0/20),1);
             AssertCue(bank,SoundCue.WinBeam,new[]{"WinBeam_01"},1);
             Assert.IsNotNull(Resources.Load<Texture2D>("WinRing"),"The victory light must use the original blue circle sprite.");
-            AssertCue(bank,SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")).ToArray(),(float)Math.Pow(10,-5.0/20));
+            AssertCue(bank,SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")).ToArray(),(float)Math.Pow(10,-5.0/20),1);
         }
         [Test] public void AchievementPopupUsesTheOriginalTwoSoundsAndTiming()
         {
@@ -55,13 +56,13 @@ namespace Scrapshift.Tests
             Assert.AreEqual(1,queue.Tick(.02f));
             Assert.IsNull(queue.Current);
         }
-        static void AssertCue(SoundBank bank,SoundCue cue,string[] names,float gain)
+        static void AssertCue(SoundBank bank,SoundCue cue,string[] names,float gain,int channels=2)
         {
             var entry=bank.Find(cue);Assert.NotNull(entry);
             CollectionAssert.AreEqual(names,entry.variants.Select(c=>c.name));
             Assert.That(entry.gain,Is.EqualTo(gain).Within(.001f));
             Assert.That(entry.priority,Is.GreaterThanOrEqualTo(2));
-            foreach(var clip in entry.variants)Assert.AreEqual(2,clip.channels,clip.name);
+            foreach(var clip in entry.variants)Assert.AreEqual(channels,clip.channels,clip.name);
         }
         [Test] public void VariantSelectionNeverImmediatelyRepeats()
         {

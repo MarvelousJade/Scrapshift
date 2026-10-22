@@ -1,0 +1,932 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 24220)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 1624)
+VBCSCompiler prewarm took 23.47 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.5f1 (3ff58d469c8a) revision 4191629'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Channel LicenseClient-FanSh doesn't exist
+OS: 'Windows 11  (10.0.26300) Professional' Language: 'en' Physical Memory: 16309 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-14T02:23:32Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 23852)
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Unity.com
+-batchmode
+-nographics
+-quit
+-projectPath
+E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+-buildTarget
+StandaloneWindows64
+-executeMethod
+Scrapshift.Editor.ContentBuilder.Build
+-logFile
+E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/artifacts/fitted-appearance-build.log
+Successfully changed project path to: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [21084]  Target information:
+
+Player connection [21084]  * "[IP] 192.168.2.25 [Port] 55504 [Flags] 2 [Guid] 2513465243 [EditorId] 2513465243 [Version] 1048832 [Id] WindowsEditor(7,Desktop5700) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [21084] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [21084] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Starting IPC server.
+Waiting for clients to connect on \\.\pipe\Unity-LicenseClient-FanSh, press Ctrl-C to exit.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-FanSh" at "2026-10-14T02:23:33.3278941Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 23852, path: "C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Package Manager] Connected to IPC stream "Upm-16208" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              a95a9256d0134f48aa65f1eb46f87742
+  Correlation Id:          d1ea3bd3cad38e7efb1b8144845ad40e
+  External correlation Id: 8281613828159146211
+  Machine Id:              EEHLJjforAoy3xYqsMQsmfVfVmo=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-FanSh" (connect: 0.37s, validation: 0.15s, handshake: 0.05s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-FanSh-notifications" at "2026-10-14T02:23:33.5332938Z"
+[Licensing::Module] Connected to LicensingClient (PId: 23852, launch time: 0.01, total connection time: 0.58s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 3574363522264-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.64s
+[Licensing::Module] Licensing is initialized (took 0.10s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: cb32651b6cfefd1768c032a7e1689e5e
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParityUnity Data Store running and initialised
+Targeting platform: StandaloneWindows64
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.5f1 (3ff58d469c8a)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56208
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002495 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.069 seconds
+Domain Reload Profiling: 1766ms
+	BeginReloadAssembly (161ms)
+		CreateAndSetChildDomain (3ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (86ms)
+	LoadAllAssembliesAndSetupDomain (419ms)
+		LoadAssemblies (154ms)
+		TypeCache.Refresh (286ms)
+			TypeCache.ScanAssembly (269ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (1071ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (192ms)
+			ProcessInitializeOnLoadAttributes (180ms)
+			ProcessInitializeOnLoadMethodAttributes (298ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 14 packages:
+  Built-in packages:
+    com.unity.test-framework@1.8.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.test-framework@80f691d4262b)
+    com.unity.modules.audio@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.particlesystem@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.screencapture@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.imgui@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.uielements@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.ui@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.hierarchycore@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.modules.physics@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.animation@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.imageconversion@1.0.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.ext.nunit@2.1.0 (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+  Embedded packages:
+    com.shaoyu.assetscope@file:E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Packages\com.shaoyu.assetscope (location: E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Packages\com.shaoyu.assetscope)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 5s60ms
+[209/234    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[222/234    3s] Csc Library/Bee/artifacts/1900b0aE.dag/Scrapshift.Runtime.dll (+2 others)
+[225/234    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Scrapshift.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Scrapshift.Runtime.dll, with 148 defines and 263 references
+
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+[226/234    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Scrapshift.Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Scrapshift.Editor.dll, with 146 defines and 301 references
+
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+[227/234    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Scrapshift.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Scrapshift.Tests.dll, with 146 defines and 301 references
+
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+[228/234    0s] CopyFiles Library/ScriptAssemblies/Scrapshift.Runtime.pdb
+[233/234    0s] CopyFiles Library/ScriptAssemblies/Scrapshift.Runtime.dll
+*** Tundra build success (5.02 seconds), 7 items updated, 234 evaluated
+Total cache size 15260289
+Total cache size after purge 15260289, took 00:00:00.0657313
+AssetDatabase: script compilation time: 6.172182s
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.830 seconds
+Domain Reload Profiling: 1776ms
+	BeginReloadAssembly (407ms)
+		DisableScriptedObjects (42ms)
+		CreateAndSetChildDomain (81ms)
+	RebuildCommonClasses (17ms)
+	RebuildNativeTypeToScriptingClass (31ms)
+	initialDomainReloadingComplete (78ms)
+	LoadAllAssembliesAndSetupDomain (410ms)
+		LoadAssemblies (349ms)
+		TypeCache.Refresh (51ms)
+			TypeCache.ScanAssembly (35ms)
+		AnalyzeDomain (9ms)
+			BuildScriptInfoCaches (7ms)
+	FinalizeReload (832ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (185ms)
+			ProcessInitializeOnLoadAttributes (109ms)
+			ProcessInitializeOnLoadMethodAttributes (103ms)
+			AfterProcessingInitializeOnLoad (13ms)
+		AwakeInstancesAfterBackupRestoration (62ms)
+Starting new worker id: 0 with log in E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Logs/AssetImportWorkerHW0.log
+Importing 'GUID: 620551a522683aa4d8aaaad07c8a0bbe - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-05.png' with importer (TextureImporter)
+Imported 'GUID: 620551a522683aa4d8aaaad07c8a0bbe' -> (Import Result ID: '63f232849f696c0d924cd621184fe841') in 0.195 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=896dd98ab3ee9d20a2a5599dc62bfb8d DependenciesID=07a976a10f267c2055c103dcf04aa4be StaticDependenciesID=3871be16ffa91b10d1409b2e0359c533 
+Importing 'GUID: 44a6b6cee7abf6f47b1c846641fe3da0 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-07.png' with importer (TextureImporter)
+Imported 'GUID: 44a6b6cee7abf6f47b1c846641fe3da0' -> (Import Result ID: '2559abb806dc5ca9c62e504b85df49ba') in 0.179 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c6e5e1c86009b794e66a902efd2dfb94 DependenciesID=e7fa1ed0fd4a4a560a5548cd0fc863cb StaticDependenciesID=f247297e20797ec9716f084fc2966eb4 
+Importing 'GUID: 27a444da2c4d87e428bdab46a3cf3521 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-04.png' with importer (TextureImporter)
+Imported 'GUID: 27a444da2c4d87e428bdab46a3cf3521' -> (Import Result ID: '654f93c6804009b9ceec6c5d5e98f7c3') in 0.150 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0c9bc443ea7c45362a943cec0cb6ccb DependenciesID=2d8f495a7ddeec3a104692ef9afdd044 StaticDependenciesID=8f9727d76190938022d1af9b32723800 
+Importing 'GUID: 681539605b0eb8d42b41d0f10bc5552f - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-01.png' with importer (TextureImporter)
+Imported 'GUID: 681539605b0eb8d42b41d0f10bc5552f' -> (Import Result ID: 'f8e300ad5abb0e148fc78246147304b3') in 0.068 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2775bcbe369eec9cc1ec751d4aa9b0ca DependenciesID=d68376d9a387c8e3ea7cd856bc1d219a StaticDependenciesID=9ecdd0563dc1230ca479f5deca0de5ee 
+Importing 'GUID: d8886c22bb5ac0c4e9189fd89d691757 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-02.png' with importer (TextureImporter)
+Imported 'GUID: d8886c22bb5ac0c4e9189fd89d691757' -> (Import Result ID: 'b33c456762f285ea256783bc342a4732') in 0.166 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=43922c2e34eefba4a337884fd4b665cd DependenciesID=3c6b5583cf9cce93209a1380a1c45916 StaticDependenciesID=03a84440450cdef5add7168eae22b258 
+Importing 'GUID: 6926916c3740d1741844640f0cd8488b - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-03.png' with importer (TextureImporter)
+Imported 'GUID: 6926916c3740d1741844640f0cd8488b' -> (Import Result ID: '0501b10a5bed5fd880013b69cc1dc51f') in 0.157 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ffb31aad76398e9e105d0cd0dd195255 DependenciesID=9caf110bb3ef5bb4060160e67768b6f0 StaticDependenciesID=682693e45ea681f41f1196b7de4fbf12 
+Importing 'GUID: 2d03c30e1fbb32a498bb1103fb052e03 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-08.png' with importer (TextureImporter)
+Imported 'GUID: 2d03c30e1fbb32a498bb1103fb052e03' -> (Import Result ID: '8c7b574f74b066ab406fd1df5a5f95cc') in 0.109 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e7667a67c5df16594548c908f1422a65 DependenciesID=3c8dbdca1035b168164f063f1ac93a81 StaticDependenciesID=2e3fac7a3bfde7d7c70835785b41c0a7 
+Importing 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-02.png' with importer (TextureImporter)
+Imported 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7' -> (Import Result ID: '629d0ddcaf8b96455f7c429e67f7a684') in 0.066 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9366d1c0a8a00d6060ea157e7935f2fd DependenciesID=731c8ac9de13c3e65426c598862f8f35 StaticDependenciesID=ee4eb13a1f36924e947427aeb16ee169 
+Importing 'GUID: 0ff444c910da20e4db9b1412638a7b8f - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-06.png' with importer (TextureImporter)
+Imported 'GUID: 0ff444c910da20e4db9b1412638a7b8f' -> (Import Result ID: '10f956a9acdf93f070d08930f98aac9a') in 0.151 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e3edc52b46118571b57ba34ab0879f3 DependenciesID=d31558cb28f4360e3f53f66c37c1475f StaticDependenciesID=88703e12d221ecaedbcfa2cee5288b12 
+Importing 'GUID: bf671d454080bc14fb628ea4bce63507 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-03.png' with importer (TextureImporter)
+Imported 'GUID: bf671d454080bc14fb628ea4bce63507' -> (Import Result ID: 'f762d89a4ea9ab3871e425dd9354f7d7') in 0.061 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aa34ab01914e9b1f0ddf1c174344e4c6 DependenciesID=d419b2b825dafca5c998b44c50590dbf StaticDependenciesID=2a243ca6807b712a70c25cb742cab79e 
+Importing 'GUID: ef981d12b62b312409eb3976c9829787 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-01.png' with importer (TextureImporter)
+Imported 'GUID: ef981d12b62b312409eb3976c9829787' -> (Import Result ID: 'b3065b7da467135e823d293afe212ccb') in 0.160 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0c0f8dbe3c87f4d96617f882dddd180c DependenciesID=8db01cf1f4178778ac35b8ad4bd84730 StaticDependenciesID=783f669c6622e37682a336a7188b0e27 
+Importing 'GUID: c0bd3237227456548970835891090ee6 - Path: Assets/Scrapshift/Content/Definitions/ReferenceCatalog.asset' with importer (NativeFormatImporter)
+Imported 'GUID: c0bd3237227456548970835891090ee6' -> (Import Result ID: '0d7c092966ffaf81faa0a120d2e03669') in 0.213 seconds [static dependencies only]. Details - ImportResultOutputID=5037a80c2f80649e995360f8c23b5176 DependenciesID=56918dea69c3162971714d502d2f2198 StaticDependenciesID=06625976cc1f60bca08835b3ef798c68 
+Importing 'GUID: 2b20092591686e546a11b0bf2ead022c - Path: Assets/Scrapshift/Content/Prefabs/ScavengerAnimated.prefab' with importer (PrefabImporter)
+Imported 'GUID: 2b20092591686e546a11b0bf2ead022c' -> (Import Result ID: '1a74718912dc91c0ea2e68ebbe3499bd') in 0.030 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=482f495c39f756ca1d5eb1904163a82b DependenciesID=f58234736af5ec0997f93eddd77bce94 StaticDependenciesID=99b9de5d6ca4182e7d9b6e43ac35520d 
+
+Asset Pipeline Refresh (id=9c7b921dfb51d2b469585f9572efbf2f): Total: 10.121 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=13 (actual=13, local cache=0, cache server=0)
+		Asset DB Process Time: managed=9 ms, native=2790 ms
+		Asset DB Callback time: managed=118 ms, native=17 ms
+		Scripting: domain reloads=1, domain reload time=991 ms, compile time=6177 ms, other=16 ms
+		Project Asset Count: scripts=134, non-scripts=518
+		Asset File Changes: new=0, changed=14, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 18.431ms
+	ApplyChangesToAssetFolders: 0.943ms
+	Scan: 45.869ms
+	Collect global state as custom dependencies: 14.285ms
+	OnSourceAssetsModified: 0.797ms
+	CategorizeScriptCompilationAssets: 5.208ms
+	ProcessAssetsWithTransientArtifactChanges: 13.498ms
+	CategorizeAssets: 6.000ms
+	CompileScripts: 6176.999ms
+	ImportOutOfDateAssets: 2570.481ms (834.372ms without children)
+		ImportManagerImport: 1718.456ms (6.690ms without children)
+			UpdateCategorizedAssets: 0.175ms
+		UnloadImportedAssets: 2.422ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.108ms
+		ImportSchedulerStart: 15.110ms
+	PostProcessAllAssets: 118.524ms
+		VCAutoAddAssetPostprocess 0.990ms
+		XRBuildSystem.XRAssetImported 0.065ms
+		MonoPostProcessAllAssets: 116.745ms
+			AssetPostprocessor.OnPostprocessAllAssets 49.168ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 13.859ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 12.688ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 9.631ms
+			AssetChangedListener.OnPostprocessAllAssets 3.116ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 2.746ms
+			SyncVS.PostprocessSyncProject 2.665ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.796ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.277ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.973ms
+			AssetScopeImportWatcher.OnPostprocessAllAssets 0.961ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.900ms
+			AssetEvents.OnPostprocessAllAssets 0.707ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.495ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.392ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.320ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.239ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.236ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.232ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.231ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.196ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.137ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.119ms
+	PostAssetChangesProfiler: 2.419ms
+	UnloadStreamsBegin: 1.818ms
+	PersistCurrentRevisions: 0.146ms
+	GenerateScriptTypeSerializationHashes: 0.085ms
+	Untracked: 1106.448ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 21.325ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Scrapshift
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 603 unused Assets / (0.6 MB). Loaded Objects now: 1332.
+Memory consumption went from 228.4 MB to 227.7 MB.
+Total: 9.661400 ms (FindLiveObjects: 0.245900 ms CreateObjectMapping: 0.040500 ms MarkObjects: 8.587100 ms  DeleteObjects: 0.637400 ms)
+
+Importing 'GUID: 49ab37c00c4a78746aa4ec942ef972ee - Path: Assets/Scrapshift/Content/Definitions/GameSounds.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 49ab37c00c4a78746aa4ec942ef972ee' -> (Import Result ID: '5068a62de80a6c14da9b4ccaa6c7aa71') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=686b128631e941d8bce0948d9cab96bc DependenciesID=df9b724541f6748ef18dbe099eb2d55c StaticDependenciesID=ff6cfa0f46feedea39021e528884f096 
+Asset Pipeline Refresh (id=cd9f3db21b1832e43bb079ea50a6c6d5): Total: 0.028 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Opening scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+Unloading 123 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+	Deserialize:            81.133 ms
+	Integration:            18.105 ms
+	Integration of assets:  10.756 ms
+	Thread Wait Time:       0.017 ms
+	Total Operation Time:   110.010 ms
+Unloading 17 unused Assets / (11.2 KB). Loaded Objects now: 2878.
+Memory consumption went from 249.9 MB to 249.9 MB.
+Total: 9.861100 ms (FindLiveObjects: 0.493400 ms CreateObjectMapping: 0.054400 ms MarkObjects: 9.098100 ms  DeleteObjects: 0.045500 ms)
+
+Importing 'GUID: 9ff40c312d176014e9febd8d343b09b9 - Path: Assets/Scrapshift/Content/OriginalArt/blast-gland-v1.png' with importer (TextureImporter)
+Imported 'GUID: 9ff40c312d176014e9febd8d343b09b9' -> (Import Result ID: 'f244bfa61ac662e1b2018754bc167b01') in 0.066 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f1903f16bea475d89ff0a7ce4dbb2102 DependenciesID=ea02dc8c3de0a31a5d6df6a78cb367ed StaticDependenciesID=39d415ef2908bada73f4b7273228fbbc 
+Asset Pipeline Refresh (id=0c5a7ea127e9bf140a5f922b6e29064f): Total: 0.091 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 681539605b0eb8d42b41d0f10bc5552f - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-01.png' with importer (TextureImporter)
+Imported 'GUID: 681539605b0eb8d42b41d0f10bc5552f' -> (Import Result ID: 'f8e300ad5abb0e148fc78246147304b3') in 0.070 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2775bcbe369eec9cc1ec751d4aa9b0ca DependenciesID=d68376d9a387c8e3ea7cd856bc1d219a StaticDependenciesID=9ecdd0563dc1230ca479f5deca0de5ee 
+Asset Pipeline Refresh (id=d0569a4e5499cce4dbc5c824f68a029d): Total: 0.084 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Worker ready: AssetImportWorkerHW0 0
+Importing 'GUID: 681539605b0eb8d42b41d0f10bc5552f - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-01.png' with importer (TextureImporter)
+Imported 'GUID: 681539605b0eb8d42b41d0f10bc5552f' -> (Import Result ID: '9cf652b48ea2e2b605600401495dfeb1') in 0.220 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=159db2bed8eaa526b4e2bbc1745c86bf DependenciesID=cf0639b5bf425f485b22d6296dc586c4 StaticDependenciesID=d20f3ad13220bd1aaa96c7d02b893f89 
+Asset Pipeline Refresh (id=481eead0e7e91e84d92e9bb9e5deba4a): Total: 0.262 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-02.png' with importer (TextureImporter)
+Imported 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7' -> (Import Result ID: '629d0ddcaf8b96455f7c429e67f7a684') in 0.072 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9366d1c0a8a00d6060ea157e7935f2fd DependenciesID=731c8ac9de13c3e65426c598862f8f35 StaticDependenciesID=ee4eb13a1f36924e947427aeb16ee169 
+Asset Pipeline Refresh (id=ae74f3ec2400b33499641cc0ae429b2b): Total: 0.087 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-02.png' with importer (TextureImporter)
+Imported 'GUID: 0ff3f5aeb5852334ba11bf52f45952c7' -> (Import Result ID: '3250a656555c8ced94f840af5e4fc989') in 0.180 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=abe04c738a5ca1cb63ad29a79c8fbd5c DependenciesID=2ffc2f5669efc9d83a595dc841e6f19e StaticDependenciesID=02f0531a0706a4c30e05a4c205fd5075 
+Asset Pipeline Refresh (id=78937452a2beefc40ab7bfdd5c455c91): Total: 0.214 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: bf671d454080bc14fb628ea4bce63507 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-03.png' with importer (TextureImporter)
+Imported 'GUID: bf671d454080bc14fb628ea4bce63507' -> (Import Result ID: 'f762d89a4ea9ab3871e425dd9354f7d7') in 0.062 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aa34ab01914e9b1f0ddf1c174344e4c6 DependenciesID=d419b2b825dafca5c998b44c50590dbf StaticDependenciesID=2a243ca6807b712a70c25cb742cab79e 
+Asset Pipeline Refresh (id=aab22f9d8b2d8f54491b828ca2ebf90a): Total: 0.074 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: bf671d454080bc14fb628ea4bce63507 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-03.png' with importer (TextureImporter)
+Imported 'GUID: bf671d454080bc14fb628ea4bce63507' -> (Import Result ID: 'e91834e7b7fd553d2786bcdaa2116c94') in 0.175 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=581f9857b7e210ae577907d779c78f5a DependenciesID=8de5f294a22e8d9540a1c7994c67098b StaticDependenciesID=073853e9b759bfce0a78f362483c6c4e 
+Asset Pipeline Refresh (id=12a14ab63cf5dfd4e9995cb5ef94f59e): Total: 0.211 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: ff0aac826c2b1304caeb2b81665a4eeb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-04.png' with importer (TextureImporter)
+Imported 'GUID: ff0aac826c2b1304caeb2b81665a4eeb' -> (Import Result ID: 'ad4725dad2d0134da212a355baa7630e') in 0.209 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=59f84f236cd32b0792cd0d95311ddd9f DependenciesID=5738ba205e67c24094562d2dff58aab8 StaticDependenciesID=2d3509a890b095e20e834e323bfab886 
+Asset Pipeline Refresh (id=5514f9e5d6b6f2047947290f5bb654b7): Total: 0.221 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: ff0aac826c2b1304caeb2b81665a4eeb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-04.png' with importer (TextureImporter)
+Imported 'GUID: ff0aac826c2b1304caeb2b81665a4eeb' -> (Import Result ID: 'ad4725dad2d0134da212a355baa7630e') in 0.183 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=59f84f236cd32b0792cd0d95311ddd9f DependenciesID=5738ba205e67c24094562d2dff58aab8 StaticDependenciesID=2d3509a890b095e20e834e323bfab886 
+Asset Pipeline Refresh (id=a22c66cb7d8720642a6baae0bc0b8168): Total: 0.214 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-05.png' with importer (TextureImporter)
+Imported 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7' -> (Import Result ID: '2dd96c8cb6e2e11c773e6b71c448ebe7') in 0.155 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f457098f040085ad039b1b9dc8d7a5b0 DependenciesID=6a786cfaef6f7e24e316c5a6e8777d68 StaticDependenciesID=6b634699492bdc3899a9228ea125702c 
+Asset Pipeline Refresh (id=f4b2d3be129165a47be10bb8ae3d309d): Total: 0.168 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-05.png' with importer (TextureImporter)
+Imported 'GUID: 0edc5a30aa304cb44ba08d6e7d7887a7' -> (Import Result ID: '2dd96c8cb6e2e11c773e6b71c448ebe7') in 0.149 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f457098f040085ad039b1b9dc8d7a5b0 DependenciesID=6a786cfaef6f7e24e316c5a6e8777d68 StaticDependenciesID=6b634699492bdc3899a9228ea125702c 
+Asset Pipeline Refresh (id=fd4ed7d49d21f064bb5d829d64529199): Total: 0.172 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-06.png' with importer (TextureImporter)
+Imported 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb' -> (Import Result ID: 'ac532a44b94e7c3be8d82dd8c5d0502d') in 0.131 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be3470d8ffab4812de3ac86c08d60c0b DependenciesID=6f198ca7e3483802913ea9fcb028ae75 StaticDependenciesID=64ae51ad07c28f615b4e219707feb788 
+Asset Pipeline Refresh (id=08d50926806315941be8882f4bd40911): Total: 0.143 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-06.png' with importer (TextureImporter)
+Imported 'GUID: fdd7f23a47c9fd741a9008bc421ca1fb' -> (Import Result ID: 'ac532a44b94e7c3be8d82dd8c5d0502d') in 0.133 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be3470d8ffab4812de3ac86c08d60c0b DependenciesID=6f198ca7e3483802913ea9fcb028ae75 StaticDependenciesID=64ae51ad07c28f615b4e219707feb788 
+Asset Pipeline Refresh (id=f1186b174ae009a46b61ee7be95a7acf): Total: 0.155 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: d48349f9cdd596c47872a04fead2a262 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-07.png' with importer (TextureImporter)
+Imported 'GUID: d48349f9cdd596c47872a04fead2a262' -> (Import Result ID: 'ef1824a0c3f68d678420a94b548398e9') in 0.115 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b4be8401a5a8650808a7112bbab8f9c2 DependenciesID=1fbf77ed2e7591b9869a061e4c473999 StaticDependenciesID=53fceb261f644342f336003f301f5eb0 
+Asset Pipeline Refresh (id=950005b8792a9df478d65dcc8f4f1b53): Total: 0.126 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: d48349f9cdd596c47872a04fead2a262 - Path: Assets/Scrapshift/Content/OriginalArt/ItemIcons/items-07.png' with importer (TextureImporter)
+Imported 'GUID: d48349f9cdd596c47872a04fead2a262' -> (Import Result ID: 'ef1824a0c3f68d678420a94b548398e9') in 0.123 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b4be8401a5a8650808a7112bbab8f9c2 DependenciesID=1fbf77ed2e7591b9869a061e4c473999 StaticDependenciesID=53fceb261f644342f336003f301f5eb0 
+Asset Pipeline Refresh (id=e717e308d82b3c94e9a22f2ef3ef167c): Total: 0.145 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: c8e055dad74141e986a03877cb6baf4f - Path: Assets/Scrapshift/Resources/SupportAtlas.png' with importer (TextureImporter)
+Imported 'GUID: c8e055dad74141e986a03877cb6baf4f' -> (Import Result ID: '4b2dca755cce4b0bfd76da7f1e03fa3e') in 0.135 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=32b4485c78eb0f933cfc7dc173809894 DependenciesID=2475612101be788a746f5099db3ff30b StaticDependenciesID=3485f68b3fdae859e7a0cb6d7b8defb3 
+Asset Pipeline Refresh (id=2d7296a1fc24b344894461dce67e3387): Total: 0.148 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: c8e055dad74141e986a03877cb6baf4f - Path: Assets/Scrapshift/Resources/SupportAtlas.png' with importer (TextureImporter)
+Imported 'GUID: c8e055dad74141e986a03877cb6baf4f' -> (Import Result ID: '4b2dca755cce4b0bfd76da7f1e03fa3e') in 0.132 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=32b4485c78eb0f933cfc7dc173809894 DependenciesID=2475612101be788a746f5099db3ff30b StaticDependenciesID=3485f68b3fdae859e7a0cb6d7b8defb3 
+Asset Pipeline Refresh (id=3ed4dba481948e845a47e23a4da2fe01): Total: 0.155 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Item icon audit passed: 209 individual item sprites.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Scrapshift.Editor.ContentBuilder:ValidateAllItemIcons (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/ItemIconBuilder.cs:86)
+Scrapshift.Editor.ContentBuilder:ApplyAllItemIcons (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/ItemIconBuilder.cs:47)
+Scrapshift.Editor.ContentBuilder:ApplyDedicatedItemIcons (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/InspectionBuilder.cs:50)
+Scrapshift.Editor.ContentBuilder:EnsureInspectionUI () (at Assets/Scrapshift/Editor/InspectionBuilder.cs:30)
+Scrapshift.Editor.ContentBuilder:Generate () (at Assets/Scrapshift/Editor/ContentBuilder.cs:24)
+Scrapshift.Editor.ContentBuilder:Build () (at Assets/Scrapshift/Editor/ContentBuilder.cs:190)
+
+(Filename: Assets/Scrapshift/Editor/ItemIconBuilder.cs Line: 86)
+
+Importing 'GUID: 3e63d38c26b87e44082c416be3d5864d - Path: Assets/Scrapshift/Content/OriginalArt/jousting-lance-v2.png' with importer (TextureImporter)
+Imported 'GUID: 3e63d38c26b87e44082c416be3d5864d' -> (Import Result ID: '26eae36674792284913c73ceec4fbb4e') in 0.078 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ec4d774ff7dad4770c2da9a91565b973 DependenciesID=e95889d1316b5911b20b324ee2e5f3ca StaticDependenciesID=549d57c58073ad8329c452fb9e67ebdc 
+Asset Pipeline Refresh (id=f279e9c8a4fde1743ae0e17a9eab9a68): Total: 0.088 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: ef981d12b62b312409eb3976c9829787 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-01.png' with importer (TextureImporter)
+Imported 'GUID: ef981d12b62b312409eb3976c9829787' -> (Import Result ID: 'b3065b7da467135e823d293afe212ccb') in 0.102 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0c0f8dbe3c87f4d96617f882dddd180c DependenciesID=8db01cf1f4178778ac35b8ad4bd84730 StaticDependenciesID=783f669c6622e37682a336a7188b0e27 
+Asset Pipeline Refresh (id=a21a4da1c264aed4981518686553fe0e): Total: 0.121 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: ef981d12b62b312409eb3976c9829787 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-01.png' with importer (TextureImporter)
+Imported 'GUID: ef981d12b62b312409eb3976c9829787' -> (Import Result ID: '82ed826c13ca554c009f9d5e5199bb97') in 0.114 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=04db395c637e60281c5f4e620c0098da DependenciesID=e90ea7949ef22281753429478122219c StaticDependenciesID=d432eff61a2b2cec10c79b0d9f81aa1a 
+Asset Pipeline Refresh (id=37bbf6cade338d5418c54e0580530051): Total: 0.145 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: d8886c22bb5ac0c4e9189fd89d691757 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-02.png' with importer (TextureImporter)
+Imported 'GUID: d8886c22bb5ac0c4e9189fd89d691757' -> (Import Result ID: 'b33c456762f285ea256783bc342a4732') in 0.118 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=43922c2e34eefba4a337884fd4b665cd DependenciesID=3c6b5583cf9cce93209a1380a1c45916 StaticDependenciesID=03a84440450cdef5add7168eae22b258 
+Asset Pipeline Refresh (id=14dd62206c247314abdfeacf2aa1be08): Total: 0.128 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: d8886c22bb5ac0c4e9189fd89d691757 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-02.png' with importer (TextureImporter)
+Imported 'GUID: d8886c22bb5ac0c4e9189fd89d691757' -> (Import Result ID: 'beb43f482dc89c3e2dc8bcc11a5eb767') in 0.114 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0324b987ed9f3ceb3bff267cd98dbb15 DependenciesID=d429324e5e92091a952c26f30e9e0839 StaticDependenciesID=10dad4f68428392a8bc7281ca478b6e4 
+Asset Pipeline Refresh (id=951b6515d33b333499de86052d9554d1): Total: 0.138 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 6926916c3740d1741844640f0cd8488b - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-03.png' with importer (TextureImporter)
+Imported 'GUID: 6926916c3740d1741844640f0cd8488b' -> (Import Result ID: '0501b10a5bed5fd880013b69cc1dc51f') in 0.113 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ffb31aad76398e9e105d0cd0dd195255 DependenciesID=9caf110bb3ef5bb4060160e67768b6f0 StaticDependenciesID=682693e45ea681f41f1196b7de4fbf12 
+Asset Pipeline Refresh (id=2d5dbc125d5b14e47bf4439a45526fd9): Total: 0.122 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 6926916c3740d1741844640f0cd8488b - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-03.png' with importer (TextureImporter)
+Imported 'GUID: 6926916c3740d1741844640f0cd8488b' -> (Import Result ID: 'b0ed940a1ab526c4ac5e196d77b6a72e') in 0.117 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=25254d05bb2db266a7727f06738afdfd DependenciesID=bfe9df0a4b3a4b2ed3bf2c7a5b444a55 StaticDependenciesID=756148c73c53fcf4ae5b23ca0582482e 
+Asset Pipeline Refresh (id=b13cc5d36d2ee2a4bab287fcf8dd517b): Total: 0.142 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 27a444da2c4d87e428bdab46a3cf3521 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-04.png' with importer (TextureImporter)
+Imported 'GUID: 27a444da2c4d87e428bdab46a3cf3521' -> (Import Result ID: '654f93c6804009b9ceec6c5d5e98f7c3') in 0.099 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0c9bc443ea7c45362a943cec0cb6ccb DependenciesID=2d8f495a7ddeec3a104692ef9afdd044 StaticDependenciesID=8f9727d76190938022d1af9b32723800 
+Asset Pipeline Refresh (id=5cd06f4fd49078b4fa5973fc4f02a978): Total: 0.109 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 27a444da2c4d87e428bdab46a3cf3521 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-04.png' with importer (TextureImporter)
+Imported 'GUID: 27a444da2c4d87e428bdab46a3cf3521' -> (Import Result ID: '5220f42a03d9d73af3d5bbd8ccd364c7') in 0.106 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=16e76fdb31825e483e0aa323b02c7a10 DependenciesID=a5ab3bae065a80742c87c851bfd8ffb9 StaticDependenciesID=f8e97e2b6a763c5341dc77365a4774ff 
+Asset Pipeline Refresh (id=6940b8e7efde921428232d054c6e035e): Total: 0.130 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 620551a522683aa4d8aaaad07c8a0bbe - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-05.png' with importer (TextureImporter)
+Imported 'GUID: 620551a522683aa4d8aaaad07c8a0bbe' -> (Import Result ID: '63f232849f696c0d924cd621184fe841') in 0.113 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=896dd98ab3ee9d20a2a5599dc62bfb8d DependenciesID=07a976a10f267c2055c103dcf04aa4be StaticDependenciesID=3871be16ffa91b10d1409b2e0359c533 
+Asset Pipeline Refresh (id=9c406f9bb0107304497ea69788e5ea0a): Total: 0.122 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 620551a522683aa4d8aaaad07c8a0bbe - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-05.png' with importer (TextureImporter)
+Imported 'GUID: 620551a522683aa4d8aaaad07c8a0bbe' -> (Import Result ID: 'e7963046f3ace9444e6a8d7cea814b85') in 0.120 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=39df21237830a99789668f2a61df3777 DependenciesID=ee6fe6f487d7299ee0fdaee69239eb34 StaticDependenciesID=bb5b162e0aeb999bbe8e1b52a9af9014 
+Asset Pipeline Refresh (id=c080af7e158a541478f9f6cdebae0f66): Total: 0.145 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0ff444c910da20e4db9b1412638a7b8f - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-06.png' with importer (TextureImporter)
+Imported 'GUID: 0ff444c910da20e4db9b1412638a7b8f' -> (Import Result ID: '10f956a9acdf93f070d08930f98aac9a') in 0.107 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9e3edc52b46118571b57ba34ab0879f3 DependenciesID=d31558cb28f4360e3f53f66c37c1475f StaticDependenciesID=88703e12d221ecaedbcfa2cee5288b12 
+Asset Pipeline Refresh (id=e51ae88a8641bd847bca9b8e0a31be5a): Total: 0.117 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 0ff444c910da20e4db9b1412638a7b8f - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-06.png' with importer (TextureImporter)
+Imported 'GUID: 0ff444c910da20e4db9b1412638a7b8f' -> (Import Result ID: '3ac6dc9d1781b6f090dee2b2dddb5886') in 0.119 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b93e6f16314b5101e03fdc88f1c46834 DependenciesID=11e8fdce272eae022c188bb2a7be6a7e StaticDependenciesID=3eda1be653422fb36ebb0b4ecfddac64 
+Asset Pipeline Refresh (id=67c9859bab2456946a0c77e4204964ce): Total: 0.144 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 44a6b6cee7abf6f47b1c846641fe3da0 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-07.png' with importer (TextureImporter)
+Imported 'GUID: 44a6b6cee7abf6f47b1c846641fe3da0' -> (Import Result ID: '2559abb806dc5ca9c62e504b85df49ba') in 0.121 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c6e5e1c86009b794e66a902efd2dfb94 DependenciesID=e7fa1ed0fd4a4a560a5548cd0fc863cb StaticDependenciesID=f247297e20797ec9716f084fc2966eb4 
+Asset Pipeline Refresh (id=baefa6918b7873b4da0a8b589f8bdf5e): Total: 0.131 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 44a6b6cee7abf6f47b1c846641fe3da0 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-07.png' with importer (TextureImporter)
+Imported 'GUID: 44a6b6cee7abf6f47b1c846641fe3da0' -> (Import Result ID: '187d951b1e705a54b6e374e982f4809c') in 0.139 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0c486b2d0c4c94b3e5b40f66707638a DependenciesID=95fb0faa641ffe9e0b066a308f8362cf StaticDependenciesID=649496e2931ca3dbad10a5511796f934 
+Asset Pipeline Refresh (id=bc0ae11922661b4448052d2d85c62231): Total: 0.165 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 2d03c30e1fbb32a498bb1103fb052e03 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-08.png' with importer (TextureImporter)
+Imported 'GUID: 2d03c30e1fbb32a498bb1103fb052e03' -> (Import Result ID: '8c7b574f74b066ab406fd1df5a5f95cc') in 0.075 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e7667a67c5df16594548c908f1422a65 DependenciesID=3c8dbdca1035b168164f063f1ac93a81 StaticDependenciesID=2e3fac7a3bfde7d7c70835785b41c0a7 
+Asset Pipeline Refresh (id=58e13bf6a051f1a4498283a36f5bf674): Total: 0.088 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 2d03c30e1fbb32a498bb1103fb052e03 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-08.png' with importer (TextureImporter)
+Imported 'GUID: 2d03c30e1fbb32a498bb1103fb052e03' -> (Import Result ID: 'd203187e43c259ff450de710468dd08b') in 0.076 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e8689c16c8ba62db6c84dbaeb658baab DependenciesID=d4b3553633b80d7ee53aef1ce859cc69 StaticDependenciesID=670c398e6034313c57701093857590a7 
+Asset Pipeline Refresh (id=3fe9d10e59f08e9468cc4c910e75949d): Total: 0.100 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 082a37635b1aa4242b24bf6a75a17ed3 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-09.png' with importer (TextureImporter)
+Imported 'GUID: 082a37635b1aa4242b24bf6a75a17ed3' -> (Import Result ID: 'e25c8714f83e27260a6f903963e947af') in 0.103 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7cefe61cd76fff0f6aa996354137f50c DependenciesID=84aa743fc5a4ca4822684106afff2c78 StaticDependenciesID=4b98ca9d65f29af58d121341d2776aee 
+Asset Pipeline Refresh (id=9cd5030324b7aa24597063774a91664d): Total: 0.112 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 082a37635b1aa4242b24bf6a75a17ed3 - Path: Assets/Scrapshift/Content/OriginalArt/FittedWearables/wearables-09.png' with importer (TextureImporter)
+Imported 'GUID: 082a37635b1aa4242b24bf6a75a17ed3' -> (Import Result ID: 'e25c8714f83e27260a6f903963e947af') in 0.095 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7cefe61cd76fff0f6aa996354137f50c DependenciesID=84aa743fc5a4ca4822684106afff2c78 StaticDependenciesID=4b98ca9d65f29af58d121341d2776aee 
+Asset Pipeline Refresh (id=9692b76c4864541419066bd8c7eb0ab8): Total: 0.116 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Loaded scene 'Library/Unused/96ccfdbdce944514faaab3bd56ed5b14'
+	Deserialize:            1.289 ms
+	Integration:            0.239 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       20.209 ms
+	Total Operation Time:   21.740 ms
+Asset Pipeline Refresh (id=349c34419fa33be48bc2bf4412de1a32): Total: 0.011 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: c0bd3237227456548970835891090ee6 - Path: Assets/Scrapshift/Content/Definitions/ReferenceCatalog.asset' with importer (NativeFormatImporter)
+Imported 'GUID: c0bd3237227456548970835891090ee6' -> (Import Result ID: '6db84ca9595f07ebb2eb4d8ad4ff78d0') in 0.005 seconds [static dependencies only]. Details - ImportResultOutputID=5037a80c2f80649e995360f8c23b5176 DependenciesID=947cef1f58bff977b7e16e1f85b0be9a StaticDependenciesID=0fa173db35e6ed00eb959e138f51dabb 
+Asset Pipeline Refresh (id=0cfcc8804af0f16478eeed3cf3fca09b): Total: 0.017 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+185 fitted wearable parts bound to 178 items; reference appearance rules retained.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Scrapshift.Editor.ContentBuilder:EnsureReferenceAppearances (Scrapshift.ReferenceCatalog) (at Assets/Scrapshift/Editor/AppearanceReferenceBuilder.cs:101)
+Scrapshift.Editor.ContentBuilder:EnsureInspectionUI () (at Assets/Scrapshift/Editor/InspectionBuilder.cs:38)
+Scrapshift.Editor.ContentBuilder:Generate () (at Assets/Scrapshift/Editor/ContentBuilder.cs:24)
+Scrapshift.Editor.ContentBuilder:Build () (at Assets/Scrapshift/Editor/ContentBuilder.cs:190)
+
+(Filename: Assets/Scrapshift/Editor/AppearanceReferenceBuilder.cs Line: 101)
+
+Importing 'GUID: c0bd3237227456548970835891090ee6 - Path: Assets/Scrapshift/Content/Definitions/ReferenceCatalog.asset' with importer (NativeFormatImporter)
+Imported 'GUID: c0bd3237227456548970835891090ee6' -> (Import Result ID: '6db84ca9595f07ebb2eb4d8ad4ff78d0') in 0.006 seconds [static dependencies only]. Details - ImportResultOutputID=5037a80c2f80649e995360f8c23b5176 DependenciesID=947cef1f58bff977b7e16e1f85b0be9a StaticDependenciesID=0fa173db35e6ed00eb959e138f51dabb 
+Asset Pipeline Refresh (id=28373c2e14f7f0844a1311c36e754a58): Total: 0.014 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Loaded scene 'Assets/Scrapshift/Content/Scenes/Deck.unity'
+	Deserialize:            6.985 ms
+	Integration:            3.166 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.019 ms
+	Total Operation Time:   10.173 ms
+AssetScope scanned 339 game assets: zero validation findings.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Scrapshift.Editor.ContentBuilder:Scan () (at Assets/Scrapshift/Editor/ContentBuilder.cs:185)
+Scrapshift.Editor.ContentBuilder:Build () (at Assets/Scrapshift/Editor/ContentBuilder.cs:190)
+
+(Filename: Assets/Scrapshift/Editor/ContentBuilder.cs Line: 185)
+
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aESkipCompile.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+ExitCode: 0 Duration: 0s303ms
+[2/3        0s] BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json
+*** Tundra build success (0.26 seconds), 1 items updated, 3 evaluated
+Asset Pipeline Refresh (id=596003308eb771e418e8bce3f2c2beb1): Total: 0.013 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+[ScriptCompilation] Requested script compilation because: Recompiling scripts for player build.
+BuildPlayer: start building target 19
+Total cache size 15260289
+Total cache size after purge 15260289, took 00:00:00.0474494
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aP.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+ExitCode: 0 Duration: 4s429ms
+[65/72      0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[66/72      2s] Csc Library/Bee/artifacts/1900b0aP.dag/Scrapshift.Runtime.dll (+2 others)
+[67/72      0s] ILPostProcess Library/Bee/artifacts/1900b0aP.dag/post-processed/Scrapshift.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aP.dag/Scrapshift.Runtime.dll, with 135 defines and 191 references
+
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+[68/72      0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Scrapshift.Runtime.pdb
+[69/72      0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Scrapshift.Runtime.dll
+[71/72      0s] BuildPlayerDataGenerator Library/BuildPlayerData/Player/RuntimeInitializeOnLoads.json (+1 other)
+*** Tundra build success (4.40 seconds), 6 items updated, 72 evaluated
+Total cache size 15260289
+Total cache size after purge 15260289, took 00:00:00.0406131
+Not rebuilding Data files -- no changes
+
+
+Mono dependencies included in the build
+Dependency assembly - System.Runtime.Numerics.dll
+Dependency assembly - System.Drawing.Design.dll
+Dependency assembly - System.IO.Pipes.dll
+Dependency assembly - Mono.Cairo.dll
+Dependency assembly - Mono.XBuild.Tasks.dll
+Dependency assembly - System.Runtime.InteropServices.WindowsRuntime.dll
+Dependency assembly - System.Web.Abstractions.dll
+Dependency assembly - System.Runtime.Serialization.Primitives.dll
+Dependency assembly - System.Net.NetworkInformation.dll
+Dependency assembly - System.Net.WebSockets.Client.dll
+Dependency assembly - System.Data.Services.Client.dll
+Dependency assembly - System.Buffers.dll
+Dependency assembly - Microsoft.Build.Utilities.v4.0.dll
+Dependency assembly - System.Transactions.dll
+Dependency assembly - System.Net.Http.WebRequest.dll
+Dependency assembly - System.Reactive.Runtime.Remoting.dll
+Dependency assembly - System.Net.ServicePoint.dll
+Dependency assembly - System.Reactive.Windows.Forms.dll
+Dependency assembly - System.Reactive.Core.dll
+Dependency assembly - System.Diagnostics.Contracts.dll
+Dependency assembly - System.Net.Http.Formatting.dll
+Dependency assembly - System.IdentityModel.dll
+Dependency assembly - System.Net.Cache.dll
+Dependency assembly - System.Diagnostics.TextWriterTraceListener.dll
+Dependency assembly - System.Drawing.Primitives.dll
+Dependency assembly - System.Runtime.Serialization.Xml.dll
+Dependency assembly - System.Reactive.Windows.Threading.dll
+Dependency assembly - System.Globalization.dll
+Dependency assembly - System.Web.Http.SelfHost.dll
+Dependency assembly - System.Runtime.Remoting.dll
+Dependency assembly - System.Security.Cryptography.Pkcs.dll
+Dependency assembly - System.ServiceModel.Internals.dll
+Dependency assembly - System.Threading.Tasks.Extensions.dll
+Dependency assembly - System.Diagnostics.Process.dll
+Dependency assembly - System.Deployment.dll
+Dependency assembly - Mono.CSharp.dll
+Dependency assembly - Mono.Simd.dll
+Dependency assembly - PEAPI.dll
+Dependency assembly - I18N.West.dll
+Dependency assembly - System.Collections.dll
+Dependency assembly - System.AppContext.dll
+Dependency assembly - System.Threading.dll
+Dependency assembly - System.ServiceModel.Web.dll
+Dependency assembly - Microsoft.Extensions.DependencyInjection.Abstractions.dll
+Dependency assembly - System.ServiceModel.dll
+Dependency assembly - System.IO.FileSystem.dll
+Dependency assembly - System.IO.IsolatedStorage.dll
+Dependency assembly - Mono.CompilerServices.SymbolWriter.dll
+Dependency assembly - System.Data.Entity.dll
+Dependency assembly - System.ComponentModel.Composition.dll
+Dependency assembly - System.Security.Cryptography.Encryption.Aes.dll
+Dependency assembly - System.Security.Cryptography.Encryption.dll
+Dependency assembly - System.Xml.XPath.XmlDocument.dll
+Dependency assembly - RabbitMQ.Client.dll
+Dependency assembly - System.Security.Cryptography.Cng.dll
+Dependency assembly - System.Runtime.Serialization.dll
+Dependency assembly - System.Reflection.Emit.ILGeneration.dll
+Dependency assembly - System.Xml.XPath.XDocument.dll
+Dependency assembly - System.Web.Razor.dll
+Dependency assembly - System.Console.dll
+Dependency assembly - System.Json.Microsoft.dll
+Dependency assembly - netstandard.dll
+Dependency assembly - System.Reactive.Debugger.dll
+Dependency assembly - System.Runtime.Serialization.Formatters.Soap.dll
+Dependency assembly - System.ValueTuple.dll
+Dependency assembly - Mono.Security.dll
+Dependency assembly - System.Workflow.Activities.dll
+Dependency assembly - System.Web.WebPages.Deployment.dll
+Dependency assembly - System.Security.Cryptography.Hashing.dll
+Dependency assembly - System.Memory.dll
+Dependency assembly - System.Reactive.Linq.dll
+Dependency assembly - System.ServiceModel.Routing.dll
+Dependency assembly - System.Web.Http.WebHost.dll
+Dependency assembly - SystemWebTestShim.dll
+Dependency assembly - Mono.Messaging.RabbitMQ.dll
+Dependency assembly - System.Net.Primitives.dll
+Dependency assembly - System.Net.WebHeaderCollection.dll
+Dependency assembly - I18N.CJK.dll
+Dependency assembly - System.Reflection.Context.dll
+Dependency assembly - System.Runtime.dll
+Dependency assembly - System.Text.Encoding.dll
+Dependency assembly - System.ServiceModel.NetTcp.dll
+Dependency assembly - System.Data.dll
+Dependency assembly - System.Diagnostics.FileVersionInfo.dll
+Dependency assembly - System.Runtime.Serialization.Formatters.dll
+Dependency assembly - System.ComponentModel.EventBasedAsync.dll
+Dependency assembly - Mono.Tasklets.dll
+Dependency assembly - System.Diagnostics.Tracing.dll
+Dependency assembly - System.Threading.Tasks.dll
+Dependency assembly - System.Web.WebPages.Razor.dll
+Dependency assembly - System.Dynamic.Runtime.dll
+Dependency assembly - System.Threading.Thread.dll
+Dependency assembly - Microsoft.VisualC.dll
+Dependency assembly - System.Collections.Immutable.dll
+Dependency assembly - System.Diagnostics.DiagnosticSource.dll
+Dependency assembly - System.Resources.Reader.dll
+Dependency assembly - System.Security.Cryptography.Csp.dll
+Dependency assembly - System.ServiceProcess.dll
+Dependency assembly - System.Security.Cryptography.Algorithms.dll
+Dependency assembly - System.Security.Cryptography.RSA.dll
+Dependency assembly - System.Security.AccessControl.dll
+Dependency assembly - System.Security.SecureString.dll
+Dependency assembly - System.Numerics.Vectors.dll
+Dependency assembly - Novell.Directory.Ldap.dll
+Dependency assembly - Microsoft.Bcl.AsyncInterfaces.dll
+Dependency assembly - System.IO.UnmanagedMemoryStream.dll
+Dependency assembly - System.Runtime.Handles.dll
+Dependency assembly - System.Net.Security.dll
+Dependency assembly - System.IO.Hashing.dll
+Dependency assembly - Mono.Data.Sqlite.dll
+Dependency assembly - System.ComponentModel.TypeConverter.dll
+Dependency assembly - System.ComponentModel.DataAnnotations.dll
+Dependency assembly - System.Linq.Expressions.dll
+Dependency assembly - System.Security.Cryptography.Encoding.dll
+Dependency assembly - System.Text.Encodings.Web.dll
+Dependency assembly - System.Reflection.Extensions.dll
+Dependency assembly - System.Diagnostics.Tools.dll
+Dependency assembly - Microsoft.CSharp.dll
+Dependency assembly - System.Configuration.Install.dll
+Dependency assembly - System.Windows.dll
+Dependency assembly - System.Diagnostics.TraceEvent.dll
+Dependency assembly - System.Reflection.Metadata.dll
+Dependency assembly - System.ComponentModel.dll
+Dependency assembly - System.Security.Cryptography.Encryption.ECDiffieHellman.dll
+Dependency assembly - Microsoft.Web.Infrastructure.dll
+Dependency assembly - System.Threading.AccessControl.dll
+Dependency assembly - Mono.Management.dll
+Dependency assembly - System.Net.Ping.dll
+Dependency assembly - System.Reflection.TypeExtensions.dll
+Dependency assembly - System.Security.Cryptography.Hashing.Algorithms.dll
+Dependency assembly - System.Xml.XDocument.dll
+Dependency assembly - Accessibility.dll
+Dependency assembly - System.Net.Mail.dll
+Dependency assembly - System.Configuration.dll
+Dependency assembly - I18N.Rare.dll
+Dependency assembly - WindowsBase.dll
+Dependency assembly - System.Net.Http.dll
+Dependency assembly - System.ServiceModel.Security.dll
+Dependency assembly - System.Globalization.Calendars.dll
+Dependency assembly - Mono.Http.dll
+Dependency assembly - System.IO.Compression.FileSystem.dll
+Dependency assembly - System.Web.ApplicationServices.dll
+Dependency assembly - System.Diagnostics.TraceSource.dll
+Dependency assembly - System.IO.FileSystem.DriveInfo.dll
+Dependency assembly - ICSharpCode.SharpZipLib.dll
+Dependency assembly - mscorlib.dll
+Dependency assembly - System.Diagnostics.Debug.dll
+Dependency assembly - System.Security.Cryptography.ProtectedData.dll
+Dependency assembly - System.Security.Principal.Windows.dll
+Dependency assembly - System.Text.Encoding.Extensions.dll
+Dependency assembly - Commons.Xml.Relaxng.dll
+Dependency assembly - I18N.Other.dll
+Dependency assembly - System.Management.dll
+Dependency assembly - System.Web.DynamicData.dll
+Dependency assembly - System.Web.dll
+Dependency assembly - System.Web.Mobile.dll
+Dependency assembly - System.IO.FileSystem.AccessControl.dll
+Dependency assembly - System.Collections.NonGeneric.dll
+Dependency assembly - System.Design.dll
+Dependency assembly - Mono.Btls.Interface.dll
+Dependency assembly - System.Messaging.dll
+Dependency assembly - System.Threading.Tasks.Parallel.dll
+Dependency assembly - System.Web.Extensions.Design.dll
+Dependency assembly - System.ObjectModel.dll
+Dependency assembly - System.Xml.Xsl.Primitives.dll
+Dependency assembly - System.IO.FileSystem.Primitives.dll
+Dependency assembly - System.Reactive.PlatformServices.dll
+Dependency assembly - System.Windows.Forms.dll
+Dependency assembly - System.Net.NameResolution.dll
+Dependency assembly - Microsoft.Build.dll
+Dependency assembly - System.Web.Mvc.dll
+Dependency assembly - System.Security.dll
+Dependency assembly - System.Resources.ResourceManager.dll
+Dependency assembly - System.Reactive.Observable.Aliases.dll
+Dependency assembly - System.Net.AuthenticationManager.dll
+Dependency assembly - System.Workflow.ComponentModel.dll
+Dependency assembly - System.IO.Compression.ZipFile.dll
+Dependency assembly - IBM.Data.DB2.dll
+Dependency assembly - Microsoft.Build.Tasks.v4.0.dll
+Dependency assembly - System.Security.Principal.dll
+Dependency assembly - System.Security.Cryptography.OpenSsl.dll
+Dependency assembly - System.Runtime.InteropServices.dll
+Dependency assembly - Mono.Posix.dll
+Dependency assembly - System.Diagnostics.StackTrace.dll
+Dependency assembly - System.Security.Cryptography.Encryption.ECDsa.dll
+Dependency assembly - System.Runtime.CompilerServices.Unsafe.dll
+Dependency assembly - System.Data.SqlClient.dll
+Dependency assembly - System.ComponentModel.Annotations.dll
+Dependency assembly - System.Threading.Tasks.Dataflow.dll
+Dependency assembly - System.IO.MemoryMappedFiles.dll
+Dependency assembly - System.Web.Extensions.dll
+Dependency assembly - System.Dynamic.dll
+Dependency assembly - System.Data.Common.dll
+Dependency assembly - System.Runtime.Caching.dll
+Dependency assembly - System.Net.Utilities.dll
+Dependency assembly - System.Net.dll
+Dependency assembly - System.Runtime.DurableInstancing.dll
+Dependency assembly - System.Runtime.Extensions.dll
+Dependency assembly - System.DirectoryServices.dll
+Dependency assembly - System.Drawing.dll
+Dependency assembly - I18N.dll
+Dependency assembly - System.Net.Sockets.dll
+Dependency assembly - System.Reflection.Primitives.dll
+Dependency assembly - Mono.Profiler.Log.dll
+Dependency assembly - System.DirectoryServices.Protocols.dll
+Dependency assembly - System.Xml.Linq.dll
+Dependency assembly - Scrapshift.Runtime.dll
+Dependency assembly - CustomMarshalers.dll
+Dependency assembly - Microsoft.Win32.Registry.dll
+Dependency assembly - System.Json.dll
+Dependency assembly - Mono.Security.Win32.dll
+Dependency assembly - System.IdentityModel.Selectors.dll
+Dependency assembly - System.Web.Services.dll
+Dependency assembly - System.Core.dll
+Dependency assembly - System.ServiceModel.Duplex.dll
+Dependency assembly - System.Security.Cryptography.Primitives.dll
+Dependency assembly - System.ServiceModel.Activation.dll
+Dependency assembly - Microsoft.Extensions.Logging.Abstractions.dll
+Dependency assembly - System.Linq.dll
+Dependency assembly - System.Reflection.Emit.Lightweight.dll
+Dependency assembly - System.Xml.XPath.dll
+Dependency assembly - System.Xml.XmlSerializer.dll
+Dependency assembly - System.Numerics.dll
+Dependency assembly - SMDiagnostics.dll
+Dependency assembly - System.Reactive.Experimental.dll
+Dependency assembly - System.Resources.ReaderWriter.dll
+Dependency assembly - I18N.MidEast.dll
+Dependency assembly - System.Text.Encoding.CodePages.dll
+Dependency assembly - System.Xml.ReaderWriter.dll
+Dependency assembly - System.Threading.ThreadPool.dll
+Dependency assembly - System.Net.Requests.dll
+Dependency assembly - Mono.Options.dll
+Dependency assembly - System.Reactive.Providers.dll
+Dependency assembly - System.Linq.Parallel.dll
+Dependency assembly - System.Data.Linq.dll
+Dependency assembly - System.Runtime.CompilerServices.VisualC.dll
+Dependency assembly - Microsoft.Win32.Registry.AccessControl.dll
+Dependency assembly - System.Data.DataSetExtensions.dll
+Dependency assembly - System.Security.Cryptography.DeriveBytes.dll
+Dependency assembly - System.Web.Routing.dll
+Dependency assembly - Mono.Data.Tds.dll
+Dependency assembly - System.dll
+Dependency assembly - System.Reactive.Interfaces.dll
+Dependency assembly - System.Collections.Specialized.dll
+Dependency assembly - System.Security.Claims.dll
+Dependency assembly - System.Web.Http.dll
+Dependency assembly - Microsoft.Build.Engine.dll
+Dependency assembly - System.Xml.XmlDocument.dll
+Dependency assembly - System.Security.Cryptography.RandomNumberGenerator.dll
+Dependency assembly - Mono.Parallel.dll
+Dependency assembly - System.Windows.Forms.DataVisualization.dll
+Dependency assembly - WebMatrix.Data.dll
+Dependency assembly - System.Runtime.Serialization.Json.dll
+Dependency assembly - System.Data.OracleClient.dll
+Dependency assembly - System.Data.Services.dll
+Dependency assembly - System.Workflow.Runtime.dll
+Dependency assembly - Mono.Messaging.dll
+Dependency assembly - Mono.C5.dll
+Dependency assembly - System.Xaml.dll
+Dependency assembly - System.Resources.Writer.dll
+Dependency assembly - System.Runtime.InteropServices.RuntimeInformation.dll
+Dependency assembly - System.Security.Cryptography.X509Certificates.dll
+Dependency assembly - System.Runtime.Loader.dll
+Dependency assembly - System.Net.WebSockets.dll
+Dependency assembly - System.Web.RegularExpressions.dll
+Dependency assembly - System.Web.WebPages.dll
+Dependency assembly - System.Reflection.Emit.dll
+Dependency assembly - cscompmgd.dll
+Dependency assembly - System.ServiceModel.Http.dll
+Dependency assembly - System.Globalization.Extensions.dll
+Dependency assembly - System.Threading.Overlapped.dll
+Dependency assembly - monodoc.dll
+Dependency assembly - System.Collections.Concurrent.dll
+Dependency assembly - System.Xml.dll
+Dependency assembly - System.IO.Compression.dll
+Dependency assembly - System.ServiceProcess.ServiceController.dll
+Dependency assembly - System.Xml.Serialization.dll
+Dependency assembly - System.Text.RegularExpressions.dll
+Dependency assembly - System.Net.HttpListener.dll
+Dependency assembly - System.Reflection.DispatchProxy.dll
+Dependency assembly - System.EnterpriseServices.dll
+Dependency assembly - Microsoft.Build.Framework.dll
+Dependency assembly - System.ServiceModel.Primitives.dll
+Dependency assembly - System.Text.Json.dll
+Dependency assembly - Mono.WebBrowser.dll
+Dependency assembly - System.IO.dll
+Dependency assembly - System.IO.FileSystem.Watcher.dll
+Dependency assembly - System.Net.Http.Rtc.dll
+Dependency assembly - Microsoft.Win32.Primitives.dll
+Dependency assembly - System.ComponentModel.Primitives.dll
+Dependency assembly - System.ServiceModel.Discovery.dll
+Dependency assembly - System.Reflection.dll
+Dependency assembly - System.Linq.Queryable.dll
+Dependency assembly - System.Threading.Timer.dll
+
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --dagfile="Library/Bee/Player52bc0fcb.dag" --profile="Library/Bee/backend1.traceevents" Player
+WorkingDir: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+DisplayProgressbar: Incremental Player Build
+[159/392    0s] AddBootConfigGUID Library/Bee/artifacts/WinPlayerBuildProgram/boot.config
+[160/392    0s] CopyFiles Builds/Windows/Scrapshift_Data/boot.config
+[161/392    0s] UnityLinker E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/Bee/artifacts/unitylinker_dwek.traceevents
+C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\il2cpp\build\deploy\UnityLinker.exe @Library\Bee\artifacts\rsp\3544630018972818216.rsp
+[390/392    0s] CopyFiles Builds/Windows/Scrapshift_Data/Managed/Scrapshift.Runtime.dll
+[391/392    0s] ExtractUsedFeatures Library/Bee/artifacts/WinPlayerBuildProgram/Features/Scrapshift.Runtime-FeaturesChecked.txt
+*** Tundra requires additional run (1.85 seconds), 5 items updated, 392 evaluated
+*** Additional run caused by: timestamp change of Library/Bee/artifacts/WinPlayerBuildProgram/Features/Scrapshift.Runtime-FeaturesChecked.txt
+ExitCode: 4 Duration: 1s874ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\WinPlayerBuildProgram.exe" "C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Bee;C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Data/Tools/BuildPipeline" "Library/Bee/Player52bc0fcb.dag.json" "Library/Bee/Player52bc0fcb-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+ExitCode: 0 Duration: 0s369ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.5f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --dagfile="Library/Bee/Player52bc0fcb.dag" --dagfilejson="Library\Bee\Player52bc0fcb.dag.json" --profile="Library/Bee/backend2.traceevents" Player
+WorkingDir: E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity
+Finished compiling graph: 394 nodes, 1014 flattened edges (1014 ToBuild, 0 ToUse), maximum node priority 237
+*** Tundra build success (0.09 seconds), 0 items updated, 392 evaluated
+ExitCode: 0 Duration: 0s121ms
+
+-------------------------------------------------------------------------------
+Build Report
+Information on used Assets is not available, since player data was not rebuilt.
+Do a clean build to view the Asset build report information.
+-------------------------------------------------------------------------------
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 812 unused Assets / (21.7 MB). Loaded Objects now: 3027.
+Memory consumption went from 0.50 GB to 491.8 MB.
+Total: 9.005300 ms (FindLiveObjects: 0.452100 ms CreateObjectMapping: 0.066700 ms MarkObjects: 6.439700 ms  DeleteObjects: 1.880200 ms)
+
+DisplayProgressNotification: Build Successful
+Build Finished, Result: Success.
+Total cache size 15260289
+Total cache size after purge 15260289, took 00:00:00.0532526
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            2.910 ms
+	Integration:            8.453 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.013 ms
+	Total Operation Time:   11.379 ms
+Unloading 1 unused Assets / (2.0 KB). Loaded Objects now: 3026.
+Memory consumption went from 406.1 MB to 406.1 MB.
+Total: 7.846900 ms (FindLiveObjects: 0.386500 ms CreateObjectMapping: 0.071200 ms MarkObjects: 7.194300 ms  DeleteObjects: 0.033900 ms)
+
+##utp:{"success":true,"type":"PlayerBuildInfo","version":2,"phase":"Immediate","time":1791944641472,"processId":16208,"steps":[{"description":"Call PrepareForBuild callbacks","duration":0},{"description":"Call internal build started callbacks","duration":0},{"description":"Preprocess Player","duration":18},{"description":"Save scenes before build","duration":0},{"description":"Prepare For Build","duration":13},{"description":"ProducePlayerScriptAssemblies","duration":5002},{"description":"Verify Build setup","duration":96},{"description":"Prepare assets for target platform","duration":0},{"description":"Prepare splash screen","duration":1},{"description":"Run script only build","duration":19},{"description":"Build scripts DLLs","duration":53},{"description":"Postprocess built player","duration":2585},{"description":"Call Post-Process callbacks","duration":17}],"duration":7804}
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-FanSh-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-FanSh channel disconnected successfully.
+Shut down.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000006AD0, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000005990, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000006AD0, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000005990, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3336
+Exiting batchmode successfully now!
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0

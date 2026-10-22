@@ -33,6 +33,8 @@ namespace Scrapshift
             {
                 int target=enemies.FindIndex(e=>e.type.id=="looter");
                 if(target>=0){enemies[target].pos=new Vector2(3,0);Damage(target,10000);}
+                // Observe the scripted kill after the source's deferred die.
+                ResolveCombatCallbacks();
                 lootReport.looterCrate=cratesSpawned==1 && pickups.Exists(p=>p.consumable==ConsumableKind.Crate);
                 lootReviewStage++;
             }

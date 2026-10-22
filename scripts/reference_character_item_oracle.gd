@@ -1,0 +1,82 @@
+extends Node
+# Copy into the isolated reference clone as an autoload. Never change the
+# supplied read-only source checkout. Uses the same env vars as pair oracle.
+
+const STAT_KEYS = ["max_hp", "hp_regeneration", "lifesteal", "percent_damage", "melee_damage", "ranged_damage", "elemental_damage", "attack_speed", "crit_chance", "engineering", "range", "armor", "dodge", "speed", "luck", "harvesting"]
+
+func _ready():
+	call_deferred("run_cases")
+
+func run_cases():
+	var input_path = OS.get_environment("SCRAPSHIFT_ORACLE_CASES")
+	var output_path = OS.get_environment("SCRAPSHIFT_ORACLE_OUTPUT")
+	var input = File.new()
+	var output = File.new()
+	if input_path.empty() or output_path.empty() or input.open(input_path, File.READ) != OK or output.open(output_path, File.WRITE) != OK:
+		push_error("Character oracle requires readable SCRAPSHIFT_ORACLE_CASES and writable SCRAPSHIFT_ORACLE_OUTPUT")
+		get_tree().quit(2)
+		return
+	DebugService.disable_saving = true
+	var characters = {}
+	var items = {}
+	var weapons = {}
+	for character in ItemService.characters:
+		characters[character.my_id] = character
+	for item in ItemService.items:
+		items[item.my_id] = item
+	for weapon in ItemService.weapons:
+		weapons[weapon.my_id] = weapon
+	var count = 0
+	while not input.eof_reached() and count < 11000:
+		var line = input.get_line()
+		if line.empty():
+			continue
+		var parsed = JSON.parse(line)
+		if parsed.error != OK:
+			push_error("Bad character case JSON line " + str(count + 1))
+			get_tree().quit(4)
+			return
+		var spec = parsed.result
+		var row = {"id": spec.id, "stats": [], "error": "", "reference_item_count": 0}
+		var character_key = "character_" + spec.character
+		if not characters.has(character_key):
+			row.error = "missing reference character " + character_key
+		else:
+			RunData.reset()
+			RunData.wave_in_progress = false
+			RunData.add_character(characters[character_key], 0)
+			if not spec.starter.empty():
+				# The imported ID renamed the original Cacti Club to Cactus Mace.
+				var source_starter = "cacti_club" if spec.starter == "cactus_mace" else spec.starter
+				var weapon_key = "weapon_" + source_starter + "_" + str(int(spec.tier))
+				if not weapons.has(weapon_key):
+					row.error = "missing selected reference weapon " + weapon_key
+				else:
+					RunData.add_weapon(weapons[weapon_key], 0)
+			if row.error.empty():
+				if not spec.selectedItem.empty():
+					var selected_key = "item_" + spec.selectedItem
+					if not items.has(selected_key):
+						row.error = "missing selected reference item " + selected_key
+					else:
+						RunData.add_item(items[selected_key], 0, true)
+			if row.error.empty():
+				RunData.add_starting_items_and_weapons()
+				for id in spec.items:
+					var key = "item_" + id
+					if not items.has(key):
+						row.error = "missing reference item " + key
+						break
+					RunData.add_item(items[key], 0)
+				if row.error.empty():
+					for key in STAT_KEYS:
+						row.stats.append(Utils.get_stat(Keys.generate_hash("stat_" + key), 0))
+					row.reference_item_count = RunData.get_player_items(0).size()
+		output.store_line(to_json(row))
+		count += 1
+		if count % 1000 == 0:
+			print("CHARACTER_ORACLE_REFERENCE ", count)
+	input.close()
+	output.close()
+	print("CHARACTER_ORACLE_REFERENCE_DONE ", count)
+	get_tree().quit(0)

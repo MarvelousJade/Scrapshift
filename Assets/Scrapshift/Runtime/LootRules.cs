@@ -11,12 +11,13 @@ namespace Scrapshift
         public ItemEntry CrateItem {get;private set;}
         public int CrateRecycleValue=>CrateItem==null?0:RecycleValue(CrateItem.value);
 
-        public void CollectConsumable(ConsumableKind kind)
+        public void CollectConsumable(ConsumableKind kind,bool cleaningUp=false)
         {
             if(Phase!=RunPhase.Playing || kind==ConsumableKind.None)return;
-            runConsumables++;Progress?.Check("chal_hungry",runConsumables);if(kind==ConsumableKind.Fruit&&Health>=MaxHealth)Progress?.Count("full_health_fruit");
+            runConsumables++;Progress?.Check("chal_hungry",runConsumables);if(!cleaningUp&&kind==ConsumableKind.Fruit&&Health>=MaxHealth)Progress?.Count("full_health_fruit");
             ConsumableFullHealthTriggers();
-            Heal(Math.Max(0,3+Stat("consumable_heal")));
+            // legendary_item_box_effect.tres heals 100; ordinary item boxes reuse fruit's 3.
+            Heal(Math.Max(0,(kind==ConsumableKind.LegendaryCrate?100:3)+Stat("consumable_heal")));
             if(kind==ConsumableKind.Crate || kind==ConsumableKind.LegendaryCrate)
             {crates.Enqueue(kind==ConsumableKind.LegendaryCrate);Scrap+=Math.Max(0,(int)Stat("item_box_gold"));}
         }
@@ -57,6 +58,16 @@ namespace Scrapshift
             if(Phase==RunPhase.Shop)UpdateShopRerolls();
             if(item.conditionalEffects!=null)foreach(var effect in item.conditionalEffects)if(effect.customKey=="stat_cap")
             {if(effect.key=="hp_cap")healthCap=MaxHealth;else if(effect.key=="speed_cap")speedCap=Stat("speed");}
+            Progress?.CheckStats(this);
+        }
+        public bool RemoveItem(ItemEntry item)
+        {
+            if(item==null||!Items.Remove(item))return false;
+            CancelQueuedItemEffects(item);
+            foreach(var effect in item.effects??Array.Empty<StatEffect>())Add(effect.key.Replace("stat_",""),-effect.value);
+            foreach(var effect in item.conditionalEffects??Array.Empty<ConditionalEffect>())if(effect.customKey=="stat_cap")
+            {if(effect.key=="hp_cap")healthCap=float.PositiveInfinity;else if(effect.key=="speed_cap")speedCap=float.PositiveInfinity;}
+            Progress?.CheckStats(this);return true;
         }
         public void GrantItem(ItemEntry item) => ApplyItem(item);
     }

@@ -21,6 +21,11 @@ for c in profiles['characters']:
     check(c['id'],'startingWeapons',c['startingWeapons'],[Path(p).parts[-3] for p in d.get('starting_weapons',[])])
     check(c['id'],'initiallyUnlocked',c['available'],d.get('unlocked_by_default',False))
     effects=[read(p) for p in d.get('effects',[])]
+    granted=[e['key'].removeprefix('weapon_').rsplit('_',1) for e in effects if e.get('custom_key')=='starting_weapon']
+    check(c['id'],'grantedWeaponCount',1 if c.get('bonusWeapon') else 0,len(granted))
+    if granted:
+        check(c['id'],'grantedWeapon',c.get('bonusWeapon',''),granted[0][0])
+        check(c['id'],'grantedWeaponTier',c.get('bonusTier',1),int(granted[0][1]))
     for stat in c['stats']:
         matches=[e for e in effects if e.get('key','').removeprefix('stat_')==stat['key'] and not e.get('custom_key') and e.get('script')=='items/global/effect.gd']
         if matches:check(c['id'],'stat:'+stat['key'],stat['value'],sum(e.get('value',0) for e in matches))
@@ -45,6 +50,6 @@ for item in items:
     for effect in item['effects']:
         matches=[e for e in effects if e.get('key')==effect['key'] and not e.get('custom_key') and e.get('script')=='items/global/effect.gd']
         if matches:check(item['id'],'effect:'+effect['key'],effect['value'],sum(e.get('value',0) for e in matches))
-report=dict(status='Passed' if not diff else 'Differences',scope='Fresh resource values: character lists/tags/base stats, weapon primary stats/scaling, item tier/price/tags/caps/scalar effects. Does not prove special-effect execution or RNG sequence equivalence.',characters=len(profiles['characters']),weaponIdentities=len({w['id'] for w in profiles['equipment']}),weaponTiers=len(profiles['equipment']),items=len(items),registeredItems=len(lookup),missingItems=sorted(set(lookup)-{i['id'] for i in items}),checks=checks,differences=diff,sources=sources)
+report=dict(status='Passed' if not diff else 'Differences',scope='Fresh resource values: character lists/tags/base stats/granted starting weapons, weapon primary stats/scaling, item tier/price/tags/caps/scalar effects. Does not prove special-effect execution or RNG sequence equivalence.',characters=len(profiles['characters']),weaponIdentities=len({w['id'] for w in profiles['equipment']}),weaponTiers=len(profiles['equipment']),items=len(items),registeredItems=len(lookup),missingItems=sorted(set(lookup)-{i['id'] for i in items}),checks=checks,differences=diff,sources=sources)
 (root/'artifacts/catalog-parity.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({k:v for k,v in report.items() if k!='sources'},indent=2))

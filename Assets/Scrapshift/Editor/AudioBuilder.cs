@@ -9,6 +9,28 @@ namespace Scrapshift.Editor
 {
     public static partial class ContentBuilder
     {
+        static void EnsureAlienEyesAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            var clips=Enumerable.Range(1,2).Select(i=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/Pulse_"+i.ToString("00")+".wav")).ToArray();
+            if(clips.Any(c=>c==null))throw new Exception("Missing supplied Alien Eyes sound variants");
+            var entry=bank.Find(SoundCue.Pulse);
+            entry.variants=clips;entry.gain=1;entry.pitchVariation=.1f;
+            EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
+        static void EnsureEndRunReferenceAudio()
+        {
+            var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
+            foreach(var cue in new[]{SoundCue.Win,SoundCue.Lose})
+            {
+                int count=cue==SoundCue.Win?1:9;
+                var clips=Enumerable.Range(1,count).Select(i=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/"+cue+"_"+i.ToString("00")+".mp3")).ToArray();
+                if(clips.Any(c=>c==null))throw new Exception("Missing supplied end-run audio: "+cue);
+                var entry=bank.Find(cue);
+                entry.variants=clips;entry.gain=Mathf.Pow(10,-5f/20);entry.pitchVariation=0;entry.priority=2;
+            }
+            EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
+        }
         static void EnsurePlayerHitAudio()
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
@@ -19,14 +41,38 @@ namespace Scrapshift.Editor
             hurt.variants=clips;hurt.pitchVariation=.2f;
             EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
         }
+        static SerializedProperty FootstepNormalizationProperty(SerializedObject serialized)
+        {
+            var property=serialized.FindProperty("m_Normalize");
+            if(property==null)throw new Exception("AudioImporter normalization field was not found: "+AssetDatabase.GetAssetPath(serialized.targetObject));
+            return property;
+        }
+        public static bool FootstepNormalizationEnabled(AudioImporter importer)
+        {
+            using(var serialized=new SerializedObject(importer)){serialized.Update();return FootstepNormalizationProperty(serialized).boolValue;}
+        }
+        public static void EnsureFootstepImportSettings()
+        {
+            foreach(var path in Directory.GetFiles(Root+"/Audio","Step_*.mp3"))
+            {
+                var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));
+                if(!importer.forceToMono&&!FootstepNormalizationEnabled(importer))continue;
+                // Preserve the supplied stereo energy; mono normalization amplified quiet steps.
+                importer.forceToMono=false;
+                using(var serialized=new SerializedObject(importer))
+                {serialized.Update();FootstepNormalizationProperty(serialized).boolValue=false;serialized.ApplyModifiedPropertiesWithoutUndo();}
+                importer.SaveAndReimport();
+            }
+        }
         static void EnsureMovementUiAudio()
         {
+            EnsureFootstepImportSettings();
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
             var entries=bank.entries.ToList();
             foreach(var cue in new[]{SoundCue.Step,SoundCue.UiFocus,SoundCue.UiPress,SoundCue.Spawn,SoundCue.InventoryFocus,SoundCue.Consume})
             {
                 var paths=Directory.GetFiles(Root+"/Audio",cue+"_*").Where(p=>p.EndsWith(".wav")||p.EndsWith(".mp3")).OrderBy(p=>p).ToArray();
-                foreach(var path in paths){var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));if(!importer.forceToMono){importer.forceToMono=true;importer.SaveAndReimport();}}
+                foreach(var path in paths){var importer=(AudioImporter)AssetImporter.GetAtPath(path.Replace('\\','/'));if(cue!=SoundCue.Step&&!importer.forceToMono){importer.forceToMono=true;importer.SaveAndReimport();}}
                 var clips=paths.Select(p=>AssetDatabase.LoadAssetAtPath<AudioClip>(p.Replace('\\','/'))).ToArray();
                 if(clips.Length==0||clips.Any(c=>c==null))throw new Exception("Missing presentation cue "+cue);
                 entries.RemoveAll(e=>e.cue==cue);entries.Add(new SoundEntry{cue=cue,variants=clips,gain=cue==SoundCue.Step?.18f:.35f,cooldown=cue==SoundCue.Step?.15f:.06f,pitchVariation=cue==SoundCue.Spawn?.2f:cue==SoundCue.Step?.1f:0,priority=cue==SoundCue.Step?0:2});
@@ -37,18 +83,18 @@ namespace Scrapshift.Editor
         {
             var bank=AssetDatabase.LoadAssetAtPath<SoundBank>(Root+"/Definitions/GameSounds.asset");
             var entries=bank.entries.ToList();
-            void Replace(SoundCue cue,string[] names,float gain,float pitchVariation=0)
+            void Replace(SoundCue cue,string[] names,float gain,float pitchVariation=0,float cooldown=0)
             {
                 var clips=names.Select(name=>AssetDatabase.LoadAssetAtPath<AudioClip>(Root+"/Reference/"+name)).ToArray();
                 if(clips.Any(c=>c==null))throw new Exception("Missing original feedback audio for "+cue);
                 entries.RemoveAll(e=>e.cue==cue);
-                entries.Add(new SoundEntry{cue=cue,variants=clips,gain=gain,cooldown=0,pitchVariation=pitchVariation,priority=2});
+                entries.Add(new SoundEntry{cue=cue,variants=clips,gain=gain,cooldown=cooldown,pitchVariation=pitchVariation,priority=2});
             }
             Replace(SoundCue.CratePickup,new[]{"CratePickup_01.wav"},1);
-            Replace(SoundCue.WaveClear,new[]{"WaveClear_01.wav"},1);
+            Replace(SoundCue.WaveClear,new[]{"WaveClear_01.wav"},1,cooldown:.1f);
             Replace(SoundCue.WaveLetter,new[]{"WaveLetter_01.wav","WaveLetter_02.wav"},Mathf.Pow(10,-10f/20f),.2f);
-            Replace(SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")+".mp3").ToArray(),Mathf.Pow(10,-5f/20f));
-            Replace(SoundCue.Win,new[]{"Win_01.mp3"},Mathf.Pow(10,-5f/20f));
+            Replace(SoundCue.Lose,Enumerable.Range(1,9).Select(i=>"Lose_"+i.ToString("00")+".mp3").ToArray(),Mathf.Pow(10,-5f/20f),cooldown:.1f);
+            Replace(SoundCue.Win,new[]{"Win_01.mp3"},Mathf.Pow(10,-5f/20f),cooldown:.1f);
             bank.entries=entries.ToArray();EditorUtility.SetDirty(bank);AssetDatabase.SaveAssets();
         }
         static void EnsureWaveTickAudio()

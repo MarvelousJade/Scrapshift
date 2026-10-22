@@ -1,0 +1,28 @@
+{
+  "scope": "Assistant computer-use observation, staged isolated support showcase. Actual OS focus moved to another isolated Scrapshift window; no synthetic Gamepad used in this check. Samples do not include OS-focus events or background simulation counters.",
+  "steps": [
+    {
+      "action": "Mouse Resume before deliberate switch",
+      "sample": "resumed-before-switch.json",
+      "observed": "Playing"
+    },
+    {
+      "action": "Activate second Scrapshift title window, then return to showcase",
+      "sample": "returned-after-switch.json",
+      "observed": "Paused; no automatic resume"
+    },
+    {
+      "action": "Mouse Resume",
+      "sample": "resumed-after-switch.json",
+      "observed": "Playing"
+    },
+    {
+      "action": "Keyboard Escape followed by refreshed screenshot",
+      "sample": "escape-paused.json",
+      "observed": "Paused; visible pause menu"
+    }
+  ],
+  "godotUi": "Attempted activation ended with helper app-approval timeout; no editor changes. Switched between two authorized Scrapshift windows instead.",
+  "physicalController": "Not operated or verified",
+  "remaining": "All minimize/background/platform/window-manager cases, hardware input and human balance remain separate."
+}

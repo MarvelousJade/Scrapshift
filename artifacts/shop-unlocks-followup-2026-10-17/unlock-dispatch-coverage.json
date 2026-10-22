@@ -1,0 +1,1349 @@
+{
+  "scope": "All115 imported definitions traced to source/runtime dispatch and exercised via115 model/producer+persistence scenarios plus1inventory guard. These are EditMode integration tests, not115native gameplay/contact scenarios.",
+  "counts": {
+    "difficulty-system": 6,
+    "danger-win": 7,
+    "lifetime-threshold": 10,
+    "specific": 32,
+    "plain-stat": 10,
+    "character-win": 50
+  },
+  "total": 115,
+  "missingMatchingDispatchers": [],
+  "definitions": [
+    {
+      "id": "unlock_difficulty_1",
+      "category": "difficulty-system",
+      "runtimeRoute": "Progression.Finish -> unlock_difficulty_1..5; ten distinct danger5 characters -> unlock_difficulty_6",
+      "reachableDispatcherFound": true,
+      "reward": "difficulty_1",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_unlock_difficulty_1",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "unlock_difficulty_2",
+      "category": "difficulty-system",
+      "runtimeRoute": "Progression.Finish -> unlock_difficulty_1..5; ten distinct danger5 characters -> unlock_difficulty_6",
+      "reachableDispatcherFound": true,
+      "reward": "difficulty_2",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_unlock_difficulty_2",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "unlock_difficulty_3",
+      "category": "difficulty-system",
+      "runtimeRoute": "Progression.Finish -> unlock_difficulty_1..5; ten distinct danger5 characters -> unlock_difficulty_6",
+      "reachableDispatcherFound": true,
+      "reward": "difficulty_3",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_unlock_difficulty_3",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "unlock_difficulty_4",
+      "category": "difficulty-system",
+      "runtimeRoute": "Progression.Finish -> unlock_difficulty_1..5; ten distinct danger5 characters -> unlock_difficulty_6",
+      "reachableDispatcherFound": true,
+      "reward": "difficulty_4",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_unlock_difficulty_4",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "unlock_difficulty_5",
+      "category": "difficulty-system",
+      "runtimeRoute": "Progression.Finish -> unlock_difficulty_1..5; ten distinct danger5 characters -> unlock_difficulty_6",
+      "reachableDispatcherFound": true,
+      "reward": "difficulty_5",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_unlock_difficulty_5",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "unlock_difficulty_6",
+      "category": "difficulty-system",
+      "runtimeRoute": "Progression.Finish -> unlock_difficulty_1..5; ten distinct danger5 characters -> unlock_difficulty_6",
+      "reachableDispatcherFound": true,
+      "reward": "difficulty_6",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_unlock_difficulty_6",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_0",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_one_arm",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_0",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_1",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_bull",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_1",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_2",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_soldier",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_2",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_3",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_masochist",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_3",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_4",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_knight",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_4",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_5",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_demon",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_5",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_difficulty_6",
+      "category": "danger-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_difficulty_ + difficulty)",
+      "reachableDispatcherFound": true,
+      "reward": "character_wounded",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_difficulty_6",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_survivor_1",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_old",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockFollowupParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_survivor_1",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_survivor_2",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_mutant",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_survivor_2",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_survivor_3",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_loud",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_survivor_3",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_survivor_4",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_wildling",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_survivor_4",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_survivor_5",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_gladiator",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_survivor_5",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_gatherer_1",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_lucky",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_gatherer_1",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_gatherer_2",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_generalist",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\SupportParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_gatherer_2",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_gatherer_3",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_multitasker",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_gatherer_3",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_gatherer_4",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_pacifist",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_gatherer_4",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_gatherer_5",
+      "category": "lifetime-threshold",
+      "runtimeRoute": "RecordEnemy/Collect -> Progression.Count -> RecordWaveEnd -> CheckCountedChallenges loop",
+      "reachableDispatcherFound": true,
+      "reward": "character_saver",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_gatherer_5",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_rookie",
+      "category": "specific",
+      "runtimeRoute": "TickProgression -> Progression.Finish(false,died=true)",
+      "reachableDispatcherFound": true,
+      "reward": "character_chunky",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\EconomyNativeParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\SurvivalLifecycleParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_rookie",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_dying",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_sick",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_dying",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_agriculture",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_farmer",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_agriculture",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_hallucination",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_ghost",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_hallucination",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_fast",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_speedy",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_fast",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_hoarder",
+      "category": "specific",
+      "runtimeRoute": "Collect/GrantItem/purchase + TickProgression -> Progression.CheckStats(Scrap)",
+      "reachableDispatcherFound": true,
+      "reward": "character_entrepreneur",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_hoarder",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_turrets",
+      "category": "specific",
+      "runtimeRoute": "DeployStructure -> Progress.Check(turrets count)",
+      "reachableDispatcherFound": true,
+      "reward": "character_engineer",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_turrets",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_lumberjack",
+      "category": "specific",
+      "runtimeRoute": "RecordEnemy(tree) -> lifetime trees -> RecordWaveEnd -> CheckCountedChallenges",
+      "reachableDispatcherFound": true,
+      "reward": "character_explorer",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_lumberjack",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_medicine",
+      "category": "specific",
+      "runtimeRoute": "Heal -> runHealing; BeginItemWave resets",
+      "reachableDispatcherFound": true,
+      "reward": "character_doctor",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_medicine",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_perfect_vision",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_hunter",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_perfect_vision",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_fireworks",
+      "category": "specific",
+      "runtimeRoute": "ReferenceExplosion/ImplantExplosion kills -> RecordExplosionKills",
+      "reachableDispatcherFound": true,
+      "reward": "character_artificer",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_fireworks",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_recycling",
+      "category": "specific",
+      "runtimeRoute": "Recycle -> runRecycles -> Progress.Check",
+      "reachableDispatcherFound": true,
+      "reward": "character_arms_dealer",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_recycling",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_slow",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_streamer",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_slow",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_hungry",
+      "category": "specific",
+      "runtimeRoute": "CollectConsumable -> runConsumables -> Progress.Check",
+      "reachableDispatcherFound": true,
+      "reward": "character_glutton",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_hungry",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_advanced_technology",
+      "category": "specific",
+      "runtimeRoute": "CheckStats: ranged_damage + three registered structure effects",
+      "reachableDispatcherFound": true,
+      "reward": "character_cyborg",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\EconomyRemainingParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_advanced_technology",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_giant_slayer",
+      "category": "specific",
+      "runtimeRoute": "Damage death -> RecordEnemy(elite/boss,activeAge) -> below/equal threshold",
+      "reachableDispatcherFound": true,
+      "reward": "character_jack",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_giant_slayer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_robust",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_lich",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_robust",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_baited",
+      "category": "specific",
+      "runtimeRoute": "ApplyItem/purchase -> CheckStats owned bait count",
+      "reachableDispatcherFound": true,
+      "reward": "character_fisherman",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_baited",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_forest",
+      "category": "specific",
+      "runtimeRoute": "BeginWaveSweep -> RecordWaveEnd living trees",
+      "reachableDispatcherFound": true,
+      "reward": "character_cryptid",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_forest",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_bourgeoisie",
+      "category": "specific",
+      "runtimeRoute": "CheckStats tier-IV weapons count",
+      "reachableDispatcherFound": true,
+      "reward": "character_king",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_bourgeoisie",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_student",
+      "category": "specific",
+      "runtimeRoute": "CheckStats Level",
+      "reachableDispatcherFound": true,
+      "reward": "character_apprentice",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_student",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_reckless",
+      "category": "specific",
+      "runtimeRoute": "BeginWaveSweep -> RecordWaveEnd exactly Health=1",
+      "reachableDispatcherFound": true,
+      "reward": "character_golem",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_reckless",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_scavenger",
+      "category": "specific",
+      "runtimeRoute": "CheckStats distinct tier-I item IDs",
+      "reachableDispatcherFound": true,
+      "reward": "character_renegade",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_scavenger",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_fast_learner",
+      "category": "specific",
+      "runtimeRoute": "CheckStats Level with Wave<6",
+      "reachableDispatcherFound": true,
+      "reward": "character_baby",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_fast_learner",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_experimentation",
+      "category": "specific",
+      "runtimeRoute": "CheckStats six distinct weapon IDs",
+      "reachableDispatcherFound": true,
+      "reward": "character_vagabond",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_experimentation",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_magic_and_machinery",
+      "category": "specific",
+      "runtimeRoute": "CheckStats: elemental_damage + three registered structure effects",
+      "reachableDispatcherFound": true,
+      "reward": "character_technomage",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\EconomyRemainingParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_magic_and_machinery",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_blood_drinker",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "character_vampire",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_blood_drinker",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_well_rounded",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_potato",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\SupportParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_well_rounded",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_brawler",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_power_fist",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\EconomyNativeParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockFollowupParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_brawler",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_crazy",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_hunting_trophy",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_crazy",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_ranger",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_night_goggles",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_ranger",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_mage",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_thunder_sword",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_mage",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_chunky",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_potato_thrower",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_chunky",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_old",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_snail",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_old",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_lucky",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_lucky_charm",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_lucky",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_mutant",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_octopus",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_mutant",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_generalist",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_big_arms",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_generalist",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_loud",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_rip_and_tear",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_loud",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_multitasker",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_chopper",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_multitasker",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_wildling",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_hatchet",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_wildling",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_pacifist",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_panda",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_pacifist",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_gladiator",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_spider",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_gladiator",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_saver",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_padding",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_saver",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_sick",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_whetstone",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_sick",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_farmer",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_wheat",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_farmer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_ghost",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_ritual",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_ghost",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_speedy",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_fin",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_speedy",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_entrepreneur",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_bowler_hat",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_entrepreneur",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_engineer",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_robot_arm",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_engineer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_explorer",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_compass",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_explorer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_doctor",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_medikit",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_doctor",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_hunter",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_sniper_gun",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_hunter",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_artificer",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_explosive_shells",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_artificer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_arms_dealer",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_anvil",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_arms_dealer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_streamer",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_community_support",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_streamer",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_cyborg",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_improved_tools",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_cyborg",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_glutton",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_spicy_sauce",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_glutton",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_jack",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_giant_belt",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_jack",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_lich",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_tentacle",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_lich",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_apprentice",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_fighting_stick",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_apprentice",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_cryptid",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_claw",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_cryptid",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_fisherman",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_lure",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_fisherman",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_golem",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_stone_skin",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_golem",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_king",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_excalibur",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_king",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_renegade",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_fairy",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_renegade",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_one_arm",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_focus",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_one_arm",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_bull",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_gnome",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_bull",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_soldier",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_nuclear_launcher",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_soldier",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_masochist",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_spiky_shield",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_masochist",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_knight",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_plasma_sledgehammer",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_knight",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_demon",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_obliterator",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_demon",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_baby",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_celery_tea",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_baby",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_vagabond",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_jelly",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_vagabond",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_technomage",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_particle_accelerator",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_technomage",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_vampire",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_decomposing_flesh",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_vampire",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_evil_hat",
+      "category": "specific",
+      "runtimeRoute": "RecordEnemy(evil_mob) -> lifetime counter -> RecordWaveEnd",
+      "reachableDispatcherFound": true,
+      "reward": "item_evil_hat",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_evil_hat",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_hourglass",
+      "category": "specific",
+      "runtimeRoute": "ReturnToSelection -> CanUnlockHourglassOnReturn (<5 while underlying Playing)",
+      "reachableDispatcherFound": true,
+      "reward": "item_hourglass",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_hourglass",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_candy_bag",
+      "category": "specific",
+      "runtimeRoute": "NextWave records active locks -> Progression.Finish(won,!UsedLocks)",
+      "reachableDispatcherFound": true,
+      "reward": "item_candy_bag",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_candy_bag",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_fruit_basket",
+      "category": "specific",
+      "runtimeRoute": "CollectConsumable(noncleanup full-health Fruit) -> Count(full_health_fruit) -> Complete",
+      "reachableDispatcherFound": true,
+      "reward": "item_fruit_basket",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\EconomyNativeParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockFollowupParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_fruit_basket",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_will_o_the_wisp",
+      "category": "specific",
+      "runtimeRoute": "Burn tick lethal damage -> RecordBurnKill; per-wave reset",
+      "reachableDispatcherFound": true,
+      "reward": "item_will_o_the_wisp",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\FullBaseTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_will_o_the_wisp",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_ghost_outfit",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "item_ghost_outfit",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_ghost_outfit",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_vorpal_sword",
+      "category": "plain-stat",
+      "runtimeRoute": "TickProgression/acquisition -> Progression.CheckStats -> threshold loop (raw Stat)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_vorpal_sword",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_vorpal_sword",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_bonk_dog",
+      "category": "specific",
+      "runtimeRoute": "CheckStats six raw Melee-scaling weapons",
+      "reachableDispatcherFound": true,
+      "reward": "item_bonk_dog",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_bonk_dog",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_catling_gun",
+      "category": "specific",
+      "runtimeRoute": "CheckStats six raw Ranged-scaling weapons",
+      "reachableDispatcherFound": true,
+      "reward": "item_catling_gun",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_catling_gun",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_bot_o_mine",
+      "category": "specific",
+      "runtimeRoute": "CheckStats six raw Engineering-scaling weapons",
+      "reachableDispatcherFound": true,
+      "reward": "item_bot_o_mine",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\ShopUnlockNextParityTests.cs",
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_bot_o_mine",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_blazemander",
+      "category": "specific",
+      "runtimeRoute": "CheckStats six raw Elemental-scaling weapons",
+      "reachableDispatcherFound": true,
+      "reward": "item_blazemander",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_blazemander",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_doc_moth",
+      "category": "specific",
+      "runtimeRoute": "CheckStats regeneration>=10 and lifesteal>=10",
+      "reachableDispatcherFound": true,
+      "reward": "item_doc_moth",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_doc_moth",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_lootworm",
+      "category": "specific",
+      "runtimeRoute": "BeginWaveSweep -> RecordWaveEnd ground material value",
+      "reachableDispatcherFound": true,
+      "reward": "item_lootworm",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_lootworm",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_jellyshield",
+      "category": "specific",
+      "runtimeRoute": "Hostile/healing projectile contact -> RecordProjectileHit; per-wave reset",
+      "reachableDispatcherFound": true,
+      "reward": "item_jellyshield",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\FullBaseTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_jellyshield",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_beast_master",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "item_scapegoat",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_beast_master",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_paws_n_claws",
+      "category": "specific",
+      "runtimeRoute": "CheckStats/RecordWaveEnd -> CheckCompanionUnlock five prerequisite challenges",
+      "reachableDispatcherFound": true,
+      "reward": "character_beast_master",
+      "testFilesWithLiteralId": [
+        "Assets\\Scrapshift\\Tests\\Editor\\UnlockParityTests.cs"
+      ],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_paws_n_claws",
+      "producerTestResult": "Passed"
+    },
+    {
+      "id": "chal_wounded",
+      "category": "character-win",
+      "runtimeRoute": "TickProgression -> Progression.Finish -> Complete(chal_ + imported character ID)",
+      "reachableDispatcherFound": true,
+      "reward": "weapon_rail_gun",
+      "testFilesWithLiteralId": [],
+      "coverageLimit": "Production model/dispatch producer case passed; persistence and next-run eligibility passed. Native contact/attack paths remain separately bounded evidence.",
+      "stagedProducerTest": "UnlockDispatch_chal_wounded",
+      "producerTestResult": "Passed"
+    }
+  ],
+  "preFollowupIdsWithLiteralTestMentions": 23,
+  "newProducerScenarios": 115,
+  "newInventoryGuards": 1,
+  "newTestsExecuted": true,
+  "testResult": {
+    "path": "artifacts/gameplay-priority-followup-2026-10-17/unlocks-attempt-1.xml",
+    "total": 116,
+    "passed": 116,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 6.064891
+  }
+}

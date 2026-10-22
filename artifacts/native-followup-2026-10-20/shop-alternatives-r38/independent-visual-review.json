@@ -1,0 +1,76 @@
+{
+  "reviewDate": "2026-10-21 America/Toronto",
+  "reviewer": "Independent Codex delegated actual view_image inspection",
+  "declaredBuild": "Builds/GameplayParity20261020R38/Scrapshift.exe",
+  "statusObserved": "Passed",
+  "reportSha256": "ca597828bf2e19a7181f04e802b0922e4fc2a0ad03841df6bf46a9ecdb169f4b",
+  "processExitCode": 0,
+  "processSha256": "9c0d9b6f78cd6599c03b50ef2165f75cd0a2ae68d68a489424b24915ca27eb6b",
+  "runnerSpecSha256": "bee146c8bc368f67d078a439f3c6b2a25d66b6b0f49ae82d8b8ff8c210b2a093",
+  "checks": 22,
+  "allChecksPassed": true,
+  "capturesInspected": 8,
+  "captures": [
+    {
+      "path": "coupon-free-paid-lock.png",
+      "sha256": "d21785435a51c668625f1a774b894df22180cd24a04476f2e321fd9d44c5ea80",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Shop wave1 shows1991 materials, reroll2, four priced offers, white first Lock focus and Weapons1/6. Numeric amounts and currency icons are readable."
+    },
+    {
+      "path": "weapon-combine-actions.png",
+      "sha256": "c24a2bb33901595e3e6fff7d2910aa776e022337d0884556f57a95c82cde2339",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Dimmed shop behind Stick popup; white Combine focus, Recycle(+6), Cancel and adjacent Primitive set tooltip. Two sticks remain visible behind popup."
+    },
+    {
+      "path": "recycled-inventory.png",
+      "sha256": "126216b281f0e5b798642ef461e43f41d4bb6397d9c53eec2e6f35d847207e1f",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Shop shows2004 materials and Weapons0/6, popup gone, white Reroll2 focus; original offers and Items inventory remain visible."
+    },
+    {
+      "path": "crate-disposal-actions.png",
+      "sha256": "695344033667bb6125ff35ae328688597a458d888b24bdd9bd320cb4f643f4f0",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Item found screen shows Berserker Gland with readable stat icons/effects, white Take focus and Recycle(+7); no bottom inventory strip. Materials2008, HP15/15."
+    },
+    {
+      "path": "arms-dealer-shop.png",
+      "sha256": "2ad45ea88b9a9500f3b7a42fd1d1da2b75ed1d1503544cf8314facf651f6ae58",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Shop wave1 shows2030 materials, reroll0, Weapons0/6 and two weapon offers priced1 (Fist/Shredder), with two item offers."
+    },
+    {
+      "path": "fisherman-guaranteed-bait.png",
+      "sha256": "9bbf3af19b22199fab8e4812d1aa4541eda92f047677224de9c43d540f6bf6cd",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Shop shows2020 materials, one knife, Threat Beacon Implant card highlighted blue with price1 and text spawning7\u20138 charging enemies next wave; reroll1."
+    },
+    {
+      "path": "hourglass-repeated-wave.png",
+      "sha256": "5a9e1443e1975b734632172fa28d3a4118a7dfd17beb76bbc88d086b2bbacc84",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Combat HUD shows WAVE1, timer20, HP1/15 and2008 materials; player and knife visible. Wave repetition/item replacement is established by runtime report, not this still alone."
+    },
+    {
+      "path": "candy-extra-elite.png",
+      "sha256": "a5ab1a4e3f507e14d8747369b2f0a4b395387a99bd7eedca618a60eadac069dc",
+      "reviewed": true,
+      "inspectedWith": "view_image",
+      "observation": "Combat HUD shows WAVE2, timer24 andHP15/15 with red birth crosses below player. This still shows birth indicators, not a fully rendered elite; actual elite producer assertion comes from runtime report."
+    }
+  ],
+  "limits": [
+    "Virtual A/Y through actual Update/OnGUI with staged focus/inventory/economy/deadlines and IgnoreFocus; no OS input or physical controller acceptance.",
+    "Candy successful branch forced100%; snapshot shows birth crosses while runtime report establishes actual elite production.",
+    "No new audio listening or human full-run evidence."
+  ]
+}

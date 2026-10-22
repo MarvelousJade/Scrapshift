@@ -1,0 +1,29 @@
+{
+    "passed": false,
+    "error": "System.InvalidOperationException: First A enters character selection.\r\n  at Scrapshift.ArenaGame+NativeControllerCheck+<Run>d__7.MoveNext () [0x00fe2] in <899423baf3b44694833474b28cda49fe>:0 \r\n  at Scrapshift.ArenaGame+NativeControllerCheck+<Start>d__6.MoveNext () [0x00042] in <899423baf3b44694833474b28cda49fe>:0 ",
+    "evidence": "Virtual Gamepad events through actual player Update/OnGUI; not a physical-controller test. Intermission checks explicitly accelerate wave timers and grant fixture materials/XP/crates through production rules; not a full run.",
+    "snapshots": [
+        {
+            "stage": "title",
+            "phase": "Title",
+            "character": "well_rounded",
+            "weapon": "knife",
+            "page": 0,
+            "focus": 0,
+            "weapons": 0,
+            "materials": 0,
+            "menuCues": 0,
+            "steps": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "aim": {
+                "x": 1.0,
+                "y": 0.0
+            },
+            "manualAim": false,
+            "secondaryStats": false
+        }
+    ]
+}

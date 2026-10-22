@@ -8,9 +8,15 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         bool petReview;string petReviewPath;float petReviewNext;int petReviewStage;
-        [Serializable] sealed class PetReviewReport {public string status,scope="Deterministic built-player companion behavior checks with stationary targets; not a human survival run.";public List<string> passed=new List<string>();public List<string> failed=new List<string>();}
+        [Serializable] sealed class PetReviewReport {public string status,scope="Deterministic built-player companion behavior checks with stationary targets; not a human survival run.";public List<string> passed=new List<string>();public List<string> failed=new List<string>();public List<string> diagnostics=new List<string>();}
         PetReviewReport petReport;
         static readonly string[] petCases={"bonk_dog","catling_gun","bot_o_mine","blazemander","ratzilla","doc_moth","lootworm","scapegoat","jellyshield"};
+        static readonly string[] supportSequenceKinds={"turret","tyler","pet_flame","flame"};
+        static readonly int[] supportSequenceTicks={0,1,2,3,6};
+        Shot[] supportSequenceShots;
+        int supportSequenceTick;
+        bool supportSequencePassed;
+        readonly HashSet<Texture2D> supportSequenceFrames=new HashSet<Texture2D>();
         void BeginPetReview(string path){petReview=true;petReviewPath=Path.GetFullPath(path);Directory.CreateDirectory(petReviewPath);petReport=new PetReviewReport();petReviewNext=Time.realtimeSinceStartup+.5f;sound.SetMuted(true);}
         void PetReviewTick()
         {
@@ -49,6 +55,17 @@ namespace Scrapshift
                 player.SetActive(false);SyncEquipment();gameCamera.orthographicSize=1.2f;gameCamera.transform.position=new Vector3(cat.pos.x,cat.pos.y,-20);
                 ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,"cat-boost-"+pose+".png"));petReviewNext=Time.realtimeSinceStartup+.8f;return;
             }
+            if(petReviewStage>=petCases.Length+28&&petReviewStage<petCases.Length+34)
+            {
+                string kind=new[]{"turret","flame","rocket","laser","healing","tyler"}[petReviewStage++-petCases.Length-28];
+                CaptureLiveStructureProjectile(kind);petReviewNext=Time.realtimeSinceStartup+.8f;return;
+            }
+            if(petReviewStage>=petCases.Length+34&&petReviewStage<petCases.Length+54)
+            {
+                int sequence=petReviewStage++-petCases.Length-34;
+                CaptureSupportProjectileSequence(supportSequenceKinds[sequence/5],sequence%5);
+                petReviewNext=Time.realtimeSinceStartup+.25f;return;
+            }
             if(petReviewStage>=petCases.Length){CheckMultipleSupports();petReport.status=petReport.failed.Count==0?"Passed":"Failed";File.WriteAllText(Path.Combine(petReviewPath,"pets.json"),JsonUtility.ToJson(petReport,true));petReview=false;Application.Quit(petReport.failed.Count==0?0:1);return;}
             string id=petCases[petReviewStage++];bool okay=false;Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.zero;
             var item=catalog.data.items.Single(i=>i.id==id);Rules.Items.Add(item);foreach(var effect in item.effects)Rules.GainWeaponStat(effect.key.Replace("stat_",""),effect.value);ResetPets();
@@ -58,14 +75,19 @@ namespace Scrapshift
                 if(id=="doc_moth"){TickPets(.01f);okay=Rules.HealingDrones==1&&Rules.RegenerationHealMultiplier==2;}
                 else if(id=="lootworm")
                 {
-                    Drop(Vector2.zero,1,false);int money=Rules.Scrap;TickPets(.01f);bool collected=Rules.Scrap>money&&pickups.Count==0;
+                    Drop(Vector2.zero,1,false);
+                    // Source items become monitorable after pushback. Advance
+                    // that preparation without letting the player take the drop.
+                    var material=pickups.Last();
+                    for(int step=0;step<120&&!material.motion.CanCollect;step++)material.motion.Step(1f/60,Vector2.zero,-1,true);
+                    int money=Rules.Scrap;TickPets(.01f);bool collected=Rules.Scrap>money&&pickups.Count==0;
                     Spawn(catalog.Enemy("tree"),Vector2.zero);var tree=enemies.Last();Destroy(tree.marker);tree.marker=null;tree.obj.SetActive(true);float hp=tree.hp;pet.clock=0;TickPets(.01f);okay=collected&&tree.hp<hp;
                 }
                 else if(id=="scapegoat")
                 {
-                    for(int i=0;i<40;i++){pet.invulnerable=0;DamageScapegoat(pet);}bool dead=pet.dead;TickPets(2.1f);okay=dead&&!pet.dead&&pet.health==pet.spec.health;
+                    for(int i=0;i<40;i++){pet.invulnerable=0;DamageScapegoat(pet);}bool dead=pet.dead;TickPets(2.1f);TickPets(.01f);okay=dead&&!pet.dead&&pet.health==pet.spec.health;
                 }
-                else if(id=="jellyshield"){TickPets(.01f);okay=PetBlocksProjectile(pet.pos-Vector2.right,pet.pos+Vector2.right);}
+                else if(id=="jellyshield"){TickPets(.01f);okay=!PetBlocksProjectile(pet.pos-Vector2.right,pet.pos+Vector2.right)&&PetBlocksProjectile(pet.pos-Vector2.right,pet.pos);}
                 else
                 {
                     var target=FeelEnemy(Vector2.right*.4f);pet.clock=0;pet.secondaryClock=0;
@@ -73,7 +95,7 @@ namespace Scrapshift
                     okay=target.hp<1000;
                     if(id=="bot_o_mine")okay&=mines.Count>0;
                     if(id=="blazemander")okay&=target.burnTicks>0;
-                    if(id=="bonk_dog"){float hp=target.hp;pet.pos=target.pos;PetExplosion(pet);okay&=target.hp<hp;}
+                    if(id=="bonk_dog"){float hp=target.hp;pet.pos=target.pos;PetExplosion(pet);TickReferenceExplosions(.01f);okay&=target.hp<hp;}
                 }
             }
             catch(Exception e){Debug.LogException(e);}
@@ -87,11 +109,29 @@ namespace Scrapshift
         {
             Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.one*8;
             var item=catalog.data.items.Single(i=>i.id==kind);for(int i=0;i<count;i++)Rules.Items.Add(item);ResetPets();
-            foreach(var p in pets){p.pos=Vector2.zero;p.obj.transform.position=p.pos;p.destination=Vector2.right*3;}
+            foreach(var p in pets){p.pos=Vector2.zero;p.obj.transform.position=p.pos;p.destination=Vector2.right*3;p.obj.GetComponent<GroundShadow>().Place(p.pos,p.baseScale);}
             return pets[0];
         }
         void PetCheck(string name,bool okay)
         {(okay?petReport.passed:petReport.failed).Add(name);Debug.Log("Support behavior fixture "+name+": "+okay);}
+        void CaptureLiveStructureProjectile(string kind)
+        {
+            // These captures exercise the production emitter and projectile
+            // update. The earlier aim samples only demonstrate static artwork.
+            Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();playerPos=Vector2.right*2;
+            player.SetActive(false);SyncEquipment();
+            var spec=catalog.data.items.SelectMany(i=>i.conditionalEffects).Where(e=>e.structure!=null).Select(e=>e.structure).First(s=>s.kind==kind);
+            DeployStructure(spec,StructureImage(kind),Vector2.zero);var turret=starterTurrets.Last();
+            var target=kind=="healing"?null:FeelEnemy(Vector2.right*2);
+            turret.firing=true;turret.clock=0;TickStructure(turret,.001f);
+            var emitted=shots.Where(s=>s.structureSpec==spec).ToArray();
+            PetCheck("production projectile profile: "+kind,emitted.Length>0&&emitted.All(s=>s.projectileRef!=null&&s.obj.GetComponent<SpriteRenderer>().sprite!=null));
+            if(target!=null){target.hp=0;target.obj.SetActive(false);enemies.Remove(target);}
+            playerPos=Vector2.one*8;UpdateWeapons(.04f);
+            PetCheck("production projectile survives initial frame: "+kind,emitted.Length>0&&emitted.All(s=>shots.Contains(s)));
+            gameCamera.orthographicSize=2;gameCamera.transform.position=new Vector3(.7f,0,-20);
+            ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,kind+"-live-projectile.png"));
+        }
         void CheckMultipleSupports()
         {
             try
@@ -104,13 +144,23 @@ namespace Scrapshift
                 // Place targets around the actual back mounts, not the old belly-mounted origin.
                 Vector2 midpoint=(p.rig.GunMount(0)+p.rig.GunMount(1))*.5f;
                 a=FeelEnemy(midpoint+Vector2.left);b=FeelEnemy(midpoint+Vector2.right);TickPets(.01f);int fired=shots.Count;
-                TickPets(p.spec.stats.interval/4+.001f);PetCheck("cat alternate independent guns",fired>0&&shots.Count>fired&&shots.Any(x=>x.velocity.x<0)&&shots.Any(x=>x.velocity.x>0));
+                float firstLeft=p.clock,firstRight=p.rightClock;bool leftHandoff=firstLeft>firstRight&&firstRight>0;
+                string firstShots=string.Join(";",shots.Select(s=>"origin="+s.pos+",velocity="+s.velocity));
+                TickPets(firstRight+.001f);
+                petReport.diagnostics.Add("Cat timer handoff: targets="+a.pos+","+b.pos+"; first clocks="+firstLeft+","+firstRight+"; second clocks="+p.clock+","+p.rightClock+"; shots="+fired+"->"+shots.Count+"; first="+firstShots+"; all="+string.Join(";",shots.Select(s=>"origin="+s.pos+",velocity="+s.velocity)));
+                // Each source gun independently chooses its nearest target;
+                // both may validly aim at the same enemy. Verify its alternating
+                // cooldown handoff instead of requiring opposite directions.
+                PetCheck("cat alternate independent guns",fired>0&&shots.Count>fired&&leftHandoff&&p.rightClock>p.clock&&p.clock>0);
                 p=SetUpPetCase("doc_moth",2);playerPos=Vector2.zero;TickPets(.001f);PetCheck("overlapping moth zones stack regeneration",Rules.HealingDrones==2&&Rules.RegenerationHealMultiplier==3);
                 p=SetUpPetCase("lootworm");Drop(Vector2.left,1,false);Spawn(catalog.Enemy("tree"),Vector2.right*3);var tree=enemies.Last();Destroy(tree.marker);tree.marker=null;
                 TickPets(.02f);PetCheck("lootworm prioritizes tree over material",p.pos.x>0);
                 p=SetUpPetCase("scapegoat");p.maxHealth=80;p.health=0;p.dead=true;playerPos=Vector2.zero;
                 TickPets(p.spec.revive/2);float partial=p.health;playerPos=Vector2.one*8;TickPets(.5f);
-                bool held=p.health==partial&&p.dead;playerPos=p.pos;TickPets(p.spec.revive/2+.01f);PetCheck("decoy revival retains progress and grown max HP",held&&!p.dead&&p.health==80);
+                bool held=p.health==partial&&p.dead;playerPos=p.pos;TickPets(p.spec.revive/2+.01f);
+                float filled=p.health;bool pendingRise=p.dead;TickPets(1f/60);
+                petReport.diagnostics.Add("Decoy revival: partial="+partial+"; held="+held+"; filled="+filled+"; pending next-tick rise="+pendingRise+"; final health="+p.health+"; max="+p.maxHealth+"; dead="+p.dead);
+                PetCheck("decoy revival retains progress and grown max HP",held&&filled==80&&pendingRise&&!p.dead&&p.health==80);
                 Begin();ClearCombat();Rules.Items.Clear();Rules.Inventory.Clear();starterReport=new StarterReport();CheckDeployableImplants();
                 foreach(var id in new[]{"turret","turret_flame","turret_healing","turret_laser","turret_rocket","tyler","garden","landmines","wandering_bot","pocket_factory"})PetCheck("structure: "+id,starterReport.deployableImplantsPassed.Contains(id));
                 Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();Rules.Items.Add(catalog.data.items.Single(i=>i.id=="landmines"));ResetStructures();
@@ -118,6 +168,63 @@ namespace Scrapshift
                 playerPos=mine.pos+Vector2.right*2;UpdateStarterEffects(.01f);PetCheck("player presses mine; leaving detonates",pressed&&!mines.Contains(mine));
             }
             catch(Exception e){petReport.failed.Add("extended fixture exception: "+e.Message);Debug.LogException(e);}
+        }
+        void CaptureSupportProjectileSequence(string kind,int sample)
+        {
+            try
+            {
+                if(sample==0)
+                {
+                    supportSequenceTick=0;supportSequencePassed=true;supportSequenceFrames.Clear();supportSequenceShots=Array.Empty<Shot>();
+                    if(kind=="pet_flame")
+                    {
+                        var pet=SetUpPetCase("blazemander");pet.clock=999;pet.secondaryClock=0;
+                        FeelEnemy(pet.pos+Vector2.right*.4f);TickPets(.001f);
+                        // This production branch emits six shots immediately,
+                        // then sets rangedPulse; its reset is on the next tick.
+                        if(shots.Count==0||!pet.rangedPulse)throw new InvalidOperationException("Blazemander ranged pulse did not emit its initial production shots.");
+                    }
+                    else
+                    {
+                        Begin();ClearCombat();Rules.Inventory.Clear();Rules.Items.Clear();SyncEquipment();playerPos=Vector2.one*8;
+                        var spec=catalog.data.items.SelectMany(i=>i.conditionalEffects).Where(e=>e.structure!=null).Select(e=>e.structure).First(s=>s.kind==kind);
+                        DeployStructure(spec,StructureImage(kind),Vector2.zero);
+                        FeelEnemy(Vector2.right*2);
+                        var turret=starterTurrets.Last();turret.clock=0;
+                        // Advance the actual windup state, including Tyler's
+                        // eligible target, without aging newly emitted shots.
+                        int preparation=0;
+                        while(shots.Count==0&&preparation++<120)TickStructure(turret,1f/60);
+                        petReport.diagnostics.Add("Projectile sequence emitter "+kind+": preparation ticks="+preparation+", shots="+shots.Count+", firing="+turret.firing+", clock="+turret.clock);
+                        if(shots.Count==0)throw new InvalidOperationException("Structure windup did not emit production shots: "+kind);
+                    }
+                    supportSequenceShots=shots.ToArray();supportSequencePassed=supportSequenceShots.Length>0;
+                    foreach(var enemy in enemies.ToArray()){enemy.obj.SetActive(false);enemies.Remove(enemy);}
+                    player.SetActive(false);playerPos=Vector2.one*8;
+                    gameCamera.orthographicSize=3.2f;gameCamera.transform.position=new Vector3(.3f,0,-20);
+                }
+                while(supportSequenceTick<supportSequenceTicks[sample]){UpdateWeapons(1f/60);supportSequenceTick++;}
+                string expected=SupportSequenceResource(kind,sample),file="sequence-"+kind+"-"+supportSequenceTicks[sample].ToString("00")+".png";
+                var texture=Resources.Load<Texture2D>(expected);
+                foreach(var shot in supportSequenceShots)
+                {
+                    var renderer=shot.obj.GetComponent<SpriteRenderer>();
+                    supportSequencePassed&=shots.Contains(shot)&&!float.IsNaN(shot.pos.x)&&!float.IsNaN(shot.pos.y)&&!float.IsInfinity(shot.pos.x)&&!float.IsInfinity(shot.pos.y)&&renderer.sprite.texture==texture;
+                    supportSequenceFrames.Add(renderer.sprite.texture);
+                    petReport.diagnostics.Add("Projectile sequence "+kind+": capture="+file+", tick="+supportSequenceTick+", age="+shot.age+", position="+shot.pos+", texture="+renderer.sprite.texture.name+", expected="+expected);
+                }
+                ScreenCapture.CaptureScreenshot(Path.Combine(petReviewPath,file));
+                if(sample==4)PetCheck("production projectile sequence: "+kind,supportSequencePassed&&supportSequenceFrames.Count>1);
+            }
+            catch(Exception e){petReport.failed.Add("projectile sequence "+kind+": "+e.Message);Debug.LogException(e);}
+        }
+        static string SupportSequenceResource(string kind,int sample)
+        {
+            if(kind=="turret")return "WeaponReference/"+(sample>=2?"frame0001_a728a067":"frame0000_f29290ae");
+            if(kind=="tyler")return "WeaponReference/bullet_lightning_"+(sample==2?"0001_4e388e95":sample==3?"0002_87ab5590":"0000_60d674df");
+            int frame=sample==4?2:sample==3?1:0;
+            if(kind=="flame")return "SupportProjectiles/flame"+frame;
+            return "WeaponReference/bullet_flame_"+(frame==2?"0002_c4473734":frame==1?"0001_eb86f4c2":"0000_180a0687");
         }
     }
 }

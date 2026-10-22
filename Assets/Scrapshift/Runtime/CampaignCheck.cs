@@ -8,38 +8,120 @@ namespace Scrapshift
 {
     public sealed partial class ArenaGame
     {
-        bool campaignCheck, campaignFinished;
+        bool campaignCheck, campaignFinished,campaignRealtime,campaignPreflight,campaignSurvival,campaignHeadless;
+        bool campaignSafeLoadout;
+        int campaignSkippedSelfDamageOffers,campaignRecycledSelfDamageCrates;
+        // Controlled comparison policy only. The original debug invulnerability
+        // disables contact hurtboxes, not Blood Donation's periodic self-damage.
+        static bool CampaignSafeLoadoutEnabled(bool requested,bool survival)=>requested&&!survival;
+        static bool CampaignHasPeriodicSelfDamage(string key,float value)=>value>0&&(key=="lose_hp_per_second"||key=="stat_lose_hp_per_second");
+        static bool CampaignAllowsItem(ItemEntry item,bool safeLoadout)=>!safeLoadout||item==null||
+            !(item.effects??Array.Empty<StatEffect>()).Any(e=>e!=null&&CampaignHasPeriodicSelfDamage(e.key,e.value))&&
+            !(item.conditionalEffects??Array.Empty<ConditionalEffect>()).Any(e=>e!=null&&CampaignHasPeriodicSelfDamage(e.key,e.value));
+        static bool CampaignAllowsWeapon(Equipment weapon,bool safeLoadout)=>!safeLoadout||weapon==null||
+            !(weapon.traits??Array.Empty<WeaponTrait>()).Any(e=>e!=null&&CampaignHasPeriodicSelfDamage(e.key,e.value));
+        float campaignObservedDamage,campaignObservedHealing,campaignLowestHealth;
+        double campaignAccumulator;
+        int PickupPhysicsRate=>campaignCheck&&!campaignRealtime?240:60;
         string campaignPath;
         float campaignStart, campaignFinishAt;
         DateTime campaignStartedUtc;
-        int campaignCompleted, campaignPurchases;
+        int campaignCompleted, campaignPurchases,campaignShops,campaignUpgrades,campaignCrates,campaignStartedWave;
+        float campaignWaveStart;
+        readonly List<CampaignEvent> campaignEvents=new List<CampaignEvent>();
         readonly HashSet<string> campaignEnemyIds = new HashSet<string>();
         readonly List<WaveCheck> campaignWaves = new List<WaveCheck>();
         readonly HashSet<int> campaignCaptures = new HashSet<int>();
 
-        [Serializable] sealed class WaveCheck { public int wave,kills,shots; public float simulatedSeconds; }
+        [Serializable] sealed class CampaignStack {public string id;public int count;}
+        [Serializable] sealed class CampaignWeapon {public string id;public int tier;}
+        [Serializable] sealed class CampaignOffer {public string id;public int price;public bool locked;}
+        [Serializable] sealed class CampaignEvent
+        {
+            public string @event,phase,detail;
+            public int settlementWave,materialsBeforeSettlement,materialsAfterSettlement;
+            public float harvestingAtSettlement;
+            public int wave,materials,materialsBefore,level,itemCount,price,kills,bankedMaterials,materialObjects,groundMaterialValue;
+            public long enemyKills,materialPickups;
+            public float wallSeconds,simulatedSeconds,waveSimulatedSeconds,health,maxHealth,remaining,harvesting,luck;
+            public CampaignWeapon[] weapons;
+            public CampaignStack[] itemStacks;
+            public CampaignOffer[] offers;
+        }
+        [Serializable] sealed class CampaignTrace {public CampaignEvent[] events;}
+        [Serializable] sealed class WaveCheck { public int wave,kills,shots,materials,level,itemCount,bankedMaterials,materialObjects,groundMaterialValue; public long enemyKills,materialPickups;public float simulatedSeconds,waveSimulatedSeconds,harvesting,luck; }
         [Serializable] sealed class CampaignReport
         {
-            public string status,scope,phase;
-            public bool capturesVerified;
-            public int completedWaves,purchases,peakEnemies,charges,rangedAttacks,bossPhaseChanges;
-            public float wallSeconds;
+            public string status,scope,phase,damageImmunityScope;
+            public bool capturesVerified,realtime,preflight,headless;
+            public bool survival,invulnerabilityInjected;
+            public bool safeLoadoutPolicy;
+            public int skippedSelfDamageOffers,recycledSelfDamageCrates;
+            public string[] excludedPeriodicSelfDamageIds;
+            public float observedNetDamage,observedNetHealing,lowestObservedHealth,deathCleanupAge;
+            public int pickupPhysicsRate;
+            public int completedWaves,purchases,shops,upgrades,crates,peakEnemies,charges,rangedAttacks,bossPhaseChanges,finalMaterials,finalLevel,finalItemCount,finalBankedMaterials,finalKills;
+            public long finalEnemyKills,finalMaterialPickups;
+            public float wallSeconds,finalHarvesting,finalLuck;
             public string[] enemyIds;
             public WaveCheck[] waves;
+            public CampaignWeapon[] finalWeapons;
+            public CampaignStack[] finalItemStacks;
         }
 
         void BeginCampaignCheck(string folder)
         {
             campaignCheck=true;campaignPath=folder;Directory.CreateDirectory(folder);
+            campaignRealtime=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-realtime")>=0;
+            campaignPreflight=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-preflight")>=0;
+            campaignSurvival=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-survival")>=0;
+            campaignSafeLoadout=CampaignSafeLoadoutEnabled(Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-safe-loadout")>=0,campaignSurvival);
+            campaignSkippedSelfDamageOffers=campaignRecycledSelfDamageCrates=0;
+            campaignHeadless=Array.IndexOf(Environment.GetCommandLineArgs(),"--campaign-headless")>=0;
+            if(campaignHeadless&&!Application.isBatchMode)throw new InvalidOperationException("Headless campaign requires -batchmode.");
+            campaignAccumulator=0;
+            if(campaignRealtime){Application.targetFrameRate=60;QualitySettings.vSyncCount=0;}
+            Application.runInBackground=true;
             campaignStart=Time.realtimeSinceStartup;campaignStartedUtc=DateTime.UtcNow;
             UnityEngine.Random.InitState(771);
             placementRandom=new System.Random(771);
-            Begin();
-            // Explicit fixture loadout and invulnerability. Normal runs never enter this branch.
+            // Start a fresh in-memory progression profile, as the isolated reference fixture does.
+            var definitions=JsonUtility.FromJson<UnlockCatalog>(Resources.Load<TextAsset>("base-unlocks").text);
+            progress=new Progression(definitions.challenges);
+            progress.ChallengeCompleted+=achievementToasts.Enqueue;
+            progress.ChallengeCompleted+=_=>ApplyUnlocks();
+            Rules.Progress=null;Rules.Difficulty=0;recordedFinish=false;progressClock=0;
+            RefreshUnlockPoolForNewRun();Begin();Rules.Progress=progress;PlanEncounters(1);
+            campaignLowestHealth=Rules.Health;campaignObservedDamage=campaignObservedHealing=0;
+            // Explicit fixture loadout. Only the legacy comparison injects
+            // invulnerability; the survival mode retains ordinary damage.
             Rules.Inventory.Clear();
             foreach(string id in new[]{"pistol","smg","double_barrel_shotgun","laser_gun","knife","spear"})
-                Rules.Inventory.Add(catalog.Weapon(id,2));
+            {Rules.Inventory.Add(catalog.Weapon(id,2));progress.Count("weapon:"+id);}
             SyncEquipment();sound.SetMuted(true);
+            // Source Main invokes land on wave one while its timer and physics
+            // remain active. Exercise that same ordinary arrival path here.
+            arrivalAge=0;arrivalImpact=false;
+            if(parachutePrefab!=null)parachute=Instantiate(parachutePrefab);
+            PoseArrival(0);
+            CampaignSnapshot("boot","Neutral base stats, no character effects, Danger 0; six tier-II weapons; fresh in-memory progression; seed 771. Random sequences are engine-specific. ContactInvulnerability="+!campaignSurvival);
+            if(campaignSafeLoadout)CampaignSnapshot("safe_loadout_policy","Opt-in controlled purchase/reward policy: skip positive lose_hp_per_second offers and recycle such crate rewards. Contact immunity only; no HP override or damage-rule change. Historical original campaign did not use this policy.");
+        }
+
+        CampaignWeapon[] CampaignWeapons()=>Rules.Inventory.Select(w=>new CampaignWeapon{id=w.id,tier=w.tier}).ToArray();
+        CampaignStack[] CampaignItems()=>Rules.Items.GroupBy(i=>i.id).OrderBy(g=>g.Key).Select(g=>new CampaignStack{id=g.Key,count=g.Count()}).ToArray();
+        void CampaignSnapshot(string kind,string detail=null,int price=0,int beforeMaterials=-1)
+        {
+            campaignEvents.Add(new CampaignEvent { @event=kind,phase=Rules.Phase.ToString(),detail=detail,wave=Rules.Wave,
+                materials=Rules.Scrap,materialsBefore=beforeMaterials<0?Rules.Scrap:beforeMaterials,level=Rules.Level,itemCount=Rules.Items.Count,price=price,
+                settlementWave=Rules.WaveSettlementReceiptWave,materialsBeforeSettlement=Rules.MaterialsBeforeSettlement,
+                materialsAfterSettlement=Rules.MaterialsAfterSettlement,harvestingAtSettlement=Rules.HarvestingAtSettlement,
+                kills=Rules.Kills,enemyKills=progress.Total("kills"),materialPickups=progress.Total("materials"),bankedMaterials=Rules.Banked,
+                materialObjects=pickups.Count(p=>!p.fruit),groundMaterialValue=pickups.Where(p=>!p.fruit).Sum(p=>p.value),harvesting=Rules.Stat("harvesting"),luck=Rules.Stat("luck"),
+                wallSeconds=Time.realtimeSinceStartup-campaignStart,simulatedSeconds=elapsed,waveSimulatedSeconds=elapsed-campaignWaveStart,
+                health=Rules.Health,maxHealth=Rules.MaxHealth,remaining=Rules.Remaining,weapons=CampaignWeapons(),itemStacks=CampaignItems(),
+                offers=Rules.Phase==RunPhase.Shop?Rules.Shop.Where(o=>o!=null).Select(o=>new CampaignOffer{id=o.item?.id??o.weapon?.id,price=Rules.Price(o),locked=o.locked}).ToArray():Array.Empty<CampaignOffer>() });
+            File.WriteAllText(Path.Combine(campaignPath,"campaign-trace.json"),JsonUtility.ToJson(new CampaignTrace{events=campaignEvents.ToArray()},true));
         }
 
         void CampaignCheckTick()
@@ -48,43 +130,90 @@ namespace Scrapshift
             if(campaignFinished)
             {
                 if(Time.realtimeSinceStartup-campaignFinishAt<1)return;
-                bool captures=CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","wave-05","wave-10","wave-15","wave-20","end");
-                bool passed=captures&&Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0;
-                var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),capturesVerified=captures,
-                    scope="Accelerated Windows integration fixture: eight 50ms simulation steps per rendered frame, seeded spawn placement, scripted movement, supplied six tier-2 weapons, invulnerability and mute. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Not normal-run balance, performance benchmarking or a human playthrough.",
-                    completedWaves=campaignCompleted,purchases=campaignPurchases,peakEnemies=peakEnemies,
+                bool survivalLoss=campaignSurvival&&Rules.Phase==RunPhase.Lost&&campaignObservedDamage>0&&!Rules.DeathCleanupPending;
+                bool captures=campaignHeadless||(survivalLoss?CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"end"):campaignPreflight?CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","end"):CaptureVerification.Fresh(campaignPath,campaignStartedUtc,"wave-01","wave-05","wave-10","wave-15","wave-20","end"));
+                bool passed=captures&&(survivalLoss||(campaignPreflight?Rules.Phase==RunPhase.Shop&&campaignCompleted==1:Rules.Phase==RunPhase.Won&&campaignCompleted==20&&bossMutations>0&&campaignPurchases>0));
+                var report=new CampaignReport { status=passed?"Passed":"Failed",phase=Rules.Phase.ToString(),capturesVerified=!campaignHeadless&&captures,headless=campaignHeadless,realtime=campaignRealtime,preflight=campaignPreflight,pickupPhysicsRate=PickupPhysicsRate,
+                    survival=campaignSurvival,invulnerabilityInjected=!campaignSurvival,
+                    damageImmunityScope=campaignSurvival?"none":"contact_hurtbox_only",
+                    safeLoadoutPolicy=campaignSafeLoadout,skippedSelfDamageOffers=campaignSkippedSelfDamageOffers,recycledSelfDamageCrates=campaignRecycledSelfDamageCrates,
+                    excludedPeriodicSelfDamageIds=campaignSafeLoadout?catalog.data.items.Where(i=>!CampaignAllowsItem(i,true)).Select(i=>i.id).Concat(catalog.data.equipment.Where(w=>!CampaignAllowsWeapon(w,true)).Select(w=>w.id)).Distinct().OrderBy(id=>id).ToArray():Array.Empty<string>(),
+                    observedNetDamage=campaignObservedDamage,observedNetHealing=campaignObservedHealing,lowestObservedHealth=campaignLowestHealth,deathCleanupAge=Rules.DeathCleanupAge,
+                    scope=(campaignHeadless?"HEADLESS state/trace verification only; no UI, screenshots, hardware or visual verification. ":"")+(campaignPreflight?"ONE-WAVE PREFLIGHT ONLY; no full campaign. ":"")+(campaignRealtime?"Normal timing Windows integration fixture: reference 60Hz accumulator, 60fps render target and normal 60Hz pickup physics. ":"Accelerated Windows integration fixture: twenty-four 60Hz combat steps per rendered frame and 240Hz pickup physics. ")+"Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, "+(campaignSurvival?"ordinary damage enabled (no injected invulnerability); a natural loss is an accepted survival observation and is NOT twenty completed waves. ":"contact hurtbox immunity (periodic self-damage remains active), ")+(campaignSafeLoadout?"Opt-in safe-loadout purchase/reward policy excludes positive periodic self-damage carriers; historical original offers were not filtered. ":"")+"mute and fresh in-memory progression. Health metrics sum net changes per simulation step, not all independent damage/healing events. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
+                    completedWaves=campaignCompleted,purchases=campaignPurchases,shops=campaignShops,upgrades=campaignUpgrades,crates=campaignCrates,peakEnemies=peakEnemies,
                     charges=chargeReleases,rangedAttacks=rangedReleases,bossPhaseChanges=bossMutations,wallSeconds=Time.realtimeSinceStartup-campaignStart,
-                    enemyIds=campaignEnemyIds.OrderBy(x=>x).ToArray(),waves=campaignWaves.ToArray() };
+                    enemyIds=campaignEnemyIds.OrderBy(x=>x).ToArray(),waves=campaignWaves.ToArray(),finalMaterials=Rules.Scrap,finalLevel=Rules.Level,finalItemCount=Rules.Items.Count,
+                    finalBankedMaterials=Rules.Banked,finalKills=Rules.Kills,finalEnemyKills=progress.Total("kills"),finalMaterialPickups=progress.Total("materials"),finalHarvesting=Rules.Stat("harvesting"),finalLuck=Rules.Stat("luck"),
+                    finalWeapons=CampaignWeapons(),finalItemStacks=CampaignItems() };
                 File.WriteAllText(Path.Combine(campaignPath,"campaign-check.json"),JsonUtility.ToJson(report,true));
                 Application.Quit(passed?0:1);enabled=false;return;
             }
-            for(int step=0;step<8;step++)
+            if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending)return;
+            int steps=campaignRealtime?ReferencePhysicsClock.Consume(ref campaignAccumulator,Time.deltaTime):24;
+            const float delta=ReferencePhysicsClock.Step;
+            for(int step=0;step<steps;step++)
             {
                 if(Rules.Phase==RunPhase.Playing)
                 {
-                    invulnerable=.3f;UpdateFeedback(.05f);Simulate(.05f);
+                    if(campaignStartedWave!=Rules.Wave){campaignStartedWave=Rules.Wave;campaignWaveStart=elapsed;CampaignSnapshot("wave_start");}
+                    bool sweepingBefore=waveSweeping;
+                    if(!campaignSurvival)invulnerable=.3f;
+                    float healthBefore=Rules.Health;
+                    UpdateFeedback(delta);Simulate(delta);AdvanceArrivalPresentation(delta);
+                    campaignObservedDamage+=Mathf.Max(0,healthBefore-Rules.Health);
+                    campaignObservedHealing+=Mathf.Max(0,Rules.Health-healthBefore);
+                    campaignLowestHealth=Mathf.Min(campaignLowestHealth,Rules.Health);
+                    if(!sweepingBefore&&waveSweeping)CampaignSnapshot("wave_timer_end");
                     if(Rules.Remaining<RunRules.Durations[Rules.Wave-1]*.5f&&
                         (Rules.Wave==1||Rules.Wave==5||Rules.Wave==10||Rules.Wave==15||Rules.Wave==20)&&campaignCaptures.Add(Rules.Wave))
-                    { ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,$"wave-{Rules.Wave:00}.png"));break; }
+                    { CampaignCapture($"wave-{Rules.Wave:00}.png");break; }
                 }
-                if(Rules.Phase!=RunPhase.Playing&&campaignCompleted<Rules.Wave)
+                if(Rules.Phase!=RunPhase.Playing&&Rules.Phase!=RunPhase.Lost&&Rules.Phase!=RunPhase.Paused&&Rules.Phase!=RunPhase.Title&&campaignCompleted<Rules.Wave)
                 {
                     campaignCompleted=Rules.Wave;
-                    campaignWaves.Add(new WaveCheck { wave=Rules.Wave,kills=Rules.Kills,shots=shotsFired,simulatedSeconds=elapsed });
+                    campaignWaves.Add(new WaveCheck { wave=Rules.Wave,kills=Rules.Kills,shots=shotsFired,simulatedSeconds=elapsed,waveSimulatedSeconds=elapsed-campaignWaveStart,materials=Rules.Scrap,level=Rules.Level,itemCount=Rules.Items.Count,
+                        enemyKills=progress.Total("kills"),materialPickups=progress.Total("materials"),bankedMaterials=Rules.Banked,materialObjects=pickups.Count(p=>!p.fruit),groundMaterialValue=pickups.Where(p=>!p.fruit).Sum(p=>p.value),harvesting=Rules.Stat("harvesting"),luck=Rules.Stat("luck") });
+                    CampaignSnapshot("wave_completed");
                 }
-                while(Rules.Phase==RunPhase.Loot)Rules.ResolveCrate(true);
-                while(Rules.Phase==RunPhase.Upgrade)Rules.Choose(0);
+                while(Rules.Phase==RunPhase.Loot)
+                {
+                    string id=Rules.CrateItem?.id;bool take=CampaignAllowsItem(Rules.CrateItem,campaignSafeLoadout);
+                    int beforeMaterials=Rules.Scrap,value=take?0:Rules.CrateRecycleValue;
+                    if(!Rules.ResolveCrate(take))break;campaignCrates++;
+                    if(take)CampaignSnapshot("crate_take",id);
+                    else{campaignRecycledSelfDamageCrates++;CampaignSnapshot("crate_recycle_policy",id,value,beforeMaterials);}
+                }
+                while(Rules.Phase==RunPhase.Upgrade)
+                {var choice=Rules.Offers[0];Rules.Choose(0);campaignUpgrades++;CampaignSnapshot("upgrade",$"{choice.Stat}:{choice.Amount}:tier{choice.Tier}");}
                 if(Rules.Phase==RunPhase.Shop)
                 {
-                    for(int i=0;i<4;i++)if(Rules.CanBuy(i)&&Rules.Buy(i))campaignPurchases++;
+                    campaignShops++;CampaignSnapshot("shop_enter");
+                    for(int i=0;i<4;i++)if(Rules.CanBuy(i))
+                    {
+                        var offer=Rules.Shop[i];string id=offer.item?.id??offer.weapon?.id;int price=Rules.Price(offer),beforeMaterials=Rules.Scrap;
+                        if(!CampaignAllowsItem(offer.item,campaignSafeLoadout)||!CampaignAllowsWeapon(offer.weapon,campaignSafeLoadout))
+                        {campaignSkippedSelfDamageOffers++;CampaignSnapshot("purchase_skipped_policy",id,price,beforeMaterials);continue;}
+                        if(Rules.Buy(i)){campaignPurchases++;CampaignSnapshot("purchase",id,price,beforeMaterials);}
+                    }
+                    CampaignSnapshot("shop_exit");
+                    if(campaignPreflight)
+                    {
+                        campaignFinished=true;campaignFinishAt=Time.realtimeSinceStartup;
+                        CampaignSnapshot("preflight_finished","One wave and shop only; full campaign was not run.");
+                        CampaignCapture("end.png");break;
+                    }
                     AdvanceWave();
                 }
                 if(Rules.Phase==RunPhase.Won||Rules.Phase==RunPhase.Lost)
                 {
+                    if(Rules.Phase==RunPhase.Lost&&Rules.DeathCleanupPending)break;
                     campaignFinished=true;campaignFinishAt=Time.realtimeSinceStartup;
-                    ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,"end.png"));break;
+                    CampaignSnapshot("finished",Rules.Phase==RunPhase.Won?"won":"lost");
+                    CampaignCapture("end.png");break;
                 }
             }
         }
+        void CampaignCapture(string name)
+        {if(!campaignHeadless)ScreenCapture.CaptureScreenshot(Path.Combine(campaignPath,name));}
     }
 }

@@ -1,0 +1,981 @@
+{
+    "status": "Passed",
+    "error": "",
+    "headless": true,
+    "capturesVerified": false,
+    "isolated": true,
+    "startInstalledHook": true,
+    "zeroHpSkippedRolls": true,
+    "deadTargetNotRedirected": true,
+    "removedTargetNotRedirected": true,
+    "vulnerabilityBaseline": false,
+    "vulnerabilityMatchesSource": true,
+    "vulnerabilityExpectedHealth": 89.0,
+    "vulnerabilityObservedHealth": 89.0,
+    "expiredVulnerabilityMatchesSource": true,
+    "expiredVulnerabilityExpectedHealth": 88.0,
+    "expiredVulnerabilityObservedHealth": 88.0,
+    "scope": "Built-player target reservation and dispatch guards. Actual ArenaGame.Start installs the hook; real imported Lich and private Arena candidate controls. Vulnerability check additionally spawns a real enemy and applies actual Wand Damage between Lich healing and queued dispatch. Enemy HP, callback order and timer contexts are staged; no ordinary Update/physics, deferred original death scheduling, UI, controller or human evidence.",
+    "rows": [
+        {
+            "mode": "zero_hp_only",
+            "seed": 0,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 1,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 2,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 3,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 4,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 5,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 6,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 7,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 8,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 9,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 10,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 11,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 12,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 13,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 14,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 15,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 16,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 17,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 18,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 19,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 20,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 21,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 22,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 23,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 24,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 25,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 26,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 27,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 28,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 29,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 30,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 31,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 32,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 33,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 34,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 35,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 36,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 37,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 38,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 39,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 40,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 41,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 42,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 43,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 44,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 45,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 46,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 47,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 48,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 49,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 50,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 51,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 52,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 53,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 54,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 55,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 56,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 57,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 58,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 59,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 60,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 61,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 62,
+            "captured": false
+        },
+        {
+            "mode": "zero_hp_only",
+            "seed": 63,
+            "captured": false
+        },
+        {
+            "mode": "alive_only",
+            "seed": 0,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 1,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 2,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 3,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 4,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 5,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 6,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 7,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 8,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 9,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 10,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 11,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 12,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 13,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 14,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 15,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 16,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 17,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 18,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 19,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 20,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 21,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 22,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 23,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 24,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 25,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 26,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 27,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 28,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 29,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 30,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 31,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 32,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 33,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 34,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 35,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 36,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 37,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 38,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 39,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 40,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 41,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 42,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 43,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 44,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 45,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 46,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 47,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 48,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 49,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 50,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 51,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 52,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 53,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 54,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 55,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 56,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 57,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 58,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 59,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 60,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 61,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 62,
+            "captured": true
+        },
+        {
+            "mode": "alive_only",
+            "seed": 63,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 0,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 1,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 2,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 3,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 4,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 5,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 6,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 7,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 8,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 9,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 10,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 11,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 12,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 13,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 14,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 15,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 16,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 17,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 18,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 19,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 20,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 21,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 22,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 23,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 24,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 25,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 26,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 27,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 28,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 29,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 30,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 31,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 32,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 33,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 34,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 35,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 36,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 37,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 38,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 39,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 40,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 41,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 42,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 43,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 44,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 45,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 46,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 47,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 48,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 49,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 50,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 51,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 52,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 53,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 54,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 55,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 56,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 57,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 58,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 59,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 60,
+            "captured": false
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 61,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 62,
+            "captured": true
+        },
+        {
+            "mode": "pending_and_alive",
+            "seed": 63,
+            "captured": false
+        }
+    ]
+}

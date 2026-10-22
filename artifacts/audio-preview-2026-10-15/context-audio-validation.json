@@ -1,0 +1,43 @@
+{
+  "baked_pairs": 272,
+  "weapon_types": 62,
+  "audio_tests": [
+    {
+      "name": "Scrapshift.Tests.AudioIntegrationTests.AssetScopeNavigatesAnActualSoundReferenceToItsBank",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.AudioIntegrationTests.EveryCueHasPlayableAudioAndRepeatedCuesHaveVariants",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.AudioIntegrationTests.PlayerDamageUsesFourBodyImpactsWithoutZombieVoice",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.AudioIntegrationTests.VariantSelectionNeverImmediatelyRepeats",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.CyberSoundTests.AllBankCuesAndHealingLoopHaveIntendedCoverage",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.CyberSoundTests.EveryWeaponAndImpactOverrideHasItsOwnBakedEdit",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.CyberSoundTests.PickupBypassesStylingAndRequestedReferenceVariantsAreRetained",
+      "result": "Passed"
+    },
+    {
+      "name": "Scrapshift.Tests.CyberSoundTests.SharedRecordingsResolveByWeaponContext",
+      "result": "Passed"
+    }
+  ],
+  "evidence": "context-audio-full-suite.xml",
+  "build": "Builds/ContextAudioV1",
+  "build_errors": 0,
+  "build_warnings": 0,
+  "waveform_check": "272 finite, non-silent WAVs within peak ceiling; approved previews correlate >0.999999; root files match isolated build files"
+}

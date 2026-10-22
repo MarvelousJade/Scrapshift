@@ -51,7 +51,9 @@ namespace Scrapshift
                 feelNear=FeelEnemy(playerPos+Vector2.right);feelFar=FeelEnemy(playerPos+Vector2.right*2);
                 shots.Add(new Shot { obj=SpriteObject("Piercing test",catalog.muzzleFrames[2],playerPos),pos=playerPos,
                     velocity=Vector2.right*30,life=1,damage=100,crit=-100,knockback=1.5f,pierce=1 });
-                UpdateWeapons(.1f);
+                // Contacts are sampled at the reference physics cadence. A
+                // single .1-second jump skips both targets at this speed.
+                for(int tick=0;tick<6;tick++)UpdateWeapons(1f/60);
                 feelReport.nearDamage=1000-feelNear.hp;feelReport.farDamage=1000-feelFar.hp;
                 feelReport.nearestFirst=feelReport.nearDamage==100&&feelReport.farDamage==50;
                 var block=new MaterialPropertyBlock();feelNear.renderers[0].GetPropertyBlock(block);

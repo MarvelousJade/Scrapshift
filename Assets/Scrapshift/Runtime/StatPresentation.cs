@@ -45,7 +45,7 @@ namespace Scrapshift
             Box(new Rect(area.x+105,itemY+22,Mathf.Max(0,area.width-400),2),new Color(.4f,.49f,.41f,.35f));
             DrawItemSorting(new Rect(area.xMax-290,itemY,290,38));
             var viewport=new Rect(area.x,itemY+58,area.width,Mathf.Max(88,area.yMax-itemY-58));var items=SortedItems();
-            summaryScroll=GUI.BeginScrollView(viewport,summaryScroll,new Rect(0,0,area.width-18,Mathf.Max(viewport.height-1,Mathf.Ceil((items.Length+1)/(float)columns)*88)));
+            summaryScroll=BeginNavigationScrollView(viewport,summaryScroll,new Rect(0,0,area.width-18,Mathf.Max(viewport.height-1,Mathf.Ceil((items.Length+1)/(float)columns)*88)));
             for(int i=0;i<items.Length;i++)
             {
                 var item=items[i];var r=new Rect(i%columns*88,i/columns*88,80,80);string id="item:"+Rules.Items.IndexOf(item);
@@ -57,7 +57,7 @@ namespace Scrapshift
             Frame(cr,InventoryHover("character",cr,viewport,summaryScroll)?paper:InventoryTileColor(1),2);DrawHeroFace(new Rect(cr.x+13,cr.y+8,54,64));
             string description=CharacterEffectDescription(character);
             Inspect("character",cr,character.title,description,playerAnimation.idleFrames[0],"Character",1,viewport,new Rect(viewport.position+cr.position-summaryScroll,cr.size));
-            GUI.EndScrollView();
+            EndNavigationScrollView();
             if(Event.current.type==EventType.Repaint&&!inventoryHoveredThisFrame)inventoryHover=null;
         }
         void DrawInventoryTooltip()

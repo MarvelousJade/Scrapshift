@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.7100671">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1193" result="Passed" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.710067" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2391" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1163" result="Passed" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.685394" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37644" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2392" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1163" result="Passed" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.671112" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2393" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1163" result="Passed" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.660470" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1592" name="ItemsRemainingParityTests" fullname="Scrapshift.Tests.ItemsRemainingParityTests" classname="Scrapshift.Tests.ItemsRemainingParityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.492923" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1593" name="RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" fullname="Scrapshift.Tests.ItemsRemainingParityTests.RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" methodname="RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" classname="Scrapshift.Tests.ItemsRemainingParityTests" runstate="Runnable" seed="419054520" result="Passed" start-time="2026-10-20 11:50:36Z" end-time="2026-10-20 11:50:37Z" duration="0.474878" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1673" name="OptimizedCleanupParityTests" fullname="Scrapshift.Tests.OptimizedCleanupParityTests" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.008826" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1677" name="CleanupBanksSourceCommonBoostOnly" fullname="Scrapshift.Tests.OptimizedCleanupParityTests.CleanupBanksSourceCommonBoostOnly" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.004913" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1674" name="CleanupBanksSourceCommonBoostOnly(False,100,5)" fullname="Scrapshift.Tests.OptimizedCleanupParityTests.CleanupBanksSourceCommonBoostOnly(False,100,5)" methodname="CleanupBanksSourceCommonBoostOnly" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" seed="621650064" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.002519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1675" name="CleanupBanksSourceCommonBoostOnly(True,0,5)" fullname="Scrapshift.Tests.OptimizedCleanupParityTests.CleanupBanksSourceCommonBoostOnly(True,0,5)" methodname="CleanupBanksSourceCommonBoostOnly" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" seed="1039859051" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.000298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1676" name="CleanupBanksSourceCommonBoostOnly(True,100,10)" fullname="Scrapshift.Tests.OptimizedCleanupParityTests.CleanupBanksSourceCommonBoostOnly(True,100,10)" methodname="CleanupBanksSourceCommonBoostOnly" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" seed="174932776" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1679" name="OptimizedBankingHandlesEachPileIndependentlyAndNeverBanksNegativeValue" fullname="Scrapshift.Tests.OptimizedCleanupParityTests.OptimizedBankingHandlesEachPileIndependentlyAndNeverBanksNegativeValue" methodname="OptimizedBankingHandlesEachPileIndependentlyAndNeverBanksNegativeValue" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" seed="1198057301" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.000288" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1678" name="OptimizedDeathBankingPreservesDeadStateAndDoesNotHarvest" fullname="Scrapshift.Tests.OptimizedCleanupParityTests.OptimizedDeathBankingPreservesDeadStateAndDoesNotHarvest" methodname="OptimizedDeathBankingPreservesDeadStateAndDoesNotHarvest" classname="Scrapshift.Tests.OptimizedCleanupParityTests" runstate="Runnable" seed="1887533317" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.000837" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1695" name="PetLinkParityTests" fullname="Scrapshift.Tests.PetLinkParityTests" classname="Scrapshift.Tests.PetLinkParityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.003755" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1696" name="BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" fullname="Scrapshift.Tests.PetLinkParityTests.BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" methodname="BeastMasterSpeedCountsRegisteredPetShieldAndPetStructureEffects" classname="Scrapshift.Tests.PetLinkParityTests" runstate="Runnable" seed="1556275729" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.002829" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2056" name="SurvivalCharacterBoundaryTests" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.022115" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2059" name="ImportedGolemCannotHealFromOrdinaryTortureOrCleanupHealing" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests.ImportedGolemCannotHealFromOrdinaryTortureOrCleanupHealing" methodname="ImportedGolemCannotHealFromOrdinaryTortureOrCleanupHealing" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" seed="1499155702" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.012178" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2057" name="ImportedSickPeriodicDamageCanCauseNormalDelayedDefeat" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests.ImportedSickPeriodicDamageCanCauseNormalDelayedDefeat" methodname="ImportedSickPeriodicDamageCanCauseNormalDelayedDefeat" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" seed="740825713" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.004121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2058" name="ImportedWoundedDiesFromOneUnblockedHitAndRetryRestoresItsAbilities" fullname="Scrapshift.Tests.SurvivalCharacterBoundaryTests.ImportedWoundedDiesFromOneUnblockedHitAndRetryRestoresItsAbilities" methodname="ImportedWoundedDiesFromOneUnblockedHitAndRetryRestoresItsAbilities" classname="Scrapshift.Tests.SurvivalCharacterBoundaryTests" runstate="Runnable" seed="908172707" result="Passed" start-time="2026-10-20 11:50:37Z" end-time="2026-10-20 11:50:37Z" duration="0.004021" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/parity-remaining-2026-10-20/pet-link-tests-attempt-2.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

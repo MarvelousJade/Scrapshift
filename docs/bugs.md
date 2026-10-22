@@ -1,3 +1,267 @@
+## October21 - physical Xbox core retest passed
+
+The user operated the Xbox controller and confirmed all requested core controls worked. R40 logs268 samples/136 Playing, physical navigation/movement/aim and Menu pause/resume, with zero combat menu-focus cue requests. No virtual device or code fix was needed. Ranged projectile firing and other controller shortcuts were not independently exercised. [Hardware evidence](controller-hardware-2026-10-21.md).
+
+## October21 - controlled campaign policy and completed receipts
+
+The unfiltered R36 comparison legitimately lost to two Blood Donation copies: both engines' debug invulnerability blocks contacts, not periodic HP costs. Preserve that Failed objective rather than altering damage rules. Added an opt-in acquisition policy, disabled in survival, to skip positive periodic self-damage offers and recycle such crate rewards. Both fresh matched-policy runs completed20 waves/19 shops/exit0.12 focused and1286 integrated checks passed. Completed Python runner receipts omit the older native status field; summary/comparison now accept that schema while requiring actual exitCode. First metadata-only comparator failure is preserved; final18/18 passed. [Policy and limits](campaign-safe-loadout-policy-2026-10-20.md).
+
+## October20 - scaled scroll navigation bounds disagreed with pixels
+
+Native R37 traces and screenshots established a47/31-pixel offset at80% canvas scale between registered scroll controls and their rendered bounds. Actual D-pad/A confirmation still worked in that sampled case; no lost activation was claimed. Capture the parent origin/axes before BeginScrollView and retain that pass's returned scroll snapshot in a nested context stack. R38 bothscale probes Passed: maximum independent-coordinate error0.0153 pixels at80%, zero at100%; immediate/settled activation stayed correct. All8 captures were inspected. Updated shop/navigation fixtures and suite1274/1274 Passed. [Evidence and limits](scroll-navigation-native-followup-2026-10-20.md).
+
+## October20 - clipped companion selection headings
+
+Native R36 screenshots showed all four two-line companion titles clipped by a fixed47-pixel text rectangle. Increased the title area to68 pixels with a measured font-size fallback, preserving the icon/detail layout. All13 R37 native captures were inspected; titles are complete, start/retry flows still pass. A large support shadow in an earlier capture was an unticked fixture artifact, corrected separately from gameplay. [Native review](starting-support-native-followup-2026-10-20.md).
+
+## October20 - mine placement discarded the selected source point
+
+Initial StructureEffect deployment selected a source position, then SpawnMine ignored it and sampled the entire map again. Timed global mines also missed the source 160-pixel edge inset. Preserve the initial point through SpawnMineAt; use SourceRandomPosition with1.6 world-unit inset for timed ungrouped mines, retaining the explicit pet-local path. Three focused cases passed across64 seeds and direct/local controls. R36 native four-choice start/retry and support registration/placement checks passed; separate screenshot review found clipped selection titles and an unticked fixture-only shadow, tracked in the follow-up. [Evidence](starting-support-native-followup-2026-10-20.md).
+
+## October20 - Player override preempts pending enemy rewards
+
+R35 incorrectly inferred Player scheduling from Unit.take_damage and drained pending enemy deaths before loss cleanup. Actual Player.take_damage overrides that method and calls die synchronously. Four corrected original probes Passed/exit0; actual Main/Player/Enemy scenes suppress pending kill/loot in both same-stack orders and retain one kill/material when enemy death already flushed. Removed the pre-cleanup drain; corrected focused checks passed. See [source receipts and correction](player-cleanup-followup-2026-10-20.md). Earlier Unit FIFO receipts remain valid for Unit, not Player. Initial fixture timer/instrumentation errors are preserved separately.
+
+## October20 - immediate damage and deferred death callback ownership
+
+Confirmed source differences: stat-triggered damage waited too long; dying candidates were removed before Cyberball callbacks; plain Rip & Tear/Spicy Sauce explosions inherited weapon burning and life steal. Apply HP immediately, defer finalization/removal, drain older enemy requests before player cleanup, and give plain explosions their original empty burning payload and callback context. Explosion unlocks count immediate lethal transitions. The integrated 27 focused checks passed; final suite and packaged acceptance are recorded separately in [integration evidence](death-item-integration-2026-10-20.md). Source runtime probes rejected the initial pool-only ordering hypothesis before integration. Broader Player/Main cleanup and arbitrary loadouts remain bounded coverage.
+
+## October20 - queued proc vulnerability changed after request
+
+An original Lich heal followed by an Ice Cube elemental hit leaves89 enemy HP. The unfixed R33 player left88: its delayed Lich damage picked up the later vulnerability. Capture the request-time percentage with the enemy and apply that override only to queued proc damage; preserve ordinary hit processing and the reflected damage signature.25 focused cases passed, including the reverse expiry boundary. Final integrated/player checks follow in [completion evidence](item-material-followup-2026-10-20.md).
+
+## October20 - proc targets selected too late
+
+The source selects a random enemy before proc probability rolls and can abort on a zero-HP enemy awaiting deferred removal. Scrapshift instead selected a live enemy when draining its damage queue, guaranteeing a replacement target. A192-case original callback probe confirmed both hit and abort outcomes in mixed pools. The fix captures the target before rolling and preserves it through queued dispatch; dead/removed captured targets no longer redirect damage.23 focused checks passed. The queue still preserves traversal safety; full synchronous/deferred death timing is not claimed. See [proc evidence](item-proc-followup-2026-10-20.md).
+
+## October20 - material ledger assumptions corrected
+
+The historical25-kill/24-unit observation is not proof of a payout defect: the original zone-wide Evil Mob can count as a zero-material kill or steal drops. Current Scrapshift consumed-value/evolution payout logic matches the inspected source. Four forced source cleanup-boundary cases also demonstrate that fresh deferred drops can miss attraction/banking while pooled controls bank normally. That injected source race does not assign the historical cause or justify changing Scrapshift payouts. See [follow-up evidence](material-reconciliation-followup-2026-10-20.md).
+
+## October20 - reference material accounting investigation
+
+A new instrumented original-engine wave reconciles28 deaths with8 pickups plus20 cleanup-banked units. Deferred registration can leave intermediate event snapshots one unit behind. This did not reproduce or explain the historical25-kill/24-unit trace; no payout defect or fix is claimed. See [probe evidence](material-accounting-probe-2026-10-20.md).
+
+## October20 - Golem terminal stat cleanup
+
+Golem's computed below-half-health bonus could reappear after defeat or low-HP victory, even after temporary stats were cleared. The original clears these temporary bonuses on death/end-run. Exclude Lost/Won when evaluating this conditional; combat and paused low-HP bonuses remain valid. The source-derived dynamic oracle passed53 cases/397 snapshots with zero differences, and26 focused item/shop tests passed, including two terminal regressions. See [item evidence](headless-items-2026-10-20.md). This is source/model evidence; no new desktop playtest is claimed.
+
+## October20 - additional headless shop boundaries
+
+All12 source-derived shop groups and14 built-player headless receipts passed, including rawHP0 material rerolls, inventory capacity rejection, both lock preferences, acquire/remove effects, Anvil eligibility and Candy's natural chance/consequence. No production shop mismatch was established. Retained failures were fixture defects: a C# scope collision and funding Entrepreneur before its legitimate purse-discard effect. See [shop evidence](headless-shops-2026-10-20.md). Display/input acceptance is still separate.
+
+## October20 - weapon structure registration and deployment consumers
+
+Wrench, Screwdriver and Pruner were omitted from registered structure counts. This undercounted character links and two unlock conditions. Following `add_weapon` into `StructureEffect.apply` disproved the earlier exclusion assumption; corrected regressions retain that distinction from live actors. Group placement now uses the correct registered count and source area rules; mines cannot group. The five-turret unlock now runs from registered effects at wave setup, preventing Pocket Factory live turrets from bypassing it. See [source chain and evidence](support-registration-parity-2026-10-20.md).
+
+## October20 - starting item choices versus automatic grants
+
+Beast Master incorrectly received all four selectable pets plus Lootworm. The original selection screen adds one chosen item, then its character effect grants Lootworm. The import/catalog now distinguish selectable choices from automatic grants; selection, preview and run startup carry the chosen item ID. All four choices yield two items, zero weapons and +4 Speed. Focused tests passed **16/16**, and the corrected 30-case source/Unity stat preflight has zero mismatches. Interactive selection remains deferred under the user's desktop-control hold. See [starting-choice report](starting-item-choices-2026-10-20.md).
+
+## October20 - modal shop interaction
+
+The weapon action popup disabled ShopUI, but nested eligibility assignments re-enabled its background buttons. Preserve the inherited enabled state. R27 passed22 native action/modal assertions, including exactly3/2 popup controls and unchanged inventory/offers/currency on Cancel. See [shop report](shop-parity-remaining-2026-10-20.md). Further desktop checks are deferred at the user's request.
+
+## October20 - acknowledge loss before unlock rewards
+
+Full-screen unlock rewards could intercept the default loss acknowledgment. Defer that modal until the player selects OK/End run, preserving the global reward queue across Retry. R26 actual Update/virtual-A checks passed without suppressing Rookie rewards; all8 fresh captures reviewed. Actual Sick, Wounded and Golem boundary cases also passed. See [survival report](survival-parity-remaining-2026-10-20.md). Codex performed implementation and validation.
+
+## October20 - registered pets versus live actors
+
+Beast Master stat links incorrectly followed live actor counts. The source counts registered pet effects, scalar shields and pet structures instead. Exclude empty presentation-only PetSpec entries to avoid counting Jellyshield twice.10 selected checks passed; see [item report](items-parity-remaining-2026-10-20.md). Codex performed this investigation and validation.
+
+## October20 - character gains on linked stats
+
+Linked-stat bonuses omitted target character gain modifiers. Source TempStats applies the gain after accumulating truncated links; Renegade now gains +2 effective Damage per distinct common item rather than +10. Actual Coffee direct penalties and acquire/remove order are included in the corrected regression. See [item interaction report](items-parity-remaining-2026-10-20.md).
+
+## October20 - optimized cleanup option
+
+The source option was missing. Added entry-time per-pile common material boosting and banking, without XP/healing/pickup effects; default behavior remains raw banking.21 focused checks Passed; both R26 native normal/lethal cleanup routes Passed/exit0 with two fresh captures reviewed. See [optimized cleanup report](optimized-cleanup-parity-2026-10-20.md).
+
+## October20 - periodic damage death transition
+
+Periodic lethal item damage bypassed BeginDeathCleanup and set Lost directly. Route it through the shared death lifecycle. Sixteen focused tests passed; the R26 survival fixture also exercised periodic lethal damage through actual cleanup/acknowledgment, with eight captures reviewed across its scenarios. Intentional Abandon remains separate. See [remaining survival report](survival-parity-remaining-2026-10-20.md).
+
+Current verified and unchecked coverage: [gameplay verification status](gameplay-verification-status.md).
+
+## Current priority follow-up - October17, R25
+
+The three requested tracks were audited and their confirmed differences fixed: combined burning cadence, Torture cleanup healing, lethal-frame/defeat cleanup and optional retry, raw health-shop currency/presentation, and unlock-pool lifetime across retry. Full suite **1181/1181 Passed**, zero failures/skips, exit0; Windows build zero errors/warnings. Three R25 native fixtures Passed/exit0 with 12 fresh captures reviewed; 568 source/settings/import inputs and 160 player files verified. Launch: `Builds/GameplayParity20261017R25/LaunchGame.cmd`.
+
+All 115 imported unlock definitions have executed producer/save-reload/next-run eligibility scenarios, plus one coverage guard. These are automated checks, not 115 native playthroughs. Item combinations remain representative rather than exhaustive; native survival uses staged real projectile contacts and virtual-A retry, not a human survival campaign. Special shops include a source audit of every imported carrier; uncarried synthetic effects remain labeled. R23's invulnerable 20-wave comparison is historical and was not rerun or relabeled. See [priority report](gameplay-priority-followup-2026-10-17.md) and its detailed track reports.
+
+## Historical completed checkpoint - October17, R23
+
+The complete suite passed **1031/1031**, zero failures/skips, exit0. R23 built with zero errors/warnings at `Builds/GameplayParity20261017R23/LaunchGame.cmd`;550 recorded source/import/settings inputs and160 player files were verified again after the run. Native virtual navigation passed17 snapshots and final settlement passed both routes, exit0. The final normal-speed scripted20-wave campaign completed Won/exit0,20 waves/19 shops, and the comparison with the completed supplied-original run passed **18/18 bounded checks**. Its final receipt credited109 materials (1227 to1336), then Harvesting grew109 to115. See [complete evidence](full-verification-2026-10-17.md).
+
+The verification phase fixed landing clocks/transforms, body/raw spawn and camera geometry, authored muzzle offsets, final income/XP and cleanup ordering. The crowded-wave follow-up removed repeated allocation work in weapon-set calculations, immutable launch classification and collision-resource lookups. In this final scripted run, combat-window wall excess was-.714 seconds across1050.200 active seconds, versus R21's170.537-second excess. Small negative differences reflect trace callback timing; these were separate evolving runs, not identical workloads or FPS benchmarks. The controlled synthetic profiler comparison is [documented separately](late-wave-allocation-investigation-2026-10-17.md).
+
+All confirmed differences found in this phase are corrected and validated within the recorded scope. This is not proof of every character/item combination, danger level, human survival balance, ordinary focus behavior or new physical-controller testing. The campaigns used neutral stats, six tier-II weapons, scripted movement, invulnerability and mute. The virtual-controller fixture has an explicit fixture-only IgnoreFocus policy; normal gameplay policy is unchanged. Failed/interrupted attempts and R19's final-income failure remain preserved. Older checkpoints below are dated history, superseded by this completed R23 checkpoint.
+
+Codex performed the investigations, implementation, builds and scripted tests; the user supplied direction/reference and earlier physical Xbox feedback. Interview stories remain rehearsal material until reproduced and understood.
+
+## Historical validation checkpoint - October 17, R21
+
+The complete suite passed **1018/1018**, zero failures or skips. The supplied original and current R21 each completed a fresh normal-time scripted20-wave run with19 shops, Won and process exit0. The expanded R21 comparison passed **18/18 bounded checks**, including the corrected final34-material payout. Both native settlement routes passed with payout atcleanup start, growth at.6667s and victory after4.0167 simulated seconds. See [current evidence and limits](full-verification-2026-10-17.md).
+
+Confirmed corrections cover landing clocks/movement/transforms, body/raw spawn and camera geometry, authored numeric muzzle offsets for84 ranged profiles, final-wave income/XP, the last-boss.1-second delay and source cleanup ordering. Failed/interrupted/historical attempts remain preserved; R19's17/18 result exposed the final-income defect rather than being rewritten as a pass.
+
+Remaining observed issue: R21 combat windows took170.537 seconds more wall time than active simulation. The cause is not established. A separate Development build captured baseline and crowded CPU profiles. The synthetic crowded fixture allocated about 2.4 GB inside 16 ArenaGame.Update calls; GC and Update dominate while rendering is small. This narrows the investigation but does not yet identify the inner cause or measure ordinary R21 FPS. See `artifacts/late-wave-profile-2026-10-17/allocation-comparison.json`. The verified R21 playable build stays frozen. Do not claim exact overall or performance parity. These campaigns used a neutral six-weapon loadout, scripted movement, invulnerability and mute; human survival, every item-effect combination and new physical-controller testing are separate evidence.
+
+Allocation follow-up: measured weapon-set/settings and quadratic crowd geometry lookup allocations have been corrected. The new complete suite passed1031/1031 (attempt8), and synthetic allocation markers fell99.27% per simulation tick; this is not ordinary-game FPS. R22 navigation exposed focus-sensitive synthetic input resets, so its opt-in fixture is being isolated before the next full-run timing check. See [profiling evidence and limits](late-wave-allocation-investigation-2026-10-17.md).
+
+Codex performed the investigations, code/tests/builds and scripted validation. The user supplied direction, reference and earlier hands-on Xbox feedback. Interview examples are rehearsal material until reproduced and understood, not independently performed user debugging stories.
+
+## Confirmed gameplay fixes in this verification phase
+
+| Difference | Source-backed correction | Evidence |
+| --- | --- | --- |
+| First-wave landing held combat or weapon clocks / attacks | Continue live combat once per tick; animate body/weapon parents separately, retain local projectile aim | `ArrivalGameplayParityTests`, `ArrivalNativeReview`, R19 native report/captures |
+| Body spawn, camera target and wall limits used inconsistent origins | Separate body and raw player origin by .24 units; follow raw camera target; clamp the offset collision circle | `PlayerSpawnOriginTests`, `CombatGeometry`, R19 native centered-start and later-wave checks |
+| Projectile origin depended on replacement weapon art | Import authored numeric Sprite/Muzzle offsets for84 ranged profiles; compose them through aim/landing transforms | `WeaponMuzzleParityTests`, numeric provenance report, native measured muzzle error0 |
+| Final-wave payout and cleanup lifecycle differed | Credit income/XP before cleanup; reset temporary stats; grow at .66s; complete after2/4s; final boss starts .1s timer | `FinalWaveSettlementTests`, `WaveSettlementLifecycleTests`, R21 native timing and full18/18 comparison |
+| Crowded updates repeatedly allocate lookup work | Replace weapon-set LINQ, cache immutable launch classification, index immutable collision data; preserve live stat/settings behavior | `WeaponSetAllocationParityTests`, `GeometryLookupParityTests`, complete suite1031, synthetic per-tick CPU/GC comparison; R23 full20 timing recorded separately with no reproduced late-wave drift |
+| Virtual navigation can reset synthetic held buttons when desktop focus changes | Give only the opt-in fixture IgnoreFocus; preserve normal gameplay policy | R22 failed attempts preserved; R23 native17 snapshots Passed, exit0; excludes physical/focus-policy verification |
+
+These production fixes are distinct from corrected validation issues: two stale initial suite assertions; a ranged fixture accidentally selecting the valid melee default; queued screenshots replacing one another; and a staged later-wave capture preceding the normal pose Update. All failed/partial attempts remain in the dated artifact folders. R19 ordinary/controller launchers also now use their own log folders instead of inherited R16 paths; this does not change gameplay.
+
+The complete suite covers49 added landing/origin/muzzle cases within1000 passing checks. Detailed full-run results and remaining scope limits belong in [the current verification report](full-verification-2026-10-17.md).
+
+## Latest native checkpoint — R14, October 17
+
+R14 is the latest unpacked build (`Builds/GameplayParity20261017R14/LaunchGame.cmd`), zero build errors/warnings. Only the opt-in campaign driver changed from R13: it now uses the normal60Hz combat clock. Its normal-speed one-wave preflight Passed, exit0, reached Shop after20.0165 simulated seconds. Both fresh captures were inspected. It did not run a full campaign.
+
+Carried input-matched evidence:172 focused regressions passed; R13 support43/43, economy and virtual navigation17 snapshots passed; R12 enemy53/eight slash probes and combat passed. Requested basic Xbox controls were confirmed by the user and logged separately. Unlock-pool timing and support projectile behavior fixes remain intact. No whole suite or full20-wave comparison ran. See [latest evidence and attribution](native-gameplay-r14-2026-10-17.md). Earlier R13 notes saying the campaign driver still needs a cadence correction are superseded by R14.
+
+## Latest native checkpoint — R13, October 17
+
+Fixed active-run unlock-pool refresh and support projectile animation/identity/offset/current-age presentation. R12 selected regressions passed172/172 (zero failures/skips); R13 only changes two native fixture files, with identical production/test inputs. R13 build succeeded with zero errors/warnings. Actual R13 native economy Passed, support43/43 Passed, virtual controller navigation Passed17 snapshots, all process exits0. R12 combat and enemy53/eight-slash-probe passes carry unchanged relevant source. The user accepted requested basic physical Xbox controls; B-not-opening-wave-pause is closed as reference behavior. No new broad hardware support claim.
+
+The whole suite and full campaign have not run. Before a new campaign comparison, its older variable-step fixture path needs adaptation/checking against current60Hz normal gameplay. See [current native checkpoint](native-gameplay-r13-2026-10-17.md) for manifests, preserved initial failures, reviewed screenshots and limits. Older pending statements below are historical checkpoints. Codex performed implementation/testing; the user supplied direction/reference and actual basic Xbox feedback.
+
+## October 17 native continuation — source fixes awaiting current build
+
+The accepted B-button behavior is documented separately. New source tracing found a real unlock-pool timing difference and support-projectile frame/registration differences; fixes are integrated for the next review build. A separate combat fixture needed 60 Hz stepping rather than a single .1-second jump. R11's crate/reward/shop fixture passed, but its older support passes do not validate the new corrections. Focused and native validation is pending; the whole suite and full campaign remain held. See [active ownership and evidence](native-remaining-checks-2026-10-17.md).
+
+Interview distinction: a fixture failure can expose a stale sampling assumption, while source tracing can separately establish a production bug. Codex authored the investigation/fixes; the user supplied reference/direction and confirmed requested basic Xbox controls. Do not claim a complete reference replica or an independently user-authored debugging story.
+
+## Controller clarification resolved — October 17
+
+The user clarified that the reported issue was B doing nothing during an active wave, and accepted the explanation. This matches the supplied original: `project.godot:2536/2539` maps B to ui_cancel; `2585/2588` maps Start to ui_pause; `main.gd:417-435` opens pause from ui_pause release, and `ui/menus/ingame/pause_menu.gd:32-53` handles cancel while paused. Scrapshift's `CombatInput.cs:96-97` and `ArenaGame.cs:170` use the same distinction. No gameplay change is required for this report.
+
+The requested basic physical Xbox checks are accepted from the user's confirmation and recorded movement/aim/menu/pause actions. This is scoped acceptance, not verification of every shortcut/device combination. Native gameplay follow-up continues before the full run; see the current dated native check reports. Earlier pending-menu statements below are superseded.
+
+## Physical Xbox follow-up — October 17, superseding the idle snapshot
+
+The user first answered that all requested controls worked, then reported that B returns but a menu could not be opened (exact menu/button clarification pending). Do not mark overall hardware acceptance complete. Refreshed observer evidence contains218 samples,144 significant controller-state samples and206 XInput-owned samples; both sticks span -1 to1. A/B, D-pad down/right and Menu/Start events are present. The log records Playing→Paused three times on Start release and Paused→Playing twice on B release, plus controller-correlated movement/aim changes. These observations support the performed actions but do not dismiss the user's latest menu problem. Other shortcuts and unexercised directional buttons are not newly accepted. Full run remains held. See the refreshed `physical-controller/analysis.json` and pending clarification.
+
+## October 17 current checkpoint — R11 native checks
+
+Latest build is `Builds/GameplayParity20261017R11/LaunchGame.cmd` (zero build errors/warnings). R10 native results: virtual navigation Passed/17 snapshots, weapons211 checks, enemies53 checks. R11 support39/39 passed in hidden and visible executions. Initial R10 support37/39 is retained: incorrect opposite-direction Cat and immediate Scapegoat-rise assertions were repaired from source evidence. Staged Cat shadow placement was also corrected and fresh PNGs inspected. These were fixture corrections, not new production pet bugs.
+
+Physical Xbox actions remain unchecked: detected device, nine sparse observer rows, no meaningful controller actions as of this inspection. Still captures do not close projectile scale/motion/audio or crowd/contact-order comparison. Whole suite and full campaign stay held. See [current evidence](native-gameplay-r11-2026-10-17.md). Older build/pending statements below are historical checkpoints.
+
+## October 17 remaining gameplay pass — final focused result
+
+Fixed keyboard/D-pad merge, horizontal menu priority, Cancel release, ordinary-target bounce eligibility, turret windup/target-pool rules, discrete60Hz contact sampling, deferred delayed activation, melee sound event timing and ordinary30-material starts. Native Godot source-scene evidence exposed the reachable flame grazing mismatch that swept collision introduced. The reference keyboard problem is separately diagnosed:35 blank keyboard events; an isolated review copy has temporary bindings, original untouched. Final selected validation: **524/524 passed**, zero failures/skips, Unity exit zero; all516 recorded inputs still match the isolated clone. Evidence: `gameplay-parity-final-checks-2026-10-17.md` and `artifacts/gameplay-parity-final-checks-2026-10-17/focused-summary.json`. No whole suite or full campaign ran. R9 is intermediate and predates final discrete-contact/starting-currency corrections. A current build, production support captures, physical Xbox verification and repaired-reference keyboard verification remain pending. Computer Use stopped when the user pressed physical Escape; no further UI input was sent.
+
+## October 17 gameplay continuation — focused checks passed
+
+Integrated fire-time burn snapshots, weapon-slot callbacks, support collision/lifetime profiles, explosion windows, shop/unlock timing, raw-origin enemy behavior and Predator persistent contacts/accessibility speed. Attempt 1 passed 427/434: one fixture missed extended-enemy startup, three burn expectations omitted additive Sausage base damage, and three Dagger boundaries exposed inconsistent chance precision. These were repaired against source evidence. See `gameplay-parity-systems-2026-10-17.md`. Evidence: `artifacts/gameplay-parity-systems-2026-10-17/focused-summary.json`, both XML/log attempts, input manifest and catalog comparison. The same selected checks passed 434/434 on attempt 2, zero failures/skips, Unity exit zero. All 508 recorded input hashes still match the isolated clone after execution. No whole suite, new build, full campaign or physical-controller retest was run. R8 remains the last delivered gameplay build and predates these changes.
+
+## October 17 gameplay integration — checks pending
+
+Integrated projectile burn snapshots, support projectile profiles and explosion/contact callbacks. Added source-derived Predator persistent-contact and accessibility-speed fixes; Wandering Bot slow uses finalized speed. See `gameplay-parity-systems-2026-10-17.md`. New focused results are pending; prior 213 checks predate these changes.
+
+## Active systems continuation — October 15, 2026
+
+The user requested continuing agents and fixing remaining gameplay differences before full tests. New source-backed findings include achievement contact/timing rules, fractional weapon prices, Ghost instance counters, direct critical-kill currency, explosive-hit callback ordering, Taser slow duplication, pet targeting/hit geometry and enemy additive-speed handling. Fixes are in progress; the preceding 213 passing focused checks do not validate this new batch. The whole suite and another campaign remain held. See [systems audit](gameplay-parity-systems-audit-2026-10-15.md).
+
+## Latest follow-up result: 213 focused checks passed (October 15, 2026)
+
+Integrated the source-backed follow-up fixes and corrected the nine issues found by the initial targeted selection. The same selection now passes 213/213, zero failed/skipped. This includes regeneration/Max HP, uncapped HP damage scaling, loot probability/scatter/coordinates/Lootworm routing, burn callbacks, item stacks/triggers, damage order and egg-hatch callbacks. The generic range-extended charge hook is explicitly labeled unassigned in the supplied base scenes.
+
+Per the user's instruction, the whole suite and another full campaign remain deferred. No new player build or native acceptance is claimed; R8 remains the delivered build. Current source evidence, first failed attempt, successful focused XML and 496 synchronized input hashes are recorded in [the follow-up audit](gameplay-parity-next-audit-2026-10-15.md).
+
+## Current follow-up: source fixes before combined validation (October 15, 2026)
+
+The user asked to finish the remaining gameplay differences before running the whole suite or another full campaign. The follow-up is in progress: regeneration lifecycle, Max HP changes, material drop probability/spread/consumable eligibility, boss damage order, Ice Cube rounding, range-extended charge cadence, item-trigger rounding, Anvil order and burn initialization. Fixes and regression cases are being integrated; no new full-suite/build/campaign result is claimed. R8 below remains the last delivered validated build.
+
+Track current source findings and implementation status in [the follow-up audit](gameplay-parity-next-audit-2026-10-15.md). Preserve the accepted movement-audio fix. These new findings supersede any reading of the R8 checkpoint as proof that no gameplay differences remain.
+
+# Completed R8 gameplay validation - October 15, 2026
+
+Latest review: Builds/GameplayParity20261015R8/LaunchControllerTest.cmd (isolated profile) or LaunchGame.cmd (normal profile). The agents' corrections cover economy/unlocks/shop fallback, burn and aiming rules, support zones/mines/Lootworm, enemy healer/summon rules, animated beam collision and Streamer structure-linked Armor. Source-backed issue entries and causes follow below.
+
+Verified final checkpoint:620/620 integrated tests;205/205 native weapon/tier checks;53/53 native enemy/state checks; build zero errors/warnings. Fresh normal-timing R8 campaign Passed/Won after20timer ends and19shops, exit0. Frozen-original comparison passed14/14 consistency checks: all30original and31R8purchase debits reconcile; all recorded R8stacks reconcile; ground-material cap50 held. All272processed audio clips retain the accepted bank; the user-confirmed movement sound fix remains closed.
+
+See docs/gameplay-parity-continuation-2026-10-15.md and docs/full-run-r8-comparison-2026-10-15.md for exact input/build hashes, source findings, rejected hypotheses, captures and limits. The R8 end capture shows a queued Drifter unlock; Won is recorded in the trace/report. Different acquired gear/progression is analyzed with actual source effects rather than assumed to be RNG alone. These scripted invulnerable checks do not establish ordinary human survival balance or exhaustive gameplay equivalence. Earlier in-progress/checkpoint statements below are historical.
+# R8 verified fixes and campaign in progress - October 15, 2026
+
+R8 includes the eleven R7 correction groups below plus these source-backed repairs:
+
+| ID | Difference | Correction and regression evidence |
+| --- | --- | --- |
+| BEAM-REMAIN-01 | Particle Accelerator used a constant capsule with rounded collision ends | Source animated rectangle, offsets, captured range and cubic growth/shrink curve; 12 cases plus native weapon checks. docs/beam-remaining-parity-2026-10-15.md |
+| ZONE-REMAIN-01 | Enemy healer compared actor origins rather than body overlaps; healed neutral trees and flashed full-health entrants | Imported body centers/radii/layers, source mask and entry occupancy; eight actual-method cases. docs/enemy-zone-parity-2026-10-15.md |
+| CHARACTER-REMAIN-01 | Streamer gained Armor from Wrench/Screwdriver/Pruner deployments and numeric effect multiplicity | Count registered structure/pet entries plus Pocket Factory as the source does; six real-character cases. docs/character-remaining-parity-2026-10-15.md |
+
+Combined620/620 tests passed; native205/205 weapon and53/53 enemy/state checks passed; R8built0errors/warnings. Accepted audio is unchanged. A proposed Greek Fire trigger expansion was rejected after tracing the damage-event argument; existing trigger scope was correct. Fresh normal-timing campaign and comparison are in progress. See docs/gameplay-parity-continuation-2026-10-15.md for current evidence and limits; earlier checkpoints below remain historical.
+# Verified R7 gameplay checkpoint - October 15, 2026
+
+The eleven correction groups below passed 594/594 integrated tests (zero failed/skipped, 72.8708967 seconds). R7 built with zero errors/warnings; its native support fixture passed 27/27 and exited zero. The initial two malformed synthetic test fixtures are corrected and their failure evidence is retained. The audio bank remains byte-identical to accepted R6.
+
+Current review: Builds/GameplayParity20261015R7/LaunchControllerTest.cmd (isolated profile) or LaunchGame.cmd (ordinary profile). Detailed evidence and remaining geometry work: docs/gameplay-parity-continuation-2026-10-15.md. The next agent pass is checking animated beam collision, enemy healing-zone body geometry and character-specific rules; R7 does not contain those later changes until separately validated. No complete human full-run equivalence is claimed.
+# Remaining gameplay fixes - October 15, 2026 continuation
+
+Source-backed fixes are integrated; combined Unity validation is in progress. See docs/gameplay-parity-continuation-2026-10-15.md for the current evidence index.
+
+| ID | Observed source/runtime mismatch | Cause and fix |
+| --- | --- | --- |
+| ECON-REMAIN-01 | Knight/Vagabond fractional Harvesting could fail to grow | Premature integer cast; retain effective float through growth, cast combined income at credit boundary. |
+| UNLOCK-REMAIN-01 | Structure unlocks could count weapon actors, pets and Pocket Factory | Achievement used broad OwnedStructures; count registered structure-effect entries as the source does. |
+| SHOP-REMAIN-01 | Exhausted preferred item pool could restore excluded offers instead of eligible backup | Character bans incorrectly changed backup; apply them only to the preferred pool. |
+| COMBAT-REMAIN-01 | Burning could trigger life steal, weapon knockback or high-stat critical hits | Shared hit path treated burn as a weapon hit; explicitly apply source no-hitbox behavior. |
+| COMBAT-REMAIN-02 | Automatic melee swing stayed at its launch angle | Sampled pose ignored tracked direction; use current target direction while preserving manual freeze and initial knockback vector. |
+| COMBAT-REMAIN-03 | Automatic tracking dropped the attack's angular spread | Retain one captured spread throughout the attack; preserve last angle if its target disappears. |
+| SUPPORT-REMAIN-01 | Moth zone overlap ignored player-body radius/offset | Use source circle overlap; preserve correct additive regeneration and boolean double-life-steal. |
+| SUPPORT-REMAIN-02 | Bot mine samples compressed onto arena borders | Clamp the full sampling square center before randomization. |
+| SUPPORT-REMAIN-03 | Lootworm switched to nearer targets every frame | Cache the selected object/idle sentinel; invalidate on material/tree spawns or selected-target removal; fresh cache per pet/wave. |
+| ENEMY-REMAIN-01 | Enemy healer incorrectly healed the player | Source scene mask selects enemy bodies only; remove unreachable player-proximity effect. |
+| ENEMY-REMAIN-02 | Boss summon counts differed at half-integer boundaries | Use source half-away rounding instead of Unity half-to-even, retaining the one-summon minimum. |
+
+These are defects found by source comparison, not new user-reported incidents. Runtime regressions and source paths are in the four detailed remaining-parity reports. Complete physics/RNG/timing equivalence and an ordinary human full-run comparison remain open; historical full-run results and R6 sound acceptance remain separately documented below.
+# Current bug documentation checkpoint - October 15, 2026 (R6)
+
+User confirmation: "Okay, the sound is gone." The movement/button-like sound report is CLOSED for the user's R6 walking retest. Unity forced-mono normalization amplified quiet Step recordings; preserve stereo and disable normalization, then rebake only the six footsteps. All other 266 contextual WAVs stayed unchanged. Focused audio tests: 23/23 passed; R6 build: zero errors/warnings. This is actual user listening acceptance of this symptom, not acceptance of every controller function or complete gameplay parity.
+
+Known issue and evidence index (older checkpoint text below is historical):
+
+| Area | Recorded status / detailed report |
+| --- | --- |
+| Movement sounded like rapid button switching | Fixed; user confirmed gone in R6. docs/controller-movement-audio-2026-10-15.md |
+| Xbox sticks/D-pad unresponsive; A selected Back despite highlighted character | Input System migration and focus lifecycle fixes implemented; R5 full suite 541/541 and visible virtual-input fixture passed. Remaining physical aiming/navigation checks are separate. docs/gameplay-parity-controls-stacks-2026-10-15.md |
+| Controls, unlock conditions, special shop transactions | Source-backed corrections and regression evidence: docs/gameplay-parity-controls-stacks-2026-10-15.md |
+| Item effects, duplicate stacks, queued effects and removal | Corrections and remaining support/Endless coverage limits: docs/item-stack-coverage-2026-10-15.md |
+| Starting weapon count | Rechecked: first character correctly starts with one; explicit extra-weapon and weaponless exceptions retained. docs/starting-weapons-recheck-2026-10-15.md |
+| Full-run collection/progression differences | Both scripted normal-time 20-wave runs completed; unequal collection/progression remains documented, without claiming exact balance. docs/full-run-comparison-2026-10-15.md |
+| Combat, enemies, economy and remaining exactness boundaries | docs/gameplay-exactness-2026-10-15.md and docs/gameplay-parity-parallel-workplan.md; later dated reports above supersede earlier checkpoints. |
+
+This index covers known reports and findings; it does not establish that no undiscovered bugs remain.
+# R5 controller focus and movement feedback - October 15, 2026
+
+User physical R4 testing confirmed actual left-stick/horizontalD-pad input and gameplay, but exposed A targeting Back while a character remained highlighted. R5 fixes screen/default focus lifecycle, mouse/controller handover, a single visible activation target and duplicate/blocked focus cues. Footsteps now use source .1s initial contact/.3 animation-second speed-scaled timing with approved clips/mix unchanged. Full checkpoint541/541 passed,0failed/skipped,69.4470763s. Visible native virtual-Gamepad test passed actual A-only selection->Playing, movement with0menu/3footstep requests, Startpause/Aresume and one Rookie weapon. Hidden-window attempt did not register GUI; visible acceptance is recorded separately from physical input. Build R5 succeeded401081415bytes0errors/warnings; optional helper object-lookup warning fixed afterward without ordinary gameplay changes. Evidence: artifacts/gameplay-parity-native-2026-10-15/controller-r5-build-manifest.json, focus-native-visible/navigation-check.json and observations.md. User R5 hardware acceptance remains pending.
+
+# Xbox controller configuration and input migration - October 15, 2026
+
+User-reported hardware failure: A/B worked, sticks/D-pad did not. Legacy axis records were outside m_Axes and required canonical Unity YAML formatting; six tests now inspect actual deserialized settings. Controller runtime now uses Unity Input System 1.20.1 with direct Gamepad controls and ordered device events, preserving legacy keyboard/mouse under Both. Five device tests use the official InputTestFixture; ordinary EditMode timing could update button values without gameplay frame edges. Final integrated checkpoint: 519/519 passed. Native R3 detects Xbox Controller [XInputControllerWindows]; physical input acceptance is pending. Codex authored the migration/tests; the user supplied the physical failure report and selected the Input System direction.
+
+# October 15 gameplay investigation updates
+
+- INPUT-20261015: Native keyboard arrows skipped settings rows and jumped to Back. Spatial navigation registered only the distant right-side controls. The fix registers complete rows, initializes active-tab focus and scrolls focused rows. See ControlsParityTests and artifacts/gameplay-parity-native-2026-10-15/observations.md.
+- LOOT-20261015: Full-run outcome differences prompted source inspection. Ground materials now cap at 50 and merge overflow; bank bonuses attach at spawn; achievement materials count collected objects. MaterialCollectionParityTests exercises the component and transaction boundaries. These fixes alone do not explain the entire observed income gap. See docs/full-run-comparison-2026-10-15.md.
+
+Historical log follows, preserved in its original encoding.
 # Bug and investigation log
 
 Record observed behavior, expected behavior, reproduction conditions, cause, fix and regression evidence. Deliberate test fixtures must be labeled; they are not accidental production bugs. Development blockers are distinguished from gameplay defects.
@@ -302,6 +566,11 @@ Colored card edge follow-up: Frame supplied a black outer perimeter before a col
 Rounded inventory focus: Inspect drew four white rectangular border strips over the rounded tile fill, creating square white corners. Replaced them with a rounded border-only draw (radius 8, width 2). The inspection fixture now applies forced focus to this outline too, so screenshot validation exercises the previously missed layer.
 
 White inventory seam follow-up: the previous rounded outline fix was incomplete. Frame still painted a dark full-size base behind an inset white fill, and Inspect added another perimeter. Focused frames now draw one solid rounded white surface, and inventory inspection no longer overlays another border. Keyboard focus uses the same tile state. Added a pause-character reproduction capture.
+
+## QA-REMAIN-01 - Synthetic effect fixtures omitted serialized empty keys
+
+The initial continuation suite passed 592/594; two new structure-unlock fixtures threw NullReferenceException in ConditionalStat because their constructed ConditionalEffect objects omitted key. Real imported entries contain an empty-string key for these effects. Initialize the two synthetic keys to empty strings; runtime code is unchanged by this fixture repair. Initial XML/log are preserved under artifacts/gameplay-parity-continuation-2026-10-15/initial-tests.*. The full rerun is in progress.
+
 
 ## October 13 - item pool and reroll parity (source-audit defect)
 

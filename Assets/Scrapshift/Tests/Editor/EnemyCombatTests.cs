@@ -9,6 +9,15 @@ namespace Scrapshift.Tests
 {
     public sealed class EnemyCombatTests
     {
+        [Test] public void EnemyHitRoundsCriticalBeforeSubtractingFlatIntegerArmor()
+        {
+            Assert.AreEqual(5,EnemyReferenceRules.CriticalDamage(3,1.5f));
+            Assert.AreEqual(3,EnemyReferenceRules.ArmoredDamage(5,2));
+            Assert.AreEqual(1,EnemyReferenceRules.ArmoredDamage(3,10));
+            Assert.AreEqual(5,EnemyReferenceRules.ArmoredDamage(3,-2));
+            Assert.AreEqual(3,EnemyReferenceRules.ArmoredDamage(3,0));
+        }
+
         [Test] public void ChargeLocksDirectionAndReturnsToMovementWithoutInventedRecovery()
         {
             var attack = new EnemyAttack(EnemyBehavior.For("bruiser"),()=>0);
@@ -18,9 +27,39 @@ namespace Scrapshift.Tests
             Assert.IsTrue(attack.Step(.01f, Vector2.up, false));
             Assert.AreEqual(Vector2.right, attack.Direction);
             Assert.AreEqual(AttackPhase.Active, attack.Phase);
-            Assert.IsFalse(attack.Step(.75f, Vector2.up, true));
+            Assert.IsFalse(attack.Step(.75f, Vector2.up, false));
 
             Assert.AreEqual(AttackPhase.Approach, attack.Phase);
+        }
+
+        [Test] public void RangeExtendedChargeCanPrepareAgainWhenItsConcurrentCooldownExpires()
+        {
+            var behavior=new EnemyBehavior{charge=true,windup=.1f,active=.2f,
+                source=new EncounterAttack{scaleDuration=true}};
+            int cooldownCalls=0;
+            var attack=new EnemyAttack(behavior,()=>{cooldownCalls++;return .1f;});
+            attack.Step(.1f,Vector2.right,true,()=>Vector2.right*60);
+            Assert.IsTrue(attack.Step(.1f,Vector2.right,true,()=>Vector2.right*60));
+            Assert.AreEqual(2,cooldownCalls,"charging_attack_behavior.shoot samples the next cooldown at release.");
+            // Dash lasts .2 + 60/150 = .6 sec, but the cooldown is .1 + .2.
+            attack.Step(.29f,Vector2.up,true,()=>Vector2.up*60);
+            Assert.AreEqual(AttackPhase.Active,attack.Phase);
+            attack.Step(.01f,Vector2.up,true,()=>Vector2.up*60);
+            Assert.AreEqual(AttackPhase.Windup,attack.Phase);
+            Assert.AreEqual(Vector2.up,attack.Direction);
+        }
+
+        [Test] public void RangeExtendedChargeFinishesWithoutAddingAnotherCooldownWhenOutOfRange()
+        {
+            var behavior=new EnemyBehavior{charge=true,windup=.1f,active=.2f,
+                source=new EncounterAttack{scaleDuration=true}};
+            var attack=new EnemyAttack(behavior,()=>.1f);
+            attack.Step(.1f,Vector2.right,true,()=>Vector2.right*60);
+            attack.Step(.1f,Vector2.right,true,()=>Vector2.right*60);
+            attack.Step(.6f,Vector2.up,false,()=>Vector2.up*60);
+            Assert.AreEqual(AttackPhase.Approach,attack.Phase);
+            attack.Step(.001f,Vector2.up,true,()=>Vector2.up*60);
+            Assert.AreEqual(AttackPhase.Windup,attack.Phase);
         }
 
         [Test] public void ShooterWarnsBeforeSingleReleaseAndCannotChargeOutOfRange()

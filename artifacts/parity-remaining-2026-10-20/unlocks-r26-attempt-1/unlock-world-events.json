@@ -1,0 +1,133 @@
+{
+    "status": "Passed",
+    "error": "",
+    "savePath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\unlocks-r26-attempt-1\\native-unlocks-9184f1dbbae04bc3a69f7b281d2cf8fb.json",
+    "scope": "Staged native event producers through actual Update. Imported fruit objects, hostile bullets, Torch burn payload and Rocket Launcher explosion metadata. Enemy HP/positions, explosion creation and deadlines are staged; no Record*/Count/Complete challenge shortcuts. Not natural weapon firing/proc probability, human survival balance or 115 native playthroughs.",
+    "fruits": 100,
+    "hostileContacts": 3,
+    "burnKills": 30,
+    "explosionKills": 29,
+    "checks": [
+        {
+            "name": "hungry-below-20",
+            "evidence": "19 real fruit pickups in one run",
+            "passed": true
+        },
+        {
+            "name": "hungry-at-20",
+            "evidence": "20th actual pickup -> CollectPickup -> CollectConsumable -> Hungry",
+            "passed": true
+        },
+        {
+            "name": "fruit-below-100",
+            "evidence": "99 actual full-health fruit contacts, no counter staging",
+            "passed": true
+        },
+        {
+            "name": "fruit-at-100",
+            "evidence": "100th actual full-health fruit contact -> saved lifetime challenge",
+            "passed": true
+        },
+        {
+            "name": "fruit-current-pool-frozen",
+            "evidence": "Achievement callback runs; active eligibility snapshot remains frozen",
+            "passed": true
+        },
+        {
+            "name": "chal_hungry-save-reload-once",
+            "evidence": "Production event completion saved/reloaded; exactly one target notification",
+            "passed": true
+        },
+        {
+            "name": "chal_fruit_basket-save-reload-once",
+            "evidence": "Production event completion saved/reloaded; exactly one target notification",
+            "passed": true
+        },
+        {
+            "name": "fruit-next-run-eligible",
+            "evidence": "Actual fresh StartSelectedRun refreshes saved item reward",
+            "passed": true
+        },
+        {
+            "name": "projectiles-below-3",
+            "evidence": "Two real hostile bullet contacts; invulnerability reset only before each staged contact",
+            "passed": true
+        },
+        {
+            "name": "projectiles-at-3",
+            "evidence": "Actual Update projectile hurtbox -> RecordProjectileHit before damage handling",
+            "passed": true
+        },
+        {
+            "name": "jelly-current-pool-frozen",
+            "evidence": "Immediate achievement remains excluded from current item pool",
+            "passed": true
+        },
+        {
+            "name": "chal_jellyshield-save-reload-once",
+            "evidence": "Production event completion saved/reloaded; exactly one target notification",
+            "passed": true
+        },
+        {
+            "name": "jelly-next-run-eligible",
+            "evidence": "Fresh run refreshes saved Jellyshield reward",
+            "passed": true
+        },
+        {
+            "name": "burn-below-30",
+            "evidence": "29 actual timed burn deaths in this wave",
+            "passed": true
+        },
+        {
+            "name": "burn-at-30",
+            "evidence": "30th real burn timeout -> Damage/death -> RecordBurnKill",
+            "passed": true
+        },
+        {
+            "name": "burn-current-pool-frozen",
+            "evidence": "Current run excludes immediate item unlock",
+            "passed": true
+        },
+        {
+            "name": "chal_will_o_the_wisp-save-reload-once",
+            "evidence": "Production event completion saved/reloaded; exactly one target notification",
+            "passed": true
+        },
+        {
+            "name": "burn-next-run-eligible",
+            "evidence": "Fresh run refreshes saved Will-o-the-Wisp reward",
+            "passed": true
+        },
+        {
+            "name": "explosion-below-15",
+            "evidence": "One native explosion kills 14, below required 15",
+            "passed": true
+        },
+        {
+            "name": "explosion-at-15",
+            "evidence": "A distinct actual timed explosion kills 15; prior explosion does not supply remainder",
+            "passed": true
+        },
+        {
+            "name": "chal_fireworks-save-reload-once",
+            "evidence": "Production event completion saved/reloaded; exactly one target notification",
+            "passed": true
+        },
+        {
+            "name": "fireworks-character-visible",
+            "evidence": "Immediate achievement callback exposes character reward",
+            "passed": true
+        },
+        {
+            "name": "all-rewards-still-saved",
+            "evidence": "Saved outcomes survive final next-run transition",
+            "passed": true
+        }
+    ],
+    "captures": [
+        "fruit-contact-unlocks.png",
+        "hostile-contact-unlock.png",
+        "burn-death-unlock.png",
+        "explosion-death-unlock.png"
+    ]
+}

@@ -1,0 +1,79 @@
+{
+  "reviewedUtc": "2026-10-20T16:59:12.5737546Z",
+  "reviewer": "Codex independent delegated visual review",
+  "declaredBuild": "Builds/GameplayParity20261020R36/Scrapshift.exe",
+  "report": "survival-review.json",
+  "reportSha256": "aacd8dd6168b485ef945488309122124d09760ea845d0653aebaa4a44cf4094f",
+  "statusObserved": "Passed",
+  "processExitCode": 0,
+  "processSha256": "aa37514da1fbd1f61421ea0a6bcf548a3572ac2985723c31689da5ef894ec0bf",
+  "runnerSpecSha256": "ffbc82daadfcee7382cefce545d93ba0aa2cfb6131023a51f75c45f34f3d11b4",
+  "capturesInspected": 8,
+  "captures": [
+    {
+      "file": "damaged.png",
+      "sha256": "ced5826ffd25834b57dfadbd964d8361e9ff880444274584d0194333c143016e",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "HUD reads 8/10 HP, 100 materials, wave 1; player damage feedback -2 is visible."
+    },
+    {
+      "file": "regenerated.png",
+      "sha256": "04ee09a2526351b8af3335d9600dfa45d19f7673621297e1c498884fb88b7e9e",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "HUD reads 9/10 HP and a green +1 HP popup is visible."
+    },
+    {
+      "file": "torture-cleanup.png",
+      "sha256": "a2dd7fd3c0bfefc04eb78d7f3a0d9a2023bde23587d0920ff49d83d7a9f0151e",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "HUD reads 7/10 HP with a +3 HP pickup popup; wave timer is zero."
+    },
+    {
+      "file": "defeat-ack.png",
+      "sha256": "ff778a63866f7192086a63af4a14a928b27e20095f953a2c6b9722653599fd9d",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Dimmed run-lost acknowledgment shows Baby Alien, its icon and an OK button; bottom-left Bulkhead unlock toast is visible."
+    },
+    {
+      "file": "defeat-retry.png",
+      "sha256": "ccd738f2c6883cc0913aa5e5979d8834e67e96d16a37b42984eb364c41c85557",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Run-lost screen shows Retries: 0, Retry wave and End run buttons; unlock toast remains visible."
+    },
+    {
+      "file": "retried.png",
+      "sha256": "b47f5f3160291175b9398fed6c53fdbc33265f07316088bf2cd4f15088f753fe",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Wave 1 combat returns with 10/10 HP, 100 materials and timer 20; unlock toast remains visible."
+    },
+    {
+      "file": "unlock-after-end.png",
+      "sha256": "56c434bbe95b15aff78439f1e2195ddb37724ce4a1828924571848220b98f66f",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Unlocked Bulkhead character panel shows readable effects and highlighted Continue over the dimmed lost run."
+    },
+    {
+      "file": "end-summary.png",
+      "sha256": "24514aab4a50d9b64c6337963658d26348a06e776c7b109fe516a1a74588ad56",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Run Lost summary shows Salvage Yard, wave 1, Danger 0, level 0, zero enemies defeated, character inventory and Restart/New Run/Main Menu buttons."
+    }
+  ],
+  "scope": "All saved PNGs inspected individually through view_image; actual staged Windows fixture receipts read. Snapshots support visible presentation only, report supplies state/timing assertions. Virtual Gamepad input is not physical controller verification; fixture IgnoreFocus is not OS focus verification. No audio listening, natural acquisition, survival balance, probability-distribution or full campaign acceptance."
+}

@@ -58,7 +58,9 @@ namespace Scrapshift
                     {
                         float number=random.Next(u.min,u.max+1);
                         if(u.id=="tree")number+=extraTrees;
-                        else if(!s.group.loot)number=Math.Max(1,number*(1+enemyModifier/100));
+                        // EntitySpawner only applies number_of_enemies to ordinary enemies.
+                        // Elite/boss wave units are EntityType.BOSS in the reference.
+                        else if(!s.group.loot&&!s.group.boss)number=Math.Max(1,number*(1+enemyModifier/100));
                         float n=Math.Max(0,number)*u.chance;int count=(int)n;if(random.NextDouble()<n-count)count++;if(count>0)emit(s.group,u,count);
                     }
                     s.left--;

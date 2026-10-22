@@ -1,0 +1,2749 @@
+{
+  "input": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\gameplay-parity-r10-2026-10-17\\physical-controller\\input.jsonl",
+  "input_sha256_at_snapshot": "a59e51f4ecbe23c1f5f1e90f3cc5940a7758bc765b375d407524face1b8cc9fc",
+  "bytes_read": 133649,
+  "samples": 218,
+  "malformed_or_partial_line_numbers": [],
+  "first_seconds": 2.9115915298461914,
+  "last_seconds": 525.306396484375,
+  "devices": [
+    "Xbox Controller [XInputControllerWindows] #9"
+  ],
+  "provenance": "Expected observer-only R10 physical-controller session, as launched by the root agent. Device names alone cannot prove physical provenance; do not analyze the virtual navigation log as hardware evidence.",
+  "virtual_fixture_report": "../navigation/navigation-check.json (synthetic Gamepad; separate evidence)",
+  "status": "significant_controller_state_observed_requires_review",
+  "significant_controller_state_samples": 144,
+  "xinput_owned_samples": 206,
+  "all_samples_isolated_profile": true,
+  "axis_coverage": {
+    "left_x": {
+      "min": -1.0,
+      "max": 1.0,
+      "negative_beyond_half": 59,
+      "positive_beyond_half": 21
+    },
+    "left_y": {
+      "min": -1.0,
+      "max": 1.0,
+      "negative_beyond_half": 14,
+      "positive_beyond_half": 40
+    },
+    "right_x": {
+      "min": -1.0,
+      "max": 1.0,
+      "negative_beyond_half": 14,
+      "positive_beyond_half": 19
+    },
+    "right_y": {
+      "min": -1.0,
+      "max": 1.0,
+      "negative_beyond_half": 15,
+      "positive_beyond_half": 14
+    },
+    "dpad_x": {
+      "min": 0.0,
+      "max": 1.0,
+      "negative_beyond_half": 0,
+      "positive_beyond_half": 1
+    },
+    "dpad_y": {
+      "min": -1.0,
+      "max": 0.0,
+      "negative_beyond_half": 8,
+      "positive_beyond_half": 0
+    }
+  },
+  "buttons": {
+    "A/South": {
+      "pressed_samples": 10,
+      "rising_edges": 5,
+      "falling_edges": 5
+    },
+    "B/East": {
+      "pressed_samples": 20,
+      "rising_edges": 11,
+      "falling_edges": 11
+    },
+    "X/West": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "Y/North": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "LB": {
+      "pressed_samples": 1,
+      "rising_edges": 1,
+      "falling_edges": 1
+    },
+    "RB": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "View/Select": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "Menu/Start": {
+      "pressed_samples": 6,
+      "rising_edges": 3,
+      "falling_edges": 3
+    },
+    "Left stick click": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "Right stick click": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "LT": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "RT": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "D-pad up": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "D-pad down": {
+      "pressed_samples": 8,
+      "rising_edges": 4,
+      "falling_edges": 4
+    },
+    "D-pad left": {
+      "pressed_samples": 0,
+      "rising_edges": 0,
+      "falling_edges": 0
+    },
+    "D-pad right": {
+      "pressed_samples": 1,
+      "rising_edges": 1,
+      "falling_edges": 1
+    }
+  },
+  "transitions": [
+    {
+      "seconds": 3.236633539199829,
+      "changes": {
+        "menuFocus": [
+          -1,
+          0
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 15.57821273803711,
+      "changes": {
+        "menuPage": [
+          0,
+          4
+        ],
+        "menuFocus": [
+          0,
+          -1
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 15.617496490478516,
+      "changes": {
+        "menuFocus": [
+          -1,
+          0
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 20.87714195251465,
+      "changes": {
+        "menuFocus": [
+          0,
+          -1
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 20.887868881225586,
+      "changes": {
+        "menuFocus": [
+          -1,
+          2
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 107.13841247558594,
+      "changes": {
+        "manualAim": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 107.15724182128906,
+      "changes": {
+        "menuPage": [
+          4,
+          0
+        ],
+        "menuFocus": [
+          2,
+          -1
+        ],
+        "manualAim": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 107.16284942626953,
+      "changes": {
+        "menuFocus": [
+          -1,
+          0
+        ]
+      },
+      "lastInputDevice": "Mouse [Mouse]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 491.33880615234375,
+      "changes": {
+        "usingGamepad": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 492.6356201171875,
+      "changes": {
+        "menuFocus": [
+          0,
+          3
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 492.8148498535156,
+      "changes": {
+        "menuFocus": [
+          3,
+          4
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.0902404785156,
+      "changes": {
+        "menuFocus": [
+          4,
+          2
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.3485412597656,
+      "changes": {
+        "menuFocus": [
+          2,
+          4
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.4485168457031,
+      "changes": {
+        "menuFocus": [
+          4,
+          3
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.673583984375,
+      "changes": {
+        "menuFocus": [
+          3,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 494.0744934082031,
+      "changes": {
+        "menuPage": [
+          0,
+          1
+        ],
+        "menuFocus": [
+          0,
+          2
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 494.5037536621094,
+      "changes": {
+        "menuPage": [
+          1,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 494.51190185546875,
+      "changes": {
+        "menuFocus": [
+          2,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 496.292724609375,
+      "changes": {
+        "usingGamepad": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Keyboard [Keyboard]",
+      "xinput_owner": false
+    },
+    {
+      "seconds": 504.4123840332031,
+      "changes": {
+        "menuFocus": [
+          0,
+          3
+        ],
+        "usingGamepad": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 505.5980224609375,
+      "changes": {
+        "phase": [
+          "Title",
+          "Playing"
+        ],
+        "menuFocus": [
+          3,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 506.1106262207031,
+      "changes": {
+        "manualAim": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 506.34014892578125,
+      "changes": {
+        "manualAim": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 506.82733154296875,
+      "changes": {
+        "manualAim": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 508.33599853515625,
+      "changes": {
+        "manualAim": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 508.4472961425781,
+      "changes": {
+        "manualAim": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 508.9475402832031,
+      "changes": {
+        "manualAim": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 509.38665771484375,
+      "changes": {
+        "manualAim": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 510.1158752441406,
+      "changes": {
+        "manualAim": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 512.0821533203125,
+      "changes": {
+        "phase": [
+          "Playing",
+          "Paused"
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 512.2201538085938,
+      "changes": {
+        "menuFocus": [
+          -1,
+          18
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 513.3990478515625,
+      "changes": {
+        "menuFocus": [
+          18,
+          19
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 513.8576049804688,
+      "changes": {
+        "menuFocus": [
+          19,
+          20
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.1649780273438,
+      "changes": {
+        "menuFocus": [
+          20,
+          21
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.259765625,
+      "changes": {
+        "menuFocus": [
+          21,
+          22
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.5807495117188,
+      "changes": {
+        "menuFocus": [
+          22,
+          23
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.7442626953125,
+      "changes": {
+        "phase": [
+          "Paused",
+          "Title"
+        ],
+        "menuFocus": [
+          23,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 515.3291625976562,
+      "changes": {
+        "menuFocus": [
+          0,
+          3
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 515.6127319335938,
+      "changes": {
+        "menuFocus": [
+          3,
+          4
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 515.7474365234375,
+      "changes": {
+        "phase": [
+          "Title",
+          "Playing"
+        ],
+        "menuFocus": [
+          4,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 516.6259765625,
+      "changes": {
+        "manualAim": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 518.0771484375,
+      "changes": {
+        "manualAim": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 519.9573364257812,
+      "changes": {
+        "phase": [
+          "Playing",
+          "Paused"
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 519.9808349609375,
+      "changes": {
+        "menuFocus": [
+          -1,
+          19
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 520.509521484375,
+      "changes": {
+        "phase": [
+          "Paused",
+          "Playing"
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 520.5132446289062,
+      "changes": {
+        "menuFocus": [
+          19,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 522.2457885742188,
+      "changes": {
+        "phase": [
+          "Playing",
+          "Paused"
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 522.2631225585938,
+      "changes": {
+        "menuFocus": [
+          -1,
+          24
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 522.8540649414062,
+      "changes": {
+        "phase": [
+          "Paused",
+          "Playing"
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 522.858642578125,
+      "changes": {
+        "menuFocus": [
+          24,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 525.306396484375,
+      "changes": {
+        "usingGamepad": [
+          true,
+          false
+        ]
+      },
+      "lastInputDevice": "Keyboard [Keyboard]",
+      "xinput_owner": false
+    }
+  ],
+  "xinput_correlated_menu_transitions": [
+    {
+      "seconds": 492.6356201171875,
+      "changes": {
+        "menuFocus": [
+          0,
+          3
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 492.8148498535156,
+      "changes": {
+        "menuFocus": [
+          3,
+          4
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.0902404785156,
+      "changes": {
+        "menuFocus": [
+          4,
+          2
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.3485412597656,
+      "changes": {
+        "menuFocus": [
+          2,
+          4
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.4485168457031,
+      "changes": {
+        "menuFocus": [
+          4,
+          3
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 493.673583984375,
+      "changes": {
+        "menuFocus": [
+          3,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 494.0744934082031,
+      "changes": {
+        "menuPage": [
+          0,
+          1
+        ],
+        "menuFocus": [
+          0,
+          2
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 494.5037536621094,
+      "changes": {
+        "menuPage": [
+          1,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 494.51190185546875,
+      "changes": {
+        "menuFocus": [
+          2,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 504.4123840332031,
+      "changes": {
+        "menuFocus": [
+          0,
+          3
+        ],
+        "usingGamepad": [
+          false,
+          true
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 505.5980224609375,
+      "changes": {
+        "phase": [
+          "Title",
+          "Playing"
+        ],
+        "menuFocus": [
+          3,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 512.2201538085938,
+      "changes": {
+        "menuFocus": [
+          -1,
+          18
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 513.3990478515625,
+      "changes": {
+        "menuFocus": [
+          18,
+          19
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 513.8576049804688,
+      "changes": {
+        "menuFocus": [
+          19,
+          20
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.1649780273438,
+      "changes": {
+        "menuFocus": [
+          20,
+          21
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.259765625,
+      "changes": {
+        "menuFocus": [
+          21,
+          22
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.5807495117188,
+      "changes": {
+        "menuFocus": [
+          22,
+          23
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 514.7442626953125,
+      "changes": {
+        "phase": [
+          "Paused",
+          "Title"
+        ],
+        "menuFocus": [
+          23,
+          0
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 515.3291625976562,
+      "changes": {
+        "menuFocus": [
+          0,
+          3
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 515.6127319335938,
+      "changes": {
+        "menuFocus": [
+          3,
+          4
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 515.7474365234375,
+      "changes": {
+        "phase": [
+          "Title",
+          "Playing"
+        ],
+        "menuFocus": [
+          4,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 519.9808349609375,
+      "changes": {
+        "menuFocus": [
+          -1,
+          19
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 520.5132446289062,
+      "changes": {
+        "menuFocus": [
+          19,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 522.2631225585938,
+      "changes": {
+        "menuFocus": [
+          -1,
+          24
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    },
+    {
+      "seconds": 522.858642578125,
+      "changes": {
+        "menuFocus": [
+          24,
+          -1
+        ]
+      },
+      "lastInputDevice": "Xbox Controller [XInputControllerWindows]",
+      "xinput_owner": true
+    }
+  ],
+  "xinput_correlated_playing_movement": [
+    {
+      "seconds": 506.0127868652344,
+      "distance_between_logged_samples": 0.22388156066078338,
+      "axes": [
+        0.4435340166091919,
+        0.8774089813232422,
+        -0.027023732662200928,
+        0.0319371223449707,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.104888916015625
+    },
+    {
+      "seconds": 506.1106262207031,
+      "distance_between_logged_samples": 0.4396200892191819,
+      "axes": [
+        -0.20366215705871582,
+        1.0,
+        0.8104219436645508,
+        -0.006851315498352051,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.09783935546875
+    },
+    {
+      "seconds": 506.2131042480469,
+      "distance_between_logged_samples": 0.4477858923863833,
+      "axes": [
+        -0.6281986832618713,
+        0.9443351030349731,
+        1.0,
+        -0.021286308765411377,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10247802734375
+    },
+    {
+      "seconds": 506.3131408691406,
+      "distance_between_logged_samples": 0.43483742905683276,
+      "axes": [
+        -1.0,
+        -0.004257261753082275,
+        0.9049668312072754,
+        -0.12278932332992554,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10003662109375
+    },
+    {
+      "seconds": 506.34014892578125,
+      "distance_between_logged_samples": 0.14840071715918868,
+      "axes": [
+        -1.0,
+        -0.34422826766967773,
+        0.3518272638320923,
+        -0.11140614748001099,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.027008056640625
+    },
+    {
+      "seconds": 506.82733154296875,
+      "distance_between_logged_samples": 0.6138574346676805,
+      "axes": [
+        0.8767986297607422,
+        -0.7369649410247803,
+        -0.6706492900848389,
+        0.9159227609634399,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.4871826171875
+    },
+    {
+      "seconds": 506.9306945800781,
+      "distance_between_logged_samples": 0.5939235890982658,
+      "axes": [
+        0.929045557975769,
+        -0.13157856464385986,
+        -1.0,
+        0.5016098022460938,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.103363037109375
+    },
+    {
+      "seconds": 507.13873291015625,
+      "distance_between_logged_samples": 0.4338066028374469,
+      "axes": [
+        -0.1455252766609192,
+        1.0,
+        -0.7036697864532471,
+        -0.5571526288986206,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.106292724609375
+    },
+    {
+      "seconds": 507.2469787597656,
+      "distance_between_logged_samples": 0.5234757769408378,
+      "axes": [
+        -0.425223171710968,
+        1.0,
+        0.6643015146255493,
+        -0.7779201865196228,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.108245849609375
+    },
+    {
+      "seconds": 507.3512878417969,
+      "distance_between_logged_samples": 0.4484985810226113,
+      "axes": [
+        -0.7161822319030762,
+        0.8819867372512817,
+        1.0,
+        -0.3827115297317505,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10430908203125
+    },
+    {
+      "seconds": 507.4556579589844,
+      "distance_between_logged_samples": 0.4458474312318784,
+      "axes": [
+        -1.0,
+        0.40914011001586914,
+        1.0,
+        0.43468379974365234,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1043701171875
+    },
+    {
+      "seconds": 507.5558166503906,
+      "distance_between_logged_samples": 0.4474866709368673,
+      "axes": [
+        -1.0,
+        0.013748407363891602,
+        0.7448385953903198,
+        0.8698710203170776,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10015869140625
+    },
+    {
+      "seconds": 507.6559143066406,
+      "distance_between_logged_samples": 0.44819369745833476,
+      "axes": [
+        -1.0,
+        -0.3021743893623352,
+        0.23378348350524902,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10009765625
+    },
+    {
+      "seconds": 507.7626037597656,
+      "distance_between_logged_samples": 0.5248549939093802,
+      "axes": [
+        -1.0,
+        -0.3958342671394348,
+        -0.25990694761276245,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.106689453125
+    },
+    {
+      "seconds": 507.86322021484375,
+      "distance_between_logged_samples": 0.44995806676617706,
+      "axes": [
+        -1.0,
+        -0.35628288984298706,
+        -0.5743648409843445,
+        0.9644159078598022,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100616455078125
+    },
+    {
+      "seconds": 507.9677429199219,
+      "distance_between_logged_samples": 0.4497021522029951,
+      "axes": [
+        -1.0,
+        -0.20021361112594604,
+        -1.0,
+        0.7134660482406616,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.104522705078125
+    },
+    {
+      "seconds": 508.06878662109375,
+      "distance_between_logged_samples": 0.448836956784844,
+      "axes": [
+        -1.0,
+        0.050980448722839355,
+        -1.0,
+        -0.30583655834198,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.101043701171875
+    },
+    {
+      "seconds": 508.16888427734375,
+      "distance_between_logged_samples": 0.449221630072629,
+      "axes": [
+        -1.0,
+        0.24037539958953857,
+        -0.7995880246162415,
+        -0.7581139802932739,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10009765625
+    },
+    {
+      "seconds": 508.2691955566406,
+      "distance_between_logged_samples": 0.44985432440082995,
+      "axes": [
+        -1.0,
+        0.33116650581359863,
+        -0.5095444917678833,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100311279296875
+    },
+    {
+      "seconds": 508.33599853515625,
+      "distance_between_logged_samples": 0.299999466141749,
+      "axes": [
+        -1.0,
+        0.34227514266967773,
+        -0.048325300216674805,
+        -0.5909667015075684,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.066802978515625
+    },
+    {
+      "seconds": 508.43597412109375,
+      "distance_between_logged_samples": 0.45000000531566553,
+      "axes": [
+        -1.0,
+        0.34227514266967773,
+        0.052170634269714355,
+        0.4177767038345337,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.0999755859375
+    },
+    {
+      "seconds": 508.4472961425781,
+      "distance_between_logged_samples": 0.07500003848115055,
+      "axes": [
+        -1.0,
+        0.34227514266967773,
+        0.07148849964141846,
+        0.7033340930938721,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.011322021484375
+    },
+    {
+      "seconds": 508.54730224609375,
+      "distance_between_logged_samples": 0.4500002308869033,
+      "axes": [
+        -1.0,
+        0.34227514266967773,
+        0.3320821523666382,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100006103515625
+    },
+    {
+      "seconds": 508.6529541015625,
+      "distance_between_logged_samples": 0.44999915131089846,
+      "axes": [
+        -1.0,
+        0.3489280939102173,
+        0.8138399124145508,
+        0.8659342527389526,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10565185546875
+    },
+    {
+      "seconds": 508.7530212402344,
+      "distance_between_logged_samples": 0.4499890806132543,
+      "axes": [
+        -1.0,
+        0.37581443786621094,
+        1.0,
+        0.4900130033493042,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100067138671875
+    },
+    {
+      "seconds": 508.8641052246094,
+      "distance_between_logged_samples": 0.5249923517218774,
+      "axes": [
+        -1.0,
+        0.3999236822128296,
+        1.0,
+        -0.07737851142883301,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.111083984375
+    },
+    {
+      "seconds": 508.9475402832031,
+      "distance_between_logged_samples": 0.3749998961587312,
+      "axes": [
+        -1.0,
+        0.40306711196899414,
+        0.16990923881530762,
+        -0.19700920581817627,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.08343505859375
+    },
+    {
+      "seconds": 509.0486755371094,
+      "distance_between_logged_samples": 0.4499998753904775,
+      "axes": [
+        -1.0,
+        0.40306711196899414,
+        0.0169222354888916,
+        -0.0164034366607666,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10113525390625
+    },
+    {
+      "seconds": 509.1530456542969,
+      "distance_between_logged_samples": 0.4499998753904775,
+      "axes": [
+        -1.0,
+        0.40306711196899414,
+        0.007583737373352051,
+        -0.005508482456207275,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1043701171875
+    },
+    {
+      "seconds": 509.253662109375,
+      "distance_between_logged_samples": 0.4499998753904775,
+      "axes": [
+        -1.0,
+        0.40306711196899414,
+        0.007583737373352051,
+        -0.005508482456207275,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100616455078125
+    },
+    {
+      "seconds": 509.3656311035156,
+      "distance_between_logged_samples": 0.5249960128523272,
+      "axes": [
+        -1.0,
+        0.4152437448501587,
+        0.30394446849823,
+        -0.005508482456207275,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.111968994140625
+    },
+    {
+      "seconds": 509.38665771484375,
+      "distance_between_logged_samples": 0.07499978718406178,
+      "axes": [
+        -1.0,
+        0.43443965911865234,
+        0.7989165782928467,
+        -0.005508482456207275,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.021026611328125
+    },
+    {
+      "seconds": 509.4866943359375,
+      "distance_between_logged_samples": 0.4493979773413348,
+      "axes": [
+        -0.9452201128005981,
+        0.6432135105133057,
+        1.0,
+        -0.037186264991760254,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10003662109375
+    },
+    {
+      "seconds": 509.58673095703125,
+      "distance_between_logged_samples": 0.4457307756465108,
+      "axes": [
+        -0.6132143139839172,
+        1.0,
+        1.0,
+        -0.13908600807189941,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10003662109375
+    },
+    {
+      "seconds": 509.6993408203125,
+      "distance_between_logged_samples": 0.520816530038425,
+      "axes": [
+        -0.14973676204681396,
+        1.0,
+        0.6763867139816284,
+        -0.7822842597961426,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.11260986328125
+    },
+    {
+      "seconds": 509.8033142089844,
+      "distance_between_logged_samples": 0.4481851693200256,
+      "axes": [
+        0.20915544033050537,
+        1.0,
+        -0.1741207242012024,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.103973388671875
+    },
+    {
+      "seconds": 509.9042053222656,
+      "distance_between_logged_samples": 0.4492347075191566,
+      "axes": [
+        0.4326084852218628,
+        1.0,
+        -0.46636146306991577,
+        -0.9882505536079407,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10089111328125
+    },
+    {
+      "seconds": 510.00421142578125,
+      "distance_between_logged_samples": 0.4499245623130872,
+      "axes": [
+        0.5110398530960083,
+        1.0,
+        -0.6626230478286743,
+        -0.9009994864463806,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100006103515625
+    },
+    {
+      "seconds": 510.1042785644531,
+      "distance_between_logged_samples": 0.4450283283117915,
+      "axes": [
+        0.9172044992446899,
+        0.6747996807098389,
+        -0.3794155716896057,
+        -0.5642328262329102,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100067138671875
+    },
+    {
+      "seconds": 510.1158752441406,
+      "distance_between_logged_samples": 0.07499991487737154,
+      "axes": [
+        0.930724024772644,
+        0.6575264930725098,
+        -0.13353168964385986,
+        -0.21049821376800537,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.0115966796875
+    },
+    {
+      "seconds": 510.2187194824219,
+      "distance_between_logged_samples": 0.4484905391819008,
+      "axes": [
+        1.0,
+        0.3185015916824341,
+        -0.00968945026397705,
+        -0.038437485694885254,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10284423828125
+    },
+    {
+      "seconds": 510.3216247558594,
+      "distance_between_logged_samples": 0.44779778211823335,
+      "axes": [
+        1.0,
+        -0.07005417346954346,
+        0.005416989326477051,
+        -0.022049307823181152,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1029052734375
+    },
+    {
+      "seconds": 510.421630859375,
+      "distance_between_logged_samples": 0.44896057213612317,
+      "axes": [
+        1.0,
+        -0.30730146169662476,
+        0.005416989326477051,
+        -0.019272148609161377,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100006103515625
+    },
+    {
+      "seconds": 516.3760986328125,
+      "distance_between_logged_samples": 0.2992826042746459,
+      "axes": [
+        -1.0,
+        -0.462455153465271,
+        -0.0034027695655822754,
+        -0.0330357551574707,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10003662109375
+    },
+    {
+      "seconds": 516.4761352539062,
+      "distance_between_logged_samples": 0.4415892080374215,
+      "axes": [
+        -1.0,
+        0.21037614345550537,
+        -0.0034027695655822754,
+        -0.0330357551574707,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10003662109375
+    },
+    {
+      "seconds": 516.5858764648438,
+      "distance_between_logged_samples": 0.5134113487189682,
+      "axes": [
+        -0.5947508811950684,
+        1.0,
+        -0.030807971954345703,
+        -0.006851315498352051,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1097412109375
+    },
+    {
+      "seconds": 516.6259765625,
+      "distance_between_logged_samples": 0.14822544339232271,
+      "axes": [
+        0.22880899906158447,
+        0.6697032451629639,
+        0.6572518348693848,
+        0.30907154083251953,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.04010009765625
+    },
+    {
+      "seconds": 516.7350463867188,
+      "distance_between_logged_samples": 0.5104449208955812,
+      "axes": [
+        0.7626307010650635,
+        0.464591383934021,
+        1.0,
+        0.20128178596496582,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10906982421875
+    },
+    {
+      "seconds": 516.839111328125,
+      "distance_between_logged_samples": 0.4492382110914618,
+      "axes": [
+        0.844907283782959,
+        0.2911878824234009,
+        1.0,
+        0.053940653800964355,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10406494140625
+    },
+    {
+      "seconds": 516.94091796875,
+      "distance_between_logged_samples": 0.44844134575741007,
+      "axes": [
+        0.7429770231246948,
+        0.028061389923095703,
+        0.3968108892440796,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.101806640625
+    },
+    {
+      "seconds": 517.9896240234375,
+      "distance_between_logged_samples": 0.07499999059076892,
+      "axes": [
+        -0.532982349395752,
+        0.45082783699035645,
+        -0.4904707670211792,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10235595703125
+    },
+    {
+      "seconds": 518.0771484375,
+      "distance_between_logged_samples": 0.3748339637694803,
+      "axes": [
+        -0.8041352033615112,
+        0.8201266527175903,
+        -0.13911652565002441,
+        0.43712520599365234,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.0875244140625
+    },
+    {
+      "seconds": 518.1868896484375,
+      "distance_between_logged_samples": 0.5247091199785519,
+      "axes": [
+        -0.7333638668060303,
+        0.9378652572631836,
+        0.0002288818359375,
+        0.06681931018829346,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1097412109375
+    },
+    {
+      "seconds": 518.28955078125,
+      "distance_between_logged_samples": 0.44998831678826284,
+      "axes": [
+        -0.7051651477813721,
+        0.9653620719909668,
+        0.006698727607727051,
+        0.0629739761352539,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1026611328125
+    },
+    {
+      "seconds": 518.3905029296875,
+      "distance_between_logged_samples": 0.4493712171327978,
+      "axes": [
+        -0.8246738314628601,
+        0.7877470254898071,
+        0.006698727607727051,
+        0.0629739761352539,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1009521484375
+    },
+    {
+      "seconds": 518.4906616210938,
+      "distance_between_logged_samples": 0.4490817219422001,
+      "axes": [
+        -0.964660108089447,
+        0.6028381586074829,
+        0.006698727607727051,
+        0.0629739761352539,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10015869140625
+    },
+    {
+      "seconds": 518.6008911132812,
+      "distance_between_logged_samples": 0.5248941953549521,
+      "axes": [
+        -1.0,
+        0.5059128999710083,
+        0.006698727607727051,
+        0.0629739761352539,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1102294921875
+    },
+    {
+      "seconds": 518.7025146484375,
+      "distance_between_logged_samples": 0.4499973396875441,
+      "axes": [
+        -1.0,
+        0.48787665367126465,
+        0.006698727607727051,
+        0.0629739761352539,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10162353515625
+    },
+    {
+      "seconds": 518.7404174804688,
+      "distance_between_logged_samples": 0.1500000069748086,
+      "axes": [
+        -1.0,
+        0.48537421226501465,
+        0.006698727607727051,
+        0.0629739761352539,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.03790283203125
+    },
+    {
+      "seconds": 518.8433837890625,
+      "distance_between_logged_samples": 0.4498763943933969,
+      "axes": [
+        -1.0,
+        0.3984893560409546,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10296630859375
+    },
+    {
+      "seconds": 518.9437255859375,
+      "distance_between_logged_samples": 0.44999093523413514,
+      "axes": [
+        -1.0,
+        0.3707178831100464,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100341796875
+    },
+    {
+      "seconds": 519.0543823242188,
+      "distance_between_logged_samples": 0.5248385179908744,
+      "axes": [
+        -1.0,
+        0.29427027702331543,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.11065673828125
+    },
+    {
+      "seconds": 519.0746459960938,
+      "distance_between_logged_samples": 0.0749999566520148,
+      "axes": [
+        -1.0,
+        0.2658274173736572,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.020263671875
+    },
+    {
+      "seconds": 519.1749877929688,
+      "distance_between_logged_samples": 0.43051726989465766,
+      "axes": [
+        -0.9442435503005981,
+        -0.7149614691734314,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.100341796875
+    },
+    {
+      "seconds": 519.2750854492188,
+      "distance_between_logged_samples": 0.4476774695602992,
+      "axes": [
+        -0.6616464853286743,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10009765625
+    },
+    {
+      "seconds": 519.2885131835938,
+      "distance_between_logged_samples": 0.07499985089772997,
+      "axes": [
+        -0.6422979831695557,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.013427734375
+    },
+    {
+      "seconds": 519.3896484375,
+      "distance_between_logged_samples": 0.4493465742623674,
+      "axes": [
+        -0.38597697019577026,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10113525390625
+    },
+    {
+      "seconds": 519.4882202148438,
+      "distance_between_logged_samples": 0.4499645185316157,
+      "axes": [
+        -0.32344549894332886,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.09857177734375
+    },
+    {
+      "seconds": 519.5913696289062,
+      "distance_between_logged_samples": 0.44999030442231935,
+      "axes": [
+        -0.34077972173690796,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1031494140625
+    },
+    {
+      "seconds": 519.69189453125,
+      "distance_between_logged_samples": 0.44999649231676553,
+      "axes": [
+        -0.36101317405700684,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10052490234375
+    },
+    {
+      "seconds": 519.7413940429688,
+      "distance_between_logged_samples": 0.2249999792298799,
+      "axes": [
+        -0.3631189465522766,
+        -1.0,
+        0.006698727607727051,
+        0.060837745666503906,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.04949951171875
+    },
+    {
+      "seconds": 519.8536376953125,
+      "distance_between_logged_samples": 0.5242286165600769,
+      "axes": [
+        -0.17921721935272217,
+        -1.0,
+        0.006698727607727051,
+        0.051224589347839355,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.11224365234375
+    },
+    {
+      "seconds": 521.2799682617188,
+      "distance_between_logged_samples": 0.14975269275632666,
+      "axes": [
+        -0.39113450050354004,
+        0.6351262331008911,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1004638671875
+    },
+    {
+      "seconds": 521.3002319335938,
+      "distance_between_logged_samples": 0.07500007945953899,
+      "axes": [
+        -0.6320134401321411,
+        0.929686427116394,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.020263671875
+    },
+    {
+      "seconds": 521.3592529296875,
+      "distance_between_logged_samples": 0.29997548883908653,
+      "axes": [
+        -0.7018997669219971,
+        0.932890772819519,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.05902099609375
+    },
+    {
+      "seconds": 521.460205078125,
+      "distance_between_logged_samples": 0.44999869837277434,
+      "axes": [
+        -0.7051651477813721,
+        0.9446402788162231,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.1009521484375
+    },
+    {
+      "seconds": 521.4744873046875,
+      "distance_between_logged_samples": 0.07499988709312437,
+      "axes": [
+        -0.7023575305938721,
+        0.9446402788162231,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.0142822265625
+    },
+    {
+      "seconds": 521.5458374023438,
+      "distance_between_logged_samples": 0.29999915187441534,
+      "axes": [
+        -0.6950026750564575,
+        0.9559929370880127,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.07135009765625
+    },
+    {
+      "seconds": 521.6500244140625,
+      "distance_between_logged_samples": 0.4499996236530831,
+      "axes": [
+        -0.6950026750564575,
+        0.9539482593536377,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10418701171875
+    },
+    {
+      "seconds": 521.7507934570312,
+      "distance_between_logged_samples": 0.4500002548248067,
+      "axes": [
+        -0.6950026750564575,
+        0.9539482593536377,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10076904296875
+    },
+    {
+      "seconds": 521.8572998046875,
+      "distance_between_logged_samples": 0.5248215155608756,
+      "axes": [
+        -0.6363469958305359,
+        1.0,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10650634765625
+    },
+    {
+      "seconds": 521.9608764648438,
+      "distance_between_logged_samples": 0.4333953100281443,
+      "axes": [
+        0.13832306861877441,
+        0.5074082612991333,
+        0.006698727607727051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10357666015625
+    },
+    {
+      "seconds": 522.0616455078125,
+      "distance_between_logged_samples": 0.44803773423430876,
+      "axes": [
+        0.39211106300354004,
+        0.529442310333252,
+        0.004654049873352051,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10076904296875
+    },
+    {
+      "seconds": 522.1299438476562,
+      "distance_between_logged_samples": 0.29993413196365404,
+      "axes": [
+        0.4893416166305542,
+        0.549614667892456,
+        -0.0023041367530822754,
+        -0.030380725860595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.06829833984375
+    },
+    {
+      "seconds": 522.2423095703125,
+      "distance_between_logged_samples": 0.5249966922674005,
+      "axes": [
+        0.5091172456741333,
+        0.5597772598266602,
+        0.020157217979431152,
+        -0.0330357551574707,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.11236572265625
+    },
+    {
+      "seconds": 523.5986328125,
+      "distance_between_logged_samples": 0.07499998783556801,
+      "axes": [
+        0.6022278070449829,
+        0.21803617477416992,
+        0.0342564582824707,
+        -0.029404163360595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.11187744140625
+    },
+    {
+      "seconds": 523.702880859375,
+      "distance_between_logged_samples": 0.4495241976214556,
+      "axes": [
+        0.8163118362426758,
+        0.8516517877578735,
+        0.0342564582824707,
+        -0.029404163360595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.104248046875
+    },
+    {
+      "seconds": 523.8063354492188,
+      "distance_between_logged_samples": 0.44765132173891703,
+      "axes": [
+        0.8105134963989258,
+        0.24083316326141357,
+        0.0342564582824707,
+        -0.029404163360595703,
+        0.0,
+        0.0
+      ],
+      "sample_gap_seconds": 0.10345458984375
+    }
+  ],
+  "xinput_correlated_manual_aim_changes": [
+    {
+      "seconds": 506.2131042480469,
+      "aim": {
+        "x": 0.9997735619544983,
+        "y": -0.021281488239765167
+      },
+      "raw_right_stick": [
+        1.0,
+        -0.021286308765411377
+      ]
+    },
+    {
+      "seconds": 506.3131408691406,
+      "aim": {
+        "x": 0.9909201264381409,
+        "y": -0.13445179164409637
+      },
+      "raw_right_stick": [
+        0.9049668312072754,
+        -0.12278932332992554
+      ]
+    },
+    {
+      "seconds": 506.82733154296875,
+      "aim": {
+        "x": -0.5907749533653259,
+        "y": 0.8068363666534424
+      },
+      "raw_right_stick": [
+        -0.6706492900848389,
+        0.9159227609634399
+      ]
+    },
+    {
+      "seconds": 506.9306945800781,
+      "aim": {
+        "x": -0.8938508629798889,
+        "y": 0.44836434721946716
+      },
+      "raw_right_stick": [
+        -1.0,
+        0.5016098022460938
+      ]
+    },
+    {
+      "seconds": 507.0324401855469,
+      "aim": {
+        "x": -0.990149736404419,
+        "y": 0.1400124579668045
+      },
+      "raw_right_stick": [
+        -1.0,
+        0.14140534400939941
+      ]
+    },
+    {
+      "seconds": 507.13873291015625,
+      "aim": {
+        "x": -0.7840020656585693,
+        "y": -0.6207582354545593
+      },
+      "raw_right_stick": [
+        -0.7036697864532471,
+        -0.5571526288986206
+      ]
+    },
+    {
+      "seconds": 507.2469787597656,
+      "aim": {
+        "x": 0.6493886709213257,
+        "y": -0.7604566812515259
+      },
+      "raw_right_stick": [
+        0.6643015146255493,
+        -0.7779201865196228
+      ]
+    },
+    {
+      "seconds": 507.3512878417969,
+      "aim": {
+        "x": 0.9339401125907898,
+        "y": -0.3574296534061432
+      },
+      "raw_right_stick": [
+        1.0,
+        -0.3827115297317505
+      ]
+    },
+    {
+      "seconds": 507.4556579589844,
+      "aim": {
+        "x": 0.9171031713485718,
+        "y": 0.3986499011516571
+      },
+      "raw_right_stick": [
+        1.0,
+        0.43468379974365234
+      ]
+    },
+    {
+      "seconds": 507.5558166503906,
+      "aim": {
+        "x": 0.6504061222076416,
+        "y": 0.7595866322517395
+      },
+      "raw_right_stick": [
+        0.7448385953903198,
+        0.8698710203170776
+      ]
+    },
+    {
+      "seconds": 507.6559143066406,
+      "aim": {
+        "x": 0.22764529287815094,
+        "y": 0.9737441539764404
+      },
+      "raw_right_stick": [
+        0.23378348350524902,
+        1.0
+      ]
+    },
+    {
+      "seconds": 507.7626037597656,
+      "aim": {
+        "x": -0.25154951214790344,
+        "y": 0.9678444862365723
+      },
+      "raw_right_stick": [
+        -0.25990694761276245,
+        1.0
+      ]
+    },
+    {
+      "seconds": 507.86322021484375,
+      "aim": {
+        "x": -0.5116862654685974,
+        "y": 0.8591723442077637
+      },
+      "raw_right_stick": [
+        -0.5743648409843445,
+        0.9644159078598022
+      ]
+    },
+    {
+      "seconds": 507.9677429199219,
+      "aim": {
+        "x": -0.8140489459037781,
+        "y": 0.5807963013648987
+      },
+      "raw_right_stick": [
+        -1.0,
+        0.7134660482406616
+      ]
+    },
+    {
+      "seconds": 508.06878662109375,
+      "aim": {
+        "x": -0.9562764167785645,
+        "y": -0.2924642860889435
+      },
+      "raw_right_stick": [
+        -1.0,
+        -0.30583655834198
+      ]
+    },
+    {
+      "seconds": 508.16888427734375,
+      "aim": {
+        "x": -0.7256764769554138,
+        "y": -0.6880361437797546
+      },
+      "raw_right_stick": [
+        -0.7995880246162415,
+        -0.7581139802932739
+      ]
+    },
+    {
+      "seconds": 508.2691955566406,
+      "aim": {
+        "x": -0.4540039896965027,
+        "y": -0.8909996747970581
+      },
+      "raw_right_stick": [
+        -0.5095444917678833,
+        -1.0
+      ]
+    },
+    {
+      "seconds": 508.4472961425781,
+      "aim": {
+        "x": 0.10112130641937256,
+        "y": 0.994874119758606
+      },
+      "raw_right_stick": [
+        0.07148849964141846,
+        0.7033340930938721
+      ]
+    },
+    {
+      "seconds": 508.54730224609375,
+      "aim": {
+        "x": 0.315158873796463,
+        "y": 0.9490389227867126
+      },
+      "raw_right_stick": [
+        0.3320821523666382,
+        1.0
+      ]
+    },
+    {
+      "seconds": 508.6529541015625,
+      "aim": {
+        "x": 0.6848481893539429,
+        "y": 0.728685736656189
+      },
+      "raw_right_stick": [
+        0.8138399124145508,
+        0.8659342527389526
+      ]
+    },
+    {
+      "seconds": 508.7530212402344,
+      "aim": {
+        "x": 0.8979856967926025,
+        "y": 0.4400246739387512
+      },
+      "raw_right_stick": [
+        1.0,
+        0.4900130033493042
+      ]
+    },
+    {
+      "seconds": 508.8641052246094,
+      "aim": {
+        "x": 0.9970196485519409,
+        "y": -0.07714790105819702
+      },
+      "raw_right_stick": [
+        1.0,
+        -0.07737851142883301
+      ]
+    },
+    {
+      "seconds": 509.38665771484375,
+      "aim": {
+        "x": 0.9999762773513794,
+        "y": -0.006894777528941631
+      },
+      "raw_right_stick": [
+        0.7989165782928467,
+        -0.005508482456207275
+      ]
+    },
+    {
+      "seconds": 509.4866943359375,
+      "aim": {
+        "x": 0.9993093013763428,
+        "y": -0.03716057911515236
+      },
+      "raw_right_stick": [
+        1.0,
+        -0.037186264991760254
+      ]
+    },
+    {
+      "seconds": 509.58673095703125,
+      "aim": {
+        "x": 0.9904656410217285,
+        "y": -0.13775990903377533
+      },
+      "raw_right_stick": [
+        1.0,
+        -0.13908600807189941
+      ]
+    },
+    {
+      "seconds": 509.6993408203125,
+      "aim": {
+        "x": 0.6540504693984985,
+        "y": -0.7564509510993958
+      },
+      "raw_right_stick": [
+        0.6763867139816284,
+        -0.7822842597961426
+      ]
+    },
+    {
+      "seconds": 509.8033142089844,
+      "aim": {
+        "x": -0.171539768576622,
+        "y": -0.985177218914032
+      },
+      "raw_right_stick": [
+        -0.1741207242012024,
+        -1.0
+      ]
+    },
+    {
+      "seconds": 509.9042053222656,
+      "aim": {
+        "x": -0.4267725348472595,
+        "y": -0.904358983039856
+      },
+      "raw_right_stick": [
+        -0.46636146306991577,
+        -0.9882505536079407
+      ]
+    },
+    {
+      "seconds": 510.00421142578125,
+      "aim": {
+        "x": -0.5924620628356934,
+        "y": -0.8055983185768127
+      },
+      "raw_right_stick": [
+        -0.6626230478286743,
+        -0.9009994864463806
+      ]
+    },
+    {
+      "seconds": 510.1042785644531,
+      "aim": {
+        "x": -0.5580154657363892,
+        "y": -0.8298305869102478
+      },
+      "raw_right_stick": [
+        -0.3794155716896057,
+        -0.5642328262329102
+      ]
+    },
+    {
+      "seconds": 516.6259765625,
+      "aim": {
+        "x": 0.904937207698822,
+        "y": 0.4255451560020447
+      },
+      "raw_right_stick": [
+        0.6572518348693848,
+        0.30907154083251953
+      ]
+    },
+    {
+      "seconds": 516.7350463867188,
+      "aim": {
+        "x": 0.9803383350372314,
+        "y": 0.1973242461681366
+      },
+      "raw_right_stick": [
+        1.0,
+        0.20128178596496582
+      ]
+    },
+    {
+      "seconds": 516.839111328125,
+      "aim": {
+        "x": 0.9985483884811401,
+        "y": 0.05386235564947128
+      },
+      "raw_right_stick": [
+        1.0,
+        0.053940653800964355
+      ]
+    },
+    {
+      "seconds": 516.94091796875,
+      "aim": {
+        "x": 0.36883386969566345,
+        "y": -0.9294953346252441
+      },
+      "raw_right_stick": [
+        0.3968108892440796,
+        -1.0
+      ]
+    },
+    {
+      "seconds": 517.0413818359375,
+      "aim": {
+        "x": -0.11012188345193863,
+        "y": -0.9939180612564087
+      },
+      "raw_right_stick": [
+        -0.11079573631286621,
+        -1.0
+      ]
+    },
+    {
+      "seconds": 517.1541137695312,
+      "aim": {
+        "x": -0.8410375118255615,
+        "y": -0.540976881980896
+      },
+      "raw_right_stick": [
+        -0.9731746315956116,
+        -0.6259708404541016
+      ]
+    },
+    {
+      "seconds": 517.256103515625,
+      "aim": {
+        "x": -0.9675490856170654,
+        "y": 0.25268328189849854
+      },
+      "raw_right_stick": [
+        -1.0,
+        0.2611581087112427
+      ]
+    },
+    {
+      "seconds": 517.3580322265625,
+      "aim": {
+        "x": -0.42999938130378723,
+        "y": 0.9028292298316956
+      },
+      "raw_right_stick": [
+        -0.4762798547744751,
+        1.0
+      ]
+    },
+    {
+      "seconds": 517.4591064453125,
+      "aim": {
+        "x": 0.36755847930908203,
+        "y": 0.9300004243850708
+      },
+      "raw_right_stick": [
+        0.3952239751815796,
+        1.0
+      ]
+    },
+    {
+      "seconds": 517.5714721679688,
+      "aim": {
+        "x": 0.9974631071090698,
+        "y": -0.07118538022041321
+      },
+      "raw_right_stick": [
+        1.0,
+        -0.07136642932891846
+      ]
+    },
+    {
+      "seconds": 517.6749267578125,
+      "aim": {
+        "x": 0.606877326965332,
+        "y": -0.794795572757721
+      },
+      "raw_right_stick": [
+        0.6122376918792725,
+        -0.8018158078193665
+      ]
+    },
+    {
+      "seconds": 517.7853393554688,
+      "aim": {
+        "x": -0.5487015843391418,
+        "y": -0.8360182642936707
+      },
+      "raw_right_stick": [
+        -0.6034485101699829,
+        -0.9194323420524597
+      ]
+    },
+    {
+      "seconds": 517.8872680664062,
+      "aim": {
+        "x": -0.821304440498352,
+        "y": 0.5704901814460754
+      },
+      "raw_right_stick": [
+        -0.8984969854354858,
+        0.6241092681884766
+      ]
+    },
+    {
+      "seconds": 517.9896240234375,
+      "aim": {
+        "x": -0.44035604596138,
+        "y": 0.8978232145309448
+      },
+      "raw_right_stick": [
+        -0.4904707670211792,
+        1.0
+      ]
+    }
+  ],
+  "xinput_correlated_pause_transitions": [
+    {
+      "seconds": 512.0821533203125,
+      "from": "Playing",
+      "to": "Paused",
+      "previous_mask": 128,
+      "current_mask": 0
+    },
+    {
+      "seconds": 514.7442626953125,
+      "from": "Paused",
+      "to": "Title",
+      "previous_mask": 1,
+      "current_mask": 1
+    },
+    {
+      "seconds": 519.9573364257812,
+      "from": "Playing",
+      "to": "Paused",
+      "previous_mask": 128,
+      "current_mask": 0
+    },
+    {
+      "seconds": 520.509521484375,
+      "from": "Paused",
+      "to": "Playing",
+      "previous_mask": 2,
+      "current_mask": 0
+    },
+    {
+      "seconds": 522.2457885742188,
+      "from": "Playing",
+      "to": "Paused",
+      "previous_mask": 128,
+      "current_mask": 0
+    },
+    {
+      "seconds": 522.8540649414062,
+      "from": "Paused",
+      "to": "Playing",
+      "previous_mask": 2,
+      "current_mask": 0
+    }
+  ],
+  "latest_state": {
+    "seconds": 525.306396484375,
+    "devices": [
+      "Xbox Controller [XInputControllerWindows] #9"
+    ],
+    "backend": "Unity Input System 1.20.1",
+    "lastInputDevice": "Keyboard [Keyboard]",
+    "axes": [
+      0.00794994831085205,
+      -0.012619197368621826,
+      0.0342564582824707,
+      -0.029404163360595703,
+      0.0,
+      0.0
+    ],
+    "buttons": 0,
+    "menuPage": 0,
+    "menuFocus": -1,
+    "shots": 191,
+    "menuFocusCues": 22,
+    "footstepCues": 27,
+    "playingMenuFocusCues": 0,
+    "playingFootstepCues": 27,
+    "phase": "Playing",
+    "usingGamepad": false,
+    "manualAim": false,
+    "isolatedProfile": true,
+    "playerPosition": {
+      "x": -5.307124614715576,
+      "y": 4.660325527191162
+    },
+    "aimDirection": {
+      "x": -0.24549032747745514,
+      "y": 0.969399094581604
+    }
+  },
+  "limitations": [
+    "Detected device or tiny neutral-axis noise is not an action or hardware pass.",
+    "Correlated state changes require native observation/user feedback; this analyzer cannot prove a highlighted target matches the user's intent.",
+    "Continuous rows are sparse and omitted while unfocused. Missing evidence is unchecked, not a demonstrated failure.",
+    "Cue request counters do not establish actual heard audio. Logger does not record offer ownership/lock details.",
+    "No overall controller pass is assigned. Native virtual fixture results and physical observations stay separate."
+  ]
+}

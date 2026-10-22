@@ -6,17 +6,35 @@ namespace Scrapshift
     public sealed partial class RunRules
     {
         double regenElapsed,lifeStealCooldown;
-        public static double RegenerationInterval(float stat)=>stat<=0?double.PositiveInfinity:5.0/(1+(stat-1)/2.25);
+        bool regenRunning;
+        public static double RegenerationInterval(float stat)
+        {int value=(int)stat;return value<=0?99:5.0/(1+(value-1)/2.25);}
+        void ResetSurvival(){regenElapsed=lifeStealCooldown=0;regenRunning=false;}
+        void BeginRegenerationAfterDamage()
+        {if(!regenRunning){regenElapsed=0;regenRunning=true;}}
 
         void TickSurvival(float dt)
         {
             lifeStealCooldown=Math.Max(0,lifeStealCooldown-dt);
             float regen=Stat("hp_regeneration"),torture=Stat("torture");
-            if(torture<=0&&regen<=0 || Health>=MaxHealth){regenElapsed=0;return;}
+            if(torture<=0&&regen<=0){regenElapsed=0;regenRunning=false;return;}
+            if(!regenRunning)
+            {
+                if(Health>=MaxHealth)return;
+                BeginRegenerationAfterDamage();
+            }
             regenElapsed+=dt;
             double interval=torture>0?1:RegenerationInterval(regen);
             int ticks=(int)Math.Floor((regenElapsed+1e-7)/interval);
-            if(ticks>0){regenElapsed-=ticks*interval;for(int i=0;i<ticks;i++)Heal(torture>0?torture:RegenerationHealMultiplier,torture>0);}
+            if(ticks>0)
+            {
+                regenElapsed-=ticks*interval;
+                // FixedTimer reports all loops together. Potion's HP threshold is
+                // sampled once, and the player emits one healing event for the batch.
+                int healing=(int)((torture>0?torture:RegenerationHealMultiplier)*ticks);
+                Heal(Math.Max(0,Math.Min(healing,MaxHealth-Health)),torture>0);
+                if(Health>=MaxHealth)regenRunning=false;
+            }
         }
 
         public bool TryLifeSteal(double roll,float weaponBonus=0)

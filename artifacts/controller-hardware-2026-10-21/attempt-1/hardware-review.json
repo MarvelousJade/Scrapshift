@@ -1,0 +1,129 @@
+{
+  "status": "Passed",
+  "scope": "Fresh human-operated core Xbox controls on R40; source unchanged. Controller log plus user confirmation, not device detection or virtual-input substitution.",
+  "build": "R40",
+  "codeCommit": "ede4094",
+  "humanConfirmation": "Done—all worked",
+  "humanPerformed": [
+    "Left-stick and D-pad menu navigation",
+    "A enter and B return",
+    "Left-stick and D-pad movement",
+    "Right-stick manual aiming",
+    "Menu/Start pause and resume"
+  ],
+  "syntheticGamepadInjected": false,
+  "checks": {
+    "onlyXboxDeviceObserved": true,
+    "isolatedProfile": true,
+    "physicalOwnershipDuringCombat": true,
+    "leftStickMenuMotion": true,
+    "dpadMenuMotion": true,
+    "aButtonObserved": true,
+    "bButtonObserved": true,
+    "leftStickCombatMotion": true,
+    "dpadCombatMotion": true,
+    "playerPositionChanged": true,
+    "rightStickCombatMotion": true,
+    "rightStickMatchesManualAim": true,
+    "menuStartButtonObserved": true,
+    "pauseAndResumeObserved": true,
+    "zeroCombatMenuCueRequests": true
+  },
+  "rows": 268,
+  "playingRows": 136,
+  "physicalDevices": [
+    "Xbox Controller [XInputControllerWindows] #9"
+  ],
+  "buttonSampleCounts": {
+    "0": 17,
+    "1": 7,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 4,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 2,
+    "13": 15,
+    "14": 29,
+    "15": 4
+  },
+  "axisRanges": [
+    {
+      "min": -1.0,
+      "max": 1.0
+    },
+    {
+      "min": -1.0,
+      "max": 1.0
+    },
+    {
+      "min": -1.0,
+      "max": 1.0
+    },
+    {
+      "min": -1.0,
+      "max": 1.0
+    },
+    {
+      "min": -1.0,
+      "max": 1.0
+    },
+    {
+      "min": -1.0,
+      "max": 1.0
+    }
+  ],
+  "manualAimSamples": 83,
+  "maximumAimDirectionError": 6.834046275026077e-08,
+  "phaseTransitions": [
+    {
+      "seconds": 104.50212097167969,
+      "before": "Title",
+      "after": "Playing",
+      "device": "Xbox Controller [XInputControllerWindows]",
+      "buttons": 0
+    },
+    {
+      "seconds": 118.4164810180664,
+      "before": "Playing",
+      "after": "Paused",
+      "device": "Xbox Controller [XInputControllerWindows]",
+      "buttons": 0
+    },
+    {
+      "seconds": 119.02039337158203,
+      "before": "Paused",
+      "after": "Playing",
+      "device": "Xbox Controller [XInputControllerWindows]",
+      "buttons": 0
+    },
+    {
+      "seconds": 119.47868347167969,
+      "before": "Playing",
+      "after": "Paused",
+      "device": "Xbox Controller [XInputControllerWindows]",
+      "buttons": 0
+    },
+    {
+      "seconds": 120.77274322509766,
+      "before": "Paused",
+      "after": "Title",
+      "device": "Xbox Controller [XInputControllerWindows]",
+      "buttons": 8193
+    }
+  ],
+  "maximumProjectileShotCounter": 0,
+  "maximumCombatMenuCueRequests": 0,
+  "inputSnapshotSha256": "0d7cddf8f5a1fb6f610307bb9d9886422d712d4fd30da02103f0e585a25249eb",
+  "limitations": [
+    "Projectile shot counter remained zero: no independent ranged-firing claim.",
+    "X/Y shop shortcuts, shoulders/triggers, reconnect/hot-plug, Bluetooth versus USB, alternative controllers and remapping were not exercised in this session.",
+    "Manual aiming was explicitly enabled through native UI in this isolated profile.",
+    "Button observations and state transitions support the user confirmation; snapshots alone are not visual proof of every highlight or audible feedback."
+  ]
+}

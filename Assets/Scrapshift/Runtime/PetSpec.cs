@@ -38,6 +38,8 @@ namespace Scrapshift
         public Equipment PetWeapon(ProjectileStats stats,PetSpec pet)
         {
             var weapon=JsonUtility.FromJson<Equipment>(JsonUtility.ToJson(stats.AsEquipment()));weapon.pet=true;weapon.specialSpawn=false;
+            weapon.melee=ReferenceEquals(stats,pet.stats)&&(pet.kind=="ratzilla"||pet.kind=="bonk_dog"||pet.kind=="blazemander"||pet.kind=="lootworm");
+            weapon.projectileScene=SupportProjectileBehavior.PetScene(pet.kind,weapon.melee);
             if(Stat("beast_master_effect")>0&&weapon.scaling!=null&&weapon.scaling.Length>0)
             {
                 float scale=weapon.scaling[0].value;
@@ -46,6 +48,7 @@ namespace Scrapshift
             if(pet.burn!=null&&pet.burn.burnTicks>0)weapon.traits=new[]{new WeaponTrait{key="effect_burning",burnDamage=pet.burn.burnDamage,burnTicks=pet.burn.burnTicks,burnChance=pet.burn.burnChance,burnScale=pet.burn.burnScale,burnStat=pet.burn.burnStat}};
             return weapon;
         }
-        public float PetCooldown(float seconds)=>Mathf.Max(2f/60,seconds);
+        public float PetRange(Equipment weapon,bool structure=false)=>Mathf.Max(25,Mathf.Floor(weapon.range*100+Stat(structure?"structure_range":"range")))/100;
+        public float PetCooldown(float seconds)=>Mathf.Max(MinimumWeaponCooldown,Mathf.Max(2,Mathf.Floor(seconds*60+.0001f))/60);
     }
 }

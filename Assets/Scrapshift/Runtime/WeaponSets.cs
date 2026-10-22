@@ -17,16 +17,16 @@ namespace Scrapshift
         {
             if(count<2)return 0;
             if(Data==null)return stat==Stat?Bonus(count):0;
-            int threshold=Mathf.Clamp(count,2,6);
-            foreach(var bonus in Data.bonuses)
-            {
-                if(bonus.count!=threshold)continue;
-                // Enumerable.Sum(float) uses a double accumulator. Preserve that rounding.
-                double total=0;
-                foreach(var effect in bonus.effects)if(effect.key==stat)total+=effect.value;
-                return (float)total;
-            }
-            throw new System.InvalidOperationException("Missing weapon-set threshold: "+threshold);
+            // This runs for every queried stat. Preserve First/Sum semantics
+            // without constructing captured predicates and LINQ iterators.
+            if(Data.bonuses==null)throw new System.ArgumentNullException("source");
+            int target=Mathf.Clamp(count,2,6);SetBonusEntry row=null;
+            for(int i=0;i<Data.bonuses.Length;i++)if(Data.bonuses[i].count==target){row=Data.bonuses[i];break;}
+            if(row==null)throw new System.InvalidOperationException("Sequence contains no matching element");
+            if(row.effects==null)throw new System.ArgumentNullException("source");
+            double total=0;
+            for(int i=0;i<row.effects.Length;i++)if(row.effects[i].key==stat)total+=row.effects[i].value;
+            return (float)total;
         }
         public string Description(int count) => Data==null?ItemEntry.FormatStat(Stat,Bonus(count)):
             string.Join(", ",Data.bonuses.First(b=>b.count==Mathf.Clamp(count,2,6)).effects.Select(e=>ItemEntry.FormatStat(e.key,e.value)));
@@ -62,16 +62,20 @@ namespace Scrapshift
         public static int Count(IReadOnlyList<Equipment> inventory,WeaponSet set)
         {
             int count=0;
-            for(int i=0;i<inventory.Count;i++)if(inventory[i].HasSet(set.Id)||For(inventory[i])==set)count++;
+            for(int i=0;i<inventory.Count;i++)
+            {
+                var weapon=inventory[i];
+                // An explicit first membership can resolve to this set only
+                // when HasSet already matched its Id. Legacy fallback is needed
+                // solely for weapons without authored membership IDs.
+                if(weapon.HasSet(set.Id)||((weapon.setIds==null||weapon.setIds.Length==0)&&For(weapon)==set))count++;
+            }
             return count;
         }
         public static float Bonus(IReadOnlyList<Equipment> inventory,string stat)
         {
             float result=0;
-            for(int i=0;i<All.Count;i++)
-            {
-                var set=All[i];result+=set.Bonus(Count(inventory,set),stat);
-            }
+            for(int i=0;i<All.Count;i++){var set=All[i];result+=set.Bonus(Count(inventory,set),stat);}
             return result;
         }
     }

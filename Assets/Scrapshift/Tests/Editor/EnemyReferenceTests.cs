@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 namespace Scrapshift.Tests
@@ -7,6 +8,42 @@ namespace Scrapshift.Tests
     {
         ExtendedEncounterData Data=>JsonUtility.FromJson<ExtendedEncounterData>(Resources.Load<TextAsset>("extended-encounters").text);
         EncounterEntry Enemy(string id)=>Data.enemies.Single(x=>x.id==id);
+        [TestCase(0,0)] [TestCase(1,7)] [TestCase(2,17)]
+        public void NightmareProjectileModesFollowReferenceEventRules(int mode,int expectedBulletWaves)
+        {
+            var occupied=new[]{11,14,17};
+            var fog=new HashSet<int>();var bullets=new HashSet<int>();
+            NightmareEventRules.Plan(6,mode,new System.Random(23),occupied,fog,bullets);
+            Assert.AreEqual(3,fog.Count,"one fog wave at 5–7 and two at 11–19");
+            Assert.IsTrue(fog.Any(w=>w>=5&&w<=7));
+            Assert.IsTrue(fog.Count(w=>w>=11&&w<=19)==2);
+            Assert.AreEqual(expectedBulletWaves,bullets.Count);
+            Assert.IsFalse(fog.Overlaps(bullets));
+            if(mode==1)Assert.IsFalse(occupied.Any(w=>bullets.Contains(w)),"event-based late waves avoid elite and horde waves");
+            if(mode==2)Assert.IsTrue(occupied.All(w=>bullets.Contains(w)),"every-wave mode includes elite and horde waves");
+        }
+        [Test] public void NightmareEventsRequireDangerSix()
+        {
+            var fog=new HashSet<int>();var bullets=new HashSet<int>();
+            NightmareEventRules.Plan(5,2,new System.Random(23),System.Array.Empty<int>(),fog,bullets);
+            Assert.IsEmpty(fog);Assert.IsEmpty(bullets);
+        }
+        [Test] public void EnemyCountModifierExcludesEliteAndBossGroups()
+        {
+            var wave=new WaveEntry{groups=new[]
+            {
+                new SpawnGroup{start=1,chance=1,boss=true,units=new[]{new UnitEntry{id="elite",min=1,max=1,chance=1}}},
+                new SpawnGroup{start=1,chance=1,units=new[]{new UnitEntry{id="regular",min=1,max=1,chance=1}}},
+                new SpawnGroup{start=1,chance=1,loot=true,units=new[]{new UnitEntry{id="looter",min=1,max=1,chance=1}}},
+                new SpawnGroup{start=1,chance=1,units=new[]{new UnitEntry{id="tree",min=1,max=1,chance=1}}}
+            }};
+            var counts=new Dictionary<string,int>();
+            new SpawnDirector(wave,19,300,2).Tick(1,(g,u,n)=>counts[u.id]=n);
+            Assert.AreEqual(1,counts["elite"],"EntityType.BOSS is exempt from number_of_enemies");
+            Assert.AreEqual(4,counts["regular"]);
+            Assert.AreEqual(1,counts["looter"],"loot alien groups are exempt");
+            Assert.AreEqual(3,counts["tree"],"trees use their own additive modifier");
+        }
         [Test] public void EverySpawnableEnemyHasSourceCollisionGeometry()
         {
             foreach(var e in Data.enemies)

@@ -5,7 +5,7 @@ namespace Scrapshift
 {
     public sealed partial class RunRules
     {
-        public int WeaponSlots=>Mathf.Clamp((Character?.weaponSlots??6)+(Stat("weapon_slot_upgrades")>0?Math.Min(Level,(int)Stat("weapon_slot_upgrades")-1):0),0,24);
+        public int WeaponSlots=>Mathf.Clamp((Character?.weaponSlots??6)+weaponSlotsEarned,0,24);
         public int MinimumWeaponTier=>Character?.minTier??1;
         public int MaximumWeaponTier=>Character?.maxTier??4;
         public bool CanAttack=>Character==null||Character.canAttackMoving||!moving;
@@ -23,9 +23,14 @@ namespace Scrapshift
         public int ExtraBaitGroups {get;private set;}
         public bool ExtraElite {get;private set;}
         int queuedBaits;
-        public int OwnedStructures=>Effects("structure").Sum(e=>(int)e.value)+Items.Count(i=>i.id=="pocket_factory")+Inventory.Count(w=>w.Trait("turret")!=null||w.Trait("garden")!=null||w.Trait("landmine")!=null)+Effects("pet").Where(e=>e.pet!=null&&e.pet.structure).Sum(e=>(int)e.value);
+        // StructureEffect.apply registers one entry per item or weapon effect,
+        // including Wrench turrets and Screwdriver mines.
+        public int RegisteredStructureCount=>Effects("structure").Count()+Inventory.Sum(w=>w.traits?.Count(t=>t.structure!=null)??0);
+        public int RegisteredTurretCount=>Effects("structure").Count(e=>SupportBehavior.IsTurretStructure(e.structure))+Inventory.Sum(w=>w.traits?.Count(t=>SupportBehavior.IsTurretStructure(t.structure))??0);
+        public void CheckStructureDeploymentUnlock()=>Progress?.Check("chal_turrets",RegisteredTurretCount);
+        public int OwnedStructures=>RegisteredStructureCount+Items.Count(i=>i.id=="pocket_factory")+Effects("pet").Count(e=>e.pet!=null&&e.pet.structure);
         public bool UsesHealthShop=>Stat("hp_shop")>0;
-        public float ShopBalance=>UsesHealthShop?MaxHealth:Scrap;
+        public float ShopBalance=>UsesHealthShop?(int)Stat("max_hp"):Scrap;
         public float WantedTagChance=>Stat("boosted_wanted_item_tag")>0?.1f:.05f;
         public float BurnCurrentHealthDamage(float health,bool boss)=>Mathf.Floor(health*Effects("burning_enemy_hp_percent_damage").Sum(e=>e.value)/(boss?1000:100));
         static readonly string[] primaryStats={"max_hp","armor","crit_chance","luck","attack_speed","elemental_damage","hp_regeneration","lifesteal","melee_damage","percent_damage","dodge","engineering","range","ranged_damage","speed","harvesting"};

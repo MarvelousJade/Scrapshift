@@ -1,0 +1,90 @@
+{
+  "reviewedUtc": "2026-10-20T17:01:55.5123141Z",
+  "reviewer": "Codex independent delegated visual review",
+  "declaredBuild": "Builds/GameplayParity20261020R37/Scrapshift.exe",
+  "report": "unlock-world-events.json",
+  "reportSha256": "dda68e3acb665c54da3a76e504c267aa5d28b7947682f07dbeee3c8e4e5c1386",
+  "statusObserved": "Passed",
+  "checksInspected": 23,
+  "failedChecks": 0,
+  "fruits": 100,
+  "hostileContacts": 3,
+  "burnKills": 30,
+  "explosionKillsTotal": 29,
+  "explosionBatches": [
+    14,
+    15
+  ],
+  "processExitCode": 0,
+  "processSha256": "e4840e01510e3495e5f5b1cdec26438478e497ed228e9365442d8295ceeb4343",
+  "runnerSpecSha256": "fe9f201e99df85ce02cac4555b015b8d5814c6ae3ab72c40fb5ff440607e2c80",
+  "savedProfile": {
+    "file": "native-unlocks-858d6cb5e0434cd6a9f2926aa6299604.json",
+    "sha256": "fa4674f1cb0286da022d85c6f4aeef7382684f2a30074361cf76c55c81132763",
+    "completed": [
+      "chal_hungry",
+      "chal_fruit_basket",
+      "chal_jellyshield",
+      "chal_will_o_the_wisp",
+      "chal_fireworks"
+    ],
+    "counters": [
+      {
+        "key": "weapon:knife",
+        "value": 5
+      },
+      {
+        "key": "full_health_fruit",
+        "value": 100
+      },
+      {
+        "key": "weapon:pistol",
+        "value": 4
+      },
+      {
+        "key": "enemy:baby_alien",
+        "value": 59
+      },
+      {
+        "key": "kills",
+        "value": 59
+      }
+    ]
+  },
+  "capturesInspected": 4,
+  "captures": [
+    {
+      "file": "fruit-contact-unlocks.png",
+      "sha256": "749b8eebfb26d238407a12cc015eb1f6b22c209656cd5dd63300e9d13e28c364",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Wave 1, 15/15 HP, green pickup feedback and bottom-left Devourer achievement toast are visible; snapshot does not count100 contacts."
+    },
+    {
+      "file": "hostile-contact-unlock.png",
+      "sha256": "aa36cf0791fe2eb9f4f6e829516465d911b1740833a2382e36284ffc82f8ee42",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "12/15 HP, overlapping -1 damage feedback and red spawn warning visible; existing Devourer toast remains, not a visible Jellyshield reward panel."
+    },
+    {
+      "file": "burn-death-unlock.png",
+      "sha256": "2a6dd4cb5538c5e2ef0022b8a2c787aa108634ba14ccc93e8cc70b16d4241ce7",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Cluster of distant targets/material drops and 3-damage numbers visible; player at15/15 HP. Timed burn count and achievement come from runtime receipt."
+    },
+    {
+      "file": "explosion-death-unlock.png",
+      "sha256": "d9679d494e6d4dfab2b208eaf32de55198f7017e3af75a197994b69229047d83",
+      "width": 1280,
+      "height": 720,
+      "inspectedWith": "view_image",
+      "observation": "Large translucent explosion circle around clustered targets, damage numbers and material drops visible; player at15/15 HP. Single-explosion threshold and persistence come from receipt."
+    }
+  ],
+  "scope": "Actual Update event producers with staged HP, positions, direct Torch burn application, direct Rocket Launcher explosion creation and fresh-run transitions. All four saved PNGs inspected, report/process/profile read. Five challenge outcomes only; not115nativeplaythroughs, natural weapon firing/proc distribution, human survival, hardware input or OSfocus acceptance."
+}

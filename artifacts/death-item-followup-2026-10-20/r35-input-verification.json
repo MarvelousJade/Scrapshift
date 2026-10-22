@@ -1,0 +1,73 @@
+{
+  "codeCommit": "debe1cf",
+  "sourceInputs": 626,
+  "playerFiles": 159,
+  "allHashesMatch": true,
+  "suite": {
+    "id": "2",
+    "testcasecount": "1271",
+    "result": "Passed",
+    "total": "1271",
+    "passed": "1271",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-20 16:36:14Z",
+    "end-time": "2026-10-20 16:37:18Z",
+    "duration": "64.1649722"
+  },
+  "packaged": {
+    "death-player": {
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedSeconds": 3.174131393432617,
+      "diagnosticMatches": []
+    },
+    "chain-player": {
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedSeconds": 3.21130633354187,
+      "diagnosticMatches": []
+    },
+    "proc-player": {
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedSeconds": 3.195563793182373,
+      "diagnosticMatches": []
+    },
+    "unlocks-player": {
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedSeconds": 10.62703275680542,
+      "diagnosticMatches": []
+    },
+    "survival-preflight": {
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedSeconds": 4.816289901733398,
+      "diagnosticMatches": []
+    },
+    "survival-player": {
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedSeconds": 14.952418088912964,
+      "diagnosticMatches": []
+    }
+  },
+  "survival": {
+    "phase": "Lost",
+    "completedWaves": 8,
+    "observedNetDamage": 142.0,
+    "observedNetHealing": 115.0,
+    "lowestObservedHealth": 0.0,
+    "deathCleanupAge": 0.5061417818069458,
+    "realtime": false,
+    "pickupPhysicsRate": 240,
+    "invulnerabilityInjected": false
+  },
+  "physicalController": "Skipped per user; no hardware acceptance",
+  "desktopInputUsed": false
+}

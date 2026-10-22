@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 11:42:17Z" end-time="2026-10-20 11:42:18Z" duration="0.506173">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1192" result="Failed" site="Child" start-time="2026-10-20 11:42:17Z" end-time="2026-10-20 11:42:18Z" duration="0.506173" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="2389" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1162" result="Failed" site="Child" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.486701" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="23648" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="2390" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1162" result="Failed" site="Child" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.478886" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="2391" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1162" result="Failed" site="Child" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.473955" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1586" name="ItemsCombinedParityTests" fullname="Scrapshift.Tests.ItemsCombinedParityTests" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.386847" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1589" name="MaximumHealthChangeReevaluatesConditionalRegenAndMissingHealthLink" fullname="Scrapshift.Tests.ItemsCombinedParityTests.MaximumHealthChangeReevaluatesConditionalRegenAndMissingHealthLink" methodname="MaximumHealthChangeReevaluatesConditionalRegenAndMissingHealthLink" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="1344779947" result="Passed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.359084" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1590" name="MixedStatLinksReadBaseStatsWithoutFeedingEachOther" fullname="Scrapshift.Tests.ItemsCombinedParityTests.MixedStatLinksReadBaseStatsWithoutFeedingEachOther" methodname="MixedStatLinksReadBaseStatsWithoutFeedingEachOther" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="1258485196" result="Passed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.000727" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1591" name="PotionBoostedRegenerationTriggersOneCombinedHealingAttack" fullname="Scrapshift.Tests.ItemsCombinedParityTests.PotionBoostedRegenerationTriggersOneCombinedHealingAttack" methodname="PotionBoostedRegenerationTriggersOneCombinedHealingAttack" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="597123757" result="Passed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.005785" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1588" name="ScaredSausageCopiesMergeGlobalBurnButKeepNativeBurnTiming" fullname="Scrapshift.Tests.ItemsCombinedParityTests.ScaredSausageCopiesMergeGlobalBurnButKeepNativeBurnTiming" methodname="ScaredSausageCopiesMergeGlobalBurnButKeepNativeBurnTiming" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="1941472255" result="Passed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.002571" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1587" name="StackedCooldownItemsAndPenaltyShareHalfSecondBurnTimer" fullname="Scrapshift.Tests.ItemsCombinedParityTests.StackedCooldownItemsAndPenaltyShareHalfSecondBurnTimer" methodname="StackedCooldownItemsAndPenaltyShareHalfSecondBurnTimer" classname="Scrapshift.Tests.ItemsCombinedParityTests" runstate="Runnable" seed="838000701" result="Passed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.000600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1592" name="ItemsRemainingParityTests" fullname="Scrapshift.Tests.ItemsRemainingParityTests" classname="Scrapshift.Tests.ItemsRemainingParityTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.009649" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1593" name="RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" fullname="Scrapshift.Tests.ItemsRemainingParityTests.RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" methodname="RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove" classname="Scrapshift.Tests.ItemsRemainingParityTests" runstate="Runnable" seed="101461575" result="Failed" start-time="2026-10-20 11:42:18Z" end-time="2026-10-20 11:42:18Z" duration="0.008524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: -78.0d +/- 9.9999997473787516E-05d
+  But was:  -78.400001525878906d
+]]></message>
+                <stack-trace><![CDATA[at Scrapshift.Tests.ItemsRemainingParityTests.RenegadeGainScalesDistinctCommonItemLinkThroughAcquireAndRemove () [0x00124] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemsRemainingParityTests.cs:26
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/parity-remaining-2026-10-20/linked-stat-tests.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

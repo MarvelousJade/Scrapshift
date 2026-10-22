@@ -42,7 +42,7 @@ namespace Scrapshift.Tests
         }
         [Test] public void PickupDuplicationIncludesBankedBonusAndXp()
         {
-            var r=Run();r.GainWeaponStat("chance_double_gold",100);r.BankMaterials(2);r.Collect(2);
+            var r=Run();r.GainWeaponStat("chance_double_gold",100);r.BankMaterials(2);r.Collect(r.PrepareMaterialDrop(2));
             Assert.AreEqual(8,r.Scrap);Assert.AreEqual(8,r.XP);Assert.AreEqual(0,r.Banked);
         }
         [Test] public void PickupHealingHappensOncePerPickupNotPerMaterialValue()
@@ -52,18 +52,18 @@ namespace Scrapshift.Tests
         [Test] public void MaterialDropModifierHasReferenceHalfValueFloorAndFractionalRoll()
         {
             var r=Run();r.GainWeaponStat("gold_drops",-100);
-            Assert.AreEqual(1,r.MaterialDropValue(1,false,.49));Assert.AreEqual(0,r.MaterialDropValue(1,false,.5));
+            Assert.AreEqual(1,r.MaterialDropValue(1,false,.49));Assert.AreEqual(1,r.MaterialDropValue(1,false,.5));Assert.AreEqual(0,r.MaterialDropValue(1,false,.5001));
             r.GainWeaponStat("neutral_gold_drops",200);Assert.AreEqual(4,r.MaterialDropValue(2,true,.5));Assert.AreEqual(1,r.MaterialDropValue(2,false,.5));
         }
         [Test] public void BurnIntervalAndDodgeCapsRespectLimits()
         {
             var r=Run();Assert.AreEqual(.6f,r.DodgeLimit);r.GainWeaponStat("dodge_cap",70);Assert.AreEqual(.7f,r.DodgeLimit);
-            r.GainWeaponStat("burning_cooldown_reduction",20);Assert.AreEqual(.8f,r.BurningInterval,.001);r.GainWeaponStat("burning_cooldown_reduction",1000);Assert.AreEqual(.1f,r.BurningInterval);
+            r.GainWeaponStat("burning_cooldown_reduction",20);Assert.AreEqual(.4f,r.BurningInterval,.001);r.GainWeaponStat("burning_cooldown_reduction",1000);Assert.AreEqual(.1f,r.BurningInterval);
         }
         [Test] public void CriticalKillHealingNeedsBothCriticalAndSuccessfulRoll()
         {
             var r=Run();r.GainWeaponStat("heal_on_crit_kill",20);r.Hurt(3);
-            Assert.IsFalse(r.TryCriticalKillHeal(false,0));Assert.IsFalse(r.TryCriticalKillHeal(true,.2));Assert.IsTrue(r.TryCriticalKillHeal(true,.19));Assert.AreEqual(8,r.Health);
+            Assert.IsFalse(r.TryCriticalKillHeal(false,0));Assert.IsFalse(r.TryCriticalKillHeal(true,.2001));Assert.IsTrue(r.TryCriticalKillHeal(true,.2));Assert.IsTrue(r.TryCriticalKillHeal(true,.19));Assert.AreEqual(9,r.Health);
             r.GainWeaponStat("damage_against_bosses",25);Assert.AreEqual(12,r.DamageToBoss(10));
         }
         [Test] public void EnemyAndTreeModifiersLeaveLootAliensUnchanged()

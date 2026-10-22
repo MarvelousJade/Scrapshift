@@ -1,0 +1,82 @@
+{
+    "status": "Passed",
+    "error": "",
+    "scope": "Opt-in staged native item-combination fixture. Neutral wave-one rules, empty spawn groups, high-HP stationary enemy and cleared weapons isolate one manually applied burn. The actual ArenaGame.Update 60 Hz simulation advances every tick. Synthetic setup does not establish normal combat hit probability, human input, other survival effects or a full playthrough.",
+    "inMemoryProfile": true,
+    "normalUpdate": true,
+    "cases": [
+        {
+            "name": "global",
+            "expectedInterval": 0.5,
+            "actualInterval": 0.5,
+            "initialHealth": 10000.0,
+            "finalHealth": 9964.0,
+            "initialElapsed": 0.0,
+            "chance": 0.5,
+            "damage": 12.0,
+            "initialTicks": 3,
+            "finalTicks": 0,
+            "tickElapsed": [
+                0.5000001788139343,
+                0.9999997019767761,
+                1.4999992847442627
+            ],
+            "tickDamage": [
+                12.0,
+                12.0,
+                12.0
+            ],
+            "timedTicks": true,
+            "payload": true,
+            "captureExists": true
+        },
+        {
+            "name": "mixed-cooldown",
+            "expectedInterval": 0.800000011920929,
+            "actualInterval": 0.800000011920929,
+            "initialHealth": 10000.0,
+            "finalHealth": 9934.0,
+            "initialElapsed": 0.0,
+            "chance": 0.5,
+            "damage": 22.0,
+            "initialTicks": 3,
+            "finalTicks": 0,
+            "tickElapsed": [
+                0.8166665434837341,
+                1.6166658401489258,
+                2.4166650772094727
+            ],
+            "tickDamage": [
+                22.0,
+                22.0,
+                22.0
+            ],
+            "timedTicks": true,
+            "payload": true,
+            "captureExists": true
+        },
+        {
+            "name": "native",
+            "expectedInterval": 0.5,
+            "actualInterval": 0.5,
+            "initialHealth": 10000.0,
+            "finalHealth": 9978.0,
+            "initialElapsed": 0.0,
+            "chance": 0.30000001192092896,
+            "damage": 11.0,
+            "initialTicks": 2,
+            "finalTicks": 0,
+            "tickElapsed": [
+                0.5000001788139343,
+                0.9999997019767761
+            ],
+            "tickDamage": [
+                11.0,
+                11.0
+            ],
+            "timedTicks": true,
+            "payload": true,
+            "captureExists": true
+        }
+    ]
+}

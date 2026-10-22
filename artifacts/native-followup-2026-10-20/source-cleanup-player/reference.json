@@ -1,0 +1,15 @@
+{
+  "mode": "minimal",
+  "case": "player",
+  "rows": [
+    {
+      "case": "actual_player_take_damage",
+      "result": null,
+      "health": 0,
+      "dead_before_return": false,
+      "die_calls_before_return": 0,
+      "scope": "Actual Player.take_damage and defense math; die/flash/consumable-attraction sinks replaced, timers supplied, no Main cleanup"
+    }
+  ],
+  "scope": "Full mode uses actual Main/Player/Enemy scenes and production damage, died signals and cleanup; natural Update/physics/timers frozen, HP and event order staged. Minimal mode substitutes terminal/rendering sinks. No human controls, balance or audio/visual acceptance."
+}

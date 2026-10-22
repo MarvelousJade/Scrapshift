@@ -1,0 +1,16 @@
+{
+  "comparedTo": "R20 final-income fix; latest whole suite attempt7",
+  "changedInputs": [
+    "Assets/Scrapshift/Runtime/CampaignCheck.cs",
+    "Assets/Scrapshift/Runtime/FinalSettlementReview.cs",
+    "Assets/Scrapshift/Runtime/RunFeedback.cs",
+    "Assets/Scrapshift/Runtime/RunRules.cs",
+    "Assets/Scrapshift/Tests/Editor/WaveSettlementLifecycleTests.cs",
+    "Assets/Scrapshift/Tests/Editor/WaveSettlementLifecycleTests.cs.meta"
+  ],
+  "productionChanged": [
+    "Assets/Scrapshift/Runtime/RunRules.cs",
+    "Assets/Scrapshift/Runtime/RunFeedback.cs"
+  ],
+  "scope": "Income before cleanup, temporary reset, growth at .66 seconds, completion after2/4 seconds. Campaign receipt instrumentation and native timing assertions updated."
+}

@@ -1,0 +1,28 @@
+{
+  "branch": "codex/gameplay-parity",
+  "buildPath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\Builds\\GameplayParity20261015R5",
+  "runtimeSha256": "E612D8992DEC50CCF16AFBCEDA2EEA10A7EE201B6C45F5654D183AE748CB94AB",
+  "exeSha256": "001AEEBFB92718F8B49F0C0E0A03E313C54669552B08E952B2FEE3DDD143683A",
+  "bytes": 401081415,
+  "errors": 0,
+  "warnings": 0,
+  "tests": {
+    "skipped": 0,
+    "passed": 541,
+    "failed": 0,
+    "laterChange": "FindFirstObjectByType replaced by FindAnyObjectByType in optional test helper only",
+    "duration": 69.4470763
+  },
+  "nativeFixture": {
+    "firstCharacterWeapons": 1,
+    "report": "focus-native-visible/navigation-check.json",
+    "passed": true,
+    "virtualInput": true,
+    "menuCuesDuringMovement": 0,
+    "footstepCuesDuringMovement": 3,
+    "exit": 0
+  },
+  "nativeFixtureLimit": "Hidden-window attempt did not render/register GUI; visible native fixture used for acceptance. Not physical input verification.",
+  "physicalInput": "R4 actual left stick/horizontal D-pad/A/gameplay observed; R5 user confirmation pending",
+  "sourceManifest": "controller-r5-source-manifest.json"
+}

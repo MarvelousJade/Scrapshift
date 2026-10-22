@@ -31,7 +31,7 @@ namespace Scrapshift.Tests
         [Test] public void UnlocksPersistCountersAndNeverDuplicateRewards()
         {
             string dir=Path.Combine(Path.GetTempPath(),"Scrapshift-unlock-test-"+Guid.NewGuid()),file=Path.Combine(dir,"progress.json");
-            try{var p=new Progression(unlocks,file);p.Count("kills",299);Assert.IsFalse(p.Unlocked("character_old"));p.Count("kills");p.Count("materials",300);p.Finish(true,"well_rounded",0,false);p.Finish(true,"well_rounded",0,false);
+            try{var p=new Progression(unlocks,file);p.Count("kills",299);Assert.IsFalse(p.Unlocked("character_old"));p.Count("kills");p.Count("materials",300);p.CheckCountedChallenges();p.Finish(true,"well_rounded",0,false);p.Finish(true,"well_rounded",0,false);
                 var reloaded=new Progression(unlocks,file);Assert.AreEqual(300,reloaded.Total("kills"));Assert.IsTrue(reloaded.Unlocked("character_old"));Assert.IsTrue(reloaded.Unlocked("character_lucky"));Assert.IsTrue(reloaded.Unlocked("character_one_arm"));Assert.IsTrue(reloaded.Unlocked("item_candy_bag"));Assert.AreEqual(1,reloaded.Difficulty);Assert.AreEqual(reloaded.Data.completed.Count,reloaded.Data.completed.Distinct().Count());}
             finally{if(Directory.Exists(dir))Directory.Delete(dir,true);}
         }

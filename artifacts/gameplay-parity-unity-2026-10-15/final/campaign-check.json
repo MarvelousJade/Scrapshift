@@ -1,0 +1,429 @@
+{
+    "status": "Passed",
+    "scope": "Accelerated Windows integration fixture: eight 50ms simulation steps per rendered frame, seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, invulnerability, mute and fresh in-memory progression. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup; it is not the Godot fixture's whole-engine scaled clock. Not normal-run balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
+    "phase": "Won",
+    "capturesVerified": true,
+    "completedWaves": 20,
+    "purchases": 37,
+    "shops": 19,
+    "upgrades": 23,
+    "crates": 12,
+    "peakEnemies": 119,
+    "charges": 365,
+    "rangedAttacks": 784,
+    "bossPhaseChanges": 2,
+    "finalMaterials": 2031,
+    "finalLevel": 24,
+    "finalItemCount": 45,
+    "wallSeconds": 158.26356506347656,
+    "enemyIds": [
+        "baby_alien",
+        "bruiser",
+        "buffer",
+        "charger",
+        "chaser",
+        "evil_mob",
+        "fin_alien",
+        "helmet_alien",
+        "horned_bruiser",
+        "horned_charger",
+        "invoker",
+        "junkie",
+        "lamprey",
+        "looter",
+        "pursuer",
+        "spawner",
+        "spitter",
+        "tree"
+    ],
+    "waves": [
+        {
+            "wave": 1,
+            "kills": 28,
+            "shots": 55,
+            "materials": 6,
+            "level": 0,
+            "itemCount": 0,
+            "simulatedSeconds": 20.04998016357422,
+            "waveSimulatedSeconds": 20.04998016357422
+        },
+        {
+            "wave": 2,
+            "kills": 69,
+            "shots": 159,
+            "materials": 24,
+            "level": 1,
+            "itemCount": 0,
+            "simulatedSeconds": 45.0995979309082,
+            "waveSimulatedSeconds": 25.049617767333984
+        },
+        {
+            "wave": 3,
+            "kills": 132,
+            "shots": 301,
+            "materials": 44,
+            "level": 2,
+            "itemCount": 1,
+            "simulatedSeconds": 75.14998626708984,
+            "waveSimulatedSeconds": 30.05038833618164
+        },
+        {
+            "wave": 4,
+            "kills": 212,
+            "shots": 451,
+            "materials": 71,
+            "level": 3,
+            "itemCount": 2,
+            "simulatedSeconds": 110.2021255493164,
+            "waveSimulatedSeconds": 35.05213928222656
+        },
+        {
+            "wave": 5,
+            "kills": 343,
+            "shots": 727,
+            "materials": 125,
+            "level": 5,
+            "itemCount": 4,
+            "simulatedSeconds": 150.2545623779297,
+            "waveSimulatedSeconds": 40.05243682861328
+        },
+        {
+            "wave": 6,
+            "kills": 501,
+            "shots": 1016,
+            "materials": 156,
+            "level": 5,
+            "itemCount": 5,
+            "simulatedSeconds": 195.30731201171875,
+            "waveSimulatedSeconds": 45.05274963378906
+        },
+        {
+            "wave": 7,
+            "kills": 714,
+            "shots": 1456,
+            "materials": 262,
+            "level": 8,
+            "itemCount": 7,
+            "simulatedSeconds": 245.36036682128906,
+            "waveSimulatedSeconds": 50.05305480957031
+        },
+        {
+            "wave": 8,
+            "kills": 872,
+            "shots": 1921,
+            "materials": 359,
+            "level": 9,
+            "itemCount": 9,
+            "simulatedSeconds": 300.4001770019531,
+            "waveSimulatedSeconds": 55.03981018066406
+        },
+        {
+            "wave": 9,
+            "kills": 1292,
+            "shots": 2575,
+            "materials": 764,
+            "level": 11,
+            "itemCount": 9,
+            "simulatedSeconds": 360.4355163574219,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 10,
+            "kills": 1645,
+            "shots": 3319,
+            "materials": 1134,
+            "level": 13,
+            "itemCount": 11,
+            "simulatedSeconds": 420.4708557128906,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 11,
+            "kills": 1883,
+            "shots": 3954,
+            "materials": 1154,
+            "level": 14,
+            "itemCount": 14,
+            "simulatedSeconds": 480.5061950683594,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 12,
+            "kills": 2176,
+            "shots": 4699,
+            "materials": 1151,
+            "level": 15,
+            "itemCount": 18,
+            "simulatedSeconds": 540.5415649414063,
+            "waveSimulatedSeconds": 60.035369873046875
+        },
+        {
+            "wave": 13,
+            "kills": 2435,
+            "shots": 5376,
+            "materials": 1300,
+            "level": 16,
+            "itemCount": 21,
+            "simulatedSeconds": 600.576904296875,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 14,
+            "kills": 2698,
+            "shots": 6115,
+            "materials": 1332,
+            "level": 17,
+            "itemCount": 24,
+            "simulatedSeconds": 660.6122436523438,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 15,
+            "kills": 3141,
+            "shots": 6949,
+            "materials": 1660,
+            "level": 18,
+            "itemCount": 28,
+            "simulatedSeconds": 720.6475830078125,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 16,
+            "kills": 3430,
+            "shots": 7659,
+            "materials": 1529,
+            "level": 20,
+            "itemCount": 32,
+            "simulatedSeconds": 780.6829223632813,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 17,
+            "kills": 3671,
+            "shots": 8408,
+            "materials": 1612,
+            "level": 21,
+            "itemCount": 35,
+            "simulatedSeconds": 840.71826171875,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 18,
+            "kills": 4009,
+            "shots": 9242,
+            "materials": 1759,
+            "level": 22,
+            "itemCount": 40,
+            "simulatedSeconds": 900.7536010742188,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 19,
+            "kills": 4479,
+            "shots": 10058,
+            "materials": 1854,
+            "level": 23,
+            "itemCount": 43,
+            "simulatedSeconds": 960.7889404296875,
+            "waveSimulatedSeconds": 60.03533935546875
+        },
+        {
+            "wave": 20,
+            "kills": 4756,
+            "shots": 11268,
+            "materials": 2031,
+            "level": 24,
+            "itemCount": 45,
+            "simulatedSeconds": 1050.7996826171875,
+            "waveSimulatedSeconds": 90.0107421875
+        }
+    ],
+    "finalWeapons": [
+        {
+            "id": "pistol",
+            "tier": 3
+        },
+        {
+            "id": "smg",
+            "tier": 3
+        },
+        {
+            "id": "double_barrel_shotgun",
+            "tier": 3
+        },
+        {
+            "id": "laser_gun",
+            "tier": 3
+        },
+        {
+            "id": "knife",
+            "tier": 2
+        },
+        {
+            "id": "spear",
+            "tier": 2
+        }
+    ],
+    "finalItemStacks": [
+        {
+            "id": "acid",
+            "count": 1
+        },
+        {
+            "id": "baby_gecko",
+            "count": 1
+        },
+        {
+            "id": "bait",
+            "count": 1
+        },
+        {
+            "id": "bandana",
+            "count": 1
+        },
+        {
+            "id": "bean_teacher",
+            "count": 1
+        },
+        {
+            "id": "blood_leech",
+            "count": 1
+        },
+        {
+            "id": "boiling_water",
+            "count": 2
+        },
+        {
+            "id": "campfire",
+            "count": 1
+        },
+        {
+            "id": "coffee",
+            "count": 1
+        },
+        {
+            "id": "coil",
+            "count": 1
+        },
+        {
+            "id": "coupon",
+            "count": 1
+        },
+        {
+            "id": "dynamite",
+            "count": 1
+        },
+        {
+            "id": "fresh_meat",
+            "count": 1
+        },
+        {
+            "id": "fuel_tank",
+            "count": 1
+        },
+        {
+            "id": "gambling_token",
+            "count": 1
+        },
+        {
+            "id": "glass_cannon",
+            "count": 1
+        },
+        {
+            "id": "glasses",
+            "count": 1
+        },
+        {
+            "id": "goat_skull",
+            "count": 1
+        },
+        {
+            "id": "gummy_berserker",
+            "count": 1
+        },
+        {
+            "id": "injection",
+            "count": 1
+        },
+        {
+            "id": "lemonade",
+            "count": 1
+        },
+        {
+            "id": "lens",
+            "count": 1
+        },
+        {
+            "id": "lootworm",
+            "count": 1
+        },
+        {
+            "id": "lumberjack_shirt",
+            "count": 1
+        },
+        {
+            "id": "mammoth",
+            "count": 1
+        },
+        {
+            "id": "mastery",
+            "count": 1
+        },
+        {
+            "id": "metal_plate",
+            "count": 2
+        },
+        {
+            "id": "mushroom",
+            "count": 1
+        },
+        {
+            "id": "mutation",
+            "count": 1
+        },
+        {
+            "id": "pencil",
+            "count": 1
+        },
+        {
+            "id": "pile_of_books",
+            "count": 1
+        },
+        {
+            "id": "reinforced_steel",
+            "count": 2
+        },
+        {
+            "id": "scared_sausage",
+            "count": 2
+        },
+        {
+            "id": "shmoop",
+            "count": 1
+        },
+        {
+            "id": "sunglasses",
+            "count": 1
+        },
+        {
+            "id": "tree",
+            "count": 2
+        },
+        {
+            "id": "tyler",
+            "count": 1
+        },
+        {
+            "id": "weird_ghost",
+            "count": 1
+        },
+        {
+            "id": "white_flag",
+            "count": 1
+        },
+        {
+            "id": "wings",
+            "count": 1
+        }
+    ]
+}

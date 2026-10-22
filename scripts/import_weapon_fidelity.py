@@ -1,14 +1,11 @@
 """Import source scene presentation and omitted weapon mechanics, with inherited node fields."""
-import copy, hashlib, json, math, re, shutil, uuid
+import copy, hashlib, json, math, re, shutil, sys, uuid
 from pathlib import Path
 import analyze_reference as src
 ROOT=src.ROOT=Path('E:/UnityProjects/brotato-(3.x)')
 PROJECT=Path(__file__).resolve().parents[1]
 OUT=PROJECT/'Assets/Scrapshift/Resources/WeaponReference'
 OUT.mkdir(parents=True,exist_ok=True)
-# The explosion scene's smoke uses this shared source texture, not the flash sprite.
-smoke_source=ROOT/'particles/sprites/particle_3.png'
-shutil.copyfile(smoke_source,OUT/'particle_3.png')
 provenance={}
 def read(path):
     p=ROOT/path;provenance[path]=hashlib.sha256(p.read_bytes()).hexdigest();return p.read_text(encoding='utf-8-sig')
@@ -51,6 +48,55 @@ def scene(path):
             else:key=name if parent[1]=='.' else parent[1]+'/'+name
             nodes.setdefault(key,{}).update(fields(b,refs,subs))
     cache[path]=nodes;return copy.deepcopy(nodes)
+def authored_muzzle(nodes):
+    """Numeric local origin only: inherited Weapon -> Sprite -> Muzzle transforms.
+
+    Muzzle's own scale/rotation do not move its origin. Weapon local rotation is
+    overwritten by weapon.gd's aim; position is assigned by Weapons layout.
+    Recoil changes Sprite.position.x, so only Weapon scale affects that delta.
+    """
+    sprite=nodes.get('Sprite',{});muzzle=nodes.get('Sprite/Muzzle',{})
+    position=sprite.get('position',[0,0]);point=muzzle.get('position',[0,0])
+    sprite_scale=sprite.get('scale',[1,1]);weapon_scale=nodes.get('.',{}).get('scale',[1,1])
+    angle=sprite.get('rotation',math.radians(sprite.get('rotation_degrees',0)))
+    x,y=point[0]*sprite_scale[0],point[1]*sprite_scale[1]
+    x,y=x*math.cos(angle)-y*math.sin(angle),x*math.sin(angle)+y*math.cos(angle)
+    return dict(muzzle=[(position[0]+x)*weapon_scale[0]/100,-(position[1]+y)*weapon_scale[1]/100],muzzleRecoil=[-weapon_scale[0],0])
+
+if '--numeric-muzzles-only' in sys.argv:
+    # Deliberately exit before projectile()/asset(): never copy textures/audio,
+    # regenerate their metadata, or replace the gameplay catalog in this mode.
+    target=PROJECT/'Assets/Scrapshift/Resources/weapon-reference.json'
+    data=json.loads(target.read_text(encoding='utf-8-sig'))
+    before=copy.deepcopy(data)
+    text=read('singletons/item_service.tscn');refs={i:p for p,i in re.findall(r'\[ext_resource path="res://([^"]+)" type="Resource" id=(\d+)\]',text)}
+    line=next(l for l in text.splitlines() if l.startswith('weapons ='));values={}
+    for i in re.findall(r'ExtResource\( (\d+) \)',line):
+        path=refs[i]
+        if '/ranged/' not in path:continue
+        definition=src.resource(path);read(path);nodes=scene(definition['scene'])
+        values[(Path(path).parts[-3],int(Path(path).parts[-2]))]=authored_muzzle(nodes)
+    updated=0
+    for profile in data['weapons']:
+        key=(profile['id'],profile['tier'])
+        if key in values:profile.update(values[key]);updated+=1
+    if updated!=len(values):raise ValueError(('Unmatched ranged muzzle profiles',updated,len(values)))
+    def unrelated(value):
+        result=copy.deepcopy(value)
+        for p in result['weapons']:
+            for key in ['muzzle','muzzleRecoil']:p.pop(key,None)
+        return result
+    if unrelated(before)!=unrelated(data):raise ValueError('Non-muzzle metadata changed')
+    target.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
+    evidence=dict(scope='Numeric authored muzzle update only; no texture/audio/catalog import',rangedProfiles=updated,otherFieldsUnchanged=True,sourceHashes=provenance,profiles=[dict(id=k[0],tier=k[1],**v) for k,v in sorted(values.items())])
+    report=PROJECT/'artifacts/authored-weapon-muzzles-2026-10-17.json';report.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
+    print(json.dumps(dict(updated=updated,otherFieldsUnchanged=True,report=str(report))))
+    raise SystemExit(0)
+
+# The explosion scene's smoke uses this shared source texture, not the flash sprite.
+smoke_source=ROOT/'particles/sprites/particle_3.png'
+shutil.copyfile(smoke_source,OUT/'particle_3.png')
+
 projectiles={}
 DEFAULT='projectiles/bullet/bullet_projectile.tscn'
 def projectile(path):
@@ -96,7 +142,7 @@ for i in re.findall(r'ExtResource\( (\d+) \)',line):
     weapons.append(dict(id=wid,tier=int(Path(path).parts[-2]),scene='' if melee else projectile(s.get('projectile_scene')),secondary=secondary,explosions=explosions,
         attackType=s.get('attack_type',0),alternate=s.get('alternate_attack_type',False),returnDamage=s.get('deal_dmg_on_return',False),
         accuracy=s.get('accuracy',1),soundDb=s.get('sound_db_mod',-5),effectScale=s.get('effect_scale',1),speedWithRange=s.get('increase_projectile_speed_with_range',False),canBounce=s.get('can_bounce',True),
-        half=[v/100 for v in shape.get('extents',[shape.get('radius',32)]*2)],hitOffset=[(p[0]+q[0])/100,-(p[1]+q[1])/100]))
+        half=[v/100 for v in shape.get('extents',[shape.get('radius',32)]*2)],hitOffset=[(p[0]+q[0])/100,-(p[1]+q[1])/100],**({} if melee else authored_muzzle(nodes))))
 unit=scene('entities/units/unit/unit.tscn')['.']
 audio=[dict(id=key,clips=[asset(p) for p in unit[key+'_sounds']]) for key in ['hurt','crit','burn']]
 data=dict(weapons=weapons,projectiles=list(projectiles.values()),audio=audio)

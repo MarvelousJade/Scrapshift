@@ -122,7 +122,9 @@ namespace Scrapshift
         }
         void EnemyBloodParticles(Enemy enemy, Vector2 knockbackDirection, float effectScale)
         {
-            if (!GameSettings.Flag("effects")) return;
+            // Logic-only combat and an already-destroyed actor have no surface
+            // to emit from. Skip before resource work or random sampling.
+            if (enemy?.obj == null || !GameSettings.Flag("effects")) return;
             bloodBurstEndTimes.RemoveAll(end => end <= elapsed);
             // Godot limits live particle emitters, rather than individual sprites.
             if (bloodBurstEndTimes.Count > 100) return;

@@ -1,0 +1,588 @@
+{
+    "status": "Passed",
+    "scope": "Normal timing Windows integration fixture: ordinary frame delta capped at 50ms, 60fps render target and normal 60Hz pickup physics. Seeded spawn placement, scripted movement, neutral base stats without character effects, Danger 0, supplied six tier-2 weapons, invulnerability, mute and fresh in-memory progression. Uses actual wave schedules, combat, queued upgrades and affordable shop purchases. Trace simulatedSeconds is active combat time and excludes shop/reward processing and wave cleanup. Not normal-run survival balance, cross-engine RNG equality, performance benchmarking or a human playthrough. Capture freshness checks do not verify image content.",
+    "phase": "Won",
+    "capturesVerified": true,
+    "realtime": true,
+    "pickupPhysicsRate": 60,
+    "completedWaves": 20,
+    "purchases": 45,
+    "shops": 19,
+    "upgrades": 23,
+    "crates": 11,
+    "peakEnemies": 119,
+    "charges": 498,
+    "rangedAttacks": 633,
+    "bossPhaseChanges": 1,
+    "finalMaterials": 2479,
+    "finalLevel": 24,
+    "finalItemCount": 52,
+    "finalBankedMaterials": 8,
+    "finalKills": 4685,
+    "finalEnemyKills": 4639,
+    "finalMaterialPickups": 3641,
+    "wallSeconds": 1089.140869140625,
+    "finalHarvesting": 31.0,
+    "finalLuck": -9.0,
+    "enemyIds": [
+        "baby_alien",
+        "bruiser",
+        "buffer",
+        "charger",
+        "chaser",
+        "fin_alien",
+        "helmet_alien",
+        "horned_bruiser",
+        "horned_charger",
+        "junkie",
+        "lamprey",
+        "looter",
+        "predator",
+        "pursuer",
+        "spawner",
+        "spitter",
+        "tree"
+    ],
+    "waves": [
+        {
+            "wave": 1,
+            "kills": 28,
+            "shots": 56,
+            "materials": 3,
+            "level": 0,
+            "itemCount": 0,
+            "bankedMaterials": 27,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 27,
+            "materialPickups": 3,
+            "simulatedSeconds": 20.00819969177246,
+            "waveSimulatedSeconds": 20.00819969177246,
+            "harvesting": 0.0,
+            "luck": 0.0
+        },
+        {
+            "wave": 2,
+            "kills": 70,
+            "shots": 172,
+            "materials": 18,
+            "level": 1,
+            "itemCount": 0,
+            "bankedMaterials": 56,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 68,
+            "materialPickups": 12,
+            "simulatedSeconds": 45.01190185546875,
+            "waveSimulatedSeconds": 25.00370216369629,
+            "harvesting": 0.0,
+            "luck": 0.0
+        },
+        {
+            "wave": 3,
+            "kills": 134,
+            "shots": 326,
+            "materials": 63,
+            "level": 2,
+            "itemCount": 0,
+            "bankedMaterials": 79,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 130,
+            "materialPickups": 36,
+            "simulatedSeconds": 75.01307678222656,
+            "waveSimulatedSeconds": 30.001174926757813,
+            "harvesting": 0.0,
+            "luck": 0.0
+        },
+        {
+            "wave": 4,
+            "kills": 214,
+            "shots": 492,
+            "materials": 107,
+            "level": 4,
+            "itemCount": 3,
+            "bankedMaterials": 95,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 209,
+            "materialPickups": 69,
+            "simulatedSeconds": 110.02069854736328,
+            "waveSimulatedSeconds": 35.00762176513672,
+            "harvesting": 0.0,
+            "luck": 0.0
+        },
+        {
+            "wave": 5,
+            "kills": 340,
+            "shots": 776,
+            "materials": 107,
+            "level": 5,
+            "itemCount": 5,
+            "bankedMaterials": 137,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 333,
+            "materialPickups": 113,
+            "simulatedSeconds": 150.02671813964844,
+            "waveSimulatedSeconds": 40.006019592285156,
+            "harvesting": 6.0,
+            "luck": 5.0
+        },
+        {
+            "wave": 6,
+            "kills": 497,
+            "shots": 1056,
+            "materials": 137,
+            "level": 6,
+            "itemCount": 8,
+            "bankedMaterials": 206,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 489,
+            "materialPickups": 155,
+            "simulatedSeconds": 195.02603149414063,
+            "waveSimulatedSeconds": 44.99931335449219,
+            "harvesting": 7.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 7,
+            "kills": 694,
+            "shots": 1458,
+            "materials": 151,
+            "level": 7,
+            "itemCount": 10,
+            "bankedMaterials": 273,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 684,
+            "materialPickups": 221,
+            "simulatedSeconds": 245.02235412597656,
+            "waveSimulatedSeconds": 49.99632263183594,
+            "harvesting": 16.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 8,
+            "kills": 840,
+            "shots": 1804,
+            "materials": 133,
+            "level": 8,
+            "itemCount": 14,
+            "bankedMaterials": 362,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 830,
+            "materialPickups": 267,
+            "simulatedSeconds": 300.019775390625,
+            "waveSimulatedSeconds": 54.99742126464844,
+            "harvesting": 17.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 9,
+            "kills": 1234,
+            "shots": 2256,
+            "materials": 240,
+            "level": 9,
+            "itemCount": 17,
+            "bankedMaterials": 608,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 1221,
+            "materialPickups": 348,
+            "simulatedSeconds": 360.0079040527344,
+            "waveSimulatedSeconds": 59.988128662109375,
+            "harvesting": 16.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 10,
+            "kills": 1549,
+            "shots": 2811,
+            "materials": 364,
+            "level": 10,
+            "itemCount": 18,
+            "bankedMaterials": 839,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 1535,
+            "materialPickups": 399,
+            "simulatedSeconds": 420.0079650878906,
+            "waveSimulatedSeconds": 60.00006103515625,
+            "harvesting": 17.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 11,
+            "kills": 1788,
+            "shots": 3342,
+            "materials": 786,
+            "level": 12,
+            "itemCount": 21,
+            "bankedMaterials": 582,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 1772,
+            "materialPickups": 673,
+            "simulatedSeconds": 480.0025329589844,
+            "waveSimulatedSeconds": 59.99456787109375,
+            "harvesting": 18.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 12,
+            "kills": 2073,
+            "shots": 3820,
+            "materials": 1119,
+            "level": 15,
+            "itemCount": 24,
+            "bankedMaterials": 325,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 2054,
+            "materialPickups": 971,
+            "simulatedSeconds": 539.9888305664063,
+            "waveSimulatedSeconds": 59.986297607421875,
+            "harvesting": 19.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 13,
+            "kills": 2345,
+            "shots": 4370,
+            "materials": 1556,
+            "level": 16,
+            "itemCount": 26,
+            "bankedMaterials": 97,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 2323,
+            "materialPickups": 1234,
+            "simulatedSeconds": 599.9776000976563,
+            "waveSimulatedSeconds": 59.98876953125,
+            "harvesting": 20.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 14,
+            "kills": 2622,
+            "shots": 4915,
+            "materials": 1740,
+            "level": 17,
+            "itemCount": 29,
+            "bankedMaterials": 44,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 2595,
+            "materialPickups": 1491,
+            "simulatedSeconds": 659.9641723632813,
+            "waveSimulatedSeconds": 59.986572265625,
+            "harvesting": 21.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 15,
+            "kills": 3079,
+            "shots": 5648,
+            "materials": 1792,
+            "level": 18,
+            "itemCount": 35,
+            "bankedMaterials": 83,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 3047,
+            "materialPickups": 1844,
+            "simulatedSeconds": 719.9561157226563,
+            "waveSimulatedSeconds": 59.991943359375,
+            "harvesting": 23.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 16,
+            "kills": 3391,
+            "shots": 6296,
+            "materials": 2026,
+            "level": 19,
+            "itemCount": 39,
+            "bankedMaterials": 13,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 3356,
+            "materialPickups": 2188,
+            "simulatedSeconds": 779.9533081054688,
+            "waveSimulatedSeconds": 59.9971923828125,
+            "harvesting": 25.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 17,
+            "kills": 3601,
+            "shots": 7047,
+            "materials": 2091,
+            "level": 20,
+            "itemCount": 43,
+            "bankedMaterials": 26,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 3563,
+            "materialPickups": 2522,
+            "simulatedSeconds": 839.9528198242188,
+            "waveSimulatedSeconds": 59.99951171875,
+            "harvesting": 27.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 18,
+            "kills": 3936,
+            "shots": 7840,
+            "materials": 2174,
+            "level": 21,
+            "itemCount": 47,
+            "bankedMaterials": 32,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 3898,
+            "materialPickups": 2836,
+            "simulatedSeconds": 899.9462890625,
+            "waveSimulatedSeconds": 59.99346923828125,
+            "harvesting": 29.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 19,
+            "kills": 4417,
+            "shots": 8654,
+            "materials": 2581,
+            "level": 23,
+            "itemCount": 49,
+            "bankedMaterials": 37,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 4377,
+            "materialPickups": 3304,
+            "simulatedSeconds": 959.9603881835938,
+            "waveSimulatedSeconds": 60.01409912109375,
+            "harvesting": 31.0,
+            "luck": 4.0
+        },
+        {
+            "wave": 20,
+            "kills": 4685,
+            "shots": 9717,
+            "materials": 2479,
+            "level": 24,
+            "itemCount": 52,
+            "bankedMaterials": 8,
+            "materialObjects": 0,
+            "groundMaterialValue": 0,
+            "enemyKills": 4639,
+            "materialPickups": 3641,
+            "simulatedSeconds": 1050.0206298828125,
+            "waveSimulatedSeconds": 90.06024169921875,
+            "harvesting": 31.0,
+            "luck": -9.0
+        }
+    ],
+    "finalWeapons": [
+        {
+            "id": "pistol",
+            "tier": 3
+        },
+        {
+            "id": "smg",
+            "tier": 3
+        },
+        {
+            "id": "double_barrel_shotgun",
+            "tier": 3
+        },
+        {
+            "id": "laser_gun",
+            "tier": 2
+        },
+        {
+            "id": "knife",
+            "tier": 2
+        },
+        {
+            "id": "spear",
+            "tier": 3
+        }
+    ],
+    "finalItemStacks": [
+        {
+            "id": "alien_magic",
+            "count": 1
+        },
+        {
+            "id": "alien_tongue",
+            "count": 1
+        },
+        {
+            "id": "baby_elephant",
+            "count": 1
+        },
+        {
+            "id": "baby_gecko",
+            "count": 1
+        },
+        {
+            "id": "bait",
+            "count": 2
+        },
+        {
+            "id": "bean_teacher",
+            "count": 1
+        },
+        {
+            "id": "beanie",
+            "count": 1
+        },
+        {
+            "id": "book",
+            "count": 1
+        },
+        {
+            "id": "broken_mouth",
+            "count": 1
+        },
+        {
+            "id": "butterfly",
+            "count": 1
+        },
+        {
+            "id": "cake",
+            "count": 1
+        },
+        {
+            "id": "charcoal",
+            "count": 1
+        },
+        {
+            "id": "claw_tree",
+            "count": 1
+        },
+        {
+            "id": "coupon",
+            "count": 2
+        },
+        {
+            "id": "cute_monkey",
+            "count": 2
+        },
+        {
+            "id": "defective_steroids",
+            "count": 1
+        },
+        {
+            "id": "dynamite",
+            "count": 2
+        },
+        {
+            "id": "fertilizer",
+            "count": 1
+        },
+        {
+            "id": "fresh_meat",
+            "count": 1
+        },
+        {
+            "id": "fuel_tank",
+            "count": 1
+        },
+        {
+            "id": "head_injury",
+            "count": 1
+        },
+        {
+            "id": "helmet",
+            "count": 2
+        },
+        {
+            "id": "insanity",
+            "count": 1
+        },
+        {
+            "id": "landmines",
+            "count": 1
+        },
+        {
+            "id": "lootworm",
+            "count": 1
+        },
+        {
+            "id": "lumberjack_shirt",
+            "count": 1
+        },
+        {
+            "id": "missile",
+            "count": 1
+        },
+        {
+            "id": "mutation",
+            "count": 1
+        },
+        {
+            "id": "pile_of_books",
+            "count": 1
+        },
+        {
+            "id": "ratzilla",
+            "count": 1
+        },
+        {
+            "id": "recycling_machine",
+            "count": 1
+        },
+        {
+            "id": "riposte",
+            "count": 1
+        },
+        {
+            "id": "scar",
+            "count": 1
+        },
+        {
+            "id": "sharp_bullet",
+            "count": 1
+        },
+        {
+            "id": "snowball",
+            "count": 1
+        },
+        {
+            "id": "sunglasses",
+            "count": 1
+        },
+        {
+            "id": "terrified_onion",
+            "count": 1
+        },
+        {
+            "id": "toxic_sludge",
+            "count": 3
+        },
+        {
+            "id": "turret",
+            "count": 3
+        },
+        {
+            "id": "ugly_tooth",
+            "count": 1
+        },
+        {
+            "id": "weird_ghost",
+            "count": 1
+        },
+        {
+            "id": "white_flag",
+            "count": 1
+        },
+        {
+            "id": "wings",
+            "count": 1
+        }
+    ]
+}

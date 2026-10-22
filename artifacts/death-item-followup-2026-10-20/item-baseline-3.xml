@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Failed(Child)" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.4072682">
+  <test-suite type="TestSuite" id="1000" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1261" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.407268" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="2481" name="Scrapshift.Tests.dll" fullname="E:/Codex Projects/Job Search Assistant/tmp/ScrapshiftParity/Library/ScriptAssemblies/Scrapshift.Tests.dll" runstate="Runnable" testcasecount="1231" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.389897" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="11480" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="2482" name="Scrapshift" fullname="Scrapshift" runstate="Runnable" testcasecount="1231" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.382747" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="2483" name="Tests" fullname="Scrapshift.Tests" runstate="Runnable" testcasecount="1231" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.375224" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1542" name="ItemChainFollowupTests" fullname="Scrapshift.Tests.ItemChainFollowupTests" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.349563" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1548" name="OrdinarySpecialProjectileStillReceivesSausageBurn" fullname="Scrapshift.Tests.ItemChainFollowupTests.OrdinarySpecialProjectileStillReceivesSausageBurn" methodname="OrdinarySpecialProjectileStillReceivesSausageBurn" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="251654539" result="Passed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.314053" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1551" name="PlainItemExplosionHasNoWeaponLifeStealCallback" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.013912" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1549" name="PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5)" methodname="PlainItemExplosionHasNoWeaponLifeStealCallback" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="422365989" result="Failed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.009562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An item explosion must not heal or trigger Lich through weapon life steal.
+  Expected: 7.0f
+  But was:  8.0f
+]]></message>
+                  <stack-trace><![CDATA[at Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback (System.String item, System.String trigger, System.Int32 copies) [0x00083] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemChainFollowupTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1550" name="PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2)" methodname="PlainItemExplosionHasNoWeaponLifeStealCallback" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="974078967" result="Failed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.001439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An item explosion must not heal or trigger Lich through weapon life steal.
+  Expected: 13.0f
+  But was:  14.0f
+]]></message>
+                  <stack-trace><![CDATA[at Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionHasNoWeaponLifeStealCallback (System.String item, System.String trigger, System.Int32 copies) [0x00083] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemChainFollowupTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1547" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.006731" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1543" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,False)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,False)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1952463290" result="Failed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.001971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A plain item explosion does not inherit global weapon burning.
+  Expected: 0
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire (System.String item, System.String trigger, System.Int32 copies, System.Boolean greekFire) [0x000ad] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemChainFollowupTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1544" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,True)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;rip_and_tear&quot;,&quot;explode_on_death&quot;,5,True)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="687933525" result="Failed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.001191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A non-burning item explosion must not activate Greek Fire.
+  Expected: 950.0f
+  But was:  850.0f
+]]></message>
+                  <stack-trace><![CDATA[at Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire (System.String item, System.String trigger, System.Int32 copies, System.Boolean greekFire) [0x00082] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemChainFollowupTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1545" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,False)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,False)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="504761354" result="Failed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.001061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A plain item explosion does not inherit global weapon burning.
+  Expected: 0
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire (System.String item, System.String trigger, System.Int32 copies, System.Boolean greekFire) [0x000ad] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemChainFollowupTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1546" name="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,True)" fullname="Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire(&quot;spicy_sauce&quot;,&quot;explode_on_consumable&quot;,2,True)" methodname="PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire" classname="Scrapshift.Tests.ItemChainFollowupTests" runstate="Runnable" seed="1329651971" result="Failed" start-time="2026-10-20 16:14:20Z" end-time="2026-10-20 16:14:20Z" duration="0.001061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A non-burning item explosion must not activate Greek Fire.
+  Expected: 968.0f
+  But was:  868.0f
+]]></message>
+                  <stack-trace><![CDATA[at Scrapshift.Tests.ItemChainFollowupTests.PlainItemExplosionsDoNotAcquireSausageBurnOrGreekFire (System.String item, System.String trigger, System.Int32 copies, System.Boolean greekFire) [0x00082] in E:\Codex Projects\Job Search Assistant\tmp\ScrapshiftParity\Assets\Scrapshift\Tests\Editor\ItemChainFollowupTests.cs:70
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: E:/Codex Projects/Job Search Assistant/work/repos/Scrapshift/artifacts/death-item-followup-2026-10-20/item-baseline-3.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

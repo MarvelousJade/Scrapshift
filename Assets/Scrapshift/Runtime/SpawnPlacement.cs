@@ -6,6 +6,20 @@ namespace Scrapshift
     public static class SpawnPlacement
     {
         public static Vector2 Bounds => ArenaGeometry.HalfSize;
+        static float SourceEdge(float requested=.64f)=>Mathf.Min(requested,Mathf.Floor(Mathf.Min(Bounds.x,Bounds.y)*40)/100);
+        // ZoneService raw points, already centered and Y-flipped into our world.
+        // The rolls keep their source ordering: zero Y samples the top edge.
+        public static Vector2 SourceRandomPosition(float rollX,float rollY,float edge=.64f)
+        {
+            Vector2 half=Bounds-Vector2.one*SourceEdge(edge);
+            return new Vector2(Mathf.LerpUnclamped(-half.x,half.x,rollX),Mathf.LerpUnclamped(half.y,-half.y,rollY));
+        }
+        public static Vector2 SourceAreaPosition(Vector2 center,float area,float rollX,float rollY)
+        {
+            Vector2 margin=Bounds-Vector2.one*(SourceEdge()+area*.5f);
+            center=new Vector2(Mathf.Clamp(center.x,-margin.x,margin.x),Mathf.Clamp(center.y,-margin.y,margin.y));
+            return center+new Vector2((rollX-.5f)*area,(.5f-rollY)*area);
+        }
         static float Range(System.Random random, float min, float max) => min + (float)random.NextDouble() * (max - min);
         static Vector2 InRect(System.Random random, Vector2 center, Vector2 half) => center +
             new Vector2(Range(random, -half.x, half.x), Range(random, -half.y, half.y));

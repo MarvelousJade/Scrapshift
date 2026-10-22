@@ -1,0 +1,258 @@
+{
+  "scope": "Selected source/fixture provenance for this headless reference attempt; not a complete source-tree equality audit or visual verification. Clone differences are explicitly recorded, not asserted identical.",
+  "source": "E:\\UnityProjects\\brotato-(3.x)",
+  "clone": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020",
+  "output": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\original-full-headless",
+  "headless": true,
+  "capturesVerified": false,
+  "preparedWhileProcessRunning": true,
+  "preparation": {
+    "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\headless-reference-preparation\\preparation.json",
+    "sha256": "62548ad8bec5dcd2d071db4fba7452b34f2cf001eb06aab3a0c378db51250b5f",
+    "bytes": 1666
+  },
+  "runnerSpec": {
+    "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\original-full-headless\\runner-spec.json",
+    "sha256": "955186a52f8ee3b53c204609689b439ab82988883dce46974e89a159afcb8116",
+    "bytes": 1035
+  },
+  "engine": {
+    "path": "E:\\Godot_v4.7.2-stable_win64.exe\\Godot_v3.6.2-stable_win64.exe",
+    "sha256": "e748acc92ee5205dd3cc1754d4422870f6a68ae6e00a16ff88bd3438c957adfd",
+    "bytes": 66333704
+  },
+  "fixture": {
+    "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\parity_fixture.gd",
+    "sha256": "9fc1542c18db171649d937b05f015183b764b016201a4a13893bb2bf4ad24c8c",
+    "bytes": 9845
+  },
+  "project": {
+    "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\project.godot",
+    "sha256": "f62cc03f5184611f5db048d79942857fe3a60117d04ddf0116a415da61e5b49c",
+    "bytes": 84400
+  },
+  "fixtureMatchesPreparation": true,
+  "projectMatchesPreparation": true,
+  "originalSelectedPreservation": [
+    {
+      "path": "project.godot",
+      "before": "26c6ea74509ecdfb3e90d644426937e9a8511b29b427ac6b87ddc4f77503bc0d",
+      "afterPreparation": "26c6ea74509ecdfb3e90d644426937e9a8511b29b427ac6b87ddc4f77503bc0d",
+      "current": "26c6ea74509ecdfb3e90d644426937e9a8511b29b427ac6b87ddc4f77503bc0d",
+      "unchanged": true
+    },
+    {
+      "path": "main.gd",
+      "before": "38732641ccc81dea91776d3afb159368849c8d848800b1d49c9e9e26e3f6fc80",
+      "afterPreparation": "38732641ccc81dea91776d3afb159368849c8d848800b1d49c9e9e26e3f6fc80",
+      "current": "38732641ccc81dea91776d3afb159368849c8d848800b1d49c9e9e26e3f6fc80",
+      "unchanged": true
+    },
+    {
+      "path": "singletons/run_data.gd",
+      "before": "9b1f2c940fcb04dcac6cf0821bc14b054c02c0e43ac9037f5c997b0645575273",
+      "afterPreparation": "9b1f2c940fcb04dcac6cf0821bc14b054c02c0e43ac9037f5c997b0645575273",
+      "current": "9b1f2c940fcb04dcac6cf0821bc14b054c02c0e43ac9037f5c997b0645575273",
+      "unchanged": true
+    },
+    {
+      "path": "singletons/debug_service.gd",
+      "before": "5e3985d79b9d206915f57fa824a6f4a041435117aa773683506ecbbe156b85c3",
+      "afterPreparation": "5e3985d79b9d206915f57fa824a6f4a041435117aa773683506ecbbe156b85c3",
+      "current": "5e3985d79b9d206915f57fa824a6f4a041435117aa773683506ecbbe156b85c3",
+      "unchanged": true
+    }
+  ],
+  "selectedRuntimeFiles": [
+    {
+      "path": "main.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\main.gd",
+        "sha256": "38732641ccc81dea91776d3afb159368849c8d848800b1d49c9e9e26e3f6fc80",
+        "bytes": 66693
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\main.gd",
+        "sha256": "38732641ccc81dea91776d3afb159368849c8d848800b1d49c9e9e26e3f6fc80",
+        "bytes": 66693
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "main.tscn",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\main.tscn",
+        "sha256": "e628dd3e6f647e63d8063d5076175075fc85b2b2d0699d723ba9e788a37e0ae9",
+        "bytes": 34609
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\main.tscn",
+        "sha256": "e628dd3e6f647e63d8063d5076175075fc85b2b2d0699d723ba9e788a37e0ae9",
+        "bytes": 34609
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "singletons/run_data.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\singletons\\run_data.gd",
+        "sha256": "9b1f2c940fcb04dcac6cf0821bc14b054c02c0e43ac9037f5c997b0645575273",
+        "bytes": 71012
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\singletons\\run_data.gd",
+        "sha256": "9b1f2c940fcb04dcac6cf0821bc14b054c02c0e43ac9037f5c997b0645575273",
+        "bytes": 71012
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "singletons/debug_service.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\singletons\\debug_service.gd",
+        "sha256": "5e3985d79b9d206915f57fa824a6f4a041435117aa773683506ecbbe156b85c3",
+        "bytes": 7937
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\singletons\\debug_service.gd",
+        "sha256": "5e3985d79b9d206915f57fa824a6f4a041435117aa773683506ecbbe156b85c3",
+        "bytes": 7937
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "singletons/item_service.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\singletons\\item_service.gd",
+        "sha256": "7990aefd66dc2880396c4fbccda78a7e1a5318bfe01d6d8cf3883e7cb7dfcbeb",
+        "bytes": 37859
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\singletons\\item_service.gd",
+        "sha256": "7990aefd66dc2880396c4fbccda78a7e1a5318bfe01d6d8cf3883e7cb7dfcbeb",
+        "bytes": 37859
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "singletons/challenge_service.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\singletons\\challenge_service.gd",
+        "sha256": "9351996770b3743fa24ca3d6716dd7a2c7db62b0f198f075dcb05c4a7854e794",
+        "bytes": 29118
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\singletons\\challenge_service.gd",
+        "sha256": "9351996770b3743fa24ca3d6716dd7a2c7db62b0f198f075dcb05c4a7854e794",
+        "bytes": 29118
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "singletons/progress_data.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\singletons\\progress_data.gd",
+        "sha256": "103f8734bb3b0e3b212ccb8d355f5ceb35e91f2fb1c1d0e56f6328a7b03f1fed",
+        "bytes": 48220
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\singletons\\progress_data.gd",
+        "sha256": "58759315b3494b71ab0ceac6d0e184a2d26c4edd3111c5d1049b1d334ac4fd70",
+        "bytes": 49949
+      },
+      "matchesOriginal": false
+    },
+    {
+      "path": "entities/units/unit/unit.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\entities\\units\\unit\\unit.gd",
+        "sha256": "f952466aecc14627eddb6dfd952c32a7b09c21f9613a9215e92e63da7c87cfe9",
+        "bytes": 26886
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\entities\\units\\unit\\unit.gd",
+        "sha256": "f952466aecc14627eddb6dfd952c32a7b09c21f9613a9215e92e63da7c87cfe9",
+        "bytes": 26886
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "entities/units/player/player.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\entities\\units\\player\\player.gd",
+        "sha256": "e3383b0bf8dcb8674c47243466d79bd8d79a1f413a93fa055ae9b63abf38be5d",
+        "bytes": 37420
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\entities\\units\\player\\player.gd",
+        "sha256": "e3383b0bf8dcb8674c47243466d79bd8d79a1f413a93fa055ae9b63abf38be5d",
+        "bytes": 37420
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "entities/units/enemies/enemy.gd",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\entities\\units\\enemies\\enemy.gd",
+        "sha256": "18da608eabd4c65c0017de8603e8d61f4320f628f12ca596a451bd8ce9fdab9b",
+        "bytes": 12919
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\entities\\units\\enemies\\enemy.gd",
+        "sha256": "18da608eabd4c65c0017de8603e8d61f4320f628f12ca596a451bd8ce9fdab9b",
+        "bytes": 12919
+      },
+      "matchesOriginal": true
+    },
+    {
+      "path": "entities/units/neutral/tree_stats.tres",
+      "original": {
+        "path": "E:\\UnityProjects\\brotato-(3.x)\\entities\\units\\neutral\\tree_stats.tres",
+        "sha256": "b87b59f7ba447272513b9e2f897f8a184596ad62da35c0e710caa88c0e92c0df",
+        "bytes": 578
+      },
+      "clone": {
+        "path": "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020\\entities\\units\\neutral\\tree_stats.tres",
+        "sha256": "b87b59f7ba447272513b9e2f897f8a184596ad62da35c0e710caa88c0e92c0df",
+        "bytes": 578
+      },
+      "matchesOriginal": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\reference-clone-setup.json",
+      "sha256": "016cfbcc1242de209e66cd94b2287309d38c50487d62dc856b7cead9f181b79c",
+      "bytes": 776
+    },
+    {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\headless-reference-preparation\\parity_fixture.baseline.gd",
+      "sha256": "b7980917c06e6d6c291fdacc0ac3df42930804e1e6d688da70fd18ec7f8dfb41",
+      "bytes": 6915
+    },
+    {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\headless-reference-preparation\\parity_fixture.gd",
+      "sha256": "9fc1542c18db171649d937b05f015183b764b016201a4a13893bb2bf4ad24c8c",
+      "bytes": 9845
+    },
+    {
+      "path": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\headless-reference-preparation\\project.godot",
+      "sha256": "f62cc03f5184611f5db048d79942857fe3a60117d04ddf0116a415da61e5b49c",
+      "bytes": 84400
+    }
+  ],
+  "profileIsolation": {
+    "APPDATA": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\original-full-headless\\host-data\\Roaming",
+    "LOCALAPPDATA": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\original-full-headless\\host-data\\Local",
+    "OUTPUT": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\artifacts\\parity-remaining-2026-10-20\\original-full-headless",
+    "SURVIVAL": "0"
+  },
+  "launchArguments": [
+    "--path",
+    "E:\\Codex Projects\\Job Search Assistant\\tmp\\BrotatoParity20261020",
+    "--no-window",
+    "--resolution",
+    "1280x720"
+  ],
+  "limits": "Hashes record selected frozen inputs. Preparation checked four original files before/after. Current selected runtime pairs can legitimately differ due isolated fixtures/profile routing; consult exact contents. Startup log-path assertions and fixture pause intervention remain in original attempt logs/trace and are not removed."
+}

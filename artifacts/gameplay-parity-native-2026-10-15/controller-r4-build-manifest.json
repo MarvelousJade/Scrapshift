@@ -1,0 +1,29 @@
+{
+  "branch": "codex/gameplay-parity",
+  "buildPath": "E:\\Codex Projects\\Job Search Assistant\\work\\repos\\Scrapshift\\Builds\\GameplayParity20261015R4",
+  "purpose": "Final Input System controller and shortcut review",
+  "runtimeSha256": "2F2C8956165804502E946CC75EF89B818F1B4B631C8F2782A6EB65D4E24C218E",
+  "exeSha256": "001AEEBFB92718F8B49F0C0E0A03E313C54669552B08E952B2FEE3DDD143683A",
+  "buildBytes": 401072035,
+  "errors": 0,
+  "warnings": 0,
+  "fullSuite": {
+    "failed": 0,
+    "passed": 526,
+    "skipped": 0,
+    "scope": "Before final CanLock guard",
+    "duration": 74.2703369
+  },
+  "latestAffectedSuite": {
+    "failed": 0,
+    "passed": 46,
+    "skipped": 0,
+    "scope": "After CanLock guard: controls, device events, special shops",
+    "duration": 0.8029584
+  },
+  "sourceManifest": "controller-r4-source-manifest.json",
+  "inputBackend": "Unity Input System 1.20.1; Both enabled",
+  "physicalController": "Xbox detected; actual input acceptance pending",
+  "nativeCheck": "Hold-reroll setting visibly toggled On/Off/On through mouse, Escape returned title",
+  "profile": "Isolated in-memory preferences/progression"
+}

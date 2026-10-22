@@ -1,0 +1,92 @@
+{
+  "scope": "Synthetic Development fixtures, not an R21 benchmark or proof of exact performance parity. Inclusive profiler times overlap.",
+  "status": "allocation_cause_investigation",
+  "baseline": {
+    "telemetry": {
+      "frames": 711,
+      "wallSeconds": 12.00954818725586,
+      "combatSeconds": 12.016610145568848,
+      "p50FrameMs": 16.70360565185547,
+      "p95FrameMs": 19.398212432861328,
+      "maxFrameMs": 118.73435974121094,
+      "initialEnemies": 0,
+      "initialShots": 0,
+      "items": 42,
+      "upgradesApplied": 17
+    },
+    "exportedFrames": 712,
+    "markers": {
+      "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]": {
+        "thread": "Main Thread",
+        "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]",
+        "totalMs": 3760.2037,
+        "selfMs": 2853.792699999998,
+        "calls": 711.0,
+        "gcBytes": 620088310.0,
+        "occurrences": 711
+      },
+      "GC.Alloc": {
+        "thread": "Main Thread",
+        "name": "GC.Alloc",
+        "totalMs": 642.0262999322047,
+        "selfMs": 642.0262999322047,
+        "calls": 12124226.0,
+        "gcBytes": 778460800.0,
+        "occurrences": 12124226
+      },
+      "GC.Collect": {
+        "thread": "Main Thread",
+        "name": "GC.Collect",
+        "totalMs": 498.5256000000005,
+        "selfMs": 498.5256000000005,
+        "calls": 764.0,
+        "gcBytes": 0.0,
+        "occurrences": 764
+      }
+    }
+  },
+  "crowd": {
+    "telemetry": {
+      "frames": 16,
+      "wallSeconds": 12.715885162353516,
+      "combatSeconds": 2.133331298828125,
+      "p50FrameMs": 769.094482421875,
+      "p95FrameMs": 884.022705078125,
+      "maxFrameMs": 997.7636108398438,
+      "initialEnemies": 134,
+      "initialShots": 400,
+      "items": 42,
+      "upgradesApplied": 17
+    },
+    "exportedFrames": 17,
+    "markers": {
+      "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]": {
+        "thread": "Main Thread",
+        "name": "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]",
+        "totalMs": 12568.22784,
+        "selfMs": 9679.024688,
+        "calls": 16.0,
+        "gcBytes": 2407347742.0,
+        "occurrences": 16
+      },
+      "GC.Alloc": {
+        "thread": "Main Thread",
+        "name": "GC.Alloc",
+        "totalMs": 1668.4506996997632,
+        "selfMs": 1668.4506996997632,
+        "calls": 33286955.0,
+        "gcBytes": 2411192148.0,
+        "occurrences": 33286955
+      },
+      "GC.Collect": {
+        "thread": "Main Thread",
+        "name": "GC.Collect",
+        "totalMs": 1205.1650999999986,
+        "selfMs": 1205.1650999999986,
+        "calls": 2083.0,
+        "gcBytes": 0.0,
+        "occurrences": 2083
+      }
+    }
+  }
+}

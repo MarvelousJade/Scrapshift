@@ -43,6 +43,25 @@ namespace Scrapshift.Tests
             Assert.That(ReferenceBloodSpray.Lifetime, Is.EqualTo(.5f));
         }
 
+        [Test] public void BloodEmitterWithoutAnActorDoesNotAllocateParticlesOrConsumeRandomness()
+        {
+            const System.Reflection.BindingFlags hidden=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var owner=new GameObject("Absent blood surface test");
+            var saved=UnityEngine.Random.state;
+            try
+            {
+                var game=owner.AddComponent<ArenaGame>();
+                var enemy=System.Activator.CreateInstance(typeof(ArenaGame).GetNestedType("Enemy",System.Reflection.BindingFlags.NonPublic),true);
+                var method=typeof(ArenaGame).GetMethod("EnemyBloodParticles",hidden);
+                method.Invoke(game,new object[]{enemy,Vector2.right,1f});
+                method.Invoke(game,new object[]{null,Vector2.right,1f});
+                Assert.AreEqual(saved,UnityEngine.Random.state);
+                Assert.IsFalse((bool)typeof(ArenaGame).GetField("enemyBloodSpriteLoaded",hidden).GetValue(game));
+                Assert.AreEqual(0,((System.Collections.ICollection)typeof(ArenaGame).GetField("sparks",hidden).GetValue(game)).Count);
+            }
+            finally{UnityEngine.Object.DestroyImmediate(owner);UnityEngine.Random.state=saved;}
+        }
+
         [Test] public void ImportedRapidFireWeaponsKeepSourceBloodScale()
         {
             var profiles = WeaponReference.Profiles;

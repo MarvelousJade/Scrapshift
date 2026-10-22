@@ -1,0 +1,740 @@
+{
+  "status": "Compared",
+  "scope": "Synthetic crowded-wave Development-player profiling only. No claim of ordinary-game FPS, exact reproduction of R21, or complete gameplay parity. Figures are normalized by recorded 60 Hz simulation-tick marker calls, not by rendered frame count.",
+  "cases": [
+    {
+      "case": "stat-crowd",
+      "description": "Before weapon-set/settings/geometry allocation fixes",
+      "processStatus": "exited",
+      "processExitCode": 0,
+      "nativeStatus": "Captured",
+      "simulationTicks": 24,
+      "markerTickConsistency": {
+        "Scrapshift.Enemies": 24.0,
+        "Scrapshift.Projectiles": 24.0,
+        "Scrapshift.Equipment": 24.0,
+        "Scrapshift.Pickups": 24.0,
+        "Scrapshift.Rules": 24.0
+      },
+      "exportedProfilerFrames": 4,
+      "telemetryFrames": 3,
+      "initial": {
+        "initialEnemies": 134,
+        "initialShots": 400,
+        "initialHostileShots": 350,
+        "initialFriendlyShots": 50,
+        "initialPickups": 50,
+        "items": 42,
+        "upgradesApplied": 17
+      },
+      "diagnosticFrameTelemetry": {
+        "wallSeconds": 2.290653705596924,
+        "combatSeconds": 0.39999961853027344,
+        "p50FrameMs": 723.5789184570312,
+        "p95FrameMs": 723.5789184570312,
+        "maxFrameMs": 756.6547241210938
+      },
+      "allocationCallstacksDuring": false,
+      "markers": {
+        "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]": {
+          "calls": 3.0,
+          "totalMs": 2260.464384,
+          "selfMs": 19.88352,
+          "gcBytes": 437437174.0,
+          "totalMsPerSimulationTick": 94.186016,
+          "selfMsPerSimulationTick": 0.82848,
+          "gcBytesPerSimulationTick": 18226548.916666668,
+          "callsPerSimulationTick": 0.125
+        },
+        "Scrapshift.Enemies": {
+          "calls": 24.0,
+          "totalMs": 1589.3947839999998,
+          "selfMs": 1216.7286839999997,
+          "gcBytes": 322011616.0,
+          "totalMsPerSimulationTick": 66.22478266666666,
+          "selfMsPerSimulationTick": 50.69702849999999,
+          "gcBytesPerSimulationTick": 13417150.666666666,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Projectiles": {
+          "calls": 24.0,
+          "totalMs": 414.2123,
+          "selfMs": 322.69539999999995,
+          "gcBytes": 65908546.0,
+          "totalMsPerSimulationTick": 17.258845833333336,
+          "selfMsPerSimulationTick": 13.445641666666665,
+          "gcBytesPerSimulationTick": 2746189.4166666665,
+          "callsPerSimulationTick": 1.0
+        },
+        "GC.Alloc": {
+          "calls": 6042143.0,
+          "totalMs": 315.71529999512023,
+          "selfMs": 315.71529999512023,
+          "gcBytes": 438166644.0,
+          "totalMsPerSimulationTick": 13.154804166463343,
+          "selfMsPerSimulationTick": 13.154804166463343,
+          "gcBytesPerSimulationTick": 18256943.5,
+          "callsPerSimulationTick": 251755.95833333334
+        },
+        "GC.Collect": {
+          "calls": 381.0,
+          "totalMs": 207.56649999999996,
+          "selfMs": 207.56649999999996,
+          "gcBytes": 0.0,
+          "totalMsPerSimulationTick": 8.648604166666665,
+          "selfMsPerSimulationTick": 8.648604166666665,
+          "gcBytesPerSimulationTick": 0.0,
+          "callsPerSimulationTick": 15.875
+        },
+        "Scrapshift.Pickups": {
+          "calls": 24.0,
+          "totalMs": 102.62129999999999,
+          "selfMs": 72.93249999999999,
+          "gcBytes": 20791680.0,
+          "totalMsPerSimulationTick": 4.2758875,
+          "selfMsPerSimulationTick": 3.0388541666666664,
+          "gcBytesPerSimulationTick": 866320.0,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Equipment": {
+          "calls": 24.0,
+          "totalMs": 67.1748,
+          "selfMs": 48.0785,
+          "gcBytes": 12980664.0,
+          "totalMsPerSimulationTick": 2.79895,
+          "selfMsPerSimulationTick": 2.003270833333333,
+          "gcBytesPerSimulationTick": 540861.0,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.StarterEffects": {
+          "calls": 24.0,
+          "totalMs": 53.80029999999999,
+          "selfMs": 41.74839999999999,
+          "gcBytes": 10590920.0,
+          "totalMsPerSimulationTick": 2.2416791666666662,
+          "selfMsPerSimulationTick": 1.7395166666666662,
+          "gcBytesPerSimulationTick": 441288.3333333333,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.OnGUI() [Invoke]": {
+          "calls": 6.0,
+          "totalMs": 10.173499999999999,
+          "selfMs": 6.0412,
+          "gcBytes": 718618.0,
+          "totalMsPerSimulationTick": 0.4238958333333333,
+          "selfMsPerSimulationTick": 0.25171666666666664,
+          "gcBytesPerSimulationTick": 29942.416666666668,
+          "callsPerSimulationTick": 0.25
+        },
+        "Scrapshift.Rules": {
+          "calls": 24.0,
+          "totalMs": 9.8636,
+          "selfMs": 7.146400000000001,
+          "gcBytes": 1999200.0,
+          "totalMsPerSimulationTick": 0.4109833333333333,
+          "selfMsPerSimulationTick": 0.2977666666666667,
+          "gcBytesPerSimulationTick": 83300.0,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Runtime.dll!::CrowdedProfile.Start() [Coroutine: MoveNext] [Invoke]": {
+          "calls": 3.0,
+          "totalMs": 0.7496,
+          "selfMs": 0.7491,
+          "gcBytes": 314.0,
+          "totalMsPerSimulationTick": 0.031233333333333335,
+          "selfMsPerSimulationTick": 0.0312125,
+          "gcBytesPerSimulationTick": 13.083333333333334,
+          "callsPerSimulationTick": 0.125
+        }
+      },
+      "evidence": {
+        "crowded-profile.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd/crowded-profile.json",
+          "sha256": "f79a1a07149ff16f8fc0590726dc3437d6e04ef53e67baa59216e1f56f6acb61"
+        },
+        "cpu-profile.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd/cpu-profile.json",
+          "sha256": "97d2788069ad06b69a068f2bedffdbcc754325f15c27797c394d0b73b9f7163e"
+        },
+        "process.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd/process.json",
+          "sha256": "280ebfca41563d9fa495885c1cd05d5cb7f291e6574367e2187e926fb6d4c05d"
+        },
+        "runner-spec.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd/runner-spec.json",
+          "sha256": "be9a1d916bdc3ab0efd0b8e3c0f004b9a43aadc124984e1bbec168d0c0238aa4"
+        }
+      },
+      "normalizedMarkerThread": "Main Thread",
+      "scopeOfGcAllocBytes": "Main-thread profiler allocation samples; inclusive subsystem allocations overlap and must not be added together."
+    },
+    {
+      "case": "stat-crowd-combined",
+      "description": "Weapon-set loops and immutable launch-classification cache",
+      "processStatus": "exited",
+      "processExitCode": 0,
+      "nativeStatus": "Captured",
+      "simulationTicks": 32,
+      "markerTickConsistency": {
+        "Scrapshift.Enemies": 32.0,
+        "Scrapshift.Projectiles": 32.0,
+        "Scrapshift.Equipment": 32.0,
+        "Scrapshift.Pickups": 32.0,
+        "Scrapshift.Rules": 32.0
+      },
+      "exportedProfilerFrames": 5,
+      "telemetryFrames": 4,
+      "initial": {
+        "initialEnemies": 134,
+        "initialShots": 400,
+        "initialHostileShots": 350,
+        "initialFriendlyShots": 50,
+        "initialPickups": 50,
+        "items": 42,
+        "upgradesApplied": 17
+      },
+      "diagnosticFrameTelemetry": {
+        "wallSeconds": 2.1184144020080566,
+        "combatSeconds": 0.5333328247070312,
+        "p50FrameMs": 495.3150634765625,
+        "p95FrameMs": 516.266845703125,
+        "maxFrameMs": 564.9185180664062
+      },
+      "allocationCallstacksDuring": false,
+      "markers": {
+        "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]": {
+          "calls": 4.0,
+          "totalMs": 2073.051008,
+          "selfMs": 10.71856,
+          "gcBytes": 427725164.0,
+          "totalMsPerSimulationTick": 64.782844,
+          "selfMsPerSimulationTick": 0.334955,
+          "gcBytesPerSimulationTick": 13366411.375,
+          "callsPerSimulationTick": 0.125
+        },
+        "Scrapshift.Enemies": {
+          "calls": 32.0,
+          "totalMs": 1573.0724999999998,
+          "selfMs": 1239.7650999999998,
+          "gcBytes": 347680364.0,
+          "totalMsPerSimulationTick": 49.15851562499999,
+          "selfMsPerSimulationTick": 38.742659374999995,
+          "gcBytesPerSimulationTick": 10865011.375,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Projectiles": {
+          "calls": 32.0,
+          "totalMs": 419.0505999999999,
+          "selfMs": 338.6137,
+          "gcBytes": 69374350.0,
+          "totalMsPerSimulationTick": 13.095331249999997,
+          "selfMsPerSimulationTick": 10.581678125,
+          "gcBytesPerSimulationTick": 2167948.4375,
+          "callsPerSimulationTick": 1.0
+        },
+        "GC.Alloc": {
+          "calls": 5637139.0,
+          "totalMs": 256.4899000065223,
+          "selfMs": 256.4899000065223,
+          "gcBytes": 427855446.0,
+          "totalMsPerSimulationTick": 8.015309375203822,
+          "selfMsPerSimulationTick": 8.015309375203822,
+          "gcBytesPerSimulationTick": 13370482.6875,
+          "callsPerSimulationTick": 176160.59375
+        },
+        "GC.Collect": {
+          "calls": 371.0,
+          "totalMs": 157.19369999999995,
+          "selfMs": 157.19369999999995,
+          "gcBytes": 0.0,
+          "totalMsPerSimulationTick": 4.912303124999998,
+          "selfMsPerSimulationTick": 4.912303124999998,
+          "gcBytesPerSimulationTick": 0.0,
+          "callsPerSimulationTick": 11.59375
+        },
+        "Scrapshift.StarterEffects": {
+          "calls": 32.0,
+          "totalMs": 45.26919999999999,
+          "selfMs": 36.8114,
+          "gcBytes": 9502564.0,
+          "totalMsPerSimulationTick": 1.4146624999999997,
+          "selfMsPerSimulationTick": 1.15035625,
+          "gcBytesPerSimulationTick": 296955.125,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.OnGUI() [Invoke]": {
+          "calls": 8.0,
+          "totalMs": 24.0845,
+          "selfMs": 4.1382,
+          "gcBytes": 118880.0,
+          "totalMsPerSimulationTick": 0.752640625,
+          "selfMsPerSimulationTick": 0.12931875,
+          "gcBytesPerSimulationTick": 3715.0,
+          "callsPerSimulationTick": 0.25
+        },
+        "Scrapshift.Pickups": {
+          "calls": 32.0,
+          "totalMs": 14.062000000000003,
+          "selfMs": 13.378799999999996,
+          "gcBytes": 592384.0,
+          "totalMsPerSimulationTick": 0.4394375000000001,
+          "selfMsPerSimulationTick": 0.4180874999999999,
+          "gcBytesPerSimulationTick": 18512.0,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Equipment": {
+          "calls": 32.0,
+          "totalMs": 9.247000000000003,
+          "selfMs": 8.495700000000001,
+          "gcBytes": 336554.0,
+          "totalMsPerSimulationTick": 0.2889687500000001,
+          "selfMsPerSimulationTick": 0.26549062500000004,
+          "gcBytesPerSimulationTick": 10517.3125,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Rules": {
+          "calls": 32.0,
+          "totalMs": 1.2510999999999999,
+          "selfMs": 1.2145000000000001,
+          "gcBytes": 59208.0,
+          "totalMsPerSimulationTick": 0.039096874999999996,
+          "selfMsPerSimulationTick": 0.037953125000000004,
+          "gcBytesPerSimulationTick": 1850.25,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Runtime.dll!::CrowdedProfile.Start() [Coroutine: MoveNext] [Invoke]": {
+          "calls": 4.0,
+          "totalMs": 0.6845,
+          "selfMs": 0.6841999999999999,
+          "gcBytes": 332.0,
+          "totalMsPerSimulationTick": 0.021390625,
+          "selfMsPerSimulationTick": 0.021381249999999997,
+          "gcBytesPerSimulationTick": 10.375,
+          "callsPerSimulationTick": 0.125
+        }
+      },
+      "evidence": {
+        "crowded-profile.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-combined/crowded-profile.json",
+          "sha256": "8465b336dd92b12618099df56942f5454bc388e38bf535a973f002dfc1f11299"
+        },
+        "cpu-profile.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-combined/cpu-profile.json",
+          "sha256": "e0ebf45f8ff1631c00bfec407d4551f75f580ea7fe07d202bb2076d52d0304be"
+        },
+        "process.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-combined/process.json",
+          "sha256": "c13ec0d9fd92b0d604497108d8a4f688b527362b101f2919684e742c42359e54"
+        },
+        "runner-spec.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-combined/runner-spec.json",
+          "sha256": "f1057bfb0638baeac935ef3eeb7681ee0aca2a1749a7abcfe35486fa518c9655"
+        }
+      },
+      "normalizedMarkerThread": "Main Thread",
+      "scopeOfGcAllocBytes": "Main-thread profiler allocation samples; inclusive subsystem allocations overlap and must not be added together."
+    },
+    {
+      "case": "stat-crowd-final",
+      "description": "Combined fixes plus immutable collision-profile dictionary",
+      "processStatus": "exited",
+      "processExitCode": 0,
+      "nativeStatus": "Captured",
+      "simulationTicks": 115,
+      "markerTickConsistency": {
+        "Scrapshift.Enemies": 115.0,
+        "Scrapshift.Projectiles": 115.0,
+        "Scrapshift.Equipment": 115.0,
+        "Scrapshift.Pickups": 115.0,
+        "Scrapshift.Rules": 115.0
+      },
+      "exportedProfilerFrames": 17,
+      "telemetryFrames": 16,
+      "initial": {
+        "initialEnemies": 134,
+        "initialShots": 400,
+        "initialHostileShots": 350,
+        "initialFriendlyShots": 50,
+        "initialPickups": 50,
+        "items": 42,
+        "upgradesApplied": 17
+      },
+      "diagnosticFrameTelemetry": {
+        "wallSeconds": 2.048525810241699,
+        "combatSeconds": 1.9166772365570068,
+        "p50FrameMs": 118.97945404052734,
+        "p95FrameMs": 154.2000732421875,
+        "maxFrameMs": 174.6773681640625
+      },
+      "allocationCallstacksDuring": false,
+      "markers": {
+        "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.Update() [Invoke]": {
+          "calls": 16.0,
+          "totalMs": 1929.997496,
+          "selfMs": 47.987080000000006,
+          "gcBytes": 14784390.0,
+          "totalMsPerSimulationTick": 16.78258692173913,
+          "selfMsPerSimulationTick": 0.4172789565217392,
+          "gcBytesPerSimulationTick": 128559.91304347826,
+          "callsPerSimulationTick": 0.1391304347826087
+        },
+        "Scrapshift.Enemies": {
+          "calls": 115.0,
+          "totalMs": 1163.7851999999996,
+          "selfMs": 1145.7654999999997,
+          "gcBytes": 8097090.0,
+          "totalMsPerSimulationTick": 10.119871304347823,
+          "selfMsPerSimulationTick": 9.963178260869563,
+          "gcBytesPerSimulationTick": 70409.47826086957,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Projectiles": {
+          "calls": 115.0,
+          "totalMs": 547.9336,
+          "selfMs": 520.634,
+          "gcBytes": 1550284.0,
+          "totalMsPerSimulationTick": 4.76464,
+          "selfMsPerSimulationTick": 4.527252173913044,
+          "gcBytesPerSimulationTick": 13480.730434782608,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Pickups": {
+          "calls": 115.0,
+          "totalMs": 63.84250000000001,
+          "selfMs": 59.790400000000005,
+          "gcBytes": 2128880.0,
+          "totalMsPerSimulationTick": 0.5551521739130435,
+          "selfMsPerSimulationTick": 0.5199165217391305,
+          "gcBytesPerSimulationTick": 18512.0,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.Runtime.dll!Scrapshift::ArenaGame.OnGUI() [Invoke]": {
+          "calls": 32.0,
+          "totalMs": 57.72250000000001,
+          "selfMs": 20.8827,
+          "gcBytes": 558464.0,
+          "totalMsPerSimulationTick": 0.5019347826086957,
+          "selfMsPerSimulationTick": 0.18158869565217392,
+          "gcBytesPerSimulationTick": 4856.208695652174,
+          "callsPerSimulationTick": 0.2782608695652174
+        },
+        "Scrapshift.Equipment": {
+          "calls": 115.0,
+          "totalMs": 51.79599999999997,
+          "selfMs": 44.873099999999994,
+          "gcBytes": 1488196.0,
+          "totalMsPerSimulationTick": 0.45039999999999975,
+          "selfMsPerSimulationTick": 0.3902008695652173,
+          "gcBytesPerSimulationTick": 12940.834782608696,
+          "callsPerSimulationTick": 1.0
+        },
+        "Scrapshift.StarterEffects": {
+          "calls": 115.0,
+          "totalMs": 47.86109999999999,
+          "selfMs": 47.32309999999998,
+          "gcBytes": 626060.0,
+          "totalMsPerSimulationTick": 0.4161834782608695,
+          "selfMsPerSimulationTick": 0.4115052173913042,
+          "gcBytesPerSimulationTick": 5444.0,
+          "callsPerSimulationTick": 1.0
+        },
+        "GC.Alloc": {
+          "calls": 224845.0,
+          "totalMs": 15.637899999985237,
+          "selfMs": 15.637899999985237,
+          "gcBytes": 15360152.0,
+          "totalMsPerSimulationTick": 0.1359817391303064,
+          "selfMsPerSimulationTick": 0.1359817391303064,
+          "gcBytesPerSimulationTick": 133566.53913043477,
+          "callsPerSimulationTick": 1955.1739130434783
+        },
+        "GC.Collect": {
+          "calls": 13.0,
+          "totalMs": 11.8544,
+          "selfMs": 11.8544,
+          "gcBytes": 0.0,
+          "totalMsPerSimulationTick": 0.10308173913043478,
+          "selfMsPerSimulationTick": 0.10308173913043478,
+          "gcBytesPerSimulationTick": 0.0,
+          "callsPerSimulationTick": 0.11304347826086956
+        },
+        "Scrapshift.Rules": {
+          "calls": 115.0,
+          "totalMs": 4.9662,
+          "selfMs": 4.806899999999999,
+          "gcBytes": 209196.0,
+          "totalMsPerSimulationTick": 0.043184347826086954,
+          "selfMsPerSimulationTick": 0.041799130434782596,
+          "gcBytesPerSimulationTick": 1819.095652173913,
+          "callsPerSimulationTick": 1.0
+        }
+      },
+      "evidence": {
+        "crowded-profile.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-final/crowded-profile.json",
+          "sha256": "fe2cb14c2e73c2ce70d2f9f922cc6e48862914fff9c81549ecc24cd35c82cda5"
+        },
+        "cpu-profile.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-final/cpu-profile.json",
+          "sha256": "4feee7534bc10f5553b83353f3176dcb324e34268b7694e993a45193254b8d91"
+        },
+        "process.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-final/process.json",
+          "sha256": "3614afd7f1a53ccbf7cdf959c9b5af431991997cd0e4584baf405b3ea477b479"
+        },
+        "runner-spec.json": {
+          "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-final/runner-spec.json",
+          "sha256": "1707586978776c35a813a99c0af1eb57b5ec2b41bef5767a8c7eb314e6dd3dea"
+        }
+      },
+      "normalizedMarkerThread": "Main Thread",
+      "scopeOfGcAllocBytes": "Main-thread profiler allocation samples; inclusive subsystem allocations overlap and must not be added together."
+    }
+  ],
+  "limits": [
+    "Each case stages 134 high-HP enemies, 350 hostile and 50 friendly slow persistent projectiles, a 42-item replayed inventory and 17 upgrade deltas. Actual initial material piles are capped/merged by production drop logic. The setup is synthetic and is not a saved R21 world state.",
+    "The CPU profiler is non-Deep with allocation callstacks disabled in the recorded cases. Profiler GC.Alloc samples have overhead; lowering allocation also lowers profiling overhead. Diagnostic frame durations cannot be presented as production FPS gains.",
+    "Captures request two seconds after three seconds of warmup. They contain only 3, 4 and 16 telemetry frames; their percentiles are descriptive samples, not stable performance benchmarks.",
+    "The exported profiler contains one more boundary frame than native telemetry in each case. Simulation-tick denominators come from agreeing subsystem marker call counts, not exported frame totals.",
+    "GC.GetAllocatedBytesForCurrentThread is unavailable in this Unity Mono runtime: known allocation probe did not advance it. Earlier microbench zero-byte fields are invalid, not evidence of zero allocations; later rows mark unavailable and use -1. Only raw-profiler GC bytes are used for allocation comparison.",
+    "Crowd positions are staged but engine random behavior, contact order and actual entity/projectile counts can vary. The captures compare the same stress policy, not identical per-tick world states.",
+    "The stat-crowd-geometry timing sample overlapped a Unity build and is excluded from timing comparisons; its timing-limit.json preserves that qualification.",
+    "The full normal R21 run and its measured wall-time excess remain separate evidence. These captures identify allocation costs and effects of bounded fixes, but do not by themselves quantify the resulting normal-run wall-time change."
+  ],
+  "allocationCounter": {
+    "api": "System.GC.GetAllocatedBytesForCurrentThread",
+    "available": false,
+    "oldZeroValuesUsable": false,
+    "validComparisonSource": "HierarchyFrameDataView columnGcMemory from native CPU profiler capture"
+  },
+  "excludedCases": [
+    {
+      "path": "artifacts/late-wave-profile-2026-10-17/stat-crowd-geometry",
+      "reason": "Concurrent Unity build invalidates timing attribution. See timing-limit.json."
+    }
+  ],
+  "normalizedComparisons": [
+    {
+      "from": "stat-crowd",
+      "to": "stat-crowd-combined",
+      "metrics": {
+        "Scrapshift.Enemies": {
+          "totalMsPerSimulationTick": {
+            "before": 66.22478266666666,
+            "after": 49.15851562499999,
+            "reductionPercent": 25.770212229411715
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 13417150.666666666,
+            "after": 10865011.375,
+            "reductionPercent": 19.021470020510066
+          },
+          "callsPerSimulationTick": {
+            "before": 1.0,
+            "after": 1.0,
+            "reductionPercent": 0.0
+          }
+        },
+        "Scrapshift.Projectiles": {
+          "totalMsPerSimulationTick": {
+            "before": 17.258845833333336,
+            "after": 13.095331249999997,
+            "reductionPercent": 24.123945619190955
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 2746189.4166666665,
+            "after": 2167948.4375,
+            "reductionPercent": 21.05612146260971
+          },
+          "callsPerSimulationTick": {
+            "before": 1.0,
+            "after": 1.0,
+            "reductionPercent": 0.0
+          }
+        },
+        "GC.Alloc": {
+          "totalMsPerSimulationTick": {
+            "before": 13.154804166463343,
+            "after": 8.015309375203822,
+            "reductionPercent": 39.069337150317075
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 18256943.5,
+            "after": 13370482.6875,
+            "reductionPercent": 26.764944594915352
+          },
+          "callsPerSimulationTick": {
+            "before": 251755.95833333334,
+            "after": 176160.59375,
+            "reductionPercent": 30.02723950757207
+          }
+        },
+        "GC.Collect": {
+          "totalMsPerSimulationTick": {
+            "before": 8.648604166666665,
+            "after": 4.912303124999998,
+            "reductionPercent": 43.201202987958084
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 0.0,
+            "after": 0.0,
+            "reductionPercent": null
+          },
+          "callsPerSimulationTick": {
+            "before": 15.875,
+            "after": 11.59375,
+            "reductionPercent": 26.96850393700787
+          }
+        }
+      }
+    },
+    {
+      "from": "stat-crowd-combined",
+      "to": "stat-crowd-final",
+      "metrics": {
+        "Scrapshift.Enemies": {
+          "totalMsPerSimulationTick": {
+            "before": 49.15851562499999,
+            "after": 10.119871304347823,
+            "reductionPercent": 79.4137980455999
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 10865011.375,
+            "after": 70409.47826086957,
+            "reductionPercent": 99.3519613019193
+          },
+          "callsPerSimulationTick": {
+            "before": 1.0,
+            "after": 1.0,
+            "reductionPercent": 0.0
+          }
+        },
+        "Scrapshift.Projectiles": {
+          "totalMsPerSimulationTick": {
+            "before": 13.095331249999997,
+            "after": 4.76464,
+            "reductionPercent": 63.61573518806558
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 2167948.4375,
+            "after": 13480.730434782608,
+            "reductionPercent": 99.37818030163447
+          },
+          "callsPerSimulationTick": {
+            "before": 1.0,
+            "after": 1.0,
+            "reductionPercent": 0.0
+          }
+        },
+        "GC.Alloc": {
+          "totalMsPerSimulationTick": {
+            "before": 8.015309375203822,
+            "after": 0.1359817391303064,
+            "reductionPercent": 98.30347485337273
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 13370482.6875,
+            "after": 133566.53913043477,
+            "reductionPercent": 99.00103427638177
+          },
+          "callsPerSimulationTick": {
+            "before": 176160.59375,
+            "after": 1955.1739130434783,
+            "reductionPercent": 98.89011845871832
+          }
+        },
+        "GC.Collect": {
+          "totalMsPerSimulationTick": {
+            "before": 4.912303124999998,
+            "after": 0.10308173913043478,
+            "reductionPercent": 97.90155988937603
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 0.0,
+            "after": 0.0,
+            "reductionPercent": null
+          },
+          "callsPerSimulationTick": {
+            "before": 11.59375,
+            "after": 0.11304347826086956,
+            "reductionPercent": 99.02496191257471
+          }
+        }
+      }
+    },
+    {
+      "from": "stat-crowd",
+      "to": "stat-crowd-final",
+      "metrics": {
+        "Scrapshift.Enemies": {
+          "totalMsPerSimulationTick": {
+            "before": 66.22478266666666,
+            "after": 10.119871304347823,
+            "reductionPercent": 84.71890597922412
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 13417150.666666666,
+            "after": 70409.47826086957,
+            "reductionPercent": 99.47522778859603
+          },
+          "callsPerSimulationTick": {
+            "before": 1.0,
+            "after": 1.0,
+            "reductionPercent": 0.0
+          }
+        },
+        "Scrapshift.Projectiles": {
+          "totalMsPerSimulationTick": {
+            "before": 17.258845833333336,
+            "after": 4.76464,
+            "reductionPercent": 72.39305544523907
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 2746189.4166666665,
+            "after": 13480.730434782608,
+            "reductionPercent": 99.50911141260075
+          },
+          "callsPerSimulationTick": {
+            "before": 1.0,
+            "after": 1.0,
+            "reductionPercent": 0.0
+          }
+        },
+        "GC.Alloc": {
+          "totalMsPerSimulationTick": {
+            "before": 13.154804166463343,
+            "after": 0.1359817391303064,
+            "reductionPercent": 98.96629598274845
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 18256943.5,
+            "after": 133566.53913043477,
+            "reductionPercent": 99.26840689883039
+          },
+          "callsPerSimulationTick": {
+            "before": 251755.95833333334,
+            "after": 1955.1739130434783,
+            "reductionPercent": 99.2233852473693
+          }
+        },
+        "GC.Collect": {
+          "totalMsPerSimulationTick": {
+            "before": 8.648604166666665,
+            "after": 0.10308173913043478,
+            "reductionPercent": 98.80811126114743
+          },
+          "gcBytesPerSimulationTick": {
+            "before": 0.0,
+            "after": 0.0,
+            "reductionPercent": null
+          },
+          "callsPerSimulationTick": {
+            "before": 15.875,
+            "after": 0.11304347826086956,
+            "reductionPercent": 99.28791509756932
+          }
+        }
+      }
+    }
+  ]
+}

@@ -7,6 +7,11 @@ namespace Scrapshift
     public sealed partial class ArenaGame
     {
         int codexTab, codexSelected, codexTier=1, codexSort;
+        void SwitchCodexTab(int tab)
+        {
+            codexTab=Mathf.Clamp(tab,0,3);codexSelected=0;codexTier=1;codexScroll=codexDetailScroll=Vector2.zero;
+            menuFocus=-1;menuActivate=false;
+        }
         bool codexReverse;
         Vector2 codexScroll, codexDetailScroll;
         void DrawCodexFace(CharacterProfile character,Rect r)
@@ -62,7 +67,7 @@ namespace Scrapshift
             RoundedBox(new Rect(left,35,width,820),new Color(.48f,.53f,.51f),25);
             RoundedBox(new Rect(left+13,125,width-26,610),new Color(.10f,.16f,.14f),15);
             string[] tabs={"Challenges","Items","Weapons","Enemies"};float tabW=(width-40)/4;
-            for(int i=0;i<4;i++)if(MenuButton(new Rect(left+20+i*tabW,55,tabW-8,62),tabs[i],codexTab==i)){codexTab=i;codexSelected=0;codexTier=1;codexScroll=codexDetailScroll=Vector2.zero;}
+            for(int i=0;i<4;i++)if(MenuButton(new Rect(left+20+i*tabW,55,tabW-8,62),tabs[i],codexTab==i))SwitchCodexTab(i);
             var entries=CodexEntries();if(entries.Length==0)return;
             codexSelected=Mathf.Clamp(codexSelected,0,entries.Length-1);
             int cols=codexTab==0?8:codexTab==1?7:codexTab==2?5:4;
@@ -70,15 +75,18 @@ namespace Scrapshift
             bool sortable=codexTab==1||codexTab==2;
             if(sortable){if(Button(new Rect(left+20,138,gridW-85,38),"Sorted by "+new[]{"rarity","name","times acquired"}[codexSort]+" ▾")){codexSort=(codexSort+1)%3;codexSelected=0;codexScroll=Vector2.zero;}if(Button(new Rect(left+gridW-58,138,58,38),codexReverse?"↑":"↓")){codexReverse=!codexReverse;codexSelected=0;codexScroll=Vector2.zero;}}
             var viewport=new Rect(left+20,sortable?190:140,gridW,sortable?535:585);
-            if(Event.current.type==EventType.KeyDown)
+            if(!menuNavigationActive&&Event.current.type==EventType.KeyDown)
             {
                 int step=Event.current.keyCode==KeyCode.RightArrow?1:Event.current.keyCode==KeyCode.LeftArrow?-1:Event.current.keyCode==KeyCode.DownArrow?cols:Event.current.keyCode==KeyCode.UpArrow?-cols:0;
                 if(step!=0){codexSelected=Mathf.Clamp(codexSelected+step,0,entries.Length-1);codexDetailScroll=Vector2.zero;codexScroll.y=Mathf.Clamp(codexSelected/cols*cell-viewport.height+cell,0,float.MaxValue);sound.Play(SoundCue.InventoryFocus);Event.current.Use();}
             }
-            codexScroll=GUI.BeginScrollView(viewport,codexScroll,new Rect(0,0,gridW-20,Mathf.Max(584,Mathf.Ceil(entries.Length/(float)cols)*cell)));
+            codexScroll=BeginNavigationScrollView(viewport,codexScroll,new Rect(0,0,gridW-20,Mathf.Max(584,Mathf.Ceil(entries.Length/(float)cols)*cell)));
             for(int i=0;i<entries.Length;i++)
             {
                 var e=entries[i];var r=new Rect(i%cols*cell,i/cols*cell,cell-8,cell-8);
+                InventoryNavigationSound(r);
+                bool focus=NavigationButton(r);
+                if(focus){codexSelected=i;codexTier=e.tier;EnsureNavigationVisible(r,viewport,ref codexScroll);}
                 if(i==codexSelected)RoundedBox(r,paper,8);
                 else
                 {
@@ -88,9 +96,9 @@ namespace Scrapshift
                 }
                 if(e.locked)DrawLock(new Rect(r.x+12,r.y+12,r.width-24,r.height-24));
                 else {var old=GUI.color;if(!e.known)GUI.color=Color.black;if(e.challenge!=null)DrawAchievementIcon(e.challenge,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else if(e.character!=null)DrawCodexFace(e.character,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));else DrawIcon(e.image,new Rect(r.x+7,r.y+7,r.width-14,r.height-14));GUI.color=old;}
-                if(GUI.Button(r,GUIContent.none,GUIStyle.none)){codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
+                if(GUI.Button(r,GUIContent.none,GUIStyle.none)||focus&&menuActivate){menuActivate=false;codexSelected=i;codexTier=e.tier;codexDetailScroll=Vector2.zero;sound.Play(SoundCue.InventoryFocus);}
             }
-            GUI.EndScrollView();
+            EndNavigationScrollView();
             var selected=entries[codexSelected];float x=left+gridW+40,w=width-gridW-65;
             if(selected.challenge==null)RoundedBox(new Rect(x,140,w,585),new Color(0,0,0,.72f),10);
             DrawCodexDetails(selected,new Rect(x+20,158,w-40,550));
@@ -120,8 +128,8 @@ namespace Scrapshift
             }
             if(!reward&&entry.challenge==null&&codexTab!=3&&!entry.locked){Text(r.x,y,r.width,28,"Base price: "+entry.price,body);y+=36;}
             var viewport=new Rect(r.x,y,r.width,r.yMax-y);float h=RichHeight(description,r.width-24)+20;
-            codexDetailScroll=GUI.BeginScrollView(viewport,codexDetailScroll,new Rect(0,0,r.width-20,Mathf.Max(h,viewport.height-1)));
-            RichText(description,new Rect(0,0,r.width-24,h));GUI.EndScrollView();
+            codexDetailScroll=BeginNavigationScrollView(viewport,codexDetailScroll,new Rect(0,0,r.width-20,Mathf.Max(h,viewport.height-1)));
+            RichText(description,new Rect(0,0,r.width-24,h));EndNavigationScrollView();
         }
         void DrawChallengeDetails(CodexEntry entry,Rect r)
         {
@@ -154,8 +162,8 @@ namespace Scrapshift
             float top=Mathf.Max(116,nameHeight+78);
             var viewport=new Rect(card.x+16,card.y+top,width-32,card.height-top-16);
             float height=RichHeight(entry.description,viewport.width-24)+20;
-            codexDetailScroll=GUI.BeginScrollView(viewport,codexDetailScroll,new Rect(0,0,viewport.width-20,Mathf.Max(height,viewport.height-1)));
-            RichText(entry.description,new Rect(0,0,viewport.width-24,height));GUI.EndScrollView();
+            codexDetailScroll=BeginNavigationScrollView(viewport,codexDetailScroll,new Rect(0,0,viewport.width-20,Mathf.Max(height,viewport.height-1)));
+            RichText(entry.description,new Rect(0,0,viewport.width-24,height));EndNavigationScrollView();
         }
         bool DrawUnlockReward()
         {

@@ -18,10 +18,10 @@ for i,c in enumerate(archive['characters']):
         startingWeapons=[Path(w).parts[-3] for w in c['starting_weapons']],
         wantedTags=c.get('wanted_tags',[]),bannedItems=[x.removeprefix('item_') for x in c.get('banned_items',[])],
         bannedItemGroups=c.get('banned_item_groups',[]),bannedUpgrades=c.get('banned_upgrades',[]),
-        stats=[],gains=[],conditionalEffects=[],effectRows=[],startingItems=[],bonusWeapon='',bonusTier=1,
+        stats=[],gains=[],conditionalEffects=[],effectRows=[],startingItems=[],startingItemChoices=[],bonusWeapon='',bonusTier=1,
         classSet='',classStat='',classValue=0,noMelee=False,noRanged=False,weaponSlots=6,minTier=1,maxTier=4,canAttackMoving=True)
     for v in c.get('starting_items',[]):
-        item=source.resource(v);p['startingItems'].append(item['my_id'].removeprefix('item_'))
+        item=source.resource(v);p['startingItemChoices'].append(item['my_id'].removeprefix('item_'))
     for e in c['resolvedEffects']:
         key=e['key'];value=e['value'];custom=e.get('custom_key','');script=Path(e['script']).stem
         row=dict(kind='stat',key=key.removeprefix('stat_'),value=value,extra='')
@@ -54,7 +54,7 @@ for i,c in enumerate(archive['characters']):
             p['conditionalEffects'].append(effect);row.update(kind='effect',extra=str(len(p['conditionalEffects'])-1))
         if key:p['effectRows'].append(row)
     for item in c.get('starting_items',[]):
-        p['effectRows'].append(dict(kind='item',key=source.resource(item)['my_id'].removeprefix('item_'),value=1,extra=''))
+        p['effectRows'].append(dict(kind='itemChoice',key=source.resource(item)['my_id'].removeprefix('item_'),value=1,extra=''))
     profiles.append(p)
 data['characters']=profiles
 path.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')

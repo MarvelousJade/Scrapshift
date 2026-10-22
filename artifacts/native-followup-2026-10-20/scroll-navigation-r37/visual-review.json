@@ -1,0 +1,65 @@
+{
+  "review": "Independent Codex agent read-only report and native PNG inspection",
+  "build": "R37",
+  "fixtureStatus": "Passed",
+  "processExitCode": 0,
+  "traceRows": 5932,
+  "semanticChecks": {
+    "actualStart": true,
+    "scrolled": true,
+    "scrollBefore": 0,
+    "scrollAfter": 41,
+    "focusBefore": "holdReroll",
+    "focusAfter": "keepLock",
+    "immediateActivated": "keepLock",
+    "settledActivated": "keepLock",
+    "immediateSettingChange": "On to Off",
+    "settledSettingChange": "Off to On",
+    "onlyExpectedSettingChanged": true,
+    "lostConfirmationReproduced": false
+  },
+  "coordinateInspection": {
+    "resolution": [1280, 720],
+    "rootScale": 0.8,
+    "rootHorizontalOffset": 64,
+    "firstOptionRenderedApproximate": [252, 124],
+    "firstOptionRootPrediction": [252.0007, 124.0],
+    "firstOptionInsideScrollConversion": [299, 155],
+    "keepLockAfterScrollRenderedApproximate": [252, 538],
+    "keepLockAfterScrollRootPrediction": [252.0007, 537.6000],
+    "keepLockAfterScrollInsideConversion": [299, 560.4000],
+    "conclusion": "Raw inside-scroll GUIToScreenPoint rectangle positions differ from rendered canvas bounds; tested highlight, semantic activation and actual setting changes nevertheless agree. No functional fix justified for lost activation in this finite sequence."
+  },
+  "captures": [
+    {
+      "path": "initial-options.png",
+      "sha256": "8ABBE6086FCF8F4BCD8C59AA92E5C2D184A79DBFC19FBEE0BDAD069488CCD53C",
+      "reviewed": true,
+      "observed": "Gameplay tab highlighted; first option strip begins near canvas prediction (252,124); unscrolled options visible."
+    },
+    {
+      "path": "before-scroll-edge.png",
+      "sha256": "8D58332440F3171F8CFFF27B321EA4FD33C943C498F7AFB941EA32EAF0C83B76",
+      "reviewed": true,
+      "observed": "Hold controller button to reroll has white On focus; no scroll yet; next option is below the viewport edge."
+    },
+    {
+      "path": "after-immediate-confirm.png",
+      "sha256": "40E175FD4060C1B8C7D637DAD27EB8AA87F218A3B8429AF9E706486BABE05ECF",
+      "reviewed": true,
+      "observed": "Scrolled Keep items locked between shops row has white Off focus; rendered strip begins near (252,538)."
+    },
+    {
+      "path": "after-settled-confirm.png",
+      "sha256": "154CE486F31509ECF26DB40B1A686397A836E24C42CA07D77F87B9CA76A957CB",
+      "reviewed": true,
+      "observed": "Same Keep items locked between shops row remains focused and now shows On."
+    }
+  ],
+  "limits": [
+    "Approximate rendered coordinates were visually inspected, not inferred solely from the JSON rectangles.",
+    "One resolution, one scroll edge and one options page; no general cross-container navigation claim.",
+    "Virtual Gamepad and fixture IgnoreFocus; no physical Xbox or ordinary OS focus verification.",
+    "No audio or full-campaign acceptance."
+  ]
+}
