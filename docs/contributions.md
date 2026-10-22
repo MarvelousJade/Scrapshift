@@ -1,3 +1,7 @@
+## 2026-10-21 - Reversible Web resource optimization
+
+User: selected FPS/memory then Web size and required meaningful commits. Codex agents: measured six diagnostic builds, implemented guarded temporary texture imports, verified source/settings restoration, preserved rejected attempts and kept LTO/codec/full-stack experiments opt-in. Two atlas payloads shrink9MiB packed; whole release measurements remain a separate final checkpoint.
+
 ## 2026-10-21 - Browser stress-test correctness
 
 User: set crowded-wave FPS/memory as the priority. Codex: found and fixed missing weapon-view initialization in the Web diagnostic fixture, retained failed evidence, invalidated old FPS samples and measured a clean corrected crowd. The Windows checksum/CPU comparison used a separate correctly initialized fixture.

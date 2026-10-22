@@ -1,0 +1,597 @@
+{
+  "status": "Build-size experiments and corrected diagnostic crowd verified; final release build and acceptance pending",
+  "builds": [
+    {
+      "name": "web-baseline",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": true,
+      "output": "Builds/WebBaseline20261021",
+      "buildReportBytes": 77628486,
+      "codeOptimization": "BuildTimes",
+      "sfxAudio": "Authored",
+      "originalSfxAudio": true,
+      "buildFiles": [
+        {
+          "path": "WebBaseline20261021.data.unityweb",
+          "bytes": 70884507,
+          "sha256": "e15bef8384d9df313903e5b5046c1fdc0dd456b5cd91d1653defb97b1e714055"
+        },
+        {
+          "path": "WebBaseline20261021.framework.js.unityweb",
+          "bytes": 73713,
+          "sha256": "ed1db50ff99fb7f3f97a3f45f6dc7f6e55e34e14e1344c56483d4b0a61fc1741"
+        },
+        {
+          "path": "WebBaseline20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "5cde0828d150c0a893024f8cc021bb552651b0d42791c0e6ce3322a48989dedc"
+        },
+        {
+          "path": "WebBaseline20261021.wasm.unityweb",
+          "bytes": 6617162,
+          "sha256": "f7acf68929b9c12960516b039d66ac49e506b12212fd5f914cece4af6fa702be"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "changedImporters": 1,
+        "restorationPassed": true,
+        "entryErrors": 0,
+        "codeOptimizationRestored": null,
+        "receipt": "web-baseline/web-audio-imports.json",
+        "receiptSha256": "d678142d1dee10b3992b7bd4468942d5da888bb8e9a5f86cf9979f2ca6deb205",
+        "portableSummary": "web-baseline/audio-import-summary.json",
+        "portableSummarySha256": "acc040be8e75f74bb97d937ce0d4b870feae4f9fd795889e878094a590a2c5b4"
+      },
+      "buildReceipt": "web-baseline/web-build.json",
+      "buildReceiptSha256": "ac584cd6ccc5daaa6d6939fe2f709e4cf54f45e42013db2f3b5ebe45b8bfbf3b"
+    },
+    {
+      "name": "web-quality-only",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": true,
+      "output": "Builds/WebOptimized20261021",
+      "buildReportBytes": 76292168,
+      "codeOptimization": "BuildTimes",
+      "sfxAudio": "Authored; quality0.65",
+      "originalSfxAudio": false,
+      "buildFiles": [
+        {
+          "path": "WebOptimized20261021.data.unityweb",
+          "bytes": 69548185,
+          "sha256": "fc98aaad6d81c1a60d9d131ffd432dc02e96e9f5c9d9ea8532cbfedb6209ca6c"
+        },
+        {
+          "path": "WebOptimized20261021.framework.js.unityweb",
+          "bytes": 73713,
+          "sha256": "ed1db50ff99fb7f3f97a3f45f6dc7f6e55e34e14e1344c56483d4b0a61fc1741"
+        },
+        {
+          "path": "WebOptimized20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "5cde0828d150c0a893024f8cc021bb552651b0d42791c0e6ce3322a48989dedc"
+        },
+        {
+          "path": "WebOptimized20261021.wasm.unityweb",
+          "bytes": 6617162,
+          "sha256": "f7acf68929b9c12960516b039d66ac49e506b12212fd5f914cece4af6fa702be"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "changedImporters": 464,
+        "restorationPassed": true,
+        "entryErrors": 0,
+        "codeOptimizationRestored": null,
+        "receipt": "web-quality-only/web-audio-imports.json",
+        "receiptSha256": "a301f9a2a2a5b05c6f064ea928ef5e9697497f9dc3fa2c4ba97c1293b9093da7",
+        "portableSummary": "web-quality-only/audio-import-summary.json",
+        "portableSummarySha256": "dfc175644db8664355debe23081c9a07123269694384f103c2c9b081ed53dff5"
+      },
+      "buildReceipt": "web-quality-only/web-build.json",
+      "buildReceiptSha256": "e19a16afc54103a1fb3982c1f293e4e8c2728ebbdaa3d5806e9f0682cc004076"
+    },
+    {
+      "name": "web-lto",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": true,
+      "output": "Builds/WebLto20261021",
+      "buildReportBytes": 76992632,
+      "codeOptimization": "RuntimeSpeedLTO",
+      "sfxAudio": "Vorbis request; quality0.65; Web AAC",
+      "originalSfxAudio": false,
+      "buildFiles": [
+        {
+          "path": "WebLto20261021.data.unityweb",
+          "bytes": 69548212,
+          "sha256": "cc530b970700a83878281d31758bf45bf9a51bbe6e8fd5887504582845da399d"
+        },
+        {
+          "path": "WebLto20261021.framework.js.unityweb",
+          "bytes": 73212,
+          "sha256": "9cddb90c8f24f492da5e3a7dd9f7d72b53c3b77a1e73f7232dd3d1ff3f10585c"
+        },
+        {
+          "path": "WebLto20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "8f936fc323948742f386ceab38716d808dce2bef9dac386f2a13c677db5ce23c"
+        },
+        {
+          "path": "WebLto20261021.wasm.unityweb",
+          "bytes": 7318124,
+          "sha256": "7b3dc4d788f1963599e6ee3695d9ed6a4d86f7badd858d633eca304ea667a85c"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "changedImporters": 464,
+        "restorationPassed": true,
+        "entryErrors": 0,
+        "codeOptimizationRestored": true,
+        "receipt": "web-lto/web-audio-imports.json",
+        "receiptSha256": "ddd2409ccbc0dda9d74ee2c8c8b02d99fd00297602bcb39a77126f1d3353f400",
+        "portableSummary": "web-lto/audio-import-summary.json",
+        "portableSummarySha256": "44a61e035e6151915e4e7f1b15a21a42b48e5d523657a81c2f9a9931e5a2e9ea"
+      },
+      "buildReceipt": "web-lto/web-build.json",
+      "buildReceiptSha256": "f56c9002d89df023c81ace835dc7fba837fff17cb82ba15178a3b9d46ca77ccf"
+    },
+    {
+      "name": "web-texture-initial",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": true,
+      "output": "Builds/WebTexture20261021",
+      "buildReportBytes": 74133162,
+      "codeOptimization": "BuildTimes",
+      "originalSfxAudio": false,
+      "sfxVorbisCompression": true,
+      "buildFiles": [
+        {
+          "path": "WebTexture20261021.data.unityweb",
+          "bytes": 66774316,
+          "sha256": "967de98219cf98741cdca81bbb4e36e94a78ebbfc4130d035812f51eb628968c"
+        },
+        {
+          "path": "WebTexture20261021.framework.js.unityweb",
+          "bytes": 73713,
+          "sha256": "27147a469b33a1068db9e751e532ee2924fcae40ccbe0e3cf4513371f00e9619"
+        },
+        {
+          "path": "WebTexture20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "e931bc28d032839a21196dfd750dabb55757ccad93113fc8997bc24ebec7dd7d"
+        },
+        {
+          "path": "WebTexture20261021.wasm.unityweb",
+          "bytes": 7232033,
+          "sha256": "ccae559d041d59a2c76218af7f5db0ba0eb4e950de2492247d20f4d80256db9b"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "restorationPassed": true,
+        "codeOptimizationRestored": true,
+        "receipt": "web-texture-initial/web-audio-imports.json",
+        "receiptSha256": "3cbba5d773c77b306dc6cc07bf12c745716ce29d20a5a85f7158ec316d42a8e5",
+        "portableSummary": "web-texture-initial/audio-import-summary.json",
+        "portableSummarySha256": "a81b385399730fd1905e527dc65aac4d5295d085b980d7a47272c0f72704b79e"
+      },
+      "textureVerification": {
+        "entries": 23,
+        "attempted": 2,
+        "skipped": 21,
+        "restored": 23,
+        "unchangedSourceFiles": 23,
+        "restorationPassed": true,
+        "receipt": "web-texture-initial/web-texture-imports.json",
+        "receiptSha256": "2141c31126c1b0272ee66f846c9bfe55b32f801ddd8c4d480344f5704cef0432"
+      },
+      "buildReceipt": "web-texture-initial/web-build.json",
+      "buildReceiptSha256": "60bbc4334bb2e2411c8beffe6ef9f65d9d52f0211e4f118aa53720b051472f9d"
+    },
+    {
+      "name": "web-corrected",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": true,
+      "output": "Builds/WebCorrected20261021",
+      "buildReportBytes": 75468790,
+      "codeOptimization": "BuildTimes",
+      "originalSfxAudio": true,
+      "sfxVorbisCompression": false,
+      "buildFiles": [
+        {
+          "path": "WebCorrected20261021.data.unityweb",
+          "bytes": 68109930,
+          "sha256": "385614b887502288f668c0056a0e622e5d59dd8db81732a79e2e7617729892a8"
+        },
+        {
+          "path": "WebCorrected20261021.framework.js.unityweb",
+          "bytes": 73713,
+          "sha256": "82b59897598111df8e8dd6779673a6fba31d07811308cf35c12d4ffefe9b9661"
+        },
+        {
+          "path": "WebCorrected20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "70d25cf3c17c2b51ae0144f352a95985141e12f0e50d2d8e85ddee22ed170a24"
+        },
+        {
+          "path": "WebCorrected20261021.wasm.unityweb",
+          "bytes": 7232039,
+          "sha256": "03646d4669284b0697c0b0286584edeb614e2c74387b90dfb507fcabb2c74a7b"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "restorationPassed": true,
+        "codeOptimizationRestored": true,
+        "receipt": "web-corrected/web-audio-imports.json",
+        "receiptSha256": "8b6a905fdc773610b5c31d4b1152df6244b192a6911d889ab2aad4104a06108a",
+        "portableSummary": "web-corrected/audio-import-summary.json",
+        "portableSummarySha256": "0b15340e2ca5c1bcf1bf5d62a28dc92b6bceda73c8c1de6d736b8966a5cbb0b2"
+      },
+      "textureVerification": {
+        "entries": 23,
+        "attempted": 2,
+        "skipped": 21,
+        "restored": 23,
+        "unchangedSourceFiles": 23,
+        "restorationPassed": true,
+        "receipt": "web-corrected/web-texture-imports.json",
+        "receiptSha256": "2141c31126c1b0272ee66f846c9bfe55b32f801ddd8c4d480344f5704cef0432"
+      },
+      "buildReceipt": "web-corrected/web-build.json",
+      "buildReceiptSha256": "36d5ad11e50f4dd99bc5d2bfec11fa6a9ae16412cc8069d48cfc8decebc162a0"
+    },
+    {
+      "name": "web-release-like",
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "review": true,
+      "output": "Builds/WebReleaseLike20261021",
+      "buildReportBytes": 74818683,
+      "codeOptimization": "BuildTimes",
+      "originalSfxAudio": true,
+      "sfxVorbisCompression": false,
+      "buildFiles": [
+        {
+          "path": "WebReleaseLike20261021.data.unityweb",
+          "bytes": 68086658,
+          "sha256": "53fec1fa82b6f4b7087b8a0b0f4cb311849320bcf2926756f5e249af5dc58587"
+        },
+        {
+          "path": "WebReleaseLike20261021.framework.js.unityweb",
+          "bytes": 73713,
+          "sha256": "b1860881c80b8234cb2df7d51514f059f31f8e6042f85873a5cc334882c7a53c"
+        },
+        {
+          "path": "WebReleaseLike20261021.loader.js",
+          "bytes": 48779,
+          "sha256": "e38a9f66905c33faf202ccb1a33852d9e057c42ba4b31302926b6cdae297079a"
+        },
+        {
+          "path": "WebReleaseLike20261021.wasm.unityweb",
+          "bytes": 6605196,
+          "sha256": "337a649c134a04f7f55e6746ea8cab5806704af6e79b713038cf108ee0cd5f8c"
+        }
+      ],
+      "audioVerification": {
+        "entries": 464,
+        "restoredImporters": 464,
+        "unchangedSourceFiles": 464,
+        "restorationPassed": true,
+        "codeOptimizationRestored": true,
+        "receipt": "web-release-like/web-audio-imports.json",
+        "receiptSha256": "f6a8f47707aebc140b3bea1fe260986196f8600df81ed54263dcd4660dd0cba6",
+        "portableSummary": "web-release-like/audio-import-summary.json",
+        "portableSummarySha256": "69acc6918dce75ff3215a4446fd31796dbebdda2edefbaf9efc07a0649a6a106"
+      },
+      "textureVerification": {
+        "entries": 23,
+        "attempted": 2,
+        "skipped": 21,
+        "restored": 23,
+        "unchangedSourceFiles": 23,
+        "restorationPassed": true,
+        "receipt": "web-release-like/web-texture-imports.json",
+        "receiptSha256": "2141c31126c1b0272ee66f846c9bfe55b32f801ddd8c4d480344f5704cef0432"
+      },
+      "buildReceipt": "web-release-like/web-build.json",
+      "buildReceiptSha256": "e89863a4436e9677585709b7797a18d9974f657fb21668ae6d1a374473820243"
+    }
+  ],
+  "differences": {
+    "qualityOnlyVersusBaselineBuildBytes": -1336318,
+    "qualityOnlyVersusBaselineReductionPercent": 1.7214273636613209,
+    "ltoCodecVersusQualityOnlyBuildBytes": 700464,
+    "ltoCodecVersusQualityOnlyDataBytes": 27,
+    "ltoVersusBuildTimesWasmBytes": 700962,
+    "qualityOnlyVersusInitialTextureDataBytes": -2773869
+  },
+  "browser": {
+    "baseline": {
+      "result": {
+        "phase": "Paused",
+        "objectName": "Scrapshift",
+        "enemies": 213,
+        "shots": 76,
+        "frames": 1439,
+        "peak": 213,
+        "minEnemies": 200,
+        "weapons": 6,
+        "averageMs": 6.948575496673584,
+        "p95Ms": 7.000007152557373,
+        "playerX": 0,
+        "playerY": 0.23999999463558197,
+        "master": 0.41999998688697815,
+        "listenerVolume": 0.41999998688697815,
+        "musicPlaying": true,
+        "musicTime": 24.991979598999023,
+        "savedProbe": 1
+      },
+      "requestedViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "height": 550,
+        "rect": {
+          "bottom": 550.1988525390625,
+          "height": 550.1988525390625,
+          "left": 0,
+          "right": 1163.6363525390625,
+          "top": 0,
+          "width": 1163.6363525390625,
+          "x": 0,
+          "y": 0
+        },
+        "width": 1164
+      },
+      "loadSeconds": "2.69",
+      "saveReloadPassed": true,
+      "initialMusicSilent": true,
+      "keyboardTitleAndWeaponMenusPassed": true
+    },
+    "ltoCodecCandidate": {
+      "phase": "Paused",
+      "objectName": "Scrapshift",
+      "enemies": 211,
+      "shots": 74,
+      "frames": 1293,
+      "peak": 211,
+      "minEnemies": 200,
+      "weapons": 6,
+      "sfxPlayed": 108,
+      "sfxPeakVoices": 15,
+      "averageMs": 7.732405185699463,
+      "p95Ms": 8,
+      "playerX": 0,
+      "playerY": 0.23999999463558197,
+      "master": 0.5,
+      "listenerVolume": 0.5,
+      "musicPlaying": true,
+      "musicTime": 23.78933334350586,
+      "savedProbe": 0
+    },
+    "limits": [
+      "Prior baseline/LTO/texture crowd frame measurements are invalid for performance acceptance because fixture initialization exceptions can interrupt physics; no runtime-speed comparison is established.",
+      "Separate non-crowd menu/save observations and build size/source restoration receipts remain bounded evidence; they do not validate extended runtime stability.",
+      "Local browser timings are not internet download-speed measurements.",
+      "Playback-state evidence does not establish subjective audio quality."
+    ],
+    "performanceAcceptanceValid": false,
+    "invalidationReason": "WebReview crowd changed Rules.Inventory to six weapons after StartSelectedRun without SyncEquipment; missing knife view threw in TickMeleeAttack and interrupted physics. Earlier FPS/frame samples retained only for diagnosis.",
+    "fixtureFix": "SyncEquipment immediately after diagnostic loadout fill, committed f21c43e; native PerformanceReview already initialized correctly.",
+    "errorEvidence": "browser/texture-diagnosis-errors.json",
+    "correctedNormalExceptionSample": {
+      "loadSeconds": "2.07",
+      "canvas": {
+        "height": 613,
+        "rect": {
+          "bottom": 613,
+          "height": 613,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "visibility": "visible",
+        "width": 1280
+      },
+      "initial": {
+        "phase": "Title",
+        "objectName": "Scrapshift",
+        "enemies": 0,
+        "shots": 0,
+        "frames": 0,
+        "peak": 0,
+        "minEnemies": 99999,
+        "weapons": 0,
+        "sfxPlayed": 0,
+        "sfxPeakVoices": 0,
+        "averageMs": 0,
+        "p95Ms": 0,
+        "playerX": 0,
+        "playerY": 0,
+        "master": 0.41999998688697815,
+        "listenerVolume": 0.41999998688697815,
+        "musicPlaying": false,
+        "musicTime": 0,
+        "savedProbe": 1,
+        "supportsDxt5": true,
+        "loadedTextures": 63,
+        "dxt5Textures": 2,
+        "textureMemoryBytes": 150542345
+      },
+      "result": {
+        "phase": "Paused",
+        "objectName": "Scrapshift",
+        "enemies": 200,
+        "shots": 0,
+        "frames": 1293,
+        "peak": 204,
+        "minEnemies": 200,
+        "weapons": 6,
+        "sfxPlayed": 323,
+        "sfxPeakVoices": 16,
+        "averageMs": 7.737819194793701,
+        "p95Ms": 10.999992370605469,
+        "playerX": 0,
+        "playerY": 0.23999999463558197,
+        "master": 0.41999998688697815,
+        "listenerVolume": 0.41999998688697815,
+        "musicPlaying": true,
+        "musicTime": 22.040000915527344,
+        "savedProbe": 1,
+        "supportsDxt5": true,
+        "loadedTextures": 70,
+        "dxt5Textures": 2,
+        "textureMemoryBytes": 151852105
+      },
+      "console": [],
+      "limits": "Corrected synthetic crowd with six synchronized weapon views. Normal release exception setting, original SFX, memory scan outside sample. No concurrent Unity build; not a full campaign or before/after Web speed ratio."
+    },
+    "correctedFullStackSample": {
+      "loadSeconds": "2.20",
+      "canvas": {
+        "height": 613,
+        "rect": {
+          "bottom": 613,
+          "height": 613,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "width": 1280
+      },
+      "initial": {
+        "phase": "Title",
+        "objectName": "Scrapshift",
+        "enemies": 0,
+        "shots": 0,
+        "frames": 0,
+        "peak": 0,
+        "minEnemies": 99999,
+        "weapons": 0,
+        "sfxPlayed": 0,
+        "sfxPeakVoices": 0,
+        "averageMs": 0,
+        "p95Ms": 0,
+        "playerX": 0,
+        "playerY": 0,
+        "master": 0.5,
+        "listenerVolume": 0.5,
+        "musicPlaying": false,
+        "musicTime": 0,
+        "savedProbe": 0,
+        "supportsDxt5": true,
+        "loadedTextures": 63,
+        "dxt5Textures": 2,
+        "textureMemoryBytes": 150542345
+      },
+      "result": {
+        "phase": "Paused",
+        "objectName": "Scrapshift",
+        "enemies": 200,
+        "shots": 0,
+        "frames": 44,
+        "peak": 203,
+        "minEnemies": 200,
+        "weapons": 6,
+        "sfxPlayed": 188,
+        "sfxPeakVoices": 16,
+        "averageMs": 227.97727966308594,
+        "p95Ms": 299,
+        "playerX": 0,
+        "playerY": 0.23999999463558197,
+        "master": 0.5,
+        "listenerVolume": 0.5,
+        "musicPlaying": true,
+        "musicTime": 22.591999053955078,
+        "savedProbe": 0,
+        "supportsDxt5": true,
+        "loadedTextures": 70,
+        "dxt5Textures": 2,
+        "textureMemoryBytes": 151852105
+      },
+      "console": [],
+      "limits": "Synthetic crowd; original SFX settings; full exception stacks and 1Hz texture diagnostics enabled. No concurrent Unity build. Not normal campaign FPS or before/after Web gain."
+    },
+    "freshSampleValidForBoundedDiagnostic": true,
+    "performanceAcceptanceScope": "Prior samples invalid; corrected normal-exception sample validates bounded local six-weapon crowd only, with no matched before/after Web speed ratio or final release acceptance."
+  },
+  "decision": {
+    "defaultCodeOptimization": "BuildTimes",
+    "optionalCodeOptimization": "RuntimeSpeedLTO",
+    "reason": "LTO enlarged Wasm and there is no valid matched browser gain evidence; default remains BuildTimes. Corrected normal-exception crowd completes without console errors.",
+    "sfxCodec": "No additional data savings established by the Vorbis request beyond quality-only; 27-byte data difference is negligible.",
+    "textureCandidate": "Only2weapon atlases compressed,21textures skipped;464audio/23texture importers restored. Corrected diagnostic crowd passed; final release pending.",
+    "defaultSfxAudio": "Authored codec with quality0.65; original-audio and explicit --web-vorbis-sfx alternatives retained.",
+    "defaultExceptions": "Normal release exception settings; --web-full-stacktraces explicitly enables diagnostic full stacks."
+  },
+  "textureExperiment": {
+    "rejectedAttempt": {
+      "result": "FailedBeforeReport",
+      "reason": "Preparation guard detected changed imported dimensions/readability/source condition for FittedWearables/wearables-09.png; rejected before BuildPlayer.",
+      "settingsRestored": true,
+      "evidence": [
+        "web-texture-rejected/web-build.json",
+        "web-texture-rejected/web-audio-imports.json",
+        "web-texture-build.log"
+      ]
+    },
+    "boundedCandidate": {
+      "inspected": 23,
+      "attempted": 2,
+      "skipped": 21,
+      "restored": 23,
+      "unchangedSourceFiles": 23,
+      "attemptedPaths": [
+        "Assets/Scrapshift/Content/OriginalArt/base-weapons-v1.png",
+        "Assets/Scrapshift/Content/OriginalArt/starter-weapons-v1.png"
+      ],
+      "receiptStatus": "Restored",
+      "restorationPassed": true,
+      "observedCloneReceiptSha256": "2141c31126c1b0272ee66f846c9bfe55b32f801ddd8c4d480344f5704cef0432",
+      "acceptance": "Corrected normal-exception diagnostic crowd passed; final release acceptance pending.",
+      "packedAtlasBytesBefore": 12650516,
+      "packedAtlasBytesAfter": 3213332,
+      "packedAtlasReductionBytes": 9437184,
+      "compressedDataBaselineBytes": 70884507,
+      "compressedDataReleaseLikeBytes": 68086658,
+      "compressedDataReductionBytes": 2797849,
+      "compressedDataReductionPercent": 3.9470529152442313,
+      "sizeComparisonLimit": "Diagnostic builds differ in fixture/instrumentation/settings; packed atlas delta is direct per-asset evidence, total data delta is observed package evidence, not an isolated all-factor experiment."
+    }
+  },
+  "nativePerformanceUnaffected": {
+    "source": "PerformanceReview.cs",
+    "reason": "Native diagnostic already calls SyncEquipment after loadout mutation; its separate40.03% CPU result is not invalidated by the WebReview bug.",
+    "evidence": "final-comparison.json"
+  }
+}

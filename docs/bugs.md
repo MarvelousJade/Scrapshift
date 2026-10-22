@@ -1,3 +1,7 @@
+## 2026-10-21 - Guard Web atlas imports and restore settings
+
+A compression attempt would resize an oversized wearable atlas, so the invariant guard rejected it and restored settings before building. The accepted candidate compresses only two compatible weapon sheets;21 audited textures retain their original import. All23 texture and464 audio records restore with unchanged source hashes. Packed atlas data falls9MiB; no total-RAM claim. LTO enlarged Wasm and has no valid speed-gain proof, so it stays opt-in. See docs/web-build-experiment-2026-10-21.md; final release package acceptance is separate.
+
 ## 2026-10-21 - Web crowd fixture loadout corrected
 
 The diagnostic crowd replaced six inventory weapons without rebuilding their scene views. Knife updates repeatedly threw and interrupted physics. Added SyncEquipment in the review-only command; ordinary game transitions already call it. Earlier Web crowd FPS samples are invalid. Fresh normal-exception-settings sample:1293 frames,7.738 ms mean,11 ms p95,minimum200 enemies/six weapons,zero console warnings/errors. Full-stack diagnostic timing is separate. See docs/web-crowd-fixture-2026-10-21.md.

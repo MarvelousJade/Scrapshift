@@ -1,3 +1,7 @@
+## 2026-10-21 - Rehearsal: optimize without changing asset registration
+
+Codex compared real Web outputs under user direction. Small SFX quality savings were measured; a codec request added no useful saving. Texture checks rejected resizing, then retained21 incompatible atlases and compressed two compatible sheets. Explain source/settings restoration, packed bytes versus downloaded bytes, and why neither proves a total-RAM reduction. AI-assisted rehearsal; do not present it as independent user implementation.
+
 ## 2026-10-21 - Rehearsal: reject a misleading benchmark
 
 Codex found repeated browser errors during the requested optimization review. Full stacks led to a diagnostic loadout that skipped scene synchronization. It corrected the fixture, rejected previous FPS claims and reran a release-like crowd with no errors. Explain the difference between valid package-size evidence and invalid simulation timings. This was AI-assisted work under user direction, not independent user debugging.
